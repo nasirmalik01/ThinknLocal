@@ -123,6 +123,7 @@ class TextView {
     );
   }
 
+
   static Text regular11Text(
       final text,
       {@required final color,

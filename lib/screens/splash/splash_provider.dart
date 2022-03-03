@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import '../../animations/slide_right.dart';
 import '../../common/utils.dart';
 import '../../res/strings.dart';
+
 import '../sign_in/sign_in.dart';
+
 
 class SplashProvider extends ChangeNotifier {
   BuildContext? context;
@@ -25,6 +27,7 @@ class SplashProvider extends ChangeNotifier {
           context!, SlideRightRoute(page: const SignIn()));
     } else {
       Navigator.pushReplacement(context!, SlideRightRoute(page: const SignIn()));
+
     }
   }
 }

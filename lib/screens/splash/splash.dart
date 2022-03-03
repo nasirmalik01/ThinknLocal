@@ -42,6 +42,7 @@ class _SplashState extends State<Splash> {
         width: sizes!.width,
         decoration: const BoxDecoration(
           color: Colors.white,
+
           // image: DecorationImage(
           //     image: AssetImage(Assets.appBgImage), fit: BoxFit.fill)
         ),
@@ -50,6 +51,7 @@ class _SplashState extends State<Splash> {
             // width: sizes!.widthRatio * 127.8,
             // height: sizes!.heightRatio * 137.6,
             child: Image.asset(Assets.logo),
+
           ),
         ),
       ),
