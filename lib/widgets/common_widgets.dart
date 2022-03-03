@@ -1,36 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widgets/text_views.dart';
+
+import '../res/assets.dart';
+import '../res/colors.dart';
+import '../res/res.dart';
 
 
 class CommonWidgets {
-  // static Widget getButton({
-  //   double ? width,
-  //   String ? text,
-  //   required Function ? onPress,
-  //   Color ? btnColor,
-  //   Color ? textColor,
-  //   Color ? borderColor,
-  // }) {
-  //   return GestureDetector(
-  //     onTap: (){
-  //       onPress!.call();
-  //     },
-  //     child: Container(
-  //       height: getHeight() * 0.07,
-  //       width:  width??sizes!.width,
-  //       decoration: BoxDecoration(
-  //         color: btnColor??AppColors.darkBlueColor,
-  //         border: Border.all(color: borderColor??Colors.transparent),
-  //         borderRadius: BorderRadius.circular(getWidth()*.02,),
-  //       ),
-  //       child: Center(
-  //         child: TextView.bold12Text(
-  //             text??"SUBMIT",
-  //             color: textColor?? AppColors.pureWhiteColor,
-  //         )
-  //       ),
-  //     ),
-  //   );
-  // }
+  static  Widget textField({
+    TextEditingController ? textEditingController,
+    bool ? obscureText,
+    String?  hint,
+    TextInputType? textInputType,
+    double ? width,
+    String ? icon,
+    Color? borderColor,
+    Color? bgColor
+  }){
+    return   Container(
+      height: getHeight() * 0.07,
+      width:  width??sizes!.width,
+      decoration: BoxDecoration(
+          color: bgColor?? AppColors.lightGrey,
+          border: Border.all(color: borderColor?? AppColors.lightGrey),
+          borderRadius: BorderRadius.all(Radius.circular(getHeight()*.01))
+      ),
+      child: TextField(
+        controller: textEditingController,
+        obscureText:obscureText?? false,
+        cursorHeight: getHeight()*.03,
+        keyboardType: textInputType??TextInputType.text,
+        cursorColor:Colors.black,
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: sizes!.fontSize12,
+          fontFamily:Assets.poppinsMedium,
+        ),
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.only(left: getWidth()*.02),
+            hintText: hint??"",
+            alignLabelWithHint: false,
+            hintStyle: TextStyle(
+              color: AppColors.darkGrey,
+              fontSize: sizes!.fontSize12,
+              fontFamily:Assets.poppinsMedium,
+            )
+        ),
+      ),
+    );
+  }
+
+  static Widget getButton({
+    double ? width,
+    String ? text,
+    required Function ? onPress,
+    Color ? btnColor,
+    Color ? textColor,
+    Color ? borderColor,
+  }) {
+    return GestureDetector(
+      onTap: (){
+        onPress!.call();
+      },
+      child: Container(
+        height: getHeight() * 0.07,
+        width:  width??sizes!.width,
+        decoration: BoxDecoration(
+          color: btnColor??AppColors.greenColor,
+          border: Border.all(color: borderColor??Colors.transparent),
+          borderRadius: BorderRadius.circular(getWidth()*.02,),
+        ),
+        child: Center(
+            child: TextView.getMediumText18(
+              text??"SUBMIT",
+              color: textColor?? AppColors.pureWhiteColor,
+              fontFamily: Assets.poppinsMedium
+            )
+        ),
+      ),
+    );
+  }
 
 }
 

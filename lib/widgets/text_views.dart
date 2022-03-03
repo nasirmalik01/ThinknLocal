@@ -42,6 +42,47 @@ class TextView {
       ),
     );
   }
+
+  static Text getMediumText18(
+      final text,
+      {@required final color,
+        final TextAlign textAlign = TextAlign.start,
+        final fontFamily,
+        final lines}) {
+    return Text(
+      text ?? "",
+      textAlign: textAlign,
+      softWrap: true,
+      maxLines: lines,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        fontSize: sizes!.fontSize18,
+        fontFamily: fontFamily?? Assets.latoRegular,
+        color: color,
+      ),
+    );
+  }
+
+  static Text getMediumText15(
+      final text,
+      {@required final color,
+        final TextAlign textAlign = TextAlign.start,
+        final fontFamily,
+        final lines}) {
+    return Text(
+      text ?? "",
+      textAlign: textAlign,
+      softWrap: true,
+      maxLines: lines,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        fontSize: sizes!.fontSize15,
+        fontFamily: fontFamily?? Assets.latoRegular,
+        color: color,
+      ),
+    );
+  }
+
   static Text getRegularText(final text, final fontFamily,
       {@required final color,
       final TextAlign textAlign = TextAlign.start,
@@ -82,25 +123,22 @@ class TextView {
     );
   }
 
-  static Text regular12Text(
+  static Text regular11Text(
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
         final fontFamily,
-        final height,
         final lines}) {
     return Text(
       text ?? "",
       textAlign: textAlign,
       softWrap: true,
-      textWidthBasis: TextWidthBasis.values[1],
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize12,
+        fontSize: sizes!.fontSize11,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
-        height: height
       ),
     );
   }
