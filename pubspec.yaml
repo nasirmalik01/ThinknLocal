@@ -89,9 +89,15 @@ flutter:
     - family: Lato-Regular
       fonts:
         - asset: assets/fonts/lato/Lato-Regular.ttf
-    - family: Lato-Bold
+    - family: Poppins-Regular
       fonts:
-        - asset: assets/fonts/lato/Lato-Bold.ttf
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+    - family: Poppins-Medium
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Medium.ttf
+    - family: Poppins-SemiBold
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
 
 
   # For details regarding fonts from package dependencies,
