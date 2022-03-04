@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/on_boarding1/on_boarding1.dart';
 import 'package:flutter_app/screens/reset_password/reset_password.dart';
+import 'package:flutter_app/screens/sign_up/sign_up.dart';
 
 import '../../res/assets.dart';
 import '../../res/colors.dart';
@@ -91,7 +93,10 @@ class _SignInState extends State<SignIn> {
                         ],
                       ),
                       SizedBox(height: getHeight() * 0.02),
-                      CommonWidgets.getButton(onPress: () {},
+                      CommonWidgets.getButton(onPress: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => const OnBoarding1()));
+                      },
                         btnColor: AppColors.greenColor,
                         textColor: AppColors.pureWhiteColor,
                         text: "Sign In"
@@ -143,7 +148,12 @@ class _SignInState extends State<SignIn> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextView.getMediumText15("Don't have an account? ", fontFamily: Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
-                          TextView.getMediumText15("Register", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => const SignUp()));
+                            },
+                              child: TextView.getMediumText15("Register", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1)),
 
                         ],
                       ),

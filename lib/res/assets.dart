@@ -14,7 +14,8 @@ class Assets {
 
 
   static const String apiLoading = "assets/json/blueSimple.json";
-  // images
-  static const String doodleBackgroundImage = "assets/png/background_img.png";
+  static const String onBoarding1 = "assets/png/onBoarding1.png";
+  static const String onBoarding2 = "assets/png/onBoarding2.png";
+  static const String onBoarding3 = "assets/png/onBoarding3.png";
 
 }

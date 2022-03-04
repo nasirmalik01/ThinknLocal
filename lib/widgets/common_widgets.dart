@@ -15,7 +15,10 @@ class CommonWidgets {
     double ? width,
     String ? icon,
     Color? borderColor,
-    Color? bgColor
+    Color? bgColor,
+    Color? textColor,
+    Color? hintTextColor,
+    Color? cursorColor
   }){
     return   Container(
       height: getHeight() * 0.07,
@@ -30,10 +33,10 @@ class CommonWidgets {
         obscureText:obscureText?? false,
         cursorHeight: getHeight()*.03,
         keyboardType: textInputType??TextInputType.text,
-        cursorColor:Colors.black,
+        cursorColor: cursorColor?? Colors.black,
         style: TextStyle(
-          color: Colors.black,
-          fontSize: sizes!.fontSize12,
+          color: textColor ?? Colors.black,
+          fontSize: sizes!.fontSize15,
           fontFamily:Assets.poppinsMedium,
         ),
         textInputAction: TextInputAction.next,
@@ -43,8 +46,8 @@ class CommonWidgets {
             hintText: hint??"",
             alignLabelWithHint: false,
             hintStyle: TextStyle(
-              color: AppColors.darkGrey,
-              fontSize: sizes!.fontSize12,
+              color: hintTextColor ?? AppColors.darkGrey,
+              fontSize: sizes!.fontSize15,
               fontFamily:Assets.poppinsMedium,
             )
         ),
@@ -79,6 +82,18 @@ class CommonWidgets {
               fontFamily: Assets.poppinsMedium
             )
         ),
+      ),
+    );
+  }
+  
+  static Widget getSmallButton({Color? borderColor, Color? fillColor}) {
+    return Container(
+      height: getHeight() * 0.03,
+      width: getWidth() * 0.03,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: fillColor?? AppColors.pureWhiteColor,
+        border: Border.all(color: borderColor ?? AppColors.greenColor)
       ),
     );
   }
