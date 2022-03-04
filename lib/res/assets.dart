@@ -5,12 +5,15 @@ class Assets {
   static const String googleLogo = "assets/png/Google.png";
   static const String facebookLogo = "assets/png/Facebook.png";
 
+
   // fonts
   static const String latoRegular = "Lato-Regular";
   static const String latoBold = "Lato-Bold";
+
   static const String poppinsRegular = "Poppins-Regular";
   static const String poppinsMedium = "Poppins-Medium";
   static const String poppinsSemiBold = "Poppins-SemiBold";
+
 
 
   static const String apiLoading = "assets/json/blueSimple.json";

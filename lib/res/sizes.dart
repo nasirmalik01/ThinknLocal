@@ -20,6 +20,7 @@ class AppSizes {
   late double fontSize15;
   late double fontSize16;
   late double fontSize18;
+
   late double fontSize20;
   late double fontSize24;
   late double fontSize27;
@@ -57,12 +58,14 @@ class AppSizes {
     isPhone ? _screenSize.height / 720 : _screenSize.height / 1200;
 
     fontSize10 = 10.0 * fontRatio;
+
     fontSize11 = 11.0 * fontRatio;
     fontSize12 = 12.0 * fontRatio;
     fontSize13 = 13.0 * fontRatio;
     fontSize15 = 15.0 * fontRatio;
     fontSize16 = 16.0 * fontRatio;
     fontSize18 = 18.0 * fontRatio;
+
     fontSize20 = 20.0 * fontRatio;
     fontSize24 = 24.0 * fontRatio;
     fontSize27 = 27.0 * fontRatio;
