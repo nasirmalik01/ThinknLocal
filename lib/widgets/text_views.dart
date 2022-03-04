@@ -83,6 +83,26 @@ class TextView {
     );
   }
 
+  static Text getText13(
+      final text,
+      {@required final color,
+        final TextAlign textAlign = TextAlign.start,
+        final fontFamily,
+        final lines}) {
+    return Text(
+      text ?? "",
+      textAlign: textAlign,
+      softWrap: true,
+      maxLines: lines,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        fontSize: sizes!.fontSize13,
+        fontFamily: fontFamily?? Assets.poppinsRegular,
+        color: color,
+      ),
+    );
+  }
+
   static Text getRegularText(final text, final fontFamily,
       {@required final color,
       final TextAlign textAlign = TextAlign.start,
@@ -244,7 +264,7 @@ class TextView {
     );
   }
 
-  static Text bold30Text(
+  static Text getText27(
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
@@ -258,7 +278,7 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: sizes!.fontSize30,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        fontFamily: fontFamily?? Assets.poppinsMedium,
         color: color,
       ),
     );
