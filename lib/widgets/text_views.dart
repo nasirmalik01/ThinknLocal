@@ -6,25 +6,6 @@ import '../res/assets.dart';
 
 class TextView {
 
-  static Text getExtraLargeText(
-      final text, final fontFamily,
-      {@required final color,
-      final TextAlign textAlign = TextAlign.start,
-      @required final lines}) {
-    return Text(
-      text,
-      textAlign: textAlign,
-      softWrap: true,
-      maxLines: lines,
-      style: TextStyle(
-        fontSize: sizes!.fontSize24,
-        fontWeight: FontWeight.w700,
-        fontFamily: fontFamily,
-        color: color,
-      ),
-    );
-  }
-
   static Text getMediumText16(final text, final fontFamily,
       {@required final color,
       final TextAlign textAlign = TextAlign.start,
@@ -76,6 +57,26 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
+        fontSize: sizes!.fontSize15,
+        fontFamily: fontFamily?? Assets.latoRegular,
+        color: color,
+      ),
+    );
+  }
+  static Text getMediumText15UnderLine(
+      final text,
+      {@required final color,
+        final TextAlign textAlign = TextAlign.start,
+        final fontFamily,
+        final lines}) {
+    return Text(
+      text ?? "",
+      textAlign: textAlign,
+      softWrap: true,
+      maxLines: lines,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        decoration: TextDecoration.underline,
         fontSize: sizes!.fontSize15,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
@@ -244,7 +245,7 @@ class TextView {
     );
   }
 
-  static Text bold24Text(
+  static Text bold25Text(
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
@@ -257,8 +258,9 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize24,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        fontSize: sizes!.fontSize25,
+        fontFamily: fontFamily?? Assets.latoBold,
+        fontWeight: FontWeight.w700,
         color: color,
       ),
     );

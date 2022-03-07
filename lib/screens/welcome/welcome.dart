@@ -30,7 +30,7 @@ class _WelcomeState extends State<Welcome> {
             decoration: const BoxDecoration(
               color: Colors.amber,
             ),
-            child: TextView.getExtraLargeText("Welcome", Assets.latoRegular, color: AppColors.darkBlueColor, lines: 1)),
+            child: TextView.bold25Text("Welcome", fontFamily: Assets.latoRegular, color: AppColors.darkBlueColor, lines: 1)),
       ),
     );
   }

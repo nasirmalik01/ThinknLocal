@@ -4,7 +4,8 @@ import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/screens/bottom_tab/bottom_tab_provider.dart';
-
+import 'package:flutter_app/res/res.dart';
+import '../../res/colors.dart';
 import 'businesses/businesses.dart';
 import 'courses/courses.dart';
 
@@ -47,6 +48,12 @@ class _BottomTabState extends State<BottomTab> {
     }
   }
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
 
   Widget build(BuildContext context) {
     Provider.of<BottomTabProvider>(context, listen: true);
@@ -56,39 +63,54 @@ class _BottomTabState extends State<BottomTab> {
         child: _currentPage(),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: AppColors.greenColor,
+        unselectedItemColor: Colors.grey,
+        selectedLabelStyle: TextStyle(
+            //color: AppColors.greenColor,
+            fontSize: sizes!.fontSize13 ),
+        unselectedLabelStyle: TextStyle(
+            //color:  Colors.grey,
+            fontSize: sizes!.fontSize13),
 
         onTap: (index) {
           setState(() {
             _bottomTabProvider?.setCurrentIndex(index);
+            _onItemTapped(_bottomTabProvider?.currentIndex?? 0);
           });
         },
         currentIndex: _currentIndex,
         items: [
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.home,
-          //       size: 30,
-          //       color: _bottomTabProvider?.currentIndex==0? AppColors.blueTextColor: Colors.grey ),
-          //
-          //   title: Text(getTranslated(context, 'homeText')?? "",style: TextStyle(color: _tabNavigationProvider?.currentIndex==0? AppColors.blueTextColor: Colors.grey,fontSize: sizes.smallFontSize),),
-          // ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.restore_outlined,
-          //       size: 30,
-          //       color: _tabNavigationProvider?.currentIndex==1? AppColors.blueTextColor: Colors.grey),
-          //   title: Text(getTranslated(context, 'biddingHistoryText')?? "",style: TextStyle(color: _tabNavigationProvider?.currentIndex==1? AppColors.blueTextColor: Colors.grey, fontSize: sizes.smallFontSize),),
-          // ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.perm_identity_outlined,
-          //       size: 30,
-          //       color: _tabNavigationProvider?.currentIndex==2? AppColors.blueTextColor: Colors.grey),
-          //   title: Text(getTranslated(context, 'profileText')?? "",style: TextStyle(color: _tabNavigationProvider?.currentIndex==2? AppColors.blueTextColor: Colors.grey, fontSize: sizes.smallFontSize),),
-          // ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.perm_identity_outlined,
-          //       size: 30,
-          //       color: _tabNavigationProvider?.currentIndex==2? AppColors.blueTextColor: Colors.grey),
-          //   title: Text(getTranslated(context, 'profileText')?? "",style: TextStyle(color: _tabNavigationProvider?.currentIndex==2? AppColors.blueTextColor: Colors.grey, fontSize: sizes.smallFontSize),),
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home,
+                size: 30,
+                color: _bottomTabProvider?.currentIndex==0? AppColors.greenColor: Colors.grey ),
+
+            label: 'Courses'
+            // Text(
+            //     "Courses",
+            //     style: TextStyle(
+            //         color: _bottomTabProvider?.currentIndex==0? AppColors.greenColor: Colors.grey,
+            //         fontSize: sizes!.fontSize13 )
+            // ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.restore_outlined,
+                size: 30,
+                color: _bottomTabProvider?.currentIndex==1? AppColors.greenColor: Colors.grey),
+            label: 'Businesses',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.perm_identity_outlined,
+                size: 30,
+                color: _bottomTabProvider?.currentIndex==2? AppColors.greenColor: Colors.grey),
+            label: 'Notifications',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.perm_identity_outlined,
+                size: 30,
+                color: _bottomTabProvider?.currentIndex==3? AppColors.greenColor: Colors.grey),
+            label: 'Account',
+          ),
         ],
         type: BottomNavigationBarType.fixed,
       ),

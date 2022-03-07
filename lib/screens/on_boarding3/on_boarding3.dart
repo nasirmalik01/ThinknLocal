@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/bottom_tab/bottom_tab.dart';
 
 import '../../res/assets.dart';
 import '../../res/colors.dart';
@@ -67,7 +68,10 @@ class _OnBoarding3State extends State<OnBoarding3> {
                           textAlign: TextAlign.center,
                           fontFamily: Assets.poppinsRegular),
                       SizedBox(height: getHeight() * 0.08),
-                      CommonWidgets.getButton(onPress: () {}, text: "Get Started!", width: getWidth() * 0.75),
+                      CommonWidgets.getButton(onPress: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (_) => BottomTab(pageIndex: 0)));
+                      }, text: "Get Started!", width: getWidth() * 0.75),
                       SizedBox(height: getHeight() * 0.08),
                       SizedBox(
                         width: getWidth() * 0.2,
