@@ -4,6 +4,7 @@ class Assets {
   static const String appleLogo = "assets/png/Apple.png";
   static const String googleLogo = "assets/png/Google.png";
   static const String facebookLogo = "assets/png/Facebook.png";
+  static const String notificationPic = "assets/png/notificationPic.png";
 
 
   // fonts

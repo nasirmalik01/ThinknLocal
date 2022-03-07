@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
+import 'account/account.dart';
+import 'businesses/businesses.dart';
+import 'courses/courses.dart';
+import 'notifications/notifications.dart';
+
 class BottomTabProvider extends ChangeNotifier{
   int currentIndex = 0;
   BuildContext? context;
@@ -13,4 +18,11 @@ class BottomTabProvider extends ChangeNotifier{
     this.currentIndex = index;
     notifyListeners();
   }
+
+  List screens=[
+    const Courses(),
+    const Businesses(),
+    const Notifications(),
+    const Account()
+  ];
 }

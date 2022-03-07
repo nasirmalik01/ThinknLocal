@@ -54,7 +54,7 @@ class _BusinessesState extends State<Businesses> {
                   padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
                   child: Column(
                     children: [
-                      TextView.getMediumText15("Salam", color: AppColors.greenColor),
+                      TextView.getMediumText15("Salam Buisness", color: AppColors.greenColor),
                     ],
                   ),
                 ),
