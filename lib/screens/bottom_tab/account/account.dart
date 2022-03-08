@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/bottom_tab/account/account_components.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 
+import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
 
@@ -14,6 +16,7 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
+  AccountComponents _accountComponents = AccountComponents();
 
   @override
   void initState() {
@@ -54,7 +57,29 @@ class _AccountState extends State<Account> {
                   padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
                   child: Column(
                     children: [
-                      TextView.getMediumText15("Salam", color: AppColors.greenColor),
+                      TextView.getMediumText18("Hello,", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium),
+                      SizedBox(height: getHeight() * 0.01),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextView.bold12Text("Help", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                          TextView.bold12Text("Sign out", color: AppColors.orangeColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                        ],
+                      ),
+                      //SizedBox(height: getHeight() * 0.01),
+                      _accountComponents.profileBox(
+                          name: "Johnathon Doe",
+                          email: "johnathon.doe@gmail.com",
+                          nameShort: "JD"
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                          child: TextView.getMediumText15("Account Settings", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
+                      _accountComponents.accountSettingCard(
+                          icon: Icons.notification_important,
+                          title: "Push Notifications",
+                          description: "Enable push notifications lorem ipsum."
+                      ),
                     ],
                   ),
                 ),

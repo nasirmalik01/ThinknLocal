@@ -67,7 +67,7 @@ class TextView {
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
-        final fontFamily,
+        final fontFamily, final TextDecoration textDecoration = TextDecoration.none,
         final lines}) {
     return Text(
       text ?? "",
@@ -76,7 +76,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        decoration: TextDecoration.underline,
+        decoration: textDecoration,
         fontSize: sizes!.fontSize15,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
@@ -169,7 +169,7 @@ class TextView {
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
-        final fontFamily,
+        final fontFamily, final TextDecoration textDecoration = TextDecoration.none,
         final lines}) {
     return Text(
       text ?? "",
@@ -178,6 +178,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
+        decoration: textDecoration,
         fontSize: sizes!.fontSize12,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
@@ -259,6 +260,27 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: sizes!.fontSize25,
+        fontFamily: fontFamily?? Assets.latoBold,
+        fontWeight: FontWeight.w700,
+        color: color,
+      ),
+    );
+  }
+
+  static Text bold30Text(
+      final text,
+      {@required final color,
+        final TextAlign textAlign = TextAlign.start,
+        final fontFamily,
+        final lines}) {
+    return Text(
+      text ?? "",
+      textAlign: textAlign,
+      softWrap: true,
+      maxLines: lines,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        fontSize: sizes!.fontSize30,
         fontFamily: fontFamily?? Assets.latoBold,
         fontWeight: FontWeight.w700,
         color: color,

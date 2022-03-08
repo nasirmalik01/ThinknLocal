@@ -5,6 +5,10 @@ class Assets {
   static const String googleLogo = "assets/png/Google.png";
   static const String facebookLogo = "assets/png/Facebook.png";
   static const String notificationPic = "assets/png/notificationPic.png";
+  static const String accountIcon = "assets/png/Account.png";
+  static const String causeIcon = "assets/png/cause.png";
+  static const String notificationIcon = "assets/png/notification.png";
+  static const String storeIcon = "assets/png/store.png";
 
 
   // fonts

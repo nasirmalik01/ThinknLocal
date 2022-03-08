@@ -66,7 +66,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                       SizedBox(height: getHeight() * 0.01),
                       TextView.getMediumText15("Want to edit your notification settings?", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
                       SizedBox(height: getHeight() * 0.01),
-                      TextView.getMediumText15UnderLine("Edit Settings", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium),
+                      TextView.getMediumText15UnderLine("Edit Settings", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
 
                     ],
                   ),
