@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
+import 'package:flutter_app/screens/bottom_tab/bottom_tab_components.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/screens/bottom_tab/bottom_tab_provider.dart';
 import 'package:flutter_app/res/res.dart';
+import '../../res/assets.dart';
 import '../../res/colors.dart';
 import 'businesses/businesses.dart';
 import 'courses/courses.dart';
@@ -22,6 +24,7 @@ class _BottomTabState extends State<BottomTab> {
   
   int _currentIndex = 0;
   BottomTabProvider? _bottomTabProvider;
+  BottomTabComponents? _bottomTabComponents = BottomTabComponents();
 
   @override
   void initState() {
@@ -81,9 +84,16 @@ class _BottomTabState extends State<BottomTab> {
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home,
-                size: 30,
-                color: _bottomTabProvider?.currentIndex==0? AppColors.greenColor: Colors.grey ),
+            icon: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: _bottomTabComponents?.getBottomTabIcons(
+                icon: Assets.causeIcon,
+                color: _bottomTabProvider?.currentIndex == 0? AppColors.greenColor: Colors.grey,
+              ),
+            ),
+            // Icon(Icons.home,
+            //     size: 30,
+            //     color: _bottomTabProvider?.currentIndex==0? AppColors.greenColor: Colors.grey ),
 
             label: 'Courses'
             // Text(
@@ -94,21 +104,33 @@ class _BottomTabState extends State<BottomTab> {
             // ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.restore_outlined,
-                size: 30,
-                color: _bottomTabProvider?.currentIndex==1? AppColors.greenColor: Colors.grey),
+            icon: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: _bottomTabComponents?.getBottomTabIcons(
+                icon: Assets.storeIcon,
+                color: _bottomTabProvider?.currentIndex == 1? AppColors.greenColor: Colors.grey,
+              ),
+            ),
             label: 'Businesses',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.perm_identity_outlined,
-                size: 30,
-                color: _bottomTabProvider?.currentIndex==2? AppColors.greenColor: Colors.grey),
+            icon: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: _bottomTabComponents?.getBottomTabIcons(
+                icon: Assets.notificationIcon,
+                color: _bottomTabProvider?.currentIndex == 2? AppColors.greenColor: Colors.grey,
+              ),
+            ),
             label: 'Notifications',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.perm_identity_outlined,
-                size: 30,
-                color: _bottomTabProvider?.currentIndex==3? AppColors.greenColor: Colors.grey),
+            icon: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: _bottomTabComponents?.getBottomTabIcons(
+                icon: Assets.accountIcon,
+                color: _bottomTabProvider?.currentIndex == 3? AppColors.greenColor: Colors.grey,
+              ),
+            ),
             label: 'Account',
           ),
         ],

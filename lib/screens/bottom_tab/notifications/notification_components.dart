@@ -28,21 +28,11 @@ class NotificationComponents {
               //height: sizes!.height * 0.12,
               padding: EdgeInsets.only(top: sizes!.heightRatio * 10, bottom: sizes!.heightRatio * 10, left: sizes!.heightRatio * 5),
               decoration: BoxDecoration(
-                // boxShadow: [
-                //   BoxShadow(
-                //     color: AppColors.smallButtonShadow,
-                //     blurRadius: 18,
-                //     offset: Offset(0, 0),
-                //   ),
-                // ],
-                //color: Colors.yellow,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: sizes!.width * 0.16,
 
                     child: Image(
@@ -51,11 +41,9 @@ class NotificationComponents {
                     ),
                   ),
                   SizedBox(width: sizes!.width * 0.03),
-                  Container(
-                    //height: sizes!.height * 0.1,
+                  SizedBox(
                     width: sizes!.width * 0.67,
                     child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: sizes!.height * 0.01),
