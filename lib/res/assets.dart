@@ -9,6 +9,9 @@ class Assets {
   static const String causeIcon = "assets/png/cause.png";
   static const String notificationIcon = "assets/png/notification.png";
   static const String storeIcon = "assets/png/store.png";
+  static const String locationIcon = "assets/png/locationIcon.png";
+  static const String mailIcon = "assets/png/mailIcon.png";
+  static const String bellicon = "assets/png/bellicon.png";
 
 
   // fonts
