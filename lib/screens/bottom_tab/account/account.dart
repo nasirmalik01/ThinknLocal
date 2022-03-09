@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account_components.dart';
+import 'package:flutter_app/screens/edit_account/edit_account.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 
 import '../../../res/assets.dart';
@@ -16,7 +17,30 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
-  AccountComponents _accountComponents = AccountComponents();
+  final AccountComponents _accountComponents = AccountComponents();
+  bool _value = false;
+
+  void _onChanged(bool value) {
+    setState(() {
+      _value = value;
+    });
+  }
+
+  bool _value2 = false;
+
+  void _onChanged2(bool value2) {
+    setState(() {
+      _value2 = value2;
+    });
+  }
+
+  bool _value3 = false;
+
+  void _onChanged3(bool value3) {
+    setState(() {
+      _value3 = value3;
+    });
+  }
 
   @override
   void initState() {
@@ -38,10 +62,10 @@ class _AccountState extends State<Account> {
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
-            child: Column(
+            child: ListView(
               children: [
                 Container(
-                  height: getHeight() * 0.1,
+                  height: getHeight() * 0.06,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
@@ -59,27 +83,156 @@ class _AccountState extends State<Account> {
                     children: [
                       TextView.getMediumText18("Hello,", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextView.bold12Text("Help", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
-                          TextView.bold12Text("Sign out", color: AppColors.orangeColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
-                        ],
-                      ),
-                      //SizedBox(height: getHeight() * 0.01),
                       _accountComponents.profileBox(
                           name: "Johnathon Doe",
                           email: "johnathon.doe@gmail.com",
-                          nameShort: "JD"
+                          nameShort: "JD",
+                          onTapEdit: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => const EditAccount()));
+                          }
                       ),
+                      SizedBox(height: getHeight() * 0.02),
                       Align(
                         alignment: Alignment.centerLeft,
                           child: TextView.getMediumText15("Account Settings", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
-                      _accountComponents.accountSettingCard(
-                          icon: Icons.notification_important,
-                          title: "Push Notifications",
-                          description: "Enable push notifications lorem ipsum."
-                      ),
+                      SizedBox(height: sizes!.height * 0.03),
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: getHeight() * 0.08,
+                            width: getWidth(),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(width: sizes!.width * 0.02),
+                                SizedBox(
+                                    height: getHeight() * 0.04,
+                                    width: getWidth() * 0.06,
+                                    child: Image.asset(Assets.bellicon, color: _value? AppColors.greenColor: AppColors.darkGrey,)),
+                                SizedBox(width: sizes!.width * 0.05),
+                                Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        TextView.getMediumText15("Push Notifications", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                                        SizedBox(
+                                            width: sizes!.width * 0.45,
+                                            child: TextView.regular11Text("Enable push notifications lorem ipsum", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
+                                      ],
+                                    ),
+                                    SizedBox(width: sizes!.width * 0.1),
+                                    CupertinoSwitch(activeColor: AppColors.greenColor ,value: _value, onChanged: (bool value) {_onChanged(value);}),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                          ),
+                          Divider(height: sizes!.height * 0.03, color: AppColors.borderColor),
+                          SizedBox(
+                            height: getHeight() * 0.08,
+                            width: getWidth(),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(width: sizes!.width * 0.02),
+                                SizedBox(
+                                    height: getHeight() * 0.04,
+                                    width: getWidth() * 0.06,
+                                    child: Image.asset(Assets.mailIcon, color: _value2? AppColors.greenColor: AppColors.darkGrey,)),
+                                SizedBox(width: sizes!.width * 0.05),
+                                Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        TextView.getMediumText15("Emails", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                                        SizedBox(
+                                            width: sizes!.width * 0.45,
+                                            child: TextView.regular11Text("Allow system emails for causes lorem ipsum", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
+                                      ],
+                                    ),
+                                    SizedBox(width: sizes!.width * 0.1),
+                                    CupertinoSwitch(activeColor: AppColors.greenColor ,value: _value2, onChanged: (bool value) {_onChanged2(value);}),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                          ),
+                          Divider(height: sizes!.height * 0.03, color: AppColors.borderColor),
+                          SizedBox(
+                            height: getHeight() * 0.08,
+                            width: getWidth(),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(width: sizes!.width * 0.02),
+                                SizedBox(
+                                    height: getHeight() * 0.04,
+                                    width: getWidth() * 0.06,
+                                    child: Image.asset(Assets.locationIcon, color: _value3? AppColors.greenColor: AppColors.darkGrey,)),
+                                SizedBox(width: sizes!.width * 0.05),
+                                Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        TextView.getMediumText15("Location Services", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                                        SizedBox(
+                                            width: sizes!.width * 0.45,
+                                            child: TextView.regular11Text("Allow location services while the app is running", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
+                                      ],
+                                    ),
+                                    SizedBox(width: sizes!.width * 0.1),
+                                    CupertinoSwitch(activeColor: AppColors.greenColor ,value: _value3, onChanged: (bool value) {_onChanged3(value);}),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                          ),
+                          Divider(height: sizes!.height * 0.03, color: AppColors.borderColor),
+                          SizedBox(
+                            height: getHeight() * 0.08,
+                            width: getWidth(),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(width: sizes!.width * 0.02),
+                                SizedBox(
+                                    height: getHeight() * 0.04,
+                                    width: getWidth() * 0.06,
+                                    child: Image.asset(Assets.locationIcon, color: _value3? AppColors.greenColor: AppColors.darkGrey,)),
+                                SizedBox(width: sizes!.width * 0.05),
+                                Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        TextView.getMediumText15("Location Services", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                                        SizedBox(
+                                            width: sizes!.width * 0.45,
+                                            child: TextView.regular11Text("Allow location services while the app is running", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
+                                      ],
+                                    ),
+                                    SizedBox(width: sizes!.width * 0.1),
+                                    CupertinoSwitch(activeColor: AppColors.greenColor ,value: _value3, onChanged: (bool value) {_onChanged3(value);}),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                          ),
+                          Divider(height: sizes!.height * 0.03, color: AppColors.borderColor),
+                        ],
+                      )
                     ],
                   ),
                 ),

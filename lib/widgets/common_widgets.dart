@@ -33,9 +33,9 @@ class CommonWidgets {
         obscureText:obscureText?? false,
         cursorHeight: getHeight()*.03,
         keyboardType: textInputType??TextInputType.text,
-        cursorColor: cursorColor?? Colors.black,
+        cursorColor: cursorColor?? AppColors.lightBlack,
         style: TextStyle(
-          color: textColor ?? Colors.black,
+          color: textColor ?? AppColors.lightBlack,
           fontSize: sizes!.fontSize15,
           fontFamily:Assets.poppinsMedium,
         ),
@@ -57,6 +57,7 @@ class CommonWidgets {
 
   static Widget getButton({
     double ? width,
+    double ? height,
     String ? text,
     required Function ? onPress,
     Color ? btnColor,
@@ -68,7 +69,7 @@ class CommonWidgets {
         onPress!.call();
       },
       child: Container(
-        height: getHeight() * 0.07,
+        height: height?? getHeight() * 0.07,
         width:  width??sizes!.width,
         decoration: BoxDecoration(
           color: btnColor??AppColors.greenColor,
