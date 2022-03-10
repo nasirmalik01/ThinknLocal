@@ -26,7 +26,7 @@ class NotificationComponents {
             Container(
               width: sizes!.width * 0.90,
               //height: sizes!.height * 0.12,
-              padding: EdgeInsets.only(top: sizes!.heightRatio * 10, bottom: sizes!.heightRatio * 10, left: sizes!.heightRatio * 5),
+              padding: EdgeInsets.only( bottom: sizes!.heightRatio * 10, left: sizes!.heightRatio * 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -63,8 +63,8 @@ class NotificationComponents {
                 ],
               ),
             ),
-            const Divider(
-              height: 5,
+            Divider(
+              height: sizes!.height * 0.01,
               color: AppColors.borderColor,
             ),
           ],

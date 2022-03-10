@@ -39,7 +39,7 @@ class _SignInState extends State<SignIn> {
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
-            child: Column(
+            child: ListView(
               children: [
                 Container(
                   height: getHeight() * 0.1,
@@ -107,8 +107,8 @@ class _SignInState extends State<SignIn> {
                         children: [
                           SizedBox(
                             width: sizes!.width * 0.22,
-                            child: const Divider(
-                              height: 5,
+                            child: Divider(
+                              height: getHeight() * 0.01,
                               color: AppColors.borderColor,
                             ),
                           ),
@@ -117,8 +117,8 @@ class _SignInState extends State<SignIn> {
                           SizedBox(width: getWidth() * 0.06),
                           SizedBox(
                             width: sizes!.width * 0.22,
-                            child: const Divider(
-                              height: 5,
+                            child: Divider(
+                              height: getHeight() * 0.01,
                               color: AppColors.borderColor,
                             ),
                           ),

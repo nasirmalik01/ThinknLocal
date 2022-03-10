@@ -42,6 +42,20 @@ class _AccountState extends State<Account> {
     });
   }
 
+  bool _value4 = false;
+  void _onChanged4(bool value4) {
+    setState(() {
+      _value4 = value4;
+    });
+  }
+
+  bool _value5 = false;
+  void _onChanged5(bool value5) {
+    setState(() {
+      _value5 = value5;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -65,7 +79,8 @@ class _AccountState extends State<Account> {
             child: ListView(
               children: [
                 Container(
-                  height: getHeight() * 0.06,
+                  height: getHeight() * 0.1,
+                  padding: EdgeInsets.only(bottom: sizes!.height * 0.02),
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
@@ -76,13 +91,14 @@ class _AccountState extends State<Account> {
                       ],
                     ),
                   ),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                      child: TextView.getMediumText18("Hello,", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
                   child: Column(
                     children: [
-                      TextView.getMediumText18("Hello,", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium),
-                      SizedBox(height: getHeight() * 0.01),
                       _accountComponents.profileBox(
                           name: "Johnathon Doe",
                           email: "johnathon.doe@gmail.com",
@@ -209,7 +225,7 @@ class _AccountState extends State<Account> {
                                 SizedBox(
                                     height: getHeight() * 0.04,
                                     width: getWidth() * 0.06,
-                                    child: Image.asset(Assets.locationIcon, color: _value3? AppColors.greenColor: AppColors.darkGrey,)),
+                                    child: Image.asset(Assets.locationIcon, color: _value4? AppColors.greenColor: AppColors.darkGrey,)),
                                 SizedBox(width: sizes!.width * 0.05),
                                 Row(
                                   children: [
@@ -223,7 +239,40 @@ class _AccountState extends State<Account> {
                                       ],
                                     ),
                                     SizedBox(width: sizes!.width * 0.1),
-                                    CupertinoSwitch(activeColor: AppColors.greenColor ,value: _value3, onChanged: (bool value) {_onChanged3(value);}),
+                                    CupertinoSwitch(activeColor: AppColors.greenColor ,value: _value4, onChanged: (bool value) {_onChanged4(value);}),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                          ),
+                          Divider(height: sizes!.height * 0.03, color: AppColors.borderColor),
+                          SizedBox(
+                            height: getHeight() * 0.08,
+                            width: getWidth(),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(width: sizes!.width * 0.02),
+                                SizedBox(
+                                    height: getHeight() * 0.04,
+                                    width: getWidth() * 0.06,
+                                    child: Image.asset(Assets.locationIcon, color: _value5? AppColors.greenColor: AppColors.darkGrey,)),
+                                SizedBox(width: sizes!.width * 0.05),
+                                Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        TextView.getMediumText15("Location Services", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                                        SizedBox(
+                                            width: sizes!.width * 0.45,
+                                            child: TextView.regular11Text("Allow location services while the app is running", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
+                                      ],
+                                    ),
+                                    SizedBox(width: sizes!.width * 0.1),
+                                    CupertinoSwitch(activeColor: AppColors.greenColor ,value: _value5, onChanged: (bool value) {_onChanged5(value);}),
                                   ],
                                 ),
                               ],
