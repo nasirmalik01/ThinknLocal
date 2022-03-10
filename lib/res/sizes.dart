@@ -21,7 +21,7 @@ class AppSizes {
   late double fontSize16;
   late double fontSize18;
 
-  late double fontSize20;
+  late double fontSize22;
   late double fontSize25;
   late double fontSize27;
   late double fontSize30;
@@ -66,7 +66,7 @@ class AppSizes {
     fontSize16 = 16.0 * fontRatio;
     fontSize18 = 18.0 * fontRatio;
 
-    fontSize20 = 20.0 * fontRatio;
+    fontSize22 = 22.0 * fontRatio;
     fontSize25 = 25.0 * fontRatio;
     fontSize27 = 27.0 * fontRatio;
     fontSize30 = 30.0 * fontRatio;

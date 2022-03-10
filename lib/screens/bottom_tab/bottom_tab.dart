@@ -9,7 +9,8 @@ import 'package:flutter_app/res/res.dart';
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import 'businesses/businesses.dart';
-import 'courses/courses.dart';
+import 'causes/causes.dart';
+
 
 class BottomTab extends StatefulWidget {
   int pageIndex;
@@ -38,7 +39,7 @@ class _BottomTabState extends State<BottomTab> {
 
   _currentPage() {
     if (_bottomTabProvider?.currentIndex == 0) {
-      return const Courses();
+      return const Causes();
     }
     if (_bottomTabProvider?.currentIndex == 1) {
       return const Businesses();
@@ -91,17 +92,9 @@ class _BottomTabState extends State<BottomTab> {
                 color: _bottomTabProvider?.currentIndex == 0? AppColors.greenColor: Colors.grey,
               ),
             ),
-            // Icon(Icons.home,
-            //     size: 30,
-            //     color: _bottomTabProvider?.currentIndex==0? AppColors.greenColor: Colors.grey ),
+
 
             label: 'Courses'
-            // Text(
-            //     "Courses",
-            //     style: TextStyle(
-            //         color: _bottomTabProvider?.currentIndex==0? AppColors.greenColor: Colors.grey,
-            //         fontSize: sizes!.fontSize13 )
-            // ),
           ),
           BottomNavigationBarItem(
             icon: Padding(

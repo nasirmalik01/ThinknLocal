@@ -226,11 +226,11 @@ class TextView {
     );
   }
 
-  static Text bold20Text(
+  static Text bold22Text(
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
-        final fontFamily,
+        final fontFamily, final TextDecoration textDecoration = TextDecoration.none,
         final lines}) {
     return Text(
       text ?? "",
@@ -239,8 +239,9 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize20,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        decoration: textDecoration,
+        fontSize: sizes!.fontSize22,
+        fontFamily: fontFamily?? Assets.poppinsSemiBold,
         color: color,
       ),
     );

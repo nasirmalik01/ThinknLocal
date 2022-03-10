@@ -28,28 +28,30 @@ class CommonWidgets {
           border: Border.all(color: borderColor?? AppColors.lightGrey),
           borderRadius: BorderRadius.all(Radius.circular(getHeight()*.01))
       ),
-      child: TextField(
-        controller: textEditingController,
-        obscureText:obscureText?? false,
-        cursorHeight: getHeight()*.03,
-        keyboardType: textInputType??TextInputType.text,
-        cursorColor: cursorColor?? AppColors.lightBlack,
-        style: TextStyle(
-          color: textColor ?? AppColors.lightBlack,
-          fontSize: sizes!.fontSize15,
-          fontFamily:Assets.poppinsMedium,
-        ),
-        textInputAction: TextInputAction.next,
-        decoration: InputDecoration(
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.only(left: getWidth()*.02),
-            hintText: hint??"",
-            alignLabelWithHint: false,
-            hintStyle: TextStyle(
-              color: hintTextColor ?? AppColors.darkGrey,
-              fontSize: sizes!.fontSize15,
-              fontFamily:Assets.poppinsMedium,
-            )
+      child: Center(
+        child: TextField(
+          controller: textEditingController,
+          obscureText:obscureText?? false,
+          cursorHeight: getHeight()*.03,
+          keyboardType: textInputType??TextInputType.text,
+          cursorColor: cursorColor?? AppColors.lightBlack,
+          style: TextStyle(
+            color: textColor ?? AppColors.lightBlack,
+            fontSize: sizes!.fontSize15,
+            fontFamily:Assets.poppinsMedium,
+          ),
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(left: getWidth()*.02),
+              hintText: hint??"",
+              alignLabelWithHint: false,
+              hintStyle: TextStyle(
+                color: hintTextColor ?? AppColors.darkGrey,
+                fontSize: sizes!.fontSize15,
+                fontFamily:Assets.poppinsMedium,
+              )
+          ),
         ),
       ),
     );
@@ -95,6 +97,41 @@ class CommonWidgets {
         shape: BoxShape.circle,
         color: fillColor?? AppColors.pureWhiteColor,
         border: Border.all(color: borderColor ?? AppColors.greenColor)
+      ),
+    );
+  }
+
+  static Widget searchLocation({TextEditingController? controller, String?  hint}) {
+    return Container(
+      padding: EdgeInsets.only(right: getWidth() * 0.02),
+      //height: getHeight() * 0.06,
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.borderColor),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        color: AppColors.pureWhiteColor,
+      ),
+      child: TextField(
+        textAlignVertical: TextAlignVertical.center,
+        controller: controller,
+        style: TextStyle(
+            fontFamily: Assets.poppinsRegular,
+            fontSize: sizes!.fontSize15,
+            color: AppColors.lightBlack
+        ),
+        decoration: InputDecoration(
+          hintText: hint ?? "Search",
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.zero,
+          hintStyle: TextStyle(
+              fontFamily: Assets.poppinsRegular,
+              fontSize: sizes!.fontSize15,
+              color: AppColors.veryLightGrey
+          ),
+          prefixIcon: const Icon(
+            Icons.search_outlined,
+            color: AppColors.darkGrey,
+          ),
+        ),
       ),
     );
   }

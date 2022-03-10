@@ -36,7 +36,7 @@ class _ResetPasswordState extends State<ResetPassword> {
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
-          child: Column(
+          child: ListView(
             children: [
               Container(
                 height: getHeight() * 0.1,

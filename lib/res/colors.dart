@@ -15,6 +15,7 @@ class AppColors{
   static const lightBlue = Color.fromRGBO(94, 95, 220, 1);
   static const orangeColor = Color.fromRGBO(228, 131, 83, 1);
   static const shadowColor = Color.fromRGBO(0, 0, 0, 0.25);
+  static const veryLightGrey = Color.fromRGBO(210, 218, 225, 1);
 
 
 

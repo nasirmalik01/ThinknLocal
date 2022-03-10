@@ -115,6 +115,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                     ],
                   ),
                 ),
+                SizedBox(height: sizes!.height * 0.01),
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,
@@ -127,7 +128,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                             Expanded(
                               child:
                               ListView.builder(
-                                  itemCount: 4,
+                                  itemCount: 5,
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
                                         onTap: () {
@@ -152,7 +153,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                             Expanded(
                                 child:
                                 ListView.builder(
-                                    itemCount: 4,
+                                    itemCount: 5,
                                     itemBuilder: (context, index) {
                                       return GestureDetector(
                                           onTap: () {
@@ -177,7 +178,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                             Expanded(
                                 child:
                                 ListView.builder(
-                                    itemCount: 4,
+                                    itemCount: 5,
                                     itemBuilder: (context, index) {
                                       return GestureDetector(
                                           onTap: () {
