@@ -60,7 +60,7 @@ class _CausesState extends State<Causes> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextView.getMediumText15("Businesses near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
+                      TextView.getMediumText15("Causes near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
                       TextView.bold22Text("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsSemiBold,
                           textDecoration: TextDecoration.underline)
                     ],
@@ -76,11 +76,36 @@ class _CausesState extends State<Causes> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          _causesComponents.getIconsContainer(image: Assets.foodIcon, label: "Food & Drink"),
-                          _causesComponents.getIconsContainer(image: Assets.thingsIcon, label: "Things to do"),
-                          _causesComponents.getIconsContainer(image: Assets.bagIcon, label: "Retail"),
-                          _causesComponents.getIconsContainer(image: Assets.servicesIcon, label: "Services"),
+                          _causesComponents.typesText(title: "Featured", isSelected: true),
+                          _causesComponents.typesText(title: "Trending", isSelected: false),
+                          _causesComponents.typesText(title: "Favorites", isSelected: false),
+                          _causesComponents.typesText(title: "Past", isSelected: false),
                         ],
+                      ),
+                      SizedBox(height: getHeight() * 0.01),
+                      SizedBox(
+                        height: getHeight()*0.24,
+                        child:
+                        ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 3,
+                          //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
+                          itemBuilder: (context, index){
+                            return _causesComponents.getImageContainer(
+                              name: "Chino Hills High School Girls Softall Fundraiser",
+                              fullBoxImage: Assets.schoolDummy1,
+                              logoImage: Assets.huskiesLogo,
+                              bookName:  "",
+                              completePercentage: 0.7,
+                              collectedAmount: "342.5",
+                              totalAmount: "450",
+                              endDate: "March 2nd",
+                              onClickBox: (){
+                                
+                              },
+                            );
+                          },
+                        ),
                       ),
 
                     ],

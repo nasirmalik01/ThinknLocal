@@ -16,6 +16,10 @@ class Assets {
   static const String foodIcon = "assets/png/foodIcon.png";
   static const String servicesIcon = "assets/png/servicesIcon.png";
   static const String thingsIcon = "assets/png/thingsIcon.png";
+  static const String schoolDummy1 = "assets/png/schoolDummy1.png";
+  static const String schoolDummy2 = "assets/png/schoolDummy2.png";
+  static const String huskiesLogo = "assets/png/huskiesLogo.png";
+  static const String dummyShort = "assets/png/dummy_short.png";
 
 
   // fonts

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/bottom_tab_components.dart';
@@ -22,7 +21,7 @@ class BottomTab extends StatefulWidget {
 }
 
 class _BottomTabState extends State<BottomTab> {
-  
+
   int _currentIndex = 0;
   BottomTabProvider? _bottomTabProvider;
   BottomTabComponents? _bottomTabComponents = BottomTabComponents();
@@ -33,7 +32,7 @@ class _BottomTabState extends State<BottomTab> {
     super.initState();
     _bottomTabProvider = Provider.of<BottomTabProvider>(context, listen: false);
     _bottomTabProvider?.init(context: context, index: widget.pageIndex);
-    
+
   }
 
 
@@ -70,10 +69,10 @@ class _BottomTabState extends State<BottomTab> {
         selectedItemColor: AppColors.greenColor,
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: TextStyle(
-            //color: AppColors.greenColor,
+          //color: AppColors.greenColor,
             fontSize: sizes!.fontSize13 ),
         unselectedLabelStyle: TextStyle(
-            //color:  Colors.grey,
+          //color:  Colors.grey,
             fontSize: sizes!.fontSize13),
 
         onTap: (index) {
@@ -85,16 +84,16 @@ class _BottomTabState extends State<BottomTab> {
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: _bottomTabComponents?.getBottomTabIcons(
-                icon: Assets.causeIcon,
-                color: _bottomTabProvider?.currentIndex == 0? AppColors.greenColor: Colors.grey,
+              icon: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: _bottomTabComponents?.getBottomTabIcons(
+                  icon: Assets.causeIcon,
+                  color: _bottomTabProvider?.currentIndex == 0? AppColors.greenColor: Colors.grey,
+                ),
               ),
-            ),
 
 
-            label: 'Courses'
+              label: 'Causes'
           ),
           BottomNavigationBarItem(
             icon: Padding(
