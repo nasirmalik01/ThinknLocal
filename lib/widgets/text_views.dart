@@ -8,7 +8,7 @@ class TextView {
 
   static Text getMediumText16(final text, final fontFamily,
       {@required final color,
-      final TextAlign textAlign = TextAlign.start,
+      final TextAlign textAlign = TextAlign.start, final fontWeight,
       @required final lines}) {
     return Text(
       text,
@@ -17,7 +17,7 @@ class TextView {
       maxLines: lines,
       style: TextStyle(
         fontSize: sizes!.fontSize16,
-        // fontWeight: FontWeight.w400,
+        fontWeight: fontWeight?? FontWeight.w500,
         fontFamily: fontFamily,
         color: color,
       ),
@@ -48,7 +48,7 @@ class TextView {
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
-        final fontFamily,
+        final fontFamily, final height,
         final lines}) {
     return Text(
       text ?? "",
@@ -57,6 +57,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
+        height: height ?? getHeight() * 0.0018,
         fontSize: sizes!.fontSize15,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
@@ -128,7 +129,7 @@ class TextView {
   final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
-        final fontFamily,
+        final fontFamily, final TextDecoration textDecoration = TextDecoration.none,
         final lines}) {
     return Text(
       text ?? "",
@@ -137,6 +138,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
+        decoration: textDecoration,
         fontSize: sizes!.fontSize10,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
