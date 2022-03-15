@@ -25,6 +25,8 @@ class Assets {
   static const String dummyRestaurantLogo = "assets/png/dummyRestaurantLogo.png";
   static const String dummyRestaurantShort = "assets/png/dummyRestaurantShort.png";
   static const String dummyRestaurantShortLogo = "assets/png/dummyRestaurantShortLogo.png";
+  static const String infectionCause = "assets/png/infection-cause.png";
+  static const String scannerIcon = "assets/png/scanner.png";
 
 
   // fonts

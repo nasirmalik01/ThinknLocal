@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_components.dart';
@@ -98,7 +99,8 @@ class _CausesState extends State<Causes> {
                             totalAmount: "450",
                             endDate: "March 2nd",
                             onClickBox: (){
-
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => const CausesDetail()));
                             },
                           );
                         },
