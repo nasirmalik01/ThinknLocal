@@ -17,8 +17,9 @@ class BottomTabComponents {
   Widget getBottomTabIcons({String ? icon, final color}){
     return Image(
       image: AssetImage(icon??""),
-      height: 22,
-      width: 22,
+      fit: BoxFit.fill,
+      //height: getHeight() * 0.1,
+      //width: getWidth() * 0.1,
       color: color,
     );
   }

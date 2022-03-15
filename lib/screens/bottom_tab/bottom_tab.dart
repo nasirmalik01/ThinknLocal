@@ -30,8 +30,8 @@ class _BottomTabState extends State<BottomTab> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _bottomTabProvider = Provider.of<BottomTabProvider>(context, listen: false);
-    _bottomTabProvider?.init(context: context, index: widget.pageIndex);
+    // _bottomTabProvider = Provider.of<BottomTabProvider>(context, listen: false);
+    // _bottomTabProvider?.init(context: context, index: widget.pageIndex);
 
   }
 
@@ -84,6 +84,7 @@ class _BottomTabState extends State<BottomTab> {
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
+
               icon: Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: _bottomTabComponents?.getBottomTabIcons(
