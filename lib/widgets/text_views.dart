@@ -208,6 +208,26 @@ class TextView {
     );
   }
 
+  static Text bold14Text(
+      final text,
+      {@required final color,
+        final TextAlign textAlign = TextAlign.start,
+        final fontFamily,
+        final lines}) {
+    return Text(
+      text ?? "",
+      textAlign: textAlign,
+      softWrap: true,
+      maxLines: lines,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        fontSize: sizes!.fontSize14,
+        fontFamily: fontFamily?? Assets.latoRegular,
+        color: color,
+      ),
+    );
+  }
+
   static Text regular16Text(
       final text,
       {@required final color,

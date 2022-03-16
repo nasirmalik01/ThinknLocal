@@ -28,7 +28,7 @@ class CausesComponents {
   }
 
   Widget typesText({required String title, required bool isSelected}) {
-    return Container(
+    return SizedBox(
       height: sizes!.height * 0.04,
       // padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.01),
       child: Column(
