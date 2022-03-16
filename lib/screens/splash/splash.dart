@@ -15,11 +15,9 @@ class Splash extends StatefulWidget {
   @override
   _SplashState createState() => _SplashState();
 }
-
 class _SplashState extends State<Splash> {
   bool animated = false;
   late SplashProvider? _splashProvider;
-
   @override
   void initState() {
     super.initState();
