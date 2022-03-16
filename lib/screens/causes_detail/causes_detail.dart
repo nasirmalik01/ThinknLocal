@@ -108,7 +108,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   ],
                 ),
               ),
-              SizedBox(height: sizes!.height * 0.01),
+              //SizedBox(height: sizes!.height * 0.01),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
@@ -116,9 +116,71 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: sizes!.pagePadding),
-                      child: Column(
+                      child: ListView(
                         children: [
-                          TextView.bold22Text("", color: AppColors.greenColor),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _causeDetailComponents.descriptionOverview(
+                                  heading: "Chino Hills HS Girls Water Polo",
+                                  description: "Help support the Chino-Hills 2021-2022 Water polo team. They are raising money to purchase new water polo equipment."
+                              ),
+                              SizedBox(height: sizes!.height * 0.02),
+                              TextView.bold15Text("Featured Sponsors", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+
+                              SizedBox(
+                                height: getHeight()*0.16,
+                                child:
+                                ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 5,
+                                  //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
+                                  itemBuilder: (context, index){
+                                    return _causeDetailComponents.featuredContainer(
+                                      name: "Grocery outlet",
+                                      image: "",
+                                      logoImage: Assets.dummyFeaturedShort,
+                                      givingBack: "20%",
+                                      onPressFullContainer: (){
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
+                              SizedBox(height: sizes!.height * 0.02),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  _causeDetailComponents.typesText(title: "Food & Drink", isSelected: true),
+                                  _causeDetailComponents.typesText(title: "Things to do", isSelected: false),
+                                  _causeDetailComponents.typesText(title: "Retail", isSelected: false),
+                                  _causeDetailComponents.typesText(title: "Services", isSelected: false),
+                                ],
+                              ),
+                              SizedBox(height: sizes!.height * 0.02),
+                              Wrap(
+                                children: [
+                                  ...List.generate(
+                                      3,
+                                          (index) {
+                                        return _causeDetailComponents.overViewCategoryContainer(
+                                            image:  Assets.dummyFeatured,
+                                            headerText: "Andy's Xpress Wash",
+                                            description:  "Spring Training Equipment Fundraiser",
+                                            onViewCourse: (){
+                                            },
+                                            totalAmount: "500",
+                                            categoryPercent: "50%",
+                                            date: "Mar 25",
+                                            address: "Chino, CA 91710",
+                                            streetAddress: "15705 Euclid Ave",
+                                            phoneNumber: "908-900-1791"
+                                        );
+                                      })
+                                ],
+                              )
+                            ],
+                          ),
                         ],
                       ),
                     ),

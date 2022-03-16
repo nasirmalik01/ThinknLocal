@@ -3,9 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/providers/multi_provider.dart';
 import 'package:flutter_app/routes/routes.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
