@@ -240,6 +240,7 @@ class BusinessesComponents {
       ),
     );
   }
+
   Widget get2TextRow({required String text1, required String text2}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

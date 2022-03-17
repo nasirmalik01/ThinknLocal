@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_components.dart';
+import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
+import '../../causes_detail/causes_detail.dart';
 
 
 class Businesses extends StatefulWidget {
@@ -108,7 +110,8 @@ class _BusinessesState extends State<Businesses> {
                             phoneNumber: "909-254-7898",
                             isFavorite: false,
                             onClickBox: (){
-
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => const BusinessesDetail()));
                             },
                           );
                         },

@@ -136,7 +136,7 @@ class _CausesState extends State<Causes> {
                         ...List.generate(
                             3,
                                 (index) {
-                              return _causesComponents.getUpcomingCauses(
+                              return CommonWidgets.getUpcomingCauses(
                                 image:  "",
                                 headerText: "Chino Hills High Softball Team",
                                 description:  "Spring Training Equipment Fundraiser",

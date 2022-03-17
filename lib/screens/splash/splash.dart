@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/animations/slide_right.dart';
 import 'package:flutter_app/screens/splash/splash_provider.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
@@ -15,11 +14,9 @@ class Splash extends StatefulWidget {
   @override
   _SplashState createState() => _SplashState();
 }
-
 class _SplashState extends State<Splash> {
   bool animated = false;
   late SplashProvider? _splashProvider;
-
   @override
   void initState() {
     super.initState();
