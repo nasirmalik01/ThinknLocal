@@ -78,8 +78,8 @@ class _BottomTabNewState extends State<BottomTabNew> {
     Provider.of<BottomTabProvider>(context, listen: true);
     return PersistentTabView(
       context,
-      // bottomScreenMargin: getHeight() * 0.1,
-      navBarHeight: getHeight() * 0.085,
+      bottomScreenMargin: getHeight() * 0.09,
+      navBarHeight: getHeight() * 0.09,
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
@@ -90,8 +90,16 @@ class _BottomTabNewState extends State<BottomTabNew> {
       stateManagement: true, // Default is true.
       hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
       decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(getWidth() * 0.001),
+        border: Border.all(color: AppColors.borderColor),
         colorBehindNavBar: Colors.white,
+        boxShadow: const [
+          BoxShadow(
+            color: AppColors.shadowColor,
+            blurRadius: 5,
+            offset: Offset(0, 0),
+          ),
+        ],
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
@@ -123,7 +131,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.qr_code_scanner_outlined, color: AppColors.pureWhiteColor, size: sizes!.height * 0.05),
+        icon: ImageIcon(AssetImage(Assets.scannerIcon), color: AppColors.pureWhiteColor, size: sizes!.height * 0.04),
         title: ("."),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,

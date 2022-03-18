@@ -147,7 +147,7 @@ class _AccountState extends State<Account> {
                             ),
 
                           ),
-                          Divider(height: sizes!.height * 0.03, color: AppColors.borderColor),
+                          Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
                           SizedBox(
                             height: getHeight() * 0.08,
                             width: getWidth(),
@@ -180,7 +180,7 @@ class _AccountState extends State<Account> {
                             ),
 
                           ),
-                          Divider(height: sizes!.height * 0.03, color: AppColors.borderColor),
+                          Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
                           SizedBox(
                             height: getHeight() * 0.08,
                             width: getWidth(),
@@ -213,7 +213,7 @@ class _AccountState extends State<Account> {
                             ),
 
                           ),
-                          Divider(height: sizes!.height * 0.03, color: AppColors.borderColor),
+                          Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
                           SizedBox(
                             height: getHeight() * 0.08,
                             width: getWidth(),
@@ -246,7 +246,7 @@ class _AccountState extends State<Account> {
                             ),
 
                           ),
-                          Divider(height: sizes!.height * 0.03, color: AppColors.borderColor),
+                          Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
                           SizedBox(
                             height: getHeight() * 0.08,
                             width: getWidth(),
@@ -279,7 +279,7 @@ class _AccountState extends State<Account> {
                             ),
 
                           ),
-                          Divider(height: sizes!.height * 0.03, color: AppColors.borderColor),
+                          Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
                         ],
                       )
                     ],

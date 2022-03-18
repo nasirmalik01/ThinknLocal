@@ -29,6 +29,7 @@ class Assets {
   static const String scannerIcon = "assets/png/scanner.png";
   static const String dummyFeatured = "assets/png/dummy_featured.png";
   static const String dummyFeaturedShort = "assets/png/dummy_featured_short.png";
+  static const String dummyNearBy = "assets/png/dummyNearBy.png";
 
 
   // fonts

@@ -20,7 +20,7 @@ class BusinessesDetail extends StatefulWidget {
 
 class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerProviderStateMixin {
   //final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
-  BusinessesDetailComponents _businessesDetailComponents = BusinessesDetailComponents();
+  final BusinessesDetailComponents _businessesDetailComponents = BusinessesDetailComponents();
   TabController? _tabController;
 
 
@@ -58,8 +58,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                     phoneNumber: "909-254-7898",
                     isFavorite: false,
                     onClickBox: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => const BusinessesDetail()));
+
                     },
                     onPressBackArrow: () {
                       Navigator.pop(context);
@@ -78,9 +77,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                 ),
                 child: TabBar(
                   controller: _tabController,
-                  onTap: (index) {
-                    print("Tab: $index");
-                  },
+                  onTap: (index) {},
                   indicator: BoxDecoration(
 
                     borderRadius: BorderRadius.circular(getHeight() * 0.01),
