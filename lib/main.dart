@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       providers: multiProviders,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.splash,
+        initialRoute: Routes.signIn,
         routes: Routes.routes,
         title: 'thinknlocal',
       ),

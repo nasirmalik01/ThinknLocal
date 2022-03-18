@@ -63,10 +63,7 @@ class NotificationComponents {
                 ],
               ),
             ),
-            Divider(
-              height: sizes!.height * 0.01,
-              color: AppColors.borderColor,
-            ),
+            Divider(height: getHeight() * 0.01, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
           ],
         ),
       ),

@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/on_boarding1/on_boarding1.dart';
 import 'package:flutter_app/screens/reset_password/reset_password.dart';
+import 'package:flutter_app/screens/sign_in/SignInProvider.dart';
 import 'package:flutter_app/screens/sign_up/sign_up.dart';
+import 'package:provider/provider.dart';
 
+import '../../common/utils.dart';
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';
@@ -20,16 +23,22 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   TextEditingController? emailController;
   TextEditingController? passwordController;
+  late SignInProvider? _signInProvider;
 
   @override
   void initState() {
     super.initState();
+    _signInProvider = Provider.of<SignInProvider>(context, listen: false);
+    _signInProvider!.init(context: context);
     emailController = TextEditingController();
     passwordController = TextEditingController();
+
+
   }
 
   @override
   Widget build(BuildContext context) {
+    initializeResources(context: context);
     return SafeArea(
       child: Scaffold(
         // backgroundColor: AppColors.appBackground,

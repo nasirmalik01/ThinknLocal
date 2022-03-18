@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_components.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
@@ -39,7 +40,7 @@ class _BusinessesState extends State<Businesses> {
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
-          child: Column(
+          child: ListView(
             children: [
               Container(
                 height: getHeight() * 0.1,
@@ -69,7 +70,7 @@ class _BusinessesState extends State<Businesses> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: getHeight() * 0.02),
+                    //SizedBox(height: getHeight() * 0.02),
                     CommonWidgets.searchLocation(controller: searchController, hint: "Search for a cause"),
                     SizedBox(height: getHeight() * 0.02),
                     Row(
@@ -110,8 +111,14 @@ class _BusinessesState extends State<Businesses> {
                             phoneNumber: "909-254-7898",
                             isFavorite: false,
                             onClickBox: (){
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) => const BusinessesDetail()));
+                              pushNewScreen(
+                                context,
+                                screen: const BusinessesDetail(),
+                                withNavBar: true, // OPTIONAL VALUE. True by default.
+                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                              );
+                              // Navigator.push(context,
+                              //     MaterialPageRoute(builder: (_) => const BusinessesDetail()));
                             },
                           );
                         },
@@ -121,7 +128,7 @@ class _BusinessesState extends State<Businesses> {
                     TextView.getMediumText15("Recently Added", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.002),
                     SizedBox(
-                      height: getHeight()*0.16,
+                      height: getHeight()*0.15,
                       child:
                       ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -142,6 +149,24 @@ class _BusinessesState extends State<Businesses> {
                     _businessesComponents.get2TextRow(
                         text1: "Nearby",
                         text2: "See All"),
+                    SizedBox(height: sizes!.height * 0.02),
+                    Wrap(
+                      children: [
+                        ...List.generate(
+                            3,
+                                (index) {
+                              return _businessesComponents.nearByContainer(
+                                  image:  Assets.dummyNearBy,
+                                  headerText: "Andy's Xpress Wash ",
+                                  onViewCourse: (){
+                                  },
+                                  address: "Chino, CA 91710",
+                                  streetAddress: "15705 Euclid Ave",
+                                  phoneNumber: "908-900-1791"
+                              );
+                            })
+                      ],
+                    )
                   ],
                 ),
               ),

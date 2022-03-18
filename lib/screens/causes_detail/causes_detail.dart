@@ -52,20 +52,21 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   endDate: "Feb 4 - Feb 21",
                   isFavorite: false,
                   onClickBox: (){
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const CausesDetail()));
                   },
                   onPressBackArrow: () {
                     Navigator.pop(context);
                   }
                 ),
               ),
+              SizedBox(height: sizes!.height * 0.01),
               Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: getWidth() * 0.05,
+                height: getHeight()* 0.045,
+                margin: EdgeInsets.symmetric(
+                    horizontal: getWidth() * 0.05,
                     vertical: getHeight() * 0.01),
-                decoration: const BoxDecoration(
-                  color: AppColors.pureWhiteColor,
+                decoration: BoxDecoration(
+                  color: AppColors.boxGrey,
+                  borderRadius: BorderRadius.circular(getHeight() * 0.01),
                 ),
                 child: TabBar(
                   controller: _tabController,
@@ -79,8 +80,6 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   ),
                   //indicatorColor: AppColors.pureWhiteColor,
                   indicatorSize: TabBarIndicatorSize.tab,
-                  indicatorPadding:
-                  EdgeInsets.symmetric(vertical: sizes!.heightRatio * 5),
                   labelColor: AppColors.pureWhiteColor,
                   labelStyle: TextStyle(
                       fontSize: sizes!.fontRatio * 12,
@@ -166,12 +165,9 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                         return _causeDetailComponents.overViewCategoryContainer(
                                             image:  Assets.dummyFeatured,
                                             headerText: "Andy's Xpress Wash",
-                                            description:  "Spring Training Equipment Fundraiser",
                                             onViewCourse: (){
                                             },
-                                            totalAmount: "500",
                                             categoryPercent: "50%",
-                                            date: "Mar 25",
                                             address: "Chino, CA 91710",
                                             streetAddress: "15705 Euclid Ave",
                                             phoneNumber: "908-900-1791"
@@ -189,7 +185,19 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                           horizontal: sizes!.pagePadding),
                       child: Column(
                         children: [
-                          TextView.bold22Text("", color: AppColors.greenColor),
+                          Wrap(
+                            children: [
+                              ...List.generate(
+                                  6,
+                                      (index) {
+                                    return _causeDetailComponents.updateListTabContainer(
+                                        header: "It's Begone!",
+                                        detail: "Our fundraiser has started!",
+                                        date: "Mar 6th"
+                                    );
+                                  })
+                            ],
+                          )
                         ],
                       ),
                     ),

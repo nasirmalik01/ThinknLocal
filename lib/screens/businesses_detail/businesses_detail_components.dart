@@ -27,18 +27,14 @@ class BusinessesDetailComponents {
     return GestureDetector(
       onTap: ()=> onClickBox.call(),
       child: Container(
-        //width: getWidth() * 0.7,
-        //margin: EdgeInsets.symmetric(horizontal: getWidth()*0.01),
         decoration: BoxDecoration(
             color: AppColors.greenColor,
-            //borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.01)),
             image: DecorationImage(
                 image: AssetImage(fullBoxImage!),
                 fit: BoxFit.cover)
         ),
         child: Container(
           decoration: const BoxDecoration(
-            //borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.01)),
             gradient: LinearGradient(
               begin: Alignment.center,
               end: Alignment.bottomCenter,

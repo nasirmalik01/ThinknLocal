@@ -216,7 +216,7 @@ class BusinessesComponents {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.only(top: getHeight() * 0.02, left: getWidth() * 0.02, right: getWidth() * 0.02),
+            padding: EdgeInsets.only(top: getHeight() * 0.015, left: getWidth() * 0.03, right: getWidth() * 0.02),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -231,8 +231,8 @@ class BusinessesComponents {
                           fit: BoxFit.fill)
                   ),
                 ),
-                SizedBox(height: getHeight() * 0.01),
-                TextView.getMediumText15(name??"", color: AppColors.pureWhiteColor, lines: 1, fontFamily: Assets.latoBold),
+                SizedBox(height: getHeight() * 0.015),
+                TextView.bold12Text(name??"", color: AppColors.pureWhiteColor, lines: 1, fontFamily: Assets.latoBold),
               ],
             ),
           ),
@@ -247,6 +247,78 @@ class BusinessesComponents {
       children: [
         TextView.getMediumText15(text1, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
         TextView.bold12Text(text2, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+      ],
+    );
+  }
+
+  Widget nearByContainer({
+    String? image,
+    String? headerText,
+    //String? categoryPercent,
+    required String? streetAddress,
+    required String? address,
+    required String? phoneNumber,
+    required Function onViewCourse
+  }){
+    bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: ()=> onViewCourse.call(),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: getHeight()*0.085,
+                width: getWidth()*0.18,
+                decoration: BoxDecoration(
+                  //color: AppColors.lightGrey,
+                    image: DecorationImage(
+                        image: isImageUrl ? NetworkImage(image): AssetImage(image) as ImageProvider,
+                        fit: BoxFit.fill),
+                    borderRadius: BorderRadius.circular(getHeight() * 0.01)
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: getWidth()*0.02),
+                width: getWidth()*0.68,
+                // color: AppColors.redDarkColor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextView.bold15Text(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                    SizedBox(height: getHeight() * 0.004),
+                    TextView.semiBold10Text(
+                        streetAddress?? "",
+                        color: AppColors.lightBlack,
+                        lines: 1,
+                        fontFamily: Assets.poppinsRegular,
+                        textDecoration: TextDecoration.underline
+                    ),
+                    TextView.semiBold10Text(
+                        address?? "",
+                        color: AppColors.lightBlack,
+                        lines: 1,
+                        fontFamily: Assets.poppinsRegular,
+                        textDecoration: TextDecoration.underline
+                    ),
+                    SizedBox(height: getHeight() * 0.01),
+                    TextView.semiBold10Text(
+                      phoneNumber?? "",
+                      color: AppColors.lightBlack,
+                      lines: 1,
+                      fontFamily: Assets.latoRegular,
+                    ),
+                    SizedBox(height: getHeight() * 0.005),
+
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+        Divider(height: getHeight() * 0.02, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
+        SizedBox(height: getHeight() * 0.008),
       ],
     );
   }
