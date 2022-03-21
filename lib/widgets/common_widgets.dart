@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../res/assets.dart';
 import '../res/colors.dart';
@@ -230,6 +231,77 @@ class CommonWidgets {
         ),
         Divider(height: getHeight() * 0.02, thickness: getHeight() * 0.001 ,color: AppColors.borderColor)
       ],
+    );
+  }
+
+  static Widget getRating({double? starRating, bool? ignoreEdit, Function? onPress}){
+    return RatingBar(
+      initialRating: starRating ?? 4,
+      minRating: 1,
+      direction: Axis.horizontal,
+      allowHalfRating: true,
+      itemCount: 5,
+      itemSize: getWidth() * 0.08,
+      itemPadding: EdgeInsets.symmetric(horizontal: sizes!.widthRatio * 0),
+      ratingWidget: RatingWidget(
+          full: const Icon(Icons.star, color: Colors.amber),
+          half: const Icon(Icons.star_half, color: Colors.amber),
+          empty: const Icon(Icons.star_outline, color: AppColors.darkGrey,)
+      ),
+      ignoreGestures: ignoreEdit ?? true,
+      onRatingUpdate: (rating) {
+        onPress!.call(rating);
+        print(rating);
+      },
+    );
+  }
+
+  static Widget dropDownField({
+    @required String ?selectedCategory,
+    @required Function ?updateSelectedCategory,
+    @required List<String> ?categories,
+    @required String ?hint,
+  }){
+    return Container(
+      //margin: EdgeInsets.only(right: sizes!.mediumPadding ?? 0),
+      width: getWidth(),
+      padding: EdgeInsets.symmetric(horizontal: getHeight() * 0.02, vertical: getWidth() * 0.02),
+      decoration: BoxDecoration(
+        color: AppColors.blackColor,
+        borderRadius: BorderRadius.circular(getHeight() * 0.01),
+      ),
+      child: ButtonTheme(
+        child: DropdownButton <String>(
+          dropdownColor: AppColors.blackColor,
+            hint: Text(hint ?? '',
+              style: TextStyle(
+                color: AppColors.darkGrey,
+                fontSize: sizes!.fontSize15,
+                fontFamily:Assets.poppinsMedium,
+              ),
+            ),
+            value: selectedCategory,
+            isExpanded: true,
+            icon: Icon(Icons.keyboard_arrow_down,color: AppColors.darkGrey,size: getHeight()*.035,),
+            underline:SizedBox() ,
+            onChanged: (String? newValue) {
+              if(updateSelectedCategory != null){
+                updateSelectedCategory(newValue);
+              }
+            },
+            items: categories?.map<DropdownMenuItem<String>> ((String value) {
+              return DropdownMenuItem<String> (
+                value: value,
+                child: Text(value,style: TextStyle(
+                  color: AppColors.darkGrey,
+                  fontFamily: Assets.poppinsMedium,
+                  fontSize: sizes!.fontSize15,
+                ),
+                ),
+              );
+            }).toList()
+        ),
+      ),
     );
   }
 

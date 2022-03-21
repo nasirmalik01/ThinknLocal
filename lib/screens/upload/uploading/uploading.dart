@@ -4,18 +4,19 @@ import 'package:flutter_app/screens/about_visit/about_visit.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
+import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
 
 
-class Scan extends StatefulWidget {
-  const Scan({Key? key}) : super(key: key);
+class Uploading extends StatefulWidget {
+  const Uploading({Key? key}) : super(key: key);
 
   @override
-  _ScanState createState() => _ScanState();
+  _UploadingState createState() => _UploadingState();
 }
 
-class _ScanState extends State<Scan> {
+class _UploadingState extends State<Uploading> {
 
   @override
   void initState() {
@@ -29,12 +30,7 @@ class _ScanState extends State<Scan> {
         // backgroundColor: AppColors.appBackground,
         body: GestureDetector(
           onTap: () {
-            pushNewScreen(
-              context,
-              screen: const AboutVisit(),
-              withNavBar: false, // OPTIONAL VALUE. True by default.
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+
           },
           child: Container(
             height: sizes!.height,
@@ -61,7 +57,22 @@ class _ScanState extends State<Scan> {
                   padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
                   child: Column(
                     children: [
-                      TextView.getMediumText15("Hello Scan", color: AppColors.greenColor),
+                      SizedBox(height: getHeight() * 0.1),
+                      Image.asset(Assets.uploadIcon,),
+                      SizedBox(height: getHeight() * 0.01),
+                      TextView.bold35Text("Uploading...", color: AppColors.greenColor),
+                      SizedBox(height: getHeight() * 0.05),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: sizes!.width * 0.02),
+                        height: getHeight() * 0.015,
+                        width: getWidth(),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: AppColors.darkGrey,
+                            border: Border.all(color: AppColors.borderColor),
+                          borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.01)),
+                        ),
+                      ),
                     ],
                   ),
                 ),
