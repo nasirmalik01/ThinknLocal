@@ -209,7 +209,6 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   ],
                 ),
               ),
-
             ],
           ),
         ),

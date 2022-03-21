@@ -310,6 +310,26 @@ class TextView {
       ),
     );
   }
+  static Text bold35Text(
+      final text,
+      {@required final color,
+        final TextAlign textAlign = TextAlign.start,
+        final fontFamily,
+        final lines}) {
+    return Text(
+      text ?? "",
+      textAlign: textAlign,
+      softWrap: true,
+      maxLines: lines,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        fontSize: sizes!.fontSize35,
+        fontFamily: fontFamily?? Assets.poppinsMedium,
+        fontWeight: FontWeight.w500,
+        color: color,
+      ),
+    );
+  }
 
   static Text getText27(
       final text,

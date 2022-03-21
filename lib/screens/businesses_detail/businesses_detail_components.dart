@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widgets/common_widgets.dart';
 
 import '../../res/assets.dart';
 import '../../res/colors.dart';
@@ -192,7 +193,7 @@ class BusinessesDetailComponents {
           child: Row(
             children: [
               SizedBox(width: getWidth() * 0.04),
-              getRating(
+              CommonWidgets.getRating(
                 starRating: starRating,
                 ignoreEdit: ignoreEdit,
                 onPress: onPress,
@@ -206,27 +207,7 @@ class BusinessesDetailComponents {
     );
   }
 
-  Widget getRating({double? starRating, bool? ignoreEdit, Function? onPress}){
-    return RatingBar(
-      initialRating: starRating ?? 4,
-      minRating: 1,
-      direction: Axis.horizontal,
-      allowHalfRating: true,
-      itemCount: 5,
-      itemSize: getWidth() * 0.08,
-      itemPadding: EdgeInsets.symmetric(horizontal: sizes!.widthRatio * 0),
-      ratingWidget: RatingWidget(
-          full: const Icon(Icons.star, color: Colors.amber),
-          half: const Icon(Icons.star_half, color: Colors.amber),
-          empty: const Icon(Icons.star_outline, color: AppColors.darkGrey,)
-      ),
-      ignoreGestures: ignoreEdit ?? true,
-      onRatingUpdate: (rating) {
-        onPress!.call(rating);
-        print(rating);
-      },
-    );
-  }
+
 
   Widget recentlyFundedContainer({
     required String? fullImage,

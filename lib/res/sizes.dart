@@ -26,6 +26,7 @@ class AppSizes {
   late double fontSize25;
   late double fontSize27;
   late double fontSize30;
+  late double fontSize35;
 
   //padding
   late double smallPadding;
@@ -72,6 +73,7 @@ class AppSizes {
     fontSize25 = 25.0 * fontRatio;
     fontSize27 = 27.0 * fontRatio;
     fontSize30 = 30.0 * fontRatio;
+    fontSize35 = 35.0 * fontRatio;
 
     smallPadding = 4.0 * widthRatio;
     regularPadding = 8.0 * widthRatio;

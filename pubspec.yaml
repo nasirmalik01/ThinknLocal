@@ -32,7 +32,6 @@ dependencies:
   provider: ^5.0.0
   circular_check_box: ^1.0.4
   flutter_icons: ^1.1.0
-  image_picker: ^0.8.3+2
   dio: ^4.0.0
   date_time_format: ^2.0.1
   animations: ^2.0.0
@@ -45,6 +44,7 @@ dependencies:
   flutter_native_splash: ^2.1.1
   carousel_slider: ^4.0.0
   flutter_rating_bar: ^4.0.0
+#  camera: ^0.9.4+16
 
 
   # The following adds the Cupertino Icons font to your application.

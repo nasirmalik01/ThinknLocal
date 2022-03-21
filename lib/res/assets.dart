@@ -30,6 +30,9 @@ class Assets {
   static const String dummyFeatured = "assets/png/dummy_featured.png";
   static const String dummyFeaturedShort = "assets/png/dummy_featured_short.png";
   static const String dummyNearBy = "assets/png/dummyNearBy.png";
+  static const String successIcon = "assets/png/successIcon.png";
+  static const String uploadIcon = "assets/png/uploadIcon.png";
+  static const String uploadIconOrange = "assets/png/uploadIconOrange.png";
 
 
   // fonts
