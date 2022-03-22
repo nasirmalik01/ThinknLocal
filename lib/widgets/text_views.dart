@@ -105,25 +105,6 @@ class TextView {
     );
   }
 
-  static Text getRegularText(final text, final fontFamily,
-      {@required final color,
-      final TextAlign textAlign = TextAlign.start,
-      @required final lines}) {
-    return Text(
-      text ?? "",
-      textAlign: textAlign,
-      softWrap: true,
-      maxLines: lines,
-      overflow: TextOverflow.ellipsis,
-      style: TextStyle(
-        // fontSize: sizes!.regularFontSize,
-        fontSize: sizes!.fontSize12,
-        fontWeight: FontWeight.w400,
-        fontFamily: fontFamily,
-        color: color,
-      ),
-    );
-  }
 
   static Text semiBold10Text(
   final text,
@@ -351,4 +332,24 @@ class TextView {
     );
   }
 
+  static Text getText20(
+      final text,
+      {@required final color,
+        final TextAlign textAlign = TextAlign.start,
+        final fontFamily,
+        final lines}) {
+    return Text(
+      text ?? "",
+      textAlign: textAlign,
+      softWrap: true,
+      maxLines: lines,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+        fontSize: sizes!.fontSize20,
+        fontFamily: fontFamily?? Assets.poppinsMedium,
+        fontWeight: FontWeight.w400,
+        color: color,
+      ),
+    );
+  }
 }
