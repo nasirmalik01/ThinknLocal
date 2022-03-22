@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
@@ -183,21 +182,25 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: sizes!.pagePadding),
-                      child: Column(
+                      child: ListView(
                         children: [
-                          Wrap(
+                          Column(
                             children: [
-                              ...List.generate(
-                                  6,
-                                      (index) {
-                                    return _causeDetailComponents.updateListTabContainer(
-                                        header: "It's Begone!",
-                                        detail: "Our fundraiser has started!",
-                                        date: "Mar 6th"
-                                    );
-                                  })
+                              Wrap(
+                                children: [
+                                  ...List.generate(
+                                      6,
+                                          (index) {
+                                        return _causeDetailComponents.updateListTabContainer(
+                                            header: "It's Begone!",
+                                            detail: "Our fundraiser has started!",
+                                            date: "Mar 6th"
+                                        );
+                                      })
+                                ],
+                              )
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ),
