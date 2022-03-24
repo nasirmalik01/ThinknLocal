@@ -37,8 +37,8 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       //backgroundColor: AppColors.appBackground,
       body: Container(
-        height: sizes!.height,
-        width: sizes!.width,
+        height: sizes.height,
+        width: sizes.width,
         decoration: const BoxDecoration(
           color: Colors.white,
 

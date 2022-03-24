@@ -66,7 +66,7 @@ class CauseDetailComponents {
                             color: AppColors.pureWhiteColor,
                             size: getHeight() * 0.03,
                           ),
-                          SizedBox(width: sizes!.width * 0.03),
+                          SizedBox(width: sizes.width * 0.03),
                           isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
                           Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,)
                         ],
@@ -104,9 +104,9 @@ class CauseDetailComponents {
                   ),
                 ),
                 LinearPercentIndicator(
-                  padding: EdgeInsets.only(left: sizes!.width * 0.03, right: sizes!.width * 0.04),
-                  barRadius: Radius.circular(sizes!.height* 0.01),
-                  lineHeight: sizes!.height * 0.01,
+                  padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.04),
+                  barRadius: Radius.circular(sizes.height* 0.01),
+                  lineHeight: sizes.height * 0.01,
                   percent: completePercentage,
                   backgroundColor: AppColors.pureWhiteColor,
                   progressColor: AppColors.greenColor,
@@ -214,18 +214,18 @@ class CauseDetailComponents {
   }
   Widget typesText({required String title, required bool isSelected}) {
     return SizedBox(
-      height: sizes!.height * 0.04,
+      height: sizes.height * 0.04,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             padding: EdgeInsets.only(
-              bottom: sizes!.height * 0.002,
+              bottom: sizes.height * 0.002,
             ),
             decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(
                   color: isSelected ? AppColors.greenColor: AppColors.pureWhiteColor,
-                  width: sizes!.width * 0.005, // This would be the width of the underline
+                  width: sizes.width * 0.005, // This would be the width of the underline
                 ))
             ),
             child:

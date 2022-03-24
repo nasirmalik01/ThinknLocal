@@ -36,8 +36,8 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
 
           },
           child: Container(
-            height: sizes!.height,
-            width: sizes!.width,
+            height: sizes.height,
+            width: sizes.width,
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
@@ -58,7 +58,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                  padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -66,7 +66,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                       SizedBox(height: getHeight() * 0.01),
                       TextView.getMediumText15("Want to edit your notification settings?", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
                       SizedBox(height: getHeight() * 0.01),
-                      TextView.getMediumText15UnderLine("Edit Settings", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                      TextView.getMediumText15("Edit Settings", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
 
                     ],
                   ),
@@ -75,7 +75,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                 Container(
                   padding: EdgeInsets.symmetric(
                     //horizontal: sizes!.widthRatio * 5,
-                      vertical: sizes!.heightRatio * 5),
+                      vertical: sizes.heightRatio * 5),
                   decoration: const BoxDecoration(
                     color: AppColors.pureWhiteColor,
                   ),
@@ -87,20 +87,20 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                     indicatorColor: AppColors.greenColor,
                     indicatorSize: TabBarIndicatorSize.label,
                     indicatorPadding:
-                    EdgeInsets.symmetric(vertical: sizes!.heightRatio * 5),
+                    EdgeInsets.symmetric(vertical: sizes.heightRatio * 5),
                     labelColor: AppColors.blackColor,
                     labelStyle: TextStyle(
-                        fontSize: sizes!.fontRatio * 12,
+                        fontSize: sizes.fontRatio * 12,
                         fontFamily: Assets.poppinsMedium,
                         fontWeight: FontWeight.w500
                     ),
                     unselectedLabelColor: AppColors.darkGrey,
                     unselectedLabelStyle: TextStyle(
-                        fontSize: sizes!.fontRatio * 12,
+                        fontSize: sizes.fontRatio * 12,
                         fontFamily: Assets.poppinsMedium,
                         fontWeight: FontWeight.w400
                     ),
-                    labelPadding: EdgeInsets.all(sizes!.smallPadding),
+                    labelPadding: EdgeInsets.all(sizes.smallPadding),
                     tabs: const [
                       Tab(
                         text: 'Notifications',
@@ -115,14 +115,14 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                     ],
                   ),
                 ),
-                SizedBox(height: sizes!.height * 0.01),
+                SizedBox(height: sizes.height * 0.01),
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: sizes!.pagePadding),
+                            horizontal: sizes.pagePadding),
                         child: Column(
                           children: [
                             Expanded(
@@ -147,7 +147,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: sizes!.pagePadding),
+                            horizontal: sizes.pagePadding),
                         child: Column(
                           children: [
                             Expanded(
@@ -172,7 +172,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: sizes!.pagePadding),
+                            horizontal: sizes.pagePadding),
                         child: Column(
                           children: [
                             Expanded(

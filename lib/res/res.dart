@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'sizes.dart';
 
-AppSizes ? sizes;
+AppSizes sizes = AppSizes();
 
 bool _isInitialized = false;
 
@@ -24,13 +24,13 @@ void setCurrentContext(BuildContext context) {
   currentContext = context;
 }
 
-double getWidthRatio() => sizes?.widthRatio ?? 1;
+double getWidthRatio() => sizes.widthRatio;
 
-double getHeightRatio() => sizes?.heightRatio ?? 1;
+double getHeightRatio() => sizes.heightRatio;
 
-double getFontRatio() => sizes?.fontRatio ?? 1.0;
+double getFontRatio() => sizes.fontRatio;
 
-double getHeight() => sizes?.height ?? 2560;
-double getWidth() => sizes?.width ?? 1440;
+double getHeight() => sizes.height;
+double getWidth() => sizes.width;
 
 double commonWidth=getWidth()*.9;

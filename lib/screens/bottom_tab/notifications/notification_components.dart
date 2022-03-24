@@ -24,29 +24,29 @@ class NotificationComponents {
         child: Column(
           children: [
             Container(
-              width: sizes!.width * 0.90,
+              width: sizes.width * 0.90,
               //height: sizes!.height * 0.12,
-              padding: EdgeInsets.only( bottom: sizes!.heightRatio * 10, left: sizes!.heightRatio * 5),
+              padding: EdgeInsets.only( bottom: sizes.heightRatio * 10, left: sizes.heightRatio * 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
                 children: [
                   SizedBox(
-                    width: sizes!.width * 0.16,
+                    width: sizes.width * 0.16,
 
                     child: Image(
                       image: AssetImage(image),
                       fit: BoxFit.fill,
                     ),
                   ),
-                  SizedBox(width: sizes!.width * 0.03),
+                  SizedBox(width: sizes.width * 0.03),
                   SizedBox(
-                    width: sizes!.width * 0.67,
+                    width: sizes.width * 0.67,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: sizes!.height * 0.01),
+                        SizedBox(height: sizes.height * 0.01),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +55,7 @@ class NotificationComponents {
                             TextView.bold12Text(date, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 1),
                           ],
                         ),
-                        SizedBox(height: sizes!.height * 0.01),
+                        SizedBox(height: sizes.height * 0.01),
                         TextView.bold12Text(subText, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 1),
                       ],
                     ),

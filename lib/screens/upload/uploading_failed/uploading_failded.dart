@@ -31,8 +31,8 @@ class _UploadingFailedState extends State<UploadingFailed> {
       child: Scaffold(
         // backgroundColor: AppColors.appBackground,
         body: Container(
-          height: sizes!.height,
-          width: sizes!.width,
+          height: sizes.height,
+          width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
@@ -52,7 +52,7 @@ class _UploadingFailedState extends State<UploadingFailed> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: Column(
                   children: [
                     SizedBox(height: getHeight() * 0.1),
@@ -61,7 +61,7 @@ class _UploadingFailedState extends State<UploadingFailed> {
                     TextView.bold35Text("Upload Failed", color: AppColors.orangeColor),
                     SizedBox(height: getHeight() * 0.04),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: sizes!.width * 0.03),
+                      margin: EdgeInsets.symmetric(horizontal: sizes.width * 0.03),
                       height: getHeight() * 0.013,
                       width: getWidth(),
                       decoration: BoxDecoration(

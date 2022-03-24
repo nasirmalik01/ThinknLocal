@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/bottom_tab/bottom_tab.dart';
 import 'package:flutter_app/screens/bottom_tab/bottom_tab_new.dart';
 
 import '../../res/assets.dart';
@@ -8,6 +6,7 @@ import '../../res/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
+import '../on_boarding2/on_boarding2.dart';
 
 class OnBoarding3 extends StatefulWidget {
   const OnBoarding3({Key? key}) : super(key: key);
@@ -29,12 +28,20 @@ class _OnBoarding3State extends State<OnBoarding3> {
       child: Scaffold(
         // backgroundColor: AppColors.appBackground,
         body: GestureDetector(
-          onTap: () {
-
+          onPanUpdate: (dis) {
+            if (dis.delta.dx > 0) {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => const OnBoarding2()));
+              //User swiped from left to right
+            } else if (dis.delta.dx < 0) {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => BottomTabNew(pageIndex: 0)));
+              //User swiped from right to left
+            }
           },
           child: Container(
-            height: sizes!.height,
-            width: sizes!.width,
+            height: sizes.height,
+            width: sizes.width,
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
@@ -54,7 +61,7 @@ class _OnBoarding3State extends State<OnBoarding3> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                  padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
                     children: [
                       SizedBox(height: getHeight() * 0.05),

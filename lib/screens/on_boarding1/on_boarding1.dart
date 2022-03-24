@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../res/assets.dart';
@@ -26,15 +25,19 @@ class _OnBoarding1State extends State<OnBoarding1> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: AppColors.appBackground,
         body: GestureDetector(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const OnBoarding2()));
+          onPanUpdate: (dis) {
+            if (dis.delta.dx > 0) {
+              //User swiped from left to right
+            } else if (dis.delta.dx < 0) {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => const OnBoarding2()));
+              //User swiped from right to left
+            }
           },
           child: Container(
-            height: sizes!.height,
-            width: sizes!.width,
+            height: sizes.height,
+            width: sizes.width,
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
@@ -54,7 +57,7 @@ class _OnBoarding1State extends State<OnBoarding1> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                  padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
                     children: [
                       TextView.getText27("Welcome!", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium),

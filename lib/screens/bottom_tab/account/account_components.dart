@@ -16,8 +16,8 @@ class AccountComponents {
     return Column(
       children: [
         SizedBox(
-          height: sizes!.height * 0.25,
-          width: sizes!.width,
+          height: sizes.height * 0.25,
+          width: sizes.width,
 
           //color: Colors.amber,
           child: Stack(
@@ -32,9 +32,9 @@ class AccountComponents {
               ),
               Container(
                 margin: EdgeInsets.only(top: getHeight()*0.036),
-              padding: EdgeInsets.symmetric(vertical: sizes!.height * 0.03),
-              height: sizes!.height * 0.19,
-              width: sizes!.width * 0.88,
+              padding: EdgeInsets.symmetric(vertical: sizes.height * 0.03),
+              height: sizes.height * 0.19,
+              width: sizes.width * 0.88,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: AppColors.pureWhiteColor,
@@ -59,7 +59,7 @@ class AccountComponents {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Icon(Icons.edit, size: 15, color: AppColors.greenColor),
-                        SizedBox(width: sizes!.width * 0.015),
+                        SizedBox(width: sizes.width * 0.015),
                         TextView.bold12Text("Edit Account Info", color: AppColors.greenColor, textDecoration: TextDecoration.underline),
                       ],
                     ),
@@ -71,8 +71,8 @@ class AccountComponents {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: sizes!.height * 0.075,
-                    width: sizes!.width * 0.16,
+                    height: sizes.height * 0.075,
+                    width: sizes.width * 0.16,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.greenColor,
@@ -101,8 +101,8 @@ class AccountComponents {
     @required String? description
   }) {
     return Container(
-      height: sizes!.height * 0.1,
-      width: sizes!.width,
+      height: sizes.height * 0.1,
+      width: sizes.width,
       color: Colors.amber,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

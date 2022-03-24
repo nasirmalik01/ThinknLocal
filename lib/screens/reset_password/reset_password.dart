@@ -31,8 +31,8 @@ class _ResetPasswordState extends State<ResetPassword> {
       child: Scaffold(
         // backgroundColor: AppColors.appBackground,
         body: Container(
-          height: sizes!.height,
-          width: sizes!.width,
+          height: sizes.height,
+          width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
@@ -52,7 +52,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: Column(
                   children: [
                     Container(

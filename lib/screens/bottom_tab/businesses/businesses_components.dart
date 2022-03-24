@@ -28,19 +28,19 @@ class BusinessesComponents {
 
   Widget typesText({required String title, required bool isSelected}) {
     return SizedBox(
-      height: sizes!.height * 0.04,
+      height: sizes.height * 0.04,
       //padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.01),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             padding: EdgeInsets.only(
-              bottom: sizes!.height * 0.002,
+              bottom: sizes.height * 0.002,
             ),
             decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(
                   color: isSelected ? AppColors.greenColor: AppColors.pureWhiteColor,
-                  width: sizes!.width * 0.005, // This would be the width of the underline
+                  width: sizes.width * 0.005, // This would be the width of the underline
                 ))
             ),
             child:
@@ -70,7 +70,7 @@ class BusinessesComponents {
     return GestureDetector(
       onTap: ()=> onClickBox.call(),
       child: Container(
-        width: getWidth() * 0.7,
+        width: getWidth() * 0.75,
         margin: EdgeInsets.symmetric(horizontal: getWidth()*0.01),
         decoration: BoxDecoration(
             color: AppColors.greenColor,
@@ -193,8 +193,7 @@ class BusinessesComponents {
     return GestureDetector(
       onTap: ()=> onPressFullContainer.call(),
       child: Container(
-        //height: getHeight()*0.2,
-        width: getWidth() * 0.35,
+        width: getWidth() * 0.4,
         margin: EdgeInsets.symmetric(horizontal: getWidth()*0.01, vertical: getHeight()*0.007),
         decoration: BoxDecoration(
             color: AppColors.lightGrey,
@@ -205,7 +204,7 @@ class BusinessesComponents {
         ),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.01)),
+            borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.015)),
             gradient: const LinearGradient(
               begin: Alignment.center,
               end: Alignment.bottomCenter,
@@ -216,7 +215,7 @@ class BusinessesComponents {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.only(top: getHeight() * 0.015, left: getWidth() * 0.03, right: getWidth() * 0.02),
+            padding: EdgeInsets.only(top: getHeight() * 0.018, left: getWidth() * 0.03, right: getWidth() * 0.02),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

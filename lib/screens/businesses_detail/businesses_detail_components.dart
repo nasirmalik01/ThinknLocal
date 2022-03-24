@@ -70,7 +70,7 @@ class BusinessesDetailComponents {
                             color: AppColors.pureWhiteColor,
                             size: getHeight() * 0.03,
                           ),
-                          SizedBox(width: sizes!.width * 0.03),
+                          SizedBox(width: sizes.width * 0.03),
                           isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
                           Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,)
                         ],
@@ -283,7 +283,7 @@ class BusinessesDetailComponents {
                           text: "Ends ",
                           style: TextStyle(
                             color: AppColors.pureWhiteColor,
-                            fontSize: sizes!.fontSize11,
+                            fontSize: sizes.fontSize11,
                             fontFamily: Assets.latoRegular,
                           ),
                           children: <TextSpan>[
@@ -291,7 +291,7 @@ class BusinessesDetailComponents {
                               text: endDate,
                               style: TextStyle(
                                 color: AppColors.pureWhiteColor,
-                                fontSize: sizes!.fontSize11,
+                                fontSize: sizes.fontSize11,
                                 fontFamily: Assets.latoBold,
                               ),
                             ),

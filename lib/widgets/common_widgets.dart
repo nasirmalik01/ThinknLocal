@@ -23,7 +23,7 @@ class CommonWidgets {
   }){
     return   Container(
       height: getHeight() * 0.07,
-      width:  width??sizes!.width,
+      width:  width??sizes.width,
       decoration: BoxDecoration(
           color: bgColor?? AppColors.lightGrey,
           border: Border.all(color: borderColor?? AppColors.lightGrey),
@@ -38,7 +38,7 @@ class CommonWidgets {
           cursorColor: cursorColor?? AppColors.lightBlack,
           style: TextStyle(
             color: textColor ?? AppColors.lightBlack,
-            fontSize: sizes!.fontSize15,
+            fontSize: sizes.fontSize15,
             fontFamily:Assets.poppinsMedium,
           ),
           textInputAction: TextInputAction.next,
@@ -49,7 +49,7 @@ class CommonWidgets {
               alignLabelWithHint: false,
               hintStyle: TextStyle(
                 color: hintTextColor ?? AppColors.darkGrey,
-                fontSize: sizes!.fontSize15,
+                fontSize: sizes.fontSize15,
                 fontFamily:Assets.poppinsMedium,
               )
           ),
@@ -73,7 +73,7 @@ class CommonWidgets {
       },
       child: Container(
         height: height?? getHeight() * 0.07,
-        width:  width??sizes!.width,
+        width:  width?? getWidth(),
         decoration: BoxDecoration(
           color: btnColor??AppColors.greenColor,
           border: Border.all(color: borderColor??Colors.transparent),
@@ -116,7 +116,7 @@ class CommonWidgets {
         controller: controller,
         style: TextStyle(
             fontFamily: Assets.poppinsRegular,
-            fontSize: sizes!.fontSize15,
+            fontSize: sizes.fontSize15,
             color: AppColors.lightBlack
         ),
         decoration: InputDecoration(
@@ -125,7 +125,7 @@ class CommonWidgets {
           contentPadding: EdgeInsets.zero,
           hintStyle: TextStyle(
               fontFamily: Assets.poppinsRegular,
-              fontSize: sizes!.fontSize15,
+              fontSize: sizes.fontSize15,
               color: AppColors.veryLightGrey
           ),
           prefixIcon: const Icon(
@@ -182,7 +182,7 @@ class CommonWidgets {
                               text: "Raising ",
                               style: TextStyle(
                                 color: AppColors.blackColor,
-                                fontSize: sizes!.fontSize11,
+                                fontSize: sizes.fontSize11,
                                 fontFamily: Assets.poppinsRegular,
                               ),
                               children: <TextSpan>[
@@ -190,7 +190,7 @@ class CommonWidgets {
                                   text: '\$$totalAmount',
                                   style: TextStyle(
                                     color: AppColors.greenColor,
-                                    fontSize: sizes!.fontSize11,
+                                    fontSize: sizes.fontSize11,
                                     fontFamily: Assets.poppinsMedium,
                                   ),
                                 ),
@@ -198,7 +198,7 @@ class CommonWidgets {
                                   text: ';',
                                   style: TextStyle(
                                     color: AppColors.blackColor,
-                                    fontSize: sizes!.fontSize11,
+                                    fontSize: sizes.fontSize11,
                                     fontFamily: Assets.poppinsMedium,
                                   ),
                                 ),
@@ -206,7 +206,7 @@ class CommonWidgets {
                                   text: ' starting ',
                                   style: TextStyle(
                                     color: AppColors.blackColor,
-                                    fontSize: sizes!.fontSize11,
+                                    fontSize: sizes.fontSize11,
                                     fontFamily: Assets.poppinsRegular,
                                   ),
                                 ),
@@ -214,7 +214,7 @@ class CommonWidgets {
                                   text: date,
                                   style: TextStyle(
                                     color: AppColors.greenColor,
-                                    fontSize: sizes!.fontSize11,
+                                    fontSize: sizes.fontSize11,
                                     fontFamily: Assets.poppinsMedium,
                                   ),
                                 )
@@ -242,7 +242,7 @@ class CommonWidgets {
       allowHalfRating: true,
       itemCount: 5,
       itemSize: getWidth() * 0.08,
-      itemPadding: EdgeInsets.symmetric(horizontal: sizes!.widthRatio * 0),
+      itemPadding: EdgeInsets.symmetric(horizontal: sizes.widthRatio * 0),
       ratingWidget: RatingWidget(
           full: const Icon(Icons.star, color: Colors.amber),
           half: const Icon(Icons.star_half, color: Colors.amber),
@@ -276,7 +276,7 @@ class CommonWidgets {
             hint: Text(hint ?? '',
               style: TextStyle(
                 color: AppColors.darkGrey,
-                fontSize: sizes!.fontSize15,
+                fontSize: sizes.fontSize15,
                 fontFamily:Assets.poppinsMedium,
               ),
             ),
@@ -295,7 +295,7 @@ class CommonWidgets {
                 child: Text(value,style: TextStyle(
                   color: AppColors.darkGrey,
                   fontFamily: Assets.poppinsMedium,
-                  fontSize: sizes!.fontSize15,
+                  fontSize: sizes.fontSize15,
                 ),
                 ),
               );
