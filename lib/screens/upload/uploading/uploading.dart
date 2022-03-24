@@ -35,8 +35,8 @@ class _UploadingState extends State<Uploading> {
                 MaterialPageRoute(builder: (_) => const UploadingFailed()));
           },
           child: Container(
-            height: sizes!.height,
-            width: sizes!.width,
+            height: sizes.height,
+            width: sizes.width,
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
@@ -56,7 +56,7 @@ class _UploadingState extends State<Uploading> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                  padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
                     children: [
                       SizedBox(height: getHeight() * 0.1),
@@ -65,7 +65,7 @@ class _UploadingState extends State<Uploading> {
                       TextView.bold35Text("Uploading...", color: AppColors.greenColor),
                       SizedBox(height: getHeight() * 0.04),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: sizes!.width * 0.03),
+                        margin: EdgeInsets.symmetric(horizontal: sizes.width * 0.03),
                         height: getHeight() * 0.013,
                         width: getWidth(),
                         decoration: BoxDecoration(

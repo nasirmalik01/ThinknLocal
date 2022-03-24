@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/reset_password/reset_password.dart';
 import 'package:flutter_app/screens/sign_in/sign_in.dart';
 
 import '../../res/assets.dart';
@@ -43,8 +41,8 @@ class _SignUpState extends State<SignUp> {
       child: Scaffold(
         // backgroundColor: AppColors.appBackground,
         body: Container(
-          height: sizes!.height,
-          width: sizes!.width,
+          height: sizes.height,
+          width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
@@ -66,16 +64,12 @@ class _SignUpState extends State<SignUp> {
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                     child: Column(
                       children: [
-                        Container(
-                          // height: sizes!.height * 0.1,
-                          // width: sizes!.width * 0.7,
-                          child: const Image(
-                            image: AssetImage(Assets.logo,),
-                            fit: BoxFit.fill,
-                          ),
+                        const Image(
+                          image: AssetImage(Assets.logo,),
+                          fit: BoxFit.fill,
                         ),
                         SizedBox(height: getHeight() * 0.06),
                         TextView.getMediumText15("Create your account to continue!", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1),

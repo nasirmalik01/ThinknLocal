@@ -57,8 +57,7 @@ class AppSizes {
     fontRatio =
     (isPhone && _screenSize.width <= 360) ? _screenSize.width / 360 : 1.0;
     widthRatio = isPhone ? _screenSize.width / 360 : _screenSize.width / 900;
-    heightRatio =
-    isPhone ? _screenSize.height / 720 : _screenSize.height / 1200;
+    heightRatio = isPhone ? _screenSize.height / 720 : _screenSize.height / 1200;
 
     fontSize10 = 10.0 * fontRatio;
 

@@ -33,8 +33,8 @@ class _CausesState extends State<Causes> {
       child: Scaffold(
         // backgroundColor: AppColors.appBackground,
         body: Container(
-          height: sizes!.height,
-          width: sizes!.width,
+          height: sizes.height,
+          width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
@@ -43,7 +43,7 @@ class _CausesState extends State<Causes> {
               Container(
                 height: getHeight() * 0.1,
                 width: getWidth(),
-                padding: EdgeInsets.only(left: sizes!.width * 0.06, right: sizes!.width * 0.06, top: sizes!.height * 0.02),
+                padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: sizes.height * 0.02),
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -63,15 +63,18 @@ class _CausesState extends State<Causes> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: getHeight() * 0.01),
-                    CommonWidgets.searchLocation(controller: searchController, hint: "Search for a cause"),
-                    SizedBox(height: getHeight() * 0.02),
-                    Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: getHeight() * 0.01),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                    child: CommonWidgets.searchLocation(controller: searchController, hint: "Search for a cause"),
+                  ),
+                  SizedBox(height: getHeight() * 0.02),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _causesComponents.typesText(title: "Featured", isSelected: true),
@@ -80,20 +83,21 @@ class _CausesState extends State<Causes> {
                         _causesComponents.typesText(title: "Past", isSelected: false),
                       ],
                     ),
-                    SizedBox(height: getHeight() * 0.01),
-                    SizedBox(
+                  ),
+                  SizedBox(height: getHeight() * 0.01),
+                  Padding(
+                    padding: EdgeInsets.only(left: sizes.width * 0.06),
+                    child: SizedBox(
                       height: getHeight()*0.24,
                       child:
                       ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 3,
-                        //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
                         itemBuilder: (context, index){
                           return _causesComponents.getCausesFundsContainer(
                             name: "Chino Hills High School Girls Softall Fundraiser",
                             fullBoxImage: Assets.schoolDummy1,
                             logoImage: Assets.huskiesLogo,
-                            bookName:  "",
                             completePercentage: 0.7,
                             collectedAmount: "342.5",
                             totalAmount: "450",
@@ -106,50 +110,64 @@ class _CausesState extends State<Causes> {
                         },
                       ),
                     ),
-                    SizedBox(height: getHeight() * 0.02),
-                    TextView.getMediumText15("Recently Started", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                    SizedBox(height: getHeight() * 0.002),
-                    SizedBox(
-                      height: getHeight()*0.16,
-                      child:
-                      ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 5,
-                        //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
-                        itemBuilder: (context, index){
-                          return _causesComponents.getRecentlyStartedContainer(
-                            name: "Ayala High School Cheer Fundraiser",
-                            image: "",
-                            onPressFullContainer: (){
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    SizedBox(height: getHeight() * 0.02),
-                    _causesComponents.get2TextRow(
-                        text1: "Upcoming Causes",
-                        text2: "See All"),
-                    SizedBox(height: getHeight() * 0.02),
-                    Wrap(
+                  ),
+                  SizedBox(height: getHeight() * 0.02),
+                  Padding(
+                    padding: EdgeInsets.only(left: sizes.width * 0.06),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ...List.generate(
-                            3,
-                                (index) {
-                              return CommonWidgets.getUpcomingCauses(
-                                image:  "",
-                                headerText: "Chino Hills High Softball Team",
-                                description:  "Spring Training Equipment Fundraiser",
-                                onViewCourse: (){
+                        TextView.getMediumText15("Recently Started", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                        SizedBox(height: getHeight() * 0.002),
+                        SizedBox(
+                          height: getHeight()*0.17,
+                          child:
+                          ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 5,
+                            itemBuilder: (context, index){
+                              return _causesComponents.getRecentlyStartedContainer(
+                                name: "Ayala High School Cheer Fundraiser",
+                                image: "",
+                                onPressFullContainer: (){
                                 },
-                                totalAmount: "500",
-                                date: "Mar 25"
                               );
-                            })
+                            },
+                          ),
+                        ),
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  SizedBox(height: getHeight() * 0.02),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                    child: Column(
+                      children: [
+                        _causesComponents.get2TextRow(
+                            text1: "Upcoming Causes",
+                            text2: "See All"),
+                        SizedBox(height: getHeight() * 0.02),
+                        Wrap(
+                          children: [
+                            ...List.generate(
+                                3,
+                                    (index) {
+                                  return CommonWidgets.getUpcomingCauses(
+                                    image:  "",
+                                    headerText: "Chino Hills High Softball Team",
+                                    description:  "Spring Training Equipment Fundraiser",
+                                    onViewCourse: (){
+                                    },
+                                    totalAmount: "500",
+                                    date: "Mar 25"
+                                  );
+                                })
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
 
             ],

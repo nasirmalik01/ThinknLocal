@@ -37,8 +37,8 @@ class _ScanState extends State<Scan> {
             );
           },
           child: Container(
-            height: sizes!.height,
-            width: sizes!.width,
+            height: sizes.height,
+            width: sizes.width,
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
@@ -58,7 +58,7 @@ class _ScanState extends State<Scan> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                  padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
                     children: [
                       TextView.getMediumText15("Hello Scan", color: AppColors.greenColor),

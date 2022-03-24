@@ -1,8 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/reset_password/reset_password.dart';
-import 'package:flutter_app/screens/sign_in/sign_in.dart';
-
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';
@@ -43,8 +39,8 @@ class _EditAccountState extends State<EditAccount> {
       child: Scaffold(
         // backgroundColor: AppColors.appBackground,
         body: Container(
-          height: sizes!.height,
-          width: sizes!.width,
+          height: sizes.height,
+          width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
@@ -68,7 +64,7 @@ class _EditAccountState extends State<EditAccount> {
                     Navigator.pop(context);
                   },
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06, vertical: sizes!.width * 0.05),
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06, vertical: sizes.width * 0.05),
                     child: TextView.bold12Text("Back", color: AppColors.lightBlack,fontFamily: Assets.poppinsMedium,
                         textDecoration: TextDecoration.underline),
                   ),
@@ -77,7 +73,7 @@ class _EditAccountState extends State<EditAccount> {
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -129,10 +125,10 @@ class _EditAccountState extends State<EditAccount> {
                             CommonWidgets.getButton(onPress: (){
                               Navigator.pop(context);
                             },
-                                width: sizes!.width * 0.42, height: getHeight() * 0.08,
+                                width: sizes.width * 0.42, height: getHeight() * 0.08,
                                 text: "Cancel,", textColor: AppColors.pureWhiteColor,
                                 btnColor: AppColors.borderColor),
-                            CommonWidgets.getButton(onPress: (){}, width: sizes!.width * 0.42, height: getHeight() * 0.08,
+                            CommonWidgets.getButton(onPress: (){}, width: sizes.width * 0.42, height: getHeight() * 0.08,
                                 text: "Update,", textColor: AppColors.pureWhiteColor,
                                 btnColor: AppColors.greenColor),
                           ],

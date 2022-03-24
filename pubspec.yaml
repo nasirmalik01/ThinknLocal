@@ -30,11 +30,8 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^5.0.0
-  circular_check_box: ^1.0.4
-  flutter_icons: ^1.1.0
   dio: ^4.0.0
   date_time_format: ^2.0.1
-  animations: ^2.0.0
   connectivity: ^3.0.6
   fluttertoast: ^8.0.8
   lottie: ^1.0.1

@@ -16,7 +16,7 @@ class TextView {
       softWrap: true,
       maxLines: lines,
       style: TextStyle(
-        fontSize: sizes!.fontSize16,
+        fontSize: sizes.fontSize16,
         fontWeight: fontWeight?? FontWeight.w500,
         fontFamily: fontFamily,
         color: color,
@@ -37,7 +37,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize18,
+        fontSize: sizes.fontSize18,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
       ),
@@ -48,7 +48,7 @@ class TextView {
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
-        final fontFamily, final height,
+        final fontFamily, final height, final TextDecoration textDecoration = TextDecoration.none,
         final lines}) {
     return Text(
       text ?? "",
@@ -58,27 +58,8 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         height: height ?? getHeight() * 0.0018,
-        fontSize: sizes!.fontSize15,
-        fontFamily: fontFamily?? Assets.latoRegular,
-        color: color,
-      ),
-    );
-  }
-  static Text getMediumText15UnderLine(
-      final text,
-      {@required final color,
-        final TextAlign textAlign = TextAlign.start,
-        final fontFamily, final TextDecoration textDecoration = TextDecoration.none,
-        final lines}) {
-    return Text(
-      text ?? "",
-      textAlign: textAlign,
-      softWrap: true,
-      maxLines: lines,
-      overflow: TextOverflow.ellipsis,
-      style: TextStyle(
         decoration: textDecoration,
-        fontSize: sizes!.fontSize15,
+        fontSize: sizes.fontSize15,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
       ),
@@ -98,7 +79,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize13,
+        fontSize: sizes.fontSize13,
         fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),
@@ -120,7 +101,7 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         decoration: textDecoration,
-        fontSize: sizes!.fontSize10,
+        fontSize: sizes.fontSize10,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
       ),
@@ -141,7 +122,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize11,
+        fontSize: sizes.fontSize11,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
       ),
@@ -162,7 +143,7 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         decoration: textDecoration,
-        fontSize: sizes!.fontSize12,
+        fontSize: sizes.fontSize12,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
       ),
@@ -182,7 +163,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize15,
+        fontSize: sizes.fontSize15,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
       ),
@@ -202,7 +183,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize14,
+        fontSize: sizes.fontSize14,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
       ),
@@ -222,7 +203,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize16,
+        fontSize: sizes.fontSize16,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
       ),
@@ -243,7 +224,7 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         decoration: textDecoration,
-        fontSize: sizes!.fontSize22,
+        fontSize: sizes.fontSize22,
         fontFamily: fontFamily?? Assets.poppinsSemiBold,
         color: color,
       ),
@@ -263,7 +244,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize25,
+        fontSize: sizes.fontSize25,
         fontFamily: fontFamily?? Assets.latoBold,
         fontWeight: FontWeight.w700,
         color: color,
@@ -284,7 +265,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize30,
+        fontSize: sizes.fontSize30,
         fontFamily: fontFamily?? Assets.latoBold,
         fontWeight: FontWeight.w700,
         color: color,
@@ -304,7 +285,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize35,
+        fontSize: sizes.fontSize35,
         fontFamily: fontFamily?? Assets.poppinsMedium,
         fontWeight: FontWeight.w500,
         color: color,
@@ -325,7 +306,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize30,
+        fontSize: sizes.fontSize30,
         fontFamily: fontFamily?? Assets.poppinsMedium,
         color: color,
       ),
@@ -345,7 +326,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes!.fontSize20,
+        fontSize: sizes.fontSize20,
         fontFamily: fontFamily?? Assets.poppinsMedium,
         fontWeight: FontWeight.w400,
         color: color,

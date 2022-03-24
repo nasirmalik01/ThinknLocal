@@ -32,15 +32,15 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
       child: Scaffold(
         // backgroundColor: AppColors.appBackground,
         body: Container(
-          height: sizes!.height,
-          width: sizes!.width,
+          height: sizes.height,
+          width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
           child: Column(
             children: [
               SizedBox(
-                height: sizes!.height * 0.32,
+                height: sizes.height * 0.32,
                 child: _causeDetailComponents.getCausesFundsContainer(
                   name: "Chino Hills High School Girls Softall Fundraiser",
                   fullBoxImage: Assets.schoolDummy1,
@@ -57,7 +57,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   }
                 ),
               ),
-              SizedBox(height: sizes!.height * 0.01),
+              SizedBox(height: sizes.height * 0.01),
               Container(
                 height: getHeight()* 0.045,
                 margin: EdgeInsets.symmetric(
@@ -81,13 +81,13 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   indicatorSize: TabBarIndicatorSize.tab,
                   labelColor: AppColors.pureWhiteColor,
                   labelStyle: TextStyle(
-                      fontSize: sizes!.fontRatio * 12,
+                      fontSize: sizes.fontRatio * 12,
                       fontFamily: Assets.poppinsMedium,
                       fontWeight: FontWeight.w500,
                   ),
                   unselectedLabelColor: AppColors.darkGrey,
                   unselectedLabelStyle: TextStyle(
-                      fontSize: sizes!.fontRatio * 12,
+                      fontSize: sizes.fontRatio * 12,
                       fontFamily: Assets.poppinsRegular,
                       fontWeight: FontWeight.w400
                   ),
@@ -113,7 +113,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: sizes!.pagePadding),
+                          horizontal: sizes.pagePadding),
                       child: ListView(
                         children: [
                           Column(
@@ -123,7 +123,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                   heading: "Chino Hills HS Girls Water Polo",
                                   description: "Help support the Chino-Hills 2021-2022 Water polo team. They are raising money to purchase new water polo equipment."
                               ),
-                              SizedBox(height: sizes!.height * 0.02),
+                              SizedBox(height: sizes.height * 0.02),
                               TextView.bold15Text("Featured Sponsors", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
 
                               SizedBox(
@@ -145,7 +145,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                   },
                                 ),
                               ),
-                              SizedBox(height: sizes!.height * 0.02),
+                              SizedBox(height: sizes.height * 0.02),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -155,7 +155,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                   _causeDetailComponents.typesText(title: "Services", isSelected: false),
                                 ],
                               ),
-                              SizedBox(height: sizes!.height * 0.02),
+                              SizedBox(height: sizes.height * 0.02),
                               Wrap(
                                 children: [
                                   ...List.generate(
@@ -181,7 +181,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: sizes!.pagePadding),
+                          horizontal: sizes.pagePadding),
                       child: ListView(
                         children: [
                           Column(
@@ -206,7 +206,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: sizes!.pagePadding),
+                          horizontal: sizes.pagePadding),
                       child: TextView.bold22Text("", color: AppColors.greenColor)
                     ),
                   ],

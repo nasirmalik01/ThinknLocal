@@ -6,6 +6,7 @@ import '../../res/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
+import '../on_boarding1/on_boarding1.dart';
 import '../on_boarding3/on_boarding3.dart';
 
 class OnBoarding2 extends StatefulWidget {
@@ -26,15 +27,25 @@ class _OnBoarding2State extends State<OnBoarding2> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: AppColors.appBackground,
         body: GestureDetector(
+          onPanUpdate: (dis) {
+            if (dis.delta.dx > 0) {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => const OnBoarding1()));
+              //User swiped from left to right
+            } else if (dis.delta.dx < 0) {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => const OnBoarding3()));
+              //User swiped from right to left
+            }
+          },
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const OnBoarding3()));
           },
           child: Container(
-            height: sizes!.height,
-            width: sizes!.width,
+            height: sizes.height,
+            width: sizes.width,
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
@@ -54,7 +65,7 @@ class _OnBoarding2State extends State<OnBoarding2> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                  padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
                     children: [
                       SizedBox(height: getHeight() * 0.05),

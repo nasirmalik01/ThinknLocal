@@ -33,10 +33,9 @@ class _BusinessesState extends State<Businesses> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: AppColors.appBackground,
         body: Container(
-          height: sizes!.height,
-          width: sizes!.width,
+          height: sizes.height,
+          width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
@@ -45,7 +44,7 @@ class _BusinessesState extends State<Businesses> {
               Container(
                 height: getHeight() * 0.1,
                 width: getWidth(),
-                padding: EdgeInsets.only(left: sizes!.width * 0.06, right: sizes!.width * 0.06, top: sizes!.height * 0.02),
+                padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: sizes.height * 0.02),
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -65,35 +64,41 @@ class _BusinessesState extends State<Businesses> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    //SizedBox(height: getHeight() * 0.02),
-                    CommonWidgets.searchLocation(controller: searchController, hint: "Search for a cause"),
-                    SizedBox(height: getHeight() * 0.02),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                    child: Column(
                       children: [
-                        _businessesComponents.getIconsContainer(image: Assets.foodIcon, label: "Food & Drink"),
-                        _businessesComponents.getIconsContainer(image: Assets.thingsIcon, label: "Things to do"),
-                        _businessesComponents.getIconsContainer(image: Assets.bagIcon, label: "Retail"),
-                        _businessesComponents.getIconsContainer(image: Assets.servicesIcon, label: "Services"),
+                        CommonWidgets.searchLocation(controller: searchController, hint: "Search for a cause"),
+                        SizedBox(height: getHeight() * 0.02),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            _businessesComponents.getIconsContainer(image: Assets.foodIcon, label: "Food & Drink"),
+                            _businessesComponents.getIconsContainer(image: Assets.thingsIcon, label: "Things to do"),
+                            _businessesComponents.getIconsContainer(image: Assets.bagIcon, label: "Retail"),
+                            _businessesComponents.getIconsContainer(image: Assets.servicesIcon, label: "Services"),
+                          ],
+                        ),
+                        SizedBox(height: getHeight() * 0.02),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            _businessesComponents.typesText(title: "Featured", isSelected: true),
+                            _businessesComponents.typesText(title: "Trending", isSelected: false),
+                            _businessesComponents.typesText(title: "Favorites", isSelected: false),
+                            _businessesComponents.typesText(title: "Past", isSelected: false),
+                          ],
+                        ),
                       ],
                     ),
-                    SizedBox(height: getHeight() * 0.04),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        _businessesComponents.typesText(title: "Featured", isSelected: true),
-                        _businessesComponents.typesText(title: "Trending", isSelected: false),
-                        _businessesComponents.typesText(title: "Favorites", isSelected: false),
-                        _businessesComponents.typesText(title: "Past", isSelected: false),
-                      ],
-                    ),
-                    SizedBox(height: getHeight() * 0.01),
-                    SizedBox(
+                  ),
+                  SizedBox(height: getHeight() * 0.01),
+                  Padding(
+                    padding: EdgeInsets.only(left: sizes.width * 0.06),
+                    child: SizedBox(
                       height: getHeight()*0.2,
                       child:
                       ListView.builder(
@@ -124,51 +129,66 @@ class _BusinessesState extends State<Businesses> {
                         },
                       ),
                     ),
-                    SizedBox(height: getHeight() * 0.02),
-                    TextView.getMediumText15("Recently Added", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                    SizedBox(height: getHeight() * 0.002),
-                    SizedBox(
-                      height: getHeight()*0.15,
-                      child:
-                      ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 5,
-                        //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
-                        itemBuilder: (context, index){
-                          return _businessesComponents.getRecentlyAddedContainer(
-                            name: "It's Yogurt",
-                            fullImage: "",
-                            logoImage: "",
-                            onPressFullContainer: (){
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    SizedBox(height: getHeight() * 0.02),
-                    _businessesComponents.get2TextRow(
-                        text1: "Nearby",
-                        text2: "See All"),
-                    SizedBox(height: sizes!.height * 0.02),
-                    Wrap(
+                  ),
+                  SizedBox(height: getHeight() * 0.02),
+                  Padding(
+                    padding: EdgeInsets.only(left: sizes.width * 0.06),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ...List.generate(
-                            3,
-                                (index) {
-                              return _businessesComponents.nearByContainer(
-                                  image:  Assets.dummyNearBy,
-                                  headerText: "Andy's Xpress Wash ",
-                                  onViewCourse: (){
-                                  },
-                                  address: "Chino, CA 91710",
-                                  streetAddress: "15705 Euclid Ave",
-                                  phoneNumber: "908-900-1791"
+                        TextView.getMediumText15("Recently Added", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                        SizedBox(height: getHeight() * 0.002),
+                        SizedBox(
+                          height: getHeight()*0.16,
+                          child:
+                          ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 5,
+                            //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
+                            itemBuilder: (context, index){
+                              return _businessesComponents.getRecentlyAddedContainer(
+                                name: "It's Yogurt",
+                                fullImage: "",
+                                logoImage: "",
+                                onPressFullContainer: (){
+                                },
                               );
-                            })
+                            },
+                          ),
+                        ),
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  SizedBox(height: getHeight() * 0.01),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                    child: Column(
+                      children: [
+                        _businessesComponents.get2TextRow(
+                            text1: "Nearby",
+                            text2: "See All"),
+                        SizedBox(height: sizes.height * 0.01),
+                        Wrap(
+                          children: [
+                            ...List.generate(
+                                3,
+                                    (index) {
+                                  return _businessesComponents.nearByContainer(
+                                      image:  Assets.dummyNearBy,
+                                      headerText: "Andy's Xpress Wash ",
+                                      onViewCourse: (){
+                                      },
+                                      address: "Chino, CA 91710",
+                                      streetAddress: "15705 Euclid Ave",
+                                      phoneNumber: "908-900-1791"
+                                  );
+                                })
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
 
             ],

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
-import 'package:flutter_app/screens/bottom_tab/bottom_tab_components.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/scan.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +26,6 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
   int _currentIndex = 0;
   BottomTabProvider? _bottomTabProvider;
-  BottomTabComponents? _bottomTabComponents = BottomTabComponents();
   PersistentTabController? _controller;
 
 
@@ -35,8 +33,6 @@ class _BottomTabNewState extends State<BottomTabNew> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // _bottomTabProvider = Provider.of<BottomTabProvider>(context, listen: false);
-    // _bottomTabProvider?.init(context: context, index: widget.pageIndex);
     _controller = PersistentTabController(initialIndex: widget.pageIndex);
 
   }
@@ -119,32 +115,32 @@ class _BottomTabNewState extends State<BottomTabNew> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: ImageIcon(AssetImage(Assets.causeIcon), size: sizes!.height * 0.1),
+        icon: ImageIcon(AssetImage(Assets.causeIcon), size: sizes.height * 0.1),
         title: ("Causes"),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(AssetImage(Assets.storeIcon), size: sizes!.height * 0.1),
+        icon: ImageIcon(AssetImage(Assets.storeIcon), size: sizes.height * 0.1),
         title: ("Businesses"),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(AssetImage(Assets.scannerIcon), color: AppColors.pureWhiteColor, size: sizes!.height * 0.04),
+        icon: ImageIcon(AssetImage(Assets.scannerIcon), color: AppColors.pureWhiteColor, size: sizes.height * 0.04),
         title: ("."),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
 
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(AssetImage(Assets.notificationIcon), size: sizes!.height * 0.1),
+        icon: ImageIcon(AssetImage(Assets.notificationIcon), size: sizes.height * 0.1),
         title: ("Notifications"),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(AssetImage(Assets.accountIcon), size: sizes!.height * 0.1),
+        icon: ImageIcon(AssetImage(Assets.accountIcon), size: sizes.height * 0.1),
         title: ("Account"),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,

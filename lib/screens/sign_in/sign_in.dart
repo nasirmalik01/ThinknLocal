@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/on_boarding1/on_boarding1.dart';
 import 'package:flutter_app/screens/reset_password/reset_password.dart';
 import 'package:flutter_app/screens/sign_in/SignInProvider.dart';
 import 'package:flutter_app/screens/sign_up/sign_up.dart';
 import 'package:provider/provider.dart';
-
-import '../../common/utils.dart';
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';
@@ -43,8 +40,8 @@ class _SignInState extends State<SignIn> {
       child: Scaffold(
         // backgroundColor: AppColors.appBackground,
         body: Container(
-            height: sizes!.height,
-            width: sizes!.width,
+            height: sizes.height,
+            width: sizes.width,
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
@@ -64,7 +61,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.06),
+                  padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
                     children: [
                       Container(
@@ -115,9 +112,10 @@ class _SignInState extends State<SignIn> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            width: sizes!.width * 0.22,
+                            width: sizes.width * 0.22,
                             child: Divider(
                               height: getHeight() * 0.01,
+                              thickness: getHeight() * 0.002,
                               color: AppColors.borderColor,
                             ),
                           ),
@@ -125,9 +123,10 @@ class _SignInState extends State<SignIn> {
                           TextView.getMediumText15("Or continue with", color: AppColors.lightBlack),
                           SizedBox(width: getWidth() * 0.06),
                           SizedBox(
-                            width: sizes!.width * 0.22,
+                            width: sizes.width * 0.22,
                             child: Divider(
                               height: getHeight() * 0.01,
+                              thickness: getHeight() * 0.002,
                               color: AppColors.borderColor,
                             ),
                           ),

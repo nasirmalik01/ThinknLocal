@@ -46,15 +46,15 @@ class _AboutVisitState extends State<AboutVisit> {
     return Scaffold(
       // backgroundColor: AppColors.appBackground,
       body: Container(
-        height: sizes!.height,
-        width: sizes!.width,
+        height: sizes.height,
+        width: sizes.width,
         decoration: const BoxDecoration(
           color: AppColors.lightBlack,
         ),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(left: sizes!.width * 0.06, right: sizes!.width * 0.06, top: sizes!.width * 0.15),
+              padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: sizes.width * 0.15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -88,7 +88,7 @@ class _AboutVisitState extends State<AboutVisit> {
                       itemCount: 5,
                       itemSize: 35,
                       itemPadding: EdgeInsets.symmetric(
-                          horizontal: sizes!.width * 0.005),
+                          horizontal: sizes.width * 0.005),
                       itemBuilder: (context, _) => const Icon(
                         Icons.star,
                         color: AppColors.yellowStarColor,

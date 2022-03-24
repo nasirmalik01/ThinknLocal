@@ -36,15 +36,15 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
       child: Scaffold(
         // backgroundColor: AppColors.appBackground,
         body: Container(
-          height: sizes!.height,
-          width: sizes!.width,
+          height: sizes.height,
+          width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
           child: Column(
             children: [
               SizedBox(
-                height: sizes!.height * 0.32,
+                height: sizes.height * 0.32,
                 child: _businessesDetailComponents.getBusinessesDetailContainer(
                     name: "Chino Hills High School Girls Softall Fundraiser",
                     fullBoxImage: Assets.dummyRestaurant,
@@ -65,7 +65,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                     }
                 ),
               ),
-              SizedBox(height: sizes!.height * 0.01),
+              SizedBox(height: sizes.height * 0.01),
               Container(
                 height: getHeight()* 0.045,
                 margin: EdgeInsets.symmetric(
@@ -86,13 +86,13 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                   indicatorSize: TabBarIndicatorSize.tab,
                   labelColor: AppColors.pureWhiteColor,
                   labelStyle: TextStyle(
-                    fontSize: sizes!.fontRatio * 12,
+                    fontSize: sizes.fontRatio * 12,
                     fontFamily: Assets.poppinsMedium,
                     fontWeight: FontWeight.w500,
                   ),
                   unselectedLabelColor: AppColors.darkGrey,
                   unselectedLabelStyle: TextStyle(
-                      fontSize: sizes!.fontRatio * 12,
+                      fontSize: sizes.fontRatio * 12,
                       fontFamily: Assets.poppinsRegular,
                       fontWeight: FontWeight.w400
                   ),
@@ -115,22 +115,28 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: sizes!.pagePadding),
-                      child: ListView(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    ListView(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                          child: Column(
                             children: [
                               TextView.regular11Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies, ipsum et ullamcorper dignissim, massa quam congue arcu, non facilisis.",
                                   color: AppColors.blackColor, fontFamily: Assets.poppinsRegular,lines: 3),
-                              SizedBox(height: sizes!.height * 0.02),
+                              SizedBox(height: sizes.height * 0.02),
                               _businessesDetailComponents.ratingContainer(
                                   starRating: 3,
                                   onPress: () {}
                               ),
-                              SizedBox(height: sizes!.height * 0.02),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: sizes.height * 0.02),
+                        Padding(
+                          padding: EdgeInsets.only(left: sizes.width * 0.06),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
                               TextView.bold15Text("Recently Funded", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
                               SizedBox(
                                 height: getHeight()*0.17,
@@ -154,9 +160,17 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                                   },
                                 ),
                               ),
-                              SizedBox(height: sizes!.height * 0.01),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: sizes.height * 0.01),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
                               TextView.bold15Text("Past Funded Causes", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                              SizedBox(height: sizes!.height * 0.01),
+                              SizedBox(height: sizes.height * 0.01),
                               Wrap(
                                 children: [
                                   ...List.generate(
@@ -173,15 +187,15 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                                         );
                                       })
                                 ],
-                              )
+                              ),
                             ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: sizes!.pagePadding),
+                          horizontal: sizes.pagePadding),
                       child: Column(
                         children: [
                           TextView.bold22Text("", color: AppColors.greenColor),
@@ -190,7 +204,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                     ),
                     Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: sizes!.pagePadding),
+                            horizontal: sizes.pagePadding),
                         child: TextView.bold22Text("", color: AppColors.greenColor)
                     ),
                   ],

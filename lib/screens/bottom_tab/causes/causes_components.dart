@@ -29,19 +29,19 @@ class CausesComponents {
 
   Widget typesText({required String title, required bool isSelected}) {
     return SizedBox(
-      height: sizes!.height * 0.04,
+      height: sizes.height * 0.04,
       // padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.01),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
               padding: EdgeInsets.only(
-                bottom: sizes!.height * 0.002,
+                bottom: sizes.height * 0.002,
               ),
               decoration: BoxDecoration(
                   border: Border(bottom: BorderSide(
                     color: isSelected ? AppColors.greenColor: AppColors.pureWhiteColor,
-                    width: sizes!.width * 0.005, // This would be the width of the underline
+                    width: sizes.width * 0.005, // This would be the width of the underline
                   ))
               ),
             child:
@@ -61,7 +61,6 @@ class CausesComponents {
     required String? fullBoxImage,
     required String? logoImage,
     required String? name,
-    required String? bookName,
     required String? collectedAmount,
     required String? totalAmount,
     required String? endDate,
@@ -72,7 +71,7 @@ class CausesComponents {
     return GestureDetector(
       onTap: ()=> onClickBox.call(),
       child: Container(
-        width: getWidth() * 0.7,
+        width: getWidth() * 0.75,
         margin: EdgeInsets.symmetric(horizontal: getWidth()*0.01),
         decoration: BoxDecoration(
             color: AppColors.greenColor,
@@ -123,16 +122,14 @@ class CausesComponents {
                         ],
                       ),
                       SizedBox(height: getHeight()*0.01),
-
-                      //TextView.regular12Text(bookName??"", color: AppColors.pureWhiteColor),
                     ],
                   ),
                 ),
               ),
               LinearPercentIndicator(
-                padding: EdgeInsets.only(left: sizes!.width * 0.03, right: sizes!.width * 0.04),
-                barRadius: Radius.circular(sizes!.height* 0.01),
-                lineHeight: sizes!.height * 0.01,
+                padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.04),
+                barRadius: Radius.circular(sizes.height* 0.01),
+                lineHeight: sizes.height * 0.01,
                 percent: completePercentage,
                 backgroundColor: AppColors.pureWhiteColor,
                 progressColor: AppColors.greenColor,
@@ -170,30 +167,29 @@ class CausesComponents {
     return GestureDetector(
       onTap: ()=> onPressFullContainer.call(),
       child: Container(
-        //height: getHeight()*0.2,
-        width: getWidth() * 0.35,
+        width: getWidth() * 0.4,
         margin: EdgeInsets.symmetric(horizontal: getWidth()*0.01, vertical: getHeight()*0.007),
         decoration: BoxDecoration(
             color: AppColors.lightGrey,
-            borderRadius: BorderRadius.circular(getHeight() * 0.01),
+            borderRadius: BorderRadius.circular(getHeight() * 0.015),
             image: DecorationImage(
                 image: isImageUrl ? NetworkImage(image): const AssetImage(Assets.dummyShort) as ImageProvider,
                 fit: BoxFit.cover)
         ),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.01)),
+            borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.015)),
             gradient: const LinearGradient(
-              begin: Alignment.center,
+              begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
                 Colors.transparent,
-                AppColors.blackColor,
+                AppColors.greenColor,
               ],
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.only(top: getHeight() * 0.07, left: getWidth() * 0.02, right: getWidth() * 0.02),
+            padding: EdgeInsets.only(top: getHeight() * 0.08, left: getWidth() * 0.02, right: getWidth() * 0.02),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -204,7 +200,7 @@ class CausesComponents {
                   maxLines: 3,
                   style: TextStyle(
                     height: getHeight() * 0.0015,
-                    fontSize: sizes!.fontSize15,
+                    fontSize: sizes.fontSize15,
                     fontFamily: Assets.poppinsMedium,
                     color: AppColors.pureWhiteColor,
                   ),
