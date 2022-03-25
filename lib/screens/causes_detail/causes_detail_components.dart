@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -19,6 +18,7 @@ class CauseDetailComponents {
     required double completePercentage,
     required bool isFavorite,
     required Function onPressBackArrow,
+    required Function onPressFavoriteIcon,
   }){
     //bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
     return GestureDetector(
@@ -56,7 +56,7 @@ class CauseDetailComponents {
                         child: Icon(
                           Icons.arrow_back_ios,
                           color: AppColors.pureWhiteColor,
-                          size: getHeight() * 0.03,
+                          size: getHeight() * 0.04,
                         ),
                       ),
                       Row(
@@ -64,18 +64,22 @@ class CauseDetailComponents {
                           Icon(
                             Icons.ios_share,
                             color: AppColors.pureWhiteColor,
-                            size: getHeight() * 0.03,
+                            size: getHeight() * 0.04,
                           ),
                           SizedBox(width: sizes.width * 0.03),
-                          isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
-                          Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,)
+                          GestureDetector(
+                            onTap: () => onPressFavoriteIcon(),
+                              child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.04,):
+                              Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.04,)
+                          )
+
                         ],
                       ),
                     ],
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, top: getHeight()*0.14),
+                  padding: EdgeInsets.only(left: getWidth()*0.03, top: getHeight()*0.12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

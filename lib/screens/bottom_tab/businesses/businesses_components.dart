@@ -65,6 +65,7 @@ class BusinessesComponents {
     required String? phoneNumber,
     required Function onClickBox,
     required bool isFavorite,
+    required Function onPressFavoriteIcon,
   }){
     //bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
     return GestureDetector(
@@ -98,8 +99,11 @@ class BusinessesComponents {
                 padding: EdgeInsets.only(top: getHeight()*0.01, right: getHeight()*0.02),
                 child: Align(
                   alignment: Alignment.topRight,
-                    child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.04,):
-                    Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.04,)
+                    child: GestureDetector(
+                      onTap: () => onPressFavoriteIcon(),
+                      child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.04,):
+                      Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.04,),
+                    )
                 )
               ),
               Container(

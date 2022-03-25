@@ -27,72 +27,69 @@ class _ResetPasswordState extends State<ResetPassword> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        // backgroundColor: AppColors.appBackground,
-        body: Container(
-          height: sizes.height,
-          width: sizes.width,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: ListView(
-            children: [
-              Container(
-                height: getHeight() * 0.1,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      AppColors.gradientColor1,
-                      AppColors.pureWhiteColor,
+    return Scaffold(
+      body: Container(
+        height: sizes.height,
+        width: sizes.width,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Column(
+          children: [
+            Container(
+              height: getHeight() * 0.1,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    AppColors.gradientColor1,
+                    AppColors.pureWhiteColor,
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                  child: Column(
+                    children: [
+                      const Image(
+                        image: AssetImage(Assets.logo,),
+                        fit: BoxFit.fill,
+                      ),
+                      SizedBox(height: getHeight() * 0.08),
+                      Row(
+                        children: [
+                          TextView.getMediumText18("Password Reset", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          TextView.regular11Text("Enter your email, a reset code will be sent to this address.", color: AppColors.blackColor),
+                        ],
+                      ),
+                      SizedBox(height: getHeight() * 0.04),
+                      CommonWidgets.textField(
+                          textEditingController: emailController,
+                          hint: "Email Address",
+                          textInputType: TextInputType.emailAddress
+                      ),
+                      SizedBox(height: getHeight() * 0.04),
+                      CommonWidgets.getButton(onPress: () {}, text: "Send Reset Code"),
+                      SizedBox(height: getHeight() * 0.04),
+                      CommonWidgets.getButton(onPress: () {
+                        Navigator.pop(context);
+                      },
+                          text: "Cancel", btnColor: AppColors.pureWhiteColor, textColor: AppColors.darkGrey, borderColor: AppColors.darkGrey),
                     ],
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                child: Column(
-                  children: [
-                    Container(
-                      // height: sizes!.height * 0.1,
-                      // width: sizes!.width * 0.7,
-                      child: const Image(
-                        image: AssetImage(Assets.logo,),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    SizedBox(height: getHeight() * 0.08),
-                    Row(
-                      children: [
-                        TextView.getMediumText18("Password Reset", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        TextView.regular11Text("Enter your email, a reset code will be sent to this address.", color: AppColors.blackColor),
-                      ],
-                    ),
-                    SizedBox(height: getHeight() * 0.04),
-                    CommonWidgets.textField(
-                        textEditingController: emailController,
-                        hint: "Email Address",
-                        textInputType: TextInputType.emailAddress
-                    ),
-                    SizedBox(height: getHeight() * 0.04),
-                    CommonWidgets.getButton(onPress: () {}, text: "Send Reset Code"),
-                    SizedBox(height: getHeight() * 0.04),
-                    CommonWidgets.getButton(onPress: () {
-                      Navigator.pop(context);
-                    },
-                        text: "Cancel", btnColor: AppColors.pureWhiteColor, textColor: AppColors.darkGrey, borderColor: AppColors.darkGrey),
-                  ],
-                ),
-              ),
+            ),
 
-            ],
-          ),
+          ],
         ),
       ),
     );

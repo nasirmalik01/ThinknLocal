@@ -68,6 +68,7 @@ class CommonWidgets {
     Color ? borderColor,
   }) {
     return GestureDetector(
+      //key: const Key('Main button'),
       onTap: (){
         onPress!.call();
       },
