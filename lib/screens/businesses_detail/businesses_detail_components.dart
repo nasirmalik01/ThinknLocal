@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
-
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/text_views.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class BusinessesDetailComponents {
   Widget getBusinessesDetailContainer({
@@ -23,6 +20,7 @@ class BusinessesDetailComponents {
     required double completePercentage,
     required bool isFavorite,
     required Function onPressBackArrow,
+    required Function onPressFavoriteIcon,
   }){
     //bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
     return GestureDetector(
@@ -60,7 +58,7 @@ class BusinessesDetailComponents {
                         child: Icon(
                           Icons.arrow_back_ios,
                           color: AppColors.pureWhiteColor,
-                          size: getHeight() * 0.03,
+                          size: getHeight() * 0.04,
                         ),
                       ),
                       Row(
@@ -68,18 +66,21 @@ class BusinessesDetailComponents {
                           Icon(
                             Icons.save_alt,
                             color: AppColors.pureWhiteColor,
-                            size: getHeight() * 0.03,
+                            size: getHeight() * 0.04,
                           ),
                           SizedBox(width: sizes.width * 0.03),
-                          isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
-                          Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,)
+                          GestureDetector(
+                            onTap: () => onPressFavoriteIcon(),
+                            child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.04,):
+                            Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.04,),
+                          )
                         ],
                       ),
                     ],
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, top: getHeight()*0.1, right: getWidth()*0.03),
+                  padding: EdgeInsets.only(left: getWidth()*0.03, top: getHeight()*0.09, right: getWidth()*0.03),
                   child: SizedBox(
                     //width: getWidth()*0.8,
                     child: Column(

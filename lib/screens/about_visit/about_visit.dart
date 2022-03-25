@@ -18,7 +18,6 @@ class AboutVisit extends StatefulWidget {
 }
 
 class _AboutVisitState extends State<AboutVisit> {
-  AboutVisitComponents _aboutVisitComponents = AboutVisitComponents();
   double getRating = 0.0;
   String ? _cause;
   String ? _businessName;

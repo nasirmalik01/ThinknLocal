@@ -1,14 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/bottom_tab/businesses/businesses_components.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail_components.dart';
-import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import 'package:flutter_app/screens/bottom_tab/causes/causes_components.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
+import '../sign_in/sign_in.dart';
 
 
 class BusinessesDetail extends StatefulWidget {
@@ -62,6 +60,14 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                     },
                     onPressBackArrow: () {
                       Navigator.pop(context);
+                    },
+                    onPressFavoriteIcon: () {
+                      pushNewScreen(
+                        context,
+                        screen: const SignIn(),
+                        withNavBar: false,
+                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                      );
                     }
                 ),
               ),
