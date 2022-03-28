@@ -131,7 +131,7 @@ class _AccountState extends State<Account> {
                                 SizedBox(
                                     height: getHeight() * 0.04,
                                     width: getWidth() * 0.06,
-                                    child: Image.asset(Assets.bellicon, color: _value? AppColors.greenColor: AppColors.darkGrey,)),
+                                    child: Image.asset(Assets.bell_Icon, color: _value? AppColors.greenColor: AppColors.darkGrey,)),
                                 SizedBox(width: sizes.width * 0.05),
                                 Row(
                                   children: [
@@ -284,7 +284,8 @@ class _AccountState extends State<Account> {
                             ),
 
                           ),
-                          Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
+                          //Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
+                          SizedBox(height: sizes.height * 0.02),
                         ],
                       )
                     ],

@@ -1,11 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/password/password_pin/password_pin.dart';
 
-import '../../res/assets.dart';
-import '../../res/colors.dart';
-import '../../res/res.dart';
-import '../../widgets/common_widgets.dart';
-import '../../widgets/text_views.dart';
+
+import '../../../res/assets.dart';
+import '../../../res/colors.dart';
+import '../../../res/res.dart';
+import '../../../widgets/common_widgets.dart';
+import '../../../widgets/text_views.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -16,13 +17,11 @@ class ResetPassword extends StatefulWidget {
 
 class _ResetPasswordState extends State<ResetPassword> {
   TextEditingController? emailController;
-  TextEditingController? passwordController;
 
   @override
   void initState() {
     super.initState();
     emailController = TextEditingController();
-    passwordController = TextEditingController();
   }
 
   @override
@@ -60,14 +59,11 @@ class _ResetPasswordState extends State<ResetPassword> {
                         fit: BoxFit.fill,
                       ),
                       SizedBox(height: getHeight() * 0.08),
-                      Row(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextView.getMediumText18("Password Reset", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          TextView.regular11Text("Enter your email, a reset code will be sent to this address.", color: AppColors.blackColor),
+                          TextView.getText13("Enter your email, a reset code will be sent to this address.", color: AppColors.blackColor, lines: 2, fontFamily: Assets.poppinsRegular),
                         ],
                       ),
                       SizedBox(height: getHeight() * 0.04),
@@ -77,7 +73,10 @@ class _ResetPasswordState extends State<ResetPassword> {
                           textInputType: TextInputType.emailAddress
                       ),
                       SizedBox(height: getHeight() * 0.04),
-                      CommonWidgets.getButton(onPress: () {}, text: "Send Reset Code"),
+                      CommonWidgets.getButton(onPress: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => const PasswordPin()));
+                      }, text: "Send Reset Code"),
                       SizedBox(height: getHeight() * 0.04),
                       CommonWidgets.getButton(onPress: () {
                         Navigator.pop(context);

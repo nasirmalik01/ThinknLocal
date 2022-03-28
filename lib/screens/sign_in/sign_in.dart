@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/reset_password/reset_password.dart';
+import 'package:flutter_app/screens/password/reset_password/reset_password.dart';
 import 'package:flutter_app/screens/sign_up/sign_up.dart';
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
+import '../bottom_tab/bottom_tab_new.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -92,7 +93,10 @@ class _SignInState extends State<SignIn> {
                           ],
                         ),
                         SizedBox(height: getHeight() * 0.02),
-                        CommonWidgets.getButton(onPress: () {},
+                        CommonWidgets.getButton(onPress: () {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (_) => BottomTabNew(pageIndex: 0)));
+                        },
                           btnColor: AppColors.greenColor,
                           textColor: AppColors.pureWhiteColor,
                           text: "Sign In"

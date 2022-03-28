@@ -1,5 +1,4 @@
 class Assets {
-  static const String splashLogoWhite = "assets/png/splashLogoWhite.png";
   static const String logo = "assets/png/Logo.png";
   static const String appleLogo = "assets/png/Apple.png";
   static const String googleLogo = "assets/png/Google.png";
@@ -11,7 +10,7 @@ class Assets {
   static const String storeIcon = "assets/png/store.png";
   static const String locationIcon = "assets/png/locationIcon.png";
   static const String mailIcon = "assets/png/mailIcon.png";
-  static const String bellicon = "assets/png/bellicon.png";
+  static const String bell_Icon = "assets/png/bellicon.png";
   static const String bagIcon = "assets/png/bagIcon.png";
   static const String foodIcon = "assets/png/foodIcon.png";
   static const String servicesIcon = "assets/png/servicesIcon.png";
@@ -33,6 +32,7 @@ class Assets {
   static const String successIcon = "assets/png/successIcon.png";
   static const String uploadIcon = "assets/png/uploadIcon.png";
   static const String uploadIconOrange = "assets/png/uploadIconOrange.png";
+  static const String successBigIcon = "assets/png/successBigIcon.png";
 
 
   // fonts

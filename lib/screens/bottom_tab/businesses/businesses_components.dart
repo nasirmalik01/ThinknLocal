@@ -72,7 +72,7 @@ class BusinessesComponents {
       onTap: ()=> onClickBox.call(),
       child: Container(
         width: getWidth() * 0.75,
-        margin: EdgeInsets.symmetric(horizontal: getWidth()*0.01),
+        margin: EdgeInsets.only(left: getWidth()*0.06, right: getWidth()*0.005),
         decoration: BoxDecoration(
             color: AppColors.greenColor,
             borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.02)),
@@ -197,8 +197,8 @@ class BusinessesComponents {
     return GestureDetector(
       onTap: ()=> onPressFullContainer.call(),
       child: Container(
-        width: getWidth() * 0.4,
-        margin: EdgeInsets.symmetric(horizontal: getWidth()*0.01, vertical: getHeight()*0.007),
+        width: getWidth() * 0.39,
+        margin: EdgeInsets.only(left: getWidth()*0.06, right: getWidth()*0.005),
         decoration: BoxDecoration(
             color: AppColors.lightGrey,
             borderRadius: BorderRadius.circular(getHeight() * 0.015),
@@ -320,8 +320,6 @@ class BusinessesComponents {
             ],
           ),
         ),
-        Divider(height: getHeight() * 0.02, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
-        SizedBox(height: getHeight() * 0.008),
       ],
     );
   }

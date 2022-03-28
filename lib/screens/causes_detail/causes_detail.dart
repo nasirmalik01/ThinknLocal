@@ -120,73 +120,84 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: sizes.pagePadding),
-                      child: ListView(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _causeDetailComponents.descriptionOverview(
+                    ListView(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                              child: _causeDetailComponents.descriptionOverview(
                                   heading: "Chino Hills HS Girls Water Polo",
                                   description: "Help support the Chino-Hills 2021-2022 Water polo team. They are raising money to purchase new water polo equipment."
                               ),
-                              SizedBox(height: sizes.height * 0.02),
-                              TextView.bold15Text("Featured Sponsors", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                            ),
+                            SizedBox(height: sizes.height * 0.02),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                              child: TextView.bold15Text("Featured Sponsors", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                            ),
 
-                              SizedBox(
-                                height: getHeight()*0.16,
-                                child:
-                                ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 5,
-                                  //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
-                                  itemBuilder: (context, index){
-                                    return _causeDetailComponents.featuredContainer(
-                                      name: "Grocery outlet",
-                                      image: "",
-                                      logoImage: Assets.dummyFeaturedShort,
-                                      givingBack: "20%",
-                                      onPressFullContainer: (){
-                                      },
-                                    );
-                                  },
-                                ),
+                            SizedBox(
+                              height: getHeight()*0.16,
+                              child:
+                              ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 5,
+                                itemBuilder: (context, index){
+                                  return _causeDetailComponents.featuredContainer(
+                                    name: "Grocery outlet",
+                                    image: "",
+                                    logoImage: Assets.dummyFeaturedShort,
+                                    givingBack: "20%",
+                                    onPressFullContainer: (){
+                                    },
+                                  );
+                                },
                               ),
-                              SizedBox(height: sizes.height * 0.02),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            ),
+                            SizedBox(height: sizes.height * 0.02),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                              child: Column(
                                 children: [
-                                  _causeDetailComponents.typesText(title: "Food & Drink", isSelected: true),
-                                  _causeDetailComponents.typesText(title: "Things to do", isSelected: false),
-                                  _causeDetailComponents.typesText(title: "Retail", isSelected: false),
-                                  _causeDetailComponents.typesText(title: "Services", isSelected: false),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      _causeDetailComponents.typesText(title: "Food & Drink", isSelected: true),
+                                      _causeDetailComponents.typesText(title: "Things to do", isSelected: false),
+                                      _causeDetailComponents.typesText(title: "Retail", isSelected: false),
+                                      _causeDetailComponents.typesText(title: "Services", isSelected: false),
+                                    ],
+                                  ),
+                                  SizedBox(height: sizes.height * 0.02),
+                                  ListView.separated(
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    physics: const ScrollPhysics(),
+                                    itemCount: 3,
+                                    itemBuilder: (context, index){
+                                      return _causeDetailComponents.overViewCategoryContainer(
+                                          image:  Assets.dummyFeatured,
+                                          headerText: "Andy's Xpress Wash",
+                                          onViewCourse: (){
+                                          },
+                                          categoryPercent: "50%",
+                                          address: "Chino, CA 91710",
+                                          streetAddress: "15705 Euclid Ave",
+                                          phoneNumber: "908-900-1791"
+                                      );
+
+                                    }, separatorBuilder: (BuildContext context, int index) {
+                                    return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                                  },),
+                                  SizedBox(height: sizes.height * 0.03),
                                 ],
                               ),
-                              SizedBox(height: sizes.height * 0.02),
-                              Wrap(
-                                children: [
-                                  ...List.generate(
-                                      3,
-                                          (index) {
-                                        return _causeDetailComponents.overViewCategoryContainer(
-                                            image:  Assets.dummyFeatured,
-                                            headerText: "Andy's Xpress Wash",
-                                            onViewCourse: (){
-                                            },
-                                            categoryPercent: "50%",
-                                            address: "Chino, CA 91710",
-                                            streetAddress: "15705 Euclid Ave",
-                                            phoneNumber: "908-900-1791"
-                                        );
-                                      })
-                                ],
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
@@ -195,19 +206,23 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                         children: [
                           Column(
                             children: [
-                              Wrap(
-                                children: [
-                                  ...List.generate(
-                                      6,
-                                          (index) {
-                                        return _causeDetailComponents.updateListTabContainer(
-                                            header: "It's Begone!",
-                                            detail: "Our fundraiser has started!",
-                                            date: "Mar 6th"
-                                        );
-                                      })
-                                ],
-                              )
+                              ListView.separated(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                physics: const ScrollPhysics(),
+                                itemCount: 8,
+                                itemBuilder: (context, index){
+                                  return _causeDetailComponents.updateListTabContainer(
+                                      header: "It's Begone!",
+                                      detail: "Our fundraiser has started!",
+                                      date: "Mar 6th"
+                                  );
+
+                                }, separatorBuilder: (BuildContext context, int index) {
+                                return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                              },),
+                              SizedBox(height: sizes.height * 0.03),
+
                             ],
                           ),
                         ],

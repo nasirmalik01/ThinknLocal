@@ -95,73 +95,65 @@ class _BusinessesState extends State<Businesses> {
                     ),
                   ),
                   SizedBox(height: getHeight() * 0.01),
-                  Padding(
-                    padding: EdgeInsets.only(left: sizes.width * 0.06),
-                    child: SizedBox(
-                      height: getHeight()*0.2,
-                      child:
-                      ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 3,
-                        //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
-                        itemBuilder: (context, index){
-                          return _businessesComponents.getBusinessesContainer(
-                            name: "Chino Hills Pizza Co.",
-                            fullBoxImage: Assets.dummyRestaurant,
-                            logoImage: Assets.dummyRestaurantLogo,
-                            bookName:  "",
-                            streetAddress: "15705 Euclid Ave",
-                            address: "Chino, CA 9170",
-                            phoneNumber: "909-254-7898",
-                            isFavorite: false,
-                            onClickBox: (){
-                              pushNewScreen(
-                                context,
-                                screen: const BusinessesDetail(),
-                                withNavBar: true, // OPTIONAL VALUE. True by default.
-                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                              );
-                            },
-                            onPressFavoriteIcon: () {
-                              pushNewScreen(
-                                context,
-                                screen: const SignIn(),
-                                withNavBar: false,
-                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                              );
-                            }
-                          );
-                        },
-                      ),
+                  SizedBox(
+                    height: getHeight()*0.2,
+                    child:
+                    ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 3,
+                      //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
+                      itemBuilder: (context, index){
+                        return _businessesComponents.getBusinessesContainer(
+                          name: "Chino Hills Pizza Co.",
+                          fullBoxImage: Assets.dummyRestaurant,
+                          logoImage: Assets.dummyRestaurantLogo,
+                          bookName:  "",
+                          streetAddress: "15705 Euclid Ave",
+                          address: "Chino, CA 9170",
+                          phoneNumber: "909-254-7898",
+                          isFavorite: false,
+                          onClickBox: (){
+                            pushNewScreen(
+                              context,
+                              screen: const BusinessesDetail(),
+                              withNavBar: true, // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            );
+                          },
+                          onPressFavoriteIcon: () {
+                            pushNewScreen(
+                              context,
+                              screen: const SignIn(),
+                              withNavBar: false,
+                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            );
+                          }
+                        );
+                      },
                     ),
                   ),
                   SizedBox(height: getHeight() * 0.02),
                   Padding(
                     padding: EdgeInsets.only(left: sizes.width * 0.06),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextView.getMediumText15("Recently Added", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                        SizedBox(height: getHeight() * 0.002),
-                        SizedBox(
-                          height: getHeight()*0.16,
-                          child:
-                          ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
-                            itemBuilder: (context, index){
-                              return _businessesComponents.getRecentlyAddedContainer(
-                                name: "It's Yogurt",
-                                fullImage: "",
-                                logoImage: "",
-                                onPressFullContainer: (){
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                      ],
+                    child: TextView.getMediumText15("Recently Added", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                  ),
+                  SizedBox(height: getHeight() * 0.002),
+                  SizedBox(
+                    height: getHeight()*0.16,
+                    child:
+                    ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
+                      itemBuilder: (context, index){
+                        return _businessesComponents.getRecentlyAddedContainer(
+                          name: "It's Yogurt",
+                          fullImage: "",
+                          logoImage: "",
+                          onPressFullContainer: (){
+                          },
+                        );
+                      },
                     ),
                   ),
                   SizedBox(height: getHeight() * 0.01),
@@ -173,23 +165,27 @@ class _BusinessesState extends State<Businesses> {
                             text1: "Nearby",
                             text2: "See All"),
                         SizedBox(height: sizes.height * 0.01),
-                        Wrap(
-                          children: [
-                            ...List.generate(
-                                3,
-                                    (index) {
-                                  return _businessesComponents.nearByContainer(
-                                      image:  Assets.dummyNearBy,
-                                      headerText: "Andy's Xpress Wash ",
-                                      onViewCourse: (){
-                                      },
-                                      address: "Chino, CA 91710",
-                                      streetAddress: "15705 Euclid Ave",
-                                      phoneNumber: "908-900-1791"
-                                  );
-                                })
-                          ],
+                        ListView.separated(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          physics: const ScrollPhysics(),
+                          itemCount: 3,
+                          itemBuilder: (context, index){
+                            return _businessesComponents.nearByContainer(
+                                image:  Assets.dummyNearBy,
+                                headerText: "Andy's Xpress Wash ",
+                                onViewCourse: (){
+                                },
+                                address: "Chino, CA 91710",
+                                streetAddress: "15705 Euclid Ave",
+                                phoneNumber: "908-900-1791"
+                            );
+
+                          }, separatorBuilder: (BuildContext context, int index) {
+                          return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                        },
                         ),
+                        SizedBox(height: getHeight() * 0.03),
                       ],
                     ),
                   )

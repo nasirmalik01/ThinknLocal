@@ -73,7 +73,7 @@ class CommonWidgets {
         onPress!.call();
       },
       child: Container(
-        height: height?? getHeight() * 0.07,
+        height: height?? getHeight() * 0.075,
         width:  width?? getWidth(),
         decoration: BoxDecoration(
           color: btnColor??AppColors.greenColor,
@@ -230,7 +230,6 @@ class CommonWidgets {
             ],
           ),
         ),
-        Divider(height: getHeight() * 0.02, thickness: getHeight() * 0.001 ,color: AppColors.borderColor)
       ],
     );
   }
@@ -301,6 +300,72 @@ class CommonWidgets {
                 ),
               );
             }).toList()
+        ),
+      ),
+    );
+  }
+
+  static  Widget textFieldForPassword({
+    TextEditingController ? textEditingController,
+    bool ? obscureText,
+    String?  hint,
+    TextInputType? textInputType,
+    double ? width,
+    String ? icon,
+    Color? borderColor,
+    Color? bgColor,
+    Color? textColor,
+    Color? hintTextColor,
+    Color? cursorColor,
+    required bool hidePassword,
+    required Function? clickIcon,
+  }){
+    return   Container(
+      height: getHeight() * 0.07,
+      width:  width??sizes.width,
+      decoration: BoxDecoration(
+          color: bgColor?? AppColors.lightGrey,
+          border: Border.all(color: borderColor?? AppColors.lightGrey),
+          borderRadius: BorderRadius.all(Radius.circular(getHeight()*.01))
+      ),
+      child: Center(
+        child: TextField(
+          textAlignVertical: TextAlignVertical.center,
+          controller: textEditingController,
+          obscureText: hidePassword,
+          cursorHeight: getHeight()*.03,
+          keyboardType: textInputType??TextInputType.text,
+          cursorColor: cursorColor?? AppColors.lightBlack,
+          style: TextStyle(
+            color: textColor ?? AppColors.lightBlack,
+            fontSize: sizes.fontSize15,
+            fontFamily:Assets.poppinsMedium,
+          ),
+          textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.symmetric(horizontal: getWidth()*.02),
+              hintText: hint??"",
+              alignLabelWithHint: false,
+              hintStyle: TextStyle(
+                color: hintTextColor ?? AppColors.darkGrey,
+                fontSize: sizes.fontSize15,
+                fontFamily:Assets.poppinsMedium,
+              ),
+            suffixIcon: IconButton(
+              icon: Icon(
+                hidePassword
+                    ? Icons.visibility
+                    : Icons.visibility_off,
+                color: AppColors.darkGrey,
+              ),
+              onPressed: () {
+                if (clickIcon != null) {
+                  clickIcon.call();
+                }
+              },
+            ),
+          ),
         ),
       ),
     );

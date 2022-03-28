@@ -154,7 +154,7 @@ class TextView {
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
-        final fontFamily,
+        final fontFamily, final TextDecoration textDecoration = TextDecoration.none,
         final lines}) {
     return Text(
       text ?? "",
@@ -163,6 +163,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
+        decoration: textDecoration,
         fontSize: sizes.fontSize15,
         fontFamily: fontFamily?? Assets.latoRegular,
         color: color,
