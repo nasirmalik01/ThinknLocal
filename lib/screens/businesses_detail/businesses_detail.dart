@@ -17,7 +17,6 @@ class BusinessesDetail extends StatefulWidget {
 }
 
 class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerProviderStateMixin {
-  //final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
   final BusinessesDetailComponents _businessesDetailComponents = BusinessesDetailComponents();
   TabController? _tabController;
 
@@ -32,7 +31,6 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: AppColors.appBackground,
         body: Container(
           height: sizes.height,
           width: sizes.width,
@@ -44,7 +42,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
               SizedBox(
                 height: sizes.height * 0.32,
                 child: _businessesDetailComponents.getBusinessesDetailContainer(
-                    name: "Chino Hills High School Girls Softall Fundraiser",
+                    name: "Chino Hills High School Girls Softball Fundraiser",
                     fullBoxImage: Assets.dummyRestaurant,
                     logoImage: Assets.dummyRestaurantLogo,
                     completePercentage: 0.7,
@@ -116,7 +114,6 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                   ],
                 ),
               ),
-              //SizedBox(height: sizes!.height * 0.01),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
@@ -138,36 +135,35 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                           ),
                         ),
                         SizedBox(height: sizes.height * 0.02),
-                        Padding(
-                          padding: EdgeInsets.only(left: sizes.width * 0.06),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextView.bold15Text("Recently Funded", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                              SizedBox(
-                                height: getHeight()*0.17,
-                                child:
-                                ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 5,
-                                  //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
-                                  itemBuilder: (context, index){
-                                    return _businessesDetailComponents.recentlyFundedContainer(
-                                      name: "Ayala High School Cheer Fundraiser",
-                                      fullImage: "",
-                                      logoImage: "",
-                                      isFavorite: false,
-                                      endDate: "Mar 2nd",
-                                      raisedAmount: "342.5",
-                                      totalAmount: "450",
-                                      onPressFullContainer: (){
-                                      },
-                                    );
-                                  },
-                                ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
+                              child: TextView.bold15Text("Recently Funded", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                            ),
+                            SizedBox(
+                              height: getHeight()*0.17,
+                              child:
+                              ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 5,
+                                itemBuilder: (context, index){
+                                  return _businessesDetailComponents.recentlyFundedContainer(
+                                    name: "Ayala High School Cheer Fundraiser",
+                                    fullImage: "",
+                                    logoImage: "",
+                                    isFavorite: false,
+                                    endDate: "Mar 2nd",
+                                    raisedAmount: "342.5",
+                                    totalAmount: "450",
+                                    onPressFullContainer: (){
+                                    },
+                                  );
+                                },
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                         SizedBox(height: sizes.height * 0.01),
                         Padding(
@@ -177,23 +173,27 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                             children: [
                               TextView.bold15Text("Past Funded Causes", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
                               SizedBox(height: sizes.height * 0.01),
-                              Wrap(
-                                children: [
-                                  ...List.generate(
-                                      3,
-                                          (index) {
-                                        return CommonWidgets.getUpcomingCauses(
-                                            image:  "",
-                                            headerText: "Chino Hills High Softball Team",
-                                            description:  "Spring Training Equipment Fundraiser",
-                                            onViewCourse: (){
-                                            },
-                                            totalAmount: "500",
-                                            date: "Mar 25"
-                                        );
-                                      })
-                                ],
+                              ListView.separated(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                physics: const ScrollPhysics(),
+                                itemCount: 3,
+                                itemBuilder: (context, index){
+                                  return CommonWidgets.getUpcomingCauses(
+                                      image:  "",
+                                      headerText: "Chino Hills High Softball Team",
+                                      description:  "Spring Training Equipment Fundraiser",
+                                      onViewCourse: (){
+                                      },
+                                      totalAmount: "500",
+                                      date: "Mar 25"
+                                  );
+
+                                }, separatorBuilder: (BuildContext context, int index) {
+                                return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                              },
                               ),
+                              SizedBox(height: getHeight() * 0.03),
                             ],
                           ),
                         ),

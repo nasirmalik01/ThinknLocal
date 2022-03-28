@@ -225,9 +225,8 @@ class BusinessesDetailComponents {
     return GestureDetector(
       onTap: ()=> onPressFullContainer.call(),
       child: Container(
-        //height: getHeight()*0.2,
-        width: getWidth() * 0.4,
-        margin: EdgeInsets.symmetric(horizontal: getWidth()*0.01, vertical: getHeight()*0.007),
+        width: getWidth() * 0.39,
+        margin: EdgeInsets.only(left: getWidth()*0.06, right: getWidth()*0.005),
         decoration: BoxDecoration(
             color: AppColors.lightGrey,
             borderRadius: BorderRadius.circular(getHeight() * 0.015),

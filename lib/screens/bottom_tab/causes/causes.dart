@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
@@ -31,7 +30,6 @@ class _CausesState extends State<Causes> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: AppColors.appBackground,
         body: Container(
           height: sizes.height,
           width: sizes.width,
@@ -85,57 +83,49 @@ class _CausesState extends State<Causes> {
                     ),
                   ),
                   SizedBox(height: getHeight() * 0.01),
-                  Padding(
-                    padding: EdgeInsets.only(left: sizes.width * 0.06),
-                    child: SizedBox(
-                      height: getHeight()*0.24,
-                      child:
-                      ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 3,
-                        itemBuilder: (context, index){
-                          return _causesComponents.getCausesFundsContainer(
-                            name: "Chino Hills High School Girls Softall Fundraiser",
-                            fullBoxImage: Assets.schoolDummy1,
-                            logoImage: Assets.huskiesLogo,
-                            completePercentage: 0.7,
-                            collectedAmount: "342.5",
-                            totalAmount: "450",
-                            endDate: "March 2nd",
-                            onClickBox: (){
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) => const CausesDetail()));
-                            },
-                          );
-                        },
-                      ),
+                  SizedBox(
+                    height: getHeight()*0.24,
+                    child:
+                    ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 3,
+                      itemBuilder: (context, index){
+                        return _causesComponents.getCausesFundsContainer(
+                          name: "Chino Hills High School Girls Softall Fundraiser",
+                          fullBoxImage: Assets.schoolDummy1,
+                          logoImage: Assets.huskiesLogo,
+                          completePercentage: 0.7,
+                          collectedAmount: "342.5",
+                          totalAmount: "450",
+                          endDate: "March 2nd",
+                          onClickBox: (){
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => const CausesDetail()));
+                          },
+                        );
+                      },
                     ),
                   ),
                   SizedBox(height: getHeight() * 0.02),
                   Padding(
                     padding: EdgeInsets.only(left: sizes.width * 0.06),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextView.getMediumText15("Recently Started", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                        SizedBox(height: getHeight() * 0.002),
-                        SizedBox(
-                          height: getHeight()*0.17,
-                          child:
-                          ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            itemBuilder: (context, index){
-                              return _causesComponents.getRecentlyStartedContainer(
-                                name: "Ayala High School Cheer Fundraiser",
-                                image: "",
-                                onPressFullContainer: (){
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                      ],
+                    child: TextView.getMediumText15("Recently Started", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                  ),
+                  SizedBox(height: getHeight() * 0.002),
+                  SizedBox(
+                    height: getHeight()*0.17,
+                    child:
+                    ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      itemBuilder: (context, index){
+                        return _causesComponents.getRecentlyStartedContainer(
+                          name: "Ayala High School Cheer Fundraiser",
+                          image: "",
+                          onPressFullContainer: (){
+                          },
+                        );
+                      },
                     ),
                   ),
                   SizedBox(height: getHeight() * 0.02),
@@ -147,23 +137,27 @@ class _CausesState extends State<Causes> {
                             text1: "Upcoming Causes",
                             text2: "See All"),
                         SizedBox(height: getHeight() * 0.02),
-                        Wrap(
-                          children: [
-                            ...List.generate(
-                                3,
-                                    (index) {
-                                  return CommonWidgets.getUpcomingCauses(
-                                    image:  "",
-                                    headerText: "Chino Hills High Softball Team",
-                                    description:  "Spring Training Equipment Fundraiser",
-                                    onViewCourse: (){
-                                    },
-                                    totalAmount: "500",
-                                    date: "Mar 25"
-                                  );
-                                })
-                          ],
+                        ListView.separated(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          physics: const ScrollPhysics(),
+                          itemCount: 3,
+                          itemBuilder: (context, index){
+                            return CommonWidgets.getUpcomingCauses(
+                                image:  "",
+                                headerText: "Chino Hills High Softball Team",
+                                description:  "Spring Training Equipment Fundraiser",
+                                onViewCourse: (){
+                                },
+                                totalAmount: "500",
+                                date: "Mar 25"
+                            );
+
+                          }, separatorBuilder: (BuildContext context, int index) {
+                            return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                        },
                         ),
+                        SizedBox(height: getHeight() * 0.03),
                       ],
                     ),
                   )

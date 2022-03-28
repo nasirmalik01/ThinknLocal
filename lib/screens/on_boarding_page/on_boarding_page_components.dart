@@ -7,7 +7,7 @@ import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
 
 class OnBoardingPageComponents {
-  Widget getPageContainer({
+  Widget getPageDesignContainer({
     required String heading,
     required String image,
     required String subHeading,
@@ -17,6 +17,7 @@ class OnBoardingPageComponents {
     String? buttonText
   }) {
     return Container(
+      key: const Key('onBoardingPageSettingWidget'),
       height: sizes.height,
       width: sizes.width,
       decoration: const BoxDecoration(

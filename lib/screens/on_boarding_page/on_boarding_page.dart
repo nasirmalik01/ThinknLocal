@@ -45,14 +45,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         child: PageView(
           controller: controller,
           children: [
-            onBoardingPageComponents.getPageContainer(
+            onBoardingPageComponents.getPageDesignContainer(
                 heading: "Welcome!",
                 image: Assets.onBoarding3,
                 subHeading: "Find a great cause!",
                 description: "Search for that great\n fundraiser you'd like to\n support.",
                 isOnBoarding3: false
             ),
-            onBoardingPageComponents.getPageContainer(
+            onBoardingPageComponents.getPageDesignContainer(
                 heading: "",
                 image: Assets.onBoarding2,
                 subHeading: "Shop at participating business",
@@ -60,7 +60,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     " Support\n local businesses while you help\n fund a worthy cause!",
                 isOnBoarding3: false
             ),
-            onBoardingPageComponents.getPageContainer(
+            onBoardingPageComponents.getPageDesignContainer(
                 heading: "",
                 image: Assets.onBoarding1,
                 subHeading: "Snap a photo of your receipt",
@@ -90,6 +90,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
+              key: const Key('SKIP'),
                 onPressed: () {
                   PreferenceUtils.setBool(Strings.showHome, true);
                   Navigator.pushReplacement(context,

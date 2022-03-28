@@ -165,8 +165,8 @@ class CauseDetailComponents {
     return GestureDetector(
       onTap: ()=> onPressFullContainer.call(),
       child: Container(
-        width: getWidth() * 0.43,
-        margin: EdgeInsets.symmetric(horizontal: getWidth()*0.01, vertical: getHeight()*0.007),
+        width: getWidth() * 0.45,
+        margin: EdgeInsets.only(left: getWidth()*0.06, right: getWidth()*0.005, top: getHeight()*0.007, bottom: getHeight()*0.007,),
         decoration: BoxDecoration(
             color: AppColors.lightGrey,
             borderRadius: BorderRadius.circular(getHeight() * 0.01),
@@ -335,8 +335,6 @@ class CauseDetailComponents {
             ],
           ),
         ),
-        Divider(height: getHeight() * 0.02, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
-        SizedBox(height: getHeight() * 0.008),
       ],
     );
   }
@@ -360,8 +358,6 @@ class CauseDetailComponents {
             ],
           ),
           TextView.bold12Text(detail, color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 2),
-          SizedBox(height: getHeight() * 0.01),
-          Divider(height: getHeight() * 0.02, thickness: getHeight() * 0.002 ,color: AppColors.borderColor),
         ],
       ),
     );

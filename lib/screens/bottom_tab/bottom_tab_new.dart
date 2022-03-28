@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
@@ -23,9 +22,6 @@ class BottomTabNew extends StatefulWidget {
 }
 
 class _BottomTabNewState extends State<BottomTabNew> {
-
-  int _currentIndex = 0;
-  BottomTabProvider? _bottomTabProvider;
   PersistentTabController? _controller;
 
 
@@ -38,27 +34,6 @@ class _BottomTabNewState extends State<BottomTabNew> {
   }
 
 
-  _currentPage() {
-    if (_bottomTabProvider?.currentIndex == 0) {
-      return const Causes();
-    }
-    if (_bottomTabProvider?.currentIndex == 1) {
-      return const Businesses();
-    }
-    if (_bottomTabProvider?.currentIndex == 2) {
-      return const Notifications();
-    }
-    if (_bottomTabProvider?.currentIndex == 3) {
-      return const Account();
-    }
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
   List<Widget> _buildScreens() {
     return [
       const Causes(),
@@ -70,6 +45,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
   }
 
 
+  @override
   Widget build(BuildContext context) {
     Provider.of<BottomTabProvider>(context, listen: true);
     return PersistentTabView(
@@ -115,32 +91,32 @@ class _BottomTabNewState extends State<BottomTabNew> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: ImageIcon(AssetImage(Assets.causeIcon), size: sizes.height * 0.1),
+        icon: ImageIcon(const AssetImage(Assets.causeIcon), size: sizes.height * 0.1),
         title: ("Causes"),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(AssetImage(Assets.storeIcon), size: sizes.height * 0.1),
+        icon: ImageIcon(const AssetImage(Assets.storeIcon), size: sizes.height * 0.1),
         title: ("Businesses"),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(AssetImage(Assets.scannerIcon), color: AppColors.pureWhiteColor, size: sizes.height * 0.04),
+        icon: ImageIcon(const AssetImage(Assets.scannerIcon), color: AppColors.pureWhiteColor, size: sizes.height * 0.04),
         title: ("."),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
 
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(AssetImage(Assets.notificationIcon), size: sizes.height * 0.1),
+        icon: ImageIcon(const AssetImage(Assets.notificationIcon), size: sizes.height * 0.1),
         title: ("Notifications"),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(AssetImage(Assets.accountIcon), size: sizes.height * 0.1),
+        icon: ImageIcon(const AssetImage(Assets.accountIcon), size: sizes.height * 0.1),
         title: ("Account"),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
