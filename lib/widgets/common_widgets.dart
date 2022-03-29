@@ -103,10 +103,13 @@ class CommonWidgets {
     );
   }
 
-  static Widget searchLocation({TextEditingController? controller, String?  hint}) {
+  static Widget searchLocation({
+    TextEditingController? controller,
+    String?  hint,
+    required Function onPressSearch
+  }) {
     return Container(
       padding: EdgeInsets.only(right: getWidth() * 0.02),
-      //height: getHeight() * 0.06,
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.borderColor),
         borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -115,6 +118,10 @@ class CommonWidgets {
       child: TextField(
         textAlignVertical: TextAlignVertical.center,
         controller: controller,
+        textInputAction: TextInputAction.search,
+        onSubmitted: (value) {
+          onPressSearch.call();
+        },
         style: TextStyle(
             fontFamily: Assets.poppinsRegular,
             fontSize: sizes.fontSize15,
@@ -129,9 +136,12 @@ class CommonWidgets {
               fontSize: sizes.fontSize15,
               color: AppColors.veryLightGrey
           ),
-          prefixIcon: const Icon(
-            Icons.search_outlined,
-            color: AppColors.darkGrey,
+          prefixIcon: GestureDetector(
+            onTap: () => onPressSearch(),
+            child: const Icon(
+              Icons.search_outlined,
+              color: AppColors.darkGrey,
+            ),
           ),
         ),
       ),
@@ -367,6 +377,134 @@ class CommonWidgets {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  static Widget getAppBarWithSearch({
+    String? title,
+    String? hint,
+    TextEditingController? textEditingController,
+    required Function onPressBackArrow,
+
+  }){
+    return Container(
+      width: sizes.width,
+      color: AppColors.greenColor,
+      padding: EdgeInsets.only(
+          left: sizes.pagePadding,
+          right: sizes.pagePadding,
+          top: getHeight() * 0.07,
+          bottom: getHeight() * 0.025
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () => onPressBackArrow(),
+                child: Container(
+                  padding: EdgeInsets.only(top: getHeight() * 0.01, left: getWidth() * 0.02, bottom: getHeight() * 0.01),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.pureWhiteColor
+                  ),
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: AppColors.greenColor,
+                    size: getHeight() * 0.03,
+                  ),
+                ),
+              ),
+              SizedBox(width: getWidth() * 0.05),
+              SizedBox(
+                  width: getWidth() * 0.75,
+                  child: TextView.bold22Text(title??"", color: AppColors.pureWhiteColor)
+              ),
+
+            ],
+          ),
+          SizedBox(height: getHeight()*0.02),
+          searchAppBarField(controller: textEditingController, hint: hint)
+        ],
+      ),
+    );
+  }
+
+  static Widget searchAppBarField({TextEditingController? controller, String? hint}) {
+    return Container(
+      padding: EdgeInsets.only(right: getWidth() * 0.02),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.015)),
+        color: AppColors.pureWhiteColor,
+      ),
+      child: TextField(
+        textAlignVertical: TextAlignVertical.center,
+        controller: controller,
+        style: TextStyle(
+            fontFamily: Assets.poppinsRegular,
+            fontSize: sizes.fontSize15,
+            color: AppColors.blackColor
+        ),
+        decoration: InputDecoration(
+          hintText: hint ?? "",
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.zero,
+          hintStyle: TextStyle(
+              fontFamily: Assets.poppinsRegular,
+              fontSize: sizes.fontSize15,
+              color: AppColors.darkGrey
+          ),
+          prefixIcon: const Icon(
+            Icons.search,
+            color: AppColors.darkGrey,
+          ),
+        ),
+      ),
+    );
+  }
+  static Widget getSimpleAppBar({
+    String? title,
+    required Function onPressBackArrow,
+
+  }){
+    return Container(
+      width: sizes.width,
+      color: AppColors.greenColor,
+      padding: EdgeInsets.only(
+          left: sizes.pagePadding,
+          right: sizes.pagePadding,
+          top: getHeight() * 0.07,
+          bottom: getHeight() * 0.025
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () => onPressBackArrow(),
+                child: Container(
+                  padding: EdgeInsets.only(top: getHeight() * 0.01, left: getWidth() * 0.02, bottom: getHeight() * 0.01),
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.pureWhiteColor
+                  ),
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: AppColors.greenColor,
+                    size: getHeight() * 0.03,
+                  ),
+                ),
+              ),
+              SizedBox(width: getWidth() * 0.05),
+              SizedBox(
+                  width: getWidth() * 0.75,
+                  child: TextView.regular16Text(title??"", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1)
+              ),
+
+            ],
+          ),
+        ],
       ),
     );
   }
