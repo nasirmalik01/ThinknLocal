@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/sign_in/sign_in.dart';
-
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';

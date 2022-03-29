@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/cause_search/cause_search.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
+import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
+import 'package:flutter_app/screens/location_search/location_search.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_components.dart';
@@ -30,6 +33,7 @@ class _CausesState extends State<Causes> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
           height: sizes.height,
           width: sizes.width,
@@ -56,8 +60,18 @@ class _CausesState extends State<Causes> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextView.getMediumText15("Causes near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
-                    TextView.bold22Text("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsSemiBold,
-                        textDecoration: TextDecoration.underline)
+                    Row(
+                      children: [
+                        TextView.bold22Text("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsSemiBold,
+                            textDecoration: TextDecoration.underline),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => const LocationSearch()));
+                            },
+                            child: Icon(Icons.location_on_outlined, size: getHeight() * 0.03, color: AppColors.greenColor,)),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -67,7 +81,14 @@ class _CausesState extends State<Causes> {
                   SizedBox(height: getHeight() * 0.01),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                    child: CommonWidgets.searchLocation(controller: searchController, hint: "Search for a cause"),
+                    child: CommonWidgets.searchLocation(
+                        controller: searchController,
+                        hint: "Search for a cause",
+                        onPressSearch: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => const CauseSearch()));
+                        }
+                    ),
                   ),
                   SizedBox(height: getHeight() * 0.02),
                   Padding(
@@ -135,7 +156,12 @@ class _CausesState extends State<Causes> {
                       children: [
                         _causesComponents.get2TextRow(
                             text1: "Upcoming Causes",
-                            text2: "See All"),
+                            text2: "See All",
+                            onPressSeeAllButton: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => const CausesUpcoming()));
+                            }
+                        ),
                         SizedBox(height: getHeight() * 0.02),
                         ListView.separated(
                           scrollDirection: Axis.vertical,

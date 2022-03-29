@@ -8,6 +8,7 @@ import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
+import '../../cause_search/cause_search.dart';
 import '../../sign_in/sign_in.dart';
 
 
@@ -32,6 +33,7 @@ class _BusinessesState extends State<Businesses> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
           height: sizes.height,
           width: sizes.width,
@@ -70,7 +72,14 @@ class _BusinessesState extends State<Businesses> {
                     padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                     child: Column(
                       children: [
-                        CommonWidgets.searchLocation(controller: searchController, hint: "Search for a cause"),
+                        CommonWidgets.searchLocation(
+                            controller: searchController,
+                            hint: "Search for a cause",
+                            onPressSearch: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => const CauseSearch()));
+                            }
+                        ),
                         SizedBox(height: getHeight() * 0.02),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

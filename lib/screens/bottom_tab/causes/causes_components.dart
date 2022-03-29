@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
@@ -214,12 +212,14 @@ class CausesComponents {
     );
   }
 
-  Widget get2TextRow({required String text1, required String text2}) {
+  Widget get2TextRow({required String text1, required String text2, required Function onPressSeeAllButton}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         TextView.getMediumText15(text1, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-        TextView.bold12Text(text2, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+        GestureDetector(
+          onTap: () => onPressSeeAllButton(),
+            child: TextView.bold12Text(text2, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
       ],
     );
   }
