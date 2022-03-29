@@ -1,10 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/about_visit/about_visit.dart';
 import 'package:flutter_app/screens/upload/uploading_failed/uploading_failded.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';

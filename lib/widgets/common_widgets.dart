@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 import '../res/assets.dart';
 import '../res/colors.dart';
 import '../res/res.dart';

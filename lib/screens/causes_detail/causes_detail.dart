@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/sign_in/sign_in.dart';
-import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import 'package:flutter_app/screens/bottom_tab/causes/causes_components.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';

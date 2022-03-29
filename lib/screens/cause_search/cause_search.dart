@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/location_search/location_search_components.dart';
-
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';

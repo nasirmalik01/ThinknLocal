@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/password/new_password/new_password.dart';
-
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
