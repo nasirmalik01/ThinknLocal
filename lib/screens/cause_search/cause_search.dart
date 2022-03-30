@@ -37,27 +37,26 @@ class _CauseSearchState extends State<CauseSearch> {
         decoration: const BoxDecoration(
           color: Colors.white,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CommonWidgets.getAppBarWithSearch(
-                  title: "",
-                  hint: "Search for a cause",
-                  textEditingController: searchController,
-                  onPressBackArrow: () {
-                    Navigator.pop(context);
-                  }),
-              SizedBox(height: getHeight() * 0.02),
-              Padding(
+        child: Column(
+          children: [
+            CommonWidgets.getAppBarWithSearch(
+                title: "",
+                hint: "Search for a cause",
+                textEditingController: searchController,
+                onPressBackArrow: () {
+                  Navigator.pop(context);
+                }),
+            Expanded(
+              child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: ListView(
                   children: [
                     TextView.getMediumText18("Showing results for",
                         color: AppColors.lightBlack,
                         fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.01),
                     TextView.bold15Text("- chino hills high school", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, lines: 1),
+                    SizedBox(height: getHeight() * 0.02),
                     ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
@@ -85,8 +84,8 @@ class _CauseSearchState extends State<CauseSearch> {
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

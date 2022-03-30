@@ -38,25 +38,24 @@ class _LocationSearchState extends State<LocationSearch> {
         decoration: const BoxDecoration(
           color: Colors.white,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CommonWidgets.getAppBarWithSearch(
-                  title: "Chino Hills CA",
-                  hint: "Search for a city...",
-                  textEditingController: searchController,
-                  onPressBackArrow: () {
-                    Navigator.pop(context);
-                  }),
-              SizedBox(height: getHeight() * 0.02),
-              Padding(
+        child: Column(
+          children: [
+            CommonWidgets.getAppBarWithSearch(
+                title: "Chino Hills CA",
+                hint: "Search for a city...",
+                textEditingController: searchController,
+                onPressBackArrow: () {
+                  Navigator.pop(context);
+                }),
+            Expanded(
+              child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: ListView(
                   children: [
                     TextView.getMediumText18("Cities near you",
                         color: AppColors.lightBlack,
                         fontFamily: Assets.poppinsMedium),
+                    SizedBox(height: getHeight() * 0.02),
                     ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
@@ -78,8 +77,8 @@ class _LocationSearchState extends State<LocationSearch> {
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

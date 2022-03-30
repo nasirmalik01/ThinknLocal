@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import '../../res/colors.dart';
-import '../../res/res.dart';
-import '../../widgets/common_widgets.dart';
+import '../../../res/assets.dart';
+import '../../../res/colors.dart';
+import '../../../res/res.dart';
+import '../../../widgets/common_widgets.dart';
+import '../../../widgets/text_views.dart';
 
 
-class CausesUpcoming extends StatefulWidget {
-  const CausesUpcoming({Key? key}) : super(key: key);
+class ThingsToDo extends StatefulWidget {
+  const ThingsToDo({Key? key}) : super(key: key);
 
   @override
-  _CausesUpcomingState createState() => _CausesUpcomingState();
+  _ThingsToDoState createState() => _ThingsToDoState();
 }
 
-class _CausesUpcomingState extends State<CausesUpcoming> {
+class _ThingsToDoState extends State<ThingsToDo> {
 
   @override
   void initState() {
@@ -35,29 +37,38 @@ class _CausesUpcomingState extends State<CausesUpcoming> {
         child: Column(
           children: [
             CommonWidgets.getSimpleAppBar(
-              title: "Upcoming causes near you",
+                title: "",
                 onPressBackArrow: () {
-                Navigator.pop(context);
-              }),
+                  Navigator.pop(context);
+                }),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: ListView(
                   children: [
+                    TextView.getMediumText18("Showing results for",
+                        color: AppColors.lightBlack,
+                        fontFamily: Assets.poppinsMedium),
+                    SizedBox(height: getHeight() * 0.02),
+                    CommonWidgets.getCategoryRow(
+                        image: Assets.thingsIcon,
+                        title: "Things to do"
+                    ),
+                    SizedBox(height: getHeight() * 0.04),
                     ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
                       itemCount: 13,
                       itemBuilder: (context, index) {
-                        return CommonWidgets.getUpcomingCauses(
-                            image:  "",
-                            headerText: "Chino Hills High Softball Team",
-                            description:  "Spring Training Equipment Fundraiser",
+                        return CommonWidgets.nearByContainer(
+                            image:  Assets.dummyNearBy,
+                            headerText: "Andy's Xpress Wash ",
                             onViewCourse: (){
                             },
-                            totalAmount: "500",
-                            date: "Mar 25"
+                            address: "Chino, CA 91710",
+                            streetAddress: "15705 Euclid Ave",
+                            phoneNumber: "908-900-1791"
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {
@@ -72,7 +83,6 @@ class _CausesUpcomingState extends State<CausesUpcoming> {
                 ),
               ),
             ),
-            //SizedBox(height: getHeight() * 0.04),
           ],
         ),
       ),

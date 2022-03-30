@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 
 
-class CausesUpcoming extends StatefulWidget {
-  const CausesUpcoming({Key? key}) : super(key: key);
+class BusinessesNearBy extends StatefulWidget {
+  const BusinessesNearBy({Key? key}) : super(key: key);
 
   @override
-  _CausesUpcomingState createState() => _CausesUpcomingState();
+  _BusinessesNearByState createState() => _BusinessesNearByState();
 }
 
-class _CausesUpcomingState extends State<CausesUpcoming> {
+class _BusinessesNearByState extends State<BusinessesNearBy> {
 
   @override
   void initState() {
@@ -35,10 +36,10 @@ class _CausesUpcomingState extends State<CausesUpcoming> {
         child: Column(
           children: [
             CommonWidgets.getSimpleAppBar(
-              title: "Upcoming causes near you",
+                title: "Businesses near you",
                 onPressBackArrow: () {
-                Navigator.pop(context);
-              }),
+                  Navigator.pop(context);
+                }),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
@@ -50,14 +51,14 @@ class _CausesUpcomingState extends State<CausesUpcoming> {
                       physics: const ScrollPhysics(),
                       itemCount: 13,
                       itemBuilder: (context, index) {
-                        return CommonWidgets.getUpcomingCauses(
-                            image:  "",
-                            headerText: "Chino Hills High Softball Team",
-                            description:  "Spring Training Equipment Fundraiser",
+                        return CommonWidgets.nearByContainer(
+                            image:  Assets.dummyNearBy,
+                            headerText: "Andy's Xpress Wash ",
                             onViewCourse: (){
                             },
-                            totalAmount: "500",
-                            date: "Mar 25"
+                            address: "Chino, CA 91710",
+                            streetAddress: "15705 Euclid Ave",
+                            phoneNumber: "908-900-1791"
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {
@@ -72,7 +73,6 @@ class _CausesUpcomingState extends State<CausesUpcoming> {
                 ),
               ),
             ),
-            //SizedBox(height: getHeight() * 0.04),
           ],
         ),
       ),

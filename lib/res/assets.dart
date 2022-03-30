@@ -33,6 +33,7 @@ class Assets {
   static const String uploadIcon = "assets/png/uploadIcon.png";
   static const String uploadIconOrange = "assets/png/uploadIconOrange.png";
   static const String successBigIcon = "assets/png/successBigIcon.png";
+  static const String horizontalLogo = "assets/png/horizontal_logo.png";
 
 
   // fonts
