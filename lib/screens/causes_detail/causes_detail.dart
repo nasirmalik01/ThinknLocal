@@ -30,7 +30,6 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: AppColors.appBackground,
         body: Container(
           height: sizes.height,
           width: sizes.width,

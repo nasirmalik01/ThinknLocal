@@ -507,6 +507,88 @@ class CommonWidgets {
       ),
     );
   }
+  static Widget nearByContainer({
+    String? image,
+    String? headerText,
+    required String? streetAddress,
+    required String? address,
+    required String? phoneNumber,
+    required Function onViewCourse
+  }){
+    bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: ()=> onViewCourse.call(),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: getHeight()*0.085,
+                width: getWidth()*0.18,
+                decoration: BoxDecoration(
+                  //color: AppColors.lightGrey,
+                    image: DecorationImage(
+                        image: isImageUrl ? NetworkImage(image): AssetImage(image) as ImageProvider,
+                        fit: BoxFit.fill),
+                    borderRadius: BorderRadius.circular(getHeight() * 0.01)
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: getWidth()*0.02),
+                width: getWidth()*0.68,
+                // color: AppColors.redDarkColor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextView.bold15Text(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                    SizedBox(height: getHeight() * 0.004),
+                    TextView.semiBold10Text(
+                        streetAddress?? "",
+                        color: AppColors.lightBlack,
+                        lines: 1,
+                        fontFamily: Assets.poppinsRegular,
+                        textDecoration: TextDecoration.underline
+                    ),
+                    TextView.semiBold10Text(
+                        address?? "",
+                        color: AppColors.lightBlack,
+                        lines: 1,
+                        fontFamily: Assets.poppinsRegular,
+                        textDecoration: TextDecoration.underline
+                    ),
+                    SizedBox(height: getHeight() * 0.01),
+                    TextView.semiBold10Text(
+                      phoneNumber?? "",
+                      color: AppColors.lightBlack,
+                      lines: 1,
+                      fontFamily: Assets.latoRegular,
+                    ),
+                    SizedBox(height: getHeight() * 0.005),
+
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  static getCategoryRow({
+    String? image,
+    String? title
+  }) {
+    return Row(
+      children: [
+        Image.asset(image!),
+        SizedBox(width: getWidth() * 0.05),
+        TextView.bold12Text(title ?? "", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium)
+
+      ],
+    );
+  }
 
 }
 

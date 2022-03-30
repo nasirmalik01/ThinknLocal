@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_components.dart';
+import 'package:flutter_app/screens/businesses_categories/food_and_drink/food_and_drink.dart';
+import 'package:flutter_app/screens/businesses_categories/retail/retail.dart';
+import 'package:flutter_app/screens/businesses_categories/services/services.dart';
+import 'package:flutter_app/screens/businesses_categories/things_to_do/things_to_do.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
+import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
@@ -84,10 +88,34 @@ class _BusinessesState extends State<Businesses> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            _businessesComponents.getIconsContainer(image: Assets.foodIcon, label: "Food & Drink"),
-                            _businessesComponents.getIconsContainer(image: Assets.thingsIcon, label: "Things to do"),
-                            _businessesComponents.getIconsContainer(image: Assets.bagIcon, label: "Retail"),
-                            _businessesComponents.getIconsContainer(image: Assets.servicesIcon, label: "Services"),
+                            _businessesComponents.getIconsContainer(
+                                image: Assets.foodIcon, label: "Food & Drink",
+                              onPressCategory: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (_) => const FoodAndDrink()));
+                              }
+                            ),
+                            _businessesComponents.getIconsContainer(
+                                image: Assets.thingsIcon, label: "Things to do",
+                                onPressCategory: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (_) => const ThingsToDo()));
+                                }
+                            ),
+                            _businessesComponents.getIconsContainer(
+                                image: Assets.bagIcon, label: "Retail",
+                                onPressCategory: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (_) => const Retail()));
+                                }
+                            ),
+                            _businessesComponents.getIconsContainer(
+                                image: Assets.servicesIcon, label: "Services",
+                                onPressCategory: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (_) => const Services()));
+                                }
+                            ),
                           ],
                         ),
                         SizedBox(height: getHeight() * 0.02),
@@ -110,7 +138,6 @@ class _BusinessesState extends State<Businesses> {
                     ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 3,
-                      //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
                       itemBuilder: (context, index){
                         return _businessesComponents.getBusinessesContainer(
                           name: "Chino Hills Pizza Co.",
@@ -125,7 +152,7 @@ class _BusinessesState extends State<Businesses> {
                             pushNewScreen(
                               context,
                               screen: const BusinessesDetail(),
-                              withNavBar: true, // OPTIONAL VALUE. True by default.
+                              withNavBar: true,
                               pageTransitionAnimation: PageTransitionAnimation.cupertino,
                             );
                           },
@@ -153,7 +180,6 @@ class _BusinessesState extends State<Businesses> {
                     ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 5,
-                      //padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
                       itemBuilder: (context, index){
                         return _businessesComponents.getRecentlyAddedContainer(
                           name: "It's Yogurt",
@@ -172,7 +198,12 @@ class _BusinessesState extends State<Businesses> {
                       children: [
                         _businessesComponents.get2TextRow(
                             text1: "Nearby",
-                            text2: "See All"),
+                            text2: "See All",
+                            onPressSeeAll: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => const BusinessesNearBy()));
+                            }
+                        ),
                         SizedBox(height: sizes.height * 0.01),
                         ListView.separated(
                           scrollDirection: Axis.vertical,
@@ -180,7 +211,7 @@ class _BusinessesState extends State<Businesses> {
                           physics: const ScrollPhysics(),
                           itemCount: 3,
                           itemBuilder: (context, index){
-                            return _businessesComponents.nearByContainer(
+                            return CommonWidgets.nearByContainer(
                                 image:  Assets.dummyNearBy,
                                 headerText: "Andy's Xpress Wash ",
                                 onViewCourse: (){
