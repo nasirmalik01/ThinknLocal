@@ -248,20 +248,4 @@ class BusinessesComponents {
       ),
     );
   }
-
-  Widget get2TextRow({
-    required String text1,
-    required String text2,
-    required Function onPressSeeAll
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        TextView.getMediumText15(text1, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-        GestureDetector(
-            onTap: () => onPressSeeAll(),
-            child: TextView.bold12Text(text2, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
-      ],
-    );
-  }
 }

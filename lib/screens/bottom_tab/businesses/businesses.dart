@@ -196,10 +196,10 @@ class _BusinessesState extends State<Businesses> {
                     padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                     child: Column(
                       children: [
-                        _businessesComponents.get2TextRow(
+                        CommonWidgets.get2TextRow(
                             text1: "Nearby",
                             text2: "See All",
-                            onPressSeeAll: () {
+                            onPressSeeAllButton: () {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (_) => const BusinessesNearBy()));
                             }

@@ -361,4 +361,41 @@ class CauseDetailComponents {
       ),
     );
   }
+
+  Widget getContributionsList({
+    String? contributorName,
+    String? amount,
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+            width: getWidth() * 0.55,
+            child: TextView.getText13(contributorName ?? "", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, lines: 1)),
+        RichText(
+          text: TextSpan(
+              text: "Contributed: ",
+              style: TextStyle(
+                color: AppColors.greenColor,
+                fontSize: sizes.fontSize11,
+                fontFamily: Assets.poppinsRegular,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: '\$ $amount',
+                  style: TextStyle(
+                    color: AppColors.blackColor,
+                    fontSize: sizes.fontSize11,
+                    fontFamily: Assets.poppinsMedium,
+                  ),
+                ),
+
+
+              ]
+          ),
+        ),
+
+      ],
+    );
+  }
 }
