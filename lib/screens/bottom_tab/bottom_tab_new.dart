@@ -1,7 +1,8 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
-import 'package:flutter_app/screens/bottom_tab/scan/scan.dart';
+import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/screens/bottom_tab/bottom_tab_provider.dart';
 import 'package:flutter_app/res/res.dart';
@@ -38,7 +39,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
     return [
       const Causes(),
       const Businesses(),
-      const Scan(),
+      const Checking(),
       const Notifications(),
       const Account()
     ];
@@ -123,4 +124,40 @@ class _BottomTabNewState extends State<BottomTabNew> {
       ),
     ];
   }
+}
+
+class Checking extends StatefulWidget {
+  const Checking({Key? key}) : super(key: key);
+
+  @override
+  State<Checking> createState() => _CheckingState();
+}
+
+class _CheckingState extends State<Checking> {
+  late List<CameraDescription> allCameras;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initializeCamera();
+
+  }
+Future<void> initializeCamera() async {
+  allCameras = await availableCameras();
+  WidgetsBinding.instance!.addPostFrameCallback((_) {
+    pushNewScreen(
+      context,
+      screen: CameraScreen(camera: allCameras[0]),
+      withNavBar: false,
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
+  });
+}
+
 }

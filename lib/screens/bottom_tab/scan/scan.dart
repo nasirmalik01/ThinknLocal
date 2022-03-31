@@ -1,7 +1,6 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/about_visit/about_visit.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
 
@@ -24,15 +23,8 @@ class _ScanState extends State<Scan> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: AppColors.appBackground,
         body: GestureDetector(
           onTap: () {
-            pushNewScreen(
-              context,
-              screen: const AboutVisit(),
-              withNavBar: false, // OPTIONAL VALUE. True by default.
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
           },
           child: Container(
             height: sizes.height,

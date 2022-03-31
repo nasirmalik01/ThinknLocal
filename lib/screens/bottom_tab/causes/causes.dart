@@ -154,7 +154,7 @@ class _CausesState extends State<Causes> {
                     padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                     child: Column(
                       children: [
-                        _causesComponents.get2TextRow(
+                        CommonWidgets.get2TextRow(
                             text1: "Upcoming Causes",
                             text2: "See All",
                             onPressSeeAllButton: () {

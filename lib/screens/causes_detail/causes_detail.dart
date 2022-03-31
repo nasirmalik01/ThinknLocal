@@ -6,6 +6,9 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
+import 'package:fl_chart/fl_chart.dart';
+
+import '../../widgets/common_widgets.dart';
 
 
 class CausesDetail extends StatefulWidget {
@@ -18,6 +21,42 @@ class CausesDetail extends StatefulWidget {
 class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderStateMixin {
   final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
   TabController? _tabController;
+
+  Widget bottomTitles(double value, TitleMeta meta) {
+    String text;
+    switch (value.toInt()) {
+      case 0:
+        text = 'Mar 1';
+        break;
+      case 1:
+        text = 'Mar 2';
+        break;
+      case 2:
+        text = 'Mar 3';
+        break;
+      case 3:
+        text = 'Mar 4';
+        break;
+      case 4:
+        text = 'Mar 5';
+        break;
+      default:
+        text = '';
+        break;
+    }
+    return Center(child: TextView.semiBold10Text(text, color: AppColors.pureBlack, fontFamily: Assets.poppinsRegular));
+  }
+
+  Widget leftTitles(double value, TitleMeta meta) {
+    if (value == meta.max) {
+      return Container();
+    }
+    return Padding(
+      child: TextView.semiBold10Text(meta.formattedValue, color: AppColors.pureBlack, fontFamily: Assets.poppinsRegular),
+      padding: EdgeInsets.only(left: getWidth() * 0.02),
+    );
+  }
+
 
 
   @override
@@ -228,7 +267,101 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: sizes.pagePadding),
-                      child: TextView.bold22Text("", color: AppColors.greenColor)
+                      child: ListView(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextView.regular16Text("Contributions over time", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                              SizedBox(height: sizes.height * 0.01),
+                              TextView.regular11Text("Number of contributions from individuals over time.", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
+                              AspectRatio(
+                                aspectRatio: 1.66,
+                                child: Card(
+                                  elevation: 4,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                                  color: AppColors.boxGrey,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: getHeight() * 0.02),
+                                    child: BarChart(
+                                      BarChartData(
+                                        alignment: BarChartAlignment.center,
+                                        barTouchData: BarTouchData(
+                                          enabled: true,
+                                        ),
+                                        titlesData: FlTitlesData(
+                                          show: true,
+                                          bottomTitles: AxisTitles(
+                                            sideTitles: SideTitles(
+                                              showTitles: true,
+                                              reservedSize: getHeight() * 0.04,
+                                              getTitlesWidget: bottomTitles,
+                                            ),
+                                          ),
+                                          leftTitles: AxisTitles(
+                                            sideTitles: SideTitles(
+                                              showTitles: true,
+                                              reservedSize: getWidth() * 0.08,
+                                              getTitlesWidget: leftTitles,
+                                            ),
+                                          ),
+                                          topTitles: AxisTitles(
+                                            sideTitles: SideTitles(showTitles: false),
+                                          ),
+                                          rightTitles: AxisTitles(
+                                            sideTitles: SideTitles(showTitles: false),
+                                          ),
+                                        ),
+                                        gridData: FlGridData(
+                                          show: true,
+                                          checkToShowHorizontalLine: (value) => value % 10 == 0,
+                                          getDrawingHorizontalLine: (value) => FlLine(
+                                            color: AppColors.borderColor,
+                                            strokeWidth: getWidth() * 0.004,
+                                          ),
+                                          drawVerticalLine: false,
+                                        ),
+                                        borderData: FlBorderData(
+                                          show: false,
+                                        ),
+                                        groupsSpace: getWidth() * 0.05,
+                                        barGroups: getData(),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: sizes.height * 0.02),
+                              CommonWidgets.get2TextRow(
+                                  text1: "Recent Contributions",
+                                  text2: "See All",
+                                  onPressSeeAllButton: () {
+                                  }
+                              ),
+                              SizedBox(height: getHeight() * 0.02),
+                              ListView.separated(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                physics: const ScrollPhysics(),
+                                itemCount: 5,
+                                itemBuilder: (context, index){
+                                  return _causeDetailComponents.getContributionsList(
+                                      contributorName: "Ashley P",
+                                      amount: "18.34"
+                                  );
+
+                                }, separatorBuilder: (BuildContext context, int index) {
+                                return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                              },
+                              ),
+                              SizedBox(height: getHeight() * 0.03),
+
+
+
+                            ],
+                          ),
+                        ],
+                      )
                     ),
                   ],
                 ),
@@ -238,5 +371,61 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
         ),
       ),
     );
+  }
+
+  List<BarChartGroupData> getData() {
+    return [
+      BarChartGroupData(
+        x: 0,
+        barRods: [
+          BarChartRodData(
+              toY: 12000000000,
+              width: getWidth() * 0.08,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+        ],
+      ),
+      BarChartGroupData(
+        x: 1,
+        barRods: [
+          BarChartRodData(
+              toY: 22000000000,
+              width: getWidth() * 0.08,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+        ],
+      ),
+      BarChartGroupData(
+        x: 2,
+        barRods: [
+          BarChartRodData(
+              toY: 34000000000,
+              width: getWidth() * 0.08,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+
+        ],
+      ),
+      BarChartGroupData(
+        x: 3,
+        barRods: [
+          BarChartRodData(
+              toY: 14000000000,
+              width: getWidth() * 0.08,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+        ],
+      ),
+      BarChartGroupData(
+        x: 4,
+        barRods: [
+          BarChartRodData(
+              toY: 14000000000,
+              width: getWidth() * 0.08,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+        ],
+      ),
+    ];
   }
 }

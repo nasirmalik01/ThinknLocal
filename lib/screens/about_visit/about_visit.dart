@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/about_visit/about_visit_components.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
