@@ -5,7 +5,7 @@ import '../../../res/res.dart';
 import '../../../widgets/text_views.dart';
 
 class BusinessesComponents {
-  Widget getIconsContainer({
+  Widget getBusinessesCategoriesIcon({
     required String image,
     required String label,
     required Function onPressCategory
@@ -31,10 +31,9 @@ class BusinessesComponents {
     );
   }
 
-  Widget typesText({required String title, required bool isSelected}) {
+  Widget typesFeaturedText({required String title, required bool isSelected}) {
     return SizedBox(
       height: sizes.height * 0.04,
-      //padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.01),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -43,9 +42,9 @@ class BusinessesComponents {
               bottom: sizes.height * 0.002,
             ),
             decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(
+                  border: Border(bottom: BorderSide(
                   color: isSelected ? AppColors.greenColor: AppColors.pureWhiteColor,
-                  width: sizes.width * 0.005, // This would be the width of the underline
+                  width: sizes.width * 0.005,
                 ))
             ),
             child:
@@ -115,7 +114,6 @@ class BusinessesComponents {
                 padding: EdgeInsets.only(left: getWidth()*0.03,
                     top: getHeight()*0.04
                 ),
-                //width: getWidth()*0.65,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -138,7 +136,7 @@ class BusinessesComponents {
                             child:
                             TextView.getMediumText16(
                                 name ?? "",
-                                Assets.latoBold,
+                                Assets.poppinsSemiBold,
                                 color: AppColors.pureWhiteColor,
                                 lines: 1,
                                 fontWeight: FontWeight.w700),
@@ -174,7 +172,7 @@ class BusinessesComponents {
                                 phoneNumber?? "",
                                 color: AppColors.pureWhiteColor,
                                 lines: 1,
-                                fontFamily: Assets.latoRegular,
+                                fontFamily: Assets.poppinsRegular,
                             )
                         ),
                       ],
@@ -232,7 +230,6 @@ class BusinessesComponents {
                   height: getHeight()*0.07,
                   width: getWidth() * 0.14,
                   decoration: BoxDecoration(
-                      //color: AppColors.blackColor,
                       borderRadius: BorderRadius.circular(getHeight() * 0.01),
                       image: DecorationImage(
                           image: isImageUrlLogo ? NetworkImage(logoImage): const AssetImage(Assets.dummyRestaurantShortLogo) as ImageProvider,
@@ -240,7 +237,7 @@ class BusinessesComponents {
                   ),
                 ),
                 SizedBox(height: getHeight() * 0.015),
-                TextView.bold12Text(name??"", color: AppColors.pureWhiteColor, lines: 1, fontFamily: Assets.latoBold),
+                TextView.bold12Text(name??"", color: AppColors.pureWhiteColor, lines: 1, fontFamily: Assets.poppinsSemiBold),
               ],
             ),
           ),

@@ -41,7 +41,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
             children: [
               SizedBox(
                 height: sizes.height * 0.32,
-                child: _businessesDetailComponents.getBusinessesDetailContainer(
+                child: _businessesDetailComponents.getBusinessesDetailImageContainer(
                     name: "Chino Hills High School Girls Softball Fundraiser",
                     fullBoxImage: Assets.dummyRestaurant,
                     logoImage: Assets.dummyRestaurantLogo,
@@ -179,7 +179,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                                 physics: const ScrollPhysics(),
                                 itemCount: 3,
                                 itemBuilder: (context, index){
-                                  return CommonWidgets.getUpcomingCauses(
+                                  return CommonWidgets.getUpcomingCausesList(
                                       image:  "",
                                       headerText: "Chino Hills High Softball Team",
                                       description:  "Spring Training Equipment Fundraiser",

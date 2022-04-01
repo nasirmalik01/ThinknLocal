@@ -102,7 +102,7 @@ class CommonWidgets {
     );
   }
 
-  static Widget searchLocation({
+  static Widget searchLocationTextField({
     TextEditingController? controller,
     String?  hint,
     required Function onPressSearch
@@ -147,7 +147,7 @@ class CommonWidgets {
     );
   }
 
-  static Widget getUpcomingCauses({
+  static Widget getUpcomingCausesList({
     String? image,
     String? headerText,
     String? description,
@@ -167,7 +167,6 @@ class CommonWidgets {
                 height: getHeight()*0.085,
                 width: getWidth()*0.2,
                 decoration: BoxDecoration(
-                  //color: AppColors.lightGrey,
                     image: DecorationImage(
                         image: isImageUrl ? NetworkImage(image): const AssetImage(Assets.dummyLogo) as ImageProvider,
                         fit: BoxFit.fill),
@@ -177,7 +176,6 @@ class CommonWidgets {
               Container(
                 padding: EdgeInsets.only(left: getWidth()*0.02),
                 width: getWidth()*0.6,
-                // color: AppColors.redDarkColor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -260,7 +258,6 @@ class CommonWidgets {
       ignoreGestures: ignoreEdit ?? true,
       onRatingUpdate: (rating) {
         onPress!.call(rating);
-        print(rating);
       },
     );
   }
@@ -272,7 +269,6 @@ class CommonWidgets {
     @required String ?hint,
   }){
     return Container(
-      //margin: EdgeInsets.only(right: sizes!.mediumPadding ?? 0),
       width: getWidth(),
       padding: EdgeInsets.symmetric(horizontal: getHeight() * 0.02, vertical: getWidth() * 0.02),
       decoration: BoxDecoration(
@@ -292,7 +288,7 @@ class CommonWidgets {
             value: selectedCategory,
             isExpanded: true,
             icon: Icon(Icons.keyboard_arrow_down,color: AppColors.darkGrey,size: getHeight()*.035,),
-            underline:SizedBox() ,
+            underline:const SizedBox() ,
             onChanged: (String? newValue) {
               if(updateSelectedCategory != null){
                 updateSelectedCategory(newValue);
@@ -507,7 +503,7 @@ class CommonWidgets {
       ),
     );
   }
-  static Widget nearByContainer({
+  static Widget businessesDetailListView({
     String? image,
     String? headerText,
     required String? streetAddress,
@@ -562,7 +558,7 @@ class CommonWidgets {
                       phoneNumber?? "",
                       color: AppColors.lightBlack,
                       lines: 1,
-                      fontFamily: Assets.latoRegular,
+                      fontFamily: Assets.poppinsRegular,
                     ),
                     SizedBox(height: getHeight() * 0.005),
 
@@ -576,7 +572,7 @@ class CommonWidgets {
     );
   }
 
-  static getCategoryRow({
+  static getCategoryWithText({
     String? image,
     String? title
   }) {
@@ -590,14 +586,15 @@ class CommonWidgets {
     );
   }
 
-  static Widget get2TextRow({required String text1, required String text2, required Function onPressSeeAllButton}) {
+  static Widget getTextWithSeeAll({required String text1, required String text2, required Function onPressSeeAllButton}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         TextView.getMediumText15(text1, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
         GestureDetector(
             onTap: () => onPressSeeAllButton(),
-            child: TextView.bold12Text(text2, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
+            child: TextView.bold12Text(text2, color: AppColors.greenColor,
+                fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
       ],
     );
   }

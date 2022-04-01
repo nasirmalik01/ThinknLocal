@@ -50,7 +50,7 @@ class _CausesUpcomingState extends State<CausesUpcoming> {
                       physics: const ScrollPhysics(),
                       itemCount: 13,
                       itemBuilder: (context, index) {
-                        return CommonWidgets.getUpcomingCauses(
+                        return CommonWidgets.getUpcomingCausesList(
                             image:  "",
                             headerText: "Chino Hills High Softball Team",
                             description:  "Spring Training Equipment Fundraiser",
@@ -72,7 +72,6 @@ class _CausesUpcomingState extends State<CausesUpcoming> {
                 ),
               ),
             ),
-            //SizedBox(height: getHeight() * 0.04),
           ],
         ),
       ),

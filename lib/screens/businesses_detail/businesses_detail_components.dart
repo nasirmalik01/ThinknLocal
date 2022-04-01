@@ -6,7 +6,7 @@ import '../../res/res.dart';
 import '../../widgets/text_views.dart';
 
 class BusinessesDetailComponents {
-  Widget getBusinessesDetailContainer({
+  Widget getBusinessesDetailImageContainer({
     required String? fullBoxImage,
     required String? logoImage,
     required String? name,
@@ -82,7 +82,6 @@ class BusinessesDetailComponents {
                 Container(
                   padding: EdgeInsets.only(left: getWidth()*0.03, top: getHeight()*0.09, right: getWidth()*0.03),
                   child: SizedBox(
-                    //width: getWidth()*0.8,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -140,7 +139,7 @@ class BusinessesDetailComponents {
                                       phoneNumber?? "",
                                       color: AppColors.pureWhiteColor,
                                       lines: 1,
-                                      fontFamily: Assets.latoRegular,
+                                      fontFamily: Assets.poppinsRegular,
                                     )
                                 ),
                               ],
@@ -163,7 +162,6 @@ class BusinessesDetailComponents {
                         children: [
                           TextView.bold12Text("Contributed: ", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                           TextView.bold12Text("\$$contributedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
-                          //TextView.bold12Text(" of \$$totalAmount", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                         ],
                       ),
                       TextView.bold12Text("Joined $joinDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
@@ -270,12 +268,11 @@ class BusinessesDetailComponents {
                   ],
                 ),
                 SizedBox(height: getHeight() * 0.01),
-                TextView.bold14Text(name??"", color: AppColors.pureWhiteColor, lines: 2, fontFamily: Assets.latoBold),
+                TextView.getText13(name??"", color: AppColors.pureWhiteColor, lines: 2, fontFamily: Assets.poppinsMedium),
                 SizedBox(height: getHeight() * 0.001),
-                TextView.regular11Text('\$$raisedAmount of \$$totalAmount', color: AppColors.pureWhiteColor, fontFamily: Assets.latoBold, lines: 1),
+                TextView.regular11Text('\$$raisedAmount of \$$totalAmount', color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1),
                 SizedBox(height: getHeight() * 0.001),
                 Row(
-                  //crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     RichText(
@@ -284,7 +281,7 @@ class BusinessesDetailComponents {
                           style: TextStyle(
                             color: AppColors.pureWhiteColor,
                             fontSize: sizes.fontSize11,
-                            fontFamily: Assets.latoRegular,
+                            fontFamily: Assets.poppinsRegular,
                           ),
                           children: <TextSpan>[
                             TextSpan(
@@ -292,7 +289,7 @@ class BusinessesDetailComponents {
                               style: TextStyle(
                                 color: AppColors.pureWhiteColor,
                                 fontSize: sizes.fontSize11,
-                                fontFamily: Assets.latoBold,
+                                fontFamily: Assets.poppinsMedium,
                               ),
                             ),
                           ]

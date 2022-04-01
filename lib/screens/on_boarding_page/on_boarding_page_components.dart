@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';
@@ -7,7 +6,7 @@ import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
 
 class OnBoardingPageComponents {
-  Widget getPageDesignContainer({
+  Widget onBoardingPageDesign({
     required String heading,
     required String image,
     required String subHeading,

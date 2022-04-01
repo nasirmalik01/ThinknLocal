@@ -6,7 +6,7 @@ import '../../res/res.dart';
 import '../../widgets/text_views.dart';
 
 class CauseDetailComponents {
-  Widget getCausesFundsContainer({
+  Widget getCausesDetailImageContainer({
     required String? fullBoxImage,
     required String? logoImage,
     required String? name,
@@ -140,7 +140,7 @@ class CauseDetailComponents {
     );
   }
 
-  Widget descriptionOverview({
+  Widget descriptionTextContainer({
     required String heading,
     required String description}) {
     return Column(
@@ -228,7 +228,7 @@ class CauseDetailComponents {
             decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(
                   color: isSelected ? AppColors.greenColor: AppColors.pureWhiteColor,
-                  width: sizes.width * 0.005, // This would be the width of the underline
+                  width: sizes.width * 0.005,
                 ))
             ),
             child:
@@ -244,7 +244,7 @@ class CauseDetailComponents {
     );
   }
 
-  Widget overViewCategoryContainer({
+  Widget causesDetailBusinessesList({
     String? image,
     String? headerText,
     String? categoryPercent,
@@ -265,7 +265,6 @@ class CauseDetailComponents {
                 height: getHeight()*0.085,
                 width: getWidth()*0.18,
                 decoration: BoxDecoration(
-                  //color: AppColors.lightGrey,
                     image: DecorationImage(
                         image: isImageUrl ? NetworkImage(image): AssetImage(image) as ImageProvider,
                         fit: BoxFit.fill),
@@ -290,7 +289,7 @@ class CauseDetailComponents {
                               borderRadius: BorderRadius.circular(getHeight() * 0.006),
                             color: AppColors.greenColor
                           ),
-                          child: TextView.bold14Text(categoryPercent ?? "", color: AppColors.pureWhiteColor, fontFamily: Assets.latoBold),
+                          child: TextView.bold14Text(categoryPercent ?? "", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsSemiBold),
                         ),
                       ],
                     ),
@@ -313,7 +312,7 @@ class CauseDetailComponents {
                       phoneNumber?? "",
                       color: AppColors.lightBlack,
                       lines: 1,
-                      fontFamily: Assets.latoRegular,
+                      fontFamily: Assets.poppinsRegular,
                     ),
                     SizedBox(height: getHeight() * 0.005),
                     SizedBox(
@@ -338,7 +337,7 @@ class CauseDetailComponents {
     );
   }
 
-  Widget updateListTabContainer({
+  Widget updateTabFundRaiserList({
     required String header,
     required String detail,
     required String date
@@ -348,7 +347,6 @@ class CauseDetailComponents {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //SizedBox(height: getHeight() * 0.01),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -389,8 +387,6 @@ class CauseDetailComponents {
                     fontFamily: Assets.poppinsMedium,
                   ),
                 ),
-
-
               ]
           ),
         ),

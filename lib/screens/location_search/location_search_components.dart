@@ -33,8 +33,6 @@ class LocationSearchComponents {
                     fontFamily: Assets.poppinsMedium,
                   ),
                 ),
-
-
               ]
           ),
         ),

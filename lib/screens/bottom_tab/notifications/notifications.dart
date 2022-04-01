@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications_components.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
@@ -56,7 +55,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextView.bold25Text("Your Notifications", color: AppColors.lightBlack, fontFamily: Assets.latoBold),
+                    TextView.bold25Text("Your Notifications", color: AppColors.lightBlack, fontFamily: Assets.poppinsSemiBold),
                     SizedBox(height: getHeight() * 0.01),
                     TextView.getMediumText15("Want to edit your notification settings?", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01),
@@ -68,7 +67,6 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
               SizedBox(height: getHeight() * 0.02),
               Container(
                 padding: EdgeInsets.symmetric(
-                  //horizontal: sizes!.widthRatio * 5,
                     vertical: sizes.heightRatio * 5),
                 decoration: const BoxDecoration(
                   color: AppColors.pureWhiteColor,
@@ -76,7 +74,6 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                 child: TabBar(
                   controller: _tabController,
                   onTap: (index) {
-                    print("Tab: $index");
                   },
                   indicatorColor: AppColors.greenColor,
                   indicatorSize: TabBarIndicatorSize.label,

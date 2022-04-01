@@ -33,14 +33,14 @@ class Loader {
 
   getLoader(){
       return Center(
-        child: Container(
+        child: SizedBox(
           height: getHeight()*0.1,
           child: Lottie.asset(Assets.apiLoading, fit: BoxFit.cover),
         ),
       );
   }
 
-    static double getHeight() => sizes?.height ?? 2560;
-    static double getWidth() => sizes?.width ?? 1440;
+    static double getHeight() => sizes.height;
+    static double getWidth() => sizes.width;
 
 }

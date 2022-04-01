@@ -1,8 +1,6 @@
 import 'dart:async' show Future;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../res/strings.dart';
-
 class PreferenceUtils {
 
   static Future<SharedPreferences> get _instance async =>

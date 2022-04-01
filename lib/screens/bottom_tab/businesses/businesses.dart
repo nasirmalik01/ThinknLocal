@@ -76,7 +76,7 @@ class _BusinessesState extends State<Businesses> {
                     padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                     child: Column(
                       children: [
-                        CommonWidgets.searchLocation(
+                        CommonWidgets.searchLocationTextField(
                             controller: searchController,
                             hint: "Search for a cause",
                             onPressSearch: () {
@@ -88,28 +88,28 @@ class _BusinessesState extends State<Businesses> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            _businessesComponents.getIconsContainer(
+                            _businessesComponents.getBusinessesCategoriesIcon(
                                 image: Assets.foodIcon, label: "Food & Drink",
                               onPressCategory: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (_) => const FoodAndDrink()));
                               }
                             ),
-                            _businessesComponents.getIconsContainer(
+                            _businessesComponents.getBusinessesCategoriesIcon(
                                 image: Assets.thingsIcon, label: "Things to do",
                                 onPressCategory: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (_) => const ThingsToDo()));
                                 }
                             ),
-                            _businessesComponents.getIconsContainer(
+                            _businessesComponents.getBusinessesCategoriesIcon(
                                 image: Assets.bagIcon, label: "Retail",
                                 onPressCategory: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (_) => const Retail()));
                                 }
                             ),
-                            _businessesComponents.getIconsContainer(
+                            _businessesComponents.getBusinessesCategoriesIcon(
                                 image: Assets.servicesIcon, label: "Services",
                                 onPressCategory: () {
                                   Navigator.push(context,
@@ -122,10 +122,10 @@ class _BusinessesState extends State<Businesses> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            _businessesComponents.typesText(title: "Featured", isSelected: true),
-                            _businessesComponents.typesText(title: "Trending", isSelected: false),
-                            _businessesComponents.typesText(title: "Favorites", isSelected: false),
-                            _businessesComponents.typesText(title: "Past", isSelected: false),
+                            _businessesComponents.typesFeaturedText(title: "Featured", isSelected: true),
+                            _businessesComponents.typesFeaturedText(title: "Trending", isSelected: false),
+                            _businessesComponents.typesFeaturedText(title: "Favorites", isSelected: false),
+                            _businessesComponents.typesFeaturedText(title: "Past", isSelected: false),
                           ],
                         ),
                       ],
@@ -196,7 +196,7 @@ class _BusinessesState extends State<Businesses> {
                     padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                     child: Column(
                       children: [
-                        CommonWidgets.get2TextRow(
+                        CommonWidgets.getTextWithSeeAll(
                             text1: "Nearby",
                             text2: "See All",
                             onPressSeeAllButton: () {
@@ -211,7 +211,7 @@ class _BusinessesState extends State<Businesses> {
                           physics: const ScrollPhysics(),
                           itemCount: 3,
                           itemBuilder: (context, index){
-                            return CommonWidgets.nearByContainer(
+                            return CommonWidgets.businessesDetailListView(
                                 image:  Assets.dummyNearBy,
                                 headerText: "Andy's Xpress Wash ",
                                 onViewCourse: (){

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
 import '../../res/assets.dart';
@@ -42,7 +41,6 @@ class _AboutVisitState extends State<AboutVisit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: AppColors.appBackground,
       body: Container(
         height: sizes.height,
         width: sizes.width,
@@ -56,7 +54,7 @@ class _AboutVisitState extends State<AboutVisit> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextView.bold30Text("Tell us about your visit!", color: AppColors.greenColor, fontFamily: Assets.latoBold),
+                  TextView.bold30Text("Tell us about your visit!", color: AppColors.greenColor, fontFamily: Assets.poppinsSemiBold),
                   SizedBox(height: getHeight() * 0.02,),
                   TextView.bold15Text("How was your experience?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.04,),
