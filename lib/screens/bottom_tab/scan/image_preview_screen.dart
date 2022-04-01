@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
+import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
 
@@ -40,20 +40,42 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                       fit: BoxFit.contain),
                 )
             ),
+            Container(
+              width: getWidth(),
+              height: getHeight(),
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border(
+                  top: BorderSide(
+                      color: Colors.black.withOpacity(0.3),
+                      width: getWidth() * 0.15
+                  ),
+                  bottom: BorderSide(
+                      color: Colors.black.withOpacity(0.3),
+                      width: getWidth() * 0.4
+                  ),
+                  right: BorderSide(
+                      color: Colors.black.withOpacity(0.3),
+                      width: getWidth() * 0.06
+                  ),
+                  left: BorderSide(
+                      color: Colors.black.withOpacity(0.3),
+                      width: getWidth() * 0.06
+                  ),
+                ),
+              ),
+            ),
             Positioned(
               right: 0,
               bottom: 0,
               left: 0,
               child: Container(
-                width: 100,
-                //height: getHeight(),
                 color: Colors.black,
-                padding: const EdgeInsets.all(10),
+                padding: EdgeInsets.symmetric(vertical: getHeight() * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    //_acceptButton(),
                     CommonWidgets.getButton(
                         onPress: () {
                           widget.notSaveImage.call();
@@ -69,10 +91,78 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                         },
                         width: sizes.width * 0.4, height: getHeight() * 0.08,
                         text: "Looks Good!", btnColor: AppColors.greenColor),
-                    //_cancelButton(),
                   ],
                 ),
               ),
+            ),
+            cameraLabel()
+          ],
+        ),
+      ),
+    );
+  }
+  Widget cameraLabel() {
+    return Positioned(
+      bottom: getHeight() * 0.13,
+      child: SizedBox(
+        width: getWidth(),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: getWidth() * 0.6,
+                  child: RichText(
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                        text: "Make sure ",
+                        style: TextStyle(
+                          color: AppColors.pureWhiteColor,
+                          fontSize: sizes.fontSize16,
+                          fontFamily: Assets.poppinsRegular,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "business name, ",
+                            style: TextStyle(
+                              color: AppColors.greenColor,
+                              fontSize: sizes.fontSize16,
+                              fontFamily: Assets.poppinsMedium,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "and ",
+                            style: TextStyle(
+                              color: AppColors.pureWhiteColor,
+                              fontSize: sizes.fontSize16,
+                              fontFamily: Assets.poppinsRegular,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "total ",
+                            style: TextStyle(
+                              color: AppColors.greenColor,
+                              fontSize: sizes.fontSize16,
+                              fontFamily: Assets.poppinsMedium,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "are clearly visible",
+                            style: TextStyle(
+                              color: AppColors.pureWhiteColor,
+                              fontSize: sizes.fontSize16,
+                              fontFamily: Assets.poppinsRegular,
+                            ),
+                          ),
+
+
+                        ]
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -80,53 +170,8 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
     );
   }
 
-  Widget _acceptButton() {
-    return GestureDetector(
-      onTap: () {
-        widget.saveImage.call();
-      },
-      child: Container(
-        padding: const EdgeInsets.all(5),
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.lightGreenAccent, width: 2),
-            shape: BoxShape.circle),
-        child: const Center(
-            child: Icon(
-              Icons.check,
-              color: Colors.lightGreenAccent,
-              size: 40,
-            )),
-      ),
-    );
-  }
-
-  Widget _cancelButton() {
-    return GestureDetector(
-      onTap: () {
-        widget.notSaveImage.call();
-      },
-      child: Container(
-        padding: const EdgeInsets.all(5),
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.deepOrange, width: 2),
-            shape: BoxShape.circle),
-        child: const Center(
-            child: Icon(
-              Icons.refresh,
-              color: Colors.deepOrange,
-              size: 40,
-            )),
-      ),
-    );
-  }
   @override
   void dispose() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
 
     super.dispose();
   }

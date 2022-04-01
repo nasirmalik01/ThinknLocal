@@ -12,7 +12,7 @@ class Toasts {
         timeInSecForIosWeb: 2,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: sizes!.fontRatio * 16.0);
+        fontSize: sizes.fontRatio * 16.0);
   }
 
   static getSuccessToast({@required String? text}) async {
@@ -23,7 +23,7 @@ class Toasts {
         timeInSecForIosWeb: 2,
         backgroundColor: Colors.blue,
         textColor: Colors.white,
-        fontSize: sizes!.fontRatio * 16.0);
+        fontSize: sizes.fontRatio * 16.0);
   }
 
   static getWarningToast({@required String? text}) async {
@@ -34,6 +34,6 @@ class Toasts {
         timeInSecForIosWeb: 2,
         backgroundColor: Colors.orange,
         textColor: Colors.white,
-        fontSize: sizes!.fontRatio * 16.0);
+        fontSize: sizes.fontRatio * 16.0);
   }
 }

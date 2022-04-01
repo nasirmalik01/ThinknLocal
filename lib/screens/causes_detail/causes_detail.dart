@@ -79,7 +79,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
             children: [
               SizedBox(
                 height: sizes.height * 0.32,
-                child: _causeDetailComponents.getCausesFundsContainer(
+                child: _causeDetailComponents.getCausesDetailImageContainer(
                   name: "Chino Hills High School Girls Softball Fundraiser",
                   fullBoxImage: Assets.schoolDummy1,
                   logoImage: Assets.huskiesLogo,
@@ -151,7 +151,6 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   ],
                 ),
               ),
-              //SizedBox(height: sizes!.height * 0.01),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
@@ -163,7 +162,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                              child: _causeDetailComponents.descriptionOverview(
+                              child: _causeDetailComponents.descriptionTextContainer(
                                   heading: "Chino Hills HS Girls Water Polo",
                                   description: "Help support the Chino-Hills 2021-2022 Water polo team. They are raising money to purchase new water polo equipment."
                               ),
@@ -213,7 +212,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                     physics: const ScrollPhysics(),
                                     itemCount: 3,
                                     itemBuilder: (context, index){
-                                      return _causeDetailComponents.overViewCategoryContainer(
+                                      return _causeDetailComponents.causesDetailBusinessesList(
                                           image:  Assets.dummyFeatured,
                                           headerText: "Andy's Xpress Wash",
                                           onViewCourse: (){
@@ -248,7 +247,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                 physics: const ScrollPhysics(),
                                 itemCount: 8,
                                 itemBuilder: (context, index){
-                                  return _causeDetailComponents.updateListTabContainer(
+                                  return _causeDetailComponents.updateTabFundRaiserList(
                                       header: "It's Begone!",
                                       detail: "Our fundraiser has started!",
                                       date: "Mar 6th"
@@ -332,7 +331,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                 ),
                               ),
                               SizedBox(height: sizes.height * 0.02),
-                              CommonWidgets.get2TextRow(
+                              CommonWidgets.getTextWithSeeAll(
                                   text1: "Recent Contributions",
                                   text2: "See All",
                                   onPressSeeAllButton: () {

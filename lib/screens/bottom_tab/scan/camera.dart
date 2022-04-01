@@ -2,7 +2,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/about_visit/about_visit.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
@@ -23,8 +22,6 @@ class CameraScreen extends StatefulWidget {
 
 class _CameraScreenState extends State<CameraScreen> {
   late CameraController _controller;
-  List<XFile> videos = [];
-  bool isFirst = false;
 
   @override
   void initState() {
@@ -33,7 +30,6 @@ class _CameraScreenState extends State<CameraScreen> {
     _controller.initialize().then((value) => {
       if (mounted) {setState(() {})}
     });
-    isFirst = false;
   }
 
   @override
@@ -51,18 +47,16 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: WillPopScope(
-        onWillPop: () async {
-          Navigator.pushAndRemoveUntil(context,
-              MaterialPageRoute (builder: (_) => BottomTabNew(pageIndex: 0)), (route) => false);
-          return true;
-        },
-        child: Scaffold(
-          backgroundColor: Colors.black,
-          body:
-          _cameraView()
-        ),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute (builder: (_) => BottomTabNew(pageIndex: 0)), (route) => false);
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body:
+        _cameraView()
       ),
     );
   }
@@ -72,13 +66,110 @@ class _CameraScreenState extends State<CameraScreen> {
         SizedBox(
             width: getWidth(),
             height: getHeight(),
-            child: CameraPreview(_controller)),
-        cameraScreenControl()
+            child:
+            CameraPreview(_controller)),
+        Container(
+          width: getWidth(),
+          height: getHeight(),
+          decoration: BoxDecoration(
+              color: Colors.transparent,
+              border: Border(
+                top: BorderSide(
+                  color: Colors.black.withOpacity(0.3),
+                  width: getWidth() * 0.15
+                ),
+                bottom: BorderSide(
+                    color: Colors.black.withOpacity(0.3),
+                    width: getWidth() * 0.4
+                ),
+                right: BorderSide(
+                    color: Colors.black.withOpacity(0.3),
+                    width: getWidth() * 0.06
+                ),
+                left: BorderSide(
+                    color: Colors.black.withOpacity(0.3),
+                    width: getWidth() * 0.06
+                ),
+              ),
+          ),
+        ),
+
+        cameraScreenWidgets(),
+        cameraLabelText()
       ],
     );
   }
 
-  Widget cameraScreenControl() {
+  Widget cameraLabelText() {
+    return Positioned(
+      bottom: getHeight() * 0.13,
+        child: SizedBox(
+          width: getWidth(),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: getWidth() * 0.6,
+                    child: RichText(
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                          text: "Make sure ",
+                          style: TextStyle(
+                            color: AppColors.pureWhiteColor,
+                            fontSize: sizes.fontSize16,
+                            fontFamily: Assets.poppinsRegular,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: "business name, ",
+                              style: TextStyle(
+                                color: AppColors.greenColor,
+                                fontSize: sizes.fontSize16,
+                                fontFamily: Assets.poppinsMedium,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "and ",
+                              style: TextStyle(
+                                color: AppColors.pureWhiteColor,
+                                fontSize: sizes.fontSize16,
+                                fontFamily: Assets.poppinsRegular,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "total ",
+                              style: TextStyle(
+                                color: AppColors.greenColor,
+                                fontSize: sizes.fontSize16,
+                                fontFamily: Assets.poppinsMedium,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "are clearly visible",
+                              style: TextStyle(
+                                color: AppColors.pureWhiteColor,
+                                fontSize: sizes.fontSize16,
+                                fontFamily: Assets.poppinsRegular,
+                              ),
+                            ),
+
+
+                          ]
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+    );
+  }
+
+  Widget cameraScreenWidgets() {
     return Positioned(
       bottom: 0,
       left: 0,
@@ -131,7 +222,6 @@ class _CameraScreenState extends State<CameraScreen> {
 
   void _takePicture() async {
     XFile value = await _controller.takePicture();
-    isFirst = true;
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -147,59 +237,4 @@ class _CameraScreenState extends State<CameraScreen> {
             )));
   }
 
-}
-
-Future<bool> showExitPopup(context) async {
-  return await showDialog(
-      context: context,
-      builder: (_) {
-        return AlertDialog(
-          content: SizedBox(
-            height: getHeight() * 0.28,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(Icons.warning_rounded,
-                    color: AppColors.greenColor, size: getHeight() * 0.05),
-                SizedBox(height: getHeight() * 0.02),
-                TextView.getMediumText18(
-                    "Do you want to exit?", fontFamily: Assets.poppinsSemiBold,
-                    color: AppColors.blackColor),
-                SizedBox(height: getHeight() * 0.01),
-                TextView.bold15Text("Images will not be saved. Do you still want to exit?", textAlign: TextAlign.center,
-                    color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 2),
-                SizedBox(height: getHeight() * 0.02),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pop();
-                        },
-                        child:
-                            TextView.bold15Text("Yes", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
-                        style: ElevatedButton.styleFrom(
-                            primary: AppColors.greenColor),
-                      ),
-                    ),
-                    SizedBox(width: getWidth() * 0.04),
-                    Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child:
-                          TextView.bold15Text("No", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                          style: ElevatedButton.styleFrom(
-                            primary: AppColors.pureWhiteColor,
-                          ),
-                        ))
-                  ],
-                )
-              ],
-            ),
-          ),
-        );
-      });
 }

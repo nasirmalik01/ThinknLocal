@@ -80,7 +80,7 @@ class _EditAccountState extends State<EditAccount> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextView.bold25Text("Edit Account Info", color: AppColors.lightBlack, fontFamily: Assets.latoBold, lines: 1),
+                      TextView.bold25Text("Edit Account Info", color: AppColors.lightBlack, fontFamily: Assets.poppinsSemiBold, lines: 1),
                       SizedBox(height: getHeight() * 0.04),
                       TextView.getMediumText15("Basic info", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),

@@ -16,10 +16,7 @@ class AccountComponents {
         SizedBox(
           height: sizes.height * 0.25,
           width: sizes.width,
-
-          //color: Colors.amber,
           child: Stack(
-              //alignment: Alignment.center,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,15 +71,8 @@ class AccountComponents {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.greenColor,
-                      // boxShadow: const [
-                      //   BoxShadow(
-                      //     color: AppColors.shadowColor,
-                      //     blurRadius: 2,
-                      //     offset: Offset(0, 0),
-                      //   ),
-                      // ],
                     ),
-                  child: Center(child: TextView.bold30Text(nameShort, color: AppColors.pureWhiteColor, fontFamily: Assets.latoBold)),
+                  child: Center(child: TextView.bold30Text(nameShort, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsSemiBold)),
               ),
                 ],
               )

@@ -13,6 +13,7 @@ import 'causes/causes.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 
+//ignore: must_be_immutable
 class BottomTabNew extends StatefulWidget {
   int pageIndex;
 

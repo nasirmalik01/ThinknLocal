@@ -50,7 +50,7 @@ class _ThingsToDoState extends State<ThingsToDo> {
                         color: AppColors.lightBlack,
                         fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.02),
-                    CommonWidgets.getCategoryRow(
+                    CommonWidgets.getCategoryWithText(
                         image: Assets.thingsIcon,
                         title: "Things to do"
                     ),
@@ -61,7 +61,7 @@ class _ThingsToDoState extends State<ThingsToDo> {
                       physics: const ScrollPhysics(),
                       itemCount: 13,
                       itemBuilder: (context, index) {
-                        return CommonWidgets.nearByContainer(
+                        return CommonWidgets.businessesDetailListView(
                             image:  Assets.dummyNearBy,
                             headerText: "Andy's Xpress Wash ",
                             onViewCourse: (){

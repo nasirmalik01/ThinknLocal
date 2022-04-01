@@ -25,10 +25,9 @@ class CausesComponents {
     );
   }
 
-  Widget typesText({required String title, required bool isSelected}) {
+  Widget typesFeaturedText({required String title, required bool isSelected}) {
     return SizedBox(
       height: sizes.height * 0.04,
-      // padding: EdgeInsets.symmetric(horizontal: sizes!.width * 0.01),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -203,7 +202,6 @@ class CausesComponents {
                     color: AppColors.pureWhiteColor,
                   ),
                 ),
-                //TextView.getMediumText15(name??"", color: AppColors.pureWhiteColor, lines: 3, fontFamily: Assets.poppinsMedium),
               ],
             ),
           ),

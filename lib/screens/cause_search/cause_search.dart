@@ -63,7 +63,7 @@ class _CauseSearchState extends State<CauseSearch> {
                       physics: const ScrollPhysics(),
                       itemCount: 13,
                       itemBuilder: (context, index) {
-                        return CommonWidgets.getUpcomingCauses(
+                        return CommonWidgets.getUpcomingCausesList(
                             image:  "",
                             headerText: "Chino Hills High Softball Team",
                             description:  "Spring Training Equipment Fundraiser",

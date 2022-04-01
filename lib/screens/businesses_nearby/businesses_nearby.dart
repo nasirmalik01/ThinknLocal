@@ -51,7 +51,7 @@ class _BusinessesNearByState extends State<BusinessesNearBy> {
                       physics: const ScrollPhysics(),
                       itemCount: 13,
                       itemBuilder: (context, index) {
-                        return CommonWidgets.nearByContainer(
+                        return CommonWidgets.businessesDetailListView(
                             image:  Assets.dummyNearBy,
                             headerText: "Andy's Xpress Wash ",
                             onViewCourse: (){

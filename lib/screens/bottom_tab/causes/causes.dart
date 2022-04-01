@@ -81,7 +81,7 @@ class _CausesState extends State<Causes> {
                   SizedBox(height: getHeight() * 0.01),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                    child: CommonWidgets.searchLocation(
+                    child: CommonWidgets.searchLocationTextField(
                         controller: searchController,
                         hint: "Search for a cause",
                         onPressSearch: () {
@@ -96,10 +96,10 @@ class _CausesState extends State<Causes> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        _causesComponents.typesText(title: "Featured", isSelected: true),
-                        _causesComponents.typesText(title: "Trending", isSelected: false),
-                        _causesComponents.typesText(title: "Favorites", isSelected: false),
-                        _causesComponents.typesText(title: "Past", isSelected: false),
+                        _causesComponents.typesFeaturedText(title: "Featured", isSelected: true),
+                        _causesComponents.typesFeaturedText(title: "Trending", isSelected: false),
+                        _causesComponents.typesFeaturedText(title: "Favorites", isSelected: false),
+                        _causesComponents.typesFeaturedText(title: "Past", isSelected: false),
                       ],
                     ),
                   ),
@@ -154,7 +154,7 @@ class _CausesState extends State<Causes> {
                     padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                     child: Column(
                       children: [
-                        CommonWidgets.get2TextRow(
+                        CommonWidgets.getTextWithSeeAll(
                             text1: "Upcoming Causes",
                             text2: "See All",
                             onPressSeeAllButton: () {
@@ -169,7 +169,7 @@ class _CausesState extends State<Causes> {
                           physics: const ScrollPhysics(),
                           itemCount: 3,
                           itemBuilder: (context, index){
-                            return CommonWidgets.getUpcomingCauses(
+                            return CommonWidgets.getUpcomingCausesList(
                                 image:  "",
                                 headerText: "Chino Hills High Softball Team",
                                 description:  "Spring Training Equipment Fundraiser",

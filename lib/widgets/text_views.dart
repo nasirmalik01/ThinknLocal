@@ -38,7 +38,7 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: sizes.fontSize18,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),
     );
@@ -60,7 +60,7 @@ class TextView {
         height: height ?? getHeight() * 0.0018,
         decoration: textDecoration,
         fontSize: sizes.fontSize15,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),
     );
@@ -102,7 +102,7 @@ class TextView {
       style: TextStyle(
         decoration: textDecoration,
         fontSize: sizes.fontSize10,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),
     );
@@ -123,7 +123,7 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: sizes.fontSize11,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),
     );
@@ -144,7 +144,7 @@ class TextView {
       style: TextStyle(
         decoration: textDecoration,
         fontSize: sizes.fontSize12,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),
     );
@@ -165,7 +165,7 @@ class TextView {
       style: TextStyle(
         decoration: textDecoration,
         fontSize: sizes.fontSize15,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),
     );
@@ -185,7 +185,7 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: sizes.fontSize14,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),
     );
@@ -205,7 +205,7 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: sizes.fontSize16,
-        fontFamily: fontFamily?? Assets.latoRegular,
+        fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),
     );
@@ -246,7 +246,7 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: sizes.fontSize25,
-        fontFamily: fontFamily?? Assets.latoBold,
+        fontFamily: fontFamily?? Assets.poppinsSemiBold,
         fontWeight: FontWeight.w700,
         color: color,
       ),
@@ -267,7 +267,7 @@ class TextView {
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: sizes.fontSize30,
-        fontFamily: fontFamily?? Assets.latoBold,
+        fontFamily: fontFamily?? Assets.poppinsSemiBold,
         fontWeight: FontWeight.w700,
         color: color,
       ),

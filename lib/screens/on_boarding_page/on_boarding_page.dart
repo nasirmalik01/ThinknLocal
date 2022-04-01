@@ -45,14 +45,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         child: PageView(
           controller: controller,
           children: [
-            onBoardingPageComponents.getPageDesignContainer(
+            onBoardingPageComponents.onBoardingPageDesign(
                 heading: "Welcome!",
                 image: Assets.onBoarding3,
                 subHeading: "Find a great cause!",
                 description: "Search for that great\n fundraiser you'd like to\n support.",
                 isOnBoarding3: false
             ),
-            onBoardingPageComponents.getPageDesignContainer(
+            onBoardingPageComponents.onBoardingPageDesign(
                 heading: "",
                 image: Assets.onBoarding2,
                 subHeading: "Shop at participating business",
@@ -60,7 +60,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     " Support\n local businesses while you help\n fund a worthy cause!",
                 isOnBoarding3: false
             ),
-            onBoardingPageComponents.getPageDesignContainer(
+            onBoardingPageComponents.onBoardingPageDesign(
                 heading: "",
                 image: Assets.onBoarding1,
                 subHeading: "Snap a photo of your receipt",
@@ -80,7 +80,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           decoration: const BoxDecoration(
             color: AppColors.pureWhiteColor,
           ),
-          child: Image.asset(Assets.logo),
+          child: Image.asset(Assets.horizontalLogo),
         ),
       ),
       bottomSheet: isHomeChecked ? Container(
@@ -133,7 +133,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           child: SizedBox(
             height: getHeight() * 0.01,
               width: getWidth() * 0.6,
-              child: Image.asset(Assets.logo)),
+              child: Image.asset(Assets.horizontalLogo)),
         ),
       ),
     );
