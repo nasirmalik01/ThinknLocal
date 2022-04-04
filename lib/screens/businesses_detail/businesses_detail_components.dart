@@ -22,14 +22,14 @@ class BusinessesDetailComponents {
     required Function onPressBackArrow,
     required Function onPressFavoriteIcon,
   }){
-    //bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
+    bool isImageUrl = Uri.tryParse(fullBoxImage!)?.hasAbsolutePath ?? false;
     return GestureDetector(
       onTap: ()=> onClickBox.call(),
       child: Container(
         decoration: BoxDecoration(
             color: AppColors.greenColor,
             image: DecorationImage(
-                image: AssetImage(fullBoxImage!),
+                image: isImageUrl ? NetworkImage(fullBoxImage): const AssetImage(Assets.dummyRestaurant) as ImageProvider,
                 fit: BoxFit.cover)
         ),
         child: Container(
@@ -106,7 +106,7 @@ class BusinessesDetailComponents {
                                 SizedBox(
                                   width: getWidth() * 0.65,
                                   child:
-                                  TextView.regular16Text(name ?? "", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1)
+                                  TextView.getMediumText16(name ?? "", Assets.poppinsMedium, color: AppColors.pureWhiteColor,  lines: 1, blurRadius: 5)
                                 ),
                                 SizedBox(height: getHeight() * 0.001),
                                 SizedBox(
@@ -268,7 +268,7 @@ class BusinessesDetailComponents {
                   ],
                 ),
                 SizedBox(height: getHeight() * 0.01),
-                TextView.getText13(name??"", color: AppColors.pureWhiteColor, lines: 2, fontFamily: Assets.poppinsMedium),
+                TextView.getText13(name??"", color: AppColors.pureWhiteColor, lines: 2, fontFamily: Assets.poppinsMedium, blurRadius: 5),
                 SizedBox(height: getHeight() * 0.001),
                 TextView.regular11Text('\$$raisedAmount of \$$totalAmount', color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1),
                 SizedBox(height: getHeight() * 0.001),

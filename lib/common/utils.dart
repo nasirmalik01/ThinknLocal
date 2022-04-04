@@ -16,6 +16,7 @@ class PreferenceUtils {
     if (PreferenceUtils._prefsInstance != null) {
       return _prefsInstance?.getString(key) ?? defValue ?? "";
     }
+    return null;
   }
 
   static Future<bool> setString(String key, String value) async {

@@ -29,7 +29,6 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _controller = PersistentTabController(initialIndex: widget.pageIndex);
 

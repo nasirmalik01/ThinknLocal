@@ -64,7 +64,7 @@ class CausesComponents {
     required Function onClickBox,
     required double completePercentage,
   }){
-    //bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
+    bool isImageUrl = Uri.tryParse(fullBoxImage!)?.hasAbsolutePath ?? false;
     return GestureDetector(
       onTap: ()=> onClickBox.call(),
       child: Container(
@@ -74,7 +74,7 @@ class CausesComponents {
             color: AppColors.greenColor,
             borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.01)),
             image: DecorationImage(
-                image: AssetImage(fullBoxImage!),
+                image: isImageUrl ? NetworkImage(fullBoxImage): const AssetImage(Assets.schoolDummy1) as ImageProvider,
                 fit: BoxFit.cover)
         ),
         child: Container(
@@ -115,7 +115,8 @@ class CausesComponents {
                           SizedBox(width: getWidth() * 0.02),
                           SizedBox(
                             width: getWidth() * 0.5,
-                              child: TextView.bold15Text(name??"", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 2)),
+                              child: TextView.bold15Text(name??"", color: AppColors.pureWhiteColor,
+                                  fontFamily: Assets.poppinsMedium, lines: 2, blurRadius: 5)),
                         ],
                       ),
                       SizedBox(height: getHeight()*0.01),
@@ -200,6 +201,12 @@ class CausesComponents {
                     fontSize: sizes.fontSize15,
                     fontFamily: Assets.poppinsMedium,
                     color: AppColors.pureWhiteColor,
+                    shadows: const [
+                      Shadow(
+                          blurRadius: 5,
+                          //offset: Offset(0.0, 1)
+                      ),
+                    ],
                   ),
                 ),
               ],

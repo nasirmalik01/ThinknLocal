@@ -3,12 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/res/res.dart';
 import '../res/assets.dart';
+import '../res/colors.dart';
 
 class TextView {
 
   static Text getMediumText16(final text, final fontFamily,
       {@required final color,
-      final TextAlign textAlign = TextAlign.start, final fontWeight,
+      final TextAlign textAlign = TextAlign.start, final fontWeight, final shadowColor = AppColors.pureWhiteColor, final  double blurRadius = 0,
       @required final lines}) {
     return Text(
       text,
@@ -20,6 +21,12 @@ class TextView {
         fontWeight: fontWeight?? FontWeight.w500,
         fontFamily: fontFamily,
         color: color,
+        shadows: [
+          Shadow(
+              color: shadowColor,
+              blurRadius: blurRadius,
+          ),
+        ],
       ),
     );
   }
@@ -70,7 +77,7 @@ class TextView {
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
-        final fontFamily,
+        final fontFamily, final shadowColor = AppColors.pureWhiteColor, final  double blurRadius = 0,
         final lines}) {
     return Text(
       text ?? "",
@@ -82,6 +89,12 @@ class TextView {
         fontSize: sizes.fontSize13,
         fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
+        shadows: [
+          Shadow(
+            color: shadowColor,
+            blurRadius: blurRadius,
+          ),
+        ],
       ),
     );
   }
@@ -132,7 +145,7 @@ class TextView {
   static Text bold12Text(
       final text,
       {@required final color,
-        final TextAlign textAlign = TextAlign.start,
+        final TextAlign textAlign = TextAlign.start, final shadowColor = AppColors.pureWhiteColor, final  double blurRadius = 0,
         final fontFamily, final TextDecoration textDecoration = TextDecoration.none,
         final lines}) {
     return Text(
@@ -146,6 +159,12 @@ class TextView {
         fontSize: sizes.fontSize12,
         fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
+        shadows: [
+          Shadow(
+            color: shadowColor,
+            blurRadius: blurRadius,
+          ),
+        ],
       ),
     );
   }
@@ -153,7 +172,7 @@ class TextView {
   static Text bold15Text(
       final text,
       {@required final color,
-        final TextAlign textAlign = TextAlign.start,
+        final TextAlign textAlign = TextAlign.start, final shadowColor = AppColors.pureWhiteColor, final  double blurRadius = 0,
         final fontFamily, final TextDecoration textDecoration = TextDecoration.none,
         final lines}) {
     return Text(
@@ -167,6 +186,12 @@ class TextView {
         fontSize: sizes.fontSize15,
         fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
+        shadows: [
+          Shadow(
+            color: shadowColor,
+            blurRadius: blurRadius,
+          ),
+        ],
       ),
     );
   }
