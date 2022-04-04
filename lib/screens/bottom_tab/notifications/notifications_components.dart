@@ -13,8 +13,6 @@ class NotificationsComponents {
     @required Function? onPressNotification
   }) {
 
-    bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
-
     return GestureDetector(
       onTap: () => onPressNotification!(),
       child: Column(
@@ -30,7 +28,7 @@ class NotificationsComponents {
                   width: sizes.width * 0.16,
 
                   child: Image(
-                    image: AssetImage(image),
+                    image: AssetImage(image!),
                     fit: BoxFit.fill,
                   ),
                 ),

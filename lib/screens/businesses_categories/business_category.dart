@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
@@ -7,14 +6,18 @@ import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
 
 
-class Retail extends StatefulWidget {
-  const Retail({Key? key}) : super(key: key);
+class BusinessCategory extends StatefulWidget {
+  const BusinessCategory({
+    Key? key,
+    required this.businessType,
+  }) : super(key: key);
+  final String businessType;
 
   @override
-  _RetailState createState() => _RetailState();
+  _BusinessCategoryState createState() => _BusinessCategoryState();
 }
 
-class _RetailState extends State<Retail> {
+class _BusinessCategoryState extends State<BusinessCategory> {
 
   @override
   void initState() {
@@ -52,8 +55,8 @@ class _RetailState extends State<Retail> {
                         fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.02),
                     CommonWidgets.getCategoryWithText(
-                        image: Assets.bagIcon,
-                        title: "Retail"
+                        image: Assets.foodIcon,
+                        title: widget.businessType
                     ),
                     SizedBox(height: getHeight() * 0.04),
                     ListView.separated(

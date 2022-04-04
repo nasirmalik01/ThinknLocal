@@ -71,7 +71,7 @@ class BusinessesComponents {
     required bool isFavorite,
     required Function onPressFavoriteIcon,
   }){
-    //bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
+    bool isImageUrl = Uri.tryParse(fullBoxImage!)?.hasAbsolutePath ?? false;
     return GestureDetector(
       onTap: ()=> onClickBox.call(),
       child: Container(
@@ -81,7 +81,7 @@ class BusinessesComponents {
             color: AppColors.greenColor,
             borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.02)),
             image: DecorationImage(
-                image: AssetImage(fullBoxImage!),
+                image: isImageUrl ? NetworkImage(fullBoxImage): const AssetImage(Assets.dummyRestaurant) as ImageProvider,
                 fit: BoxFit.cover)
         ),
         child: Container(
@@ -139,7 +139,9 @@ class BusinessesComponents {
                                 Assets.poppinsSemiBold,
                                 color: AppColors.pureWhiteColor,
                                 lines: 1,
-                                fontWeight: FontWeight.w700),
+                                fontWeight: FontWeight.w700,
+                                blurRadius: 4
+                            ),
                         ),
                         SizedBox(height: getHeight() * 0.001),
                         SizedBox(
@@ -237,7 +239,7 @@ class BusinessesComponents {
                   ),
                 ),
                 SizedBox(height: getHeight() * 0.015),
-                TextView.bold12Text(name??"", color: AppColors.pureWhiteColor, lines: 1, fontFamily: Assets.poppinsSemiBold),
+                TextView.bold12Text(name??"", color: AppColors.pureWhiteColor, lines: 1, fontFamily: Assets.poppinsSemiBold, blurRadius: 5),
               ],
             ),
           ),

@@ -19,14 +19,14 @@ class CauseDetailComponents {
     required Function onPressBackArrow,
     required Function onPressFavoriteIcon,
   }){
-    //bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
+    bool isImageUrl = Uri.tryParse(fullBoxImage!)?.hasAbsolutePath ?? false;
     return GestureDetector(
       onTap: ()=> onClickBox.call(),
       child: Container(
         decoration: BoxDecoration(
             color: AppColors.greenColor,
             image: DecorationImage(
-                image: AssetImage(fullBoxImage!),
+                image: isImageUrl ? NetworkImage(fullBoxImage): const AssetImage(Assets.schoolDummy1) as ImageProvider,
                 fit: BoxFit.cover)
         ),
         child: Container(
@@ -98,7 +98,7 @@ class CauseDetailComponents {
                           SizedBox(width: getWidth() * 0.02),
                           SizedBox(
                               width: getWidth() * 0.7,
-                              child: TextView.regular16Text(name??"", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 2)),
+                              child: TextView.getMediumText16(name??"", Assets.poppinsMedium, color: AppColors.pureWhiteColor,  lines: 2, blurRadius: 5)),
                         ],
                       ),
                       SizedBox(height: getHeight()*0.01),
