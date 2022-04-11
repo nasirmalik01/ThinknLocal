@@ -17,6 +17,7 @@ class Assets {
   static const String thingsIcon = "assets/png/thingsIcon.png";
   static const String schoolDummy1 = "assets/png/schoolDummy1.png";
   static const String schoolDummy2 = "assets/png/schoolDummy2.png";
+  static const String schoolDummy3 = "assets/png/schoolDummy3.png";
   static const String huskiesLogo = "assets/png/huskiesLogo.png";
   static const String dummyShort = "assets/png/dummy_short.png";
   static const String dummyLogo = "assets/png/dummy_logo.png";
@@ -34,6 +35,13 @@ class Assets {
   static const String uploadIconOrange = "assets/png/uploadIconOrange.png";
   static const String successBigIcon = "assets/png/successBigIcon.png";
   static const String horizontalLogo = "assets/png/horizontal_logo.png";
+  static const String recentlyStarted1 = "assets/png/recently_started_1.png";
+  static const String recentlyStarted2 = "assets/png/recently_started_2.png";
+  static const String recentlyStarted3 = "assets/png/recently_started_3.png";
+  static const String causesDetailFood1 = "assets/png/food1.png";
+  static const String causesDetailFood2 = "assets/png/food2.png";
+  static const String causesDetailFood3 = "assets/png/food3.png";
+  static const String vectorIcon = "assets/png/vector.png";
 
 
   // fonts

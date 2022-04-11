@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import '../../../res/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/res.dart';
@@ -25,31 +26,34 @@ class CausesComponents {
     );
   }
 
-  Widget typesFeaturedText({required String title, required bool isSelected}) {
-    return SizedBox(
-      height: sizes.height * 0.04,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-              padding: EdgeInsets.only(
-                bottom: sizes.height * 0.002,
+  Widget typesFeaturedText({required String title, required bool isSelected, Function()? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        height: sizes.height * 0.04,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+                padding: EdgeInsets.only(
+                  bottom: sizes.height * 0.002,
+                ),
+                decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(
+                      color: isSelected ? AppColors.greenColor: AppColors.pureWhiteColor,
+                      width: sizes.width * 0.005, // This would be the width of the underline
+                    ))
+                ),
+              child:
+              TextView.getMediumText15(
+                title,
+                color: isSelected ? AppColors.blackColor: AppColors.darkGrey,
+                fontFamily: Assets.poppinsMedium
               ),
-              decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(
-                    color: isSelected ? AppColors.greenColor: AppColors.pureWhiteColor,
-                    width: sizes.width * 0.005, // This would be the width of the underline
-                  ))
-              ),
-            child:
-            TextView.getMediumText15(
-              title,
-              color: isSelected ? AppColors.blackColor: AppColors.darkGrey,
-              fontFamily: Assets.poppinsMedium
             ),
-          ),
 
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -68,18 +72,18 @@ class CausesComponents {
     return GestureDetector(
       onTap: ()=> onClickBox.call(),
       child: Container(
-        width: getWidth() * 0.75,
-        margin: EdgeInsets.only(left: getWidth()*0.06, right: getWidth()*0.005),
+        width: getWidth() * 0.7,
+        margin: EdgeInsets.only(right: getWidth()*0.04),
         decoration: BoxDecoration(
             color: AppColors.greenColor,
-            borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.01)),
+            borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.02)),
             image: DecorationImage(
-                image: isImageUrl ? NetworkImage(fullBoxImage): const AssetImage(Assets.schoolDummy1) as ImageProvider,
+                image: isImageUrl ? NetworkImage(fullBoxImage) : AssetImage(fullBoxImage) as ImageProvider,
                 fit: BoxFit.cover)
         ),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.01)),
+            borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.02)),
             gradient: const LinearGradient(
               begin: Alignment.center,
               end: Alignment.bottomCenter,
@@ -92,8 +96,9 @@ class CausesComponents {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Expanded(child: SizedBox()),
               Container(
-                padding: EdgeInsets.only(left: getWidth()*0.03, top: getHeight()*0.12),
+                padding: EdgeInsets.only(left: getWidth()*0.03),
                 child: SizedBox(
                   width: getWidth()*0.65,
                   child: Column(
@@ -102,8 +107,8 @@ class CausesComponents {
                       Row(
                         children: [
                           Container(
-                            height: getHeight()*0.05,
-                            width: getWidth() * 0.1,
+                            height: 5.6.h,
+                            width: 5.6.h,
                             decoration: BoxDecoration(
                                 color: AppColors.blackColor,
                                 borderRadius: BorderRadius.circular(getHeight() * 0.01),
@@ -112,21 +117,21 @@ class CausesComponents {
                                     fit: BoxFit.cover)
                             ),
                           ),
-                          SizedBox(width: getWidth() * 0.02),
+                          SizedBox(width: getWidth() * 0.03),
                           SizedBox(
                             width: getWidth() * 0.5,
                               child: TextView.bold15Text(name??"", color: AppColors.pureWhiteColor,
                                   fontFamily: Assets.poppinsMedium, lines: 2, blurRadius: 5)),
                         ],
                       ),
-                      SizedBox(height: getHeight()*0.01),
+                      SizedBox(height: getHeight()*0.015),
                     ],
                   ),
                 ),
               ),
               LinearPercentIndicator(
                 padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.04),
-                barRadius: Radius.circular(sizes.height* 0.01),
+                barRadius: Radius.circular(sizes.height* 0.05),
                 lineHeight: sizes.height * 0.01,
                 percent: completePercentage,
                 backgroundColor: AppColors.pureWhiteColor,
@@ -134,7 +139,7 @@ class CausesComponents {
               ),
               SizedBox(height: getHeight() * 0.01),
               Padding(
-                padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03),
+                padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03, bottom: 0.8.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -159,35 +164,33 @@ class CausesComponents {
   Widget getRecentlyStartedContainer({
     String? image,
     String? name,
+    required List<Color> colors,
     required Function onPressFullContainer
   }){
     bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
     return GestureDetector(
       onTap: ()=> onPressFullContainer.call(),
       child: Container(
-        width: getWidth() * 0.39,
-        margin: EdgeInsets.only(left: getWidth()*0.06, right: getWidth()*0.005),
+        width: getWidth() * 0.40,
+        margin: EdgeInsets.only(right: getWidth()*0.03),
         decoration: BoxDecoration(
             color: AppColors.lightGrey,
             borderRadius: BorderRadius.circular(getHeight() * 0.015),
             image: DecorationImage(
-                image: isImageUrl ? NetworkImage(image): const AssetImage(Assets.dummyShort) as ImageProvider,
+                image: isImageUrl ? NetworkImage(image): AssetImage(image) as ImageProvider,
                 fit: BoxFit.cover)
         ),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.015)),
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                Colors.transparent,
-                AppColors.greenColor,
-              ],
+              colors: colors
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.only(top: getHeight() * 0.08, left: getWidth() * 0.02, right: getWidth() * 0.02),
+            padding: EdgeInsets.only(top: getHeight() * 0.08, left: getWidth() * 0.03, right: getWidth() * 0.02),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

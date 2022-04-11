@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/common/utils.dart';
+import 'package:sizer/sizer.dart';
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';
@@ -13,6 +15,7 @@ class OnBoardingPageComponents {
     required String description,
     required bool isOnBoarding3,
     Function? onPressStartButton,
+    bool isFirstPage = false,
     String? buttonText
   }) {
     return Container(
@@ -26,14 +29,11 @@ class OnBoardingPageComponents {
         children: [
           Container(
             height: getHeight() * 0.1,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  AppColors.gradientColor1,
-                  AppColors.pureWhiteColor,
-                ],
+                colors: PreferenceUtils.getGradient()
               ),
             ),
           ),
@@ -41,10 +41,12 @@ class OnBoardingPageComponents {
             padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: sizes.width * 0.06),
             child: Column(
               children: [
+                SizedBox(height: isFirstPage ? 2.h : 0,),
                 TextView.getText27(heading, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium),
                 Image(
                   image: AssetImage(image),
                   fit: BoxFit.fill,
+                  height: 32.h,
                 ),
                 TextView.getMediumText18(subHeading, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
                 SizedBox(height: getHeight() * 0.02),

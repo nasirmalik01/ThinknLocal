@@ -13,8 +13,7 @@ void main() {
     testWidgets("Lets test Button", (WidgetTester tester) async {
 
       var button = find.byKey(const ValueKey("Main button"));
-      await tester.pumpWidget(const MaterialApp(
-          home: SignIn()));
+      await tester.pumpWidget(const MaterialApp(home: SignIn()));
       await tester.tap(button);
       await tester.pump();
 

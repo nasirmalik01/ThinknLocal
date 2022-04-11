@@ -43,7 +43,7 @@ class _BusinessesState extends State<Businesses> {
         child: ListView(
           children: [
             Container(
-              height: getHeight() * 0.1,
+              height: getHeight() * 0.12,
               width: getWidth(),
               padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: sizes.height * 0.02),
               decoration: const BoxDecoration(
@@ -74,13 +74,13 @@ class _BusinessesState extends State<Businesses> {
                     children: [
                       CommonWidgets.searchLocationTextField(
                           controller: searchController,
-                          hint: "Search for a cause",
+                          hint: "Search for a business",
                           onPressSearch: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (_) => const CauseSearch()));
                           }
                       ),
-                      SizedBox(height: getHeight() * 0.02),
+                      SizedBox(height: getHeight() * 0.03),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -114,7 +114,7 @@ class _BusinessesState extends State<Businesses> {
                           ),
                         ],
                       ),
-                      SizedBox(height: getHeight() * 0.02),
+                      SizedBox(height: getHeight() * 0.04),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -129,9 +129,8 @@ class _BusinessesState extends State<Businesses> {
                 ),
                 SizedBox(height: getHeight() * 0.01),
                 SizedBox(
-                  height: getHeight()*0.2,
-                  child:
-                  ListView.builder(
+                  height: getHeight()*0.26,
+                  child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 3,
                     itemBuilder: (context, index){
@@ -164,12 +163,12 @@ class _BusinessesState extends State<Businesses> {
                     },
                   ),
                 ),
-                SizedBox(height: getHeight() * 0.02),
+                SizedBox(height: getHeight() * 0.045),
                 Padding(
                   padding: EdgeInsets.only(left: sizes.width * 0.06),
                   child: TextView.getMediumText15("Recently Added", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
                 ),
-                SizedBox(height: getHeight() * 0.002),
+                SizedBox(height: getHeight() * 0.018),
                 SizedBox(
                   height: getHeight()*0.16,
                   child:
@@ -187,7 +186,7 @@ class _BusinessesState extends State<Businesses> {
                     },
                   ),
                 ),
-                SizedBox(height: getHeight() * 0.01),
+                SizedBox(height: getHeight() * 0.045),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
@@ -200,7 +199,7 @@ class _BusinessesState extends State<Businesses> {
                                 MaterialPageRoute(builder: (_) => const BusinessesNearBy()));
                           }
                       ),
-                      SizedBox(height: sizes.height * 0.01),
+                      SizedBox(height: getHeight() * 0.018),
                       ListView.separated(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
@@ -216,11 +215,10 @@ class _BusinessesState extends State<Businesses> {
                               streetAddress: "15705 Euclid Ave",
                               phoneNumber: "908-900-1791"
                           );
-
                         }, separatorBuilder: (BuildContext context, int index) {
-                        return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                        return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.001 ,color: AppColors.borderColor);
                       },
-                      ),
+                    ),
                       SizedBox(height: getHeight() * 0.03),
                     ],
                   ),

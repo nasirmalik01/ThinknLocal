@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:sizer/sizer.dart';
 import '../../res/assets.dart';
 import '../../res/colors.dart';
 import '../../res/res.dart';
@@ -46,7 +47,7 @@ class CauseDetailComponents {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03, top: getHeight() * 0.02),
+                  padding: EdgeInsets.only(left: getWidth()*0.01, right: getWidth()*0.01, top: getHeight() * 0.04),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -55,7 +56,7 @@ class CauseDetailComponents {
                         child: Icon(
                           Icons.arrow_back_ios,
                           color: AppColors.pureWhiteColor,
-                          size: getHeight() * 0.04,
+                          size: getHeight() * 0.025,
                         ),
                       ),
                       Row(
@@ -63,13 +64,13 @@ class CauseDetailComponents {
                           Icon(
                             Icons.ios_share,
                             color: AppColors.pureWhiteColor,
-                            size: getHeight() * 0.04,
+                            size: getHeight() * 0.03,
                           ),
                           SizedBox(width: sizes.width * 0.03),
                           GestureDetector(
                             onTap: () => onPressFavoriteIcon(),
-                              child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.04,):
-                              Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.04,)
+                              child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
+                              Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,)
                           )
 
                         ],
@@ -77,16 +78,17 @@ class CauseDetailComponents {
                     ],
                   ),
                 ),
+                const Expanded(child: SizedBox()),
                 Container(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, top: getHeight()*0.12),
+                  padding: EdgeInsets.only(left: getWidth()*0.03),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
                           Container(
-                            height: getHeight()*0.06,
-                            width: getWidth() * 0.12,
+                            height: getHeight()*0.075,
+                            width: getWidth() * 0.125,
                             decoration: BoxDecoration(
                                 color: AppColors.blackColor,
                                 borderRadius: BorderRadius.circular(getHeight() * 0.01),
@@ -95,7 +97,7 @@ class CauseDetailComponents {
                                     fit: BoxFit.cover)
                             ),
                           ),
-                          SizedBox(width: getWidth() * 0.02),
+                          SizedBox(width: getWidth() * 0.03),
                           SizedBox(
                               width: getWidth() * 0.7,
                               child: TextView.getMediumText16(name??"", Assets.poppinsMedium, color: AppColors.pureWhiteColor,  lines: 2, blurRadius: 5)),
@@ -116,7 +118,7 @@ class CauseDetailComponents {
                 ),
                 SizedBox(height: getHeight() * 0.01),
                 Padding(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03),
+                  padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03, bottom: 1.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -181,13 +183,13 @@ class CauseDetailComponents {
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(getHeight() * 0.01), bottomRight: Radius.circular(getHeight() * 0.01)),
               color: AppColors.blackColor.withOpacity(0.7),
             ),
-            padding: EdgeInsets.only(left: getWidth() * 0.02, right: getWidth() * 0.02, top: getHeight() * 0.01),
-
+            padding: EdgeInsets.only(left: getWidth() * 0.02, right: getWidth() * 0.02),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: getHeight()*0.04,
+                  height: getHeight()*0.05,
                   width: getWidth() * 0.08,
                   decoration: BoxDecoration(
                       color: AppColors.blackColor,
@@ -199,6 +201,7 @@ class CauseDetailComponents {
                 ),
                 SizedBox(width: getWidth() * 0.02),
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                         width: getWidth() * 0.29,
@@ -262,8 +265,8 @@ class CauseDetailComponents {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: getHeight()*0.085,
-                width: getWidth()*0.18,
+                height: 8.h,
+                width: 8.h,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: isImageUrl ? NetworkImage(image): AssetImage(image) as ImageProvider,
@@ -272,24 +275,25 @@ class CauseDetailComponents {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(left: getWidth()*0.02),
+                padding: EdgeInsets.only(left: getWidth()*0.03),
                 width: getWidth()*0.7,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
                             width: getWidth()*0.52,
                             child: TextView.bold15Text(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium)),
                         Container(
-                          padding: EdgeInsets.symmetric(vertical: getHeight() * 0.01, horizontal: getWidth() * 0.03),
+                          padding: EdgeInsets.only(top: 0.5.h, bottom: 0.5.h, left: getWidth() * 0.03, right: getWidth() * 0.03),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(getHeight() * 0.006),
                             color: AppColors.greenColor
                           ),
-                          child: TextView.bold14Text(categoryPercent ?? "", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsSemiBold),
+                          child: Center(child: TextView.bold14Text(categoryPercent ?? "", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsSemiBold)),
                         ),
                       ],
                     ),
@@ -307,26 +311,24 @@ class CauseDetailComponents {
                         fontFamily: Assets.poppinsRegular,
                         textDecoration: TextDecoration.underline
                     ),
-                    SizedBox(height: getHeight() * 0.004),
+                    SizedBox(height: getHeight() * 0.01),
                     TextView.semiBold10Text(
                       phoneNumber?? "",
-                      color: AppColors.lightBlack,
+                      color: AppColors.grayColor,
                       lines: 1,
                       fontFamily: Assets.poppinsRegular,
                     ),
-                    SizedBox(height: getHeight() * 0.005),
+                    SizedBox(height: getHeight() * 0.0001),
                     SizedBox(
                         width: getWidth() * 0.45,
-                        child:
-                        TextView.semiBold10Text(
-                            "some restrictions apply",
+                        child: TextView.semiBold10Text(
+                            "* some restrictions apply",
                             color: AppColors.orangeColor,
                             lines: 1,
                             fontFamily: Assets.poppinsRegular,
                             textDecoration: TextDecoration.underline
                         )
                     ),
-                    SizedBox(height: getHeight() * 0.01),
                   ],
                 ),
               )

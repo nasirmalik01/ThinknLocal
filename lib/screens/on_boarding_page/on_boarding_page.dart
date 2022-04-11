@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/screens/on_boarding_page/on_boarding_page_components.dart';
+import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../common/utils.dart';
 import '../../res/assets.dart';
@@ -39,6 +42,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   @override
   Widget build(BuildContext context) {
     initializeResources(context: context);
+
     return Scaffold(
       body: isHomeChecked ?  Container(
         padding: EdgeInsets.only(bottom: getHeight() * 0.1),
@@ -46,6 +50,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           controller: controller,
           children: [
             onBoardingPageComponents.onBoardingPageDesign(
+                isFirstPage: true,
                 heading: "Welcome!",
                 image: Assets.onBoarding3,
                 subHeading: "Find a great cause!",
@@ -84,46 +89,26 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
       ),
       bottomSheet: isHomeChecked ? Container(
-        padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
-        height: getHeight() * 0.1,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextButton(
-              key: const Key('SKIP'),
-                onPressed: () {
-                  PreferenceUtils.setBool(Strings.showHome, true);
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (_) => BottomTabNew(pageIndex: 0)));
-                },
-                child: TextView.bold15Text('Skip',
-                    color: AppColors.greenColor, fontFamily: Assets.poppinsMedium),
+        color: AppColors.pureWhiteColor,
+        height: getHeight() * 0.2,
+        child: Center(
+          child: SmoothPageIndicator(
+            controller: controller,
+            count: 3,
+            effect: WormEffect(
+                spacing: getWidth() * 0.03,
+                dotColor: AppColors.greenColor,
+                activeDotColor: AppColors.greenColor,
+                dotHeight: 1.4.h,
+                dotWidth: 1.4.h,
+                paintStyle:  PaintingStyle.stroke,
+                strokeWidth: 2
             ),
-            Center(
-              child: SmoothPageIndicator(
-                controller: controller,
-                count: 3,
-                effect: WormEffect(
-                  spacing: getWidth() * 0.03,
-                  dotColor: AppColors.darkGrey,
-                  activeDotColor: AppColors.greenColor
-                ),
-                onDotClicked: (index) => controller.animateToPage(
-                    index,
-                    duration: const Duration(microseconds: 500),
-                    curve: Curves.easeIn),
-              ),
-            ),
-            TextButton(
-                onPressed: () {
-                  controller.nextPage(
-                      duration: const Duration(microseconds: 500),
-                      curve: Curves.easeInOut);
-                },
-                child: TextView.bold15Text('Next',
-                    color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-            ),
-          ],
+            onDotClicked: (index) => controller.animateToPage(
+                index,
+                duration: const Duration(microseconds: 500),
+                curve: Curves.easeIn),
+          ),
         ),
       ): Center(
         child: Container(

@@ -14,10 +14,6 @@ void main() {
       await tester.pump();
 
       expect(find.text('Welcome!'),findsOneWidget);
-
-
-
-
     });
   });
 }

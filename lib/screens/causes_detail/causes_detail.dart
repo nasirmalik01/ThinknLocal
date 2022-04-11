@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_app/local/dummy_data/causes_detail_food.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/sign_in/sign_in.dart';
+import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../../../res/assets.dart';
@@ -67,10 +70,12 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          height: sizes.height,
+    setStatusBarColor(color: Colors.transparent);
+
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          height: sizes.height + sizes.height * 0.45,
           width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
@@ -78,7 +83,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
           child: Column(
             children: [
               SizedBox(
-                height: sizes.height * 0.32,
+                height: sizes.height * 0.35,
                 child: _causeDetailComponents.getCausesDetailImageContainer(
                   name: "Chino Hills High School Girls Softball Fundraiser",
                   fullBoxImage: Assets.schoolDummy1,
@@ -103,12 +108,10 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   }
                 ),
               ),
-              SizedBox(height: sizes.height * 0.01),
+              SizedBox(height: sizes.height * 0.04),
               Container(
-                height: getHeight()* 0.045,
-                margin: EdgeInsets.symmetric(
-                    horizontal: getWidth() * 0.05,
-                    vertical: getHeight() * 0.01),
+                height: getHeight()* 0.051,
+                margin: EdgeInsets.symmetric(horizontal: getWidth() * 0.05,),
                 decoration: BoxDecoration(
                   color: AppColors.boxGrey,
                   borderRadius: BorderRadius.circular(getHeight() * 0.01),
@@ -118,7 +121,6 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   onTap: (index) {
                   },
                   indicator: BoxDecoration(
-
                     borderRadius: BorderRadius.circular(getHeight() * 0.01),
                     color: AppColors.lightBlue,
                   ),
@@ -156,6 +158,8 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   controller: _tabController,
                   children: [
                     ListView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,16 +171,15 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                   description: "Help support the Chino-Hills 2021-2022 Water polo team. They are raising money to purchase new water polo equipment."
                               ),
                             ),
-                            SizedBox(height: sizes.height * 0.02),
+                            SizedBox(height: sizes.height * 0.045),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                              child: TextView.bold15Text("Featured Sponsors", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                              child: TextView.getMediumText15("Featured Sponsors", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
                             ),
-
+                            SizedBox(height: getHeight() * 0.01),
                             SizedBox(
                               height: getHeight()*0.16,
-                              child:
-                              ListView.builder(
+                              child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: 5,
                                 itemBuilder: (context, index){
@@ -191,7 +194,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                 },
                               ),
                             ),
-                            SizedBox(height: sizes.height * 0.02),
+                            SizedBox(height: sizes.height * 0.04),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                               child: Column(
@@ -205,24 +208,22 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                       _causeDetailComponents.typesText(title: "Services", isSelected: false),
                                     ],
                                   ),
-                                  SizedBox(height: sizes.height * 0.02),
+                                  SizedBox(height: sizes.height * 0.04),
                                   ListView.separated(
                                     scrollDirection: Axis.vertical,
                                     shrinkWrap: true,
                                     physics: const ScrollPhysics(),
-                                    itemCount: 3,
+                                    itemCount: causesDetailFoodList.length,
                                     itemBuilder: (context, index){
                                       return _causeDetailComponents.causesDetailBusinessesList(
-                                          image:  Assets.dummyFeatured,
-                                          headerText: "Andy's Xpress Wash",
-                                          onViewCourse: (){
-                                          },
-                                          categoryPercent: "50%",
-                                          address: "Chino, CA 91710",
-                                          streetAddress: "15705 Euclid Ave",
-                                          phoneNumber: "908-900-1791"
+                                          image:  causesDetailFoodList[index].image,
+                                          headerText: causesDetailFoodList[index].title,
+                                          onViewCourse: (){},
+                                          categoryPercent: causesDetailFoodList[index].categoryPercent,
+                                          address: causesDetailFoodList[index].address,
+                                          streetAddress: causesDetailFoodList[index].streetAddress,
+                                          phoneNumber: causesDetailFoodList[index].phoneNumber
                                       );
-
                                     }, separatorBuilder: (BuildContext context, int index) {
                                     return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
                                   },),
@@ -235,9 +236,10 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: sizes.pagePadding),
+                      padding: EdgeInsets.symmetric(horizontal: sizes.pagePadding),
                       child: ListView(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                         children: [
                           Column(
                             children: [
@@ -252,7 +254,6 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                       detail: "Our fundraiser has started!",
                                       date: "Mar 6th"
                                   );
-
                                 }, separatorBuilder: (BuildContext context, int index) {
                                 return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
                               },),
@@ -267,6 +268,8 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                       padding: EdgeInsets.symmetric(
                           horizontal: sizes.pagePadding),
                       child: ListView(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

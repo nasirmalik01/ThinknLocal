@@ -165,7 +165,7 @@ class CommonWidgets {
             children: [
               Container(
                 height: getHeight()*0.085,
-                width: getWidth()*0.2,
+                width: getWidth()*0.18,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: isImageUrl ? NetworkImage(image): const AssetImage(Assets.dummyLogo) as ImageProvider,
@@ -555,13 +555,11 @@ class CommonWidgets {
                     ),
                     SizedBox(height: getHeight() * 0.01),
                     TextView.semiBold10Text(
-                      phoneNumber?? "",
+                      phoneNumber ?? "",
                       color: AppColors.lightBlack,
                       lines: 1,
                       fontFamily: Assets.poppinsRegular,
                     ),
-                    SizedBox(height: getHeight() * 0.005),
-
                   ],
                 ),
               )

@@ -55,6 +55,7 @@ class TextView {
       final text,
       {@required final color,
         final TextAlign textAlign = TextAlign.start,
+        double? fontSize,
         final fontFamily, final height, final TextDecoration textDecoration = TextDecoration.none,
         final lines}) {
     return Text(
@@ -66,7 +67,7 @@ class TextView {
       style: TextStyle(
         height: height ?? getHeight() * 0.0018,
         decoration: textDecoration,
-        fontSize: sizes.fontSize15,
+        fontSize: fontSize ?? sizes.fontSize15,
         fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),

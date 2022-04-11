@@ -1,10 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_app/screens/bottom_tab/bottom_tab_provider.dart';
 import 'package:flutter_app/res/res.dart';
 import '../../res/assets.dart';
 import '../../res/colors.dart';
@@ -37,7 +36,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
   List<Widget> _buildScreens() {
     return [
-      const Causes(),
+      Causes(),
       const Businesses(),
       const Checking(),
       const Notifications(),
@@ -48,7 +47,12 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<BottomTabProvider>(context, listen: true);
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: AppColors.gradientColor1, // navigation bar color
+      statusBarBrightness: Brightness.dark, // status bar color
+    ));
+
+    // Provider.of<BottomTabProvider>(context, listen: true);
     return PersistentTabView(
       context,
       bottomScreenMargin: getHeight() * 0.09,
@@ -108,7 +112,6 @@ class _BottomTabNewState extends State<BottomTabNew> {
         title: ("."),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
-
       ),
       PersistentBottomNavBarItem(
         icon: ImageIcon(const AssetImage(Assets.notificationIcon), size: sizes.height * 0.1),

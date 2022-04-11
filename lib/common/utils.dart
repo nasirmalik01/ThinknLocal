@@ -1,4 +1,5 @@
 import 'dart:async' show Future;
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceUtils {
@@ -44,6 +45,12 @@ class PreferenceUtils {
     return _prefsInstance?.getInt(key) ?? defValue ?? 0;
   }
 
+  static List<Color> getGradient(){
+    return [
+      const Color(0xFFB5EDDD),
+      const Color(0xFFFFFFFF),
+    ];
+  }
 
 
 
