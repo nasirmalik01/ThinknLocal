@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/location_search/location_search_components.dart';
-import '../../res/assets.dart';
-import '../../res/colors.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
@@ -52,7 +52,7 @@ class _LocationSearchState extends State<LocationSearch> {
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: ListView(
                   children: [
-                    TextView.getMediumText18("Cities near you",
+                    TextView.title("Cities near you",
                         color: AppColors.lightBlack,
                         fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.02),

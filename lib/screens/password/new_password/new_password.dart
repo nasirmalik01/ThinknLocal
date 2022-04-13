@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/password/password_success/password_success.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
@@ -44,7 +44,7 @@ class _NewPasswordState extends State<NewPassword> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
@@ -64,8 +64,8 @@ class _NewPasswordState extends State<NewPassword> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextView.getMediumText18("Enter Your Reset password", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                          TextView.bold12Text("Enter the new password that you want to set for your account.",
+                          TextView.title("Enter Your Reset password", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                          TextView.headerWithBlurRadius("Enter the new password that you want to set for your account.",
                               color: AppColors.blackColor, lines: 2, fontFamily: Assets.poppinsRegular),
                           SizedBox(height: getHeight() * 0.04),
                           CommonWidgets.textFieldForPassword(
@@ -76,7 +76,7 @@ class _NewPasswordState extends State<NewPassword> {
                               clickIcon: isPasswordIconClicked
                           ),
                           SizedBox(height: getHeight() * 0.02),
-                          TextView.getText13("Must be at least 8 characters.", color: AppColors.darkGrey),
+                          TextView.subTitleWithBlurRadius("Must be at least 8 characters.", color: AppColors.darkGrey),
                           SizedBox(height: getHeight() * 0.04),
                           CommonWidgets.textField(
                               textEditingController: confirmPasswordController,
@@ -84,7 +84,7 @@ class _NewPasswordState extends State<NewPassword> {
                               textInputType: TextInputType.emailAddress
                           ),
                           SizedBox(height: getHeight() * 0.02),
-                          TextView.getText13("Both passwords must match.", color: AppColors.darkGrey),
+                          TextView.subTitleWithBlurRadius("Both passwords must match.", color: AppColors.darkGrey),
                           SizedBox(height: getHeight() * 0.04),
                           CommonWidgets.getButton(onPress: () {
                             Navigator.push(context,

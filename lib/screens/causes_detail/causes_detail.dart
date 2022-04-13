@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_app/local/dummy_data/causes_detail_food.dart';
+import 'package:flutter_app/local/dummy_data/causes_detail.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
+import 'package:flutter_app/screens/causes_detail/causes_detail_controller.dart';
+import 'package:flutter_app/screens/causes_detail/detail_category_list.dart';
+import 'package:flutter_app/screens/causes_detail/featured_sponsors.dart';
+import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
+import 'package:flutter_app/screens/causes_detail/top_image_container.dart';
+import 'package:flutter_app/screens/causes_detail/update_fund_raiser.dart';
 import 'package:flutter_app/screens/sign_in/sign_in.dart';
+import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import 'package:sizer/sizer.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../../res/res.dart';
 import 'package:fl_chart/fl_chart.dart';
 
@@ -23,44 +31,8 @@ class CausesDetail extends StatefulWidget {
 
 class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderStateMixin {
   final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
+  final CausesDetailController _causesDetailController = Get.put(CausesDetailController());
   TabController? _tabController;
-
-  Widget bottomTitles(double value, TitleMeta meta) {
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = 'Mar 1';
-        break;
-      case 1:
-        text = 'Mar 2';
-        break;
-      case 2:
-        text = 'Mar 3';
-        break;
-      case 3:
-        text = 'Mar 4';
-        break;
-      case 4:
-        text = 'Mar 5';
-        break;
-      default:
-        text = '';
-        break;
-    }
-    return Center(child: TextView.semiBold10Text(text, color: AppColors.pureBlack, fontFamily: Assets.poppinsRegular));
-  }
-
-  Widget leftTitles(double value, TitleMeta meta) {
-    if (value == meta.max) {
-      return Container();
-    }
-    return Padding(
-      child: TextView.semiBold10Text(meta.formattedValue, color: AppColors.pureBlack, fontFamily: Assets.poppinsRegular),
-      padding: EdgeInsets.only(left: getWidth() * 0.02),
-    );
-  }
-
-
 
   @override
   void initState() {
@@ -70,21 +42,22 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    setStatusBarColor(color: Colors.transparent);
+    setStatusBarColor(color: Colors.transparent, isTextColorLight: true);
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: sizes.height + sizes.height * 0.45,
+          height: sizes.height + sizes.height,
           width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
           ),
           child: Column(
             children: [
+              /// top image container
               SizedBox(
                 height: sizes.height * 0.35,
-                child: _causeDetailComponents.getCausesDetailImageContainer(
+                child: TopImageContainer(
                   name: "Chino Hills High School Girls Softball Fundraiser",
                   fullBoxImage: Assets.schoolDummy1,
                   logoImage: Assets.huskiesLogo,
@@ -93,15 +66,14 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   totalAmount: "450",
                   endDate: "Feb 4 - Feb 21",
                   isFavorite: false,
-                  onClickBox: (){
-                  },
+                  onClickBox: (){},
                   onPressBackArrow: () {
                     Navigator.pop(context);
                   },
                   onPressFavoriteIcon: () {
                     pushNewScreen(
                       context,
-                      screen: const SignIn(),
+                      screen: const LoginScreen(),
                       withNavBar: false,
                       pageTransitionAnimation: PageTransitionAnimation.cupertino,
                     );
@@ -109,8 +81,9 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                 ),
               ),
               SizedBox(height: sizes.height * 0.04),
+            /// outer tab view overview , update , stats
               Container(
-                height: getHeight()* 0.051,
+                height: getHeight()* 0.045,
                 margin: EdgeInsets.symmetric(horizontal: getWidth() * 0.05,),
                 decoration: BoxDecoration(
                   color: AppColors.boxGrey,
@@ -128,13 +101,13 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   indicatorSize: TabBarIndicatorSize.tab,
                   labelColor: AppColors.pureWhiteColor,
                   labelStyle: TextStyle(
-                      fontSize: sizes.fontRatio * 12,
+                      fontSize: sizes.fontRatio * 13,
                       fontFamily: Assets.poppinsMedium,
                       fontWeight: FontWeight.w500,
                   ),
                   unselectedLabelColor: AppColors.darkGrey,
                   unselectedLabelStyle: TextStyle(
-                      fontSize: sizes.fontRatio * 12,
+                      fontSize: sizes.fontRatio * 13,
                       fontFamily: Assets.poppinsRegular,
                       fontWeight: FontWeight.w400
                   ),
@@ -153,10 +126,13 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   ],
                 ),
               ),
-              Expanded(
+             ///parent tabview
+              Flexible(
+                ///this is the tab-bar view
                 child: TabBarView(
                   controller: _tabController,
                   children: [
+                   /// 1st page
                     ListView(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -164,6 +140,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            ///Chino Hills HS Girls Water Polo
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                               child: _causeDetailComponents.descriptionTextContainer(
@@ -172,87 +149,100 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                               ),
                             ),
                             SizedBox(height: sizes.height * 0.045),
+                            ///FeaturedSponsors
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                              child: TextView.getMediumText15("Featured Sponsors", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                              child: TextView.titleWithDecoration("Featured Sponsors", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize17),
                             ),
                             SizedBox(height: getHeight() * 0.01),
-                            SizedBox(
-                              height: getHeight()*0.16,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 5,
-                                itemBuilder: (context, index){
-                                  return _causeDetailComponents.featuredContainer(
-                                    name: "Grocery outlet",
-                                    image: "",
-                                    logoImage: Assets.dummyFeaturedShort,
-                                    givingBack: "20%",
-                                    onPressFullContainer: (){
-                                    },
-                                  );
-                                },
+                            Padding(
+                              padding: EdgeInsets.only(left: getWidth()*0.06, ),
+                              child: SizedBox(
+                                height: getHeight()*0.16,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemCount: featuredSponsorsList.length,
+                                  itemBuilder: (context, index){
+                                    return FeaturedSponsors(
+                                      name: featuredSponsorsList[index].title,
+                                      image:featuredSponsorsList[index].backgroundImage,
+                                      logoImage: featuredSponsorsList[index].icon,
+                                      givingBack: featuredSponsorsList[index].detail,
+                                      onPressFullContainer: (){},
+                                    );
+                                  },
+                                ),
                               ),
                             ),
+                            ///end of FeaturedSponsors
                             SizedBox(height: sizes.height * 0.04),
-                            Padding(
+                           ///child tabview => Food & drink
+                            Obx(() => Padding(
                               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                               child: Column(
                                 children: [
+                                  ///inner tabs =>Food & drink
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      _causeDetailComponents.typesText(title: "Food & Drink", isSelected: true),
-                                      _causeDetailComponents.typesText(title: "Things to do", isSelected: false),
-                                      _causeDetailComponents.typesText(title: "Retail", isSelected: false),
-                                      _causeDetailComponents.typesText(title: "Services", isSelected: false),
+                                      customTabBar(title: "Food & drink", isSelected: _causesDetailController.isFoodAndDrink.value, isDetail: true,  onTap: (){ _causesDetailController.setFoodAndDrinkTab(); }),
+                                      customTabBar(title: "Things to do", isSelected: _causesDetailController.isThingsToDo.value, isDetail: true,  onTap: (){ _causesDetailController.setThingsToDoTab(); }),
+                                      customTabBar(title: "Retail", isSelected: _causesDetailController.isRetail.value, isDetail: true,  onTap: (){ _causesDetailController.setRetailTab(); }),
+                                      customTabBar(title: "Services", isSelected: _causesDetailController.isServices.value, isDetail: true,  onTap: (){ _causesDetailController.setServicesTab(); }),
                                     ],
                                   ),
-                                  SizedBox(height: sizes.height * 0.04),
+                                  SizedBox(height: sizes.height * 0.02),
                                   ListView.separated(
                                     scrollDirection: Axis.vertical,
                                     shrinkWrap: true,
-                                    physics: const ScrollPhysics(),
+                                    physics: const BouncingScrollPhysics(),
                                     itemCount: causesDetailFoodList.length,
                                     itemBuilder: (context, index){
-                                      return _causeDetailComponents.causesDetailBusinessesList(
-                                          image:  causesDetailFoodList[index].image,
+                                      return DetailCategoryList(
+                                          image:  causesDetailFoodList[index].backgroundImage,
                                           headerText: causesDetailFoodList[index].title,
                                           onViewCourse: (){},
-                                          categoryPercent: causesDetailFoodList[index].categoryPercent,
-                                          address: causesDetailFoodList[index].address,
+                                          categoryPercent: causesDetailFoodList[index].backAmount,
+                                          address: causesDetailFoodList[index].mainAddress,
                                           streetAddress: causesDetailFoodList[index].streetAddress,
                                           phoneNumber: causesDetailFoodList[index].phoneNumber
                                       );
                                     }, separatorBuilder: (BuildContext context, int index) {
                                     return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
                                   },),
-                                  SizedBox(height: sizes.height * 0.03),
+                                  /// this is the end container
+                                  Container(
+                                    color: Colors.red,
+                                    height: sizes.height * 0.03 , ),
                                 ],
                               ),
                             ),
+                            )
+
                           ],
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: sizes.pagePadding),
-                      child: ListView(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: [
-                          Column(
+                   ///2nd page
+                    ListView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                          child: Column(
                             children: [
                               ListView.separated(
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
                                 physics: const ScrollPhysics(),
-                                itemCount: 8,
+                                itemCount: updateFundRaiserList.length,
                                 itemBuilder: (context, index){
-                                  return _causeDetailComponents.updateTabFundRaiserList(
-                                      header: "It's Begone!",
-                                      detail: "Our fundraiser has started!",
-                                      date: "Mar 6th"
+                                  return  UpdateFundRaiser(
+                                      header: updateFundRaiserList[index].title!,
+                                      detail: updateFundRaiserList[index].detail!,
+                                      date: updateFundRaiserList[index].date!
                                   );
                                 }, separatorBuilder: (BuildContext context, int index) {
                                 return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
@@ -261,26 +251,26 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
 
                             ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: sizes.pagePadding),
-                      child: ListView(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: [
-                          Column(
+                   /// 3rd page
+                    ListView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              TextView.regular16Text("Contributions over time", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                              SizedBox(height: sizes.height * 0.01),
-                              TextView.regular11Text("Number of contributions from individuals over time.", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
+                              TextView.caption("Contributions over time", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize18),
+                              SizedBox(height: 0.5.h),
+                              TextView.caption("Number of contributions from individuals over time.", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, fontSize: sizes.fontSize13),
+                              SizedBox(height: 0.7.h),
                               AspectRatio(
                                 aspectRatio: 1.66,
                                 child: Card(
-                                  elevation: 4,
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
                                   color: AppColors.boxGrey,
                                   child: Padding(
@@ -297,14 +287,14 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                             sideTitles: SideTitles(
                                               showTitles: true,
                                               reservedSize: getHeight() * 0.04,
-                                              getTitlesWidget: bottomTitles,
+                                              getTitlesWidget: _causeDetailComponents.statsGraphBottomTitles,
                                             ),
                                           ),
                                           leftTitles: AxisTitles(
                                             sideTitles: SideTitles(
                                               showTitles: true,
                                               reservedSize: getWidth() * 0.08,
-                                              getTitlesWidget: leftTitles,
+                                              getTitlesWidget: _causeDetailComponents.statsGraphLeftTitles,
                                             ),
                                           ),
                                           topTitles: AxisTitles(
@@ -333,23 +323,23 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                   ),
                                 ),
                               ),
-                              SizedBox(height: sizes.height * 0.02),
+                              SizedBox(height: 3.h),
                               CommonWidgets.getTextWithSeeAll(
-                                  text1: "Recent Contributions",
-                                  text2: "See All",
+                                  leadingText: "Recent Contributions",
+                                  trailingText: "See All",
                                   onPressSeeAllButton: () {
                                   }
                               ),
-                              SizedBox(height: getHeight() * 0.02),
+                              SizedBox(height: 2.h),
                               ListView.separated(
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
                                 physics: const ScrollPhysics(),
-                                itemCount: 5,
+                                itemCount: recentContributionList.length,
                                 itemBuilder: (context, index){
-                                  return _causeDetailComponents.getContributionsList(
-                                      contributorName: "Ashley P",
-                                      amount: "18.34"
+                                  return RecentContributions(
+                                      contributorName: recentContributionList[index].title!,
+                                      amount: recentContributionList[index].amount.toString()
                                   );
 
                                 }, separatorBuilder: (BuildContext context, int index) {
@@ -357,13 +347,10 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                               },
                               ),
                               SizedBox(height: getHeight() * 0.03),
-
-
-
                             ],
                           ),
-                        ],
-                      )
+                        ),
+                      ],
                     ),
                   ],
                 ),

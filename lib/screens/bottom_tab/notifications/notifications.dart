@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications_components.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
-class Notifications extends StatefulWidget {
-  const Notifications({Key? key}) : super(key: key);
+class NotificationScreen extends StatefulWidget {
+  const NotificationScreen({Key? key}) : super(key: key);
 
   @override
-  _NotificationsState createState() => _NotificationsState();
+  _NotificationScreenState createState() => _NotificationScreenState();
 }
 
-class _NotificationsState extends State<Notifications>  with SingleTickerProviderStateMixin {
+class _NotificationScreenState extends State<NotificationScreen>  with SingleTickerProviderStateMixin {
   TabController? _tabController;
   final NotificationsComponents _notificationsComponents = NotificationsComponents();
 
@@ -43,7 +43,7 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
@@ -54,11 +54,11 @@ class _NotificationsState extends State<Notifications>  with SingleTickerProvide
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextView.bold25Text("Your Notifications", color: AppColors.lightBlack, fontFamily: Assets.poppinsSemiBold),
+                  TextView.header("Your Notifications", color: AppColors.lightBlack, fontFamily: Assets.poppinsSemiBold, fontSize: sizes.fontSize25),
                   SizedBox(height: getHeight() * 0.01),
-                  TextView.getMediumText15("Want to edit your notification settings?", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
+                  TextView.titleWithDecoration("Want to edit your notification settings?", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.01),
-                  TextView.getMediumText15("Edit Settings", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                  TextView.titleWithDecoration("Edit Settings", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
 
                 ],
               ),

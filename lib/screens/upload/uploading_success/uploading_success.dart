@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../bottom_tab/bottom_tab_new.dart';
 
@@ -39,7 +39,7 @@ class _UploadSuccessState extends State<UploadSuccess> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
@@ -65,7 +65,7 @@ class _UploadSuccessState extends State<UploadSuccess> {
                     ]),
                   ),
                   SizedBox(height: getHeight() * 0.01),
-                  TextView.bold35Text("Success!", color: AppColors.greenColor),
+                  TextView.header("Success!", color: AppColors.greenColor, fontSize: sizes.fontSize35),
                   SizedBox(height: getHeight() * 0.04),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: sizes.width * 0.03),
@@ -81,7 +81,7 @@ class _UploadSuccessState extends State<UploadSuccess> {
                   SizedBox(height: getHeight() * 0.04),
                   SizedBox(
                       width: getWidth() * 0.8,
-                      child: TextView.getText20(
+                      child: TextView.subTitle(
                           "Successfully uploaded your receipt. Thanks for your contribution!",
                           color: AppColors.darkGrey,
                           lines: 3,

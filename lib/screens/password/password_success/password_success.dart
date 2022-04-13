@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/sign_in/sign_in.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
@@ -38,7 +38,7 @@ class _PasswordSuccessState extends State<PasswordSuccess> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
@@ -56,17 +56,17 @@ class _PasswordSuccessState extends State<PasswordSuccess> {
                         fit: BoxFit.fill,
                       ),
                       SizedBox(height: getHeight() * 0.01),
-                      TextView.bold35Text("Success!", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium),
+                      TextView.header("Success!", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize35),
                       SizedBox(height: getHeight() * 0.04),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.12),
-                        child: TextView.getText20("Successfully reset your password!", color: AppColors.darkGrey, lines: 2, textAlign: TextAlign.center),
+                        child: TextView.subTitle("Successfully reset your password!", color: AppColors.darkGrey, lines: 2, textAlign: TextAlign.center),
                       ),
                       SizedBox(height: getHeight() * 0.1),
                       CommonWidgets.getButton(
                         onPress: (){
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => const SignIn()));
+                              MaterialPageRoute(builder: (_) => const LoginScreen()));
                         },
                         text: "Sign In"
                       )

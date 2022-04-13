@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail_components.dart';
-import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../sign_in/sign_in.dart';
 
@@ -62,7 +62,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                     onPressFavoriteIcon: () {
                       pushNewScreen(
                         context,
-                        screen: const SignIn(),
+                        screen: const LoginScreen(),
                         withNavBar: false,
                         pageTransitionAnimation: PageTransitionAnimation.cupertino,
                       );
@@ -124,7 +124,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                           padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                           child: Column(
                             children: [
-                              TextView.regular11Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies, ipsum et ullamcorper dignissim, massa quam congue arcu, non facilisis.",
+                              TextView.caption("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies, ipsum et ullamcorper dignissim, massa quam congue arcu, non facilisis.",
                                   color: AppColors.blackColor, fontFamily: Assets.poppinsRegular,lines: 3),
                               SizedBox(height: sizes.height * 0.02),
                               _businessesDetailComponents.ratingContainer(
@@ -140,7 +140,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
-                              child: TextView.bold15Text("Recently Funded", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                              child: TextView.headerWithBlurRadius("Recently Funded", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize12),
                             ),
                             SizedBox(
                               height: getHeight()*0.17,
@@ -171,7 +171,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              TextView.bold15Text("Past Funded Causes", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                              TextView.headerWithBlurRadius("Past Funded Causes", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize12),
                               SizedBox(height: sizes.height * 0.01),
                               ListView.separated(
                                 scrollDirection: Axis.vertical,
@@ -179,7 +179,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                                 physics: const ScrollPhysics(),
                                 itemCount: 3,
                                 itemBuilder: (context, index){
-                                  return CommonWidgets.getUpcomingCausesList(
+                                  return UpcomingCauses(
                                       image:  "",
                                       headerText: "Chino Hills High Softball Team",
                                       description:  "Spring Training Equipment Fundraiser",
@@ -204,14 +204,14 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                           horizontal: sizes.pagePadding),
                       child: Column(
                         children: [
-                          TextView.bold22Text("", color: AppColors.greenColor),
+                          TextView.header("", color: AppColors.greenColor, fontSize: sizes.fontSize22),
                         ],
                       ),
                     ),
                     Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: sizes.pagePadding),
-                        child: TextView.bold22Text("", color: AppColors.greenColor)
+                        child: TextView.header("", color: AppColors.greenColor, fontSize: sizes.fontSize22)
                     ),
                   ],
                 ),

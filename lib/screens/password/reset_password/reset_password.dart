@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/password/password_pin/password_pin.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
@@ -40,7 +40,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
@@ -60,8 +60,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextView.getMediumText18("Password Reset", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                          TextView.getText13("Enter your email, a reset code will be sent to this address.", color: AppColors.blackColor, lines: 2, fontFamily: Assets.poppinsRegular),
+                          TextView.title("Password Reset", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                          TextView.subTitleWithBlurRadius("Enter your email, a reset code will be sent to this address.", color: AppColors.blackColor, lines: 2, fontFamily: Assets.poppinsRegular),
                         ],
                       ),
                       SizedBox(height: getHeight() * 0.04),

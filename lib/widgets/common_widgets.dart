@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import '../res/assets.dart';
-import '../res/colors.dart';
+import '../constants/assets.dart';
+import '../constants/colors.dart';
 import '../res/res.dart';
 
 
@@ -80,7 +80,7 @@ class CommonWidgets {
           borderRadius: BorderRadius.circular(getWidth()*.02,),
         ),
         child: Center(
-            child: TextView.getMediumText18(
+            child: TextView.title(
               text??"SUBMIT",
               color: textColor?? AppColors.pureWhiteColor,
               fontFamily: Assets.poppinsMedium
@@ -144,100 +144,6 @@ class CommonWidgets {
           ),
         ),
       ),
-    );
-  }
-
-  static Widget getUpcomingCausesList({
-    String? image,
-    String? headerText,
-    String? description,
-    String? totalAmount,
-    String? date,
-    required Function onViewCourse
-  }){
-    bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: ()=> onViewCourse.call(),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: getHeight()*0.085,
-                width: getWidth()*0.18,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: isImageUrl ? NetworkImage(image): const AssetImage(Assets.dummyLogo) as ImageProvider,
-                        fit: BoxFit.fill),
-                    borderRadius: BorderRadius.circular(getHeight() * 0.01)
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: getWidth()*0.02),
-                width: getWidth()*0.6,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextView.regular11Text(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular),
-                    SizedBox(height: getHeight()*0.003),
-                    TextView.getMediumText15(description??"", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 2, height: getHeight() * 0.0016),
-                    SizedBox(height: getHeight()*0.006),
-                    Row(
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                              text: "Raising ",
-                              style: TextStyle(
-                                color: AppColors.blackColor,
-                                fontSize: sizes.fontSize11,
-                                fontFamily: Assets.poppinsRegular,
-                              ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: '\$$totalAmount',
-                                  style: TextStyle(
-                                    color: AppColors.greenColor,
-                                    fontSize: sizes.fontSize11,
-                                    fontFamily: Assets.poppinsMedium,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: ';',
-                                  style: TextStyle(
-                                    color: AppColors.blackColor,
-                                    fontSize: sizes.fontSize11,
-                                    fontFamily: Assets.poppinsMedium,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: ' starting ',
-                                  style: TextStyle(
-                                    color: AppColors.blackColor,
-                                    fontSize: sizes.fontSize11,
-                                    fontFamily: Assets.poppinsRegular,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: date,
-                                  style: TextStyle(
-                                    color: AppColors.greenColor,
-                                    fontSize: sizes.fontSize11,
-                                    fontFamily: Assets.poppinsMedium,
-                                  ),
-                                )
-                              ]
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
     );
   }
 
@@ -414,7 +320,7 @@ class CommonWidgets {
               SizedBox(width: getWidth() * 0.05),
               SizedBox(
                   width: getWidth() * 0.75,
-                  child: TextView.bold22Text(title??"", color: AppColors.pureWhiteColor)
+                  child: TextView.header(title??"", color: AppColors.pureWhiteColor, fontSize: sizes.fontSize22)
               ),
 
             ],
@@ -494,7 +400,7 @@ class CommonWidgets {
               SizedBox(width: getWidth() * 0.05),
               SizedBox(
                   width: getWidth() * 0.75,
-                  child: TextView.regular16Text(title??"", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1)
+                  child: TextView.caption(title??"", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1, fontSize: sizes.fontSize16)
               ),
 
             ],
@@ -537,16 +443,16 @@ class CommonWidgets {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextView.bold15Text(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                    TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize12),
                     SizedBox(height: getHeight() * 0.004),
-                    TextView.semiBold10Text(
+                    TextView.subHeader(
                         streetAddress?? "",
                         color: AppColors.lightBlack,
                         lines: 1,
                         fontFamily: Assets.poppinsRegular,
                         textDecoration: TextDecoration.underline
                     ),
-                    TextView.semiBold10Text(
+                    TextView.subHeader(
                         address?? "",
                         color: AppColors.lightBlack,
                         lines: 1,
@@ -554,7 +460,7 @@ class CommonWidgets {
                         textDecoration: TextDecoration.underline
                     ),
                     SizedBox(height: getHeight() * 0.01),
-                    TextView.semiBold10Text(
+                    TextView.subHeader(
                       phoneNumber ?? "",
                       color: AppColors.lightBlack,
                       lines: 1,
@@ -578,21 +484,21 @@ class CommonWidgets {
       children: [
         Image.asset(image!),
         SizedBox(width: getWidth() * 0.05),
-        TextView.bold12Text(title ?? "", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium)
+        TextView.headerWithBlurRadius(title ?? "", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium)
 
       ],
     );
   }
 
-  static Widget getTextWithSeeAll({required String text1, required String text2, required Function onPressSeeAllButton}) {
+  static Widget getTextWithSeeAll({required String leadingText, required String trailingText, required Function onPressSeeAllButton}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        TextView.getMediumText15(text1, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+        TextView.titleWithDecoration(leadingText, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize18),
         GestureDetector(
             onTap: () => onPressSeeAllButton(),
-            child: TextView.bold12Text(text2, color: AppColors.greenColor,
-                fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
+            child: TextView.headerWithBlurRadius(trailingText, color: AppColors.greenColor,
+                fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize15)),
       ],
     );
   }

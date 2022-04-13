@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/text_views.dart';
 
@@ -43,12 +43,12 @@ class NotificationsComponents {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextView.getMediumText15(text, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
-                          TextView.bold12Text(date, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 1),
+                          TextView.titleWithDecoration(text, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                          TextView.headerWithBlurRadius(date, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 1),
                         ],
                       ),
                       SizedBox(height: sizes.height * 0.005),
-                      TextView.bold12Text(subText, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2),
+                      TextView.headerWithBlurRadius(subText, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2),
                     ],
                   ),
                 ),

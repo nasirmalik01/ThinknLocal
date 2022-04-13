@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/upload/uploading_failed/uploading_failded.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
@@ -43,7 +43,7 @@ class _UploadingState extends State<Uploading> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      AppColors.gradientColor1,
+                      AppColors.lightGreenColor,
                       AppColors.pureWhiteColor,
                     ],
                   ),
@@ -56,7 +56,7 @@ class _UploadingState extends State<Uploading> {
                     SizedBox(height: getHeight() * 0.1),
                     Image.asset(Assets.uploadIcon,),
                     SizedBox(height: getHeight() * 0.01),
-                    TextView.bold35Text("Uploading...", color: AppColors.greenColor),
+                    TextView.header("Uploading...", color: AppColors.greenColor, fontSize: sizes.fontSize35),
                     SizedBox(height: getHeight() * 0.04),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: sizes.width * 0.03),
@@ -84,7 +84,7 @@ class _UploadingState extends State<Uploading> {
                     SizedBox(height: getHeight() * 0.04),
                     SizedBox(
                       width: getWidth() * 0.7,
-                        child: TextView.getText20("Please wait while we upload your receipt",
+                        child: TextView.subTitle("Please wait while we upload your receipt",
                             color: AppColors.darkGrey,
                             lines: 2,
                             textAlign: TextAlign.center

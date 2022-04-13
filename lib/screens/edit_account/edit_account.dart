@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../res/assets.dart';
-import '../../res/colors.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
@@ -53,7 +53,7 @@ class _EditAccountState extends State<EditAccount> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
@@ -66,7 +66,7 @@ class _EditAccountState extends State<EditAccount> {
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06, ),
                   child: Align(
                     alignment: Alignment.bottomLeft,
-                    child: TextView.bold12Text("Back", color: AppColors.lightBlack,fontFamily: Assets.poppinsMedium,
+                    child: TextView.headerWithBlurRadius("Back", color: AppColors.lightBlack,fontFamily: Assets.poppinsMedium,
                         textDecoration: TextDecoration.underline),
                   ),
                 ),
@@ -80,9 +80,9 @@ class _EditAccountState extends State<EditAccount> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextView.bold25Text("Edit Account Info", color: AppColors.lightBlack, fontFamily: Assets.poppinsSemiBold, lines: 1),
+                      TextView.header("Edit Account Info", color: AppColors.lightBlack, fontFamily: Assets.poppinsSemiBold, lines: 1, fontSize: sizes.fontSize25),
                       SizedBox(height: getHeight() * 0.04),
-                      TextView.getMediumText15("Basic info", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
+                      TextView.titleWithDecoration("Basic info", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
                       CommonWidgets.textField(
                           textEditingController: firstNameController,
@@ -99,7 +99,7 @@ class _EditAccountState extends State<EditAccount> {
                         textEditingController: emailController,
                         hint: "Email",
                       ),SizedBox(height: getHeight() * 0.02),
-                      TextView.getMediumText15("Password", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
+                      TextView.titleWithDecoration("Password", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
                       CommonWidgets.textFieldForPassword(
                           textEditingController: passwordController,
@@ -108,13 +108,13 @@ class _EditAccountState extends State<EditAccount> {
                           hidePassword: hiddenPassword,
                           clickIcon: isPasswordIconClicked
                       ),SizedBox(height: getHeight() * 0.02),
-                      TextView.getMediumText15("Zip Code", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
+                      TextView.titleWithDecoration("Zip Code", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
                       CommonWidgets.textField(
                         textEditingController: zipCodeController,
                         hint: "Zip Code",
                       ),SizedBox(height: getHeight() * 0.02),
-                      TextView.getMediumText15("Group Code", color: AppColors.lightBlue, fontFamily: Assets.poppinsMedium),
+                      TextView.titleWithDecoration("Group Code", color: AppColors.lightBlue, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
                       CommonWidgets.textField(
                           textEditingController: groupCodeController,

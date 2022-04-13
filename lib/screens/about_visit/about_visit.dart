@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import '../../../res/colors.dart';
+import '../../constants/colors.dart';
 import '../../../res/res.dart';
-import '../../res/assets.dart';
+import '../../constants/assets.dart';
 import '../upload/uploading/uploading.dart';
 
 
@@ -54,11 +54,11 @@ class _AboutVisitState extends State<AboutVisit> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextView.bold30Text("Tell us about your visit!", color: AppColors.greenColor, fontFamily: Assets.poppinsSemiBold),
+                  TextView.header("Tell us about your visit!", color: AppColors.greenColor, fontFamily: Assets.poppinsSemiBold, fontSize: sizes.fontSize30),
                   SizedBox(height: getHeight() * 0.02,),
-                  TextView.bold15Text("How was your experience?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                  TextView.headerWithBlurRadius("How was your experience?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular, fontSize: sizes.fontSize15,),
                   SizedBox(height: getHeight() * 0.04,),
-                  TextView.bold12Text("Where did you go?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                  TextView.headerWithBlurRadius("Where did you go?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.01,),
                   CommonWidgets.dropDownField(
                     selectedCategory: _businessName,
@@ -67,7 +67,7 @@ class _AboutVisitState extends State<AboutVisit> {
                     hint:"Business Name",
                   ),
                   SizedBox(height: getHeight() * 0.04,),
-                  TextView.bold12Text("How was your visit?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                  TextView.headerWithBlurRadius("How was your visit?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.01,),
                   Container(
                     width: getWidth(),
@@ -96,7 +96,7 @@ class _AboutVisitState extends State<AboutVisit> {
                     ),
                   ),
                   SizedBox(height: getHeight() * 0.04),
-                  TextView.bold12Text("Was this your first time?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                  TextView.headerWithBlurRadius("Was this your first time?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.01,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,7 +121,7 @@ class _AboutVisitState extends State<AboutVisit> {
                     ],
                   ),
                   SizedBox(height: getHeight() * 0.04),
-                  TextView.bold12Text("What cause do you want to support?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                  TextView.headerWithBlurRadius("What cause do you want to support?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.01),
                   CommonWidgets.dropDownField(
                     selectedCategory: _cause,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/text_views.dart';
 
@@ -25,7 +25,7 @@ class BusinessesComponents {
             child: Center(
                 child: Image.asset(image)),
           ),
-          TextView.regular11Text(label, color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium)
+          TextView.caption(label, color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium)
         ],
       ),
     );
@@ -48,7 +48,7 @@ class BusinessesComponents {
                 ))
             ),
             child:
-            TextView.getMediumText15(
+            TextView.titleWithDecoration(
                 title,
                 color: isSelected ? AppColors.blackColor: AppColors.darkGrey,
                 fontFamily: Assets.poppinsMedium
@@ -134,7 +134,7 @@ class BusinessesComponents {
                         SizedBox(
                             width: getWidth() * 0.45,
                             child:
-                            TextView.getMediumText16(
+                            TextView.titleWithBlurRadius(
                                 name ?? "",
                                 Assets.poppinsSemiBold,
                                 color: AppColors.pureWhiteColor,
@@ -147,7 +147,7 @@ class BusinessesComponents {
                         SizedBox(
                             width: getWidth() * 0.45,
                             child:
-                            TextView.semiBold10Text(
+                            TextView.subHeader(
                               streetAddress?? "",
                               color: AppColors.pureWhiteColor,
                               lines: 1,
@@ -158,7 +158,7 @@ class BusinessesComponents {
                         SizedBox(
                             width: getWidth() * 0.45,
                             child:
-                            TextView.semiBold10Text(
+                            TextView.subHeader(
                                 address?? "",
                                 color: AppColors.pureWhiteColor,
                                 lines: 1,
@@ -170,7 +170,7 @@ class BusinessesComponents {
                         SizedBox(
                             width: getWidth() * 0.45,
                             child:
-                            TextView.semiBold10Text(
+                            TextView.subHeader(
                                 phoneNumber?? "",
                                 color: AppColors.pureWhiteColor,
                                 lines: 1,
@@ -239,7 +239,7 @@ class BusinessesComponents {
                   ),
                 ),
                 SizedBox(height: getHeight() * 0.015),
-                TextView.bold12Text(name??"", color: AppColors.pureWhiteColor, lines: 1, fontFamily: Assets.poppinsSemiBold, blurRadius: 5),
+                TextView.headerWithBlurRadius(name??"", color: AppColors.pureWhiteColor, lines: 1, fontFamily: Assets.poppinsSemiBold, blurRadius: 5),
               ],
             ),
           ),

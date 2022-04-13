@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
@@ -50,7 +50,7 @@ class _BusinessCategoryState extends State<BusinessCategory> {
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: ListView(
                   children: [
-                    TextView.getMediumText18("Showing results for",
+                    TextView.title("Showing results for",
                         color: AppColors.lightBlack,
                         fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.02),

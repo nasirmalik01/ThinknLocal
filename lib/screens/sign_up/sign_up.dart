@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/sign_in/sign_in.dart';
-import '../../res/assets.dart';
-import '../../res/colors.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  _SignUpState createState() => _SignUpState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController? firstNameController;
   TextEditingController? lastNameController;
   TextEditingController? emailController;
@@ -52,7 +52,7 @@ class _SignUpState extends State<SignUp> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
@@ -69,7 +69,7 @@ class _SignUpState extends State<SignUp> {
                         fit: BoxFit.fill,
                       ),
                       SizedBox(height: getHeight() * 0.06),
-                      TextView.getMediumText15("Create your account to continue!", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1),
+                      TextView.titleWithDecoration("Create your account to continue!", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1),
                       SizedBox(height: getHeight() * 0.02),
                       CommonWidgets.textField(
                           textEditingController: firstNameController,
@@ -108,20 +108,20 @@ class _SignUpState extends State<SignUp> {
                           cursorColor: AppColors.lightBlue
                       ),
                       SizedBox(height: getHeight() * 0.01),
-                      TextView.getText13("*Part of a club, organization or special group?", color: AppColors.lightBlue, fontFamily: Assets.poppinsMedium),
+                      TextView.subTitleWithBlurRadius("*Part of a club, organization or special group?", color: AppColors.lightBlue, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.06),
                       CommonWidgets.getButton(onPress: () {}, text: "Sign Up!"),
                       SizedBox(height: getHeight() * 0.04),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          TextView.getMediumText15("Already have an account? ", fontFamily: Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
+                          TextView.titleWithDecoration("Already have an account? ", fontFamily: Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) => const SignIn()));
+                                  MaterialPageRoute(builder: (_) => const LoginScreen()));
                             },
-                              child: TextView.getMediumText15("Sign In", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1)),
+                              child: TextView.titleWithDecoration("Sign In", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1)),
 
                         ],
                       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/password/new_password/new_password.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
@@ -40,7 +40,7 @@ class _PasswordPinState extends State<PasswordPin> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
@@ -60,8 +60,8 @@ class _PasswordPinState extends State<PasswordPin> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextView.getMediumText18("Enter Your Reset Pin", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
-                          TextView.bold12Text("Enter the pin that was sent to your email address to finish, resetting your password.",
+                          TextView.title("Enter Your Reset Pin", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                          TextView.headerWithBlurRadius("Enter the pin that was sent to your email address to finish, resetting your password.",
                               color: AppColors.blackColor, lines: 2, fontFamily: Assets.poppinsRegular),
                         ],
                       ),
@@ -85,8 +85,8 @@ class _PasswordPinState extends State<PasswordPin> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          TextView.bold15Text("Didn't receive the code? ", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular),
-                          TextView.bold15Text("Resend", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)
+                          TextView.headerWithBlurRadius("Didn't receive the code? ", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, fontSize: sizes.fontSize12),
+                          TextView.headerWithBlurRadius("Resend", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize12)
                         ],
                       ),
                     ],

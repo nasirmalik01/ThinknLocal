@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
-import '../../res/assets.dart';
-import '../../res/colors.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/text_views.dart';
 
@@ -106,13 +106,13 @@ class BusinessesDetailComponents {
                                 SizedBox(
                                   width: getWidth() * 0.65,
                                   child:
-                                  TextView.getMediumText16(name ?? "", Assets.poppinsMedium, color: AppColors.pureWhiteColor,  lines: 1, blurRadius: 5)
+                                  TextView.titleWithBlurRadius(name ?? "", Assets.poppinsMedium, color: AppColors.pureWhiteColor,  lines: 1, blurRadius: 5)
                                 ),
                                 SizedBox(height: getHeight() * 0.001),
                                 SizedBox(
                                     width: getWidth() * 0.65,
                                     child:
-                                    TextView.bold12Text(
+                                    TextView.headerWithBlurRadius(
                                         streetAddress?? "",
                                         color: AppColors.pureWhiteColor,
                                         lines: 1,
@@ -123,7 +123,7 @@ class BusinessesDetailComponents {
                                 SizedBox(
                                     width: getWidth() * 0.65,
                                     child:
-                                    TextView.bold12Text(
+                                    TextView.headerWithBlurRadius(
                                         address?? "",
                                         color: AppColors.pureWhiteColor,
                                         lines: 1,
@@ -135,7 +135,7 @@ class BusinessesDetailComponents {
                                 SizedBox(
                                     width: getWidth() * 0.65,
                                     child:
-                                    TextView.bold12Text(
+                                    TextView.headerWithBlurRadius(
                                       phoneNumber?? "",
                                       color: AppColors.pureWhiteColor,
                                       lines: 1,
@@ -160,11 +160,11 @@ class BusinessesDetailComponents {
                     children: [
                       Row(
                         children: [
-                          TextView.bold12Text("Contributed: ", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
-                          TextView.bold12Text("\$$contributedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
+                          TextView.headerWithBlurRadius("Contributed: ", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                          TextView.headerWithBlurRadius("\$$contributedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
                         ],
                       ),
-                      TextView.bold12Text("Joined $joinDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
+                      TextView.headerWithBlurRadius("Joined $joinDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
                     ],
                   ),
 
@@ -181,7 +181,7 @@ class BusinessesDetailComponents {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextView.bold12Text("40 customer ratings", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+        TextView.headerWithBlurRadius("40 customer ratings", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
         Container(
           width: getWidth(),
           padding: EdgeInsets.symmetric(horizontal: getHeight() * 0.002, vertical: getWidth() * 0.02),
@@ -198,7 +198,7 @@ class BusinessesDetailComponents {
                 onPress: onPress,
               ),
               SizedBox(width: getWidth() * 0.05),
-              TextView.regular11Text("4.5 out of 5", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1),
+              TextView.caption("4.5 out of 5", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1),
             ],
           )
         ),
@@ -268,9 +268,9 @@ class BusinessesDetailComponents {
                   ],
                 ),
                 SizedBox(height: getHeight() * 0.01),
-                TextView.getText13(name??"", color: AppColors.pureWhiteColor, lines: 2, fontFamily: Assets.poppinsMedium, blurRadius: 5),
+                TextView.subTitleWithBlurRadius(name??"", color: AppColors.pureWhiteColor, lines: 2, fontFamily: Assets.poppinsMedium, blurRadius: 5),
                 SizedBox(height: getHeight() * 0.001),
-                TextView.regular11Text('\$$raisedAmount of \$$totalAmount', color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1),
+                TextView.caption('\$$raisedAmount of \$$totalAmount', color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1),
                 SizedBox(height: getHeight() * 0.001),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,

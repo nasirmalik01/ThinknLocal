@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../res/assets.dart';
-import '../../res/colors.dart';
+import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
@@ -51,11 +52,11 @@ class _CauseSearchState extends State<CauseSearch> {
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: ListView(
                   children: [
-                    TextView.getMediumText18("Showing results for",
+                    TextView.title("Showing results for",
                         color: AppColors.lightBlack,
                         fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.01),
-                    TextView.bold15Text("- chino hills high school", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, lines: 1),
+                    TextView.headerWithBlurRadius("- chino hills high school", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12),
                     SizedBox(height: getHeight() * 0.02),
                     ListView.separated(
                       scrollDirection: Axis.vertical,
@@ -63,7 +64,7 @@ class _CauseSearchState extends State<CauseSearch> {
                       physics: const ScrollPhysics(),
                       itemCount: 13,
                       itemBuilder: (context, index) {
-                        return CommonWidgets.getUpcomingCausesList(
+                        return UpcomingCauses(
                             image:  "",
                             headerText: "Chino Hills High Softball Team",
                             description:  "Spring Training Equipment Fundraiser",

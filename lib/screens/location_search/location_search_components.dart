@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../res/assets.dart';
-import '../../res/colors.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/text_views.dart';
 
@@ -15,7 +15,7 @@ class LocationSearchComponents {
       children: [
         SizedBox(
             width: getWidth() * 0.6,
-            child: TextView.bold15Text(cityName ?? "", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, lines: 1)),
+            child: TextView.headerWithBlurRadius(cityName ?? "", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, lines: 1, fontSize: sizes.fontSize12)),
         RichText(
           text: TextSpan(
               text: distance ?? "",

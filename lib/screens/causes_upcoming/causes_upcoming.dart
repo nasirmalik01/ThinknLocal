@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../res/colors.dart';
+import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 
@@ -50,7 +51,7 @@ class _CausesUpcomingState extends State<CausesUpcoming> {
                       physics: const ScrollPhysics(),
                       itemCount: 13,
                       itemBuilder: (context, index) {
-                        return CommonWidgets.getUpcomingCausesList(
+                        return UpcomingCauses(
                             image:  "",
                             headerText: "Chino Hills High Softball Team",
                             description:  "Spring Training Equipment Fundraiser",

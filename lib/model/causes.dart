@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 
-class FeaturedCauses{
-  String backgroundImage;
-  String title;
-  String icon;
-  String collectedAmount;
-  String totalAmount;
-  String endDate;
+class Causes{
+  String? backgroundImage;
+  String? title;
+  String? detail;
+  String? icon;
+  String? collectedAmount;
+  String? totalAmount;
+  String? date;
+  String? endDate;
+  List<Color>? colors;
+  String? mainAddress;
+  String? streetAddress;
+  String? phoneNumber;
+  String? backAmount;
+  double? amount;
 
-  FeaturedCauses({required this.backgroundImage, required this.title, required this.icon, required this.collectedAmount, required this.totalAmount, required this.endDate});
-}
-
-class RecentlyStarted{
-  String backgroundImage;
-  String title;
-  List<Color> colors;
-
-  RecentlyStarted({required this.backgroundImage, required this.title, required this.colors});
+  Causes({this.backgroundImage, this.title, this.detail, this.icon, this.collectedAmount, this.date, this.endDate, this.colors, this.mainAddress, this.streetAddress, this.phoneNumber, this.totalAmount, this.backAmount, this.amount});
 }

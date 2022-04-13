@@ -27,8 +27,11 @@ class Assets {
   static const String dummyRestaurantShortLogo = "assets/png/dummyRestaurantShortLogo.png";
   static const String infectionCause = "assets/png/infection-cause.png";
   static const String scannerIcon = "assets/png/scanner.png";
-  static const String dummyFeatured = "assets/png/dummy_featured.png";
-  static const String dummyFeaturedShort = "assets/png/dummy_featured_short.png";
+  static const String causesDetailBgImage = 'assets/png/causes_detail_bg.png';
+  static const String featuredSponsoredIcon1 = "assets/png/featured_sponsored_icon_1.png";
+  static const String featuredSponsoredIcon2 = "assets/png/featured_sponsored_icon_2.png";
+  static const String featuredSponsorsBg1 = "assets/png/featured_sponsored_bg_1.png";
+  static const String featuredSponsorsBg2 = "assets/png/featured_sponsored_bg_2.png";
   static const String dummyNearBy = "assets/png/dummyNearBy.png";
   static const String successIcon = "assets/png/successIcon.png";
   static const String uploadIcon = "assets/png/uploadIcon.png";
@@ -42,18 +45,15 @@ class Assets {
   static const String causesDetailFood2 = "assets/png/food2.png";
   static const String causesDetailFood3 = "assets/png/food3.png";
   static const String vectorIcon = "assets/png/vector.png";
-
+  static const String firstOnBoardingPageIcon = "assets/png/onBoarding1.png";
+  static const String secondOnBoardingPageIcon = "assets/png/onBoarding2.png";
+  static const String lastOnBoardingPageIcon = "assets/png/onBoarding3.png";
 
   // fonts
   static const String poppinsRegular = "Poppins-Regular";
   static const String poppinsMedium = "Poppins-Medium";
   static const String poppinsSemiBold = "Poppins-SemiBold";
 
-
-
   static const String apiLoading = "assets/json/blueSimple.json";
-  static const String onBoarding1 = "assets/png/onBoarding1.png";
-  static const String onBoarding2 = "assets/png/onBoarding2.png";
-  static const String onBoarding3 = "assets/png/onBoarding3.png";
 
 }

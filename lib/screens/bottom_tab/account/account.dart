@@ -5,19 +5,19 @@ import 'package:flutter_app/screens/edit_account/edit_account.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
-class Account extends StatefulWidget {
-  const Account({Key? key}) : super(key: key);
+class AccountScreen extends StatefulWidget {
+  const AccountScreen({Key? key}) : super(key: key);
 
   @override
-  _AccountState createState() => _AccountState();
+  _AccountScreenState createState() => _AccountScreenState();
 }
 
-class _AccountState extends State<Account> {
+class _AccountScreenState extends State<AccountScreen> {
   final AccountComponents _accountComponents = AccountComponents();
   bool _notificationBoolean = false;
 
@@ -81,14 +81,14 @@ class _AccountState extends State<Account> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
               ),
               child: Align(
                 alignment: Alignment.bottomCenter,
-                  child: TextView.getMediumText18("Hello,", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
+                  child: TextView.title("Hello,", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
@@ -110,7 +110,7 @@ class _AccountState extends State<Account> {
                   SizedBox(height: getHeight() * 0.02),
                   Align(
                     alignment: Alignment.centerLeft,
-                      child: TextView.getMediumText15("Account Settings", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
+                      child: TextView.titleWithDecoration("Account Settings", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
                   SizedBox(height: sizes.height * 0.03),
                   Column(
                     children: [
@@ -132,10 +132,10 @@ class _AccountState extends State<Account> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextView.getMediumText15("Push Notifications", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                                    TextView.titleWithDecoration("Push Notifications", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
                                     SizedBox(
                                         width: sizes.width * 0.45,
-                                        child: TextView.regular11Text("Enable push notifications lorem ipsum", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
+                                        child: TextView.caption("Enable push notifications lorem ipsum", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
                                   ],
                                 ),
                                 SizedBox(width: sizes.width * 0.1),
@@ -165,10 +165,10 @@ class _AccountState extends State<Account> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextView.getMediumText15("Emails", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                                    TextView.titleWithDecoration("Emails", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
                                     SizedBox(
                                         width: sizes.width * 0.45,
-                                        child: TextView.regular11Text("Allow system emails for causes lorem ipsum", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
+                                        child: TextView.caption("Allow system emails for causes lorem ipsum", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
                                   ],
                                 ),
                                 SizedBox(width: sizes.width * 0.1),
@@ -198,10 +198,10 @@ class _AccountState extends State<Account> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextView.getMediumText15("Location Services", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                                    TextView.titleWithDecoration("Location Services", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
                                     SizedBox(
                                         width: sizes.width * 0.45,
-                                        child: TextView.regular11Text("Allow location services while the app is running", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
+                                        child: TextView.caption("Allow location services while the app is running", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
                                   ],
                                 ),
                                 SizedBox(width: sizes.width * 0.1),
@@ -231,10 +231,10 @@ class _AccountState extends State<Account> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextView.getMediumText15("Other Option", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                                    TextView.titleWithDecoration("Other Option", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
                                     SizedBox(
                                         width: sizes.width * 0.45,
-                                        child: TextView.regular11Text("Other option description related to something", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
+                                        child: TextView.caption("Other option description related to something", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
                                   ],
                                 ),
                                 SizedBox(width: sizes.width * 0.1),
@@ -264,10 +264,10 @@ class _AccountState extends State<Account> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    TextView.getMediumText15("Other Option 2", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                                    TextView.titleWithDecoration("Other Option 2", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
                                     SizedBox(
                                         width: sizes.width * 0.45,
-                                        child: TextView.regular11Text("Other option description related to something", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
+                                        child: TextView.caption("Other option description related to something", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
                                   ],
                                 ),
                                 SizedBox(width: sizes.width * 0.1),

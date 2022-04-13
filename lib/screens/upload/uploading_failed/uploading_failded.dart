@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/upload/uploading_success/uploading_success.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
@@ -39,7 +39,7 @@ class _UploadingFailedState extends State<UploadingFailed> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
@@ -52,7 +52,7 @@ class _UploadingFailedState extends State<UploadingFailed> {
                   SizedBox(height: getHeight() * 0.1),
                   Image.asset(Assets.uploadIconOrange,),
                   SizedBox(height: getHeight() * 0.01),
-                  TextView.bold35Text("Upload Failed", color: AppColors.orangeColor),
+                  TextView.header("Upload Failed", color: AppColors.orangeColor, fontSize: sizes.fontSize35),
                   SizedBox(height: getHeight() * 0.04),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: sizes.width * 0.03),
@@ -68,7 +68,7 @@ class _UploadingFailedState extends State<UploadingFailed> {
                   SizedBox(height: getHeight() * 0.04),
                   SizedBox(
                       width: getWidth() * 0.8,
-                      child: TextView.getText20(
+                      child: TextView.subTitle(
                           "Something went wrong, please try again",
                           color: AppColors.darkGrey,
                           lines: 2,

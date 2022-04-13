@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import '../../../res/colors.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
@@ -41,7 +41,7 @@ class _ScanState extends State<Scan> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        AppColors.gradientColor1,
+                        AppColors.lightGreenColor,
                         AppColors.pureWhiteColor,
                       ],
                     ),
@@ -51,7 +51,7 @@ class _ScanState extends State<Scan> {
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
                     children: [
-                      TextView.getMediumText15("Hello Scan", color: AppColors.greenColor),
+                      TextView.titleWithDecoration("Hello Scan", color: AppColors.greenColor),
                     ],
                   ),
                 ),

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:sizer/sizer.dart';
-import '../../res/assets.dart';
-import '../../res/colors.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
@@ -18,6 +18,7 @@ class OnBoardingPageComponents {
     bool isFirstPage = false,
     String? buttonText
   }) {
+
     return Container(
       key: const Key('onBoardingPageSettingWidget'),
       height: sizes.height,
@@ -42,15 +43,15 @@ class OnBoardingPageComponents {
             child: Column(
               children: [
                 SizedBox(height: isFirstPage ? 2.h : 0,),
-                TextView.getText27(heading, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium),
+                TextView.subTitle(heading, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, isSetFontWeight: false, fontSize: 21.09.sp),
                 Image(
                   image: AssetImage(image),
                   fit: BoxFit.fill,
                   height: 32.h,
                 ),
-                TextView.getMediumText18(subHeading, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                TextView.title(subHeading, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
                 SizedBox(height: getHeight() * 0.02),
-                TextView.getMediumText15(description, color: AppColors.blackColor, textAlign: TextAlign.center, fontFamily: Assets.poppinsRegular),
+                TextView.titleWithDecoration(description, color: AppColors.blackColor, textAlign: TextAlign.center, fontFamily: Assets.poppinsRegular),
                 SizedBox(height: getHeight() * 0.06),
                 isOnBoarding3 ?
                 Padding(

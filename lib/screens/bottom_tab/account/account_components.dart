@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/text_views.dart';
 
@@ -21,8 +21,8 @@ class AccountComponents {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextView.bold12Text("Help", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
-                  TextView.bold12Text("Sign out", color: AppColors.orangeColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                  TextView.headerWithBlurRadius("Help", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                  TextView.headerWithBlurRadius("Sign out", color: AppColors.orangeColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
                 ],
               ),
               Container(
@@ -44,9 +44,9 @@ class AccountComponents {
               child: Column(
                 children: [
                   SizedBox(height: getHeight() * 0.01),
-                  TextView.bold25Text(name, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium),
+                  TextView.header(name, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize25),
                   SizedBox(height: getHeight() * 0.008),
-                  TextView.bold12Text(email, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
+                  TextView.headerWithBlurRadius(email, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.01),
                   GestureDetector(
                     onTap: () => onTapEdit!(),
@@ -55,7 +55,7 @@ class AccountComponents {
                       children: [
                         const Icon(Icons.edit, size: 15, color: AppColors.greenColor),
                         SizedBox(width: sizes.width * 0.015),
-                        TextView.bold12Text("Edit Account Info", color: AppColors.greenColor, textDecoration: TextDecoration.underline),
+                        TextView.headerWithBlurRadius("Edit Account Info", color: AppColors.greenColor, textDecoration: TextDecoration.underline),
                       ],
                     ),
                   ),
@@ -72,7 +72,7 @@ class AccountComponents {
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.greenColor,
                     ),
-                  child: Center(child: TextView.bold30Text(nameShort, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsSemiBold)),
+                  child: Center(child: TextView.header(nameShort, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsSemiBold)),
               ),
                 ],
               )
@@ -99,8 +99,8 @@ class AccountComponents {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextView.getMediumText15(title, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium),
-              TextView.regular11Text(description, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular)
+              TextView.titleWithDecoration(title, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium),
+              TextView.caption(description, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular)
             ],
           ),
 

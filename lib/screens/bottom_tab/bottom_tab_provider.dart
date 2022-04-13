@@ -1,7 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 // import 'account/account.dart';
-// import 'businesses/businesses.dart';
-// import 'causes/causes.dart';
+// import 'businesses/businesses_screen.dart';
+// import 'causes/causes_screen.dart';
 // import 'notifications/notifications.dart';
 //
 // class BottomTabProvider extends ChangeNotifier{

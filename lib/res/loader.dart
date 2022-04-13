@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:lottie/lottie.dart';
 
-import 'assets.dart';
+import '../constants/assets.dart';
 
 class Loader {
     showLoader({

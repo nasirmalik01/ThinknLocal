@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/password/reset_password/reset_password.dart';
 import 'package:flutter_app/screens/sign_up/sign_up.dart';
-import '../../res/assets.dart';
-import '../../res/colors.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
 import '../bottom_tab/bottom_tab_new.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  _SignInState createState() => _SignInState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _SignInState extends State<SignIn> {
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController? emailController;
   TextEditingController? passwordController;
 
@@ -50,7 +50,7 @@ class _SignInState extends State<SignIn> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      AppColors.gradientColor1,
+                      AppColors.lightGreenColor,
                       AppColors.pureWhiteColor,
                     ],
                   ),
@@ -82,13 +82,13 @@ class _SignInState extends State<SignIn> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            TextView.getMediumText16("Forgot password? ", Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
+                            TextView.titleWithBlurRadius("Forgot password? ", Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (_) => const ResetPassword()));
                               },
-                                child: TextView.getMediumText16("Reset it", Assets.poppinsMedium, color: AppColors.greenColor, lines: 1)),
+                                child: TextView.titleWithBlurRadius("Reset it", Assets.poppinsMedium, color: AppColors.greenColor, lines: 1)),
 
                           ],
                         ),
@@ -114,7 +114,7 @@ class _SignInState extends State<SignIn> {
                               ),
                             ),
                             SizedBox(width: getWidth() * 0.05),
-                            TextView.getMediumText15("Or continue with", color: AppColors.lightBlack),
+                            TextView.titleWithDecoration("Or continue with", color: AppColors.lightBlack),
                             SizedBox(width: getWidth() * 0.05),
                             SizedBox(
                               width: sizes.width * 0.2,
@@ -148,13 +148,13 @@ class _SignInState extends State<SignIn> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            TextView.getMediumText15("Don't have an account? ", fontFamily: Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
+                            TextView.titleWithDecoration("Don't have an account? ", fontFamily: Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(context,
-                                    MaterialPageRoute(builder: (_) => const SignUp()));
+                                    MaterialPageRoute(builder: (_) => const SignUpScreen()));
                               },
-                                child: TextView.getMediumText15("Register", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1)),
+                                child: TextView.titleWithDecoration("Register", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1)),
 
                           ],
                         ),

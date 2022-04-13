@@ -20,6 +20,7 @@ class AppSizes {
   late double fontSize14;
   late double fontSize15;
   late double fontSize16;
+  late double fontSize17;
   late double fontSize18;
   late double fontSize20;
 
@@ -54,8 +55,7 @@ class AppSizes {
     width = _screenSize.shortestSide;
     height = _screenSize.longestSide;
     isPhone = _screenSize.shortestSide < 600;
-    fontRatio =
-    (isPhone && _screenSize.width <= 360) ? _screenSize.width / 360 : 1.0;
+    fontRatio = (isPhone && _screenSize.width <= 360) ? _screenSize.width / 360 : 1.0;
     widthRatio = isPhone ? _screenSize.width / 360 : _screenSize.width / 900;
     heightRatio = isPhone ? _screenSize.height / 720 : _screenSize.height / 1200;
 
@@ -67,6 +67,7 @@ class AppSizes {
     fontSize14 = 14.0 * fontRatio;
     fontSize15 = 15.0 * fontRatio;
     fontSize16 = 16.0 * fontRatio;
+    fontSize17 = 17.0 * fontRatio;
     fontSize18 = 18.0 * fontRatio;
     fontSize20 = 20.0 * fontRatio;
 

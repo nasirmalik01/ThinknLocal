@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app/screens/on_boarding_page/on_boarding_page_components.dart';
-import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../common/utils.dart';
-import '../../res/assets.dart';
-import '../../res/colors.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 import '../../res/res.dart';
-import '../../res/strings.dart';
-import '../../widgets/text_views.dart';
+import '../../constants/strings.dart';
 import '../bottom_tab/bottom_tab_new.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -52,14 +49,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             onBoardingPageComponents.onBoardingPageDesign(
                 isFirstPage: true,
                 heading: "Welcome!",
-                image: Assets.onBoarding3,
+                image: Assets.lastOnBoardingPageIcon,
                 subHeading: "Find a great cause!",
                 description: "Search for that great\n fundraiser you'd like to\n support.",
                 isOnBoarding3: false
             ),
             onBoardingPageComponents.onBoardingPageDesign(
                 heading: "",
-                image: Assets.onBoarding2,
+                image: Assets.secondOnBoardingPageIcon,
                 subHeading: "Shop at participating business",
                 description: "Try new restaurants, visit the\n quaint ${"Mom & Pop"} &"
                     " Support\n local businesses while you help\n fund a worthy cause!",
@@ -67,7 +64,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             ),
             onBoardingPageComponents.onBoardingPageDesign(
                 heading: "",
-                image: Assets.onBoarding1,
+                image: Assets.firstOnBoardingPageIcon,
                 subHeading: "Snap a photo of your receipt",
                 description: "Search for that great fundraiser\n you'd like to support.",
                 isOnBoarding3: true,

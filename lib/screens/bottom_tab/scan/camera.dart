@@ -2,8 +2,8 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/about_visit/about_visit.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../bottom_tab_new.dart';
 import 'image_preview_screen.dart';
@@ -193,7 +193,7 @@ class _CameraScreenState extends State<CameraScreen> {
                     Navigator.pushAndRemoveUntil(context,
                         MaterialPageRoute (builder: (_) => BottomTabNew(pageIndex: 0)), (route) => false);
                   },
-                  child: TextView.getMediumText18("Cancel", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium))
+                  child: TextView.title("Cancel", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium))
             ],
           )),
     );

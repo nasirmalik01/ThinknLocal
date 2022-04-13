@@ -5,10 +5,10 @@ import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
 import 'package:flutter_app/res/res.dart';
-import '../../res/assets.dart';
-import '../../res/colors.dart';
-import 'businesses/businesses.dart';
-import 'causes/causes.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
+import 'businesses/businesses_screen.dart';
+import 'causes/causes_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 
@@ -36,11 +36,11 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
   List<Widget> _buildScreens() {
     return [
-      Causes(),
-      const Businesses(),
+      CausesScreen(),
+      const BusinessesScreen(),
       const Checking(),
-      const Notifications(),
-      const Account()
+      const NotificationScreen(),
+      const AccountScreen()
     ];
   }
 
@@ -48,7 +48,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: AppColors.gradientColor1, // navigation bar color
+      statusBarColor: AppColors.lightGreenColor, // navigation bar color
       statusBarBrightness: Brightness.dark, // status bar color
     ));
 

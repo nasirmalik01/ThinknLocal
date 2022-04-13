@@ -1,5 +1,6 @@
 import 'dart:async' show Future;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/constants/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceUtils {
@@ -47,13 +48,10 @@ class PreferenceUtils {
 
   static List<Color> getGradient(){
     return [
-      const Color(0xFFB5EDDD),
-      const Color(0xFFFFFFFF),
+      AppColors.lightGreenColor,
+      AppColors.pureWhiteColor,
     ];
   }
-
-
-
 
   static clearPreferences() {
     _prefsInstance?.clear();

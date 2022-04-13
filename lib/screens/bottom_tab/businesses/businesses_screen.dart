@@ -5,22 +5,22 @@ import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import '../../../res/assets.dart';
-import '../../../res/colors.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../cause_search/cause_search.dart';
 import '../../sign_in/sign_in.dart';
 
 
-class Businesses extends StatefulWidget {
-  const Businesses({Key? key}) : super(key: key);
+class BusinessesScreen extends StatefulWidget {
+  const BusinessesScreen({Key? key}) : super(key: key);
 
   @override
-  _BusinessesState createState() => _BusinessesState();
+  _BusinessesScreenState createState() => _BusinessesScreenState();
 }
 
-class _BusinessesState extends State<Businesses> {
+class _BusinessesScreenState extends State<BusinessesScreen> {
   TextEditingController? searchController;
   final BusinessesComponents _businessesComponents = BusinessesComponents();
 
@@ -51,7 +51,7 @@ class _BusinessesState extends State<Businesses> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.gradientColor1,
+                    AppColors.lightGreenColor,
                     AppColors.pureWhiteColor,
                   ],
                 ),
@@ -59,9 +59,8 @@ class _BusinessesState extends State<Businesses> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextView.getMediumText15("Businesses near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
-                  TextView.bold22Text("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsSemiBold,
-                      textDecoration: TextDecoration.underline)
+                  TextView.titleWithDecoration("Businesses near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
+                  TextView.header("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsSemiBold, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize22)
                 ],
               ),
             ),
@@ -154,7 +153,7 @@ class _BusinessesState extends State<Businesses> {
                         onPressFavoriteIcon: () {
                           pushNewScreen(
                             context,
-                            screen: const SignIn(),
+                            screen: const LoginScreen(),
                             withNavBar: false,
                             pageTransitionAnimation: PageTransitionAnimation.cupertino,
                           );
@@ -166,7 +165,7 @@ class _BusinessesState extends State<Businesses> {
                 SizedBox(height: getHeight() * 0.045),
                 Padding(
                   padding: EdgeInsets.only(left: sizes.width * 0.06),
-                  child: TextView.getMediumText15("Recently Added", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                  child: TextView.titleWithDecoration("Recently Added", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
                 ),
                 SizedBox(height: getHeight() * 0.018),
                 SizedBox(
@@ -192,8 +191,8 @@ class _BusinessesState extends State<Businesses> {
                   child: Column(
                     children: [
                       CommonWidgets.getTextWithSeeAll(
-                          text1: "Nearby",
-                          text2: "See All",
+                          leadingText: "Nearby",
+                          trailingText: "See All",
                           onPressSeeAllButton: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (_) => const BusinessesNearBy()));
