@@ -5,9 +5,6 @@ List<Causes> causesDetailFoodList = [
   Causes(backgroundImage: Assets.causesDetailFood1, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791", backAmount: '50%'),
   Causes(backgroundImage: Assets.causesDetailFood2, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791", backAmount: '25\$'),
   Causes(backgroundImage: Assets.causesDetailFood3, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791", backAmount: '50%'),
-  Causes(backgroundImage: Assets.causesDetailFood3, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791", backAmount: '50%'),
-  Causes(backgroundImage: Assets.causesDetailFood3, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791", backAmount: '50%'),
-  Causes(backgroundImage: Assets.causesDetailFood3, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791", backAmount: '50%'),
 ];
 
 List<Causes> featuredSponsorsList = [
@@ -28,12 +25,6 @@ List<Causes> updateFundRaiserList = [
 ];
 
 List<Causes> recentContributionList = [
-  Causes(title: 'Jack M.', amount: 18.34),
-  Causes(title: 'Ashley P.', amount: 18.34),
-  Causes(title: 'Marcus D.', amount: 18.34),
-  Causes(title: 'Jack M.', amount: 18.34),
-  Causes(title: 'Ashley P.', amount: 18.34),
-  Causes(title: 'Marcus D.', amount: 18.34),
   Causes(title: 'Jack M.', amount: 18.34),
   Causes(title: 'Ashley P.', amount: 18.34),
   Causes(title: 'Marcus D.', amount: 18.34),

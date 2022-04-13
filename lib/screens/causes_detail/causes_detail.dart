@@ -47,7 +47,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: sizes.height + sizes.height,
+          height: sizes.height + sizes.height * 0.42,
           width: sizes.width,
           decoration: const BoxDecoration(
             color: Colors.white,
@@ -81,7 +81,6 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                 ),
               ),
               SizedBox(height: sizes.height * 0.04),
-            /// outer tab view overview , update , stats
               Container(
                 height: getHeight()* 0.045,
                 margin: EdgeInsets.symmetric(horizontal: getWidth() * 0.05,),
@@ -211,10 +210,6 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                     }, separatorBuilder: (BuildContext context, int index) {
                                     return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
                                   },),
-                                  /// this is the end container
-                                  Container(
-                                    color: Colors.red,
-                                    height: sizes.height * 0.03 , ),
                                 ],
                               ),
                             ),
