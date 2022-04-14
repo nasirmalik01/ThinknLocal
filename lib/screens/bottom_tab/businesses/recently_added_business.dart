@@ -58,7 +58,7 @@ class RecentlyAddedBusiness extends StatelessWidget {
                           fit: BoxFit.fill)
                   ),
                 ),
-                SizedBox(height: getHeight() * 0.02),
+                SizedBox(height: getHeight() * 0.01),
                 TextView.headerWithBlurRadius(name??"", color: AppColors.pureWhiteColor, lines: 1, fontFamily: Assets.poppinsSemiBold, blurRadius: 0),
               ],
             ),

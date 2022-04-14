@@ -40,7 +40,7 @@ class BusinessTabContainer extends StatelessWidget {
       onTap: ()=> onClickBox.call(),
       child: Container(
         width: getWidth() * 0.7,
-        margin: EdgeInsets.only(left: index == 0 ? getWidth()*0.06 : getWidth()*0.03),
+        margin: EdgeInsets.only(left: index == 0 ? getWidth()*0.06 : getWidth()*0.01, right: getWidth()*0.02),
         decoration: BoxDecoration(
             color: AppColors.greenColor,
             borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.02)),
