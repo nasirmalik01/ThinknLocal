@@ -29,7 +29,11 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, Orientation orientation, DeviceType deviceType) {
         return GetMaterialApp(
             builder: (BuildContext context, child) {
-              return child!;
+              final mediaQueryData = MediaQuery.of(context);
+              final scale = mediaQueryData.textScaleFactor.clamp(1.0, 1.07);
+              return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: scale),
+                  child: child!);
             },
             debugShowCheckedModeBanner: false,
             title: 'thinknlocal',

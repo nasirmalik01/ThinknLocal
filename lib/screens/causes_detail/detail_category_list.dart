@@ -56,7 +56,7 @@ class DetailCategoryList extends StatelessWidget {
                       children: [
                         SizedBox(
                             width: getWidth()*0.52,
-                            child: TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16)),
+                            child: TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize15)),
                         Container(
                           padding: EdgeInsets.only(top: 0.5.h, bottom: 0.5.h, left: getWidth() * 0.03, right: getWidth() * 0.03),
                           decoration: BoxDecoration(

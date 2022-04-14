@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:get/get.dart';
 
 class CausesDetailController extends GetxController{
@@ -5,6 +8,14 @@ class CausesDetailController extends GetxController{
   RxBool isThingsToDo = false.obs;
   RxBool isRetail = false.obs;
   RxBool isServices = false.obs;
+  final ScrollController scrollController = ScrollController();
+
+  @override
+  void onInit() {
+    setStatusBarColor(color: Colors.transparent);
+    scrollController.addListener(scrollListener);
+    super.onInit();
+  }
 
   setFoodAndDrinkTab(){
     isFoodAndDrink.value = true;
@@ -32,5 +43,14 @@ class CausesDetailController extends GetxController{
     isThingsToDo.value = false;
     isRetail.value = false;
     isServices.value = true;
+  }
+
+  scrollListener() {
+    if (scrollController.position.isScrollingNotifier.value) {
+      setStatusBarColor(color: Colors.black54, isTextColorLight: true);
+    }
+    if (scrollController.offset <= scrollController.position.minScrollExtent && !scrollController.position.outOfRange) {
+      setStatusBarColor(color: Colors.transparent);
+    }
   }
 }

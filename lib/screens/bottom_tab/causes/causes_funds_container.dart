@@ -15,6 +15,7 @@ class CausesFundContainer extends StatelessWidget {
   final String endDate;
   final Function onClickBox;
   final double completePercentage;
+  final int index;
 
 
   const CausesFundContainer(
@@ -25,7 +26,9 @@ class CausesFundContainer extends StatelessWidget {
       required this.totalAmount,
       required this.endDate,
       required this.onClickBox,
-      required this.completePercentage}) : super(key: key);
+      required this.completePercentage,
+      required this.index
+      }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class CausesFundContainer extends StatelessWidget {
       onTap: ()=> onClickBox.call(),
       child: Container(
         width: getWidth() * 0.7,
-        margin: EdgeInsets.only(right: getWidth()*0.04),
+        margin: EdgeInsets.only(left: index == 0 ? getWidth()*0.06 : getWidth()*0.03),
         decoration: BoxDecoration(
             color: AppColors.greenColor,
             borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.02)),

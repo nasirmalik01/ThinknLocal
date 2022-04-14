@@ -22,12 +22,11 @@ Widget customTabBar({required String title, required bool isSelected, Function()
                   width: sizes.width * 0.005, // This would be the width of the underline
                 ))
             ),
-            child:
-            TextView.titleWithDecoration(
+            child: TextView.titleWithDecoration(
                 title,
                 color: isSelected ? AppColors.blackColor: AppColors.darkGrey,
                 fontFamily: Assets.poppinsMedium,
-                fontSize: isDetail ? sizes.fontSize14 : sizes.fontSize18
+                fontSize: isDetail ? sizes.fontSize14 : sizes.fontSize17
             ),
           ),
         ],

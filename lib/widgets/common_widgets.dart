@@ -402,77 +402,10 @@ class CommonWidgets {
                   width: getWidth() * 0.75,
                   child: TextView.caption(title??"", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1, fontSize: sizes.fontSize16)
               ),
-
             ],
           ),
         ],
       ),
-    );
-  }
-  static Widget businessesDetailListView({
-    String? image,
-    String? headerText,
-    required String? streetAddress,
-    required String? address,
-    required String? phoneNumber,
-    required Function onViewCourse
-  }){
-    bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: ()=> onViewCourse.call(),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: getHeight()*0.085,
-                width: getWidth()*0.18,
-                decoration: BoxDecoration(
-                  //color: AppColors.lightGrey,
-                    image: DecorationImage(
-                        image: isImageUrl ? NetworkImage(image): AssetImage(image) as ImageProvider,
-                        fit: BoxFit.fill),
-                    borderRadius: BorderRadius.circular(getHeight() * 0.01)
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: getWidth()*0.02),
-                width: getWidth()*0.68,
-                // color: AppColors.redDarkColor,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize12),
-                    SizedBox(height: getHeight() * 0.004),
-                    TextView.subHeader(
-                        streetAddress?? "",
-                        color: AppColors.lightBlack,
-                        lines: 1,
-                        fontFamily: Assets.poppinsRegular,
-                        textDecoration: TextDecoration.underline
-                    ),
-                    TextView.subHeader(
-                        address?? "",
-                        color: AppColors.lightBlack,
-                        lines: 1,
-                        fontFamily: Assets.poppinsRegular,
-                        textDecoration: TextDecoration.underline
-                    ),
-                    SizedBox(height: getHeight() * 0.01),
-                    TextView.subHeader(
-                      phoneNumber ?? "",
-                      color: AppColors.lightBlack,
-                      lines: 1,
-                      fontFamily: Assets.poppinsRegular,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
     );
   }
 
@@ -494,7 +427,7 @@ class CommonWidgets {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        TextView.titleWithDecoration(leadingText, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize18),
+        TextView.titleWithDecoration(leadingText, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
         GestureDetector(
             onTap: () => onPressSeeAllButton(),
             child: TextView.headerWithBlurRadius(trailingText, color: AppColors.greenColor,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/bottom_tab/businesses/business_nearby.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -65,7 +66,7 @@ class _BusinessCategoryState extends State<BusinessCategory> {
                       physics: const ScrollPhysics(),
                       itemCount: 13,
                       itemBuilder: (context, index) {
-                        return CommonWidgets.businessesDetailListView(
+                        return BusinessNearBy(
                             image:  Assets.dummyNearBy,
                             headerText: "Andy's Xpress Wash ",
                             onViewCourse: (){

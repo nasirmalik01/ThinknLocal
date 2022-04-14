@@ -48,6 +48,11 @@ class Assets {
   static const String firstOnBoardingPageIcon = "assets/png/onBoarding1.png";
   static const String secondOnBoardingPageIcon = "assets/png/onBoarding2.png";
   static const String lastOnBoardingPageIcon = "assets/png/onBoarding3.png";
+  static const String businessContainerImage2 = "assets/png/business_container_image_2.png";
+  static const String recentlyStartedBusinessBg2 = "assets/png/recently_started_business_bg_2.png";
+  static const String recentlyStartedBusinessBg3 = "assets/png/recently_started_business_bg_3.png";
+  static const String recentlyStartedBusinessIcon2 = "assets/png/recently_started_business_icon_2.png";
+  static const String recentlyStartedBusinessIcon3 = "assets/png/recently_started_business_icon_3.png";
 
   // fonts
   static const String poppinsRegular = "Poppins-Regular";

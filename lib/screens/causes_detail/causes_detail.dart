@@ -42,10 +42,9 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
 
   @override
   Widget build(BuildContext context) {
-    setStatusBarColor(color: Colors.transparent, isTextColorLight: true);
-
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Obx(() => SingleChildScrollView(
+        controller: _causesDetailController.scrollController,
         child: Container(
           height: sizes.height + sizes.height * 0.42,
           width: sizes.width,
@@ -58,26 +57,26 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
               SizedBox(
                 height: sizes.height * 0.35,
                 child: TopImageContainer(
-                  name: "Chino Hills High School Girls Softball Fundraiser",
-                  fullBoxImage: Assets.schoolDummy1,
-                  logoImage: Assets.huskiesLogo,
-                  completePercentage: 0.7,
-                  collectedAmount: "342.5",
-                  totalAmount: "450",
-                  endDate: "Feb 4 - Feb 21",
-                  isFavorite: false,
-                  onClickBox: (){},
-                  onPressBackArrow: () {
-                    Navigator.pop(context);
-                  },
-                  onPressFavoriteIcon: () {
-                    pushNewScreen(
-                      context,
-                      screen: const LoginScreen(),
-                      withNavBar: false,
-                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                    );
-                  }
+                    name: "Chino Hills High School Girls Softball Fundraiser",
+                    fullBoxImage: Assets.schoolDummy1,
+                    logoImage: Assets.huskiesLogo,
+                    completePercentage: 0.7,
+                    collectedAmount: "342.5",
+                    totalAmount: "450",
+                    endDate: "Feb 4 - Feb 21",
+                    isFavorite: false,
+                    onClickBox: (){},
+                    onPressBackArrow: () {
+                      Navigator.pop(context);
+                    },
+                    onPressFavoriteIcon: () {
+                      pushNewScreen(
+                        context,
+                        screen: const LoginScreen(),
+                        withNavBar: false,
+                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                      );
+                    }
                 ),
               ),
               SizedBox(height: sizes.height * 0.04),
@@ -100,9 +99,9 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   indicatorSize: TabBarIndicatorSize.tab,
                   labelColor: AppColors.pureWhiteColor,
                   labelStyle: TextStyle(
-                      fontSize: sizes.fontRatio * 13,
-                      fontFamily: Assets.poppinsMedium,
-                      fontWeight: FontWeight.w500,
+                    fontSize: sizes.fontRatio * 13,
+                    fontFamily: Assets.poppinsMedium,
+                    fontWeight: FontWeight.w500,
                   ),
                   unselectedLabelColor: AppColors.darkGrey,
                   unselectedLabelStyle: TextStyle(
@@ -125,13 +124,13 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                   ],
                 ),
               ),
-             ///parent tabview
+              ///parent tabview
               Flexible(
                 ///this is the tab-bar view
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                   /// 1st page
+                    /// 1st page
                     ListView(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -176,8 +175,8 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                             ),
                             ///end of FeaturedSponsors
                             SizedBox(height: sizes.height * 0.04),
-                           ///child tabview => Food & drink
-                            Obx(() => Padding(
+                            ///child tabview => Food & drink
+                            Padding(
                               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                               child: Column(
                                 children: [
@@ -213,13 +212,11 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                 ],
                               ),
                             ),
-                            )
-
                           ],
                         ),
                       ],
                     ),
-                   ///2nd page
+                    ///2nd page
                     ListView(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -249,7 +246,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                         ),
                       ],
                     ),
-                   /// 3rd page
+                    /// 3rd page
                     ListView(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -353,7 +350,8 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
             ],
           ),
         ),
-      ),
+      ),)
+
     );
   }
 

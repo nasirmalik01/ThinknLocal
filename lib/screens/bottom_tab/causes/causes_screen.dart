@@ -15,16 +15,16 @@ import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
-class CausesScreen extends StatelessWidget {
+class CausesScreen extends StatelessWidget{
   final TextEditingController? searchController = TextEditingController();
 
   CausesScreen({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
     final CausesController _causesController = Get.put(CausesController());
     setStatusBarColor(color: PreferenceUtils.getGradient().first);
+
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -35,6 +35,7 @@ class CausesScreen extends StatelessWidget {
           color: Colors.white,
         ),
         child: ListView(
+          controller: _causesController.scrollController,
           children: [
             Container(
               height: getHeight() * 0.12,

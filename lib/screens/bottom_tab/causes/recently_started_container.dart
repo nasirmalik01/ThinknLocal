@@ -8,8 +8,9 @@ class RecentlyStartedContainer extends StatelessWidget {
   final String? name;
   final List<Color> colors;
   final Function onPressFullContainer;
+  final int index;
 
-  const RecentlyStartedContainer({Key? key, this.image, this.name, required this.colors, required this.onPressFullContainer}) : super(key: key);
+  const RecentlyStartedContainer({Key? key, this.image, this.name, required this.colors, required this.onPressFullContainer, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class RecentlyStartedContainer extends StatelessWidget {
       onTap: ()=> onPressFullContainer.call(),
       child: Container(
         width: getWidth() * 0.40,
-        margin: EdgeInsets.only(right: getWidth()*0.04),
+        margin: EdgeInsets.only(left: index == 0 ? getWidth()*0.06 : getWidth()*0.04),
         decoration: BoxDecoration(
             color: AppColors.lightGrey,
             borderRadius: BorderRadius.circular(getHeight() * 0.015),

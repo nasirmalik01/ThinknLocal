@@ -3,7 +3,7 @@ import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:get/get.dart';
 
-class CausesController extends GetxController{
+class BusinessesController extends GetxController{
   RxBool isFeatured = true.obs;
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
