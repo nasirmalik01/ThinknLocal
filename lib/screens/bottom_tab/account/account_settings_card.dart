@@ -4,6 +4,7 @@ import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:sizer/sizer.dart';
 
 class AccountSettingCard extends StatelessWidget {
   final String? title;
@@ -11,8 +12,9 @@ class AccountSettingCard extends StatelessWidget {
   final String? leadingIcon;
   final Function(bool value) onChange;
   final bool? switchValue;
+  final bool? isLast;
 
-  const AccountSettingCard({Key? key, this.title, this.subTitle, this.leadingIcon, required this.onChange, this.switchValue}) : super(key: key);
+  const AccountSettingCard({Key? key, this.title, this.subTitle, this.leadingIcon, required this.onChange, this.switchValue, this.isLast = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,9 @@ class AccountSettingCard extends StatelessWidget {
           ),
 
         ),
-        Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
+        isLast! ? SizedBox(
+          height: 3.h,
+        ) : Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
       ],
     );
   }

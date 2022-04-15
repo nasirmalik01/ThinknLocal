@@ -4,10 +4,10 @@ import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account_settings_card.dart';
 import 'package:flutter_app/screens/bottom_tab/account/user_profile_box.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
+import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -17,51 +17,10 @@ class AccountScreen extends StatelessWidget {
   AccountScreen({Key? key}) : super(key: key);
   final AccountController _accountController = Get.put(AccountController());
 
-  // bool _notificationBoolean = false;
-  //
-  // void _onChangeNotifications(bool value) {
-  //   setState(() {
-  //     _notificationBoolean = value;
-  //   });
-  // }
-  //
-  // bool _emailBoolean = false;
-  //
-  // void _onChangeEmail(bool value2) {
-  //   setState(() {
-  //     _emailBoolean = value2;
-  //   });
-  // }
-  //
-  // bool _locationBoolean = false;
-  //
-  // void _onChangeLocation(bool value3) {
-  //   setState(() {
-  //     _locationBoolean = value3;
-  //   });
-  // }
-  //
-  // bool _otherOptionBoolean = false;
-  // void _onChangeOtherOption(bool value4) {
-  //   setState(() {
-  //     _otherOptionBoolean = value4;
-  //   });
-  // }
-  //
-  // bool _otherOptionBoolean2 = false;
-  // void _onChangeOtherOption2(bool value5) {
-  //   setState(() {
-  //     _otherOptionBoolean2 = value5;
-  //   });
-  // }
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
+    setStatusBarColor(color: PreferenceUtils.getGradient().first);
+
     return Scaffold(
       body: Container(
         height: sizes.height,
@@ -112,15 +71,14 @@ class AccountScreen extends StatelessWidget {
                     AccountSettingCard(onChange: (val) => _accountController.changePushNotificationValue(val), title: 'Push Notifications', subTitle: 'Enable push notifications lorem ipsum.', leadingIcon: Assets.bellIcon, switchValue: _accountController.isPushNotifications.value),
                     AccountSettingCard(onChange: (val) => _accountController.changeEmailValue(val), title: 'Emails', subTitle: 'Allow system emails for causes lorem ipsum.', leadingIcon: Assets.mailIcon, switchValue: _accountController.isEmail.value),
                     AccountSettingCard(onChange: (val) => _accountController.changeLocationServicesValue(val), title: 'Location Services', subTitle: 'Allow location services while the app is running.', leadingIcon: Assets.locationIcon, switchValue: _accountController.isLocation.value),
-                    AccountSettingCard(onChange: (val) => _accountController.changeOtherOptionValue(val), title: 'Other Option', subTitle: 'Other option description related to something.', leadingIcon: Assets.locationIcon, switchValue: _accountController.isOtherOption.value),
-                    AccountSettingCard(onChange: (val) => _accountController.changeOtherOption2Value(val), title: 'Other Option 2', subTitle: 'Other option description related to something.', leadingIcon: Assets.locationIcon, switchValue: _accountController.isOtherOption2.value),
+                    AccountSettingCard(onChange: (val) => _accountController.changeOtherOptionValue(val), title: 'Other Option', subTitle: 'Other option description related to something.', leadingIcon: Assets.squareIcon, switchValue: _accountController.isOtherOption.value),
+                    AccountSettingCard(onChange: (val) => _accountController.changeOtherOption2Value(val), title: 'Other Option 2', subTitle: 'Other option description related to something.', leadingIcon: Assets.squareIcon, switchValue: _accountController.isOtherOption2.value, isLast: true,),
                   ],
                   ),
                   )
                 ],
               ),
             ),
-
           ],
         ),
       ),

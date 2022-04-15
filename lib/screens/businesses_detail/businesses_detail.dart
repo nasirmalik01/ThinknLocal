@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/local/dummy_data/businesses.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/businesses_detail/business_detail_top_container.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail_components.dart';
+import 'package:flutter_app/screens/businesses_detail/recently_funded_business.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../../constants/assets.dart';
@@ -148,16 +150,16 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                               child:
                               ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: 5,
+                                itemCount: recentlyFundedBusinessList.length,
                                 itemBuilder: (context, index){
-                                  return _businessesDetailComponents.recentlyFundedContainer(
-                                    name: "Ayala High School Cheer Fundraiser",
-                                    fullImage: "",
-                                    logoImage: "",
+                                  return RecentlyFundedBusiness(
+                                    name: recentlyFundedBusinessList[index].title,
+                                    fullImage: recentlyFundedBusinessList[index].backgroundImage,
+                                    logoImage: recentlyFundedBusinessList[index].icon,
                                     isFavorite: false,
-                                    endDate: "Mar 2nd",
-                                    raisedAmount: "342.5",
-                                    totalAmount: "450",
+                                    endDate: recentlyFundedBusinessList[index].endDate,
+                                    raisedAmount: recentlyFundedBusinessList[index].raisedAmount.toString(),
+                                    totalAmount: recentlyFundedBusinessList[index].totalAmount.toString(),
                                     onPressFullContainer: (){
                                     },
                                   );

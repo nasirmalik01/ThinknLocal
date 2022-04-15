@@ -67,6 +67,7 @@ class Assets {
   static const String sentReceiptIcon3 = "assets/png/send_receipts_3.png";
   static const String sentReceiptIcon4 = "assets/png/send_receipts_4.png";
   static const String sentReceiptIcon5 = "assets/png/send_receipts_5.png";
+  static const String squareIcon = "assets/png/square.png";
 
   // fonts
   static const String poppinsRegular = "Poppins-Regular";

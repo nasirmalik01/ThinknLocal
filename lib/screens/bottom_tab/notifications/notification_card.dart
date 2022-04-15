@@ -37,8 +37,8 @@ class NotificationCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: sizes.width * 0.17,
-                  height: sizes.width * 0.17,
+                  width: sizes.width * 0.16,
+                  height: sizes.width * 0.16,
                   child: Image(
                     image: AssetImage(image!),
                     fit: BoxFit.fill,
@@ -50,7 +50,6 @@ class NotificationCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: sizes.height * 0.01),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
