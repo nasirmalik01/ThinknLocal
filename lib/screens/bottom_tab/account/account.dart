@@ -1,8 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/bottom_tab/account/account_components.dart';
+import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
+import 'package:flutter_app/screens/bottom_tab/account/account_settings_card.dart';
+import 'package:flutter_app/screens/bottom_tab/account/user_profile_box.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 import '../../../constants/assets.dart';
@@ -10,57 +13,52 @@ import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
-class AccountScreen extends StatefulWidget {
-  const AccountScreen({Key? key}) : super(key: key);
+class AccountScreen extends StatelessWidget {
+  AccountScreen({Key? key}) : super(key: key);
+  final AccountController _accountController = Get.put(AccountController());
 
-  @override
-  _AccountScreenState createState() => _AccountScreenState();
-}
-
-class _AccountScreenState extends State<AccountScreen> {
-  final AccountComponents _accountComponents = AccountComponents();
-  bool _notificationBoolean = false;
-
-  void _onChangeNotifications(bool value) {
-    setState(() {
-      _notificationBoolean = value;
-    });
-  }
-
-  bool _emailBoolean = false;
-
-  void _onChangeEmail(bool value2) {
-    setState(() {
-      _emailBoolean = value2;
-    });
-  }
-
-  bool _locationBoolean = false;
-
-  void _onChangeLocation(bool value3) {
-    setState(() {
-      _locationBoolean = value3;
-    });
-  }
-
-  bool _otherOptionBoolean = false;
-  void _onChangeOtherOption(bool value4) {
-    setState(() {
-      _otherOptionBoolean = value4;
-    });
-  }
-
-  bool _otherOptionBoolean2 = false;
-  void _onChangeOtherOption2(bool value5) {
-    setState(() {
-      _otherOptionBoolean2 = value5;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  // bool _notificationBoolean = false;
+  //
+  // void _onChangeNotifications(bool value) {
+  //   setState(() {
+  //     _notificationBoolean = value;
+  //   });
+  // }
+  //
+  // bool _emailBoolean = false;
+  //
+  // void _onChangeEmail(bool value2) {
+  //   setState(() {
+  //     _emailBoolean = value2;
+  //   });
+  // }
+  //
+  // bool _locationBoolean = false;
+  //
+  // void _onChangeLocation(bool value3) {
+  //   setState(() {
+  //     _locationBoolean = value3;
+  //   });
+  // }
+  //
+  // bool _otherOptionBoolean = false;
+  // void _onChangeOtherOption(bool value4) {
+  //   setState(() {
+  //     _otherOptionBoolean = value4;
+  //   });
+  // }
+  //
+  // bool _otherOptionBoolean2 = false;
+  // void _onChangeOtherOption2(bool value5) {
+  //   setState(() {
+  //     _otherOptionBoolean2 = value5;
+  //   });
+  // }
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -76,14 +74,11 @@ class _AccountScreenState extends State<AccountScreen> {
             Container(
               height: getHeight() * 0.1,
               padding: EdgeInsets.only(bottom: sizes.height * 0.02),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    AppColors.lightGreenColor,
-                    AppColors.pureWhiteColor,
-                  ],
+                  colors: PreferenceUtils.getGradient()
                 ),
               ),
               child: Align(
@@ -94,7 +89,7 @@ class _AccountScreenState extends State<AccountScreen> {
               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
               child: Column(
                 children: [
-                  _accountComponents.profileBox(
+                  UserProfileBox(
                       name: "Johnathon Doe",
                       email: "johnathon.doe@gmail.com",
                       nameShort: "JD",
@@ -112,174 +107,15 @@ class _AccountScreenState extends State<AccountScreen> {
                     alignment: Alignment.centerLeft,
                       child: TextView.titleWithDecoration("Account Settings", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
                   SizedBox(height: sizes.height * 0.03),
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: getHeight() * 0.08,
-                        width: getWidth(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(width: sizes.width * 0.02),
-                            SizedBox(
-                                height: getHeight() * 0.04,
-                                width: getWidth() * 0.06,
-                                child: Image.asset(Assets.bellIcon, color: _notificationBoolean? AppColors.greenColor: AppColors.darkGrey,)),
-                            SizedBox(width: sizes.width * 0.05),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextView.titleWithDecoration("Push Notifications", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
-                                    SizedBox(
-                                        width: sizes.width * 0.45,
-                                        child: TextView.caption("Enable push notifications lorem ipsum", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
-                                  ],
-                                ),
-                                SizedBox(width: sizes.width * 0.1),
-                                CupertinoSwitch(activeColor: AppColors.greenColor ,value: _notificationBoolean, onChanged: (bool value) {_onChangeNotifications(value);}),
-                              ],
-                            ),
-                          ],
-                        ),
-
-                      ),
-                      Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
-                      SizedBox(
-                        height: getHeight() * 0.08,
-                        width: getWidth(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(width: sizes.width * 0.02),
-                            SizedBox(
-                                height: getHeight() * 0.04,
-                                width: getWidth() * 0.06,
-                                child: Image.asset(Assets.mailIcon, color: _emailBoolean? AppColors.greenColor: AppColors.darkGrey,)),
-                            SizedBox(width: sizes.width * 0.05),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextView.titleWithDecoration("Emails", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
-                                    SizedBox(
-                                        width: sizes.width * 0.45,
-                                        child: TextView.caption("Allow system emails for causes lorem ipsum", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
-                                  ],
-                                ),
-                                SizedBox(width: sizes.width * 0.1),
-                                CupertinoSwitch(activeColor: AppColors.greenColor ,value: _emailBoolean, onChanged: (bool value) {_onChangeEmail(value);}),
-                              ],
-                            ),
-                          ],
-                        ),
-
-                      ),
-                      Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
-                      SizedBox(
-                        height: getHeight() * 0.08,
-                        width: getWidth(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(width: sizes.width * 0.02),
-                            SizedBox(
-                                height: getHeight() * 0.04,
-                                width: getWidth() * 0.06,
-                                child: Image.asset(Assets.locationIcon, color: _locationBoolean? AppColors.greenColor: AppColors.darkGrey,)),
-                            SizedBox(width: sizes.width * 0.05),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextView.titleWithDecoration("Location Services", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
-                                    SizedBox(
-                                        width: sizes.width * 0.45,
-                                        child: TextView.caption("Allow location services while the app is running", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
-                                  ],
-                                ),
-                                SizedBox(width: sizes.width * 0.1),
-                                CupertinoSwitch(activeColor: AppColors.greenColor ,value: _locationBoolean, onChanged: (bool value) {_onChangeLocation(value);}),
-                              ],
-                            ),
-                          ],
-                        ),
-
-                      ),
-                      Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
-                      SizedBox(
-                        height: getHeight() * 0.08,
-                        width: getWidth(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(width: sizes.width * 0.02),
-                            SizedBox(
-                                height: getHeight() * 0.04,
-                                width: getWidth() * 0.06,
-                                child: Image.asset(Assets.locationIcon, color: _otherOptionBoolean? AppColors.greenColor: AppColors.darkGrey,)),
-                            SizedBox(width: sizes.width * 0.05),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextView.titleWithDecoration("Other Option", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
-                                    SizedBox(
-                                        width: sizes.width * 0.45,
-                                        child: TextView.caption("Other option description related to something", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
-                                  ],
-                                ),
-                                SizedBox(width: sizes.width * 0.1),
-                                CupertinoSwitch(activeColor: AppColors.greenColor ,value: _otherOptionBoolean, onChanged: (bool value) {_onChangeOtherOption(value);}),
-                              ],
-                            ),
-                          ],
-                        ),
-
-                      ),
-                      Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
-                      SizedBox(
-                        height: getHeight() * 0.08,
-                        width: getWidth(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(width: sizes.width * 0.02),
-                            SizedBox(
-                                height: getHeight() * 0.04,
-                                width: getWidth() * 0.06,
-                                child: Image.asset(Assets.locationIcon, color: _otherOptionBoolean2? AppColors.greenColor: AppColors.darkGrey,)),
-                            SizedBox(width: sizes.width * 0.05),
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextView.titleWithDecoration("Other Option 2", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
-                                    SizedBox(
-                                        width: sizes.width * 0.45,
-                                        child: TextView.caption("Other option description related to something", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2))
-                                  ],
-                                ),
-                                SizedBox(width: sizes.width * 0.1),
-                                CupertinoSwitch(activeColor: AppColors.greenColor ,value: _otherOptionBoolean2, onChanged: (bool value) {_onChangeOtherOption2(value);}),
-                              ],
-                            ),
-                          ],
-                        ),
-
-                      ),
-                      SizedBox(height: sizes.height * 0.02),
-                    ],
+                  Obx(() => Column(
+                  children: [
+                    AccountSettingCard(onChange: (val) => _accountController.changePushNotificationValue(val), title: 'Push Notifications', subTitle: 'Enable push notifications lorem ipsum.', leadingIcon: Assets.bellIcon, switchValue: _accountController.isPushNotifications.value),
+                    AccountSettingCard(onChange: (val) => _accountController.changeEmailValue(val), title: 'Emails', subTitle: 'Allow system emails for causes lorem ipsum.', leadingIcon: Assets.mailIcon, switchValue: _accountController.isEmail.value),
+                    AccountSettingCard(onChange: (val) => _accountController.changeLocationServicesValue(val), title: 'Location Services', subTitle: 'Allow location services while the app is running.', leadingIcon: Assets.locationIcon, switchValue: _accountController.isLocation.value),
+                    AccountSettingCard(onChange: (val) => _accountController.changeOtherOptionValue(val), title: 'Other Option', subTitle: 'Other option description related to something.', leadingIcon: Assets.locationIcon, switchValue: _accountController.isOtherOption.value),
+                    AccountSettingCard(onChange: (val) => _accountController.changeOtherOption2Value(val), title: 'Other Option 2', subTitle: 'Other option description related to something.', leadingIcon: Assets.locationIcon, switchValue: _accountController.isOtherOption2.value),
+                  ],
+                  ),
                   )
                 ],
               ),

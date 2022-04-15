@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:get/get.dart';
 

@@ -111,39 +111,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           child: Image.asset(Assets.horizontalLogo),
         ),
       ),
-      // bottomSheet: isHomeChecked ? Container(
-      //   color: AppColors.pureWhiteColor,
-      //   height: getHeight() * 0.2,
-      //   child: Center(
-      //     child: SmoothPageIndicator(
-      //       controller: controller,
-      //       count: 3,
-      //       effect: WormEffect(
-      //           spacing: getWidth() * 0.03,
-      //           dotColor: AppColors.greenColor,
-      //           activeDotColor: AppColors.greenColor,
-      //           dotHeight: 1.4.h,
-      //           dotWidth: 1.4.h,
-      //           paintStyle:  PaintingStyle.stroke,
-      //           strokeWidth: 2
-      //       ),
-      //       onDotClicked: (index) => controller.animateToPage(
-      //           index,
-      //           duration: const Duration(microseconds: 500),
-      //           curve: Curves.easeIn),
-      //     ),
-      //   ),
-      // ): Center(
-      //   child: Container(
-      //     decoration: const BoxDecoration(
-      //       color: AppColors.pureWhiteColor,
-      //     ),
-      //     child: SizedBox(
-      //       height: getHeight() * 0.01,
-      //         width: getWidth() * 0.6,
-      //         child: Image.asset(Assets.horizontalLogo)),
-      //   ),
-      // ),
     );
   }
   void navigateToNextScreen() async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/local/dummy_data/businesses.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_nearby.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_tabs_container.dart';
@@ -59,14 +60,11 @@ class _BusinessesScreenState extends State<BusinessesScreen> {
                   height: getHeight() * 0.12,
                   width: getWidth(),
                   padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: sizes.height * 0.02),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [
-                        AppColors.lightGreenColor,
-                        AppColors.pureWhiteColor,
-                      ],
+                      colors: PreferenceUtils.getGradient()
                     ),
                   ),
                   child: Column(

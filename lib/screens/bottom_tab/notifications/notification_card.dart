@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
-import '../../../constants/assets.dart';
-import '../../../constants/colors.dart';
-import '../../../res/res.dart';
-import '../../../widgets/text_views.dart';
+import 'package:flutter_app/constants/assets.dart';
+import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/res/res.dart';
+import 'package:flutter_app/widgets/text_views.dart';
 
-class NotificationsComponents {
-  Widget notificationCard({
-    @required String? image,
-    @required String? text,
-    @required String? subText,
-    @required String? date,
-    @required Function? onPressNotification
-  }) {
+class NotificationCard extends StatelessWidget {
+  final String? image;
+  final String? text;
+  final String? subText;
+  final String? date;
+  final Function? onPressNotification;
+  final bool isSentReceipts;
 
+
+  const NotificationCard(
+      {Key? key, this.image,
+      this.text,
+      this.subText,
+      this.date,
+      this.onPressNotification,
+      this.isSentReceipts = false
+      }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => onPressNotification!(),
       child: Column(
@@ -23,10 +34,11 @@ class NotificationsComponents {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: sizes.width * 0.16,
-
+                  width: sizes.width * 0.17,
+                  height: sizes.width * 0.17,
                   child: Image(
                     image: AssetImage(image!),
                     fit: BoxFit.fill,
@@ -34,7 +46,7 @@ class NotificationsComponents {
                 ),
                 SizedBox(width: sizes.width * 0.03),
                 SizedBox(
-                  width: sizes.width * 0.67,
+                  width: sizes.width * 0.70,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -48,7 +60,7 @@ class NotificationsComponents {
                         ],
                       ),
                       SizedBox(height: sizes.height * 0.005),
-                      TextView.headerWithBlurRadius(subText, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2),
+                      TextView.headerWithBlurRadius(subText, color: isSentReceipts ? AppColors.greenColor : AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2),
                     ],
                   ),
                 ),

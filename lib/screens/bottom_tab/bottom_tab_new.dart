@@ -40,19 +40,14 @@ class _BottomTabNewState extends State<BottomTabNew> {
       const BusinessesScreen(),
       const Checking(),
       const NotificationScreen(),
-      const AccountScreen()
+      AccountScreen()
     ];
   }
 
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: AppColors.lightGreenColor, // navigation bar color
-      statusBarBrightness: Brightness.dark, // status bar color
-    ));
 
-    // Provider.of<BottomTabProvider>(context, listen: true);
     return PersistentTabView(
       context,
       bottomScreenMargin: getHeight() * 0.09,

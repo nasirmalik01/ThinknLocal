@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import 'package:flutter_app/screens/businesses_detail/business_detail_top_container.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail_components.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -41,7 +42,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
             children: [
               SizedBox(
                 height: sizes.height * 0.32,
-                child: _businessesDetailComponents.getBusinessesDetailImageContainer(
+                child: BusinessDetailTopContainer(
                     name: "Chino Hills High School Girls Softball Fundraiser",
                     fullBoxImage: Assets.dummyRestaurant,
                     logoImage: Assets.dummyRestaurantLogo,

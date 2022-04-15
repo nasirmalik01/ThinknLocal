@@ -2,7 +2,7 @@
 // import 'account/account.dart';
 // import 'businesses/businesses_screen.dart';
 // import 'causes/causes_screen.dart';
-// import 'notifications/notifications.dart';
+// import 'notifications/notification.dart';
 //
 // class BottomTabProvider extends ChangeNotifier{
 //   int currentIndex = 0;
