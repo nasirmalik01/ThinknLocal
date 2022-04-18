@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/sign_in/sign_in.dart';
+import 'package:flutter_app/widgets/text_field.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -71,36 +72,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(height: getHeight() * 0.06),
                       TextView.titleWithDecoration("Create your account to continue!", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1),
                       SizedBox(height: getHeight() * 0.02),
-                      CommonWidgets.textField(
+                      TextFieldWidget(
                           textEditingController: firstNameController,
                           hint: "First Name",
                           textInputType: TextInputType.emailAddress
                       ),
                       SizedBox(height: getHeight() * 0.03),
-                      CommonWidgets.textField(
+                      TextFieldWidget(
                           textEditingController: lastNameController,
                           hint: "Last Name",
                       ),
                       SizedBox(height: getHeight() * 0.03),
-                      CommonWidgets.textField(
+                      TextFieldWidget(
                           textEditingController: emailController,
                           hint: "Email",
                       ),SizedBox(height: getHeight() * 0.03),
-                      CommonWidgets.textField(
+                      TextFieldWidget(
                           textEditingController: passwordController,
                           hint: "Password",
                           obscureText: true
                       ),SizedBox(height: getHeight() * 0.03),
-                      CommonWidgets.textField(
+                      TextFieldWidget(
                           textEditingController: confirmPasswordController,
                           hint: "Confirm Password",
                           obscureText: true
                       ),SizedBox(height: getHeight() * 0.03),
-                      CommonWidgets.textField(
+                      TextFieldWidget(
                           textEditingController: zipCodeController,
                           hint: "Zip Code",
                       ),SizedBox(height: getHeight() * 0.03),
-                      CommonWidgets.textField(
+                      TextFieldWidget(
                           textEditingController: groupCodeController,
                           hint: "Group Code",
                           textColor: AppColors.lightBlue,

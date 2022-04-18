@@ -11,6 +11,7 @@ class BusinessNearBy extends StatelessWidget {
   final String? address;
   final String? phoneNumber;
   final Function onViewCourse;
+  final bool isBusinessCategory;
 
 
   const BusinessNearBy(
@@ -19,7 +20,9 @@ class BusinessNearBy extends StatelessWidget {
       this.streetAddress,
       this.address,
       this.phoneNumber,
-      required this.onViewCourse}) : super(key: key);
+      required this.onViewCourse,
+      this.isBusinessCategory = false
+      }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,21 +52,23 @@ class BusinessNearBy extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize15),
+                    TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: isBusinessCategory ? sizes.fontSize16 : sizes.fontSize15),
                     SizedBox(height: getHeight() * 0.004),
                     TextView.subHeader(
                         streetAddress?? "",
                         color: AppColors.lightBlack,
                         lines: 1,
                         fontFamily: Assets.poppinsRegular,
-                        textDecoration: TextDecoration.underline
+                        textDecoration: TextDecoration.underline,
+                        fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
                     ),
                     TextView.subHeader(
                         address?? "",
                         color: AppColors.lightBlack,
                         lines: 1,
                         fontFamily: Assets.poppinsRegular,
-                        textDecoration: TextDecoration.underline
+                        textDecoration: TextDecoration.underline,
+                        fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
                     ),
                     SizedBox(height: getHeight() * 0.01),
                     TextView.subHeader(
@@ -71,6 +76,7 @@ class BusinessNearBy extends StatelessWidget {
                       color: AppColors.grayColor,
                       lines: 1,
                       fontFamily: Assets.poppinsRegular,
+                        fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
                     ),
                   ],
                 ),

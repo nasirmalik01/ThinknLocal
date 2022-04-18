@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/password/reset_password/reset_password.dart';
 import 'package:flutter_app/screens/sign_up/sign_up.dart';
+import 'package:flutter_app/widgets/text_field.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -67,13 +68,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           fit: BoxFit.fill,
                         ),
                         SizedBox(height: getHeight() * 0.08),
-                        CommonWidgets.textField(
+                        TextFieldWidget(
                             textEditingController: emailController,
                             hint: "Email Address",
                             textInputType: TextInputType.emailAddress
                         ),
                         SizedBox(height: getHeight() * 0.03),
-                        CommonWidgets.textField(
+                        TextFieldWidget(
                             textEditingController: passwordController,
                             hint: "Password",
                             obscureText: true

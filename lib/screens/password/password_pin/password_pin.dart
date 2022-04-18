@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/password/new_password/new_password.dart';
+import 'package:flutter_app/widgets/text_field.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -66,7 +67,7 @@ class _PasswordPinState extends State<PasswordPin> {
                         ],
                       ),
                       SizedBox(height: getHeight() * 0.04),
-                      CommonWidgets.textField(
+                      TextFieldWidget(
                           textEditingController: resetPinController,
                           hint: "Reset Pin",
                           textInputType: TextInputType.emailAddress

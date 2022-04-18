@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/screens/on_boarding_page/on_boarding_page_layout.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../common/utils.dart';
@@ -72,8 +74,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     buttonText: "Get Started!",
                     onPressStartButton: (){
                       PreferenceUtils.setBool(Strings.showHome, true);
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (_) => BottomTabNew(pageIndex: 0)));
+                      Get.toNamed(Routes.bottomNavBarScreen);
                     }
                 ),
               ],

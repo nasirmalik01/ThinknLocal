@@ -6,7 +6,6 @@ import 'package:flutter_app/screens/cause_search/cause_search.dart';
 import 'package:flutter_app/screens/location_search/location_search.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
-import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -23,8 +22,6 @@ class CausesScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final CausesController _causesController = Get.put(CausesController());
-    setStatusBarColor(color: PreferenceUtils.getGradient().first);
-
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

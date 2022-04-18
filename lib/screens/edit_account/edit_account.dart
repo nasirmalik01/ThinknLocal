@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widgets/password_text_field.dart';
+import 'package:flutter_app/widgets/status_bar.dart';
+import 'package:flutter_app/widgets/text_field.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -36,6 +39,8 @@ class _EditAccountState extends State<EditAccount> {
 
   @override
   Widget build(BuildContext context) {
+    setStatusBarColor(color: Colors.transparent);
+
     return Scaffold(
       body: Container(
         height: sizes.height,
@@ -84,45 +89,23 @@ class _EditAccountState extends State<EditAccount> {
                       SizedBox(height: getHeight() * 0.04),
                       TextView.titleWithDecoration("Basic info", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
-                      CommonWidgets.textField(
-                          textEditingController: firstNameController,
-                          hint: "First Name",
-                          textInputType: TextInputType.emailAddress
-                      ),
+                      TextFieldWidget(textEditingController: firstNameController, hint: "First Name", textInputType: TextInputType.emailAddress),
                       SizedBox(height: getHeight() * 0.03),
-                      CommonWidgets.textField(
-                        textEditingController: lastNameController,
-                        hint: "Last Name",
-                      ),
+                      TextFieldWidget(textEditingController: lastNameController, hint: "Last Name",),
                       SizedBox(height: getHeight() * 0.03),
-                      CommonWidgets.textField(
-                        textEditingController: emailController,
-                        hint: "Email",
-                      ),SizedBox(height: getHeight() * 0.02),
+                      TextFieldWidget(textEditingController: emailController, hint: "Email",),
+                      SizedBox(height: getHeight() * 0.03),
                       TextView.titleWithDecoration("Password", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
-                      CommonWidgets.textFieldForPassword(
-                          textEditingController: passwordController,
-                          hint: "Password",
-                          textInputType: TextInputType.emailAddress,
-                          hidePassword: hiddenPassword,
-                          clickIcon: isPasswordIconClicked
-                      ),SizedBox(height: getHeight() * 0.02),
+                      PasswordTextField(textEditingController: passwordController, hint: "Password", textInputType: TextInputType.emailAddress, hidePassword: hiddenPassword, clickIcon: isPasswordIconClicked),
+                      SizedBox(height: getHeight() * 0.03),
                       TextView.titleWithDecoration("Zip Code", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
-                      CommonWidgets.textField(
-                        textEditingController: zipCodeController,
-                        hint: "Zip Code",
-                      ),SizedBox(height: getHeight() * 0.02),
+                      TextFieldWidget(textEditingController: zipCodeController, hint: "Zip Code",),
+                      SizedBox(height: getHeight() * 0.03),
                       TextView.titleWithDecoration("Group Code", color: AppColors.lightBlue, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
-                      CommonWidgets.textField(
-                          textEditingController: groupCodeController,
-                          hint: "Group Code",
-                          textColor: AppColors.lightBlue,
-                          hintTextColor: AppColors.lightBlue,
-                          cursorColor: AppColors.lightBlue
-                      ),
+                      TextFieldWidget(textEditingController: groupCodeController, hint: "Group Code", textColor: AppColors.lightBlue, hintTextColor: AppColors.lightBlue, cursorColor: AppColors.lightBlue),
                       SizedBox(height: getHeight() * 0.04),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,10 +114,10 @@ class _EditAccountState extends State<EditAccount> {
                             Navigator.pop(context);
                           },
                               width: sizes.width * 0.42, height: getHeight() * 0.08,
-                              text: "Cancel,", textColor: AppColors.pureWhiteColor,
+                              text: 'Cancel', textColor: AppColors.pureWhiteColor,
                               btnColor: AppColors.borderColor),
                           CommonWidgets.getButton(onPress: (){}, width: sizes.width * 0.42, height: getHeight() * 0.08,
-                              text: "Update,", textColor: AppColors.pureWhiteColor,
+                              text: 'Update', textColor: AppColors.pureWhiteColor,
                               btnColor: AppColors.greenColor),
                         ],
                       ),

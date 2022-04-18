@@ -1,10 +1,14 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
 import 'package:flutter_app/res/res.dart';
+import 'package:flutter_app/widgets/status_bar.dart';
+import 'package:get/get.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import 'businesses/businesses_screen.dart';
@@ -30,26 +34,27 @@ class _BottomTabNewState extends State<BottomTabNew> {
   void initState() {
     super.initState();
     _controller = PersistentTabController(initialIndex: widget.pageIndex);
-
   }
-
 
   List<Widget> _buildScreens() {
     return [
       CausesScreen(),
-      const BusinessesScreen(),
+      BusinessesScreen(),
       const Checking(),
       const NotificationScreen(),
       AccountScreen()
     ];
   }
 
-
   @override
   Widget build(BuildContext context) {
+    setStatusBarColor(color: Colors.transparent, isTextColorLight: false);
 
     return PersistentTabView(
       context,
+      onItemSelected: (int i){
+         setStatusBarColor(color: Colors.transparent);
+      },
       bottomScreenMargin: getHeight() * 0.09,
       navBarHeight: getHeight() * 0.09,
       controller: _controller,

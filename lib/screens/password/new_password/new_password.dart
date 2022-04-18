@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/password/password_success/password_success.dart';
+import 'package:flutter_app/widgets/password_text_field.dart';
+import 'package:flutter_app/widgets/text_field.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -68,7 +70,7 @@ class _NewPasswordState extends State<NewPassword> {
                           TextView.headerWithBlurRadius("Enter the new password that you want to set for your account.",
                               color: AppColors.blackColor, lines: 2, fontFamily: Assets.poppinsRegular),
                           SizedBox(height: getHeight() * 0.04),
-                          CommonWidgets.textFieldForPassword(
+                          PasswordTextField(
                               textEditingController: passwordController,
                               hint: "Password",
                               textInputType: TextInputType.emailAddress,
@@ -78,7 +80,7 @@ class _NewPasswordState extends State<NewPassword> {
                           SizedBox(height: getHeight() * 0.02),
                           TextView.subTitleWithBlurRadius("Must be at least 8 characters.", color: AppColors.darkGrey),
                           SizedBox(height: getHeight() * 0.04),
-                          CommonWidgets.textField(
+                          TextFieldWidget(
                               textEditingController: confirmPasswordController,
                               hint: "Confirm Password",
                               textInputType: TextInputType.emailAddress

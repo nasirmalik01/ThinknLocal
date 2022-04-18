@@ -1,6 +1,8 @@
 import 'dart:async' show Future;
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/res/res.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceUtils {
@@ -55,5 +57,61 @@ class PreferenceUtils {
 
   static clearPreferences() {
     _prefsInstance?.clear();
+  }
+
+  static List<BarChartGroupData> getGraphData() {
+    return [
+      BarChartGroupData(
+        x: 0,
+        barRods: [
+          BarChartRodData(
+              toY: 12000000000,
+              width: getWidth() * 0.08,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+        ],
+      ),
+      BarChartGroupData(
+        x: 1,
+        barRods: [
+          BarChartRodData(
+              toY: 22000000000,
+              width: getWidth() * 0.08,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+        ],
+      ),
+      BarChartGroupData(
+        x: 2,
+        barRods: [
+          BarChartRodData(
+              toY: 34000000000,
+              width: getWidth() * 0.08,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+
+        ],
+      ),
+      BarChartGroupData(
+        x: 3,
+        barRods: [
+          BarChartRodData(
+              toY: 14000000000,
+              width: getWidth() * 0.08,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+        ],
+      ),
+      BarChartGroupData(
+        x: 4,
+        barRods: [
+          BarChartRodData(
+              toY: 14000000000,
+              width: getWidth() * 0.08,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+        ],
+      ),
+    ];
   }
 }

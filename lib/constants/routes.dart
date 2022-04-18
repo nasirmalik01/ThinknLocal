@@ -1,3 +1,6 @@
+import 'package:flutter_app/screens/bottom_tab/bottom_tab_new.dart';
+import 'package:flutter_app/screens/bottom_tab/businesses/businesses_screen.dart';
+import 'package:flutter_app/screens/bottom_tab/causes/causes_screen.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
@@ -18,6 +21,9 @@ class Routes {
   static const String signUpScreen = '/signUpScreen';
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String editAccountInfoScreen = '/editAccountInfoScreen';
+  static const String bottomNavBarScreen = '/bottomNavBarScreen';
+  static const String causeScreen = '/causeScreen';
+  static const String businessScreen = '/businessScreen';
   static const String causesDetailScreen = '/causesDetailScreen';
   static const String businessDetailScreen = '/businessDetailScreen';
   static const String businessCategoryScreen = '/businessCategoryScreen';
@@ -58,6 +64,18 @@ class Routes {
       GetPage(
         name: editAccountInfoScreen,
         page: () => const EditAccount(),
+      ),
+      GetPage(
+          name: bottomNavBarScreen,
+          page: () => BottomTabNew(pageIndex: 0,),
+      ),
+      GetPage(
+        name: causeScreen,
+        page: () => CausesScreen(),
+      ),
+      GetPage(
+        name: businessScreen,
+        page: () => BusinessesScreen(),
       ),
       GetPage(
         name: causesDetailScreen,

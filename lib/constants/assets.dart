@@ -62,12 +62,15 @@ class Assets {
   static const String pendingReceiptIcon2 = "assets/png/pending_receipt_2.png";
   static const String pendingReceiptIcon3 = "assets/png/pending_receipt_3.png";
   static const String pendingReceiptIcon4 = "assets/png/pending_receipt_4.png";
-  static const String sentReceiptIcon1 = "assets/png/send_receipts_1.png";
-  static const String sentReceiptIcon2 = "assets/png/send_receipts_2.png";
-  static const String sentReceiptIcon3 = "assets/png/send_receipts_3.png";
-  static const String sentReceiptIcon4 = "assets/png/send_receipts_4.png";
-  static const String sentReceiptIcon5 = "assets/png/send_receipts_5.png";
+  static const String sentReceiptIcon1 = "assets/png/sent_receipts_1.png";
+  static const String sentReceiptIcon2 = "assets/png/sent_receipts_2.png";
+  static const String sentReceiptIcon3 = "assets/png/sent_receipts_3.png";
+  static const String sentReceiptIcon4 = "assets/png/sent_receipts_4.png";
+  static const String sentReceiptIcon5 = "assets/png/sent_receipts_5.png";
   static const String squareIcon = "assets/png/square.png";
+  static const String businessCategory1 = "assets/png/business_category_1.png";
+  static const String businessCategory2 = "assets/png/business_category_2.png";
+  static const String businessCategory3 = "assets/png/business_category_3.png";
 
   // fonts
   static const String poppinsRegular = "Poppins-Regular";

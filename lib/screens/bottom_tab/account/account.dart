@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account_settings_card.dart';
 import 'package:flutter_app/screens/bottom_tab/account/user_profile_box.dart';
@@ -19,7 +20,7 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    setStatusBarColor(color: PreferenceUtils.getGradient().first);
+    // setStatusBarColor(color: PreferenceUtils.getGradient().first);
 
     return Scaffold(
       body: Container(

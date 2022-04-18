@@ -7,56 +7,6 @@ import '../res/res.dart';
 
 
 class CommonWidgets {
-  static  Widget textField({
-    TextEditingController ? textEditingController,
-    bool ? obscureText,
-    String?  hint,
-    TextInputType? textInputType,
-    double ? width,
-    String ? icon,
-    Color? borderColor,
-    Color? bgColor,
-    Color? textColor,
-    Color? hintTextColor,
-    Color? cursorColor
-  }){
-    return   Container(
-      height: getHeight() * 0.07,
-      width:  width??sizes.width,
-      decoration: BoxDecoration(
-          color: bgColor?? AppColors.lightGrey,
-          border: Border.all(color: borderColor?? AppColors.lightGrey),
-          borderRadius: BorderRadius.all(Radius.circular(getHeight()*.01))
-      ),
-      child: Center(
-        child: TextField(
-          controller: textEditingController,
-          obscureText:obscureText?? false,
-          cursorHeight: getHeight()*.03,
-          keyboardType: textInputType??TextInputType.text,
-          cursorColor: cursorColor?? AppColors.lightBlack,
-          style: TextStyle(
-            color: textColor ?? AppColors.lightBlack,
-            fontSize: sizes.fontSize15,
-            fontFamily:Assets.poppinsMedium,
-          ),
-          textInputAction: TextInputAction.next,
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(left: getWidth()*.02),
-              hintText: hint??"",
-              alignLabelWithHint: false,
-              hintStyle: TextStyle(
-                color: hintTextColor ?? AppColors.darkGrey,
-                fontSize: sizes.fontSize15,
-                fontFamily:Assets.poppinsMedium,
-              )
-          ),
-        ),
-      ),
-    );
-  }
-
   static Widget getButton({
     double ? width,
     double ? height,
@@ -154,8 +104,8 @@ class CommonWidgets {
       direction: Axis.horizontal,
       allowHalfRating: true,
       itemCount: 5,
-      itemSize: getWidth() * 0.08,
-      itemPadding: EdgeInsets.symmetric(horizontal: sizes.widthRatio * 0),
+      itemSize: getWidth() * 0.1,
+      itemPadding: EdgeInsets.symmetric(horizontal: sizes.widthRatio * 2),
       ratingWidget: RatingWidget(
           full: const Icon(Icons.star, color: Colors.amber),
           half: const Icon(Icons.star_half, color: Colors.amber),
@@ -211,72 +161,6 @@ class CommonWidgets {
                 ),
               );
             }).toList()
-        ),
-      ),
-    );
-  }
-
-  static  Widget textFieldForPassword({
-    TextEditingController ? textEditingController,
-    bool ? obscureText,
-    String?  hint,
-    TextInputType? textInputType,
-    double ? width,
-    String ? icon,
-    Color? borderColor,
-    Color? bgColor,
-    Color? textColor,
-    Color? hintTextColor,
-    Color? cursorColor,
-    required bool hidePassword,
-    required Function? clickIcon,
-  }){
-    return   Container(
-      height: getHeight() * 0.07,
-      width:  width??sizes.width,
-      decoration: BoxDecoration(
-          color: bgColor?? AppColors.lightGrey,
-          border: Border.all(color: borderColor?? AppColors.lightGrey),
-          borderRadius: BorderRadius.all(Radius.circular(getHeight()*.01))
-      ),
-      child: Center(
-        child: TextField(
-          textAlignVertical: TextAlignVertical.center,
-          controller: textEditingController,
-          obscureText: hidePassword,
-          cursorHeight: getHeight()*.03,
-          keyboardType: textInputType??TextInputType.text,
-          cursorColor: cursorColor?? AppColors.lightBlack,
-          style: TextStyle(
-            color: textColor ?? AppColors.lightBlack,
-            fontSize: sizes.fontSize15,
-            fontFamily:Assets.poppinsMedium,
-          ),
-          textInputAction: TextInputAction.next,
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(horizontal: getWidth()*.02),
-              hintText: hint??"",
-              alignLabelWithHint: false,
-              hintStyle: TextStyle(
-                color: hintTextColor ?? AppColors.darkGrey,
-                fontSize: sizes.fontSize15,
-                fontFamily:Assets.poppinsMedium,
-              ),
-            suffixIcon: IconButton(
-              icon: Icon(
-                hidePassword
-                    ? Icons.visibility
-                    : Icons.visibility_off,
-                color: AppColors.darkGrey,
-              ),
-              onPressed: () {
-                if (clickIcon != null) {
-                  clickIcon.call();
-                }
-              },
-            ),
-          ),
         ),
       ),
     );
@@ -367,7 +251,6 @@ class CommonWidgets {
   static Widget getSimpleAppBar({
     String? title,
     required Function onPressBackArrow,
-
   }){
     return Container(
       width: sizes.width,
@@ -375,8 +258,8 @@ class CommonWidgets {
       padding: EdgeInsets.only(
           left: sizes.pagePadding,
           right: sizes.pagePadding,
-          top: getHeight() * 0.07,
-          bottom: getHeight() * 0.025
+          top: getHeight() * 0.05,
+          bottom: getHeight() * 0.03
       ),
       child: Column(
         children: [
@@ -417,7 +300,7 @@ class CommonWidgets {
       children: [
         Image.asset(image!),
         SizedBox(width: getWidth() * 0.05),
-        TextView.headerWithBlurRadius(title ?? "", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium)
+        TextView.headerWithBlurRadius(title ?? "", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize14)
 
       ],
     );

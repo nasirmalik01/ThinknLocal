@@ -6,7 +6,7 @@ import 'package:flutter_app/widgets/text_views.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 
-class TopImageContainer extends StatelessWidget {
+class CausesDetailTopImageContainer extends StatelessWidget {
   final String? fullBoxImage;
   final String? logoImage;
   final String? name;
@@ -20,7 +20,7 @@ class TopImageContainer extends StatelessWidget {
   final Function onPressFavoriteIcon;
 
 
-  const TopImageContainer(
+  const CausesDetailTopImageContainer(
       {Key? key, this.fullBoxImage,
       this.logoImage,
       this.name,
@@ -62,7 +62,8 @@ class TopImageContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: getWidth()*0.01, right: getWidth()*0.01, top: getHeight() * 0.04),
+                  padding: EdgeInsets.only(left: getWidth()*0.01, right: getWidth()*0.01, top: getHeight() * 0.02),
+
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

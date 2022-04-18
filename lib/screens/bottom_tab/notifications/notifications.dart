@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/notification.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notification_card.dart';
 import 'package:flutter_app/widgets/status_bar.dart';
@@ -29,7 +30,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
 
   @override
   Widget build(BuildContext context) {
-    setStatusBarColor(color: PreferenceUtils.getGradient().first);
+    // setStatusBarColor(color: PreferenceUtils.getGradient().first);
 
     return Scaffold(
       body: Container(

@@ -75,7 +75,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                         child: Icon(
                           Icons.arrow_back_ios,
                           color: AppColors.pureWhiteColor,
-                          size: getHeight() * 0.04,
+                          size: getHeight() * 0.03,
                         ),
                       ),
                       Row(
@@ -83,21 +83,22 @@ class BusinessDetailTopContainer extends StatelessWidget {
                           Icon(
                             Icons.save_alt,
                             color: AppColors.pureWhiteColor,
-                            size: getHeight() * 0.04,
+                            size: getHeight() * 0.03,
                           ),
                           SizedBox(width: sizes.width * 0.03),
                           GestureDetector(
                             onTap: () => onPressFavoriteIcon(),
-                            child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.04,):
-                            Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.04,),
+                            child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
+                            Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,),
                           )
                         ],
                       ),
                     ],
                   ),
                 ),
+                const Expanded(child: SizedBox()),
                 Container(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, top: getHeight()*0.09, right: getWidth()*0.03),
+                  padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03),
                   child: SizedBox(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,7 +124,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                                 SizedBox(
                                     width: getWidth() * 0.65,
                                     child:
-                                    TextView.titleWithBlurRadius(name ?? "", Assets.poppinsMedium, color: AppColors.pureWhiteColor,  lines: 1, blurRadius: 5)
+                                    TextView.titleWithBlurRadius(name ?? "", Assets.poppinsMedium, color: AppColors.pureWhiteColor,  lines: 1, blurRadius: 0)
                                 ),
                                 SizedBox(height: getHeight() * 0.001),
                                 SizedBox(
@@ -148,7 +149,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                                         textDecoration: TextDecoration.underline
                                     )
                                 ),
-                                SizedBox(height: getHeight() * 0.001),
+                                SizedBox(height: getHeight() * 0.005),
                                 SizedBox(
                                     width: getWidth() * 0.65,
                                     child:
@@ -171,7 +172,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                 ),
                 //SizedBox(height: getHeight() * 0.01),
                 Padding(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03),
+                  padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03, bottom: getHeight() * 0.025),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

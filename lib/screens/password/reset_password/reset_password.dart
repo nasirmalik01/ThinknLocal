@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/password/password_pin/password_pin.dart';
+import 'package:flutter_app/widgets/text_field.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -65,7 +66,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         ],
                       ),
                       SizedBox(height: getHeight() * 0.04),
-                      CommonWidgets.textField(
+                      TextFieldWidget(
                           textEditingController: emailController,
                           hint: "Email Address",
                           textInputType: TextInputType.emailAddress
