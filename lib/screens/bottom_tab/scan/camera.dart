@@ -80,7 +80,7 @@ class _CameraScreenState extends State<CameraScreen> {
                 ),
                 bottom: BorderSide(
                     color: Colors.black.withOpacity(0.3),
-                    width: getWidth() * 0.4
+                    width: getWidth() * 0.42
                 ),
                 right: BorderSide(
                     color: Colors.black.withOpacity(0.3),
@@ -180,10 +180,9 @@ class _CameraScreenState extends State<CameraScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(
-                  Icons.photo_library,
-                  size: getHeight() * 0.08,
-                  color: AppColors.pureWhiteColor
+              Image(
+                image: const AssetImage(Assets.galleryIcon),
+                height: getHeight() * 0.08,
               ),
               _cameraButton(onClick: () {
                 _takePicture();

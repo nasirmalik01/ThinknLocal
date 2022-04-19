@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/local/dummy_data/about_visit.dart';
+import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../constants/assets.dart';
@@ -17,15 +20,9 @@ class AboutVisit extends StatefulWidget {
 
 class _AboutVisitState extends State<AboutVisit> {
   double getRating = 0.0;
-  String ? _cause;
-  String ? _businessName;
-  List <String> causesList=['Training Equipment','Softball Fundraiser','Girls Water Polo','Cheer Fundraiser'];
-  List <String> businessList=['Chino Hills Pizza','Urban Fish Taco','Yogurt Sweet Parlor','Rich Milano Rice', 'Andy"z Pasta House '];
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  String? _cause;
+  String? _businessName;
+  final AboutVisitController _aboutVisitController = Get.put(AboutVisitController());
 
   void updateCause(String value){
     setState(() {
@@ -50,11 +47,11 @@ class _AboutVisitState extends State<AboutVisit> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: sizes.width * 0.15),
+              padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: sizes.width * 0.2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextView.header("Tell us about your visit!", color: AppColors.greenColor, fontFamily: Assets.poppinsSemiBold, fontSize: sizes.fontSize30),
+                  TextView.header("Tell us about your visit!", color: AppColors.greenColor, fontFamily: Assets.poppinsSemiBold, fontSize: sizes.fontSize27),
                   SizedBox(height: getHeight() * 0.02,),
                   TextView.headerWithBlurRadius("How was your experience?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular, fontSize: sizes.fontSize15,),
                   SizedBox(height: getHeight() * 0.04,),
@@ -98,28 +95,36 @@ class _AboutVisitState extends State<AboutVisit> {
                   SizedBox(height: getHeight() * 0.04),
                   TextView.headerWithBlurRadius("Was this your first time?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.01,),
-                  Row(
+                  Obx(() => Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CommonWidgets.getButton(
-                        onPress: (){},
-                        text: "Yes",
-                        btnColor: AppColors.greenColor,
-                        textColor: AppColors.pureWhiteColor,
-                        width: getWidth() * 0.43,
+                          onPress: (){
+                            if(_aboutVisitController.isVisitFirstTime.value == false) {
+                              _aboutVisitController.changeFirstTimeVisit();
+                            }
+                          },
+                          text: "Yes",
+                          btnColor: _aboutVisitController.isVisitFirstTime.value ? AppColors.greenColor : AppColors.blackColor,
+                          textColor: _aboutVisitController.isVisitFirstTime.value ? AppColors.pureWhiteColor : AppColors.darkGrey,
+                          width: getWidth() * 0.43,
                           height: getHeight() * 0.08
                       ),
                       CommonWidgets.getButton(
-                          onPress: (){},
+                          onPress: (){
+                            if(_aboutVisitController.isVisitFirstTime.value == true) {
+                              _aboutVisitController.changeFirstTimeVisit();
+                            }
+                          },
                           text: "No",
-                          btnColor: AppColors.blackColor,
-                          textColor: AppColors.darkGrey,
+                          btnColor: _aboutVisitController.isVisitFirstTime.value ? AppColors.blackColor : AppColors.greenColor,
+                          textColor: _aboutVisitController.isVisitFirstTime.value ? AppColors.darkGrey : AppColors.pureWhiteColor,
                           width: getWidth() * 0.43,
                           height: getHeight() * 0.08
 
                       ),
                     ],
-                  ),
+                  ),) ,
                   SizedBox(height: getHeight() * 0.04),
                   TextView.headerWithBlurRadius("What cause do you want to support?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.01),

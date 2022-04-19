@@ -65,6 +65,8 @@ class CommonWidgets {
         color: AppColors.pureWhiteColor,
       ),
       child: TextField(
+        onTap: () => onPressSearch(),
+        readOnly: true,
         textAlignVertical: TextAlignVertical.center,
         controller: controller,
         textInputAction: TextInputAction.search,
@@ -179,7 +181,7 @@ class CommonWidgets {
       padding: EdgeInsets.only(
           left: sizes.pagePadding,
           right: sizes.pagePadding,
-          top: getHeight() * 0.07,
+          top: getHeight() * 0.06,
           bottom: getHeight() * 0.025
       ),
       child: Column(
@@ -258,8 +260,8 @@ class CommonWidgets {
       padding: EdgeInsets.only(
           left: sizes.pagePadding,
           right: sizes.pagePadding,
-          top: getHeight() * 0.05,
-          bottom: getHeight() * 0.03
+          top: getHeight() * 0.06,
+          bottom: getHeight() * 0.02
       ),
       child: Column(
         children: [

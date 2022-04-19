@@ -43,7 +43,7 @@ class TextView {
     );
   }
 
-  static Text title(final text, {@required final color, final TextAlign textAlign = TextAlign.start, final fontFamily, final lines}) {
+  static Text title(final text, {@required final color, final TextAlign textAlign = TextAlign.start, final fontFamily, final lines, final fontSize}) {
     return Text(
       text ?? "",
       textAlign: textAlign,
@@ -51,7 +51,7 @@ class TextView {
       maxLines: lines,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
-        fontSize: sizes.fontSize18,
+        fontSize: fontSize ?? sizes.fontSize18,
         fontFamily: fontFamily?? Assets.poppinsRegular,
         color: color,
       ),

@@ -32,8 +32,8 @@ class BusinessListViewLayout extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: getHeight()*0.085,
-                width: getWidth()*0.18,
+                height: getHeight()*0.09,
+                width: getHeight()*0.09,
                 decoration: BoxDecoration(
                   //color: AppColors.lightGrey,
                     image: DecorationImage(
@@ -43,32 +43,32 @@ class BusinessListViewLayout extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(left: getWidth()*0.02),
+                padding: EdgeInsets.only(left: getWidth()*0.04),
                 width: getWidth()*0.68,
                 // color: AppColors.redDarkColor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize12),
+                    TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
                     SizedBox(height: getHeight() * 0.004),
                     TextView.subHeader(
                         streetAddress?? "",
                         color: AppColors.lightBlack,
                         lines: 1,
                         fontFamily: Assets.poppinsRegular,
-                        textDecoration: TextDecoration.underline
+                        textDecoration: TextDecoration.underline,
                     ),
                     TextView.subHeader(
                         address?? "",
                         color: AppColors.lightBlack,
                         lines: 1,
                         fontFamily: Assets.poppinsRegular,
-                        textDecoration: TextDecoration.underline
+                        textDecoration: TextDecoration.underline,
                     ),
                     SizedBox(height: getHeight() * 0.01),
                     TextView.subHeader(
                       phoneNumber ?? "",
-                      color: AppColors.lightBlack,
+                      color: AppColors.grayColor,
                       lines: 1,
                       fontFamily: Assets.poppinsRegular,
                     ),

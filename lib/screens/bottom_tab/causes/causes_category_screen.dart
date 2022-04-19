@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/local/dummy_data/causes.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
-import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:sizer/sizer.dart';
 
@@ -55,8 +53,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 endDate: featuredCausesList[index].endDate!,
                 index: index,
                 onClickBox: () async {
-                  final result = await Navigator.push(context, MaterialPageRoute(builder: (_) => const CausesDetail()));
-                  setStatusBarColor(color: Colors.transparent, isTextColorLight: false);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const CausesDetail()));
                 },
               );
             },

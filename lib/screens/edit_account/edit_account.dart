@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/password_text_field.dart';
-import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
@@ -39,7 +38,6 @@ class _EditAccountState extends State<EditAccount> {
 
   @override
   Widget build(BuildContext context) {
-    setStatusBarColor(color: Colors.transparent);
 
     return Scaffold(
       body: Container(

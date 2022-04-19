@@ -5,60 +5,49 @@ import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 
 
-class CausesUpcoming extends StatefulWidget {
+class CausesUpcoming extends StatelessWidget {
   const CausesUpcoming({Key? key}) : super(key: key);
-
-  @override
-  _CausesUpcomingState createState() => _CausesUpcomingState();
-}
-
-class _CausesUpcomingState extends State<CausesUpcoming> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: sizes.height,
-        width: sizes.width,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Column(
-          children: [
-            CommonWidgets.getSimpleAppBar(
-              title: "Upcoming causes near you",
-                onPressBackArrow: () {
-                Navigator.pop(context);
-              }),
-            Expanded(
-              child: Padding(
+      body: SingleChildScrollView(
+        child: Container(
+          width: sizes.width,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Column(
+            children: [
+              CommonWidgets.getSimpleAppBar(
+                title: "Upcoming causes near you",
+                  onPressBackArrow: () {
+                  Navigator.pop(context);
+                }),
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   children: [
                     ListView.separated(
+                      padding: EdgeInsets.symmetric(vertical: sizes.height*0.02),
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: 13,
+                      itemCount: 10,
                       itemBuilder: (context, index) {
-                        return UpcomingCauses(
-                            image:  "",
-                            headerText: "Chino Hills High Softball Team",
-                            description:  "Spring Training Equipment Fundraiser",
-                            onViewCourse: (){
-                            },
-                            totalAmount: "500",
-                            date: "Mar 25"
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
+                          child: UpcomingCauses(
+                              image:  "",
+                              headerText: "Chino Hills High Softball Team",
+                              description:  "Spring Training Equipment Fundraiser",
+                              onViewCourse: (){
+                              },
+                              totalAmount: "500",
+                              date: "Mar 25"
+                          ),
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {
@@ -72,8 +61,8 @@ class _CausesUpcomingState extends State<CausesUpcoming> {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

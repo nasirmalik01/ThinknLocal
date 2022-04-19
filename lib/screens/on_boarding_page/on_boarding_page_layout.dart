@@ -12,13 +12,13 @@ class OnBoardingPageLayout extends StatelessWidget {
   final String image;
   final String subHeading;
   final String description;
-  bool isOnBoarding3;
-  Function? onPressStartButton;
-  bool isFirstPage;
-  String? buttonText;
+  final bool isOnBoarding3;
+  final Function? onPressStartButton;
+  final bool isFirstPage;
+  final String? buttonText;
 
 
-  OnBoardingPageLayout(
+  const OnBoardingPageLayout(
       {Key? key, required this.heading,
       required this.image,
       required this.subHeading,

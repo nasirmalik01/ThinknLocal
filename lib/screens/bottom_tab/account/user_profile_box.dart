@@ -29,7 +29,7 @@ class UserProfileBox extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: getHeight()*0.036),
               padding: EdgeInsets.symmetric(vertical: sizes.height * 0.03),
-              height: sizes.height * 0.19,
+              height: sizes.height * 0.195,
               width: sizes.width * 0.88,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),

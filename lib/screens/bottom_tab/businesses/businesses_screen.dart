@@ -11,7 +11,6 @@ import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/screens/location_search/location_search.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
-import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -94,7 +93,7 @@ class BusinessesScreen extends StatelessWidget {
                                 hint: "Search for a business",
                                 onPressSearch: () {
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) => const CauseSearch()));
+                                      MaterialPageRoute(builder: (_) => CauseSearch(isBusiness: true,)));
                                 }
                             ),
                             SizedBox(height: getHeight() * 0.03),
@@ -162,8 +161,7 @@ class BusinessesScreen extends StatelessWidget {
                                 index: index,
                                 isFavorite: false,
                                 onClickBox: () async {
-                                  await pushNewScreen(context, screen: const BusinessesDetail(), withNavBar: true);
-                                  setStatusBarColor(color: Colors.transparent, isTextColorLight: false);
+                                   pushNewScreen(context, screen: const BusinessesDetail(), withNavBar: true);
                                 },
                                 onPressFavoriteIcon: () {
                                   pushNewScreen(

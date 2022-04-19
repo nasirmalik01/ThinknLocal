@@ -52,7 +52,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                   ),
                   bottom: BorderSide(
                       color: Colors.black.withOpacity(0.3),
-                      width: getWidth() * 0.4
+                      width: getWidth() * 0.42
                   ),
                   right: BorderSide(
                       color: Colors.black.withOpacity(0.3),

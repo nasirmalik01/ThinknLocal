@@ -49,7 +49,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             child: PageView(
               controller: controller,
               children: [
-                OnBoardingPageLayout(
+                const OnBoardingPageLayout(
                     isFirstPage: true,
                     heading: "Welcome!",
                     image: Assets.lastOnBoardingPageIcon,
@@ -57,7 +57,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     description: "Search for that great\n fundraiser you'd like to\n support.",
                     isOnBoarding3: false
                 ),
-                OnBoardingPageLayout(
+                const OnBoardingPageLayout(
                     heading: "",
                     image: Assets.secondOnBoardingPageIcon,
                     subHeading: "Shop at participating business",

@@ -1,14 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_app/common/utils.dart';
-import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
 import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/widgets/status_bar.dart';
-import 'package:get/get.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import 'businesses/businesses_screen.dart';
@@ -40,7 +35,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
     return [
       CausesScreen(),
       BusinessesScreen(),
-      const Checking(),
+      const InitializeCameraScreen(),
       const NotificationScreen(),
       AccountScreen()
     ];
@@ -48,13 +43,8 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
   @override
   Widget build(BuildContext context) {
-    setStatusBarColor(color: Colors.transparent, isTextColorLight: false);
-
     return PersistentTabView(
       context,
-      onItemSelected: (int i){
-         setStatusBarColor(color: Colors.transparent);
-      },
       bottomScreenMargin: getHeight() * 0.09,
       navBarHeight: getHeight() * 0.09,
       controller: _controller,
@@ -129,14 +119,14 @@ class _BottomTabNewState extends State<BottomTabNew> {
   }
 }
 
-class Checking extends StatefulWidget {
-  const Checking({Key? key}) : super(key: key);
+class InitializeCameraScreen extends StatefulWidget {
+  const InitializeCameraScreen({Key? key}) : super(key: key);
 
   @override
-  State<Checking> createState() => _CheckingState();
+  State<InitializeCameraScreen> createState() => _InitializeCameraScreenState();
 }
 
-class _CheckingState extends State<Checking> {
+class _InitializeCameraScreenState extends State<InitializeCameraScreen> {
   late List<CameraDescription> allCameras;
 
 
@@ -149,8 +139,8 @@ class _CheckingState extends State<Checking> {
   void initState() {
     super.initState();
     initializeCamera();
-
   }
+
 Future<void> initializeCamera() async {
   allCameras = await availableCameras();
   WidgetsBinding.instance!.addPostFrameCallback((_) {

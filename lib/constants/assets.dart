@@ -71,6 +71,7 @@ class Assets {
   static const String businessCategory1 = "assets/png/business_category_1.png";
   static const String businessCategory2 = "assets/png/business_category_2.png";
   static const String businessCategory3 = "assets/png/business_category_3.png";
+  static const String galleryIcon = "assets/png/gallery_icon.png";
 
   // fonts
   static const String poppinsRegular = "Poppins-Regular";

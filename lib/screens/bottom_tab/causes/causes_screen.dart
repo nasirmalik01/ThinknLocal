@@ -32,7 +32,6 @@ class CausesScreen extends StatelessWidget{
           color: Colors.white,
         ),
         child: ListView(
-          controller: _causesController.scrollController,
           children: [
             Container(
               height: getHeight() * 0.12,
@@ -79,7 +78,7 @@ class CausesScreen extends StatelessWidget{
                       hint: "Search for a cause",
                       onPressSearch: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => const CauseSearch()));
+                            MaterialPageRoute(builder: (_) => CauseSearch()));
                       }
                   ),
                 ),

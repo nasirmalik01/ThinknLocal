@@ -8,4 +8,5 @@ List<Businesses> businessCategoryDataList = [
   Businesses(backgroundImage: Assets.businessCategory1, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791",),
   Businesses(backgroundImage: Assets.businessCategory2, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791",),
   Businesses(backgroundImage: Assets.businessCategory3, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791",),
+  Businesses(backgroundImage: Assets.businessCategory2, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791",),
 ];

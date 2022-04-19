@@ -1,65 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/local/dummy_data/business_category.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_list_view_layout.dart';
-import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 
 
-class BusinessesNearBy extends StatefulWidget {
+class BusinessesNearBy extends StatelessWidget {
   const BusinessesNearBy({Key? key}) : super(key: key);
 
-  @override
-  _BusinessesNearByState createState() => _BusinessesNearByState();
-}
-
-class _BusinessesNearByState extends State<BusinessesNearBy> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: sizes.height,
-        width: sizes.width,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Column(
-          children: [
-            CommonWidgets.getSimpleAppBar(
-                title: "Businesses near you",
-                onPressBackArrow: () {
-                  Navigator.pop(context);
-                }),
-            Expanded(
-              child: Padding(
+      body: SingleChildScrollView(
+        child: Container(
+          width: sizes.width,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Column(
+            children: [
+              CommonWidgets.getSimpleAppBar(
+                  title: "Businesses near you",
+                  onPressBackArrow: () {
+                    Navigator.pop(context);
+                  }),
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   children: [
                     ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: 13,
+                      itemCount: businessCategoryDataList.length,
                       itemBuilder: (context, index) {
                         return BusinessListViewLayout(
-                            image:  Assets.dummyNearBy,
-                            headerText: "Andy's Xpress Wash ",
-                            onViewCourse: (){
-                            },
-                            address: "Chino, CA 91710",
-                            streetAddress: "15705 Euclid Ave",
-                            phoneNumber: "908-900-1791"
+                            image:  businessCategoryDataList[index].backgroundImage,
+                            headerText: businessCategoryDataList[index].title,
+                            onViewCourse: (){},
+                            address: businessCategoryDataList[index].mainAddress,
+                            streetAddress:businessCategoryDataList[index].streetAddress,
+                            phoneNumber: businessCategoryDataList[index].phoneNumber
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {
@@ -73,8 +58,8 @@ class _BusinessesNearByState extends State<BusinessesNearBy> {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

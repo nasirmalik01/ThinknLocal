@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/local/dummy_data/business_category.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_nearby.dart';
-import 'package:flutter_app/widgets/status_bar.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -18,21 +17,22 @@ class BusinessCategory extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: Container(
-        height: sizes.height,
-        width: sizes.width,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Column(
-          children: [
-            CommonWidgets.getSimpleAppBar(
-                title: "",
-                onPressBackArrow: () {
-                  Navigator.pop(context);
-                }),
-            Expanded(
-              child: ListView(
+      body: SingleChildScrollView(
+        child: Container(
+          width: sizes.width,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Column(
+            children: [
+              CommonWidgets.getSimpleAppBar(
+                  title: "",
+                  onPressBackArrow: () {
+                    Navigator.pop(context);
+                  }),
+              ListView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: getWidth()*0.06),
@@ -81,8 +81,8 @@ class BusinessCategory extends StatelessWidget {
 
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

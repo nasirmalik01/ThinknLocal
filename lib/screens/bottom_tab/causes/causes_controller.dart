@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_app/common/utils.dart';
-import 'package:flutter_app/widgets/status_bar.dart';
 import 'package:get/get.dart';
 
 class CausesController extends GetxController{
@@ -8,14 +5,7 @@ class CausesController extends GetxController{
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
   RxBool isPast = false.obs;
-  final ScrollController scrollController = ScrollController();
 
-
-  @override
-  void onInit() {
-    scrollController.addListener(scrollListener);
-    super.onInit();
-  }
 
   setFeaturedTab(){
     isFeatured.value = true;
@@ -45,13 +35,4 @@ class CausesController extends GetxController{
     isPast.value = true;
   }
 
-  scrollListener() {
-    if (scrollController.position.isScrollingNotifier.value) {
-      setStatusBarColor(color: Colors.transparent);
-    }
-    if (scrollController.offset <= scrollController.position.minScrollExtent &&
-        !scrollController.position.outOfRange) {
-      setStatusBarColor(color: PreferenceUtils.getGradient().first);
-    }
-  }
 }

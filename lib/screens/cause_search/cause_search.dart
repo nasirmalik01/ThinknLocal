@@ -7,50 +7,37 @@ import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
 
 
-class CauseSearch extends StatefulWidget {
-  const CauseSearch({Key? key}) : super(key: key);
+class CauseSearch extends StatelessWidget {
+  final TextEditingController? searchController = TextEditingController();
+  final bool isBusiness;
 
-  @override
-  _CauseSearchState createState() => _CauseSearchState();
-}
+  CauseSearch({this.isBusiness = false, Key? key}) : super(key: key);
 
-class _CauseSearchState extends State<CauseSearch> {
-  TextEditingController? searchController;
-
-  @override
-  void initState() {
-    super.initState();
-    searchController = TextEditingController();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        height: sizes.height,
-        width: sizes.width,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Column(
-          children: [
-            CommonWidgets.getAppBarWithSearch(
-                title: "",
-                hint: "Search for a cause",
-                textEditingController: searchController,
-                onPressBackArrow: () {
-                  Navigator.pop(context);
-                }),
-            Expanded(
-              child: Padding(
+      body: SingleChildScrollView(
+        child: Container(
+          width: sizes.width,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Column(
+            children: [
+              CommonWidgets.getAppBarWithSearch(
+                  title: "",
+                  hint: 'Search for a ${isBusiness ? 'business' : 'cause'}',
+                  textEditingController: searchController,
+                  onPressBackArrow: () {
+                    Navigator.pop(context);
+                  }),
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   children: [
                     TextView.title("Showing results for",
                         color: AppColors.lightBlack,
@@ -85,8 +72,8 @@ class _CauseSearchState extends State<CauseSearch> {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
