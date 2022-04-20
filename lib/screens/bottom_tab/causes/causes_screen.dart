@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_category_screen.dart';
 import 'package:flutter_app/screens/cause_search/cause_search.dart';
@@ -50,7 +51,11 @@ class CausesScreen extends StatelessWidget{
                   TextView.titleWithDecoration("Showing causes near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
                   Row(
                     children: [
-                      TextView.header("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
+                      GestureDetector(
+                          onTap: (){
+                          Get.toNamed(Routes.locationPermissionScreen);
+                          },
+                          child: TextView.header("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25)),
                       Padding(
                         padding: EdgeInsets.only(left: 2.w, bottom: 0.5.h),
                         child: GestureDetector(

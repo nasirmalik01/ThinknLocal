@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/bottom_tab/bottom_tab_new.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
@@ -95,7 +96,23 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                 ),
               ),
             ),
-            cameraLabel()
+            cameraLabel(),
+            Positioned(
+              top: getHeight()*0.087,
+              right: getWidth()*0.07,
+              child: GestureDetector(
+                onTap: () {
+                  widget.notSaveImage.call();
+                },
+                child: SizedBox(
+                  height: getHeight()*0.05,
+                  width: getHeight()*0.05,
+                  child: const Image(
+                    image: AssetImage(Assets.cancelIcon),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

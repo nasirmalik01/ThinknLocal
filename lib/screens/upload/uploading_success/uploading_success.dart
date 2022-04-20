@@ -49,7 +49,7 @@ class _UploadSuccessState extends State<UploadSuccess> {
               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
               child: Column(
                 children: [
-                  SizedBox(height: getHeight() * 0.08),
+                  SizedBox(height: getHeight() * 0.1),
                   SizedBox(
                     height: getHeight() * 0.2,
                     width: getWidth() * 0.35,

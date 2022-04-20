@@ -72,6 +72,10 @@ class Assets {
   static const String businessCategory2 = "assets/png/business_category_2.png";
   static const String businessCategory3 = "assets/png/business_category_3.png";
   static const String galleryIcon = "assets/png/gallery_icon.png";
+  static const String notificationPermissionIcon = "assets/png/notification_permission.png";
+  static const String locationPermissionIcon = "assets/png/location_permission.png";
+  static const String addIcon = "assets/png/add.png";
+  static const String cancelIcon = "assets/png/cancel.png";
 
   // fonts
   static const String poppinsRegular = "Poppins-Regular";

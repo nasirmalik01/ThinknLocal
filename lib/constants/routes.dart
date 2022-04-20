@@ -6,13 +6,14 @@ import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
+import 'package:flutter_app/screens/location_permission/location_permission_screen.dart';
+import 'package:flutter_app/screens/notification_permission/notification_permission_screen.dart';
 import 'package:flutter_app/screens/on_boarding_page/on_boarding_page.dart';
 import 'package:flutter_app/screens/password/reset_password/reset_password.dart';
 import 'package:flutter_app/screens/sign_in/sign_in.dart';
 import 'package:flutter_app/screens/sign_up/sign_up.dart';
 import 'package:flutter_app/screens/unknown_route.dart';
 import 'package:get/get.dart';
-
 
 class Routes {
   static const String noPageFound = '/noPageFound';
@@ -29,6 +30,8 @@ class Routes {
   static const String businessCategoryScreen = '/businessCategoryScreen';
   static const String seeAllUpcomingCausesScreen = '/seeAllUpcomingCausesScreen';
   static const String seeAllNearbyBusinessesScreen = '/seeAllNearbyBusinessesScreen';
+  static const String locationPermissionScreen = '/locationPermissionScreen';
+  static const String notificationPermissionScreen = '/notificationPermissionScreen';
 
 
   static getUnknownRoute() {
@@ -92,6 +95,14 @@ class Routes {
       GetPage(
         name: seeAllNearbyBusinessesScreen,
         page: () => const BusinessesNearBy(),
+      ),
+      GetPage(
+        name: locationPermissionScreen,
+        page: () => const LocationPermissionScreen(),
+      ),
+      GetPage(
+        name: notificationPermissionScreen,
+        page: () => const NotificationPermissionScreen(),
       ),
     ];
   }

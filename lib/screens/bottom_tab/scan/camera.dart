@@ -93,9 +93,26 @@ class _CameraScreenState extends State<CameraScreen> {
               ),
           ),
         ),
-
         cameraScreenWidgets(),
-        cameraLabelText()
+        cameraLabelText(),
+        Positioned(
+          top: getHeight()*0.087,
+          right: getWidth()*0.07,
+          child: SizedBox(
+            height: getHeight()*0.05,
+            width: getHeight()*0.05,
+            child: GestureDetector(
+              onTap: () {
+                print('Okay');
+                Navigator.pushAndRemoveUntil(context,
+                    MaterialPageRoute (builder: (_) => BottomTabNew(pageIndex: 0)), (route) => false);
+              },
+              child: const Image(
+                image: AssetImage(Assets.cancelIcon),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -155,8 +172,6 @@ class _CameraScreenState extends State<CameraScreen> {
                                 fontFamily: Assets.poppinsRegular,
                               ),
                             ),
-
-
                           ]
                       ),
                     ),
@@ -212,7 +227,7 @@ class _CameraScreenState extends State<CameraScreen> {
           child: Icon(
             Icons.circle,
             color: AppColors.pureWhiteColor,
-            size: getWidth() * 0.18,
+            size: getHeight() * 0.09,
           ),
         ),
       ),

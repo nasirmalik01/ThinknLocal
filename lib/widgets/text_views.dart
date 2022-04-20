@@ -111,13 +111,13 @@ class TextView {
     );
   }
 
-  static Text caption(final text, {@required final color, final TextAlign textAlign = TextAlign.start, final fontFamily, final lines, final fontSize}) {
+  static Text caption(final text, {@required final color, final TextAlign textAlign = TextAlign.start, final fontFamily, final lines, final fontSize, bool isEllipsis = true}) {
     return Text(
       text ?? "",
       textAlign: textAlign,
       softWrap: true,
       maxLines: lines,
-      overflow: TextOverflow.ellipsis,
+      overflow: isEllipsis ? TextOverflow.ellipsis : TextOverflow.visible,
       style: TextStyle(
         fontSize: fontSize ?? sizes.fontSize11,
         fontFamily: fontFamily?? Assets.poppinsRegular,
