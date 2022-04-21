@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/sign_in/sign_in.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/widgets/text_field.dart';
+import 'package:get/get.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -119,8 +120,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           TextView.titleWithDecoration("Already have an account? ", fontFamily: Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) => const LoginScreen()));
+                              Get.toNamed(Routes.loginScreen);
                             },
                               child: TextView.titleWithDecoration("Sign In", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1)),
 

@@ -53,7 +53,7 @@ class CausesScreen extends StatelessWidget{
                     children: [
                       GestureDetector(
                           onTap: (){
-                          Get.toNamed(Routes.locationPermissionScreen);
+                          Get.toNamed(Routes.loginScreen);
                           },
                           child: TextView.header("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25)),
                       Padding(

@@ -8,10 +8,21 @@ import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
 
-class ResetPassword extends StatelessWidget {
-  ResetPassword({Key? key}) : super(key: key);
+class ResetPinScreen extends StatefulWidget {
+  const ResetPinScreen({Key? key}) : super(key: key);
 
-  final TextEditingController? emailController = TextEditingController();
+  @override
+  _ResetPinScreenState createState() => _ResetPinScreenState();
+}
+
+class _ResetPinScreenState extends State<ResetPinScreen> {
+  TextEditingController? resetPinController;
+
+  @override
+  void initState() {
+    super.initState();
+    resetPinController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,26 +60,35 @@ class ResetPassword extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextView.title("Password Reset", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
+                      TextView.title("Enter Your Reset Pin", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight()*0.01,),
-                      TextView.subTitleWithBlurRadius("Enter your email, a reset code will be sent to this address.", color: AppColors.blackColor, lines: 2, fontFamily: Assets.poppinsRegular),
+                      TextView.headerWithBlurRadius("Enter the pin that was sent to your email address to finish, resetting your password.",
+                          color: AppColors.blackColor, lines: 2, fontFamily: Assets.poppinsRegular),
                     ],
                   ),
                   SizedBox(height: getHeight() * 0.04),
                   TextFieldWidget(
-                      textEditingController: emailController,
-                      hint: "Email Address",
+                      textEditingController: resetPinController,
+                      hint: "Reset Pin",
                       textInputType: TextInputType.emailAddress
                   ),
                   SizedBox(height: getHeight() * 0.04),
                   CommonWidgets.getButton(onPress: () {
-                    Get.toNamed(Routes.resetPinScreen);
-                  }, text: "Send Reset Code"),
+                    Get.toNamed(Routes.newPasswordScreen);
+                  }, text: "Reset"),
                   SizedBox(height: getHeight() * 0.04),
                   CommonWidgets.getButton(onPress: () {
                     Navigator.pop(context);
                   },
                       text: "Cancel", btnColor: AppColors.pureWhiteColor, textColor: AppColors.darkGrey, borderColor: AppColors.darkGrey),
+                  SizedBox(height: getHeight() * 0.04),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextView.headerWithBlurRadius("Didn't receive the code? ", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, fontSize: sizes.fontSize14),
+                      TextView.headerWithBlurRadius("Resend", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize14)
+                    ],
+                  ),
                 ],
               ),
             ),

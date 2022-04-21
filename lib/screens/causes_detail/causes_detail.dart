@@ -8,7 +8,7 @@ import 'package:flutter_app/screens/causes_detail/featured_sponsors.dart';
 import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
 import 'package:flutter_app/screens/causes_detail/top_image_container.dart';
 import 'package:flutter_app/screens/causes_detail/update_fund_raiser.dart';
-import 'package:flutter_app/screens/sign_in/sign_in.dart';
+import 'package:flutter_app/screens/sign_in/login_screen.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
@@ -72,7 +72,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                       onPressFavoriteIcon: () {
                         pushNewScreen(
                           context,
-                          screen: const LoginScreen(),
+                          screen: LoginScreen(),
                           withNavBar: false,
                           pageTransitionAnimation: PageTransitionAnimation.cupertino,
                         );

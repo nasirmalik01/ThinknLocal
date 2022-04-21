@@ -73,8 +73,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     isOnBoarding3: true,
                     buttonText: "Get Started!",
                     onPressStartButton: (){
-                      PreferenceUtils.setBool(Strings.showHome, true);
-                      Get.toNamed(Routes.bottomNavBarScreen);
+                      Get.toNamed(Routes.locationPermissionScreen);
                     }
                 ),
               ],
@@ -120,7 +119,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     ));
     if (PreferenceUtils.getBool(Strings.showHome)) {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (_) => BottomTabNew(pageIndex: 0)));
+          MaterialPageRoute(builder: (_) => const BottomTabNew(pageIndex: 0)));
       FlutterNativeSplash.remove();
 
 

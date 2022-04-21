@@ -54,9 +54,20 @@ class _UploadSuccessState extends State<UploadSuccess> {
                     height: getHeight() * 0.2,
                     width: getWidth() * 0.35,
                     child: Stack(children: [
-                      Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Image.asset(Assets.uploadIcon,)),
+                      Stack(
+                        children: [
+                          Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Image.asset(Assets.uploadIcon,)),
+                          const Positioned(
+                            bottom: 0,
+                            child: Image(
+                              image: AssetImage(Assets.blurEffect),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ],
+                      ),
                       Align(
                           alignment: Alignment.topRight,
                           child: SizedBox(
@@ -91,7 +102,7 @@ class _UploadSuccessState extends State<UploadSuccess> {
                   CommonWidgets.getButton(
                       onPress: () {
                         Navigator.pushAndRemoveUntil(context,
-                            MaterialPageRoute (builder: (_) => BottomTabNew(pageIndex: 0)), (route) => false);
+                            MaterialPageRoute (builder: (_) => const BottomTabNew(pageIndex: 0)), (route) => false);
                       },
                       text: "Finish",
                       btnColor: AppColors.greenColor,

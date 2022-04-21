@@ -50,7 +50,18 @@ class _UploadingFailedState extends State<UploadingFailed> {
               child: Column(
                 children: [
                   SizedBox(height: getHeight() * 0.1),
-                  Image.asset(Assets.uploadIconOrange,),
+                  Stack(
+                    children: [
+                      Image.asset(Assets.uploadIconOrange,),
+                      const Positioned(
+                        bottom: 0,
+                        child: Image(
+                          image: AssetImage(Assets.blurEffect),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ],
+                  ),
                   SizedBox(height: getHeight() * 0.01),
                   TextView.header("Upload Failed", color: AppColors.orangeColor, fontSize: sizes.fontSize35),
                   SizedBox(height: getHeight() * 0.04),
@@ -87,7 +98,6 @@ class _UploadingFailedState extends State<UploadingFailed> {
                 ],
               ),
             ),
-
           ],
         ),
       ),

@@ -22,7 +22,7 @@ class TextView {
     );
   }
 
-  static Text titleWithBlurRadius(final text, final fontFamily, {@required final color, final TextAlign textAlign = TextAlign.start, final fontWeight, final shadowColor = AppColors.pureWhiteColor, final  double blurRadius = 0, @required final lines, final fontSize}) {
+  static Text titleWithBlurRadius(final text, final fontFamily, {@required final color, final TextAlign textAlign = TextAlign.start, final fontWeight, final shadowColor = AppColors.pureWhiteColor, final  double blurRadius = 0, @required final lines, final fontSize, final isUnderLine = false}) {
     return Text(
       text,
       textAlign: textAlign,
@@ -33,6 +33,7 @@ class TextView {
         fontWeight: fontWeight?? FontWeight.w500,
         fontFamily: fontFamily,
         color: color,
+        decoration: isUnderLine ? TextDecoration.underline : TextDecoration.none,
         shadows: [
           Shadow(
             color: shadowColor,

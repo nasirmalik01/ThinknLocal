@@ -20,7 +20,7 @@ import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../cause_search/cause_search.dart';
-import '../../sign_in/sign_in.dart';
+import '../../sign_in/login_screen.dart';
 
 
 class BusinessesScreen extends StatelessWidget {
@@ -166,7 +166,7 @@ class BusinessesScreen extends StatelessWidget {
                                 onPressFavoriteIcon: () {
                                   pushNewScreen(
                                     context,
-                                    screen: const LoginScreen(),
+                                    screen: LoginScreen(),
                                     withNavBar: false,
                                     pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                   );

@@ -50,7 +50,7 @@ class _CameraScreenState extends State<CameraScreen> {
     return WillPopScope(
       onWillPop: () async {
         Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute (builder: (_) => BottomTabNew(pageIndex: 0)), (route) => false);
+            MaterialPageRoute (builder: (_) => const BottomTabNew(pageIndex: 0)), (route) => false);
         return true;
       },
       child: Scaffold(
@@ -103,9 +103,8 @@ class _CameraScreenState extends State<CameraScreen> {
             width: getHeight()*0.05,
             child: GestureDetector(
               onTap: () {
-                print('Okay');
                 Navigator.pushAndRemoveUntil(context,
-                    MaterialPageRoute (builder: (_) => BottomTabNew(pageIndex: 0)), (route) => false);
+                    MaterialPageRoute (builder: (_) => const BottomTabNew(pageIndex: 0)), (route) => false);
               },
               child: const Image(
                 image: AssetImage(Assets.cancelIcon),
@@ -205,7 +204,7 @@ class _CameraScreenState extends State<CameraScreen> {
               GestureDetector(
                   onTap: () {
                     Navigator.pushAndRemoveUntil(context,
-                        MaterialPageRoute (builder: (_) => BottomTabNew(pageIndex: 0)), (route) => false);
+                        MaterialPageRoute (builder: (_) => const BottomTabNew(pageIndex: 0)), (route) => false);
                   },
                   child: TextView.title("Cancel", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium))
             ],

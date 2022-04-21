@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class Causes{
+class Causes {
   String? backgroundImage;
   String? title;
   String? detail;
@@ -16,5 +16,19 @@ class Causes{
   String? backAmount;
   double? amount;
 
-  Causes({this.backgroundImage, this.title, this.detail, this.icon, this.collectedAmount, this.date, this.endDate, this.colors, this.mainAddress, this.streetAddress, this.phoneNumber, this.totalAmount, this.backAmount, this.amount});
+  Causes(
+      {this.backgroundImage,
+      this.title,
+      this.detail,
+      this.icon,
+      this.collectedAmount,
+      this.date,
+      this.endDate,
+      this.colors,
+      this.mainAddress,
+      this.streetAddress,
+      this.phoneNumber,
+      this.totalAmount,
+      this.backAmount,
+      this.amount});
 }

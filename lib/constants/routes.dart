@@ -9,8 +9,11 @@ import 'package:flutter_app/screens/edit_account/edit_account.dart';
 import 'package:flutter_app/screens/location_permission/location_permission_screen.dart';
 import 'package:flutter_app/screens/notification_permission/notification_permission_screen.dart';
 import 'package:flutter_app/screens/on_boarding_page/on_boarding_page.dart';
+import 'package:flutter_app/screens/password/new_password/new_password.dart';
+import 'package:flutter_app/screens/password/password_pin/reset_password_pin.dart';
+import 'package:flutter_app/screens/password/password_success/reset_password_success.dart';
 import 'package:flutter_app/screens/password/reset_password/reset_password.dart';
-import 'package:flutter_app/screens/sign_in/sign_in.dart';
+import 'package:flutter_app/screens/sign_in/login_screen.dart';
 import 'package:flutter_app/screens/sign_up/sign_up.dart';
 import 'package:flutter_app/screens/unknown_route.dart';
 import 'package:get/get.dart';
@@ -21,6 +24,9 @@ class Routes {
   static const String loginScreen = '/loginScreen';
   static const String signUpScreen = '/signUpScreen';
   static const String resetPasswordScreen = '/resetPasswordScreen';
+  static const String resetPinScreen = '/resetPinScreen';
+  static const String newPasswordScreen = '/newPasswordScreen';
+  static const String resetPasswordSuccessScreen = '/resetPasswordSuccessScreen';
   static const String editAccountInfoScreen = '/editAccountInfoScreen';
   static const String bottomNavBarScreen = '/bottomNavBarScreen';
   static const String causeScreen = '/causeScreen';
@@ -54,7 +60,7 @@ class Routes {
       ),
       GetPage(
         name: loginScreen,
-        page: () => const LoginScreen(),
+        page: () => LoginScreen(),
       ),
       GetPage(
         name: signUpScreen,
@@ -62,7 +68,19 @@ class Routes {
       ),
       GetPage(
         name: resetPasswordScreen,
-        page: () => const ResetPassword(),
+        page: () => ResetPassword(),
+      ),
+      GetPage(
+        name: resetPinScreen,
+        page: () => const ResetPinScreen(),
+      ),
+      GetPage(
+        name: newPasswordScreen,
+        page: () => const NewPassword(),
+      ),
+      GetPage(
+        name: resetPasswordSuccessScreen,
+        page: () => const ResetPasswordSuccessScreen(),
       ),
       GetPage(
         name: editAccountInfoScreen,
@@ -70,7 +88,7 @@ class Routes {
       ),
       GetPage(
           name: bottomNavBarScreen,
-          page: () => BottomTabNew(pageIndex: 0,),
+          page: () => const BottomTabNew(pageIndex: 0,),
       ),
       GetPage(
         name: causeScreen,

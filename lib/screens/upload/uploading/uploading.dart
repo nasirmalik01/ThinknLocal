@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/upload/uploading_failed/uploading_failded.dart';
+import 'package:flutter_app/screens/upload/uploading_failed/uploading_failed.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
@@ -54,7 +54,18 @@ class _UploadingState extends State<Uploading> {
                 child: Column(
                   children: [
                     SizedBox(height: getHeight() * 0.1),
-                    Image.asset(Assets.uploadIcon,),
+                    Stack(
+                      children: [
+                        Image.asset(Assets.uploadIcon,),
+                        const Positioned(
+                          bottom: 0,
+                          child: Image(
+                            image: AssetImage(Assets.blurEffect),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(height: getHeight() * 0.01),
                     TextView.header("Uploading...", color: AppColors.greenColor, fontSize: sizes.fontSize35),
                     SizedBox(height: getHeight() * 0.04),

@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/bottom_tab/bottom_tab_new.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
