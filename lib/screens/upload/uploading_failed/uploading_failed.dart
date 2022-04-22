@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/upload/uploading_success/uploading_success.dart';
-import 'package:flutter_app/widgets/common_widgets.dart';
+import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
@@ -86,7 +86,7 @@ class _UploadingFailedState extends State<UploadingFailed> {
                           textAlign: TextAlign.center
                       )),
                   SizedBox(height: getHeight() * 0.08),
-                  CommonWidgets.getButton(
+                  Button(
                     onPress: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (_) => const UploadSuccess()));

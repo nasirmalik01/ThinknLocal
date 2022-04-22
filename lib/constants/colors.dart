@@ -6,6 +6,7 @@ class AppColors{
   static const pureBlack = Color.fromRGBO(0, 0, 0, 1);
   static const greenColor = Color.fromRGBO(0, 196, 140, 1);
   static const lightPurpleColor = Color(0xFF4D4EC1);
+  static const lightPurpleColorForTextField = Color(0xFFF3F3FC);
   static const lightOrangeColor = Color(0xFFE48353);
   static const lightGrey = Color.fromRGBO(246, 246, 248, 1);
   static const darkGrey = Color.fromRGBO(141, 154, 174, 1);

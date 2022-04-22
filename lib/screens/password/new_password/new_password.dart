@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/password_text_field.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
-import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
 
 
@@ -88,7 +88,7 @@ class _NewPasswordState extends State<NewPassword> {
                       SizedBox(height: getHeight() * 0.02),
                       TextView.subTitleWithBlurRadius("Both passwords must match.", color: AppColors.darkGrey),
                       SizedBox(height: getHeight() * 0.04),
-                      CommonWidgets.getButton(onPress: () {
+                      Button(onPress: () {
                         Get.toNamed(Routes.resetPasswordSuccessScreen);
                       }, text: "Reset Password"),
                       SizedBox(height: getHeight() * 0.04),

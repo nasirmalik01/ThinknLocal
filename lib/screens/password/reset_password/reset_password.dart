@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
-import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
 
 class ResetPassword extends StatelessWidget {
@@ -40,10 +40,14 @@ class ResetPassword extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Image(
-                    image: AssetImage(Assets.logo,),
-                    fit: BoxFit.fill,
+                  const Align(
+                    alignment: Alignment.center,
+                    child: Image(
+                      image: AssetImage(Assets.logo,),
+                      fit: BoxFit.fill,
+                    ),
                   ),
                   SizedBox(height: getHeight() * 0.08),
                   Column(
@@ -61,11 +65,11 @@ class ResetPassword extends StatelessWidget {
                       textInputType: TextInputType.emailAddress
                   ),
                   SizedBox(height: getHeight() * 0.04),
-                  CommonWidgets.getButton(onPress: () {
+                  Button(onPress: () {
                     Get.toNamed(Routes.resetPinScreen);
                   }, text: "Send Reset Code"),
                   SizedBox(height: getHeight() * 0.04),
-                  CommonWidgets.getButton(onPress: () {
+                  Button(onPress: () {
                     Navigator.pop(context);
                   },
                       text: "Cancel", btnColor: AppColors.pureWhiteColor, textColor: AppColors.darkGrey, borderColor: AppColors.darkGrey),

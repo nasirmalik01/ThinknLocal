@@ -3,7 +3,7 @@ import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/widgets/common_widgets.dart';
+import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:sizer/sizer.dart';
 
@@ -67,7 +67,7 @@ class OnBoardingPageLayout extends StatelessWidget {
                 isOnBoarding3 ?
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                  child: CommonWidgets.getButton(
+                  child: Button(
                     onPress: () {
                       onPressStartButton?.call();
                     },

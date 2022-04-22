@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/common_widgets.dart';
+import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
@@ -50,31 +50,7 @@ class _UploadSuccessState extends State<UploadSuccess> {
               child: Column(
                 children: [
                   SizedBox(height: getHeight() * 0.1),
-                  SizedBox(
-                    height: getHeight() * 0.2,
-                    width: getWidth() * 0.35,
-                    child: Stack(children: [
-                      Stack(
-                        children: [
-                          Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Image.asset(Assets.uploadIcon,)),
-                          const Positioned(
-                            bottom: 0,
-                            child: Image(
-                              image: AssetImage(Assets.blurEffect),
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Align(
-                          alignment: Alignment.topRight,
-                          child: SizedBox(
-                              width: getWidth() * 0.15,
-                              child: Image.asset(Assets.successIcon)))
-                    ]),
-                  ),
+                  Image.asset(Assets.successIcon,),
                   SizedBox(height: getHeight() * 0.01),
                   TextView.header("Success!", color: AppColors.greenColor, fontSize: sizes.fontSize35),
                   SizedBox(height: getHeight() * 0.04),
@@ -99,7 +75,7 @@ class _UploadSuccessState extends State<UploadSuccess> {
                           textAlign: TextAlign.center
                       )),
                   SizedBox(height: getHeight() * 0.08),
-                  CommonWidgets.getButton(
+                  Button(
                       onPress: () {
                         Navigator.pushAndRemoveUntil(context,
                             MaterialPageRoute (builder: (_) => const BottomTabNew(pageIndex: 0)), (route) => false);

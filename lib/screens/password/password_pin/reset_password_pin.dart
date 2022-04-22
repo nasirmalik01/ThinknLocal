@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
-import '../../../widgets/common_widgets.dart';
+import '../../../widgets/button.dart';
 import '../../../widgets/text_views.dart';
 
 class ResetPinScreen extends StatefulWidget {
@@ -51,10 +51,14 @@ class _ResetPinScreenState extends State<ResetPinScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Image(
-                    image: AssetImage(Assets.logo,),
-                    fit: BoxFit.fill,
+                  const Align(
+                    alignment: Alignment.center,
+                    child: Image(
+                      image: AssetImage(Assets.logo,),
+                      fit: BoxFit.fill,
+                    ),
                   ),
                   SizedBox(height: getHeight() * 0.08),
                   Column(
@@ -73,11 +77,11 @@ class _ResetPinScreenState extends State<ResetPinScreen> {
                       textInputType: TextInputType.emailAddress
                   ),
                   SizedBox(height: getHeight() * 0.04),
-                  CommonWidgets.getButton(onPress: () {
+                  Button(onPress: () {
                     Get.toNamed(Routes.newPasswordScreen);
                   }, text: "Reset"),
                   SizedBox(height: getHeight() * 0.04),
-                  CommonWidgets.getButton(onPress: () {
+                  Button(onPress: () {
                     Navigator.pop(context);
                   },
                       text: "Cancel", btnColor: AppColors.pureWhiteColor, textColor: AppColors.darkGrey, borderColor: AppColors.darkGrey),

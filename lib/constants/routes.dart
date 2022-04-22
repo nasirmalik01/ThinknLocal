@@ -7,6 +7,7 @@ import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
 import 'package:flutter_app/screens/location_permission/location_permission_screen.dart';
+import 'package:flutter_app/screens/location_search/location_search.dart';
 import 'package:flutter_app/screens/notification_permission/notification_permission_screen.dart';
 import 'package:flutter_app/screens/on_boarding_page/on_boarding_page.dart';
 import 'package:flutter_app/screens/password/new_password/new_password.dart';
@@ -38,6 +39,7 @@ class Routes {
   static const String seeAllNearbyBusinessesScreen = '/seeAllNearbyBusinessesScreen';
   static const String locationPermissionScreen = '/locationPermissionScreen';
   static const String notificationPermissionScreen = '/notificationPermissionScreen';
+  static const String locationSearchScreen = '/locationSearchScreen';
 
 
   static getUnknownRoute() {
@@ -64,7 +66,7 @@ class Routes {
       ),
       GetPage(
         name: signUpScreen,
-        page: () => const SignUpScreen(),
+        page: () => SignUpScreen(),
       ),
       GetPage(
         name: resetPasswordScreen,
@@ -121,6 +123,10 @@ class Routes {
       GetPage(
         name: notificationPermissionScreen,
         page: () => const NotificationPermissionScreen(),
+      ),
+      GetPage(
+        name: locationSearchScreen,
+        page: () => LocationSearchScreen(),
       ),
     ];
   }

@@ -73,7 +73,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     isOnBoarding3: true,
                     buttonText: "Get Started!",
                     onPressStartButton: (){
-                      Get.toNamed(Routes.locationPermissionScreen);
+                      Get.offAndToNamed(Routes.locationPermissionScreen);
                     }
                 ),
               ],

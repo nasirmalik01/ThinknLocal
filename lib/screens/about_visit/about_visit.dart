@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/local/dummy_data/about_visit.dart';
 import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
-import 'package:flutter_app/widgets/common_widgets.dart';
+import 'package:flutter_app/widgets/button.dart';
+import 'package:flutter_app/widgets/drop_down_field.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -57,7 +58,7 @@ class _AboutVisitState extends State<AboutVisit> {
                     SizedBox(height: getHeight() * 0.04,),
                     TextView.headerWithBlurRadius("Where did you go?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01,),
-                    CommonWidgets.dropDownField(
+                    DropDownField(
                       selectedCategory: _businessName,
                       updateSelectedCategory: updateBusiness,
                       categories: businessList,
@@ -98,7 +99,7 @@ class _AboutVisitState extends State<AboutVisit> {
                     Obx(() => Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CommonWidgets.getButton(
+                        Button(
                             onPress: (){
                               if(_aboutVisitController.isVisitFirstTime.value == false) {
                                 _aboutVisitController.changeFirstTimeVisit();
@@ -110,7 +111,7 @@ class _AboutVisitState extends State<AboutVisit> {
                             width: getWidth() * 0.43,
                             height: getHeight() * 0.08
                         ),
-                        CommonWidgets.getButton(
+                        Button(
                             onPress: (){
                               if(_aboutVisitController.isVisitFirstTime.value == true) {
                                 _aboutVisitController.changeFirstTimeVisit();
@@ -128,14 +129,14 @@ class _AboutVisitState extends State<AboutVisit> {
                     SizedBox(height: getHeight() * 0.04),
                     TextView.headerWithBlurRadius("What cause do you want to support?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01),
-                    CommonWidgets.dropDownField(
+                    DropDownField(
                       selectedCategory: _cause,
                       updateSelectedCategory: updateCause,
                       categories: causesList,
                       hint:"Causes Name",
                     ),
                     SizedBox(height: getHeight() * 0.07),
-                    CommonWidgets.getButton(
+                    Button(
                         onPress: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (_) => const Uploading()));

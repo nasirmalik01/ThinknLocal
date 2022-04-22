@@ -7,39 +7,6 @@ import '../res/res.dart';
 
 
 class CommonWidgets {
-  static Widget getButton({
-    double ? width,
-    double ? height,
-    String ? text,
-    required Function ? onPress,
-    Color ? btnColor,
-    Color ? textColor,
-    Color ? borderColor,
-  }) {
-    return GestureDetector(
-      //key: const Key('Main button'),
-      onTap: (){
-        onPress!.call();
-      },
-      child: Container(
-        height: height?? getHeight() * 0.075,
-        width:  width?? getWidth(),
-        decoration: BoxDecoration(
-          color: btnColor??AppColors.greenColor,
-          border: Border.all(color: borderColor??Colors.transparent),
-          borderRadius: BorderRadius.circular(getWidth()*.02,),
-        ),
-        child: Center(
-            child: TextView.title(
-              text??"SUBMIT",
-              color: textColor?? AppColors.pureWhiteColor,
-              fontFamily: Assets.poppinsMedium
-            )
-        ),
-      ),
-    );
-  }
-  
   static Widget getSmallButton({Color? borderColor, Color? fillColor}) {
     return Container(
       height: getHeight() * 0.03,
@@ -117,54 +84,6 @@ class CommonWidgets {
       onRatingUpdate: (rating) {
         onPress!.call(rating);
       },
-    );
-  }
-
-  static Widget dropDownField({
-    @required String ?selectedCategory,
-    @required Function ?updateSelectedCategory,
-    @required List<String> ?categories,
-    @required String ?hint,
-  }){
-    return Container(
-      width: getWidth(),
-      padding: EdgeInsets.symmetric(horizontal: getHeight() * 0.02, vertical: getWidth() * 0.02),
-      decoration: BoxDecoration(
-        color: AppColors.blackColor,
-        borderRadius: BorderRadius.circular(getHeight() * 0.01),
-      ),
-      child: ButtonTheme(
-        child: DropdownButton <String>(
-          dropdownColor: AppColors.blackColor,
-            hint: Text(hint ?? '',
-              style: TextStyle(
-                color: AppColors.darkGrey,
-                fontSize: sizes.fontSize15,
-                fontFamily:Assets.poppinsMedium,
-              ),
-            ),
-            value: selectedCategory,
-            isExpanded: true,
-            icon: Icon(Icons.keyboard_arrow_down,color: AppColors.darkGrey,size: getHeight()*.035,),
-            underline:const SizedBox() ,
-            onChanged: (String? newValue) {
-              if(updateSelectedCategory != null){
-                updateSelectedCategory(newValue);
-              }
-            },
-            items: categories?.map<DropdownMenuItem<String>> ((String value) {
-              return DropdownMenuItem<String> (
-                value: value,
-                child: Text(value,style: TextStyle(
-                  color: AppColors.darkGrey,
-                  fontFamily: Assets.poppinsMedium,
-                  fontSize: sizes.fontSize15,
-                ),
-                ),
-              );
-            }).toList()
-        ),
-      ),
     );
   }
 
@@ -250,6 +169,7 @@ class CommonWidgets {
       ),
     );
   }
+
   static Widget getSimpleAppBar({
     String? title,
     required Function onPressBackArrow,

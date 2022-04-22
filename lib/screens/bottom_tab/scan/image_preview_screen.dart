@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/common_widgets.dart';
+import 'package:flutter_app/widgets/button.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -76,7 +76,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    CommonWidgets.getButton(
+                    Button(
                         onPress: () {
                           widget.notSaveImage.call();
                         },
@@ -85,7 +85,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                     SizedBox(
                       width: getWidth() * .05,
                     ),
-                    CommonWidgets.getButton(
+                    Button(
                         onPress: () {
                           widget.saveImage.call();
                         },

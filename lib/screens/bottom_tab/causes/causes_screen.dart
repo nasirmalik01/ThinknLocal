@@ -49,26 +49,21 @@ class CausesScreen extends StatelessWidget{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextView.titleWithDecoration("Showing causes near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
-                  Row(
-                    children: [
-                      GestureDetector(
-                          onTap: (){
-                          Get.toNamed(Routes.loginScreen);
-                          },
-                          child: TextView.header("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25)),
-                      Padding(
-                        padding: EdgeInsets.only(left: 2.w, bottom: 0.5.h),
-                        child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) => const LocationSearch()));
-                            },
-                            // child: Icon(Icons.location_on_outlined, size: getHeight() * 0.03, color: AppColors.greenColor,)),
-                            child: Image(
-                              height: getHeight() * 0.03,
-                              image: const AssetImage(Assets.vectorIcon),),),
-                      ),
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Get.toNamed(Routes.locationSearchScreen);
+                    },
+                    child: Row(
+                      children: [
+                        TextView.header("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
+                        Padding(
+                          padding: EdgeInsets.only(left: 2.w, bottom: 0.5.h),
+                          child: Image(
+                            height: getHeight() * 0.03,
+                            image: const AssetImage(Assets.vectorIcon),),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),

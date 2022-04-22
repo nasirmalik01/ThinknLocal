@@ -3,7 +3,7 @@ import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/widgets/common_widgets.dart';
+import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:sizer/sizer.dart';
 
@@ -40,23 +40,11 @@ class EnablePermission extends StatelessWidget {
             padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: getHeight() * 0.09),
             child: Column(
               children: [
-               Stack(
-                 children: [
-                   Image(
-                     image: AssetImage(isLocation ? Assets.locationPermissionIcon : Assets.notificationPermissionIcon),
-                     fit: BoxFit.fill,
-                     height: getHeight()*0.24,
-                     // height: 22.h,
-                   ),
-                   isLocation
-                       ? const SizedBox()
-                       : Image(
-                       image: const AssetImage(
-                         Assets.addIcon,
-                       ),
-                     height: getHeight()*0.1,
-                   )
-                 ],
+               Image(
+                 image: AssetImage(isLocation ? Assets.locationPermissionIcon : Assets.notificationPermissionIcon),
+                 fit: BoxFit.fill,
+                 height: getHeight()*0.24,
+                 // height: 22.h,
                ),
                 SizedBox(height: getHeight()*0.03,),
                 TextView.subTitle(title, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, isSetFontWeight: false, fontSize: 17.sp),
@@ -71,7 +59,7 @@ class EnablePermission extends StatelessWidget {
                 SizedBox(height: getHeight() * 0.09),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.01),
-                  child: CommonWidgets.getButton(
+                  child: Button(
                     onPress: onGoToSettingsTap,
                     text: 'Go To Settings',
                   ),

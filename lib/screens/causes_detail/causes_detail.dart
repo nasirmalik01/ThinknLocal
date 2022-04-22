@@ -69,14 +69,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                       onPressBackArrow: () {
                         Navigator.pop(context);
                       },
-                      onPressFavoriteIcon: () {
-                        pushNewScreen(
-                          context,
-                          screen: LoginScreen(),
-                          withNavBar: false,
-                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                        );
-                      }
+                      onPressFavoriteIcon: () {}
                   ),
                 ),
                 SizedBox(height: sizes.height * 0.04),
@@ -132,6 +125,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                     children: [
                       /// 1st page
                       ListView(
+                        padding: EdgeInsets.symmetric(vertical: getHeight()*0.03),
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
@@ -218,6 +212,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                       ),
                       ///2nd page
                       ListView(
+                        padding: EdgeInsets.symmetric(vertical: getHeight()*0.03),
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
@@ -248,6 +243,7 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                       ),
                       /// 3rd page
                       ListView(
+                        padding: EdgeInsets.symmetric(vertical: getHeight()*0.03),
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [

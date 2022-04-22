@@ -3,12 +3,12 @@ import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/sign_up/sign_up.dart';
+import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
-import '../../widgets/common_widgets.dart';
 import '../../widgets/text_views.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -74,11 +74,9 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: getHeight() * 0.04),
-                    CommonWidgets.getButton(onPress: () {
+                    Button(onPress: () {
                       PreferenceUtils.setBool(Strings.showHome, true);
-                      Get.toNamed(Routes.bottomNavBarScreen);
-                      // Navigator.pushReplacement(context,
-                      //     MaterialPageRoute(builder: (_) => const BottomTabNew(pageIndex: 0)));
+                      Get.offAllNamed(Routes.bottomNavBarScreen);
                     },
                       btnColor: AppColors.greenColor,
                       textColor: AppColors.pureWhiteColor,
@@ -134,11 +132,9 @@ class LoginScreen extends StatelessWidget {
                         TextView.titleWithDecoration("Don't have an account? ", fontFamily: Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => const SignUpScreen()));
+                            Get.toNamed(Routes.signUpScreen);
                           },
-                            child: TextView.titleWithDecoration("Register", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1)),
-
+                            child: TextView.titleWithDecoration("Register", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1, textDecoration: TextDecoration.underline)),
                       ],
                     ),
                   ],

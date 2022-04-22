@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/local/dummy_data/businesses.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_nearby.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_tabs_container.dart';
@@ -61,22 +62,21 @@ class BusinessesScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextView.titleWithDecoration("Businesses near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
-                        Row(
-                          children: [
-                            TextView.header("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
-                            Padding(
-                              padding: EdgeInsets.only(left: 2.w, bottom: 0.5.h),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) => const LocationSearch()));
-                                },
-                                // child: Icon(Icons.location_on_outlined, size: getHeight() * 0.03, color: AppColors.greenColor,)),
+                        GestureDetector(
+                          onTap: (){
+                            Get.toNamed(Routes.locationSearchScreen);
+                          },
+                          child: Row(
+                            children: [
+                              TextView.header("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
+                              Padding(
+                                padding: EdgeInsets.only(left: 2.w, bottom: 0.5.h),
                                 child: Image(
                                   height: getHeight() * 0.03,
-                                  image: const AssetImage(Assets.vectorIcon),),),
-                            ),
-                          ],
+                                  image: const AssetImage(Assets.vectorIcon),),
+                              ),
+                            ],
+                          ),
                         )
                       ],
                     ),

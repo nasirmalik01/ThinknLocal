@@ -69,14 +69,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                         Navigator.pop(context, 1);
                         return Future.value(true);
                       },
-                      onPressFavoriteIcon: () {
-                        pushNewScreen(
-                          context,
-                          screen: LoginScreen(),
-                          withNavBar: false,
-                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                        );
-                      }
+                      onPressFavoriteIcon: () {}
                   ),
                 ),
                 SizedBox(height: sizes.height * 0.01),

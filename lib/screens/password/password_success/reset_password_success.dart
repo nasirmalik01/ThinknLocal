@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/widgets/button.dart';
 import 'package:get/get.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
-import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
 
 class ResetPasswordSuccessScreen extends StatelessWidget {
@@ -63,9 +63,9 @@ class ResetPasswordSuccessScreen extends StatelessWidget {
                     child: TextView.subTitle("Successfully reset your password!", color: AppColors.darkGrey, lines: 2, textAlign: TextAlign.center, fontSize: sizes.fontSize18),
                   ),
                   SizedBox(height: getHeight() * 0.1),
-                  CommonWidgets.getButton(
+                  Button(
                     onPress: (){
-                      Get.toNamed(Routes.loginScreen);
+                      Get.offAllNamed(Routes.loginScreen);
                     },
                     text: "Sign In"
                   )
