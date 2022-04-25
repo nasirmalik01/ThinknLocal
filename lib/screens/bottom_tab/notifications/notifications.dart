@@ -28,6 +28,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
 
   @override
   Widget build(BuildContext context) {
+    initializeResources(context: context);
 
     return Scaffold(
       body: Container(

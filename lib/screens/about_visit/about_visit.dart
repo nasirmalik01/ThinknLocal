@@ -11,12 +11,12 @@ import '../../../res/res.dart';
 import '../../constants/assets.dart';
 import '../upload/uploading/uploading.dart';
 
-
+// ignore: must_be_immutable
 class AboutVisit extends StatelessWidget {
   AboutVisit({Key? key}) : super(key: key);
 
-  double getRating = 0.0;
   final AboutVisitController _aboutVisitController = Get.put(AboutVisitController());
+  double getRating = 0.0;
 
 
   @override
@@ -127,13 +127,13 @@ class AboutVisit extends StatelessWidget {
                     SizedBox(height: getHeight() * 0.07),
                     Button(
                         onPress: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => const Uploading()));
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => const Uploading()));
                         },
                         text: "Looks Good!",
                         height: getHeight() * 0.08,
                         textColor: AppColors.pureWhiteColor,
-                        btnColor: AppColors.greenColor),
+                        btnColor: AppColors.greenColor,
+                    ),
                   ],
                 ),
               ),

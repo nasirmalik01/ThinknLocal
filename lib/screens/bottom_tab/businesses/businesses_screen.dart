@@ -10,7 +10,6 @@ import 'package:flutter_app/screens/bottom_tab/businesses/recently_added_busines
 import 'package:flutter_app/screens/businesses_categories/business_category.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
-import 'package:flutter_app/screens/location_search/location_search.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
@@ -21,7 +20,6 @@ import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../cause_search/cause_search.dart';
-import '../../sign_in/login_screen.dart';
 
 
 class BusinessesScreen extends StatelessWidget {
@@ -34,6 +32,7 @@ class BusinessesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -163,14 +162,7 @@ class BusinessesScreen extends StatelessWidget {
                                 onClickBox: () async {
                                    pushNewScreen(context, screen: const BusinessesDetail(), withNavBar: true);
                                 },
-                                onPressFavoriteIcon: () {
-                                  pushNewScreen(
-                                    context,
-                                    screen: LoginScreen(),
-                                    withNavBar: false,
-                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                  );
-                                }
+                                onPressFavoriteIcon: () {}
                             );
                           },
                         ),

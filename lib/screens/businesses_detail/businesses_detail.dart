@@ -10,10 +10,8 @@ import 'package:flutter_app/screens/businesses_detail/recently_funded_business.d
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
 import 'package:flutter_app/screens/causes_detail/update_fund_raiser.dart';
-import 'package:flutter_app/screens/sign_in/login_screen.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';

@@ -4,7 +4,6 @@ import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_category_screen.dart';
 import 'package:flutter_app/screens/cause_search/cause_search.dart';
-import 'package:flutter_app/screens/location_search/location_search.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/text_views.dart';

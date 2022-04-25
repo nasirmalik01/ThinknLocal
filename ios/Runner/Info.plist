@@ -45,5 +45,11 @@
 		<false/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSLocationWhenInUseUsageDescription</key>
+        <string>Location permission is required to get current location</string>
+        <key>NSLocationAlwaysUsageDescription</key>
+        <string>Location permission is required to get current location</string>
+        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+        <string>Location permission is required to get current location</string>
 	</dict>
 </plist>

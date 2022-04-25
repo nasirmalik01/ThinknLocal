@@ -118,7 +118,7 @@ class Routes {
       ),
       GetPage(
         name: locationPermissionScreen,
-        page: () => const LocationPermissionScreen(),
+        page: () => LocationPermissionScreen(),
       ),
       GetPage(
         name: notificationPermissionScreen,

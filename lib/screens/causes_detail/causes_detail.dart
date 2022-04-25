@@ -8,18 +8,15 @@ import 'package:flutter_app/screens/causes_detail/featured_sponsors.dart';
 import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
 import 'package:flutter_app/screens/causes_detail/top_image_container.dart';
 import 'package:flutter_app/screens/causes_detail/update_fund_raiser.dart';
-import 'package:flutter_app/screens/sign_in/login_screen.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../../res/res.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../../widgets/common_widgets.dart';
-
 
 class CausesDetail extends StatefulWidget {
   const CausesDetail({Key? key}) : super(key: key);
@@ -174,7 +171,6 @@ class _CausesDetailState extends State<CausesDetail> with SingleTickerProviderSt
                                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                                 child: Column(
                                   children: [
-                                    ///inner tabs =>Food & drink
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [

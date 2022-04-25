@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/common/main_controller.dart';
 import 'package:flutter_app/widgets/enable_permissions.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:get/get.dart';
 
 class LocationPermissionScreen extends StatelessWidget {
-  const LocationPermissionScreen({Key? key}) : super(key: key);
+  LocationPermissionScreen({Key? key}) : super(key: key);
+
+  final MainController _mainController = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +15,12 @@ class LocationPermissionScreen extends StatelessWidget {
       body: EnablePermission(
         title: 'Enable Location',
         description: 'By allowing location permissions you are able to explore the causes near you that need your help.',
-        onGoToSettingsTap: (){
-          Get.toNamed(Routes.notificationPermissionScreen);
-        },
+        onGoToSettingsTap: () async {
+            await openAppSettings();
+          },
         isLocation: true,
       )
     );
   }
+
 }
