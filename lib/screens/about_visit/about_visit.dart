@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/local/dummy_data/about_visit.dart';
 import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
+import 'package:flutter_app/screens/about_visit/auto_complete_text_field.dart';
 import 'package:flutter_app/widgets/button.dart';
-import 'package:flutter_app/widgets/drop_down_field.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -12,34 +12,17 @@ import '../../constants/assets.dart';
 import '../upload/uploading/uploading.dart';
 
 
-class AboutVisit extends StatefulWidget {
-  const AboutVisit({Key? key}) : super(key: key);
+class AboutVisit extends StatelessWidget {
+  AboutVisit({Key? key}) : super(key: key);
 
-  @override
-  _AboutVisitState createState() => _AboutVisitState();
-}
-
-class _AboutVisitState extends State<AboutVisit> {
   double getRating = 0.0;
-  String? _cause;
-  String? _businessName;
   final AboutVisitController _aboutVisitController = Get.put(AboutVisitController());
 
-  void updateCause(String value){
-    setState(() {
-      _cause = value;
-    });
-  }
-  void updateBusiness(String value){
-    setState(() {
-      _businessName = value;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Obx(() =>  SingleChildScrollView(
         child: Container(
           width: sizes.width,
           decoration: const BoxDecoration(
@@ -58,12 +41,15 @@ class _AboutVisitState extends State<AboutVisit> {
                     SizedBox(height: getHeight() * 0.04,),
                     TextView.headerWithBlurRadius("Where did you go?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01,),
-                    DropDownField(
-                      selectedCategory: _businessName,
-                      updateSelectedCategory: updateBusiness,
-                      categories: businessList,
-                      hint:"Business Name",
-                    ),
+                    // DropDownField(
+                    //   selectedCategory: _businessName,
+                    //   updateSelectedCategory: updateBusiness,
+                    //   categories: businessList,
+                    //   hint:"Business Name",
+                    // ),
+                    AutoFieldTextField(list: businessList, hintText: 'Business name', onSelect: (value){
+                      _aboutVisitController.selectedBusiness.value = value;
+                    }),
                     SizedBox(height: getHeight() * 0.04,),
                     TextView.headerWithBlurRadius("How was your visit?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01,),
@@ -96,7 +82,7 @@ class _AboutVisitState extends State<AboutVisit> {
                     SizedBox(height: getHeight() * 0.04),
                     TextView.headerWithBlurRadius("Was this your first time?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01,),
-                    Obx(() => Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Button(
@@ -125,16 +111,19 @@ class _AboutVisitState extends State<AboutVisit> {
 
                         ),
                       ],
-                    ),) ,
+                    ) ,
                     SizedBox(height: getHeight() * 0.04),
                     TextView.headerWithBlurRadius("What cause do you want to support?", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01),
-                    DropDownField(
-                      selectedCategory: _cause,
-                      updateSelectedCategory: updateCause,
-                      categories: causesList,
-                      hint:"Causes Name",
-                    ),
+                    // DropDownField(
+                    //   selectedCategory: _cause,
+                    //   updateSelectedCategory: updateCause,
+                    //   categories: causesList,
+                    //   hint:"Causes Name",
+                    // ),
+                    AutoFieldTextField(list: causesList, hintText: 'Course name', onSelect: (value){
+                      _aboutVisitController.selectedCourse.value = value;
+                    }),
                     SizedBox(height: getHeight() * 0.07),
                     Button(
                         onPress: () {
@@ -153,6 +142,7 @@ class _AboutVisitState extends State<AboutVisit> {
           ),
         ),
       ),
+    )
     );
   }
 }

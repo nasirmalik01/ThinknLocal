@@ -245,7 +245,7 @@ class _CameraScreenState extends State<CameraScreen> {
               },
               saveImage: ()async {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const AboutVisit()));
+                    MaterialPageRoute(builder: (_) => AboutVisit()));
               },
             )));
   }
