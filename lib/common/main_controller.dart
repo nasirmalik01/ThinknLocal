@@ -1,13 +1,20 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:location/location.dart';
 
 class MainController extends GetxController{
-  RxBool isLocationFetched = false.obs;
-  Position? position;
-  RxString locationAddress = ''.obs;
+  RxBool isLoading = false.obs;
+  RxBool isLocationServiceEnabled = false.obs;
 
-  determinePosition() async {
-    isLocationFetched.value = true;
+
+  @override
+  void onInit() {
+    checkLocationStatus();
+    super.onInit();
+  }
+
+  checkLocationStatus() async {
+
     LocationPermission permission;
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
@@ -20,13 +27,7 @@ class MainController extends GetxController{
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
-    position = await getCurrentLocation();
-    print('Position: $position');
-    isLocationFetched.value = false;
-  }
-
-  Future<Position> getCurrentLocation() async {
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    return position;
+    var location = Location();
+    isLocationServiceEnabled.value = await location.serviceEnabled();
   }
 }

@@ -12,9 +12,10 @@ class EnablePermission extends StatelessWidget {
   final String? title;
   final String? description;
   final Function()? onGoToSettingsTap;
+  final String? buttonText;
 
 
-  const EnablePermission({Key? key, this.isLocation = true, this.title, this.description, this.onGoToSettingsTap}) : super(key: key);
+  const EnablePermission({Key? key, this.isLocation = true, this.title, this.description, this.onGoToSettingsTap, this.buttonText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class EnablePermission extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.01),
                   child: Button(
                     onPress: onGoToSettingsTap,
-                    text: 'Go To Settings',
+                    text: buttonText,
                   ),
                 )
               ],
