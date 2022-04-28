@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/screens/sign_in/login_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';
@@ -14,6 +16,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final TextEditingController? _emailController = TextEditingController();
   final TextEditingController? _passwordController = TextEditingController();
+  final LogInController _logInController = Get.put(LogInController());
 
   @override
   Widget build(BuildContext context) {
@@ -74,8 +77,20 @@ class LoginScreen extends StatelessWidget {
                     ),
                     SizedBox(height: getHeight() * 0.04),
                     Button(onPress: () {
-                      PreferenceUtils.setBool(Strings.showHome, true);
-                      Get.offAllNamed(Routes.bottomNavBarScreen);
+                      if(_emailController!.text.trim().isEmpty || _passwordController!.text.trim().isEmpty){
+                        return showSnackBar(subTitle: 'Please fill all the required fields');
+                      }
+
+                      if(_passwordController!.text.length < 6){
+                        return showSnackBar(title: 'Password too short', subTitle: 'It should be of minimum 6 characters');
+                      }
+
+                      showLoadingDialog(message: 'Authenticating User');
+
+                      _logInController.authenticateUser(
+                          email: _emailController!.text,
+                          password: _passwordController!.text,
+                      );
                     },
                       btnColor: AppColors.greenColor,
                       textColor: AppColors.pureWhiteColor,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/screens/sign_up/sign_up_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_field.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
@@ -17,6 +20,7 @@ class SignUpScreen extends StatelessWidget {
   final TextEditingController? confirmPasswordController = TextEditingController();
   final TextEditingController? zipCodeController = TextEditingController();
   final TextEditingController? groupCodeController = TextEditingController();
+  final SignUpController _signUpController = Get.put(SignUpController());
 
   SignUpScreen({Key? key}) : super(key: key);
 
@@ -85,6 +89,7 @@ class SignUpScreen extends StatelessWidget {
                   TextFieldWidget(
                       textEditingController: zipCodeController,
                       hint: "Zip Code",
+                      textInputType: TextInputType.number,
                   ),SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
                       textEditingController: groupCodeController,
@@ -98,8 +103,40 @@ class SignUpScreen extends StatelessWidget {
                   TextView.subTitleWithBlurRadius("*Part of a club, organization or special group?", color: AppColors.lightBlue, fontFamily: Assets.poppinsMedium),
                   SizedBox(height: getHeight() * 0.06),
                   Button(onPress: () {
-                    Get.offAllNamed(Routes.bottomNavBarScreen);
-                  }, text: "Sign Up!"),
+
+                    if(firstNameController!.text.trim().isEmpty || lastNameController!.text.trim().isEmpty || emailController!.text.trim().isEmpty || passwordController!.text.trim().isEmpty || confirmPasswordController!.text.trim().isEmpty || zipCodeController!.text.trim().isEmpty || groupCodeController!.text.trim().isEmpty){
+                       return showSnackBar(subTitle: 'Please fill all the required fields');
+                    }
+
+                    if(passwordController!.text.length < 6){
+                      return showSnackBar(title: 'Password too short', subTitle: 'It should be of minimum 6 characters');
+                    }
+
+                    if(confirmPasswordController!.text.length < 6){
+                      return showSnackBar(title: 'Confirm Password too short', subTitle: 'It should be of minimum 6 characters');
+                    }
+
+                    if(passwordController!.text != confirmPasswordController!.text){
+                      return showSnackBar(subTitle: 'Password doesn\'t matched');
+                    }
+
+                    if(zipCodeController!.text.length < 5){
+                      return showSnackBar(title: 'Zip Code too short', subTitle: 'It should be of minimum 5 characters');
+                    }
+
+                    showLoadingDialog(message: 'Registering User');
+
+                    _signUpController.registerUser(
+                      firstName: firstNameController!.text,
+                      lastName: lastNameController!.text,
+                      email: emailController!.text,
+                      password: passwordController!.text,
+                      confirmPassword: confirmPasswordController!.text,
+                      zipCode: zipCodeController!.text,
+                      groupCode: groupCodeController!.text
+                    );
+                  },
+                  text: "Sign Up!"),
                   SizedBox(height: getHeight() * 0.04),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

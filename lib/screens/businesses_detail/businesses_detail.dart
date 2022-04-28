@@ -1,17 +1,21 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/local/dummy_data/businesses.dart';
 import 'package:flutter_app/local/dummy_data/causes_detail.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/businesses_detail/business_detail_top_container.dart';
 import 'package:flutter_app/screens/businesses_detail/business_rating.dart';
+import 'package:flutter_app/screens/businesses_detail/business_stats_controller.dart';
 import 'package:flutter_app/screens/businesses_detail/recently_funded_business.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
 import 'package:flutter_app/screens/causes_detail/update_fund_raiser.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
@@ -27,6 +31,7 @@ class BusinessesDetail extends StatefulWidget {
 
 class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerProviderStateMixin{
   final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
+  final BusinessStatsController _businessStatsController = Get.put(BusinessStatsController());
   TabController? _tabController;
 
   @override
@@ -41,7 +46,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
-            height: sizes.height + sizes.height * 0.35,
+            height: sizes.height + sizes.height * 0.45,
             width: sizes.width,
             decoration: const BoxDecoration(
               color: Colors.white,
@@ -233,7 +238,21 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                           ),
                         ],
                       ),
-                      ListView(
+                      Obx(() => _businessStatsController.isLoading.value
+                      ? Padding(
+                        padding: EdgeInsets.only(top: getHeight()*0.1),
+                        child: Wrap(
+                          children:  [
+                            Center(
+                              child: SizedBox(
+                                width: getWidth() * 1,
+                                child: const SpinKitFadingCircle(color: AppColors.greenColor,),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                      : ListView(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
@@ -313,11 +332,11 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const ScrollPhysics(),
-                                  itemCount: 7,
+                                  itemCount: _businessStatsController.businessStats.recentContributions!.length,
                                   itemBuilder: (context, index){
                                     return RecentContributions(
-                                        contributorName: recentContributionList[index].title!,
-                                        amount: recentContributionList[index].amount.toString()
+                                        contributorName: _businessStatsController.businessStats.recentContributions![index].name,
+                                        amount: _businessStatsController.businessStats.recentContributions![index].amount.toString()
                                     );
 
                                   }, separatorBuilder: (BuildContext context, int index) {
@@ -329,7 +348,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                             ),
                           ),
                         ],
-                      ),
+                      ),)
                     ],
                   ),
                 ),

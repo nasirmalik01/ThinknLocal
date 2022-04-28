@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account_settings_card.dart';
@@ -14,13 +15,16 @@ import '../../../res/res.dart';
 
 class AccountScreen extends StatelessWidget {
   AccountScreen({Key? key}) : super(key: key);
+
   final AccountController _accountController = Get.put(AccountController());
+
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: Container(
+      body: Obx(() =>
+      _accountController.isLoading.value ? circularProgressIndicator() : Container(
         height: sizes.height,
         width: sizes.width,
         decoration: const BoxDecoration(
@@ -33,13 +37,13 @@ class AccountScreen extends StatelessWidget {
               padding: EdgeInsets.only(bottom: sizes.height * 0.02),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: PreferenceUtils.getGradient()
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: PreferenceUtils.getGradient()
                 ),
               ),
               child: Align(
-                alignment: Alignment.bottomCenter,
+                  alignment: Alignment.bottomCenter,
                   child: TextView.title("Hello,", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
             ),
             Padding(
@@ -47,9 +51,9 @@ class AccountScreen extends StatelessWidget {
               child: Column(
                 children: [
                   UserProfileBox(
-                      name: "Johnathon Doe",
-                      email: "johnathon.doe@gmail.com",
-                      nameShort: "JD",
+                      name: '${_accountController.account.firstName} ${_accountController.account.lastName}',
+                      email: _accountController.account.email,
+                      nameShort: '${_accountController.account.firstName![0]}${_accountController.account.lastName![0]}',
                       onTapEdit: () {
                         pushNewScreen(
                           context,
@@ -61,25 +65,26 @@ class AccountScreen extends StatelessWidget {
                   ),
                   SizedBox(height: getHeight() * 0.02),
                   Align(
-                    alignment: Alignment.centerLeft,
+                      alignment: Alignment.centerLeft,
                       child: TextView.titleWithDecoration("Account Settings", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
                   SizedBox(height: sizes.height * 0.03),
-                  Obx(() => Column(
-                  children: [
-                    AccountSettingCard(onChange: (val) => _accountController.changePushNotificationValue(val), title: 'Push Notifications', subTitle: 'Enable push notifications lorem ipsum.', leadingIcon: Assets.bellIcon, switchValue: _accountController.isPushNotifications.value),
-                    AccountSettingCard(onChange: (val) => _accountController.changeEmailValue(val), title: 'Emails', subTitle: 'Allow system emails for causes lorem ipsum.', leadingIcon: Assets.mailIcon, switchValue: _accountController.isEmail.value),
-                    AccountSettingCard(onChange: (val) => _accountController.changeLocationServicesValue(val), title: 'Location Services', subTitle: 'Allow location services while the app is running.', leadingIcon: Assets.locationIcon, switchValue: _accountController.isLocation.value),
-                    AccountSettingCard(onChange: (val) => _accountController.changeOtherOptionValue(val), title: 'Other Option', subTitle: 'Other option description related to something.', leadingIcon: Assets.squareIcon, switchValue: _accountController.isOtherOption.value),
-                    AccountSettingCard(onChange: (val) => _accountController.changeOtherOption2Value(val), title: 'Other Option 2', subTitle: 'Other option description related to something.', leadingIcon: Assets.squareIcon, switchValue: _accountController.isOtherOption2.value, isLast: true,),
-                  ],
+                  Column(
+                    children: [
+                      AccountSettingCard(onChange: (val) => _accountController.changePushNotificationValue(val), title: 'Push Notifications', subTitle: 'Enable push notifications lorem ipsum.', leadingIcon: Assets.bellIcon, switchValue: _accountController.isPushNotifications.value),
+                      AccountSettingCard(onChange: (val) => _accountController.changeEmailValue(val), title: 'Emails', subTitle: 'Allow system emails for causes lorem ipsum.', leadingIcon: Assets.mailIcon, switchValue: _accountController.isEmail.value),
+                      AccountSettingCard(onChange: (val) => _accountController.changeLocationServicesValue(val), title: 'Location Services', subTitle: 'Allow location services while the app is running.', leadingIcon: Assets.locationIcon, switchValue: _accountController.isLocation.value),
+                      AccountSettingCard(onChange: (val) => _accountController.changeOtherOptionValue(val), title: 'Other Option', subTitle: 'Other option description related to something.', leadingIcon: Assets.squareIcon, switchValue: _accountController.isOtherOption.value),
+                      AccountSettingCard(onChange: (val) => _accountController.changeOtherOption2Value(val), title: 'Other Option 2', subTitle: 'Other option description related to something.', leadingIcon: Assets.squareIcon, switchValue: _accountController.isOtherOption2.value, isLast: true,),
+                    ],
                   ),
-                  )
                 ],
               ),
             ),
           ],
         ),
       ),
+      )
+
     );
   }
 }

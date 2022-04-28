@@ -1,3 +1,6 @@
+import 'package:flutter_app/local/my_hive.dart';
+import 'package:flutter_app/model/Causess.dart';
+import 'package:flutter_app/network/remote_repository.dart';
 import 'package:get/get.dart';
 
 class CausesController extends GetxController{
@@ -5,7 +8,15 @@ class CausesController extends GetxController{
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
   RxBool isPast = false.obs;
+  late Causess? causess;
 
+
+  @override
+  void onInit() {
+    getUpComingCauses();
+    print(MyHive.getToken());
+    super.onInit();
+  }
 
   setFeaturedTab(){
     isFeatured.value = true;
@@ -33,6 +44,10 @@ class CausesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = false;
     isPast.value = true;
+  }
+
+  getUpComingCauses() async {
+    causess =  await (RemoteRepository.fetchCauses({'upcoming': ''}));
   }
 
 }

@@ -66,7 +66,7 @@ class PreferenceUtils {
         barRods: [
           BarChartRodData(
               toY: 12000000000,
-              width: getWidth() * 0.08,
+              width: getWidth() * 0.05,
               color: AppColors.greenColor,
               borderRadius: const BorderRadius.all(Radius.zero)),
         ],
@@ -76,7 +76,7 @@ class PreferenceUtils {
         barRods: [
           BarChartRodData(
               toY: 22000000000,
-              width: getWidth() * 0.08,
+              width: getWidth() * 0.05,
               color: AppColors.greenColor,
               borderRadius: const BorderRadius.all(Radius.zero)),
         ],
@@ -86,7 +86,7 @@ class PreferenceUtils {
         barRods: [
           BarChartRodData(
               toY: 34000000000,
-              width: getWidth() * 0.08,
+              width: getWidth() * 0.05,
               color: AppColors.greenColor,
               borderRadius: const BorderRadius.all(Radius.zero)),
 
@@ -97,7 +97,7 @@ class PreferenceUtils {
         barRods: [
           BarChartRodData(
               toY: 14000000000,
-              width: getWidth() * 0.08,
+              width: getWidth() * 0.05,
               color: AppColors.greenColor,
               borderRadius: const BorderRadius.all(Radius.zero)),
         ],
@@ -107,7 +107,26 @@ class PreferenceUtils {
         barRods: [
           BarChartRodData(
               toY: 14000000000,
-              width: getWidth() * 0.08,
+              width: getWidth() * 0.05,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+        ],
+      ),
+      BarChartGroupData(
+        x: 5,
+        barRods: [
+          BarChartRodData(
+              toY: 14000000000,
+              width: getWidth() * 0.05,
+              color: AppColors.greenColor,
+              borderRadius: const BorderRadius.all(Radius.zero)),
+        ],
+      ),BarChartGroupData(
+        x: 6,
+        barRods: [
+          BarChartRodData(
+              toY: 14000000000,
+              width: getWidth() * 0.05,
               color: AppColors.greenColor,
               borderRadius: const BorderRadius.all(Radius.zero)),
         ],

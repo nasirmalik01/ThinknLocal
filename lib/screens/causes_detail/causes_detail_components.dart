@@ -65,6 +65,15 @@ class CauseDetailComponents {
       case 4:
         text = 'Mar 5';
         break;
+      case 5:
+        text = 'Mar 5';
+        break;
+      case 6:
+        text = 'Mar 5';
+        break;
+      case 7:
+        text = 'Mar 5';
+        break;
       default:
         text = '';
         break;
