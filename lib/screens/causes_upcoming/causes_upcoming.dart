@@ -6,7 +6,8 @@ import '../../widgets/common_widgets.dart';
 
 
 class CausesUpcoming extends StatelessWidget {
-  const CausesUpcoming({Key? key}) : super(key: key);
+  final List<dynamic> upcomingList;
+  const CausesUpcoming({Key? key, required this.upcomingList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,22 +32,21 @@ class CausesUpcoming extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
                     ListView.separated(
-                      padding: EdgeInsets.symmetric(vertical: sizes.height*0.02),
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: 10,
+                      itemCount: upcomingList.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
                           child: UpcomingCauses(
-                              image:  "",
-                              headerText: "Chino Hills High Softball Team",
-                              description:  "Spring Training Equipment Fundraiser",
+                              image:  upcomingList[index].image,
+                              headerText: upcomingList[index].organization!.name,
+                              description:   upcomingList[index].name!,
                               onViewCourse: (){
                               },
-                              totalAmount: "500",
-                              date: "Mar 25"
+                              totalAmount:  upcomingList[index].raised.toString(),
+                              date: upcomingList[index].start.toString()
                           ),
                         );
                       },

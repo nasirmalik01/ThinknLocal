@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/local/dummy_data/causes.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/res/res.dart';
+import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_funds_container.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/recently_started_container.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class CausesCategoryScreen extends StatefulWidget {
@@ -22,6 +24,7 @@ class CausesCategoryScreen extends StatefulWidget {
 class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
   final ScrollController _recentlyStartedController = ScrollController();
   final ScrollController _tabViewsController = ScrollController();
+  final CausesController _causesController = Get.put(CausesController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +34,14 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
         SizedBox(height: getHeight() * 0.01),
         SizedBox(
           height: 23.h,
-          child: ListView.builder(
+          child: Obx(() =>  _causesController.isTopCausesContainersList.value
+            ? circularProgressIndicator()
+            : ListView.builder(
             controller: _tabViewsController,
             scrollDirection: Axis.horizontal,
-            itemCount: featuredCausesList.length,
+            itemCount:  _causesController.topCausesContainersList!.length,
             itemBuilder: (context, index){
-              return index == recentlyStartedCauseList.length - 1 ? Padding(
+              return index == _causesController.topCausesContainersList!.length - 1 ? Padding(
                 padding: EdgeInsets.only(left: 1.h, right: 1.5.h),
                 child: CircleAvatar(
                   radius: 40,
@@ -44,20 +49,20 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                   child: TextView.titleWithDecoration('See All', color: Colors.white),
                 ),
               ) : CausesFundContainer(
-                name: featuredCausesList[index].title!,
-                fullBoxImage: featuredCausesList[index].backgroundImage!,
-                logoImage: featuredCausesList[index].icon!,
+                name: _causesController.topCausesContainersList![index].name!,
+                fullBoxImage: _causesController.topCausesContainersList![index].image!,
+                logoImage: _causesController.topCausesContainersList![index].organization!.logo!,
                 completePercentage:   0.7,
-                collectedAmount: featuredCausesList[index].collectedAmount!,
-                totalAmount: featuredCausesList[index].totalAmount!,
-                endDate: featuredCausesList[index].endDate!,
+                collectedAmount: _causesController.topCausesContainersList![index].raised.toString(),
+                totalAmount: _causesController.topCausesContainersList![index].goal.toString(),
+                endDate: _causesController.topCausesContainersList![index].end.toString(),
                 index: index,
                 onClickBox: () async {
                   Navigator.push(context, MaterialPageRoute(builder: (_) => const CausesDetail()));
                 },
               );
             },
-          ),
+          ),),
         ),
         SizedBox(height: getHeight() * 0.03),
         Padding(
@@ -65,14 +70,18 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
           child: TextView.titleWithDecoration("Recently Started", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
         ),
         SizedBox(height: getHeight() * 0.018),
-        SizedBox(
+
+        /// Recently Started Causes
+        Obx(() => _causesController.isRecentlyStartedCausesLoading.value
+          ? circularProgressIndicator()
+          : SizedBox(
           height: getHeight()*0.17,
           child: ListView.builder(
             controller: _recentlyStartedController,
             scrollDirection: Axis.horizontal,
-            itemCount: recentlyStartedCauseList.length,
+            itemCount: _causesController.recentlyStartedCauses!.length,
             itemBuilder: (context, index){
-              return index == recentlyStartedCauseList.length - 1 ? Padding(
+              return index == _causesController.recentlyStartedCauses!.length - 1 ? Padding(
                 padding: EdgeInsets.only(left: 1.h, right: 1.5.h),
                 child: CircleAvatar(
                   radius: 30,
@@ -80,17 +89,19 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                   child: TextView.titleWithDecoration('See All', color: Colors.white, fontSize:sizes.fontSize12),
                 ),
               ) : RecentlyStartedContainer(
-                name: recentlyStartedCauseList[index].title,
-                image: recentlyStartedCauseList[index].backgroundImage,
-                colors: recentlyStartedCauseList[index].colors!,
+                name: _causesController.recentlyStartedCauses![index].name,
+                image: _causesController.recentlyStartedCauses![index].image,
+                colors: const [Colors.transparent, AppColors.greenColor,],
                 index: index,
                 onPressFullContainer: (){},
               );
             },
           ),
-        ),
+        ),),
         SizedBox(height: getHeight() * 0.03),
-        Padding(
+
+        /// Upcoming causes
+        Obx(() => Padding(
           padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
           child: Column(
             children: [
@@ -99,24 +110,29 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                   trailingText: "See All",
                   onPressSeeAllButton: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const CausesUpcoming()));
+                        MaterialPageRoute(builder: (_) => CausesUpcoming(
+                          upcomingList:  _causesController.upcomingCauses as dynamic,
+                        )));
                   }
               ),
               SizedBox(height: getHeight() * 0.018),
-              ListView.separated(
+                _causesController.isUpcomingCausesLoading.value
+                ? circularProgressIndicator()
+                : ListView.separated(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: const ScrollPhysics(),
                 itemCount: 3,
                 itemBuilder: (context, index){
                   return UpcomingCauses(
-                      image:  "",
-                      headerText: "Chino Hills High Softball Team",
-                      description:  "Spring Training Equipment Fundraiser",
+                      image:  _causesController.upcomingCauses![index].image,
+                      headerText: _causesController.upcomingCauses![index].organization!.name,
+                      description:  _causesController.upcomingCauses![index].name,
                       onViewCourse: (){
                       },
-                      totalAmount: "500",
-                      date: "Mar 25"
+                      totalAmount: _causesController.upcomingCauses![index].raised.toString(),
+                      date: _causesController.upcomingCauses![index].start!.toString()
+
                   );
 
                 }, separatorBuilder: (BuildContext context, int index) {
@@ -126,7 +142,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
               SizedBox(height: getHeight() * 0.03),
             ],
           ),
-        )
+        ))
+
       ],
     );
   }

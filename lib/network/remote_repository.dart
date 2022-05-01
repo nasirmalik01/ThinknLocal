@@ -1,14 +1,15 @@
-import 'package:flutter_app/model/Causess.dart';
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/constants/api_endpoints.dart';
+import 'package:flutter_app/model/causess.dart';
 import 'package:flutter_app/model/account.dart';
 import 'package:flutter_app/model/business_stats.dart';
-import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get_it/get_it.dart';
 
 class RemoteRepository{
 
   static Future<Account?> fetchProfileInfo(Map<String, dynamic> query) async {
-    final response = await GetIt.I<RemoteServices>().getRequest('me', query);
+    final response = await GetIt.I<RemoteServices>().getRequest(me, query);
     if (response == null) {
       return null;
     }
@@ -16,7 +17,7 @@ class RemoteRepository{
   }
 
   static Future<BusinessStats?> fetchBusinessStats(Map<String, dynamic> query) async {
-    final response = await GetIt.I<RemoteServices>().getRequest('businesses/23/stats', query);
+    final response = await GetIt.I<RemoteServices>().getRequest(businessStats, query);
 
     if (response == null) {
       return null;
@@ -24,12 +25,25 @@ class RemoteRepository{
     return BusinessStats.fromJson(response);
   }
 
-  static Future<Causess?> fetchCauses(Map<String, dynamic> query) async {
-    final response = await GetIt.I<RemoteServices>().getRequest('causes', {});
+  static Future<List<Causes>?> fetchCauses(Map<String, dynamic> query, {bool isEndDate = false}) async {
+    List<Causes> causesList = [];
+    final response = await GetIt.I<RemoteServices>().getRequest(causes, query);
 
     if (response == null) {
       return null;
     }
-    return Causess.fromJson(response);
+
+    final List<dynamic> causesDecodeList = response.map((item) => Causes.fromJson(item)).toList();
+    for(var causesItem in causesDecodeList){
+      final dateTime = convertDateToString(dateTime: isEndDate ? causesItem.end.toString() : causesItem.start.toString());
+     if(isEndDate){
+       causesItem.end = dateTime;
+     }else{
+       causesItem.start = dateTime;
+     }
+      causesList.add(causesItem);
+    }
+
+    return causesList;
   }
 }

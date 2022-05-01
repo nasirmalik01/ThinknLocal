@@ -10,15 +10,15 @@ class Account {
   List<History>? history;
 
   Account(
-      {this.id,
-        this.firstName,
-        this.lastName,
-        this.email,
-        this.groupCode,
-        this.zip,
-        this.contributionTotal,
-        this.settings,
-        this.history});
+      {id,
+        firstName,
+        lastName,
+        email,
+        groupCode,
+        zip,
+        contributionTotal,
+        settings,
+        history});
 
   Account.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -29,30 +29,30 @@ class Account {
     zip = json['zip'];
     contributionTotal = json['contribution_total'];
     settings = json['settings'] != null
-        ? new Settings.fromJson(json['settings'])
+        ?  Settings.fromJson(json['settings'])
         : null;
     if (json['history'] != null) {
       history = <History>[];
       json['history'].forEach((v) {
-        history!.add(new History.fromJson(v));
+        history!.add(History.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
-    data['email'] = this.email;
-    data['group_code'] = this.groupCode;
-    data['zip'] = this.zip;
-    data['contribution_total'] = this.contributionTotal;
-    if (this.settings != null) {
-      data['settings'] = this.settings!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['first_name'] = firstName;
+    data['last_name'] = lastName;
+    data['email'] = email;
+    data['group_code'] = groupCode;
+    data['zip'] = zip;
+    data['contribution_total'] = contributionTotal;
+    if (settings != null) {
+      data['settings'] = settings!.toJson();
     }
-    if (this.history != null) {
-      data['history'] = this.history!.map((v) => v.toJson()).toList();
+    if (history != null) {
+      data['history'] = history!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -65,10 +65,10 @@ class Settings {
   bool? newsletters;
 
   Settings(
-      {this.pushNotifications,
-        this.weeklyUpdates,
-        this.receiptApprovals,
-        this.newsletters});
+      {pushNotifications,
+        weeklyUpdates,
+        receiptApprovals,
+        newsletters});
 
   Settings.fromJson(Map<String, dynamic> json) {
     pushNotifications = json['push_notifications'];
@@ -78,11 +78,11 @@ class Settings {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['push_notifications'] = this.pushNotifications;
-    data['weekly_updates'] = this.weeklyUpdates;
-    data['receipt_approvals'] = this.receiptApprovals;
-    data['newsletters'] = this.newsletters;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['push_notifications'] = pushNotifications;
+    data['weekly_updates'] = weeklyUpdates;
+    data['receipt_approvals'] = receiptApprovals;
+    data['newsletters'] = newsletters;
     return data;
   }
 }
@@ -91,7 +91,7 @@ class History {
   String? date;
   int? amount;
 
-  History({this.date, this.amount});
+  History({date, amount});
 
   History.fromJson(Map<String, dynamic> json) {
     date = json['date'];
@@ -99,9 +99,9 @@ class History {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['date'] = this.date;
-    data['amount'] = this.amount;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['date'] = date;
+    data['amount'] = amount;
     return data;
   }
 }

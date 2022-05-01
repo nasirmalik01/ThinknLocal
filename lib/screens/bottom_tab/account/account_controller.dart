@@ -1,9 +1,6 @@
-import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/model/account.dart';
 import 'package:flutter_app/network/remote_repository.dart';
-import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
-import 'package:get_it/get_it.dart';
 
 class AccountController extends GetxController{
   RxBool isPushNotifications = false.obs;
@@ -15,11 +12,11 @@ class AccountController extends GetxController{
   RxBool isLoading = false.obs;
 
 
-  // @override
-  // void onInit() {
-  //   getProfileInfo();
-  //   super.onInit();
-  // }
+  @override
+  void onInit() {
+    getProfileInfo();
+    super.onInit();
+  }
 
   void changePushNotificationValue(bool value) {
     isPushNotifications.value = value;

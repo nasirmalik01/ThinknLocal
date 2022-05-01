@@ -2,31 +2,31 @@ class BusinessStats {
   List<History>? history;
   List<RecentContributions>? recentContributions;
 
-  BusinessStats({this.history, this.recentContributions});
+  BusinessStats({history, recentContributions});
 
   BusinessStats.fromJson(Map<String, dynamic> json) {
     if (json['history'] != null) {
       history = <History>[];
       json['history'].forEach((v) {
-        history!.add(new History.fromJson(v));
+        history!.add( History.fromJson(v));
       });
     }
     if (json['recent_contributions'] != null) {
       recentContributions = <RecentContributions>[];
       json['recent_contributions'].forEach((v) {
-        recentContributions!.add(new RecentContributions.fromJson(v));
+        recentContributions!.add( RecentContributions.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.history != null) {
-      data['history'] = this.history!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    if (history != null) {
+      data['history'] = history!.map((v) => v.toJson()).toList();
     }
-    if (this.recentContributions != null) {
+    if (recentContributions != null) {
       data['recent_contributions'] =
-          this.recentContributions!.map((v) => v.toJson()).toList();
+          recentContributions!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -36,7 +36,7 @@ class History {
   String? date;
   dynamic amount;
 
-  History({this.date, this.amount});
+  History({date, amount});
 
   History.fromJson(Map<String, dynamic> json) {
     date = json['date'];
@@ -44,9 +44,9 @@ class History {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['date'] = this.date;
-    data['amount'] = this.amount;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['date'] = date;
+    data['amount'] = amount;
     return data;
   }
 }
@@ -56,7 +56,7 @@ class RecentContributions {
   double? amount;
   String? date;
 
-  RecentContributions({this.name, this.amount, this.date});
+  RecentContributions({name, amount, date});
 
   RecentContributions.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -65,10 +65,10 @@ class RecentContributions {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['amount'] = this.amount;
-    data['date'] = this.date;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['name'] = name;
+    data['amount'] = amount;
+    data['date'] = date;
     return data;
   }
 }

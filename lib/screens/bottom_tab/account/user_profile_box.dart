@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:get/get.dart';
 
 class UserProfileBox extends StatelessWidget {
   final String? name;
@@ -23,7 +25,11 @@ class UserProfileBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextView.headerWithBlurRadius("Help", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
-                TextView.headerWithBlurRadius("Sign out", color: AppColors.orangeColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                GestureDetector(
+                    onTap: (){
+                      Get.offAllNamed(Routes.loginScreen);
+                    },
+                    child: TextView.headerWithBlurRadius("Sign out", color: AppColors.orangeColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
               ],
             ),
             Container(

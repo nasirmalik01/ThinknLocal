@@ -110,7 +110,7 @@ class Routes {
       ),
       GetPage(
         name: seeAllUpcomingCausesScreen,
-        page: () => const CausesUpcoming(),
+        page: () => const CausesUpcoming(upcomingList: []),
       ),
       GetPage(
         name: seeAllNearbyBusinessesScreen,
@@ -118,7 +118,7 @@ class Routes {
       ),
       GetPage(
         name: locationPermissionScreen,
-        page: () => LocationPermissionScreen(),
+        page: () => const LocationPermissionScreen(),
       ),
       GetPage(
         name: notificationPermissionScreen,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/local/dummy_data/businesses.dart';
 import 'package:flutter_app/local/dummy_data/notification.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:flutter_test/flutter_test.dart';

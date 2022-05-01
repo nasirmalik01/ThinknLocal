@@ -6,6 +6,7 @@ import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
 
 dependencyInjectionSetUp() async {
   /// To register a singleton class
@@ -50,4 +51,11 @@ circularProgressIndicator(){
       color: AppColors.greenColor,
     ),
   );
+}
+
+convertDateToString({required String dateTime}){
+  var parsedDate = DateTime.parse(dateTime);
+  DateFormat format = DateFormat.MMMEd();
+  String formattedDate = format.format(parsedDate);
+  return formattedDate.split(',')[1];
 }

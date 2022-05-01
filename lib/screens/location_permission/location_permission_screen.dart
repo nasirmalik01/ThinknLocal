@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/main_controller.dart';
-import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/widgets/enable_permissions.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 class LocationPermissionScreen extends StatefulWidget {
-  LocationPermissionScreen({Key? key}) : super(key: key);
+  const LocationPermissionScreen({Key? key}) : super(key: key);
 
   @override
   State<LocationPermissionScreen> createState() => _LocationPermissionScreenState();
@@ -22,12 +20,10 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> wit
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addObserver(this);
-    print("InitState");
   }
 
   @override
   void dispose() {
-    print("Dispose");
     super.dispose();
     WidgetsBinding.instance!.removeObserver(this);
   }

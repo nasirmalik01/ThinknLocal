@@ -55,6 +55,7 @@ dependencies:
   notification_permissions: ^0.6.1
   app_settings: ^4.1.5
   get_it: ^7.2.0
+  intl: ^0.17.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

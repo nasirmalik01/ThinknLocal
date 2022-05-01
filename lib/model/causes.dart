@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Causes {
+class Cause {
   String? backgroundImage;
   String? title;
   String? detail;
@@ -16,7 +16,7 @@ class Causes {
   String? backAmount;
   double? amount;
 
-  Causes(
+  Cause(
       {this.backgroundImage,
       this.title,
       this.detail,

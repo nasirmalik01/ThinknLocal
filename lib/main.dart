@@ -25,7 +25,6 @@ void main() async {
   await dependencyInjectionSetUp();
 
   runApp(const MyApp());
-
 }
 
 
