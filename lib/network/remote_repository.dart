@@ -46,4 +46,26 @@ class RemoteRepository{
 
     return causesList;
   }
+
+  static Future<List<Causes>?> fetchBusinesses(Map<String, dynamic> query, {bool isEndDate = false}) async {
+    List<Causes> causesList = [];
+    final response = await GetIt.I<RemoteServices>().getRequest(businesses, query);
+
+    if (response == null) {
+      return null;
+    }
+
+    final List<dynamic> causesDecodeList = response.map((item) => Causes.fromJson(item)).toList();
+    for(var causesItem in causesDecodeList){
+      final dateTime = convertDateToString(dateTime: isEndDate ? causesItem.end.toString() : causesItem.start.toString());
+      if(isEndDate){
+        causesItem.end = dateTime;
+      }else{
+        causesItem.start = dateTime;
+      }
+      causesList.add(causesItem);
+    }
+
+    return causesList;
+  }
 }

@@ -1,6 +1,6 @@
 const authenticate = 'authenticate';
 const users = 'users';
 const causes = 'causes';
-const business = 'business';
+const businesses = 'businesses';
 const businessStats = 'businesses/23/stats';
 const me = 'me';
