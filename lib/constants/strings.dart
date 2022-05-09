@@ -12,6 +12,7 @@ class Strings {
   static const String favorites = "favorites";
   static const String past = "past";
   static const String recent = "recent";
+  static const String active = "active";
   static const String upcoming = "upcoming";
   static const String unknown = "Unknown";
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";

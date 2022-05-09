@@ -114,7 +114,7 @@ class Routes {
       ),
       GetPage(
         name: seeAllNearbyBusinessesScreen,
-        page: () => BusinessesNearBy(),
+        page: () => const BusinessesNearBy(),
       ),
       GetPage(
         name: locationPermissionScreen,

@@ -5,7 +5,6 @@ import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/model/business_detail.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/contributions.dart';
-import 'package:flutter_app/model/dummy/business.dart';
 import 'package:flutter_app/model/dummy/business_stats.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/model/dummy/account.dart';
@@ -61,8 +60,6 @@ class RemoteRepository{
       return null;
     }
 
-    // List
-
     final List<dynamic> _businessDecodeList = response.map((item) => Businesses.fromJson(item)).toList();
     for(var businessItem in _businessDecodeList){
       businessList.add(businessItem);
@@ -73,7 +70,6 @@ class RemoteRepository{
   static Future<List<Contributions>?> fetchContributions(Map<String, dynamic> query) async {
     List<Contributions> contributionsList = [];
     final response = await GetIt.I<RemoteServices>().getRequest(ApiEndPoints.contributions, query);
-    log('RES: $response');
 
     if (response == null) {
       return null;

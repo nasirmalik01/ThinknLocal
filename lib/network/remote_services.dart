@@ -5,10 +5,8 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_app/common/api_error_message.dart';
-import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/network/network_exception.dart';
 import 'package:flutter_app/network/secure_http_client.dart';
-import 'package:get/get.dart';
 
 class RemoteServices  {
   late final secureRepository;

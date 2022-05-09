@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_category_screen.dart';
 import 'package:flutter_app/screens/cause_search/cause_search.dart';
@@ -23,7 +22,6 @@ class CausesScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final CausesController _causesController = Get.put(CausesController());
-    print('TOKEN: ${MyHive.getToken()}');
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -92,7 +90,7 @@ class CausesScreen extends StatelessWidget{
                       customTabBar(title: "Featured", isSelected: _causesController.isFeatured.value,  onTap: (){ _causesController.setFeaturedTab(); }),
                       customTabBar(title: "Trending", isSelected: _causesController.isTrending.value, onTap: (){ _causesController.setTrendingTab(); }),
                       customTabBar(title: "Favorites", isSelected: _causesController.isFavorites.value, onTap: (){ _causesController.setFavoritesTab(); }),
-                      customTabBar(title: "Past", isSelected: _causesController.isPast.value, onTap: (){ _causesController.setPostTab(); }),
+                      customTabBar(title: "Past", isSelected: _causesController.isPast.value, onTap: (){ _causesController.setPastTab(); }),
                     ],
                   ),
                 ),

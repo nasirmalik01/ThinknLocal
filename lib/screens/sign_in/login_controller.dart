@@ -1,4 +1,3 @@
-import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/constants/routes.dart';

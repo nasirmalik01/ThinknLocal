@@ -54,7 +54,7 @@ class CausesController extends GetxController{
     getRecentlyStartedCauses(Strings.favorites);
   }
 
-  setPostTab(){
+  setPastTab(){
     isFeatured.value = false;
     isTrending.value = false;
     isFavorites.value = false;
@@ -68,7 +68,7 @@ class CausesController extends GetxController{
     isTopCausesContainersList.value = true;
     topCausesContainersList =  await (RemoteRepository.fetchCauses({
       selectedTab : true,
-      Strings.recent: true
+      Strings.active: true
     },
         isEndDate: true
     ));
