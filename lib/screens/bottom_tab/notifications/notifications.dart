@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/local/dummy_data/notification.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notification_card.dart';
+import 'package:flutter_app/screens/bottom_tab/notifications/notification_controller.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
@@ -18,6 +21,7 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen>  with SingleTickerProviderStateMixin {
   TabController? _tabController;
+  final NotificationController _notificationController = Get.put(NotificationController());
 
 
   @override
@@ -31,7 +35,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
     initializeResources(context: context);
 
     return Scaffold(
-      body: Container(
+      body: Obx(() => _notificationController.isNotificationsLoading.value ? circularProgressIndicator() : Container(
         height: sizes.height,
         width: sizes.width,
         decoration: const BoxDecoration(
@@ -44,9 +48,9 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
               width: getWidth(),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: PreferenceUtils.getGradient()
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: PreferenceUtils.getGradient()
                 ),
               ),
             ),
@@ -65,64 +69,64 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
             ),
             SizedBox(height: getHeight() * 0.04),
             Container(
-                  padding: EdgeInsets.symmetric(
-                      vertical: sizes.heightRatio * 5),
-                  decoration: const BoxDecoration(
-                    color: AppColors.pureWhiteColor,
-                  ),
-                  child: Stack(
-                    children: [
-                      TabBar(
-                        controller: _tabController,
-                        onTap: (index) {},
-                        indicatorColor: AppColors.greenColor,
-                        indicatorSize: TabBarIndicatorSize.label,
-                        indicatorPadding: EdgeInsets.symmetric(vertical: sizes.heightRatio * 5),
-                        labelColor: AppColors.blackColor,
-                        labelStyle: TextStyle(
-                            fontSize: sizes.fontRatio * 13,
-                            fontFamily: Assets.poppinsMedium,
-                            fontWeight: FontWeight.w500
-                        ),
-                        unselectedLabelColor: AppColors.darkGrey,
-                        unselectedLabelStyle: TextStyle(
-                            fontSize: sizes.fontRatio * 13,
-                            fontFamily: Assets.poppinsMedium,
-                            fontWeight: FontWeight.w400
-                        ),
-                        labelPadding: EdgeInsets.symmetric(horizontal: sizes.smallPadding),
-                        tabs: const [
-                          Tab(
-                            text: 'Notifications',
+              padding: EdgeInsets.symmetric(
+                  vertical: sizes.heightRatio * 5),
+              decoration: const BoxDecoration(
+                color: AppColors.pureWhiteColor,
+              ),
+              child: Stack(
+                children: [
+                  TabBar(
+                    controller: _tabController,
+                    onTap: (index) {},
+                    indicatorColor: AppColors.greenColor,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorPadding: EdgeInsets.symmetric(vertical: sizes.heightRatio * 5),
+                    labelColor: AppColors.blackColor,
+                    labelStyle: TextStyle(
+                        fontSize: sizes.fontRatio * 13,
+                        fontFamily: Assets.poppinsMedium,
+                        fontWeight: FontWeight.w500
+                    ),
+                    unselectedLabelColor: AppColors.darkGrey,
+                    unselectedLabelStyle: TextStyle(
+                        fontSize: sizes.fontRatio * 13,
+                        fontFamily: Assets.poppinsMedium,
+                        fontWeight: FontWeight.w400
+                    ),
+                    labelPadding: EdgeInsets.symmetric(horizontal: sizes.smallPadding),
+                    tabs: const [
+                      Tab(
+                        text: 'Notifications',
 
-                          ),
-                          Tab(
-                            text: 'Pending Receipts',
-                          ),
-                          Tab(
-                            text: 'Sent Receipts',
-                          ),
-                        ],
                       ),
-                      Positioned(
-                        left: getWidth()*0.26,
-                        top: getHeight()*0.003,
-                        child: Container(
-                          height: getWidth()*0.038,
-                          width: getWidth()*0.035,
-                          decoration: BoxDecoration(
-                              color: AppColors.orangeColor,
-                              borderRadius: BorderRadius.circular(0.4.h)
-                          ),
-                          child: Center(child: Padding(
-                            padding: EdgeInsets.only(bottom: 0.2.h),
-                            child: TextView.caption('5', color: AppColors.pureWhiteColor, fontSize: 7.5.sp, textAlign: TextAlign.center, lines: 1),
-                          ),),
-                        ),
-                      )
+                      Tab(
+                        text: 'Pending Receipts',
+                      ),
+                      Tab(
+                        text: 'Sent Receipts',
+                      ),
                     ],
                   ),
-                ),
+                  Positioned(
+                    left: getWidth()*0.26,
+                    top: getHeight()*0.003,
+                    child: Container(
+                      height: getWidth()*0.038,
+                      width: getWidth()*0.035,
+                      decoration: BoxDecoration(
+                          color: AppColors.orangeColor,
+                          borderRadius: BorderRadius.circular(0.4.h)
+                      ),
+                      child: Center(child: Padding(
+                        padding: EdgeInsets.only(bottom: 0.2.h),
+                        child: TextView.caption('5', color: AppColors.pureWhiteColor, fontSize: 7.5.sp, textAlign: TextAlign.center, lines: 1),
+                      ),),
+                    ),
+                  )
+                ],
+              ),
+            ),
             SizedBox(
               height: sizes.height/2,
               child: TabBarView(
@@ -134,24 +138,24 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                       children: [
                         Expanded(
                           child: ListView.separated(
-                              padding: EdgeInsets.symmetric(vertical: 1.8.h),
-                              itemCount: notificationList.length,
-                              shrinkWrap: true,
-                              physics: const ScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                    onTap: () {},
-                                    child: Padding(
-                                      padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == notificationList.length - 1 ? 4.h : 0),
-                                      child: NotificationCard(
-                                          image: notificationList[index].leadingIcon,
-                                          text: notificationList[index].title,
-                                          subText: notificationList[index].subTitle,
-                                          date: '${notificationList[index].time} ago',
-                                          onPressNotification: () {}),
-                                    )
-                                );
-                              },
+                            padding: EdgeInsets.symmetric(vertical: 1.8.h),
+                            itemCount: notificationList.length,
+                            shrinkWrap: true,
+                            physics: const ScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                  onTap: () {},
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == notificationList.length - 1 ? 4.h : 0),
+                                    child: NotificationCard(
+                                        image: notificationList[index].leadingIcon,
+                                        text: notificationList[index].title,
+                                        subText: notificationList[index].subTitle,
+                                        date: '${notificationList[index].time} ago',
+                                        onPressNotification: () {}),
+                                  )
+                              );
+                            },
                             separatorBuilder: (BuildContext context, int index) {
                               return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
                             },
@@ -165,31 +169,31 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                     child: Column(
                       children: [
                         Expanded(
-                            child:
-                            ListView.separated(
-                              padding: EdgeInsets.symmetric(vertical: 1.8.h),
-                              itemCount: pendingReceiptsList.length,
-                              shrinkWrap: true,
-                              physics: const ScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                    onTap: () {
-                                    },
-                                    child: Padding(
-                                      padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == notificationList.length - 1 ? 4.h : 0),
-                                      child: NotificationCard(
-                                          image: pendingReceiptsList[index].leadingIcon,
-                                          text: pendingReceiptsList[index].title,
-                                          subText: pendingReceiptsList[index].subTitle,
-                                          date: '${pendingReceiptsList[index].time} ago',
-                                          onPressNotification: () {}),
-                                    )
-                                );
-                              },
-                              separatorBuilder: (BuildContext context, int index) {
-                                return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
-                              },
-                            ),
+                          child:
+                          ListView.separated(
+                            padding: EdgeInsets.symmetric(vertical: 1.8.h),
+                            itemCount: pendingReceiptsList.length,
+                            shrinkWrap: true,
+                            physics: const ScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                  onTap: () {
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == notificationList.length - 1 ? 4.h : 0),
+                                    child: NotificationCard(
+                                        image: pendingReceiptsList[index].leadingIcon,
+                                        text: pendingReceiptsList[index].title,
+                                        subText: pendingReceiptsList[index].subTitle,
+                                        date: '${pendingReceiptsList[index].time} ago',
+                                        onPressNotification: () {}),
+                                  )
+                              );
+                            },
+                            separatorBuilder: (BuildContext context, int index) {
+                              return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -199,32 +203,32 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                     child: Column(
                       children: [
                         Expanded(
-                            child:
-                            ListView.separated(
-                              padding: EdgeInsets.symmetric(vertical: 1.8.h),
-                              itemCount: sentReceiptsList.length,
-                              shrinkWrap: true,
-                              physics: const ScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                    onTap: () {
-                                    },
-                                    child: Padding(
-                                      padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == notificationList.length - 1 ? 4.h : 0),
-                                      child: NotificationCard(
-                                          image: sentReceiptsList[index].leadingIcon,
-                                          text: sentReceiptsList[index].title,
-                                          subText:sentReceiptsList[index].subTitle,
-                                          date: '${sentReceiptsList[index].time} ago',
-                                          isSentReceipts: true,
-                                          onPressNotification: () {}),
-                                    )
-                                );
-                              },
-                              separatorBuilder: (BuildContext context, int index) {
-                                return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
-                              },
-                            ),
+                          child:
+                          ListView.separated(
+                            padding: EdgeInsets.symmetric(vertical: 1.8.h),
+                            itemCount: sentReceiptsList.length,
+                            shrinkWrap: true,
+                            physics: const ScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                  onTap: () {
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == notificationList.length - 1 ? 4.h : 0),
+                                    child: NotificationCard(
+                                        image: sentReceiptsList[index].leadingIcon,
+                                        text: sentReceiptsList[index].title,
+                                        subText:sentReceiptsList[index].subTitle,
+                                        date: '${sentReceiptsList[index].time} ago',
+                                        isSentReceipts: true,
+                                        onPressNotification: () {}),
+                                  )
+                              );
+                            },
+                            separatorBuilder: (BuildContext context, int index) {
+                              return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -234,7 +238,8 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
             )
           ],
         ),
-      ),
+      ),)
+
     );
   }
 }

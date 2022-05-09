@@ -1,6 +1,6 @@
 import 'package:flutter_app/constants/assets.dart';
 
-import '../../model/notification.dart';
+import '../../model/dummy/notification.dart';
 
 List<Notification> notificationList = [
   Notification(leadingIcon: Assets.notificationIcon1, title: 'Auraganic', subTitle: 'Running a 30% contribution...', time: '2h'),

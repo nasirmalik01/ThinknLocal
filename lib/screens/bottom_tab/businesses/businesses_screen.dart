@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/businesses.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_nearby.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_tabs_container.dart';
@@ -24,7 +26,6 @@ import '../../cause_search/cause_search.dart';
 
 class BusinessesScreen extends StatelessWidget {
   BusinessesScreen({Key? key}) : super(key: key);
-
   final TextEditingController? searchController = TextEditingController();
   final BusinessesComponents _businessesComponents = BusinessesComponents();
   final BusinessesController _businessesController = Get.put(BusinessesController());
@@ -36,8 +37,7 @@ class BusinessesScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Obx(() =>
-            Container(
+        body: Container(
               height: sizes.height,
               width: sizes.width,
               decoration: const BoxDecoration(
@@ -130,7 +130,7 @@ class BusinessesScreen extends StatelessWidget {
                               ],
                             ),
                             SizedBox(height: getHeight() * 0.04),
-                            Row(
+                            Obx(() => Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 customTabBar(title: "Featured", isSelected: _businessesController.isFeatured.value,  onTap: (){ _businessesController.setFeaturedTab(); }),
@@ -139,33 +139,37 @@ class BusinessesScreen extends StatelessWidget {
                                 customTabBar(title: "Past", isSelected: _businessesController.isPast.value, onTap: (){ _businessesController.setPostTab(); }),
                               ],
                             ),
+                           ),
                           ],
                         ),
                       ),
                       SizedBox(height: getHeight() * 0.01),
                       SizedBox(
                         height: 20.h,
-                        child: ListView.builder(
+                        child: Obx(() => _businessesController.isBusinessLoading.value
+                          ? circularProgressIndicator()
+                          : ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: businessTabViewDataList.length,
+                          itemCount: _businessesController.businessList!.length,
                           itemBuilder: (context, index){
                             return BusinessTabContainer(
-                                name: businessTabViewDataList[index].title,
-                                fullBoxImage: businessTabViewDataList[index].backgroundImage,
-                                logoImage: businessTabViewDataList[index].icon,
+                                name: _businessesController.businessList![index].name,
+                                fullBoxImage: _businessesController.businessList![index].image ?? Strings.dummyBgImage,
+                                logoImage: _businessesController.businessList![index].logo ?? Strings.dummyLogo,
                                 bookName:  "",
-                                streetAddress: businessTabViewDataList[index].streetAddress,
-                                address: businessTabViewDataList[index].mainAddress,
-                                phoneNumber: businessTabViewDataList[index].phoneNumber,
+                                streetAddress: _businessesController.businessList![index].address1,
+                                address: _businessesController.businessList![index].address2,
+                                phoneNumber: _businessesController.businessList![index].phone.toString(),
                                 index: index,
                                 isFavorite: false,
                                 onClickBox: () async {
-                                   pushNewScreen(context, screen: const BusinessesDetail(), withNavBar: true);
+                                  Get.toNamed(Routes.businessDetailScreen, arguments: _businessesController.businessList![index].id);
                                 },
                                 onPressFavoriteIcon: () {}
                             );
                           },
                         ),
+                       ),
                       ),
                       SizedBox(height: getHeight() * 0.045),
                       Padding(
@@ -175,12 +179,13 @@ class BusinessesScreen extends StatelessWidget {
                       SizedBox(height: getHeight() * 0.01),
                       SizedBox(
                         height: getHeight()*0.14,
-                        child:
-                        ListView.builder(
+                        child: Obx(() => _businessesController.isRecentlyAddedBusinessLoading.value
+                          ? circularProgressIndicator()
+                          : ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: recentlyStartedBusinessList.length,
+                          itemCount: _businessesController.recentlyAddedBusinessList!.length,
                           itemBuilder: (context, index){
-                            return index == recentlyStartedBusinessList.length - 1 ? Padding(
+                            return index == _businessesController.recentlyAddedBusinessList!.length - 1 ? Padding(
                               padding: EdgeInsets.only(left: 1.h, right: 1.5.h),
                               child: CircleAvatar(
                                 radius: 30,
@@ -188,15 +193,15 @@ class BusinessesScreen extends StatelessWidget {
                                 child: TextView.titleWithDecoration('See All', color: Colors.white, fontSize:sizes.fontSize12),
                               ),
                             ) : RecentlyAddedBusiness(
-                              name: recentlyStartedBusinessList[index].title,
-                              fullImage: recentlyStartedBusinessList[index].backgroundImage,
-                              logoImage: recentlyStartedBusinessList[index].icon,
+                              name: _businessesController.recentlyAddedBusinessList![index].name,
+                              fullImage: _businessesController.recentlyAddedBusinessList![index].image ?? Strings.dummyBgImage,
+                              logoImage: _businessesController.recentlyAddedBusinessList![index].logo ?? Strings.dummyLogo,
                               index: index,
                               onPressFullContainer: (){
                               },
                             );
                           },
-                        ),
+                        ),),
                       ),
                       SizedBox(height: getHeight() * 0.045),
                       Padding(
@@ -208,28 +213,32 @@ class BusinessesScreen extends StatelessWidget {
                                 trailingText: "See All",
                                 onPressSeeAllButton: () {
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) => const BusinessesNearBy()));
+                                      MaterialPageRoute(builder: (_) => BusinessesNearBy(
+                                        nearbyBusinesses: _businessesController.nearbyBusinessList!,
+                                      )));
                                 }
                             ),
                             SizedBox(height: getHeight() * 0.018),
-                            ListView.separated(
+                            Obx(() =>  _businessesController.isNearByBusinessLoading.value
+                             ? circularProgressIndicator()
+                             : ListView.separated(
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               physics: const ScrollPhysics(),
-                              itemCount: nearbyBusinessesList.length,
+                              itemCount: 3,
                               itemBuilder: (context, index){
                                 return BusinessNearBy(
-                                    image:  nearbyBusinessesList[index].backgroundImage,
-                                    headerText: nearbyBusinessesList[index].title,
+                                    image:  _businessesController.nearbyBusinessList![index].image ?? Strings.dummyBgImage,
+                                    headerText: _businessesController.nearbyBusinessList![index].name,
                                     onViewCourse: (){},
-                                    address: nearbyBusinessesList[index].mainAddress,
-                                    streetAddress: nearbyBusinessesList[index].streetAddress,
-                                    phoneNumber: nearbyBusinessesList[index].phoneNumber
+                                    address: _businessesController.nearbyBusinessList![index].address1,
+                                    streetAddress: _businessesController.nearbyBusinessList![index].address2 ?? Strings.unknown,
+                                    phoneNumber: _businessesController.nearbyBusinessList![index].phone.toString()
                                 );
                               }, separatorBuilder: (BuildContext context, int index) {
                               return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.001 ,color: AppColors.borderColor);
                             },
-                            ),
+                            ),),
                             SizedBox(height: getHeight() * 0.03),
                           ],
                         ),
@@ -240,7 +249,6 @@ class BusinessesScreen extends StatelessWidget {
                 ],
               ),
             ),
-        )
       ),
     );
   }

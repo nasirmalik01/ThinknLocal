@@ -113,7 +113,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                                   color: AppColors.blackColor,
                                   borderRadius: BorderRadius.circular(getHeight() * 0.02),
                                   image: DecorationImage(
-                                      image: AssetImage(logoImage!),
+                                      image: NetworkImage(logoImage!),
                                       fit: BoxFit.cover)
                               ),
                             ),

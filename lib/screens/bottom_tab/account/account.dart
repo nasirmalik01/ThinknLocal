@@ -21,6 +21,7 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _accountController.getProfileInfo();
 
     return Scaffold(
       body: Obx(() =>

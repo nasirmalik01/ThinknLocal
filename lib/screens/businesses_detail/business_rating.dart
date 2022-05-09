@@ -20,7 +20,7 @@ class BusinessRating extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.only(left: getWidth()*0.003),
-          child: TextView.headerWithBlurRadius("40 customer ratings", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize14),
+          child: TextView.headerWithBlurRadius("$starRating customer ratings", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize14),
         ),
         Container(
             padding: EdgeInsets.symmetric(horizontal: getHeight() * 0.002, vertical: getWidth() * 0.01),
@@ -37,7 +37,7 @@ class BusinessRating extends StatelessWidget {
                   onPress: onPress,
                 ),
                 const Expanded(child: SizedBox()),
-                TextView.caption("4.5 out of 5", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize13),
+                TextView.caption("$starRating out of 5", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize13),
                 SizedBox(width: getWidth()*0.03,)
               ],
             )

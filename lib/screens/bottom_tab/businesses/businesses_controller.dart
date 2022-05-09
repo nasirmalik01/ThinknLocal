@@ -1,3 +1,6 @@
+import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/model/businesses.dart';
+import 'package:flutter_app/network/remote_repository.dart';
 import 'package:get/get.dart';
 
 class BusinessesController extends GetxController{
@@ -5,7 +8,20 @@ class BusinessesController extends GetxController{
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
   RxBool isPast = false.obs;
+  RxBool isBusinessLoading = false.obs;
+  RxBool isRecentlyAddedBusinessLoading = false.obs;
+  RxBool isNearByBusinessLoading = false.obs;
+  List<Businesses>? businessList = [];
+  List<Businesses>? recentlyAddedBusinessList = [];
+  List<Businesses>? nearbyBusinessList = [];
 
+  @override
+  void onInit() {
+    getBusinesses();
+    getRecentlyAddedBusinesses();
+    getNearbyBusinesses();
+    super.onInit();
+  }
 
   setFeaturedTab(){
     isFeatured.value = true;
@@ -33,5 +49,25 @@ class BusinessesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = false;
     isPast.value = true;
+  }
+
+  getBusinesses() async {
+    isBusinessLoading.value = true;
+    businessList =  await (RemoteRepository.fetchBusinesses({}));
+    isBusinessLoading.value = false;
+  }
+
+  getRecentlyAddedBusinesses() async {
+    isRecentlyAddedBusinessLoading.value = true;
+    recentlyAddedBusinessList =  await (RemoteRepository.fetchBusinesses({}));
+    isRecentlyAddedBusinessLoading.value = false;
+  }
+
+  getNearbyBusinesses() async {
+    isNearByBusinessLoading.value = true;
+    nearbyBusinessList =  await (RemoteRepository.fetchBusinesses({
+      Strings.nearby : true
+    }));
+    isNearByBusinessLoading.value = false;
   }
 }

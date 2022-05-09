@@ -106,7 +106,7 @@ class Routes {
       ),
       GetPage(
         name: businessDetailScreen,
-        page: () => const BusinessesDetail(),
+        page: () => const BusinessesDetailScreen(),
       ),
       GetPage(
         name: seeAllUpcomingCausesScreen,
@@ -114,7 +114,7 @@ class Routes {
       ),
       GetPage(
         name: seeAllNearbyBusinessesScreen,
-        page: () => const BusinessesNearBy(),
+        page: () => BusinessesNearBy(),
       ),
       GetPage(
         name: locationPermissionScreen,

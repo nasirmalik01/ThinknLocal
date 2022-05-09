@@ -7,11 +7,10 @@ class MySecureHttpClient {
   static Dio? insecureClient;
 
   static Dio getClient() {
-    secureClient ??= Dio(BaseOptions(baseUrl: 'https://staging-api.thinknlocal.com/v2/', headers: {
+    secureClient ??= Dio(BaseOptions(baseUrl: Strings.baseUrl, headers: {
       'Authorization': MyHive.getToken() ?? Strings.dummyToken,
     },
         responseType: ResponseType.plain
-
     ),
     );
     return secureClient!;

@@ -1,4 +1,4 @@
-class Businesses {
+class BusinessDetail {
   int? id;
   Category? category;
   String? name;
@@ -18,7 +18,7 @@ class Businesses {
   double? totalContributions;
   String? createdAt;
 
-  Businesses(
+  BusinessDetail(
       {this.id,
         this.category,
         this.name,
@@ -38,7 +38,7 @@ class Businesses {
         this.totalContributions,
         this.createdAt});
 
-  Businesses.fromJson(Map<String, dynamic> json) {
+  BusinessDetail.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     category = json['category'] != null
         ? Category.fromJson(json['category'])

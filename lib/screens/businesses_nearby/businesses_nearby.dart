@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/business_category.dart';
+import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_list_view_layout.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -7,7 +9,10 @@ import '../../widgets/common_widgets.dart';
 
 
 class BusinessesNearBy extends StatelessWidget {
-  const BusinessesNearBy({Key? key}) : super(key: key);
+  final List<Businesses>? nearbyBusinesses;
+
+  const BusinessesNearBy({this.nearbyBusinesses, Key? key}) : super(key: key);
+
 
 
   @override
@@ -36,15 +41,15 @@ class BusinessesNearBy extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: businessCategoryDataList.length,
+                      itemCount: nearbyBusinesses!.length,
                       itemBuilder: (context, index) {
                         return BusinessListViewLayout(
-                            image:  businessCategoryDataList[index].backgroundImage,
-                            headerText: businessCategoryDataList[index].title,
+                            image:  nearbyBusinesses![index].image ?? Strings.dummyBgImage,
+                            headerText: nearbyBusinesses![index].name,
                             onViewCourse: (){},
-                            address: businessCategoryDataList[index].mainAddress,
-                            streetAddress:businessCategoryDataList[index].streetAddress,
-                            phoneNumber: businessCategoryDataList[index].phoneNumber
+                            address: nearbyBusinesses![index].address1,
+                            streetAddress: nearbyBusinesses![index].address2,
+                            phoneNumber: nearbyBusinesses![index].phone.toString()
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {

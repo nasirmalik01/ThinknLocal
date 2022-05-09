@@ -1,12 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/businesses.dart';
 import 'package:flutter_app/local/dummy_data/causes_detail.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import 'package:flutter_app/screens/businesses_detail/business_detail_controller.dart';
 import 'package:flutter_app/screens/businesses_detail/business_detail_top_container.dart';
 import 'package:flutter_app/screens/businesses_detail/business_rating.dart';
-import 'package:flutter_app/screens/businesses_detail/business_stats_controller.dart';
 import 'package:flutter_app/screens/businesses_detail/recently_funded_business.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
@@ -21,16 +23,16 @@ import '../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
-class BusinessesDetail extends StatefulWidget {
-  const BusinessesDetail({Key? key}) : super(key: key);
+class BusinessesDetailScreen extends StatefulWidget {
+  const BusinessesDetailScreen({Key? key}) : super(key: key);
 
   @override
-  _BusinessesDetailState createState() => _BusinessesDetailState();
+  _BusinessesDetailScreenState createState() => _BusinessesDetailScreenState();
 }
 
-class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerProviderStateMixin{
+class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with SingleTickerProviderStateMixin{
   final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
-  final BusinessStatsController _businessStatsController = Get.put(BusinessStatsController());
+  final BusinessDetailController _businessDetailController = Get.put(BusinessDetailController());
   TabController? _tabController;
 
   @override
@@ -41,9 +43,15 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
 
   @override
   Widget build(BuildContext context) {
+    final _id = ModalRoute.of(context)!.settings.arguments as int;
+    _businessDetailController.getBusinessDetails(id: _id);
+    _businessDetailController.getBusinessStats(id: _id);
+
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
+        body: Obx(() => (_businessDetailController.isLoading.value || _businessDetailController.isStatsLoading.value)
+          ? circularProgressIndicator()
+          : SingleChildScrollView(
           child: Container(
             height: sizes.height + sizes.height * 0.45,
             width: sizes.width,
@@ -54,17 +62,19 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
               children: [
                 SizedBox(
                   height: sizes.height * 0.35,
-                  child: BusinessDetailTopContainer(
-                      name: "Chino Hills High School Girls Softball Fundraiser",
-                      fullBoxImage: Assets.dummyRestaurant,
-                      logoImage: Assets.dummyRestaurantLogo,
+                  child:  _businessDetailController.isLoading.value
+                      ? circularProgressIndicator()
+                      :  BusinessDetailTopContainer(
+                      name: _businessDetailController.businessDetail.name,
+                      fullBoxImage: _businessDetailController.businessDetail.image ?? Strings.dummyBgImage,
+                      logoImage: _businessDetailController.businessDetail.logo ?? Strings.dummyLogo,
                       completePercentage: 0.7,
-                      contributedAmount: "3942.61",
-                      totalAmount: "450",
-                      joinDate: "Jan 2020",
-                      streetAddress: "15705 Euclid Ave",
-                      address: "Chino, CA 9170",
-                      phoneNumber: "909-254-7898",
+                      contributedAmount: _businessDetailController.businessDetail.contributionAmount.toString(),
+                      totalAmount: _businessDetailController.businessDetail.totalContributions.toString(),
+                      joinDate: _businessDetailController.businessDetail.createdAt.toString(),
+                      streetAddress: _businessDetailController.businessDetail.address2,
+                      address: _businessDetailController.businessDetail.address1,
+                      phoneNumber: _businessDetailController.businessDetail.phone.toString(),
                       isFavorite: false,
                       onClickBox: (){},
                       onPressBackArrow: () {
@@ -123,7 +133,9 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                   child: TabBarView(
                     controller: _tabController,
                     children: [
-                      ListView(
+                      _businessDetailController.isLoading.value
+                          ? circularProgressIndicator()
+                          : ListView(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
@@ -131,10 +143,10 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                             padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                             child: Column(
                               children: [
-                                TextView.caption("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies, ipsum et ullamcorper dignissim, massa quam congue arcu, non facilisis.", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular,lines: 3, fontSize: sizes.fontSize12),
+                                TextView.caption(_businessDetailController.businessDetail.description, color: AppColors.blackColor, fontFamily: Assets.poppinsRegular,lines: 3, fontSize: sizes.fontSize12),
                                 SizedBox(height: sizes.height * 0.03),
                                 BusinessRating(
-                                    starRating: 4.5,
+                                    starRating: _businessDetailController.businessDetail.rating,
                                     onPress: () {}
                                 ),
                               ],
@@ -151,7 +163,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                               Padding(
                                 padding: EdgeInsets.only(top: getHeight() * 0.01),
                                 child: SizedBox(
-                                  height: getHeight()*0.17,
+                                  height: getHeight()*0.18,
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: recentlyFundedBusinessList.length,
@@ -237,8 +249,8 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                           ),
                         ],
                       ),
-                      Obx(() => _businessStatsController.isLoading.value
-                      ? Padding(
+                      _businessDetailController.isLoading.value
+                          ? Padding(
                         padding: EdgeInsets.only(top: getHeight()*0.1),
                         child: Wrap(
                           children:  [
@@ -251,7 +263,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                           ],
                         ),
                       )
-                      : ListView(
+                          : ListView(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
@@ -331,11 +343,11 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const ScrollPhysics(),
-                                  itemCount: _businessStatsController.businessStats.recentContributions!.length,
+                                  itemCount: _businessDetailController.businessStats.recentContributions!.length,
                                   itemBuilder: (context, index){
                                     return RecentContributions(
-                                        contributorName: _businessStatsController.businessStats.recentContributions![index].name,
-                                        amount: _businessStatsController.businessStats.recentContributions![index].amount.toString()
+                                        contributorName: _businessDetailController.businessStats.recentContributions![index].name,
+                                        amount: _businessDetailController.businessStats.recentContributions![index].amount.toString()
                                     );
 
                                   }, separatorBuilder: (BuildContext context, int index) {
@@ -347,7 +359,7 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
                             ),
                           ),
                         ],
-                      ),)
+                      ),
                     ],
                   ),
                 ),
@@ -355,9 +367,9 @@ class _BusinessesDetailState extends State<BusinessesDetail> with SingleTickerPr
               ],
             ),
           ),
-        ),
-
+        ),),
       ),
     );
   }
 }
+

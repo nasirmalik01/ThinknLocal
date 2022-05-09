@@ -1,4 +1,4 @@
-import 'package:flutter_app/model/location.dart';
+import 'package:flutter_app/model/dummy/location.dart';
 
 List<Location> citiesNearMeList = [
   Location(placeName: 'Chino, CA', distance: 0.5),

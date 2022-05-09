@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -40,7 +41,7 @@ class CausesUpcoming extends StatelessWidget {
                         return Padding(
                           padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
                           child: UpcomingCauses(
-                              image:  upcomingList[index].image,
+                              image:  upcomingList[index].image ?? Strings.dummyBgImage,
                               headerText: upcomingList[index].organization!.name,
                               description:   upcomingList[index].name!,
                               onViewCourse: (){

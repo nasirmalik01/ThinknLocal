@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_funds_container.dart';
@@ -50,8 +51,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 ),
               ) : CausesFundContainer(
                 name: _causesController.topCausesContainersList![index].name!,
-                fullBoxImage: _causesController.topCausesContainersList![index].image!,
-                logoImage: _causesController.topCausesContainersList![index].organization!.logo!,
+                fullBoxImage: _causesController.topCausesContainersList![index].image ?? Strings.dummyBgImage,
+                logoImage: _causesController.topCausesContainersList![index].organization!.logo ?? Strings.dummyLogo,
                 completePercentage:   0.7,
                 collectedAmount: _causesController.topCausesContainersList![index].raised.toString(),
                 totalAmount: _causesController.topCausesContainersList![index].goal.toString(),
@@ -90,7 +91,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 ),
               ) : RecentlyStartedContainer(
                 name: _causesController.recentlyStartedCauses![index].name,
-                image: _causesController.recentlyStartedCauses![index].image,
+                image: _causesController.recentlyStartedCauses![index].image ?? Strings.dummyBgImage,
                 colors: const [Colors.transparent, AppColors.greenColor,],
                 index: index,
                 onPressFullContainer: (){},
@@ -125,7 +126,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 itemCount: 3,
                 itemBuilder: (context, index){
                   return UpcomingCauses(
-                      image:  _causesController.upcomingCauses![index].image,
+                      image:  _causesController.upcomingCauses![index].image ?? Strings.dummyBgImage,
                       headerText: _causesController.upcomingCauses![index].organization!.name,
                       description:  _causesController.upcomingCauses![index].name,
                       onViewCourse: (){

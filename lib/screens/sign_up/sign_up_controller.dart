@@ -9,7 +9,7 @@ import 'package:get_it/get_it.dart';
 class SignUpController extends GetxController{
 
   Future registerUser({String? email, String? password, String? confirmPassword, String? firstName, String? lastName, String? zipCode, String? groupCode, String? businessId, String? causeId, String? organizationId}) async {
-    final response = await GetIt.I<RemoteServices>().postRequest(users, {
+    final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.users, {
       'email': email,
       'password': password,
       'password_confirmation': confirmPassword,

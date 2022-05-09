@@ -1,4 +1,5 @@
-import 'package:flutter_app/model/causess.dart';
+import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/network/remote_repository.dart';
 import 'package:get/get.dart';
 
@@ -17,9 +18,9 @@ class CausesController extends GetxController{
 
   @override
   void onInit() {
-    getTopCausesContainersList('featured');
-    getUpComingCauses('featured');
-    getRecentlyStartedCauses('featured');
+    getCauses(Strings.featured);
+    getUpComingCauses(Strings.featured);
+    getRecentlyStartedCauses(Strings.featured);
     super.onInit();
   }
 
@@ -28,9 +29,9 @@ class CausesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = false;
     isPast.value = false;
-    getTopCausesContainersList('featured');
-    getUpComingCauses('featured');
-    getRecentlyStartedCauses('featured');
+    getCauses(Strings.featured);
+    getUpComingCauses(Strings.featured);
+    getRecentlyStartedCauses(Strings.featured);
   }
 
   setTrendingTab(){
@@ -38,9 +39,9 @@ class CausesController extends GetxController{
     isTrending.value = true;
     isFavorites.value = false;
     isPast.value = false;
-    getTopCausesContainersList('trending');
-    getUpComingCauses('trending');
-    getRecentlyStartedCauses('trending');
+    getCauses(Strings.trending);
+    getUpComingCauses(Strings.trending);
+    getRecentlyStartedCauses(Strings.trending);
   }
 
   setFavoritesTab(){
@@ -48,9 +49,9 @@ class CausesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = true;
     isPast.value = false;
-    getTopCausesContainersList('favorites');
-    getUpComingCauses('favorites');
-    getRecentlyStartedCauses('favorites');
+    getCauses(Strings.favorites);
+    getUpComingCauses(Strings.favorites);
+    getRecentlyStartedCauses(Strings.favorites);
   }
 
   setPostTab(){
@@ -58,16 +59,16 @@ class CausesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = false;
     isPast.value = true;
-    getTopCausesContainersList('past');
-    getUpComingCauses('past');
-    getRecentlyStartedCauses('past');
+    getCauses(Strings.past);
+    getUpComingCauses(Strings.past);
+    getRecentlyStartedCauses(Strings.past);
   }
 
-  getTopCausesContainersList(String selectedTab) async {
+  getCauses(String selectedTab) async {
     isTopCausesContainersList.value = true;
     topCausesContainersList =  await (RemoteRepository.fetchCauses({
       selectedTab : true,
-      'recent': true
+      Strings.recent: true
     },
         isEndDate: true
     ));
@@ -78,7 +79,7 @@ class CausesController extends GetxController{
     isUpcomingCausesLoading.value = true;
     upcomingCauses =  await (RemoteRepository.fetchCauses({
       selectedTab : true,
-      'upcoming': ''
+      Strings.upcoming: ''
     }));
     isUpcomingCausesLoading.value = false;
   }
@@ -87,10 +88,9 @@ class CausesController extends GetxController{
     isRecentlyStartedCausesLoading.value = true;
     recentlyStartedCauses =  await (RemoteRepository.fetchCauses({
       selectedTab : true,
-      'recent': true,
+      Strings.recent: true,
     }));
     isRecentlyStartedCausesLoading.value = false;
   }
-
 
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_category_screen.dart';
 import 'package:flutter_app/screens/cause_search/cause_search.dart';
@@ -22,6 +23,7 @@ class CausesScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final CausesController _causesController = Get.put(CausesController());
+    print('TOKEN: ${MyHive.getToken()}');
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

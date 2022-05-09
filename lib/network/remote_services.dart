@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, non_constant_identifier_names
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -36,7 +37,7 @@ class RemoteServices  {
     dynamic resJson;
     try {
       dynamic _result = await secureRepository.get(endPoint, queryParameters: map);
-      // print('status_code: ${_result.statusCode}');
+      log('status_code: ${_result.statusCode}');
       if (_result.statusCode == 200) {
           resJson = json.decode(_result.toString());
         return resJson;

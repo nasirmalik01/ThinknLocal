@@ -1,5 +1,5 @@
 import 'package:flutter_app/constants/assets.dart';
-import 'package:flutter_app/model/causes.dart';
+import 'package:flutter_app/model/dummy/causess.dart';
 
 List<Cause> causesDetailFoodList = [
   Cause(backgroundImage: Assets.causesDetailFood1, title:  "Andy's Xpress Wash", mainAddress: "Chino, CA 91710", streetAddress: "15705 Euclid Ave", phoneNumber: "908-900-1791", backAmount: '50%'),
