@@ -13,6 +13,7 @@ import 'package:flutter_app/screens/businesses_detail/recently_funded_business.d
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
 import 'package:flutter_app/screens/causes_detail/update_fund_raiser.dart';
+import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -23,33 +24,21 @@ import '../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
-class BusinessesDetailScreen extends StatefulWidget {
-  const BusinessesDetailScreen({Key? key}) : super(key: key);
+class BusinessesDetailScreen extends StatelessWidget {
+   BusinessesDetailScreen({Key? key}) : super(key: key);
 
-  @override
-  _BusinessesDetailScreenState createState() => _BusinessesDetailScreenState();
-}
-
-class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with SingleTickerProviderStateMixin{
   final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
   final BusinessDetailController _businessDetailController = Get.put(BusinessDetailController());
-  TabController? _tabController;
 
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 3, vsync: this);
-  }
 
   @override
   Widget build(BuildContext context) {
     final _id = ModalRoute.of(context)!.settings.arguments as int;
-    _businessDetailController.getBusinessDetails(id: _id);
-    _businessDetailController.getBusinessStats(id: _id);
+    getBusinessDetails(_id);
 
     return SafeArea(
       child: Scaffold(
-        body: Obx(() => (_businessDetailController.isLoading.value || _businessDetailController.isStatsLoading.value)
+        body: Obx(() => (_businessDetailController.isLoading.value || _businessDetailController.isStatsLoading.value || _businessDetailController.isRecentlyFundedBusinessCauses.value || _businessDetailController.isPastFundedBusinessCauses.value)
           ? circularProgressIndicator()
           : SingleChildScrollView(
           child: Container(
@@ -75,13 +64,15 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                       streetAddress: _businessDetailController.businessDetail.address2,
                       address: _businessDetailController.businessDetail.address1,
                       phoneNumber: _businessDetailController.businessDetail.phone.toString(),
-                      isFavorite: false,
+                      isFavorite: _businessDetailController.isBusinessFollowed.value,
                       onClickBox: (){},
                       onPressBackArrow: () {
                         Navigator.pop(context, 1);
                         return Future.value(true);
                       },
-                      onPressFavoriteIcon: () {}
+                      onPressFavoriteIcon: () {
+                        _businessDetailController.followBusiness(_id);
+                      }
                   ),
                 ),
                 SizedBox(height: sizes.height * 0.01),
@@ -95,7 +86,7 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                     borderRadius: BorderRadius.circular(getHeight() * 0.01),
                   ),
                   child: TabBar(
-                    controller: _tabController,
+                    controller: _businessDetailController.tabController,
                     onTap: (index) {},
                     indicator: BoxDecoration(
 
@@ -121,9 +112,6 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
 
                       ),
                       Tab(
-                        text: 'Update',
-                      ),
-                      Tab(
                         text: 'Stats',
                       ),
                     ],
@@ -131,11 +119,9 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                 ),
                 Expanded(
                   child: TabBarView(
-                    controller: _tabController,
+                    controller: _businessDetailController.tabController,
                     children: [
-                      _businessDetailController.isLoading.value
-                          ? circularProgressIndicator()
-                          : ListView(
+                      _businessDetailController.isLoading.value ? circularProgressIndicator() : ListView(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
@@ -158,7 +144,7 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                             children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
-                                child: TextView.titleWithDecoration("Recently Funded", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize17),
+                                child: TextView.titleWithDecoration("Recently Funded", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: getHeight() * 0.01),
@@ -166,17 +152,22 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                                   height: getHeight()*0.18,
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
-                                    itemCount: recentlyFundedBusinessList.length,
+                                    itemCount: _businessDetailController.recentlyFundedBusinessCausesList.length > 6 ? 6 : _businessDetailController.recentlyFundedBusinessCausesList.length,
                                     itemBuilder: (context, index){
-                                      return RecentlyFundedBusiness(
-                                        name: recentlyFundedBusinessList[index].title,
-                                        fullImage: recentlyFundedBusinessList[index].backgroundImage,
-                                        logoImage: recentlyFundedBusinessList[index].icon,
+                                      return index == 5 ? GestureDetector(
+                                          onTap: (){
+                                            Get.to(() => DetailScreen(title: Strings.recentlyFundedBusinessCauses, detailList: _businessDetailController.recentlyFundedBusinessCausesList as dynamic));
+                                          },
+                                          child: CommonWidgets.seeAllButton(30)
+                                      ) : RecentlyFundedBusiness(
+                                        name: _businessDetailController.recentlyFundedBusinessCausesList[index].name,
+                                        fullImage: _businessDetailController.recentlyFundedBusinessCausesList[index].image,
+                                        logoImage: _businessDetailController.recentlyFundedBusinessCausesList[index].organization!.logo,
                                         isFavorite: false,
-                                        endDate: recentlyFundedBusinessList[index].endDate,
-                                        raisedAmount: recentlyFundedBusinessList[index].raisedAmount.toString(),
-                                        totalAmount: recentlyFundedBusinessList[index].totalAmount.toString(),
-                                        colors: recentlyFundedBusinessList[index].color!,
+                                        endDate: _businessDetailController.recentlyFundedBusinessCausesList[index].end,
+                                        raisedAmount: _businessDetailController.recentlyFundedBusinessCausesList[index].raised.toString(),
+                                        totalAmount: _businessDetailController.recentlyFundedBusinessCausesList[index].goal.toString(),
+                                        colors: const [Colors.transparent, AppColors.greenColor,],
                                         index: index,
                                         onPressFullContainer: (){
                                         },
@@ -189,7 +180,17 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                           ),
                           SizedBox(height: sizes.height * 0.03),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                            padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
+                            child: CommonWidgets.getTextWithSeeAll(
+                                leadingText: "Past Funded Courses",
+                                trailingText: Strings.seeAll,
+                                onPressSeeAllButton: () {
+                                  Get.to(() => DetailScreen(title: Strings.pastFundedBusinessCauses, detailList: _businessDetailController.pastFundedBusinessCausesList as dynamic));
+                                }
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06, vertical: getHeight() * 0.005),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -198,16 +199,15 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const ScrollPhysics(),
-                                  itemCount: 3,
+                                  itemCount: _businessDetailController.pastFundedBusinessCausesList.length > 4 ? 4 : _businessDetailController.pastFundedBusinessCausesList.length,
                                   itemBuilder: (context, index){
                                     return UpcomingCauses(
-                                        image:  "",
-                                        headerText: "Chino Hills High Softball Team",
-                                        description:  "Spring Training Equipment Fundraiser",
-                                        onViewCourse: (){
-                                        },
-                                        totalAmount: "500",
-                                        date: "Mar 25"
+                                        image:  _businessDetailController.pastFundedBusinessCausesList[index].image,
+                                        headerText: _businessDetailController.pastFundedBusinessCausesList[index].name,
+                                        description:  _businessDetailController.pastFundedBusinessCausesList[index].description,
+                                        onViewCourse: (){},
+                                        totalAmount: _businessDetailController.pastFundedBusinessCausesList[index].goal.toString(),
+                                        date: _businessDetailController.pastFundedBusinessCausesList[index].start
                                     );
 
                                   }, separatorBuilder: (BuildContext context, int index) {
@@ -220,37 +220,7 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                           ),
                         ],
                       ),
-                      ListView(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                            child: Column(
-                              children: [
-                                ListView.separated(
-                                  scrollDirection: Axis.vertical,
-                                  shrinkWrap: true,
-                                  physics: const ScrollPhysics(),
-                                  itemCount: 8,
-                                  itemBuilder: (context, index){
-                                    return  UpdateFundRaiser(
-                                        header: updateFundRaiserList[index].title!,
-                                        detail: updateFundRaiserList[index].detail!,
-                                        date: updateFundRaiserList[index].date!
-                                    );
-                                  }, separatorBuilder: (BuildContext context, int index) {
-                                  return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
-                                },),
-                                SizedBox(height: sizes.height * 0.03),
-
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      _businessDetailController.isLoading.value
-                          ? Padding(
+                      _businessDetailController.isLoading.value ? Padding(
                         padding: EdgeInsets.only(top: getHeight()*0.1),
                         child: Wrap(
                           children:  [
@@ -262,8 +232,7 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                             )
                           ],
                         ),
-                      )
-                          : ListView(
+                      ) : ListView(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: [
@@ -334,7 +303,7 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                                 SizedBox(height: 3.h),
                                 CommonWidgets.getTextWithSeeAll(
                                     leadingText: "Recent Contributions",
-                                    trailingText: "See All",
+                                    trailingText: Strings.seeAll,
                                     onPressSeeAllButton: () {
                                     }
                                 ),
@@ -343,7 +312,7 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const ScrollPhysics(),
-                                  itemCount: _businessDetailController.businessStats.recentContributions!.length,
+                                  itemCount:  _businessDetailController.businessStats.recentContributions!.length > 9 ? 9 : _businessDetailController.businessStats.recentContributions!.length,
                                   itemBuilder: (context, index){
                                     return RecentContributions(
                                         contributorName: _businessDetailController.businessStats.recentContributions![index].name,
@@ -370,6 +339,13 @@ class _BusinessesDetailScreenState extends State<BusinessesDetailScreen> with Si
         ),),
       ),
     );
+  }
+
+  getBusinessDetails(int _id){
+    _businessDetailController.getBusinessDetails(id: _id);
+    _businessDetailController.getBusinessStats(id: _id);
+    _businessDetailController.getRecentlyFundedBusinessCauses(id: _id);
+    _businessDetailController.getPastFundedBusinessCauses(id: _id);
   }
 }
 

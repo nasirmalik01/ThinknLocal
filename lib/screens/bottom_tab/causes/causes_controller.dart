@@ -1,6 +1,9 @@
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/local/my_hive.dart';
+import 'package:flutter_app/local/user_location.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/network/remote_repository.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 
 class CausesController extends GetxController{
@@ -8,6 +11,7 @@ class CausesController extends GetxController{
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
   RxBool isPast = false.obs;
+  RxString locationAddress = 'No location'.obs;
   RxBool isUpcomingCausesLoading = false.obs;
   RxBool isRecentlyStartedCausesLoading = false.obs;
   RxBool isTopCausesContainersList = false.obs;
@@ -18,6 +22,7 @@ class CausesController extends GetxController{
 
   @override
   void onInit() {
+    getLocationAddress();
     getCauses(Strings.featured);
     getUpComingCauses(Strings.featured);
     getRecentlyStartedCauses(Strings.featured);
@@ -69,9 +74,7 @@ class CausesController extends GetxController{
     topCausesContainersList =  await (RemoteRepository.fetchCauses({
       selectedTab : true,
       Strings.active: true
-    },
-        isEndDate: true
-    ));
+    },));
     isTopCausesContainersList.value = false;
   }
 
@@ -79,7 +82,7 @@ class CausesController extends GetxController{
     isUpcomingCausesLoading.value = true;
     upcomingCauses =  await (RemoteRepository.fetchCauses({
       selectedTab : true,
-      Strings.upcoming: ''
+      Strings.upcoming: '',
     }));
     isUpcomingCausesLoading.value = false;
   }
@@ -91,6 +94,18 @@ class CausesController extends GetxController{
       Strings.recent: true,
     }));
     isRecentlyStartedCausesLoading.value = false;
+  }
+
+  getLocationAddress() async {
+    if (MyHive.getLocation() != null) {
+      locationAddress.value = await findAddress(MyHive.getLocation());
+    }
+  }
+
+  Future<String> findAddress(UserLocation type) async {
+    var placeMarkers = await placemarkFromCoordinates(type.latitude, type.longitude);
+    var completeAddress = '${placeMarkers.first.street},${placeMarkers.first.locality},${placeMarkers.first.country}';
+    return completeAddress;
   }
 
 }

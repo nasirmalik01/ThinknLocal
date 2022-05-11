@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
@@ -11,12 +13,11 @@ import 'package:intl/intl.dart';
 dependencyInjectionSetUp() async {
   /// To register a singleton class
   GetIt.I.registerSingleton<RemoteServices>(RemoteServices());
-  GetIt.I<RemoteServices>().init();
 }
 
 showSnackBar({String? title, String? subTitle, Color? backgroundColor}){
   Get.closeCurrentSnackbar();
-  Get.snackbar(title ?? 'Attention', subTitle ?? 'Please try again', snackPosition: SnackPosition.BOTTOM, backgroundColor: backgroundColor ?? Colors.redAccent, colorText: AppColors.pureWhiteColor, duration: const Duration(seconds: 2),);
+  Get.snackbar(title ?? 'Alert', subTitle ?? 'Please try again', snackPosition: SnackPosition.BOTTOM, backgroundColor: backgroundColor ?? Colors.redAccent, colorText: AppColors.pureWhiteColor, duration: const Duration(seconds: 2),);
 }
 
 showLoadingDialog({String? message}){
@@ -58,4 +59,10 @@ convertDateToString({required String dateTime}){
   DateFormat format = DateFormat.MMMEd();
   String formattedDate = format.format(parsedDate);
   return formattedDate.split(',')[1];
+}
+
+locationParams(Map<String, dynamic> query){
+  var location = MyHive.getLocation();
+  query[Strings.latitude] = location.latitude;
+  query[Strings.longitude] = location.longitude;
 }

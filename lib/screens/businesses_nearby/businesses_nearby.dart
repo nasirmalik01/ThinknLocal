@@ -7,10 +7,10 @@ import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 
 
-class BusinessesNearBy extends StatelessWidget {
-  final List<Businesses>? nearbyBusinesses;
-
-  const BusinessesNearBy({this.nearbyBusinesses, Key? key}) : super(key: key);
+class BusinessesDetail extends StatelessWidget {
+  final String title;
+  final List<Businesses> detailList;
+  const BusinessesDetail({required this.title, required this.detailList, Key? key}) : super(key: key);
 
 
 
@@ -26,7 +26,7 @@ class BusinessesNearBy extends StatelessWidget {
           child: Column(
             children: [
               CommonWidgets.getSimpleAppBar(
-                  title: "Businesses near you",
+                  title: title,
                   onPressBackArrow: () {
                     Navigator.pop(context);
                   }),
@@ -40,15 +40,15 @@ class BusinessesNearBy extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: nearbyBusinesses!.length,
+                      itemCount: detailList.length,
                       itemBuilder: (context, index) {
                         return BusinessListViewLayout(
-                            image:  nearbyBusinesses![index].image ?? Strings.dummyBgImage,
-                            headerText: nearbyBusinesses![index].name,
+                            image:  detailList[index].image ?? Strings.dummyBgImage,
+                            headerText: detailList[index].name,
                             onViewCourse: (){},
-                            address: nearbyBusinesses![index].address1,
-                            streetAddress: nearbyBusinesses![index].address2,
-                            phoneNumber: nearbyBusinesses![index].phone.toString()
+                            address: detailList[index].address1,
+                            streetAddress: detailList[index].address2,
+                            phoneNumber: detailList[index].phone.toString()
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {

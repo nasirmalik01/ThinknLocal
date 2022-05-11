@@ -55,15 +55,17 @@ class UserProfileBox extends StatelessWidget {
                   SizedBox(height: getHeight() * 0.008),
                   TextView.headerWithBlurRadius(email, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.01),
-                  GestureDetector(
-                    onTap: () => onTapEdit!(),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.edit, size: 15, color: AppColors.greenColor),
-                        SizedBox(width: sizes.width * 0.015),
-                        TextView.headerWithBlurRadius("Edit Account Info", color: AppColors.greenColor, textDecoration: TextDecoration.underline),
-                      ],
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () => onTapEdit!(),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.edit, size: 15, color: AppColors.greenColor),
+                          SizedBox(width: sizes.width * 0.015),
+                          TextView.headerWithBlurRadius("Edit Account Info", color: AppColors.greenColor, textDecoration: TextDecoration.underline),
+                        ],
+                      ),
                     ),
                   ),
                 ],

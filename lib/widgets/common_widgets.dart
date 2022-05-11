@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:sizer/sizer.dart';
 import '../constants/assets.dart';
 import '../constants/colors.dart';
 import '../res/res.dart';
@@ -238,6 +240,17 @@ class CommonWidgets {
             child: TextView.headerWithBlurRadius(trailingText, color: AppColors.greenColor,
                 fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize15)),
       ],
+    );
+  }
+
+  static Widget seeAllButton(double radius){
+    return Padding(
+      padding: EdgeInsets.only(left: 1.h, right: 1.5.h),
+      child: CircleAvatar(
+        radius: radius,
+        backgroundColor: const Color(0xFF7DDFC3),
+        child: TextView.titleWithDecoration(Strings.seeAll, color: Colors.white),
+      ),
     );
   }
 

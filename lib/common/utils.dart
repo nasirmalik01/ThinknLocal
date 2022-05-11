@@ -121,15 +121,6 @@ class PreferenceUtils {
               color: AppColors.greenColor,
               borderRadius: const BorderRadius.all(Radius.zero)),
         ],
-      ),BarChartGroupData(
-        x: 6,
-        barRods: [
-          BarChartRodData(
-              toY: 14000000000,
-              width: getWidth() * 0.05,
-              color: AppColors.greenColor,
-              borderRadius: const BorderRadius.all(Radius.zero)),
-        ],
       ),
     ];
   }

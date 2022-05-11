@@ -106,15 +106,15 @@ class Routes {
       ),
       GetPage(
         name: businessDetailScreen,
-        page: () => const BusinessesDetailScreen(),
+        page: () => BusinessesDetailScreen(),
       ),
       GetPage(
         name: seeAllUpcomingCausesScreen,
-        page: () => const CausesUpcoming(upcomingList: []),
+        page: () => const DetailScreen(title: '', detailList: []),
       ),
       GetPage(
         name: seeAllNearbyBusinessesScreen,
-        page: () => const BusinessesNearBy(),
+        page: () => const BusinessesDetail(title: '', detailList: []),
       ),
       GetPage(
         name: locationPermissionScreen,

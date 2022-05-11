@@ -1,5 +1,4 @@
 import 'package:flutter_app/model/contributions.dart';
-import 'package:flutter_app/network/remote_repository.dart';
 import 'package:get/get.dart';
 
 class NotificationController extends GetxController{
@@ -17,7 +16,7 @@ class NotificationController extends GetxController{
   // For pending and sent receipts
   getContributions() async {
     isNotificationsLoading.value = true;
-    contributionsList = await RemoteRepository.fetchContributions({});
+    // contributionsList = await RemoteRepository.fetchContributions({});
     isNotificationsLoading.value = false;
   }
 }

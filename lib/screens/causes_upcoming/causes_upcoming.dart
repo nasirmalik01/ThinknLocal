@@ -6,9 +6,10 @@ import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 
 
-class CausesUpcoming extends StatelessWidget {
-  final List<dynamic> upcomingList;
-  const CausesUpcoming({Key? key, required this.upcomingList}) : super(key: key);
+class DetailScreen extends StatelessWidget {
+  final List<dynamic> detailList;
+  final String title;
+  const DetailScreen({Key? key, required this.title, required this.detailList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class CausesUpcoming extends StatelessWidget {
           child: Column(
             children: [
               CommonWidgets.getSimpleAppBar(
-                title: "Upcoming causes near you",
+                title: title,
                   onPressBackArrow: () {
                   Navigator.pop(context);
                 }),
@@ -36,18 +37,18 @@ class CausesUpcoming extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: upcomingList.length,
+                      itemCount: detailList.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
                           child: UpcomingCauses(
-                              image:  upcomingList[index].image ?? Strings.dummyBgImage,
-                              headerText: upcomingList[index].organization!.name,
-                              description:   upcomingList[index].name!,
+                              image:  detailList[index].image ?? Strings.dummyBgImage,
+                              headerText: detailList[index].organization!.name,
+                              description:   detailList[index].name!,
                               onViewCourse: (){
                               },
-                              totalAmount:  upcomingList[index].raised.toString(),
-                              date: upcomingList[index].start.toString()
+                              totalAmount:  detailList[index].raised.toString(),
+                              date: detailList[index].start.toString()
                           ),
                         );
                       },

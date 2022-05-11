@@ -4,5 +4,8 @@ class ApiEndPoints{
   static const users = 'users';
   static const causes = 'causes';
   static const businesses = 'businesses';
+  static const stats = 'stats';
+  static const follow = 'follow';
+  static const unfollow = 'unfollow';
   static const contributions = 'contributions';
 }

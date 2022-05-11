@@ -15,6 +15,28 @@ class Strings {
   static const String active = "active";
   static const String upcoming = "upcoming";
   static const String unknown = "Unknown";
+  static const String email = "email";
+  static const String password = "password";
+  static const String passwordConfirmation = "password_confirmation";
+  static const String firstName = "first_name";
+  static const String lastName = "last_name";
+  static const String zip = "zip";
+  static const String groupCode = "group_code";
+  static const String businessId = "business_id";
+  static const String causeId = "cause_id";
+  static const String allCauses = "All causes ";
+  static const String allBusinesses = "All businesses ";
+  static const String upcomingCausesNearYou = "Upcoming causes near you";
+  static const String businessesNearYou = "Businesses near you";
+  static const String upcomingCauses = "Upcoming causes";
+  static const String recentlyStarted = "Recently Started";
+  static const String recentlyFundedBusinessCauses = "Recently funded causes";
+  static const String pastFundedBusinessCauses = "Past funded causes";
+  static const String recentlyAddedBusiness = "Recently added businesses";
+  static const String seeAll = "See All";
+  static const String latitude = "latitude";
+  static const String longitude = "longitude";
+  static const String organizationId = "organization_id";
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";
 }

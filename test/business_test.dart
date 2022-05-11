@@ -11,7 +11,6 @@ Future<void> main() async {
 
   test('Business', () async {
     dynamic _response = await secureRepository.get(ApiEndPoints.businesses, queryParameters: {});
-
     expect(_response.statusCode, 200);
   });
 

@@ -40,16 +40,15 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
             : ListView.builder(
             controller: _tabViewsController,
             scrollDirection: Axis.horizontal,
-            itemCount:  _causesController.topCausesContainersList!.length,
+            itemCount:  6,
             itemBuilder: (context, index){
-              return index == _causesController.topCausesContainersList!.length - 1 ? Padding(
-                padding: EdgeInsets.only(left: 1.h, right: 1.5.h),
-                child: CircleAvatar(
-                  radius: 40,
-                  backgroundColor: const Color(0xFF7DDFC3),
-                  child: TextView.titleWithDecoration('See All', color: Colors.white),
-                ),
-              ) : CausesFundContainer(
+              return index == 5 ? GestureDetector(
+                onTap: (){
+                  Get.to(DetailScreen(title: Strings.allCauses, detailList: _causesController.topCausesContainersList as dynamic));
+                },
+                child: CommonWidgets.seeAllButton(40)
+              )
+                : CausesFundContainer(
                 name: _causesController.topCausesContainersList![index].name!,
                 fullBoxImage: _causesController.topCausesContainersList![index].image ?? Strings.dummyBgImage,
                 logoImage: _causesController.topCausesContainersList![index].organization!.logo ?? Strings.dummyLogo,
@@ -68,7 +67,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
         SizedBox(height: getHeight() * 0.03),
         Padding(
           padding: EdgeInsets.only(left: sizes.width * 0.06),
-          child: TextView.titleWithDecoration("Recently Started", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
+          child: TextView.titleWithDecoration(Strings.recentlyStarted, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
         ),
         SizedBox(height: getHeight() * 0.018),
 
@@ -80,16 +79,15 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
           child: ListView.builder(
             controller: _recentlyStartedController,
             scrollDirection: Axis.horizontal,
-            itemCount: _causesController.recentlyStartedCauses!.length,
+            itemCount: 6,
             itemBuilder: (context, index){
-              return index == _causesController.recentlyStartedCauses!.length - 1 ? Padding(
-                padding: EdgeInsets.only(left: 1.h, right: 1.5.h),
-                child: CircleAvatar(
-                  radius: 30,
-                  backgroundColor: const Color(0xFF7DDFC3),
-                  child: TextView.titleWithDecoration('See All', color: Colors.white, fontSize:sizes.fontSize12),
-                ),
-              ) : RecentlyStartedContainer(
+              return index == 5
+                ? GestureDetector(
+                  onTap: (){
+                    Get.to(DetailScreen(title: Strings.recentlyStarted, detailList: _causesController.recentlyStartedCauses as dynamic));
+                  },
+                  child: CommonWidgets.seeAllButton(30))
+                : RecentlyStartedContainer(
                 name: _causesController.recentlyStartedCauses![index].name,
                 image: _causesController.recentlyStartedCauses![index].image ?? Strings.dummyBgImage,
                 colors: const [Colors.transparent, AppColors.greenColor,],
@@ -107,13 +105,10 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
           child: Column(
             children: [
               CommonWidgets.getTextWithSeeAll(
-                  leadingText: "Upcoming Causes",
-                  trailingText: "See All",
+                  leadingText: Strings.upcomingCauses,
+                  trailingText: Strings.seeAll,
                   onPressSeeAllButton: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => CausesUpcoming(
-                          upcomingList:  _causesController.upcomingCauses as dynamic,
-                        )));
+                    Get.to(DetailScreen(title: Strings.upcomingCausesNearYou, detailList:  _causesController.upcomingCauses as dynamic,));
                   }
               ),
               SizedBox(height: getHeight() * 0.018),

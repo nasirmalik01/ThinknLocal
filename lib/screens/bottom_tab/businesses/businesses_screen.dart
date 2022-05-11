@@ -130,10 +130,10 @@ class BusinessesScreen extends StatelessWidget {
                             Obx(() => Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                customTabBar(title: "Featured", isSelected: _businessesController.isFeatured.value,  onTap: (){ _businessesController.setFeaturedTab(); }),
-                                customTabBar(title: "Trending", isSelected: _businessesController.isTrending.value, onTap: (){ _businessesController.setTrendingTab(); }),
-                                customTabBar(title: "Favorites", isSelected: _businessesController.isFavorites.value, onTap: (){ _businessesController.setFavoritesTab(); }),
-                                customTabBar(title: "Past", isSelected: _businessesController.isPast.value, onTap: (){ _businessesController.setPostTab(); }),
+                                customTabBar(title: Strings.featured.capitalize!, isSelected: _businessesController.isFeatured.value,  onTap: (){ _businessesController.setFeaturedTab(); }),
+                                customTabBar(title: Strings.trending.capitalize!, isSelected: _businessesController.isTrending.value, onTap: (){ _businessesController.setTrendingTab(); }),
+                                customTabBar(title: Strings.favorites.capitalize!, isSelected: _businessesController.isFavorites.value, onTap: (){ _businessesController.setFavoritesTab(); }),
+                                customTabBar(title: Strings.past.capitalize!, isSelected: _businessesController.isPast.value, onTap: (){ _businessesController.setPostTab(); }),
                               ],
                             ),
                            ),
@@ -147,13 +147,19 @@ class BusinessesScreen extends StatelessWidget {
                           ? circularProgressIndicator()
                           : ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: _businessesController.businessList!.length,
+                          itemCount: 6,
                           itemBuilder: (context, index){
-                            return BusinessTabContainer(
+                            return index == 5 ? GestureDetector(
+                                onTap: (){
+                                  Get.to(BusinessesDetail(title: Strings.allBusinesses, detailList: _businessesController.businessList!,));
+                                },
+                                child: CommonWidgets.seeAllButton(40)
+                            )
+                                : BusinessTabContainer(
                                 name: _businessesController.businessList![index].name,
                                 fullBoxImage: _businessesController.businessList![index].image ?? Strings.dummyBgImage,
                                 logoImage: _businessesController.businessList![index].logo ?? Strings.dummyLogo,
-                                bookName:  "",
+                                bookName:  '',
                                 streetAddress: _businessesController.businessList![index].address1,
                                 address: _businessesController.businessList![index].address2,
                                 phoneNumber: _businessesController.businessList![index].phone.toString(),
@@ -180,16 +186,15 @@ class BusinessesScreen extends StatelessWidget {
                           ? circularProgressIndicator()
                           : ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: _businessesController.recentlyAddedBusinessList!.length,
+                          itemCount: 6,
                           itemBuilder: (context, index){
-                            return index == _businessesController.recentlyAddedBusinessList!.length - 1 ? Padding(
-                              padding: EdgeInsets.only(left: 1.h, right: 1.5.h),
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: const Color(0xFF7DDFC3),
-                                child: TextView.titleWithDecoration('See All', color: Colors.white, fontSize:sizes.fontSize12),
-                              ),
-                            ) : RecentlyAddedBusiness(
+                            return index == 5
+                              ? GestureDetector(
+                                onTap: (){
+                                  Get.to(BusinessesDetail(title: Strings.recentlyAddedBusiness, detailList: _businessesController.recentlyAddedBusinessList!,));
+                                },
+                                child: CommonWidgets.seeAllButton(30))
+                              : RecentlyAddedBusiness(
                               name: _businessesController.recentlyAddedBusinessList![index].name,
                               fullImage: _businessesController.recentlyAddedBusinessList![index].image ?? Strings.dummyBgImage,
                               logoImage: _businessesController.recentlyAddedBusinessList![index].logo ?? Strings.dummyLogo,
@@ -209,10 +214,7 @@ class BusinessesScreen extends StatelessWidget {
                                 leadingText: "Nearby",
                                 trailingText: "See All",
                                 onPressSeeAllButton: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) => BusinessesNearBy(
-                                        nearbyBusinesses: _businessesController.nearbyBusinessList!,
-                                      )));
+                                  Get.to(BusinessesDetail(title: Strings.businessesNearYou, detailList: _businessesController.nearbyBusinessList!,));
                                 }
                             ),
                             SizedBox(height: getHeight() * 0.018),

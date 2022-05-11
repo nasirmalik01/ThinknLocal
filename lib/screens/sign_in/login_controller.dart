@@ -11,19 +11,17 @@ class LogInController extends GetxController{
 
   authenticateUser({String? email, String? password}) async {
     final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, {
-      'email': email,
-      'password': password,
+      Strings.email: email,
+      Strings.password: password,
     });
 
     /// if any Exception occurs
-    if (response == null) {
-      return;
+    if (response != null) {
+      String token = response['token'];
+      await MyHive.setToken(token);
+      Get.back();
+      PreferenceUtils.setBool(Strings.showHome, true);
+      Get.offAndToNamed(Routes.bottomNavBarScreen);
     }
-
-    await MyHive.setToken(response['token']);
-
-    Get.back();
-    PreferenceUtils.setBool(Strings.showHome, true);
-    Get.offAndToNamed(Routes.bottomNavBarScreen);
   }
 }

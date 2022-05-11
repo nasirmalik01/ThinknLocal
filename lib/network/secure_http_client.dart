@@ -7,14 +7,17 @@ class MySecureHttpClient {
   static Dio? insecureClient;
 
   static Dio getClient() {
-    secureClient ??= Dio(BaseOptions(baseUrl: Strings.baseUrl, headers: {
-      'Authorization': MyHive.getToken() ?? Strings.dummyToken,
-    },
-        responseType: ResponseType.plain
-    ),
+    return Dio(
+      BaseOptions(
+        baseUrl: Strings.baseUrl,
+        headers: {
+          'Authorization': MyHive.getToken(),
+        },
+        /// you are received response in string because of this line[ResponseType.plain]
+        /// change this into [ResponseType.json] then verify
+        responseType: ResponseType.plain,
+      ),
     );
-    return secureClient!;
-
   }
 
   static Dio getInsecureClient() {

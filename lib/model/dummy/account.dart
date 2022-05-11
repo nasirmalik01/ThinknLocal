@@ -89,7 +89,7 @@ class Settings {
 
 class History {
   String? date;
-  int? amount;
+  dynamic? amount;
 
   History({date, amount});
 

@@ -48,7 +48,6 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> wit
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Obx(() => !_mainController.isLoading.value
           ? EnablePermission(
@@ -61,7 +60,6 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> wit
                 isLocation: true,
               )
           : const SizedBox()),
-
     );
   }
 }

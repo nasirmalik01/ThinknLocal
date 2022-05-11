@@ -51,27 +51,24 @@ class CauseDetailComponents {
     String text;
     switch (value.toInt()) {
       case 0:
-        text = 'Mar 1';
+        text = 'Mar 2021';
         break;
       case 1:
-        text = 'Mar 2';
+        text = 'Mar 2021';
         break;
       case 2:
-        text = 'Mar 3';
+        text = 'Mar 2021';
         break;
       case 3:
-        text = 'Mar 4';
+        text = 'Mar 2021';
         break;
       case 4:
-        text = 'Mar 5';
+        text = 'Mar 2021';
         break;
       case 5:
-        text = 'Mar 5';
+        text = 'Mar 2021';
         break;
       case 6:
-        text = 'Mar 5';
-        break;
-      case 7:
         text = 'Mar 5';
         break;
       default:

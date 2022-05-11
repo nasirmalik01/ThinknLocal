@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_category_screen.dart';
 import 'package:flutter_app/screens/cause_search/cause_search.dart';
@@ -54,9 +55,11 @@ class CausesScreen extends StatelessWidget{
                     },
                     child: Row(
                       children: [
-                        TextView.header("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
+                        Obx(() => SizedBox(
+                            width: getWidth()*0.5,
+                            child: TextView.header(_causesController.locationAddress.value, color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25)),),
                         Padding(
-                          padding: EdgeInsets.only(left: 2.w, bottom: 0.5.h),
+                          padding: EdgeInsets.only(bottom: 0.5.h),
                           child: Image(
                             height: getHeight() * 0.03,
                             image: const AssetImage(Assets.vectorIcon),),
@@ -87,10 +90,10 @@ class CausesScreen extends StatelessWidget{
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      customTabBar(title: "Featured", isSelected: _causesController.isFeatured.value,  onTap: (){ _causesController.setFeaturedTab(); }),
-                      customTabBar(title: "Trending", isSelected: _causesController.isTrending.value, onTap: (){ _causesController.setTrendingTab(); }),
-                      customTabBar(title: "Favorites", isSelected: _causesController.isFavorites.value, onTap: (){ _causesController.setFavoritesTab(); }),
-                      customTabBar(title: "Past", isSelected: _causesController.isPast.value, onTap: (){ _causesController.setPastTab(); }),
+                      customTabBar(title: Strings.featured.capitalize!, isSelected: _causesController.isFeatured.value,  onTap: (){ _causesController.setFeaturedTab(); }),
+                      customTabBar(title: Strings.trending.capitalize!, isSelected: _causesController.isTrending.value, onTap: (){ _causesController.setTrendingTab(); }),
+                      customTabBar(title: Strings.favorites.capitalize!, isSelected: _causesController.isFavorites.value, onTap: (){ _causesController.setFavoritesTab(); }),
+                      customTabBar(title: Strings.past.capitalize!, isSelected: _causesController.isPast.value, onTap: (){ _causesController.setPastTab(); }),
                     ],
                   ),
                 ),
