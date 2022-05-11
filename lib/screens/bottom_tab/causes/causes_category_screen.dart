@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
@@ -58,7 +59,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 endDate: _causesController.topCausesContainersList![index].end.toString(),
                 index: index,
                 onClickBox: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => const CausesDetail()));
+                  Get.toNamed(Routes.causesDetailScreen,
+                      arguments: _causesController.topCausesContainersList![index].id);
                 },
               );
             },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/screens/password/reset_password/reset_password_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';
@@ -12,6 +14,7 @@ class ResetPassword extends StatelessWidget {
   ResetPassword({Key? key}) : super(key: key);
 
   final TextEditingController? emailController = TextEditingController();
+  final ResetPasswordController _resetPasswordController = Get.put(ResetPasswordController());
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +69,10 @@ class ResetPassword extends StatelessWidget {
                   ),
                   SizedBox(height: getHeight() * 0.04),
                   Button(onPress: () {
+                    if (emailController!.text.trim().isEmpty) {
+                      return showSnackBar(subTitle: 'Please enter email');
+                    }
+                    _resetPasswordController.resetPassword(emailController!.text);
                     Get.toNamed(Routes.resetPinScreen);
                   }, text: "Send Reset Code"),
                   SizedBox(height: getHeight() * 0.04),

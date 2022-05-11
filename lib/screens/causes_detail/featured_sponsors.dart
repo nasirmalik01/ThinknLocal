@@ -54,7 +54,7 @@ class FeaturedSponsors extends StatelessWidget {
                       color: AppColors.blackColor,
                       borderRadius: BorderRadius.circular(0.8.h),
                       image: DecorationImage(
-                          image: AssetImage(logoImage!),
+                          image: NetworkImage(logoImage!),
                           fit: BoxFit.cover)
                   ),
                 ),

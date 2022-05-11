@@ -2,6 +2,8 @@ import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/model/business_detail.dart';
 import 'package:flutter_app/model/businesses.dart';
+import 'package:flutter_app/model/cause_detail.dart';
+import 'package:flutter_app/model/causes_stats.dart';
 import 'package:flutter_app/model/contributions.dart';
 import 'package:flutter_app/model/business_stats.dart';
 import 'package:flutter_app/model/causes.dart';
@@ -101,6 +103,25 @@ class RemoteRepository{
     await GetIt.I<RemoteServices>().postRequest('${ApiEndPoints.businesses}/$id/${ApiEndPoints.unfollow}', {});
   }
 
+  static Future<CausesStats?> fetchCausesStats(int id, Map<String, dynamic> query) async {
+    final response = await GetIt.I<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id/stats', query);
+    if (response == null) {
+      return null;
+    }
+    return CausesStats.fromJson(response);
+  }
 
+  static Future<CauseDetail?> fetchCauseDetails(int id, Map<String, dynamic> query) async {
+    final response = await GetIt.I<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id', query);
+    if (response == null) {
+      return null;
+    }
 
+    CauseDetail _causeDetail = CauseDetail.fromJson(response);
+    final _startDate = convertDateToString(dateTime: _causeDetail.start.toString());
+    final _endDate = convertDateToString(dateTime: _causeDetail.end.toString());
+    _causeDetail.start = _startDate;
+    _causeDetail.end = _endDate;
+    return _causeDetail;
+  }
 }

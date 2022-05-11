@@ -37,6 +37,14 @@ class Strings {
   static const String latitude = "latitude";
   static const String longitude = "longitude";
   static const String organizationId = "organization_id";
+  static const String businessNear = "Businesses near";
+  static const String dummyLocation = "Chino Hills, CA";
+  static const String searchBusiness = "Search for a business";
+  static const String foodDrink = "Food & Drink";
+  static const String toDoThings = "Things to do";
+  static const String retail = "Retail";
+  static const String services = "Services";
+  static const String recentlyAdded = "Recently Added";
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";
 }
