@@ -1,3 +1,6 @@
+import 'package:flutter_app/model/history.dart';
+import 'package:flutter_app/model/recent_contributions.dart';
+
 class BusinessStats {
   List<History>? history;
   List<RecentContributions>? recentContributions;
@@ -28,47 +31,6 @@ class BusinessStats {
       data['recent_contributions'] =
           recentContributions!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class History {
-  String? date;
-  dynamic amount;
-
-  History({date, amount});
-
-  History.fromJson(Map<String, dynamic> json) {
-    date = json['date'];
-    amount = json['amount'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
-    data['date'] = date;
-    data['amount'] = amount;
-    return data;
-  }
-}
-
-class RecentContributions {
-  String? name;
-  double? amount;
-  String? date;
-
-  RecentContributions({name, amount, date});
-
-  RecentContributions.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    amount = json['amount'];
-    date = json['date'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
-    data['name'] = name;
-    data['amount'] = amount;
-    data['date'] = date;
     return data;
   }
 }

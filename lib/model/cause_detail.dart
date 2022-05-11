@@ -1,3 +1,6 @@
+import 'package:flutter_app/model/category.dart';
+import 'package:flutter_app/model/organization.dart';
+
 class CauseDetail {
   int? id;
   Category? category;
@@ -75,59 +78,6 @@ class CauseDetail {
     data['days_till_start'] = this.daysTillStart;
     data['end'] = this.end;
     data['days_remaining'] = this.daysRemaining;
-    return data;
-  }
-}
-
-class Category {
-  int? id;
-  String? name;
-  String? icon;
-  int? parentId;
-  String? parentName;
-
-  Category({this.id, this.name, this.icon, this.parentId, this.parentName});
-
-  Category.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    icon = json['icon'];
-    parentId = json['parent_id'];
-    parentName = json['parent_name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['icon'] = this.icon;
-    data['parent_id'] = this.parentId;
-    data['parent_name'] = this.parentName;
-    return data;
-  }
-}
-
-class Organization {
-  int? id;
-  String? name;
-  String? description;
-  String? logo;
-
-  Organization({this.id, this.name, this.description, this.logo});
-
-  Organization.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    description = json['description'];
-    logo = json['logo'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['logo'] = this.logo;
     return data;
   }
 }

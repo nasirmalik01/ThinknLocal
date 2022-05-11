@@ -1,8 +1,9 @@
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/cause_detail.dart';
 import 'package:flutter_app/model/causes_stats.dart';
+import 'package:flutter_app/network/remote_repositories/business_repository.dart';
+import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:get/get.dart';
-import '/network/remote_repository.dart';
 
 class CausesDetailController extends GetxController {
   RxBool isFoodAndDrink = true.obs;
@@ -48,13 +49,13 @@ class CausesDetailController extends GetxController {
 
   getCauseDetail(int id) async {
     isLoading.value = true;
-    causeDetail = (await RemoteRepository.fetchCauseDetails(id, {}))!;
+    causeDetail = (await CausesRemoteRepository.fetchCauseDetails(id, {}))!;
     isLoading.value = false;
   }
 
   getCauseFeatured(int id) async {
     isFeaturedLoading.value = true;
-    causeFeaturedList = (await RemoteRepository.fetchBusinesses({
+    causeFeaturedList = (await BusinessRemoteRepository.fetchBusinesses({
       'cause_id': id,
     }));
     isFeaturedLoading.value = false;
@@ -62,7 +63,7 @@ class CausesDetailController extends GetxController {
 
   getCauseBottomDetails(int id, int parentId) async {
     isCauseBottomLoading.value = true;
-    causeBottomDetails = await (RemoteRepository.fetchBusinesses({
+    causeBottomDetails = await (BusinessRemoteRepository.fetchBusinesses({
       'cause_id': id,
       'parent_category_id': parentId,
     }));
@@ -71,7 +72,7 @@ class CausesDetailController extends GetxController {
 
   getCauseStats(int id) async {
     isStatsLoading.value = true;
-    causesStats = (await RemoteRepository.fetchCausesStats(id, {}))!;
+    causesStats = (await CausesRemoteRepository.fetchCausesStats(id, {}))!;
     isStatsLoading.value = false;
   }
 }

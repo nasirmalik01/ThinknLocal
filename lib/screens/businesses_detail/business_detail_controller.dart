@@ -3,7 +3,8 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/business_detail.dart';
 import 'package:flutter_app/model/business_stats.dart';
 import 'package:flutter_app/model/causes.dart';
-import 'package:flutter_app/network/remote_repository.dart';
+import 'package:flutter_app/network/remote_repositories/business_repository.dart';
+import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:get/get.dart';
 
 class BusinessDetailController extends GetxController with GetTickerProviderStateMixin{
@@ -27,29 +28,29 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
 
   getBusinessDetails({required int id}) async {
     isLoading.value = true;
-    businessDetail = (await RemoteRepository.fetchBusinessDetails(id, {}))!;
+    businessDetail = (await BusinessRemoteRepository.fetchBusinessDetails(id, {}))!;
     isLoading.value = false;
   }
 
   getBusinessStats({required int id}) async {
     isStatsLoading.value = true;
-    businessStats = (await RemoteRepository.fetchBusinessStats(id, {}))!;
+    businessStats = (await BusinessRemoteRepository.fetchBusinessStats(id, {}))!;
     isStatsLoading.value = false;
   }
 
   followBusiness(int id) async {
     if(isBusinessFollowed.value) {
-      await RemoteRepository.unFollowBusiness(id);
+      await BusinessRemoteRepository.unFollowBusiness(id);
       isBusinessFollowed.value = false;
     }else{
-      await RemoteRepository.followBusiness(id);
+      await BusinessRemoteRepository.followBusiness(id);
       isBusinessFollowed.value = true;
     }
   }
 
   getRecentlyFundedBusinessCauses({required int id}) async {
     isRecentlyFundedBusinessCauses.value = true;
-    recentlyFundedBusinessCausesList = (await RemoteRepository.fetchCauses({
+    recentlyFundedBusinessCausesList = (await CausesRemoteRepository.fetchCauses({
       Strings.businessId: id,
       Strings.recent: true,
     }))!;
@@ -58,7 +59,7 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
 
   getPastFundedBusinessCauses({required int id}) async {
     isPastFundedBusinessCauses.value = true;
-    pastFundedBusinessCausesList = (await RemoteRepository.fetchCauses({
+    pastFundedBusinessCausesList = (await CausesRemoteRepository.fetchCauses({
       Strings.businessId: id,
       Strings.past: true,
     }))!;

@@ -1,3 +1,6 @@
+import 'package:flutter_app/model/top_contributors.dart';
+import 'history.dart';
+
 class CausesStats {
   List<History>? history;
   List<TopContributors>? topContributors;
@@ -28,47 +31,6 @@ class CausesStats {
       data['top_contributors'] =
           topContributors!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class History {
-  String? date;
-  dynamic amount;
-
-  History({date, amount});
-
-  History.fromJson(Map<String, dynamic> json) {
-    date = json['date'];
-    amount = json['amount'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['date'] = date;
-    data['amount'] = amount;
-    return data;
-  }
-}
-
-class TopContributors {
-  String? name;
-  double? amount;
-  String? date;
-
-  TopContributors({name, amount, date});
-
-  TopContributors.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    amount = json['amount'];
-    date = json['date'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['amount'] = amount;
-    data['date'] = date;
     return data;
   }
 }

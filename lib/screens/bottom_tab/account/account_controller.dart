@@ -1,5 +1,5 @@
 import 'package:flutter_app/model/dummy/account.dart';
-import 'package:flutter_app/network/remote_repository.dart';
+import 'package:flutter_app/network/remote_repositories/profile_repository.dart';
 import 'package:get/get.dart';
 
 class AccountController extends GetxController{
@@ -35,7 +35,7 @@ class AccountController extends GetxController{
 
   getProfileInfo() async {
     isLoading.value = true;
-    account = (await RemoteRepository.fetchProfileInfo({}))!;
+    account = (await ProfileRemoteRepository.fetchProfileInfo({}))!;
     isPushNotifications.value = account.settings!.pushNotifications ?? false;
     isLoading.value = false;
   }

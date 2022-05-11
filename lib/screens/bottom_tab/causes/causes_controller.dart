@@ -2,7 +2,7 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/local/user_location.dart';
 import 'package:flutter_app/model/causes.dart';
-import 'package:flutter_app/network/remote_repository.dart';
+import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 
@@ -71,7 +71,7 @@ class CausesController extends GetxController{
 
   getCauses(String selectedTab) async {
     isTopCausesContainersList.value = true;
-    topCausesContainersList =  await (RemoteRepository.fetchCauses({
+    topCausesContainersList =  await (CausesRemoteRepository.fetchCauses({
       selectedTab : true,
       Strings.active: true
     },));
@@ -80,7 +80,7 @@ class CausesController extends GetxController{
 
   getUpComingCauses(String selectedTab) async {
     isUpcomingCausesLoading.value = true;
-    upcomingCauses =  await (RemoteRepository.fetchCauses({
+    upcomingCauses =  await (CausesRemoteRepository.fetchCauses({
       selectedTab : true,
       Strings.upcoming: '',
     }));
@@ -89,7 +89,7 @@ class CausesController extends GetxController{
 
   getRecentlyStartedCauses(String selectedTab) async {
     isRecentlyStartedCausesLoading.value = true;
-    recentlyStartedCauses =  await (RemoteRepository.fetchCauses({
+    recentlyStartedCauses =  await (CausesRemoteRepository.fetchCauses({
       selectedTab : true,
       Strings.recent: true,
     }));

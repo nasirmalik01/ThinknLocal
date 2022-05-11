@@ -1,6 +1,6 @@
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
-import 'package:flutter_app/network/remote_repository.dart';
+import 'package:flutter_app/network/remote_repositories/business_repository.dart';
 import 'package:get/get.dart';
 
 class BusinessesController extends GetxController{
@@ -53,19 +53,19 @@ class BusinessesController extends GetxController{
 
   getBusinesses() async {
     isBusinessLoading.value = true;
-    businessList =  await (RemoteRepository.fetchBusinesses({}));
+    businessList =  await (BusinessRemoteRepository.fetchBusinesses({}));
     isBusinessLoading.value = false;
   }
 
   getRecentlyAddedBusinesses() async {
     isRecentlyAddedBusinessLoading.value = true;
-    recentlyAddedBusinessList =  await (RemoteRepository.fetchBusinesses({}));
+    recentlyAddedBusinessList =  await (BusinessRemoteRepository.fetchBusinesses({}));
     isRecentlyAddedBusinessLoading.value = false;
   }
 
   getNearbyBusinesses() async {
     isNearByBusinessLoading.value = true;
-    nearbyBusinessList =  await (RemoteRepository.fetchBusinesses({
+    nearbyBusinessList =  await (BusinessRemoteRepository.fetchBusinesses({
       Strings.nearby : true
     }));
     isNearByBusinessLoading.value = false;
