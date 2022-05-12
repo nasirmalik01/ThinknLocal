@@ -1,3 +1,4 @@
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/cause_detail.dart';
 import 'package:flutter_app/model/causes_stats.dart';
@@ -56,7 +57,7 @@ class CausesDetailController extends GetxController {
   getCauseFeatured(int id) async {
     isFeaturedLoading.value = true;
     causeFeaturedList = (await BusinessRemoteRepository.fetchBusinesses({
-      'cause_id': id,
+      Strings.causeId: id,
     }));
     isFeaturedLoading.value = false;
   }
@@ -64,8 +65,8 @@ class CausesDetailController extends GetxController {
   getCauseBottomDetails(int id, int parentId) async {
     isCauseBottomLoading.value = true;
     causeBottomDetails = await (BusinessRemoteRepository.fetchBusinesses({
-      'cause_id': id,
-      'parent_category_id': parentId,
+      Strings.cause: id,
+      Strings.parentCategoryId: parentId,
     }));
     isCauseBottomLoading.value = false;
   }

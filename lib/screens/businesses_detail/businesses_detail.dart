@@ -108,11 +108,11 @@ class BusinessesDetailScreen extends StatelessWidget {
                     ),
                     tabs: const [
                       Tab(
-                        text: 'Overview',
+                        text: Strings.overview,
 
                       ),
                       Tab(
-                        text: 'Stats',
+                        text: Strings.stats,
                       ),
                     ],
                   ),
@@ -144,7 +144,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
-                                child: TextView.titleWithDecoration("Recently Funded", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
+                                child: TextView.titleWithDecoration(Strings.recentlyFunded, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: getHeight() * 0.01),
@@ -182,7 +182,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
                             child: CommonWidgets.getTextWithSeeAll(
-                                leadingText: "Past Funded Courses",
+                                leadingText: Strings.pastFundedCauses,
                                 trailingText: Strings.seeAll,
                                 onPressSeeAllButton: () {
                                   Get.to(() => DetailScreen(title: Strings.pastFundedBusinessCauses, detailList: _businessDetailController.pastFundedBusinessCausesList as dynamic));
@@ -241,9 +241,9 @@ class BusinessesDetailScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                TextView.caption("Contributions over time", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize18),
+                                TextView.caption(Strings.contributionsOverTime, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize18),
                                 SizedBox(height: 0.5.h),
-                                TextView.caption("Number of contributions from individuals over time.", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, fontSize: sizes.fontSize13),
+                                TextView.caption(Strings.numberOfContributions, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, fontSize: sizes.fontSize13),
                                 SizedBox(height: 0.7.h),
                                 AspectRatio(
                                   aspectRatio: 1.66,
@@ -302,7 +302,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 3.h),
                                 CommonWidgets.getTextWithSeeAll(
-                                    leadingText: "Recent Contributions",
+                                    leadingText: Strings.recentContributions,
                                     trailingText: Strings.seeAll,
                                     onPressSeeAllButton: () {
                                     }

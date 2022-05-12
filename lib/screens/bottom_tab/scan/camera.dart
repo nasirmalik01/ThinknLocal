@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/about_visit/about_visit.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import '../../../constants/assets.dart';
@@ -132,7 +133,7 @@ class _CameraScreenState extends State<CameraScreen> {
                       maxLines: 2,
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                          text: "Make sure ",
+                          text: Strings.makeSure,
                           style: TextStyle(
                             color: AppColors.pureWhiteColor,
                             fontSize: sizes.fontSize16,
@@ -140,7 +141,7 @@ class _CameraScreenState extends State<CameraScreen> {
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                              text: "business name, ",
+                              text: "${Strings.lowerCaseBusinessName} ",
                               style: TextStyle(
                                 color: AppColors.greenColor,
                                 fontSize: sizes.fontSize16,
@@ -148,7 +149,7 @@ class _CameraScreenState extends State<CameraScreen> {
                               ),
                             ),
                             TextSpan(
-                              text: "and ",
+                              text: "${Strings.and} ",
                               style: TextStyle(
                                 color: AppColors.pureWhiteColor,
                                 fontSize: sizes.fontSize16,
@@ -156,7 +157,7 @@ class _CameraScreenState extends State<CameraScreen> {
                               ),
                             ),
                             TextSpan(
-                              text: "total ",
+                              text: "${Strings.total} ",
                               style: TextStyle(
                                 color: AppColors.greenColor,
                                 fontSize: sizes.fontSize16,
@@ -164,7 +165,7 @@ class _CameraScreenState extends State<CameraScreen> {
                               ),
                             ),
                             TextSpan(
-                              text: "are clearly visible",
+                              text: Strings.areClearlyVisible,
                               style: TextStyle(
                                 color: AppColors.pureWhiteColor,
                                 fontSize: sizes.fontSize16,
@@ -206,7 +207,7 @@ class _CameraScreenState extends State<CameraScreen> {
                     Navigator.pushAndRemoveUntil(context,
                         MaterialPageRoute (builder: (_) => const BottomTabNew(pageIndex: 0)), (route) => false);
                   },
-                  child: TextView.title("Cancel", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium))
+                  child: TextView.title(Strings.cancel, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium))
             ],
           )),
     );
@@ -249,5 +250,4 @@ class _CameraScreenState extends State<CameraScreen> {
               },
             )));
   }
-
 }

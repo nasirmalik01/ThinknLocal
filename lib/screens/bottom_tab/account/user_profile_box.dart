@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
@@ -24,12 +25,12 @@ class UserProfileBox extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextView.headerWithBlurRadius("Help", color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                TextView.headerWithBlurRadius(Strings.help, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
                 GestureDetector(
                     onTap: (){
                       Get.offAllNamed(Routes.loginScreen);
                     },
-                    child: TextView.headerWithBlurRadius("Sign out", color: AppColors.orangeColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
+                    child: TextView.headerWithBlurRadius(Strings.signOut, color: AppColors.orangeColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
               ],
             ),
             Container(
@@ -63,7 +64,7 @@ class UserProfileBox extends StatelessWidget {
                         children: [
                           const Icon(Icons.edit, size: 15, color: AppColors.greenColor),
                           SizedBox(width: sizes.width * 0.015),
-                          TextView.headerWithBlurRadius("Edit Account Info", color: AppColors.greenColor, textDecoration: TextDecoration.underline),
+                          TextView.headerWithBlurRadius(Strings.editAccountInfo, color: AppColors.greenColor, textDecoration: TextDecoration.underline),
                         ],
                       ),
                     ),

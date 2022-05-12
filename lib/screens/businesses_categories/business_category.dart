@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/business_category.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_nearby.dart';
 import '../../constants/assets.dart';
@@ -39,7 +40,7 @@ class BusinessCategory extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextView.title("Showing results for",
+                        TextView.title(Strings.showingResultsFor,
                             color: AppColors.lightBlack,
                             fontFamily: Assets.poppinsMedium),
                         SizedBox(height: getHeight() * 0.02),
@@ -78,7 +79,6 @@ class BusinessCategory extends StatelessWidget {
                       ],
                     ),
                   )
-
                 ],
               ),
             ],

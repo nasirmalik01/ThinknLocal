@@ -11,7 +11,7 @@ class CausesController extends GetxController{
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
   RxBool isPast = false.obs;
-  RxString locationAddress = 'No location'.obs;
+  RxString locationAddress = Strings.noLocation.obs;
   RxBool isUpcomingCausesLoading = false.obs;
   RxBool isRecentlyStartedCausesLoading = false.obs;
   RxBool isTopCausesContainersList = false.obs;

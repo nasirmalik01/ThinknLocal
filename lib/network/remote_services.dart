@@ -15,7 +15,6 @@ class RemoteServices  {
       dynamic _result = await MySecureHttpClient.getClient().post(endPoint, data: map);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
         resJson = json.decode(_result.toString());
-        print(_result.statusCode);
         return resJson;
       }
     } catch (e) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
@@ -28,7 +29,7 @@ class CauseSearch extends StatelessWidget {
             children: [
               CommonWidgets.getAppBarWithSearch(
                   title: "",
-                  hint: 'Search for a ${isBusiness ? 'business' : 'cause'}',
+                  hint: '${Strings.searchForA} ${isBusiness ? Strings.business : Strings.cause}',
                   textEditingController: searchController,
                   onPressBackArrow: () {
                     Navigator.pop(context);
@@ -39,11 +40,11 @@ class CauseSearch extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    TextView.title("Showing results for",
+                    TextView.title(Strings.showingResultsFor,
                         color: AppColors.lightBlack,
                         fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.01),
-                    TextView.headerWithBlurRadius("- chino hills high school", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12),
+                    TextView.headerWithBlurRadius("- ${Strings.dummyLocation}", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12),
                     SizedBox(height: getHeight() * 0.02),
                     ListView.separated(
                       scrollDirection: Axis.vertical,

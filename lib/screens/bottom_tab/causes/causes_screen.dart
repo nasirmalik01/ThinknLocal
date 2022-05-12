@@ -48,7 +48,7 @@ class CausesScreen extends StatelessWidget{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextView.titleWithDecoration("Showing causes near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
+                  TextView.titleWithDecoration(Strings.showingCausesNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
                   GestureDetector(
                     onTap: (){
                       Get.toNamed(Routes.locationSearchScreen);
@@ -77,7 +77,7 @@ class CausesScreen extends StatelessWidget{
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: CommonWidgets.searchLocationTextField(
                       controller: searchController,
-                      hint: "Search for a cause",
+                      hint: Strings.searchForCause,
                       onPressSearch: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (_) => CauseSearch()));

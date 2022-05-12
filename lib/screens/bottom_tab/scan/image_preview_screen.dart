@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/widgets/button.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
@@ -81,7 +82,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                           widget.notSaveImage.call();
                         },
                         width: sizes.width * 0.4, height: getHeight() * 0.08,
-                        text: "Try Again", btnColor: AppColors.darkGrey),
+                        text: Strings.tryAgain, btnColor: AppColors.darkGrey),
                     SizedBox(
                       width: getWidth() * .05,
                     ),
@@ -90,7 +91,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                           widget.saveImage.call();
                         },
                         width: sizes.width * 0.4, height: getHeight() * 0.08,
-                        text: "Looks Good!", btnColor: AppColors.greenColor),
+                        text: Strings.looksGood, btnColor: AppColors.greenColor),
                   ],
                 ),
               ),
@@ -133,7 +134,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                     maxLines: 2,
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                        text: "Make sure ",
+                        text: Strings.makeSure,
                         style: TextStyle(
                           color: AppColors.pureWhiteColor,
                           fontSize: sizes.fontSize16,
@@ -141,7 +142,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                            text: "business name, ",
+                            text: "${Strings.lowerCaseBusinessName} ",
                             style: TextStyle(
                               color: AppColors.greenColor,
                               fontSize: sizes.fontSize16,
@@ -149,7 +150,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: "and ",
+                            text: "${Strings.and} ",
                             style: TextStyle(
                               color: AppColors.pureWhiteColor,
                               fontSize: sizes.fontSize16,
@@ -157,7 +158,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: "total ",
+                            text: "${Strings.total} ",
                             style: TextStyle(
                               color: AppColors.greenColor,
                               fontSize: sizes.fontSize16,
@@ -165,15 +166,13 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: "are clearly visible",
+                            text: Strings.areClearlyVisible,
                             style: TextStyle(
                               color: AppColors.pureWhiteColor,
                               fontSize: sizes.fontSize16,
                               fontFamily: Assets.poppinsRegular,
                             ),
                           ),
-
-
                         ]
                     ),
                   ),
@@ -184,11 +183,5 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-
-    super.dispose();
   }
 }

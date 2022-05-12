@@ -1,4 +1,3 @@
-import 'package:flutter_app/model/business_detail.dart';
 import 'package:flutter_app/model/category.dart';
 import 'package:flutter_app/model/organization.dart';
 

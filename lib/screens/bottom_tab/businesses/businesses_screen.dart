@@ -57,14 +57,14 @@ class BusinessesScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextView.titleWithDecoration("Businesses near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
+                        TextView.titleWithDecoration(Strings.businessNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
                         GestureDetector(
                           onTap: (){
                             Get.toNamed(Routes.locationSearchScreen);
                           },
                           child: Row(
                             children: [
-                              TextView.header("Chino Hills, CA", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
+                              TextView.header(Strings.dummyLocation, color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
                               Padding(
                                 padding: EdgeInsets.only(left: 2.w, bottom: 0.5.h),
                                 child: Image(
@@ -86,7 +86,7 @@ class BusinessesScreen extends StatelessWidget {
                           children: [
                             CommonWidgets.searchLocationTextField(
                                 controller: searchController,
-                                hint: "Search for a business",
+                                hint: Strings.searchBusiness,
                                 onPressSearch: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (_) => CauseSearch(isBusiness: true,)));
@@ -97,31 +97,31 @@ class BusinessesScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 _businessesComponents.businessCategoryIcon(
-                                    image: Assets.foodIcon, label: "Food & Drink",
+                                    image: Assets.foodIcon, label: Strings.foodDrink,
                                     onPressCategory: () {
                                       Navigator.push(context,
-                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: "Food & Drink", icon: Assets.foodIcon,)));
+                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.foodDrink, icon: Assets.foodIcon,)));
                                     }
                                 ),
                                 _businessesComponents.businessCategoryIcon(
-                                    image: Assets.thingsIcon, label: "Things to do",
+                                    image: Assets.thingsIcon, label: Strings.toDoThings,
                                     onPressCategory: () {
                                       Navigator.push(context,
-                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: "Things to do", icon: Assets.thingsIcon,)));
+                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.toDoThings, icon: Assets.thingsIcon,)));
                                     }
                                 ),
                                 _businessesComponents.businessCategoryIcon(
-                                    image: Assets.bagIcon, label: "Retail",
+                                    image: Assets.bagIcon, label: Strings.retail,
                                     onPressCategory: () {
                                       Navigator.push(context,
-                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: "Retail", icon: Assets.bagIcon,)));
+                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.retail, icon: Assets.bagIcon,)));
                                     }
                                 ),
                                 _businessesComponents.businessCategoryIcon(
-                                    image: Assets.servicesIcon, label: "Services",
+                                    image: Assets.servicesIcon, label: Strings.services,
                                     onPressCategory: () {
                                       Navigator.push(context,
-                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: "Services", icon: Assets.servicesIcon,)));
+                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.services, icon: Assets.servicesIcon,)));
                                     }
                                 ),
                               ],
@@ -177,7 +177,7 @@ class BusinessesScreen extends StatelessWidget {
                       SizedBox(height: getHeight() * 0.045),
                       Padding(
                         padding: EdgeInsets.only(left: sizes.width * 0.06),
-                        child: TextView.titleWithDecoration("Recently Added", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
+                        child: TextView.titleWithDecoration(Strings.recentlyAdded, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
                       ),
                       SizedBox(height: getHeight() * 0.01),
                       SizedBox(
@@ -211,8 +211,8 @@ class BusinessesScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             CommonWidgets.getTextWithSeeAll(
-                                leadingText: "Nearby",
-                                trailingText: "See All",
+                                leadingText: Strings.nearby,
+                                trailingText: Strings.seeAll,
                                 onPressSeeAllButton: () {
                                   Get.to(BusinessesDetail(title: Strings.businessesNearYou, detailList: _businessesController.nearbyBusinessList!,));
                                 }
