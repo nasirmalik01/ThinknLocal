@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -51,11 +51,10 @@ class _ScanState extends State<Scan> {
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
                     children: [
-                      TextView.titleWithDecoration("Hello Scan", color: AppColors.greenColor),
+                      TextView.titleWithDecoration(Strings.helloScan, color: AppColors.greenColor),
                     ],
                   ),
                 ),
-
               ],
             ),
           ),

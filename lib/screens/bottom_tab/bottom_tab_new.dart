@@ -1,9 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
+import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
 import 'package:flutter_app/res/res.dart';
+import 'package:flutter_app/widgets/network_error.dart';
 import 'package:get/get.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
@@ -113,13 +116,13 @@ class _BottomTabNewState extends State<BottomTabNew> {
     return [
       PersistentBottomNavBarItem(
         icon: ImageIcon(const AssetImage(Assets.causeIcon), size: sizes.height * 0.1),
-        title: ("Causes"),
+        title: Strings.causes,
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
         icon: ImageIcon(const AssetImage(Assets.storeIcon), size: sizes.height * 0.1),
-        title: ("Businesses"),
+        title: Strings.businesses,
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
@@ -131,13 +134,13 @@ class _BottomTabNewState extends State<BottomTabNew> {
       ),
       PersistentBottomNavBarItem(
         icon: ImageIcon(const AssetImage(Assets.notificationIcon), size: sizes.height * 0.1),
-        title: ("Notifications"),
+        title: Strings.notifications,
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
         icon: ImageIcon(const AssetImage(Assets.accountIcon), size: sizes.height * 0.1),
-        title: ("Account"),
+        title: Strings.account,
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
@@ -178,5 +181,4 @@ Future<void> initializeCamera() async {
     );
   });
 }
-
 }

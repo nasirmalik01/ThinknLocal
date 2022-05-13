@@ -13,8 +13,6 @@ class MySecureHttpClient {
         headers: {
           'Authorization': MyHive.getToken(),
         },
-        /// you are received response in string because of this line[ResponseType.plain]
-        /// change this into [ResponseType.json] then verify
         responseType: ResponseType.plain,
       ),
     );

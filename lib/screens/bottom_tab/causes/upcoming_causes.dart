@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 
@@ -55,7 +56,7 @@ class UpcomingCauses extends StatelessWidget {
                       children: [
                         RichText(
                           text: TextSpan(
-                              text: "Raising ",
+                              text: '${Strings.raising} ',
                               style: TextStyle(
                                 color: AppColors.blackColor,
                                 fontSize: sizes.fontSize11,
@@ -79,7 +80,7 @@ class UpcomingCauses extends StatelessWidget {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: ' starting ',
+                                  text: ' ${Strings.starting} ',
                                   style: TextStyle(
                                     color: AppColors.blackColor,
                                     fontSize: sizes.fontSize11,

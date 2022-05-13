@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/businesses.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
@@ -82,14 +83,14 @@ class RecentlyFundedBusiness extends StatelessWidget {
                 SizedBox(height: getHeight() * 0.01),
                 TextView.subTitleWithBlurRadius(name??"", color: AppColors.pureWhiteColor, lines: 2, fontFamily: Assets.poppinsMedium, blurRadius: 5),
                 SizedBox(height: getHeight() * 0.001),
-                TextView.caption('\$$raisedAmount of \$$totalAmount', color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1),
+                TextView.caption('\$$raisedAmount ${Strings.of} \$$totalAmount', color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1),
                 SizedBox(height: getHeight() * 0.001),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     RichText(
                       text: TextSpan(
-                          text: "Ends ",
+                          text: "${Strings.ends} ",
                           style: TextStyle(
                             color: AppColors.pureWhiteColor,
                             fontSize: sizes.fontSize11,

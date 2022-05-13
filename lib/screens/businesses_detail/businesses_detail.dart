@@ -15,6 +15,7 @@ import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
 import 'package:flutter_app/screens/causes_detail/update_fund_raiser.dart';
 import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
+import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,13 @@ class BusinessesDetailScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        body: Obx(() => (_businessDetailController.isLoading.value || _businessDetailController.isStatsLoading.value || _businessDetailController.isRecentlyFundedBusinessCauses.value || _businessDetailController.isPastFundedBusinessCauses.value)
+        body: Obx(() =>
+          _businessDetailController.isError.value
+          ? NetworkErrorException(exceptionMessage: _businessDetailController.errorMessage.value, onPress: (){
+            _businessDetailController.isError.value = false;
+            getBusinessDetails(_id);
+          })
+          : (_businessDetailController.isLoading.value || _businessDetailController.isStatsLoading.value || _businessDetailController.isRecentlyFundedBusinessCauses.value || _businessDetailController.isPastFundedBusinessCauses.value)
           ? circularProgressIndicator()
           : SingleChildScrollView(
           child: Container(
@@ -54,16 +61,16 @@ class BusinessesDetailScreen extends StatelessWidget {
                   child:  _businessDetailController.isLoading.value
                       ? circularProgressIndicator()
                       :  BusinessDetailTopContainer(
-                      name: _businessDetailController.businessDetail.name,
-                      fullBoxImage: _businessDetailController.businessDetail.image ?? Strings.dummyBgImage,
-                      logoImage: _businessDetailController.businessDetail.logo ?? Strings.dummyLogo,
+                      name: _businessDetailController.businessDetail!.name,
+                      fullBoxImage: _businessDetailController.businessDetail!.image ?? Strings.dummyBgImage,
+                      logoImage: _businessDetailController.businessDetail!.logo ?? Strings.dummyLogo,
                       completePercentage: 0.7,
-                      contributedAmount: _businessDetailController.businessDetail.contributionAmount.toString(),
-                      totalAmount: _businessDetailController.businessDetail.totalContributions.toString(),
-                      joinDate: _businessDetailController.businessDetail.createdAt.toString(),
-                      streetAddress: _businessDetailController.businessDetail.address2,
-                      address: _businessDetailController.businessDetail.address1,
-                      phoneNumber: _businessDetailController.businessDetail.phone.toString(),
+                      contributedAmount: _businessDetailController.businessDetail!.contributionAmount.toString(),
+                      totalAmount: _businessDetailController.businessDetail!.totalContributions.toString(),
+                      joinDate: _businessDetailController.businessDetail!.createdAt.toString(),
+                      streetAddress: _businessDetailController.businessDetail!.address2,
+                      address: _businessDetailController.businessDetail!.address1,
+                      phoneNumber: _businessDetailController.businessDetail!.phone.toString(),
                       isFavorite: _businessDetailController.isBusinessFollowed.value,
                       onClickBox: (){},
                       onPressBackArrow: () {
@@ -108,11 +115,11 @@ class BusinessesDetailScreen extends StatelessWidget {
                     ),
                     tabs: const [
                       Tab(
-                        text: 'Overview',
+                        text: Strings.overview,
 
                       ),
                       Tab(
-                        text: 'Stats',
+                        text: Strings.stats,
                       ),
                     ],
                   ),
@@ -129,10 +136,10 @@ class BusinessesDetailScreen extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                             child: Column(
                               children: [
-                                TextView.caption(_businessDetailController.businessDetail.description, color: AppColors.blackColor, fontFamily: Assets.poppinsRegular,lines: 3, fontSize: sizes.fontSize12),
+                                TextView.caption(_businessDetailController.businessDetail!.description, color: AppColors.blackColor, fontFamily: Assets.poppinsRegular,lines: 3, fontSize: sizes.fontSize12),
                                 SizedBox(height: sizes.height * 0.03),
                                 BusinessRating(
-                                    starRating: _businessDetailController.businessDetail.rating,
+                                    starRating: _businessDetailController.businessDetail!.rating,
                                     onPress: () {}
                                 ),
                               ],
@@ -144,7 +151,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
-                                child: TextView.titleWithDecoration("Recently Funded", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
+                                child: TextView.titleWithDecoration(Strings.recentlyFunded, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: getHeight() * 0.01),
@@ -152,7 +159,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                   height: getHeight()*0.18,
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
-                                    itemCount: _businessDetailController.recentlyFundedBusinessCausesList.length > 6 ? 6 : _businessDetailController.recentlyFundedBusinessCausesList.length,
+                                    itemCount: _businessDetailController.recentlyFundedBusinessCausesList!.length > 6 ? 6 : _businessDetailController.recentlyFundedBusinessCausesList!.length,
                                     itemBuilder: (context, index){
                                       return index == 5 ? GestureDetector(
                                           onTap: (){
@@ -160,13 +167,13 @@ class BusinessesDetailScreen extends StatelessWidget {
                                           },
                                           child: CommonWidgets.seeAllButton(30)
                                       ) : RecentlyFundedBusiness(
-                                        name: _businessDetailController.recentlyFundedBusinessCausesList[index].name,
-                                        fullImage: _businessDetailController.recentlyFundedBusinessCausesList[index].image,
-                                        logoImage: _businessDetailController.recentlyFundedBusinessCausesList[index].organization!.logo,
+                                        name: _businessDetailController.recentlyFundedBusinessCausesList![index].name,
+                                        fullImage: _businessDetailController.recentlyFundedBusinessCausesList![index].image,
+                                        logoImage: _businessDetailController.recentlyFundedBusinessCausesList![index].organization!.logo,
                                         isFavorite: false,
-                                        endDate: _businessDetailController.recentlyFundedBusinessCausesList[index].end,
-                                        raisedAmount: _businessDetailController.recentlyFundedBusinessCausesList[index].raised.toString(),
-                                        totalAmount: _businessDetailController.recentlyFundedBusinessCausesList[index].goal.toString(),
+                                        endDate: _businessDetailController.recentlyFundedBusinessCausesList![index].end,
+                                        raisedAmount: _businessDetailController.recentlyFundedBusinessCausesList![index].raised.toString(),
+                                        totalAmount: _businessDetailController.recentlyFundedBusinessCausesList![index].goal.toString(),
                                         colors: const [Colors.transparent, AppColors.greenColor,],
                                         index: index,
                                         onPressFullContainer: (){
@@ -182,7 +189,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
                             child: CommonWidgets.getTextWithSeeAll(
-                                leadingText: "Past Funded Courses",
+                                leadingText: Strings.pastFundedCauses,
                                 trailingText: Strings.seeAll,
                                 onPressSeeAllButton: () {
                                   Get.to(() => DetailScreen(title: Strings.pastFundedBusinessCauses, detailList: _businessDetailController.pastFundedBusinessCausesList as dynamic));
@@ -199,15 +206,15 @@ class BusinessesDetailScreen extends StatelessWidget {
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const ScrollPhysics(),
-                                  itemCount: _businessDetailController.pastFundedBusinessCausesList.length > 4 ? 4 : _businessDetailController.pastFundedBusinessCausesList.length,
+                                  itemCount: _businessDetailController.pastFundedBusinessCausesList!.length > 4 ? 4 : _businessDetailController.pastFundedBusinessCausesList!.length,
                                   itemBuilder: (context, index){
                                     return UpcomingCauses(
-                                        image:  _businessDetailController.pastFundedBusinessCausesList[index].image,
-                                        headerText: _businessDetailController.pastFundedBusinessCausesList[index].name,
-                                        description:  _businessDetailController.pastFundedBusinessCausesList[index].description,
+                                        image:  _businessDetailController.pastFundedBusinessCausesList![index].image,
+                                        headerText: _businessDetailController.pastFundedBusinessCausesList![index].name,
+                                        description:  _businessDetailController.pastFundedBusinessCausesList![index].description,
                                         onViewCourse: (){},
-                                        totalAmount: _businessDetailController.pastFundedBusinessCausesList[index].goal.toString(),
-                                        date: _businessDetailController.pastFundedBusinessCausesList[index].start
+                                        totalAmount: _businessDetailController.pastFundedBusinessCausesList![index].goal.toString(),
+                                        date: _businessDetailController.pastFundedBusinessCausesList![index].start
                                     );
 
                                   }, separatorBuilder: (BuildContext context, int index) {
@@ -241,9 +248,9 @@ class BusinessesDetailScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                TextView.caption("Contributions over time", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize18),
+                                TextView.caption(Strings.contributionsOverTime, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize18),
                                 SizedBox(height: 0.5.h),
-                                TextView.caption("Number of contributions from individuals over time.", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, fontSize: sizes.fontSize13),
+                                TextView.caption(Strings.numberOfContributions, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, fontSize: sizes.fontSize13),
                                 SizedBox(height: 0.7.h),
                                 AspectRatio(
                                   aspectRatio: 1.66,
@@ -302,7 +309,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 3.h),
                                 CommonWidgets.getTextWithSeeAll(
-                                    leadingText: "Recent Contributions",
+                                    leadingText: Strings.recentContributions,
                                     trailingText: Strings.seeAll,
                                     onPressSeeAllButton: () {
                                     }
@@ -312,11 +319,11 @@ class BusinessesDetailScreen extends StatelessWidget {
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const ScrollPhysics(),
-                                  itemCount:  _businessDetailController.businessStats.recentContributions!.length > 9 ? 9 : _businessDetailController.businessStats.recentContributions!.length,
+                                  itemCount:  _businessDetailController.businessStats!.recentContributions!.length > 9 ? 9 : _businessDetailController.businessStats!.recentContributions!.length,
                                   itemBuilder: (context, index){
                                     return RecentContributions(
-                                        contributorName: _businessDetailController.businessStats.recentContributions![index].name,
-                                        amount: _businessDetailController.businessStats.recentContributions![index].amount.toString()
+                                        contributorName: _businessDetailController.businessStats!.recentContributions![index].name,
+                                        amount: _businessDetailController.businessStats!.recentContributions![index].amount.toString()
                                     );
 
                                   }, separatorBuilder: (BuildContext context, int index) {

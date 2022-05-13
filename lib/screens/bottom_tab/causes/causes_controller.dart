@@ -3,6 +3,7 @@ import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/local/user_location.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
+import 'package:flutter_app/network/remote_services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 
@@ -11,13 +12,15 @@ class CausesController extends GetxController{
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
   RxBool isPast = false.obs;
-  RxString locationAddress = 'No location'.obs;
+  RxString locationAddress = Strings.noLocation.obs;
   RxBool isUpcomingCausesLoading = false.obs;
   RxBool isRecentlyStartedCausesLoading = false.obs;
   RxBool isTopCausesContainersList = false.obs;
   late List<Causes>? topCausesContainersList = [];
   late List<Causes>? upcomingCauses = [];
   late List<Causes>? recentlyStartedCauses = [];
+  RxBool isError = false.obs;
+  RxString errorMessage = ''.obs;
 
 
   @override
@@ -75,6 +78,14 @@ class CausesController extends GetxController{
       selectedTab : true,
       Strings.active: true
     },));
+    if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
+      isError.value = true;
+      isTopCausesContainersList.value = false;
+      isUpcomingCausesLoading.value = false;
+      isRecentlyStartedCausesLoading.value = false;
+      errorMessage.value = RemoteServices.error;
+      return;
+    }
     isTopCausesContainersList.value = false;
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/notification.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notification_card.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notification_controller.dart';
@@ -59,11 +60,11 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextView.header("Your Notifications", color: AppColors.lightBlack, fontFamily: Assets.poppinsSemiBold, fontSize: sizes.fontSize25),
+                  TextView.header(Strings.yourNotifications, color: AppColors.lightBlack, fontFamily: Assets.poppinsSemiBold, fontSize: sizes.fontSize25),
                   SizedBox(height: getHeight() * 0.01),
-                  TextView.titleWithDecoration("Want to edit your notification settings?", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
+                  TextView.titleWithDecoration(Strings.wantToEditNotification, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
                   SizedBox(height: getHeight() * 0.01),
-                  TextView.titleWithDecoration("Edit Settings", color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                  TextView.titleWithDecoration(Strings.editSettings, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
                 ],
               ),
             ),
@@ -97,14 +98,14 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                     labelPadding: EdgeInsets.symmetric(horizontal: sizes.smallPadding),
                     tabs: const [
                       Tab(
-                        text: 'Notifications',
+                        text: Strings.notifications,
 
                       ),
                       Tab(
-                        text: 'Pending Receipts',
+                        text: Strings.pendingReceipts,
                       ),
                       Tab(
-                        text: 'Sent Receipts',
+                        text: Strings.sentReceipts,
                       ),
                     ],
                   ),
@@ -151,7 +152,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                         image: notificationList[index].leadingIcon,
                                         text: notificationList[index].title,
                                         subText: notificationList[index].subTitle,
-                                        date: '${notificationList[index].time} ago',
+                                        date: '${notificationList[index].time} ${Strings.ago}',
                                         onPressNotification: () {}),
                                   )
                               );
@@ -240,7 +241,6 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
           ],
         ),
       ),)
-
     );
   }
 }

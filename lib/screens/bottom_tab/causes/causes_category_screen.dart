@@ -9,7 +9,6 @@ import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_funds_container.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/recently_started_container.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
-import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';

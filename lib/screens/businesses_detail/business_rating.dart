@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
@@ -9,8 +10,6 @@ class BusinessRating extends StatelessWidget {
   final double? starRating;
   final bool? ignoreEdit;
   final Function? onPress;
-
-
   const BusinessRating({Key? key, this.starRating, this.ignoreEdit, this.onPress}) : super(key: key);
 
   @override
@@ -20,7 +19,7 @@ class BusinessRating extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.only(left: getWidth()*0.003),
-          child: TextView.headerWithBlurRadius("$starRating customer ratings", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize14),
+          child: TextView.headerWithBlurRadius("$starRating ${Strings.customerRatings}", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize14),
         ),
         Container(
             padding: EdgeInsets.symmetric(horizontal: getHeight() * 0.002, vertical: getWidth() * 0.01),
@@ -37,7 +36,7 @@ class BusinessRating extends StatelessWidget {
                   onPress: onPress,
                 ),
                 const Expanded(child: SizedBox()),
-                TextView.caption("$starRating out of 5", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize13),
+                TextView.caption("$starRating ${Strings.outOf5}", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize13),
                 SizedBox(width: getWidth()*0.03,)
               ],
             )

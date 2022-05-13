@@ -38,10 +38,10 @@ class CauseDetail {
   CauseDetail.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     category = json['category'] != null
-        ? new Category.fromJson(json['category'])
+        ? Category.fromJson(json['category'])
         : null;
     organization = json['organization'] != null
-        ? new Organization.fromJson(json['organization'])
+        ? Organization.fromJson(json['organization'])
         : null;
     name = json['name'];
     description = json['description'];
@@ -58,26 +58,26 @@ class CauseDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.category != null) {
-      data['category'] = this.category!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (category != null) {
+      data['category'] = category!.toJson();
     }
-    if (this.organization != null) {
-      data['organization'] = this.organization!.toJson();
+    if (organization != null) {
+      data['organization'] = organization!.toJson();
     }
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['image'] = this.image;
-    data['goal'] = this.goal;
-    data['raised'] = this.raised;
-    data['remaining'] = this.remaining;
-    data['goal_probability'] = this.goalProbability;
-    data['contributors'] = this.contributors;
-    data['start'] = this.start;
-    data['days_till_start'] = this.daysTillStart;
-    data['end'] = this.end;
-    data['days_remaining'] = this.daysRemaining;
+    data['name'] = name;
+    data['description'] = description;
+    data['image'] = image;
+    data['goal'] = goal;
+    data['raised'] = raised;
+    data['remaining'] = remaining;
+    data['goal_probability'] = goalProbability;
+    data['contributors'] = contributors;
+    data['start'] = start;
+    data['days_till_start'] = daysTillStart;
+    data['end'] = end;
+    data['days_remaining'] = daysRemaining;
     return data;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 
@@ -178,14 +179,13 @@ class BusinessDetailTopContainer extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          TextView.headerWithBlurRadius("Contributed: ", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                          TextView.headerWithBlurRadius("${Strings.contributed}: ", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                           TextView.headerWithBlurRadius("\$$contributedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
                         ],
                       ),
-                      TextView.headerWithBlurRadius("Joined $joinDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
+                      TextView.headerWithBlurRadius("${Strings.joined} $joinDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
                     ],
                   ),
-
                 ),
               ],
             ),

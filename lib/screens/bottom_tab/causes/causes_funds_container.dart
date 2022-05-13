@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -109,13 +110,12 @@ class CausesFundContainer extends StatelessWidget {
                     Row(
                       children: [
                         TextView.subHeader("\$$collectedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
-                        TextView.subHeader(" of \$$totalAmount", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                        TextView.subHeader(" ${Strings.of} \$$totalAmount", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                       ],
                     ),
-                    TextView.subHeader("Ends $endDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
+                    TextView.subHeader("${Strings.ends} $endDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
                   ],
                 ),
-
               ),
             ],
           ),

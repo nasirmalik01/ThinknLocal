@@ -1,3 +1,4 @@
+import 'package:flutter_app/screens/about_visit/about_visit.dart';
 import 'package:flutter_app/screens/bottom_tab/bottom_tab_new.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_screen.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_screen.dart';
@@ -40,6 +41,7 @@ class Routes {
   static const String locationPermissionScreen = '/locationPermissionScreen';
   static const String notificationPermissionScreen = '/notificationPermissionScreen';
   static const String locationSearchScreen = '/locationSearchScreen';
+  static const String aboutVisit = '/aboutVisit';
 
 
   static getUnknownRoute() {
@@ -127,6 +129,10 @@ class Routes {
       GetPage(
         name: locationSearchScreen,
         page: () => LocationSearchScreen(),
+      ),
+      GetPage(
+        name: aboutVisit,
+        page: () => AboutVisit(),
       ),
     ];
   }

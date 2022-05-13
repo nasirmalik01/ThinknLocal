@@ -7,6 +7,7 @@ import 'package:flutter_app/screens/bottom_tab/causes/causes_category_screen.dar
 import 'package:flutter_app/screens/cause_search/cause_search.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
+import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -26,7 +27,13 @@ class CausesScreen extends StatelessWidget{
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Obx(() => Container(
+      body: Obx(() =>
+        _causesController.isError.value
+        ?  NetworkErrorException(exceptionMessage: _causesController.errorMessage.value, onPress: (){
+          _causesController.isError.value = false;
+          _causesController.getCauses(Strings.featured);
+        })
+        : Container(
         height: sizes.height,
         width: sizes.width,
         decoration: const BoxDecoration(
@@ -48,7 +55,7 @@ class CausesScreen extends StatelessWidget{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextView.titleWithDecoration("Showing causes near", color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
+                  TextView.titleWithDecoration(Strings.showingCausesNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
                   GestureDetector(
                     onTap: (){
                       Get.toNamed(Routes.locationSearchScreen);
@@ -77,7 +84,7 @@ class CausesScreen extends StatelessWidget{
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: CommonWidgets.searchLocationTextField(
                       controller: searchController,
-                      hint: "Search for a cause",
+                      hint: Strings.searchForCause,
                       onPressSearch: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (_) => CauseSearch()));

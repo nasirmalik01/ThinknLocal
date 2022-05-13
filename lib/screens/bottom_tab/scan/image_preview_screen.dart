@@ -1,7 +1,12 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/screens/bottom_tab/scan/contribution_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
+import 'package:get/get.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -11,9 +16,9 @@ class ImagePreviewScreen extends StatefulWidget {
       {Key? key,
         required this.notSaveImage,
         required this.saveImage,
-        required this.xFile})
+        required this.image})
       : super(key: key);
-  final XFile xFile;
+  final XFile image;
   final Function saveImage;
   final Function notSaveImage;
 
@@ -22,6 +27,8 @@ class ImagePreviewScreen extends StatefulWidget {
 }
 
 class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
+  final ContributionController _contributionController = Get.put(ContributionController());
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -36,7 +43,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                 decoration: BoxDecoration(
                   color: Colors.black.withOpacity(0.5),
                   image: DecorationImage(
-                      image: FileImage(File(widget.xFile.path)),
+                      image: FileImage(File(widget.image.path)),
                       fit: BoxFit.contain),
                 )
             ),
@@ -81,16 +88,23 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                           widget.notSaveImage.call();
                         },
                         width: sizes.width * 0.4, height: getHeight() * 0.08,
-                        text: "Try Again", btnColor: AppColors.darkGrey),
+                        text: Strings.tryAgain, btnColor: AppColors.darkGrey),
                     SizedBox(
                       width: getWidth() * .05,
                     ),
                     Button(
-                        onPress: () {
-                          widget.saveImage.call();
+                        onPress: () async {
+                          // Map<String, dynamic> _query = {
+                          //   Strings.fileName: widget.image.name,
+                          //   Strings.contentType: 'image/${widget.image.name.split('.')[1]}',
+                          //   Strings.byteSize: 1234,
+                          //   Strings.checksum: 1234,
+                          // };
+                          // await _contributionController.uploadDirectContributions(_query);
+                          Get.toNamed(Routes.aboutVisit, arguments:  widget.image);
                         },
                         width: sizes.width * 0.4, height: getHeight() * 0.08,
-                        text: "Looks Good!", btnColor: AppColors.greenColor),
+                        text: Strings.looksGood, btnColor: AppColors.greenColor),
                   ],
                 ),
               ),
@@ -133,7 +147,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                     maxLines: 2,
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                        text: "Make sure ",
+                        text: Strings.makeSure,
                         style: TextStyle(
                           color: AppColors.pureWhiteColor,
                           fontSize: sizes.fontSize16,
@@ -141,7 +155,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                            text: "business name, ",
+                            text: "${Strings.lowerCaseBusinessName} ",
                             style: TextStyle(
                               color: AppColors.greenColor,
                               fontSize: sizes.fontSize16,
@@ -149,7 +163,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: "and ",
+                            text: "${Strings.and} ",
                             style: TextStyle(
                               color: AppColors.pureWhiteColor,
                               fontSize: sizes.fontSize16,
@@ -157,7 +171,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: "total ",
+                            text: "${Strings.total} ",
                             style: TextStyle(
                               color: AppColors.greenColor,
                               fontSize: sizes.fontSize16,
@@ -165,15 +179,13 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                             ),
                           ),
                           TextSpan(
-                            text: "are clearly visible",
+                            text: Strings.areClearlyVisible,
                             style: TextStyle(
                               color: AppColors.pureWhiteColor,
                               fontSize: sizes.fontSize16,
                               fontFamily: Assets.poppinsRegular,
                             ),
                           ),
-
-
                         ]
                     ),
                   ),
@@ -184,11 +196,5 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-
-    super.dispose();
   }
 }

@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 
 class LogInController extends GetxController{
+  RxBool isError = false.obs;
+  RxString errorMessage = ''.obs;
 
   authenticateUser({String? email, String? password}) async {
     final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, {
@@ -15,7 +17,6 @@ class LogInController extends GetxController{
       Strings.password: password,
     });
 
-    /// if any Exception occurs
     if (response != null) {
       String token = response['token'];
       await MyHive.setToken(token);

@@ -1,6 +1,7 @@
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
+import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
 class BusinessesController extends GetxController{
@@ -14,6 +15,8 @@ class BusinessesController extends GetxController{
   List<Businesses>? businessList = [];
   List<Businesses>? recentlyAddedBusinessList = [];
   List<Businesses>? nearbyBusinessList = [];
+  RxBool isError = false.obs;
+  RxString errorMessage = ''.obs;
 
   @override
   void onInit() {
@@ -54,6 +57,14 @@ class BusinessesController extends GetxController{
   getBusinesses() async {
     isBusinessLoading.value = true;
     businessList =  await (BusinessRemoteRepository.fetchBusinesses({}));
+    if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
+      isError.value = true;
+      isBusinessLoading.value = false;
+      isRecentlyAddedBusinessLoading.value = false;
+      isNearByBusinessLoading.value = false;
+      errorMessage.value = RemoteServices.error;
+      return;
+    }
     isBusinessLoading.value = false;
   }
 

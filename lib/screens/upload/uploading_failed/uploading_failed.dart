@@ -7,14 +7,14 @@ import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
-class UploadingFailed extends StatefulWidget {
-  const UploadingFailed({Key? key}) : super(key: key);
+class UploadFailed extends StatefulWidget {
+  const UploadFailed({Key? key}) : super(key: key);
 
   @override
-  _UploadingFailedState createState() => _UploadingFailedState();
+  _UploadFailedState createState() => _UploadFailedState();
 }
 
-class _UploadingFailedState extends State<UploadingFailed> {
+class _UploadFailedState extends State<UploadFailed> {
 
   @override
   void initState() {
