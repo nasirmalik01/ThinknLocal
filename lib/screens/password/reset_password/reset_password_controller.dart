@@ -17,11 +17,11 @@ class ResetPasswordController extends GetxController {
       return;
     }
 
-    //Get.back();
     await showSnackBar(
         title: 'Reset Code Sent', backgroundColor: AppColors.greenColor);
     Get.offAndToNamed(
       Routes.resetPinScreen,
+      arguments: email,
     );
   }
 }

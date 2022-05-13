@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/screens/location_search/get_cities.dart';
+import 'package:flutter_app/screens/password/password_pin/reset_password_pin_controller.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';
+import '../../../common/methods.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -17,6 +20,7 @@ class ResetPinScreen extends StatefulWidget {
 
 class _ResetPinScreenState extends State<ResetPinScreen> {
   TextEditingController? resetPinController;
+  final ResetPasswordPinController _resetPasswordPinController = Get.put(ResetPasswordPinController());
 
   @override
   void initState() {
@@ -26,6 +30,7 @@ class _ResetPinScreenState extends State<ResetPinScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _email = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       body: Container(
         height: sizes.height,
@@ -78,7 +83,10 @@ class _ResetPinScreenState extends State<ResetPinScreen> {
                   ),
                   SizedBox(height: getHeight() * 0.04),
                   Button(onPress: () {
-                    Get.toNamed(Routes.newPasswordScreen);
+                    if (resetPinController!.text.trim().isEmpty) {
+                      return showSnackBar(subTitle: 'Please enter your reset pin');
+                    }
+                    _resetPasswordPinController.verifyResetPin(_email, resetPinController!.text);
                   }, text: "Reset"),
                   SizedBox(height: getHeight() * 0.04),
                   Button(onPress: () {

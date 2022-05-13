@@ -8,4 +8,6 @@ class ApiEndPoints{
   static const follow = 'follow';
   static const unfollow = 'unfollow';
   static const contributions = 'contributions';
+  static const resetPassword = 'password_reset';
+  static const resetPin = 'password_reset/verify';
 }

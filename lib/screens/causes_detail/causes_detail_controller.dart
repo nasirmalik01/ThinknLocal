@@ -18,6 +18,7 @@ class CausesDetailController extends GetxController {
   RxBool isStatsLoading = false.obs;
   RxBool isCauseBottomLoading = false.obs;
   RxBool isFeaturedLoading = false.obs;
+  RxBool isCauseFollowed = false.obs;
 
   setFoodAndDrinkTab() {
     isFoodAndDrink.value = true;
@@ -74,5 +75,15 @@ class CausesDetailController extends GetxController {
     isStatsLoading.value = true;
     causesStats = (await CausesRemoteRepository.fetchCausesStats(id, {}))!;
     isStatsLoading.value = false;
+  }
+
+  followCauses(int id) async {
+    if(isCauseFollowed.value) {
+      await CausesRemoteRepository.unFollowCause(id);
+      isCauseFollowed.value = false;
+    }else{
+      await CausesRemoteRepository.followCause(id);
+      isCauseFollowed.value = true;
+    }
   }
 }

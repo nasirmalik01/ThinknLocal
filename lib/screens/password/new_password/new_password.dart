@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/screens/password/new_password/new_password_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/password_text_field.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';
-import '../../../constants/assets.dart';
-import '../../../constants/colors.dart';
-import '../../../res/res.dart';
-import '../../../widgets/text_views.dart';
+import '/constants/assets.dart';
+import '/constants/colors.dart';
+import '/res/res.dart';
+import '/widgets/text_views.dart';
 
 
 class NewPassword extends StatefulWidget {
@@ -21,6 +23,7 @@ class _NewPasswordState extends State<NewPassword> {
   TextEditingController? passwordController;
   TextEditingController? confirmPasswordController;
   bool hiddenPassword = true;
+  final NewPasswordController _newPasswordController = Get.put(NewPasswordController());
 
   @override
   void initState() {
@@ -31,6 +34,7 @@ class _NewPasswordState extends State<NewPassword> {
 
   @override
   Widget build(BuildContext context) {
+    final _params = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
       body: Container(
         height: sizes.height,
@@ -89,7 +93,17 @@ class _NewPasswordState extends State<NewPassword> {
                       TextView.subTitleWithBlurRadius("Both passwords must match.", color: AppColors.darkGrey),
                       SizedBox(height: getHeight() * 0.04),
                       Button(onPress: () {
-                        Get.toNamed(Routes.resetPasswordSuccessScreen);
+                        if(passwordController!.text != confirmPasswordController!.text)
+                          {
+                            showSnackBar(subTitle: 'Password didn\'t Match', backgroundColor: AppColors.greenColor,);
+                          }
+                        else if(passwordController!.text.length<8 || confirmPasswordController!.text.length < 8)
+                        {
+                          showSnackBar(subTitle: 'Enter atleast 8 characters', backgroundColor: AppColors.greenColor,);
+                        }
+                        else{
+                          _newPasswordController.newPassword(_params['email'],_params['token'], passwordController!.text);
+                        }
                       }, text: "Reset Password"),
                       SizedBox(height: getHeight() * 0.04),
                     ],

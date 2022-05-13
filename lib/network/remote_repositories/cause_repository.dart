@@ -51,4 +51,12 @@ class CausesRemoteRepository{
     _causeDetail.end = _endDate;
     return _causeDetail;
   }
+  static Future<void> followCause(int id) async {
+    await GetIt.I<RemoteServices>().postRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.follow}', {});
+  }
+
+  static Future<void> unFollowCause(int id) async {
+    await GetIt.I<RemoteServices>().postRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.unfollow}', {});
+  }
+
 }

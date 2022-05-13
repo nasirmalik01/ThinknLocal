@@ -5,7 +5,7 @@ class Contributions {
   double? amount;
   String? status;
   String? reason;
-  double? rating;
+  int? rating;
   double? receiptAmount;
   String? receiptDate;
   Business? business;

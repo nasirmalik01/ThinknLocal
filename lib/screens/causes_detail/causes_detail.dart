@@ -79,12 +79,14 @@ class _CausesDetailState extends State<CausesDetail>
                               .toString(),
                           endDate:
                           "${_causesDetailController.causeDetail.start} - ${_causesDetailController.causeDetail.end}",
-                          isFavorite: false,
+                          isFavorite: _causesDetailController.isCauseFollowed.value,
                           onClickBox: () {},
                           onPressBackArrow: () {
                             Navigator.pop(context);
                           },
-                          onPressFavoriteIcon: () {}),
+                          onPressFavoriteIcon: () {
+                            _causesDetailController.followCauses(_id);
+                          }),
                     ),
                     SizedBox(height: sizes.height * 0.04),
                     Container(
@@ -121,13 +123,13 @@ class _CausesDetailState extends State<CausesDetail>
                         //labelPadding: EdgeInsets.all(sizes!.smallPadding),
                         tabs: const [
                           Tab(
-                            text: 'Overview',
+                            text: Strings.overview,
                           ),
                           Tab(
-                            text: 'Update',
+                            text: Strings.update,
                           ),
                           Tab(
-                            text: 'Stats',
+                            text: Strings.stats,
                           ),
                         ],
                       ),
@@ -170,7 +172,7 @@ class _CausesDetailState extends State<CausesDetail>
                                     padding: EdgeInsets.symmetric(
                                         horizontal: sizes.width * 0.06),
                                     child: TextView.titleWithDecoration(
-                                        "Featured Sponsors",
+                                        Strings.featuredSponsors,
                                         color: AppColors.blackColor,
                                         fontFamily: Assets.poppinsMedium,
                                         fontSize: sizes.fontSize17),
@@ -236,7 +238,7 @@ class _CausesDetailState extends State<CausesDetail>
                                           MainAxisAlignment.spaceBetween,
                                           children: [
                                             customTabBar(
-                                                title: "Food & drink",
+                                                title: Strings.foodDrink,
                                                 isSelected:
                                                 _causesDetailController
                                                     .isFoodAndDrink.value,
@@ -249,7 +251,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                       .setFoodAndDrinkTab();
                                                 }),
                                             customTabBar(
-                                                title: "Things to do",
+                                                title: Strings.toDoThings,
                                                 isSelected:
                                                 _causesDetailController
                                                     .isThingsToDo.value,
@@ -262,7 +264,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                       .setThingsToDoTab();
                                                 }),
                                             customTabBar(
-                                                title: "Retail",
+                                                title: Strings.retail,
                                                 isSelected:
                                                 _causesDetailController
                                                     .isRetail.value,
@@ -275,7 +277,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                       .setRetailTab();
                                                 }),
                                             customTabBar(
-                                                title: "Services",
+                                                title: Strings.services,
                                                 isSelected:
                                                 _causesDetailController
                                                     .isServices.value,
@@ -422,13 +424,13 @@ class _CausesDetailState extends State<CausesDetail>
                                   CrossAxisAlignment.start,
                                   children: [
                                     TextView.caption(
-                                        "Contributions over time",
+                                        Strings.contributionsOverTime,
                                         color: AppColors.blackColor,
                                         fontFamily: Assets.poppinsMedium,
                                         fontSize: sizes.fontSize18),
                                     SizedBox(height: 0.5.h),
                                     TextView.caption(
-                                        "Number of contributions from individuals over time.",
+                                        Strings.numberOfContributions,
                                         color: AppColors.darkGrey,
                                         fontFamily: Assets.poppinsRegular,
                                         fontSize: sizes.fontSize13),
@@ -508,8 +510,8 @@ class _CausesDetailState extends State<CausesDetail>
                                     ),
                                     SizedBox(height: 3.h),
                                     CommonWidgets.getTextWithSeeAll(
-                                        leadingText: "Recent Contributions",
-                                        trailingText: "See All",
+                                        leadingText: Strings.recentContributions,
+                                        trailingText: Strings.seeAll,
                                         onPressSeeAllButton: () {}),
                                     SizedBox(height: 2.h),
                                     ListView.separated(

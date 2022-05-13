@@ -73,7 +73,6 @@ class ResetPassword extends StatelessWidget {
                       return showSnackBar(subTitle: 'Please enter email');
                     }
                     _resetPasswordController.resetPassword(emailController!.text);
-                    Get.toNamed(Routes.resetPinScreen);
                   }, text: "Send Reset Code"),
                   SizedBox(height: getHeight() * 0.04),
                   Button(onPress: () {

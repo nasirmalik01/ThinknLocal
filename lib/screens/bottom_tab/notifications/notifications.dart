@@ -7,9 +7,9 @@ import 'package:flutter_app/screens/bottom_tab/notifications/notification_contro
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import '../../../constants/assets.dart';
-import '../../../constants/colors.dart';
-import '../../../res/res.dart';
+import '/constants/assets.dart';
+import '/constants/colors.dart';
+import '/res/res.dart';
 
 
 class NotificationScreen extends StatefulWidget {
@@ -172,20 +172,21 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                           child:
                           ListView.separated(
                             padding: EdgeInsets.symmetric(vertical: 1.8.h),
-                            itemCount: pendingReceiptsList.length,
+                            scrollDirection: Axis.vertical,
                             shrinkWrap: true,
                             physics: const ScrollPhysics(),
+                            itemCount: _notificationController.pendingContributionsList!.length,
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                   onTap: () {
                                   },
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == notificationList.length - 1 ? 4.h : 0),
+                                    padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.pendingContributionsList!.length - 1 ? 4.h : 0),
                                     child: NotificationCard(
-                                        image: pendingReceiptsList[index].leadingIcon,
-                                        text: pendingReceiptsList[index].title,
-                                        subText: pendingReceiptsList[index].subTitle,
-                                        date: '${pendingReceiptsList[index].time} ago',
+                                        image: Assets.pendingReceiptIcon1,
+                                        text: _notificationController.pendingContributionsList![index].business!.name,
+                                        subText: "${_notificationController.pendingContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
+                                        date: _notificationController.getTime(_notificationController.pendingContributionsList![index].receiptDate!),
                                         onPressNotification: () {}),
                                   )
                               );
@@ -206,7 +207,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                           child:
                           ListView.separated(
                             padding: EdgeInsets.symmetric(vertical: 1.8.h),
-                            itemCount: sentReceiptsList.length,
+                            itemCount: _notificationController.approvedContributionsList!.length,
                             shrinkWrap: true,
                             physics: const ScrollPhysics(),
                             itemBuilder: (context, index) {
@@ -214,12 +215,12 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                   onTap: () {
                                   },
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == notificationList.length - 1 ? 4.h : 0),
+                                    padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.approvedContributionsList!.length - 1 ? 4.h : 0),
                                     child: NotificationCard(
-                                        image: sentReceiptsList[index].leadingIcon,
-                                        text: sentReceiptsList[index].title,
-                                        subText:sentReceiptsList[index].subTitle,
-                                        date: '${sentReceiptsList[index].time} ago',
+                                        image: Assets.pendingReceiptIcon2,
+                                        text: _notificationController.approvedContributionsList![index].business!.name,
+                                        subText: "${_notificationController.approvedContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
+                                        date: _notificationController.getTime(_notificationController.approvedContributionsList![index].receiptDate!),
                                         isSentReceipts: true,
                                         onPressNotification: () {}),
                                   )
