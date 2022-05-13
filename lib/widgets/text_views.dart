@@ -59,13 +59,13 @@ class TextView {
     );
   }
 
-  static Text subTitle(final text, {@required final color, final TextAlign textAlign = TextAlign.start, final fontFamily, final lines, bool isSetFontWeight = true, final fontSize}) {
+  static Text subTitle(final text, {@required final color, final TextAlign textAlign = TextAlign.start, final fontFamily, final lines, bool isSetFontWeight = true, final fontSize, bool isEllipses = true}) {
     return Text(
       text ?? "",
       textAlign: textAlign,
       softWrap: true,
       maxLines: lines,
-      overflow: TextOverflow.ellipsis,
+      overflow: isEllipses ? TextOverflow.ellipsis : TextOverflow.visible,
       style: TextStyle(
         fontSize: fontSize ?? sizes.fontSize20,
         fontFamily: fontFamily?? Assets.poppinsMedium,

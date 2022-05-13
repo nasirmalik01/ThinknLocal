@@ -6,6 +6,7 @@ import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account_settings_card.dart';
 import 'package:flutter_app/screens/bottom_tab/account/user_profile_box.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
+import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -26,7 +27,14 @@ class AccountScreen extends StatelessWidget {
 
     return Scaffold(
       body: Obx(() =>
-      _accountController.isLoading.value ? circularProgressIndicator() : Container(
+      _accountController.isError.value
+       ? NetworkErrorException(exceptionMessage: _accountController.errorMessage.value, onPress: (){
+         _accountController.isError.value = false;
+         _accountController.getProfileInfo();
+      })
+       : _accountController.isLoading.value
+       ? circularProgressIndicator()
+       : Container(
         height: sizes.height,
         width: sizes.width,
         decoration: const BoxDecoration(
@@ -53,9 +61,9 @@ class AccountScreen extends StatelessWidget {
               child: Column(
                 children: [
                   UserProfileBox(
-                      name: '${_accountController.account.firstName} ${_accountController.account.lastName}',
-                      email: _accountController.account.email,
-                      nameShort: '${_accountController.account.firstName![0]}${_accountController.account.lastName![0]}',
+                      name: '${_accountController.account!.firstName} ${_accountController.account!.lastName}',
+                      email: _accountController.account!.email,
+                      nameShort: '${_accountController.account!.firstName![0]}${_accountController.account!.lastName![0]}',
                       onTapEdit: () {
                         pushNewScreen(
                           context,

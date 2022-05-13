@@ -1,5 +1,6 @@
 import 'package:flutter_app/model/dummy/account.dart';
 import 'package:flutter_app/network/remote_repositories/profile_repository.dart';
+import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
 class AccountController extends GetxController{
@@ -8,8 +9,10 @@ class AccountController extends GetxController{
   RxBool isLocation = false.obs;
   RxBool isOtherOption = false.obs;
   RxBool isOtherOption2 = false.obs;
-  late Account account;
+  Account? account;
   RxBool isLoading = false.obs;
+  RxBool isError = false.obs;
+  RxString errorMessage = ''.obs;
 
 
 
@@ -35,8 +38,14 @@ class AccountController extends GetxController{
 
   getProfileInfo() async {
     isLoading.value = true;
-    account = (await ProfileRemoteRepository.fetchProfileInfo({}))!;
-    isPushNotifications.value = account.settings!.pushNotifications ?? false;
+    account = (await ProfileRemoteRepository.fetchProfileInfo({}));
+    if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
+      isError.value = true;
+      isLoading.value = false;
+      errorMessage.value = RemoteServices.error;
+      return;
+    }
+    isPushNotifications.value = account?.settings?.pushNotifications ?? false;
     isLoading.value = false;
   }
 }

@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/constants/routes.dart';
+import 'package:get/get.dart';
 
 class DioExceptions implements Exception {
 
@@ -31,18 +34,38 @@ class DioExceptions implements Exception {
   }
 
   String _handleError(int? statusCode, dynamic error) {
+    String message = '';
     switch (statusCode) {
       case 400:
-        return 'Bad request';
+        message = 'Bad request';
+        break;
       case 401:
-        return 'Bad request';
-      case 404:
-        return error["message"];
+        message = 'You are not logged in';
+        Get.offAllNamed(Routes.loginScreen);
+        break;
+      case 403:
+        message = 'Forbidden! You are running an outdated app version and must upgrade';
+        break;
+      case 422:
+        message = 'Form data is invalid';
+        break;
+        case 404:
+        message = 'Requested page is not available';
+        break;
+      case 408:
+        message = 'No internet connection';
+        break;
       case 500:
-        return 'Internal server error';
+        message = 'Internal server error, Try Again!';
+        break;
+        case 503:
+        message = 'Service unavailable! Application under maintenance.';
+        break;
       default:
-        return 'Oops something went wrong';
+        message = 'Oops something went wrong';
+        break;
     }
+    return message;
   }
 
   @override

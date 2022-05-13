@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/strings.dart';
@@ -235,12 +237,16 @@ class _CameraScreenState extends State<CameraScreen> {
   }
 
   void _takePicture() async {
-    XFile value = await _controller.takePicture();
+    XFile image = await _controller.takePicture();
+    log('Name: ${image.name}');
+    log('Path: ${image.path}');
+    log('Path: ${image.}');
+
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => ImagePreviewScreen(
-              xFile: value,
+              xFile: image,
               notSaveImage: () {
                 Navigator.pop(context);
               },

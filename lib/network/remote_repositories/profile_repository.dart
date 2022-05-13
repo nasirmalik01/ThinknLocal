@@ -12,5 +12,4 @@ class ProfileRemoteRepository{
     }
     return Account.fromJson(response);
   }
-
 }

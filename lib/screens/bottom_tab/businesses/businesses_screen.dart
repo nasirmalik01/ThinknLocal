@@ -11,6 +11,7 @@ import 'package:flutter_app/screens/bottom_tab/businesses/recently_added_busines
 import 'package:flutter_app/screens/businesses_categories/business_category.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
+import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -34,220 +35,225 @@ class BusinessesScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Container(
-              height: sizes.height,
-              width: sizes.width,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: ListView(
-                // controller: _businessesController.scrollController,
-                children: [
-                  Container(
-                    height: getHeight() * 0.12,
-                    width: getWidth(),
-                    padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: sizes.height * 0.02),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: PreferenceUtils.getGradient()
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextView.titleWithDecoration(Strings.businessNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
-                        GestureDetector(
-                          onTap: (){
-                            Get.toNamed(Routes.locationSearchScreen);
-                          },
-                          child: Row(
-                            children: [
-                              TextView.header(Strings.dummyLocation, color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
-                              Padding(
-                                padding: EdgeInsets.only(left: 2.w, bottom: 0.5.h),
-                                child: Image(
-                                  height: getHeight() * 0.03,
-                                  image: const AssetImage(Assets.vectorIcon),),
-                              ),
-                            ],
+        body:  Obx(() =>
+          _businessesController.isError.value
+          ? NetworkErrorException(exceptionMessage: _businessesController.errorMessage.value, onPress: (){
+            _businessesController.isError.value = false;
+            _businessesController.getBusinesses();
+          })
+          : Container(
+          height: sizes.height,
+          width: sizes.width,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          child: ListView(
+            // controller: _businessesController.scrollController,
+            children: [
+              Container(
+                height: getHeight() * 0.12,
+                width: getWidth(),
+                padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: sizes.height * 0.02),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: PreferenceUtils.getGradient()
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextView.titleWithDecoration(Strings.businessNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(Routes.locationSearchScreen);
+                      },
+                      child: Row(
+                        children: [
+                          TextView.header(Strings.dummyLocation, color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
+                          Padding(
+                            padding: EdgeInsets.only(left: 2.w, bottom: 0.5.h),
+                            child: Image(
+                              height: getHeight() * 0.03,
+                              image: const AssetImage(Assets.vectorIcon),),
                           ),
-                        )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                    child: Column(
+                      children: [
+                        CommonWidgets.searchLocationTextField(
+                            controller: searchController,
+                            hint: Strings.searchBusiness,
+                            onPressSearch: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) => CauseSearch(isBusiness: true,)));
+                            }
+                        ),
+                        SizedBox(height: getHeight() * 0.03),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            _businessesComponents.businessCategoryIcon(
+                                image: Assets.foodIcon, label: Strings.foodDrink,
+                                onPressCategory: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.foodDrink, icon: Assets.foodIcon,)));
+                                }
+                            ),
+                            _businessesComponents.businessCategoryIcon(
+                                image: Assets.thingsIcon, label: Strings.toDoThings,
+                                onPressCategory: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.toDoThings, icon: Assets.thingsIcon,)));
+                                }
+                            ),
+                            _businessesComponents.businessCategoryIcon(
+                                image: Assets.bagIcon, label: Strings.retail,
+                                onPressCategory: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.retail, icon: Assets.bagIcon,)));
+                                }
+                            ),
+                            _businessesComponents.businessCategoryIcon(
+                                image: Assets.servicesIcon, label: Strings.services,
+                                onPressCategory: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.services, icon: Assets.servicesIcon,)));
+                                }
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: getHeight() * 0.04),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            customTabBar(title: Strings.featured.capitalize!, isSelected: _businessesController.isFeatured.value,  onTap: (){ _businessesController.setFeaturedTab(); }),
+                            customTabBar(title: Strings.trending.capitalize!, isSelected: _businessesController.isTrending.value, onTap: (){ _businessesController.setTrendingTab(); }),
+                            customTabBar(title: Strings.favorites.capitalize!, isSelected: _businessesController.isFavorites.value, onTap: (){ _businessesController.setFavoritesTab(); }),
+                            customTabBar(title: Strings.past.capitalize!, isSelected: _businessesController.isPast.value, onTap: (){ _businessesController.setPostTab(); }),
+                          ],
+                        ),
                       ],
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                        child: Column(
-                          children: [
-                            CommonWidgets.searchLocationTextField(
-                                controller: searchController,
-                                hint: Strings.searchBusiness,
-                                onPressSearch: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) => CauseSearch(isBusiness: true,)));
-                                }
-                            ),
-                            SizedBox(height: getHeight() * 0.03),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                _businessesComponents.businessCategoryIcon(
-                                    image: Assets.foodIcon, label: Strings.foodDrink,
-                                    onPressCategory: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.foodDrink, icon: Assets.foodIcon,)));
-                                    }
-                                ),
-                                _businessesComponents.businessCategoryIcon(
-                                    image: Assets.thingsIcon, label: Strings.toDoThings,
-                                    onPressCategory: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.toDoThings, icon: Assets.thingsIcon,)));
-                                    }
-                                ),
-                                _businessesComponents.businessCategoryIcon(
-                                    image: Assets.bagIcon, label: Strings.retail,
-                                    onPressCategory: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.retail, icon: Assets.bagIcon,)));
-                                    }
-                                ),
-                                _businessesComponents.businessCategoryIcon(
-                                    image: Assets.servicesIcon, label: Strings.services,
-                                    onPressCategory: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.services, icon: Assets.servicesIcon,)));
-                                    }
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: getHeight() * 0.04),
-                            Obx(() => Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                customTabBar(title: Strings.featured.capitalize!, isSelected: _businessesController.isFeatured.value,  onTap: (){ _businessesController.setFeaturedTab(); }),
-                                customTabBar(title: Strings.trending.capitalize!, isSelected: _businessesController.isTrending.value, onTap: (){ _businessesController.setTrendingTab(); }),
-                                customTabBar(title: Strings.favorites.capitalize!, isSelected: _businessesController.isFavorites.value, onTap: (){ _businessesController.setFavoritesTab(); }),
-                                customTabBar(title: Strings.past.capitalize!, isSelected: _businessesController.isPast.value, onTap: (){ _businessesController.setPostTab(); }),
-                              ],
-                            ),
-                           ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: getHeight() * 0.01),
-                      SizedBox(
-                        height: 20.h,
-                        child: Obx(() => _businessesController.isBusinessLoading.value
-                          ? circularProgressIndicator()
-                          : ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 6,
-                          itemBuilder: (context, index){
-                            return index == 5 ? GestureDetector(
-                                onTap: (){
-                                  Get.to(BusinessesDetail(title: Strings.allBusinesses, detailList: _businessesController.businessList!,));
-                                },
-                                child: CommonWidgets.seeAllButton(40)
-                            )
-                                : BusinessTabContainer(
-                                name: _businessesController.businessList![index].name,
-                                fullBoxImage: _businessesController.businessList![index].image ?? Strings.dummyBgImage,
-                                logoImage: _businessesController.businessList![index].logo ?? Strings.dummyLogo,
-                                bookName:  '',
-                                streetAddress: _businessesController.businessList![index].address1,
-                                address: _businessesController.businessList![index].address2,
-                                phoneNumber: _businessesController.businessList![index].phone.toString(),
-                                index: index,
-                                isFavorite: false,
-                                onClickBox: () async {
-                                  Get.toNamed(Routes.businessDetailScreen, arguments: _businessesController.businessList![index].id);
-                                },
-                                onPressFavoriteIcon: () {}
-                            );
-                          },
-                        ),
-                       ),
-                      ),
-                      SizedBox(height: getHeight() * 0.045),
-                      Padding(
-                        padding: EdgeInsets.only(left: sizes.width * 0.06),
-                        child: TextView.titleWithDecoration(Strings.recentlyAdded, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
-                      ),
-                      SizedBox(height: getHeight() * 0.01),
-                      SizedBox(
-                        height: getHeight()*0.14,
-                        child: Obx(() => _businessesController.isRecentlyAddedBusinessLoading.value
-                          ? circularProgressIndicator()
-                          : ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 6,
-                          itemBuilder: (context, index){
-                            return index == 5
-                              ? GestureDetector(
-                                onTap: (){
-                                  Get.to(BusinessesDetail(title: Strings.recentlyAddedBusiness, detailList: _businessesController.recentlyAddedBusinessList!,));
-                                },
-                                child: CommonWidgets.seeAllButton(30))
-                              : RecentlyAddedBusiness(
-                              name: _businessesController.recentlyAddedBusinessList![index].name,
-                              fullImage: _businessesController.recentlyAddedBusinessList![index].image ?? Strings.dummyBgImage,
-                              logoImage: _businessesController.recentlyAddedBusinessList![index].logo ?? Strings.dummyLogo,
-                              index: index,
-                              onPressFullContainer: (){
-                              },
-                            );
-                          },
-                        ),),
-                      ),
-                      SizedBox(height: getHeight() * 0.045),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                        child: Column(
-                          children: [
-                            CommonWidgets.getTextWithSeeAll(
-                                leadingText: Strings.nearby,
-                                trailingText: Strings.seeAll,
-                                onPressSeeAllButton: () {
-                                  Get.to(BusinessesDetail(title: Strings.businessesNearYou, detailList: _businessesController.nearbyBusinessList!,));
-                                }
-                            ),
-                            SizedBox(height: getHeight() * 0.018),
-                            Obx(() =>  _businessesController.isNearByBusinessLoading.value
-                             ? circularProgressIndicator()
-                             : ListView.separated(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              physics: const ScrollPhysics(),
-                              itemCount: 3,
-                              itemBuilder: (context, index){
-                                return BusinessNearBy(
-                                    image:  _businessesController.nearbyBusinessList![index].image ?? Strings.dummyBgImage,
-                                    headerText: _businessesController.nearbyBusinessList![index].name,
-                                    onViewCourse: (){},
-                                    address: _businessesController.nearbyBusinessList![index].address1,
-                                    streetAddress: _businessesController.nearbyBusinessList![index].address2 ?? Strings.unknown,
-                                    phoneNumber: _businessesController.nearbyBusinessList![index].phone.toString()
-                                );
-                              }, separatorBuilder: (BuildContext context, int index) {
-                              return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.001 ,color: AppColors.borderColor);
+                  SizedBox(height: getHeight() * 0.01),
+                  SizedBox(
+                    height: 20.h,
+                    child: _businessesController.isBusinessLoading.value
+                        ? circularProgressIndicator()
+                        : ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 6,
+                      itemBuilder: (context, index){
+                        return index == 5 ? GestureDetector(
+                            onTap: (){
+                              Get.to(BusinessesDetail(title: Strings.allBusinesses, detailList: _businessesController.businessList!,));
                             },
-                            ),),
-                            SizedBox(height: getHeight() * 0.03),
-                          ],
-                        ),
-                      )
-                    ],
+                            child: CommonWidgets.seeAllButton(40)
+                        )
+                            : BusinessTabContainer(
+                            name: _businessesController.businessList![index].name,
+                            fullBoxImage: _businessesController.businessList![index].image ?? Strings.dummyBgImage,
+                            logoImage: _businessesController.businessList![index].logo ?? Strings.dummyLogo,
+                            bookName:  '',
+                            streetAddress: _businessesController.businessList![index].address1,
+                            address: _businessesController.businessList![index].address2,
+                            phoneNumber: _businessesController.businessList![index].phone.toString(),
+                            index: index,
+                            isFavorite: false,
+                            onClickBox: () async {
+                              Get.toNamed(Routes.businessDetailScreen, arguments: _businessesController.businessList![index].id);
+                            },
+                            onPressFavoriteIcon: () {}
+                        );
+                      },
+                    ),
                   ),
-
+                  SizedBox(height: getHeight() * 0.045),
+                  Padding(
+                    padding: EdgeInsets.only(left: sizes.width * 0.06),
+                    child: TextView.titleWithDecoration(Strings.recentlyAdded, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
+                  ),
+                  SizedBox(height: getHeight() * 0.01),
+                  SizedBox(
+                    height: getHeight()*0.14,
+                    child: _businessesController.isRecentlyAddedBusinessLoading.value
+                        ? circularProgressIndicator()
+                        : ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 6,
+                      itemBuilder: (context, index){
+                        return index == 5
+                            ? GestureDetector(
+                            onTap: (){
+                              Get.to(BusinessesDetail(title: Strings.recentlyAddedBusiness, detailList: _businessesController.recentlyAddedBusinessList!,));
+                            },
+                            child: CommonWidgets.seeAllButton(30))
+                            : RecentlyAddedBusiness(
+                          name: _businessesController.recentlyAddedBusinessList![index].name,
+                          fullImage: _businessesController.recentlyAddedBusinessList![index].image ?? Strings.dummyBgImage,
+                          logoImage: _businessesController.recentlyAddedBusinessList![index].logo ?? Strings.dummyLogo,
+                          index: index,
+                          onPressFullContainer: (){
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(height: getHeight() * 0.045),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                    child: Column(
+                      children: [
+                        CommonWidgets.getTextWithSeeAll(
+                            leadingText: Strings.nearby,
+                            trailingText: Strings.seeAll,
+                            onPressSeeAllButton: () {
+                              Get.to(BusinessesDetail(title: Strings.businessesNearYou, detailList: _businessesController.nearbyBusinessList!,));
+                            }
+                        ),
+                        SizedBox(height: getHeight() * 0.018),
+                        _businessesController.isNearByBusinessLoading.value
+                            ? circularProgressIndicator()
+                            : ListView.separated(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          physics: const ScrollPhysics(),
+                          itemCount: 3,
+                          itemBuilder: (context, index){
+                            return BusinessNearBy(
+                                image:  _businessesController.nearbyBusinessList![index].image ?? Strings.dummyBgImage,
+                                headerText: _businessesController.nearbyBusinessList![index].name,
+                                onViewCourse: (){},
+                                address: _businessesController.nearbyBusinessList![index].address1,
+                                streetAddress: _businessesController.nearbyBusinessList![index].address2 ?? Strings.unknown,
+                                phoneNumber: _businessesController.nearbyBusinessList![index].phone.toString()
+                            );
+                          }, separatorBuilder: (BuildContext context, int index) {
+                          return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.001 ,color: AppColors.borderColor);
+                        },
+                        ),
+                        SizedBox(height: getHeight() * 0.03),
+                      ],
+                    ),
+                  )
                 ],
               ),
-            ),
+
+            ],
+          ),
+        ),)
+
       ),
     );
   }
