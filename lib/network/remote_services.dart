@@ -16,10 +16,10 @@ class RemoteServices  {
   static int? statusCode = 200;
 
 
-  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map) async {
+  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map, {void Function(int, int)? uploadFile}) async {
     dynamic resJson;
     try {
-      dynamic _result = await MySecureHttpClient.getClient().post(endPoint, data: map);
+      dynamic _result = await MySecureHttpClient.getClient().post(endPoint, data: map, onSendProgress: uploadFile);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
         resJson = json.decode(_result.toString());
         return resJson;

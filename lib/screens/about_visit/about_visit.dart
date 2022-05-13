@@ -1,8 +1,15 @@
+import 'dart:developer';
+
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/about_visit.dart';
+import 'package:flutter_app/model/contributions_direct_upload.dart';
 import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
 import 'package:flutter_app/screens/about_visit/auto_complete_text_field.dart';
+import 'package:flutter_app/screens/bottom_tab/scan/contribution_controller.dart';
+import 'package:flutter_app/screens/upload/uploading_failed/uploading_failed.dart';
+import 'package:flutter_app/screens/upload/uploading_success/uploading_success.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -17,13 +24,21 @@ class AboutVisit extends StatelessWidget {
   AboutVisit({Key? key}) : super(key: key);
 
   final AboutVisitController _aboutVisitController = Get.put(AboutVisitController());
+  final ContributionController _contributionController = Get.put(ContributionController());
+
   double getRating = 0.0;
 
 
   @override
   Widget build(BuildContext context) {
+    final _xFile = ModalRoute.of(context)!.settings.arguments as XFile;
+
     return Scaffold(
-      body: Obx(() =>  SingleChildScrollView(
+      body: Obx(() =>
+       _contributionController.isUploading.value ? Uploading(value: _contributionController.progress.value,)
+      : _contributionController.isUploadFailed.value ? const UploadFailed()
+      : _contributionController.isUploadSuccess.value ? const UploadSuccess()
+      : SingleChildScrollView(
         child: Container(
           width: sizes.width,
           decoration: const BoxDecoration(
@@ -103,7 +118,6 @@ class AboutVisit extends StatelessWidget {
                             textColor: _aboutVisitController.isVisitFirstTime.value ? AppColors.darkGrey : AppColors.pureWhiteColor,
                             width: getWidth() * 0.43,
                             height: getHeight() * 0.08
-
                         ),
                       ],
                     ) ,
@@ -115,8 +129,33 @@ class AboutVisit extends StatelessWidget {
                     }),
                     SizedBox(height: getHeight() * 0.07),
                     Button(
-                        onPress: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => const Uploading()));
+                        onPress: () async {
+                          Map<String, dynamic> _uploadDirectContributionsQuery = {
+                            Strings.fileName: _xFile.name,
+                            Strings.contentType: 'image/${_xFile.name.split('.')[1]}',
+                            Strings.byteSize: 1234,
+                            Strings.checksum: 1234,
+                          };
+
+                          Map<String, dynamic> _createContributionsQuery = {
+
+                          };
+
+                          final res = await _contributionController.uploadAndCreateContributions(
+                           {
+                            Strings.fileName: _xFile.name,
+                            Strings.contentType: 'image/${_xFile.name.split('.')[1]}',
+                            Strings.byteSize: 1234,
+                            Strings.checksum: 1234,
+                          },);
+
+                          await _contributionController.createContribution({
+                            Strings.uploadId: res!.id,
+                            Strings.businessId: 1,
+                            Strings.causeId: 8,
+                            Strings.rating: 3,
+                            Strings.firstPurchase: '1234',
+                          });
                         },
                         text: Strings.looksGood,
                         height: getHeight() * 0.08,

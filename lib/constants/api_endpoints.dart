@@ -8,4 +8,5 @@ class ApiEndPoints{
   static const follow = 'follow';
   static const unfollow = 'unfollow';
   static const contributions = 'contributions';
+  static const uploadContributions = 'contributions/direct_upload';
 }

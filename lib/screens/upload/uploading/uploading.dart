@@ -7,7 +7,8 @@ import '../../../res/res.dart';
 
 
 class Uploading extends StatefulWidget {
-  const Uploading({Key? key}) : super(key: key);
+  final double value;
+  const Uploading({required this.value, Key? key}) : super(key: key);
 
   @override
   _UploadingState createState() => _UploadingState();
@@ -26,7 +27,7 @@ class _UploadingState extends State<Uploading> {
       body: GestureDetector(
         onTap: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (_) => const UploadingFailed()));
+              MaterialPageRoute(builder: (_) => const UploadFailed()));
         },
         child: Container(
           height: sizes.height,
@@ -70,27 +71,14 @@ class _UploadingState extends State<Uploading> {
                     TextView.header("Uploading...", color: AppColors.greenColor, fontSize: sizes.fontSize35),
                     SizedBox(height: getHeight() * 0.04),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: sizes.width * 0.03),
-                      height: getHeight() * 0.013,
-                      width: getWidth(),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: AppColors.borderColor,
-                        borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.01)),
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: getHeight() * 0.015,
-                            width: getWidth() * 0.6,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: AppColors.greenColor,
-                              borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.01)),
-                            ),
-                          ),
-                        ],
-                      ),
+                        margin: EdgeInsets.symmetric(horizontal: sizes.width * 0.03),
+                        alignment: Alignment.topCenter,
+                        child: LinearProgressIndicator(
+                          minHeight: getHeight()*0.01,
+                          value: widget.value,
+                          valueColor: const AlwaysStoppedAnimation<Color>(AppColors.greenColor),
+                          backgroundColor: Colors.grey,
+                        )
                     ),
                     SizedBox(height: getHeight() * 0.04),
                     SizedBox(

@@ -115,6 +115,13 @@ class Strings {
   static const String searchForA = 'Search for a';
   static const String noInternetConnection = 'No Internet Connection';
   static const String pleaseTryAgain = 'Please Try Again';
+  static const String fileName = 'file_name';
+  static const String contentType = 'content_type';
+  static const String byteSize = 'byte_size';
+  static const String checksum = 'checksum';
+  static const String uploadId = 'upload_id';
+  static const String rating = 'rating';
+  static const String firstPurchase = 'first_purchase';
 
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";

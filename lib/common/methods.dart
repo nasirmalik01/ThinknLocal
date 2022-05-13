@@ -56,8 +56,8 @@ circularProgressIndicator(){
 
 convertDateToString({required String dateTime}){
   var parsedDate = DateTime.parse(dateTime);
-  DateFormat format = DateFormat.MMMEd();
-  String formattedDate = format.format(parsedDate);
+  DateFormat _dateTime = DateFormat.MMMEd();
+  String formattedDate = _dateTime.format(parsedDate);
   return formattedDate.split(',')[1];
 }
 
