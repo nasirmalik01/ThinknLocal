@@ -32,7 +32,6 @@ class ContributionRepository{
 
   static Future<dynamic> createContribution(Map<String, dynamic> query) async {
     final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.contributions, query);
-    print('CONTRIBUTIIN: $response');
 
     if (response == null) {
       return;
