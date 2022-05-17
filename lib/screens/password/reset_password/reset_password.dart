@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/screens/password/reset_password/reset_password_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_field.dart';

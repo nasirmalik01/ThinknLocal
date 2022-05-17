@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/dummy_data/businesses.dart';
-import 'package:flutter_app/local/dummy_data/causes_detail.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/businesses_detail/business_detail_controller.dart';
 import 'package:flutter_app/screens/businesses_detail/business_detail_top_container.dart';
@@ -12,7 +10,6 @@ import 'package:flutter_app/screens/businesses_detail/business_rating.dart';
 import 'package:flutter_app/screens/businesses_detail/recently_funded_business.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
-import 'package:flutter_app/screens/causes_detail/update_fund_raiser.dart';
 import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/network_error.dart';
@@ -170,13 +167,22 @@ class BusinessesDetailScreen extends StatelessWidget {
                                         name: _businessDetailController.recentlyFundedBusinessCausesList![index].name,
                                         fullImage: _businessDetailController.recentlyFundedBusinessCausesList![index].image,
                                         logoImage: _businessDetailController.recentlyFundedBusinessCausesList![index].organization!.logo,
-                                        isFavorite: false,
+                                        isFavorite: _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite!,
                                         endDate: _businessDetailController.recentlyFundedBusinessCausesList![index].end,
                                         raisedAmount: _businessDetailController.recentlyFundedBusinessCausesList![index].raised.toString(),
                                         totalAmount: _businessDetailController.recentlyFundedBusinessCausesList![index].goal.toString(),
                                         colors: const [Colors.transparent, AppColors.greenColor,],
                                         index: index,
                                         onPressFullContainer: (){
+                                          bool _isFavorite = _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite!;
+                                          int _causeId = _businessDetailController.recentlyFundedBusinessCausesList![index].id!;
+                                          _businessDetailController.followCauses(_causeId, _isFavorite);
+                                          if(_isFavorite){
+                                            _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite = false;
+                                          }else{
+                                            _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite = true;
+                                          }
+                                          _businessDetailController.getRecentlyFundedBusinessCauses(id: _id);
                                         },
                                       );
                                     },
@@ -353,6 +359,7 @@ class BusinessesDetailScreen extends StatelessWidget {
     _businessDetailController.getBusinessStats(id: _id);
     _businessDetailController.getRecentlyFundedBusinessCauses(id: _id);
     _businessDetailController.getPastFundedBusinessCauses(id: _id);
+    _businessDetailController.getFollowBusiness(id: _id);
   }
 }
 

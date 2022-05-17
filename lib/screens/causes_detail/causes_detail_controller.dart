@@ -2,6 +2,7 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/cause_detail.dart';
 import 'package:flutter_app/model/causes_stats.dart';
+import 'package:flutter_app/model/follows.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
@@ -16,6 +17,7 @@ class CausesDetailController extends GetxController {
   CausesStats? causesStats;
   List<Businesses>? causeBottomDetails = [];
   List<Businesses>? causeFeaturedList = [];
+  Follows? follows;
   RxBool isLoading = false.obs;
   RxBool isStatsLoading = false.obs;
   RxBool isCauseBottomLoading = false.obs;
@@ -92,11 +94,12 @@ class CausesDetailController extends GetxController {
 
   followCauses(int id) async {
     if(isCauseFollowed.value) {
-      await CausesRemoteRepository.unFollowCause(id);
       isCauseFollowed.value = false;
+      await CausesRemoteRepository.unFollowCause(id);
     }else{
-      await CausesRemoteRepository.followCause(id);
       isCauseFollowed.value = true;
+      await CausesRemoteRepository.followCause(id);
     }
   }
+
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/screens/location_search/get_cities.dart';
 import 'package:flutter_app/screens/password/password_pin/reset_password_pin_controller.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';

@@ -1,10 +1,8 @@
-import 'dart:developer';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/about_visit.dart';
-import 'package:flutter_app/model/contributions_direct_upload.dart';
 import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
 import 'package:flutter_app/screens/about_visit/auto_complete_text_field.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/contribution_controller.dart';
@@ -130,17 +128,6 @@ class AboutVisit extends StatelessWidget {
                     SizedBox(height: getHeight() * 0.07),
                     Button(
                         onPress: () async {
-                          Map<String, dynamic> _uploadDirectContributionsQuery = {
-                            Strings.fileName: _xFile.name,
-                            Strings.contentType: 'image/${_xFile.name.split('.')[1]}',
-                            Strings.byteSize: 1234,
-                            Strings.checksum: 1234,
-                          };
-
-                          Map<String, dynamic> _createContributionsQuery = {
-
-                          };
-
                           final res = await _contributionController.uploadAndCreateContributions(
                            {
                             Strings.fileName: _xFile.name,

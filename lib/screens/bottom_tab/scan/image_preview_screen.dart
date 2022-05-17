@@ -1,10 +1,8 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/screens/bottom_tab/scan/contribution_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:get/get.dart';
 import '../../../constants/assets.dart';
@@ -27,7 +25,6 @@ class ImagePreviewScreen extends StatefulWidget {
 }
 
 class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
-  final ContributionController _contributionController = Get.put(ContributionController());
 
   @override
   Widget build(BuildContext context) {

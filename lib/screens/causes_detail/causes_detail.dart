@@ -569,5 +569,5 @@ class _CausesDetailState extends State<CausesDetail>
     _causesDetailController.getCauseStats(_id);
     _causesDetailController.getCauseBottomDetails(_id, 21);
     _causesDetailController.getCauseFeatured(_id);
-  }
+}
 }

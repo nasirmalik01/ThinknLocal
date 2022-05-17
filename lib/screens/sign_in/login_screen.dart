@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/network/remote_services.dart';
 import 'package:flutter_app/screens/sign_in/login_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
-import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';
 import '../../constants/assets.dart';

@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, non_constant_identifier_names
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_app/common/registration_exceptions.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/network/network_exception.dart';
 import 'package:flutter_app/network/secure_http_client.dart';
-import 'package:get/get.dart';
 
 class RemoteServices  {
   static String error = '';
@@ -54,14 +52,9 @@ class RemoteServices  {
   Future<dynamic> patchRequest(String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      print(map['email']);
-      print(map['password']);
-      print(map['reset_token']);
       dynamic _result = await MySecureHttpClient.getClient().patch(endPoint, data: map);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
         resJson = json.decode(_result.toString());
-        print('patch req function success');
-        print(_result.statusCode);
         return resJson;
       }
     } catch (e) {

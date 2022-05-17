@@ -17,6 +17,7 @@ class Causes {
   int? daysTillStart;
   String? end;
   int? daysRemaining;
+  bool? isFavorite;
 
   Causes(
       {
@@ -34,7 +35,9 @@ class Causes {
         start,
         daysTillStart,
         end,
-        daysRemaining});
+        daysRemaining,
+        isFavorite = false
+      });
 
   Causes.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -56,6 +59,7 @@ class Causes {
     daysTillStart = json['days_till_start'];
     end = json['end'];
     daysRemaining = json['days_remaining'];
+    isFavorite = false;
   }
 
   Map<String, dynamic> toJson() {

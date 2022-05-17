@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_funds_container.dart';
@@ -29,6 +32,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    log('TOKEN: ${MyHive.getToken()}');
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,15 +45,14 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
             : ListView.builder(
             controller: _tabViewsController,
             scrollDirection: Axis.horizontal,
-            itemCount:  6,
+            itemCount:  _causesController.topCausesContainersList!.isEmpty ? 0 : 6,
             itemBuilder: (context, index){
               return index == 5 ? GestureDetector(
                 onTap: (){
                   Get.to(DetailScreen(title: Strings.allCauses, detailList: _causesController.topCausesContainersList as dynamic));
                 },
                 child: CommonWidgets.seeAllButton(40)
-              )
-                : CausesFundContainer(
+              ) : CausesFundContainer(
                 name: _causesController.topCausesContainersList![index].name!,
                 fullBoxImage: _causesController.topCausesContainersList![index].image ?? Strings.dummyBgImage,
                 logoImage: _causesController.topCausesContainersList![index].organization!.logo ?? Strings.dummyLogo,

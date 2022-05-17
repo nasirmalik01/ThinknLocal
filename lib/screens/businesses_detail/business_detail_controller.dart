@@ -3,8 +3,10 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/business_detail.dart';
 import 'package:flutter_app/model/business_stats.dart';
 import 'package:flutter_app/model/causes.dart';
+import 'package:flutter_app/model/follows.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
+import 'package:flutter_app/network/remote_repositories/follows_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +15,8 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
   late BusinessStats? businessStats;
   List<Causes>? recentlyFundedBusinessCausesList = [];
   List<Causes>? pastFundedBusinessCausesList = [];
+  List<bool> isCauseFollowed = [];
+  Follows? follows;
   RxBool isLoading = false.obs;
   RxBool isStatsLoading = false.obs;
   RxBool isBusinessFollowed = false.obs;
@@ -54,11 +58,11 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
 
   followBusiness(int id) async {
     if(isBusinessFollowed.value) {
-      await BusinessRemoteRepository.unFollowBusiness(id);
       isBusinessFollowed.value = false;
+      await BusinessRemoteRepository.unFollowBusiness(id);
     }else{
-      await BusinessRemoteRepository.followBusiness(id);
       isBusinessFollowed.value = true;
+      await BusinessRemoteRepository.followBusiness(id);
     }
   }
 
@@ -68,6 +72,18 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
       Strings.businessId: id,
       Strings.recent: true,
     }));
+    List<int> followCauseIds = [];
+    follows = await FollowsRemoteRepository.fetchFollows();
+    for(var cause in follows!.causes!){
+      followCauseIds.add(cause);
+    }
+    for(var _recentlyFundedBusiness in recentlyFundedBusinessCausesList!){
+      for(int i=0; i<followCauseIds.length; i++){
+        if(_recentlyFundedBusiness.id.toString().contains(followCauseIds[i].toString())){
+          _recentlyFundedBusiness.isFavorite = true;
+        }
+      }
+    }
     isRecentlyFundedBusinessCauses.value = false;
   }
 
@@ -78,6 +94,23 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
       Strings.past: true,
     }));
     isPastFundedBusinessCauses.value = false;
+  }
+
+  getFollowBusiness({required int id}) async {
+    follows = await FollowsRemoteRepository.fetchFollows();
+    for(var business in follows!.businesses!){
+      if(business.toString().contains(id.toString())){
+        isBusinessFollowed.value = true;
+     }
+  }
+}
+
+  followCauses(int id, bool isFollowed) async {
+    if(isFollowed) {
+      await CausesRemoteRepository.unFollowCause(id);
+    }else{
+      await CausesRemoteRepository.followCause(id);
+    }
   }
 
 }
