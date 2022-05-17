@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:camera/camera.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
@@ -26,7 +29,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
   PersistentTabController? _controller;
 
 
-  @override
+    @override
   void initState() {
     super.initState();
     _controller = PersistentTabController(initialIndex: widget.pageIndex);

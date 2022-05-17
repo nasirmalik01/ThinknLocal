@@ -122,6 +122,9 @@ class Strings {
   static const String uploadId = 'upload_id';
   static const String rating = 'rating';
   static const String firstPurchase = 'first_purchase';
+  static const String thinkLocal = 'ThinkLocal';
+  static const String dynamicLinkInitialUrl = 'https://thinknlocal.page.link';
+  static const String dynamicLinkImageUrl = 'https://www.thinknlocal.com/assets/welcome/logo-dark-07b7bfc0671b940febf94d1af4f88fb133e8cd1e.png';
 
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";

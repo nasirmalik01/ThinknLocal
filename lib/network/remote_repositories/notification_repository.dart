@@ -1,10 +1,11 @@
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/model/contributions.dart';
 import 'package:flutter_app/model/contributions_direct_upload.dart';
+import 'package:flutter_app/model/notification.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get_it/get_it.dart';
 
-class ContributionRepository{
+class NotificationRepository{
   static Future<List<Contributions>?> fetchContributions(Map<String, dynamic> query) async {
     List<Contributions> contributionsList = [];
     final response = await GetIt.I<RemoteServices>().getRequest(ApiEndPoints.contributions, query);
@@ -37,5 +38,20 @@ class ContributionRepository{
     }
 
     return response;
+  }
+
+  static Future<List<Notification>?>  getNotifications(Map<String, dynamic> query) async {
+    final response = await GetIt.I<RemoteServices>().getRequest(ApiEndPoints.notifications, query);
+    List<Notification> _notificationList = [];
+
+    if (response == null) {
+      return null;
+    }
+
+    final List<dynamic> _notificationsDecodeList = response.map((item) => Notification.fromJson(item)).toList();
+    for(var notification in _notificationsDecodeList){
+      _notificationList.add(notification);
+    }
+    return _notificationList;
   }
 }

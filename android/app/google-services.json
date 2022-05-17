@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "59271748190",
+    "project_id": "thinknlocal-6f37e",
+    "storage_bucket": "thinknlocal-6f37e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59271748190:android:6cf6bd78610f194ea672cf",
+        "android_client_info": {
+          "package_name": "com.thinknlocal.Thinknlocal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59271748190-6s6lbi32l7s64d61b5sb2unneuikq12f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thinknlocal.Thinknlocal",
+            "certificate_hash": "fff9fb4b332ee9f4aec809d837cb3e995dff7d25"
+          }
+        },
+        {
+          "client_id": "59271748190-ikc9rt6e2kke1mkdqjkmss8va8l53ubn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlXyvLphu8tJ3dkeT_dBFa0xrxx-XEZGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59271748190-ikc9rt6e2kke1mkdqjkmss8va8l53ubn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

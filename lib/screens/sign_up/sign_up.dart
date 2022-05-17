@@ -20,10 +20,7 @@ class SignUpScreen extends StatelessWidget {
   final TextEditingController? zipCodeController = TextEditingController();
   final TextEditingController? groupCodeController = TextEditingController();
   final SignUpController _signUpController = Get.put(SignUpController());
-
   SignUpScreen({Key? key}) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context) {

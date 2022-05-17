@@ -11,15 +11,17 @@ class NotificationCard extends StatelessWidget {
   final String? date;
   final Function? onPressNotification;
   final bool isSentReceipts;
+  final bool isNetworkImage;
 
 
   const NotificationCard(
       {Key? key, this.image,
-      this.text,
-      this.subText,
-      this.date,
-      this.onPressNotification,
-      this.isSentReceipts = false
+        this.text,
+        this.subText,
+        this.date,
+        this.onPressNotification,
+        this.isSentReceipts = false,
+        this.isNetworkImage = true,
       }) : super(key: key);
 
   @override
@@ -37,12 +39,15 @@ class NotificationCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: sizes.width * 0.16,
-                  height: sizes.width * 0.16,
-                  child: Image(
-                    image: AssetImage(image!),
-                    fit: BoxFit.fill,
-                  ),
+                    width: sizes.width * 0.16,
+                    height: sizes.width * 0.16,
+                    child: isNetworkImage ? Image(
+                      image: NetworkImage(image!),
+                      fit: BoxFit.fill,
+                    ) : Image(
+                      image: AssetImage(image!),
+                      fit: BoxFit.fill,
+                    )
                 ),
                 SizedBox(width: sizes.width * 0.03),
                 SizedBox(
@@ -54,7 +59,9 @@ class NotificationCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextView.titleWithDecoration(text, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                          Expanded(
+                              flex: 9,
+                              child: TextView.titleWithDecoration(text, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1)),
                           TextView.headerWithBlurRadius(date, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 1),
                         ],
                       ),

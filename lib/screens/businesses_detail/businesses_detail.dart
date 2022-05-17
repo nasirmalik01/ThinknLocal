@@ -76,7 +76,10 @@ class BusinessesDetailScreen extends StatelessWidget {
                       },
                       onPressFavoriteIcon: () {
                         _businessDetailController.followBusiness(_id);
-                      }
+                      },
+                      onShareClick: (){
+                        buildDynamicLinks(Strings.businesses, _id.toString());
+                      },
                   ),
                 ),
                 SizedBox(height: sizes.height * 0.01),

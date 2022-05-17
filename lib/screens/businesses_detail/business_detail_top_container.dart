@@ -20,6 +20,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
   final bool isFavorite;
   final Function onPressBackArrow;
   final Function onPressFavoriteIcon;
+  final Function()? onShareClick;
 
 
   const BusinessDetailTopContainer(
@@ -36,7 +37,9 @@ class BusinessDetailTopContainer extends StatelessWidget {
       required this.completePercentage,
       required this.isFavorite,
       required this.onPressBackArrow,
-      required this.onPressFavoriteIcon}) : super(key: key);
+      required this.onPressFavoriteIcon,
+      required this.onShareClick
+      }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +84,13 @@ class BusinessDetailTopContainer extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(
-                            Icons.save_alt,
-                            color: AppColors.pureWhiteColor,
-                            size: getHeight() * 0.03,
+                          GestureDetector(
+                            onTap: onShareClick,
+                            child: Icon(
+                              Icons.save_alt,
+                              color: AppColors.pureWhiteColor,
+                              size: getHeight() * 0.03,
+                            ),
                           ),
                           SizedBox(width: sizes.width * 0.03),
                           GestureDetector(

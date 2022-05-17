@@ -112,5 +112,4 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
       await CausesRemoteRepository.followCause(id);
     }
   }
-
 }

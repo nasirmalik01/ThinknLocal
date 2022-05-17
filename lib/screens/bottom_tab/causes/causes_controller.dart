@@ -1,3 +1,8 @@
+import 'dart:developer';
+
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/local/user_location.dart';
@@ -26,6 +31,7 @@ class CausesController extends GetxController{
   @override
   void onInit() {
     getLocationAddress();
+    initDynamicLinks();
     getCauses(Strings.featured);
     getUpComingCauses(Strings.featured);
     getRecentlyStartedCauses(Strings.featured);
@@ -76,7 +82,6 @@ class CausesController extends GetxController{
     isTopCausesContainersList.value = true;
     topCausesContainersList =  await (CausesRemoteRepository.fetchCauses({
       selectedTab : true,
-      Strings.active: true
     },));
     if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
       isError.value = true;
@@ -93,7 +98,7 @@ class CausesController extends GetxController{
     isUpcomingCausesLoading.value = true;
     upcomingCauses =  await (CausesRemoteRepository.fetchCauses({
       selectedTab : true,
-      Strings.upcoming: '',
+      Strings.upcoming: true,
     }));
     isUpcomingCausesLoading.value = false;
   }
@@ -119,4 +124,28 @@ class CausesController extends GetxController{
     return completeAddress;
   }
 
+  void initDynamicLinks() async {
+    FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
+      final Uri? deeplink = dynamicLinkData.link;
+
+      if (deeplink != null) {
+        handleDynamicLink(deeplink);
+      }
+    }).onError((error) {});
+    final pendingDynamicLink = await FirebaseDynamicLinks.instance.getInitialLink();
+    if(pendingDynamicLink != null) {
+      handleDynamicLink(pendingDynamicLink.link);
+    }
+  }
+
+  void handleDynamicLink(Uri url) {
+    List<String> _splitDynamicLink = [];
+    _splitDynamicLink.addAll(url.path.split('/'));
+    String _category = _splitDynamicLink[1];
+    if(_category == Strings.causes){
+      Get.toNamed(Routes.causesDetailScreen, arguments: int.parse(_splitDynamicLink[2]));
+    }else{
+      Get.toNamed(Routes.businessDetailScreen, arguments: int.parse(_splitDynamicLink[2]));
+    }
+  }
 }

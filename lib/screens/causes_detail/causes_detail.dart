@@ -1,3 +1,4 @@
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 import '/common/methods.dart';
 import '/constants/assets.dart';
@@ -20,6 +22,7 @@ import '/constants/colors.dart';
 import '/res/res.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '/widgets/common_widgets.dart';
+
 
 class CausesDetail extends StatefulWidget {
   const CausesDetail({Key? key}) : super(key: key);
@@ -90,7 +93,11 @@ class _CausesDetailState extends State<CausesDetail>
                               },
                               onPressFavoriteIcon: () {
                                 _causesDetailController.followCauses(_id);
-                              }),
+                              },
+                              onShareClick: (){
+                                buildDynamicLinks(Strings.causes, _id.toString());
+                              },
+                          ),
                         ),
                         SizedBox(height: sizes.height * 0.04),
                         Container(
@@ -569,5 +576,6 @@ class _CausesDetailState extends State<CausesDetail>
     _causesDetailController.getCauseStats(_id);
     _causesDetailController.getCauseBottomDetails(_id, 21);
     _causesDetailController.getCauseFeatured(_id);
+    _causesDetailController.getFollowCause(_id);
 }
 }

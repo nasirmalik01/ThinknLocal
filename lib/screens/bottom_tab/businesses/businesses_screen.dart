@@ -39,7 +39,7 @@ class BusinessesScreen extends StatelessWidget {
           _businessesController.isError.value
           ? NetworkErrorException(exceptionMessage: _businessesController.errorMessage.value, onPress: (){
             _businessesController.isError.value = false;
-            _businessesController.getBusinesses();
+            _businessesController.getBusinesses(Strings.featured);
           })
           : Container(
           height: sizes.height,

@@ -1,6 +1,6 @@
 
 import 'package:flutter_app/model/contributions_direct_upload.dart';
-import 'package:flutter_app/network/remote_repositories/contributions_repository.dart';
+import 'package:flutter_app/network/remote_repositories/notification_repository.dart';
 import 'package:get/get.dart';
 
 class ContributionController extends GetxController{
@@ -15,7 +15,7 @@ class ContributionController extends GetxController{
   Future<UploadDirectContributions?> uploadAndCreateContributions(Map<String, dynamic> uploadContributionsQuery) async {
     try {
         isUploading.value = true;
-        uploadDirectContribution = await ContributionRepository.uploadContributions(uploadContributionsQuery, uploadFile: (sent, total){
+        uploadDirectContribution = await NotificationRepository.uploadContributions(uploadContributionsQuery, uploadFile: (sent, total){
           progress.value = (sent / total);
         });
         return uploadDirectContribution;
@@ -28,7 +28,7 @@ class ContributionController extends GetxController{
 
   createContribution(Map<String, dynamic> createContributionQuery) async {
     try {
-      await ContributionRepository.createContribution(createContributionQuery);
+      await NotificationRepository.createContribution(createContributionQuery);
       isUploading.value = false;
       isUploadSuccess.value = true;
     }catch(e){

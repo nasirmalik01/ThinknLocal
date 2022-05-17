@@ -8,6 +8,7 @@ class Contributions {
   int? rating;
   double? receiptAmount;
   String? receiptDate;
+  String? receiptUrl;
   Business? business;
   Business? cause;
 
@@ -19,6 +20,7 @@ class Contributions {
         this.rating,
         this.receiptAmount,
         this.receiptDate,
+        this.receiptUrl,
         this.business,
         this.cause});
 
@@ -30,6 +32,7 @@ class Contributions {
     rating = json['rating'];
     receiptAmount = json['receipt_amount'];
     receiptDate = json['receipt_date'];
+    receiptUrl = json['receipt_url'];
     business = json['business'] != null
         ? Business.fromJson(json['business'])
         : null;
@@ -45,6 +48,7 @@ class Contributions {
     data['rating'] = rating;
     data['receipt_amount'] = receiptAmount;
     data['receipt_date'] = receiptDate;
+    data['receipt_url'] = receiptUrl;
     if (business != null) {
       data['business'] = business!.toJson();
     }

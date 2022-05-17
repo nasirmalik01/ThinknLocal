@@ -1,3 +1,4 @@
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/strings.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:share_plus/share_plus.dart';
 
 dependencyInjectionSetUp() async {
   /// To register a singleton class
@@ -65,4 +67,30 @@ locationParams(Map<String, dynamic> query){
   var location = MyHive.getLocation();
   query[Strings.latitude] = location.latitude;
   query[Strings.longitude] = location.longitude;
+}
+
+buildDynamicLinks(String category, String id) async {
+  String url = Strings.dynamicLinkInitialUrl;
+  final DynamicLinkParameters parameters = DynamicLinkParameters(
+    uriPrefix: url,
+    link: Uri.parse('$url/$category/$id'),
+    androidParameters: const AndroidParameters(
+      packageName: 'com.thinknlocal.Thinknlocal',
+      minimumVersion: 0,
+    ),
+    iosParameters: const IOSParameters(
+      bundleId: "Bundle-ID",
+      minimumVersion: '0',
+    ),
+    socialMetaTagParameters: SocialMetaTagParameters(
+        description: '',
+        imageUrl:
+        Uri.parse(Strings.dynamicLinkImageUrl),
+        title: Strings.thinkLocal
+    ),
+  );
+  final dynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
+  String? desc = dynamicLink.shortUrl.toString();
+
+  await Share.share(desc, subject: Strings.thinkLocal);
 }

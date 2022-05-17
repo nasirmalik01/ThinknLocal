@@ -18,6 +18,7 @@ class CausesDetailTopImageContainer extends StatelessWidget {
   final bool isFavorite;
   final Function onPressBackArrow;
   final Function onPressFavoriteIcon;
+  final Function() onShareClick;
 
 
   const CausesDetailTopImageContainer(
@@ -31,7 +32,9 @@ class CausesDetailTopImageContainer extends StatelessWidget {
       required this.completePercentage,
       required this.isFavorite,
       required this.onPressBackArrow,
-      required this.onPressFavoriteIcon}) : super(key: key);
+      required this.onPressFavoriteIcon,
+      required this.onShareClick
+      }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,10 +80,13 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(
-                            Icons.ios_share,
-                            color: AppColors.pureWhiteColor,
-                            size: getHeight() * 0.03,
+                          GestureDetector(
+                            onTap: onShareClick,
+                            child: Icon(
+                              Icons.ios_share,
+                              color: AppColors.pureWhiteColor,
+                              size: getHeight() * 0.03,
+                            ),
                           ),
                           SizedBox(width: sizes.width * 0.03),
                           Padding(

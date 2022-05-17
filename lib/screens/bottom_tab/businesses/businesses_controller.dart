@@ -20,9 +20,9 @@ class BusinessesController extends GetxController{
 
   @override
   void onInit() {
-    getBusinesses();
-    getRecentlyAddedBusinesses();
-    getNearbyBusinesses();
+    getBusinesses(Strings.featured);
+    getRecentlyAddedBusinesses(Strings.featured);
+    getNearbyBusinesses(Strings.featured);
     super.onInit();
   }
 
@@ -31,6 +31,9 @@ class BusinessesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = false;
     isPast.value = false;
+    getBusinesses(Strings.featured);
+    getRecentlyAddedBusinesses(Strings.featured);
+    getNearbyBusinesses(Strings.featured);
   }
 
   setTrendingTab(){
@@ -38,6 +41,9 @@ class BusinessesController extends GetxController{
     isTrending.value = true;
     isFavorites.value = false;
     isPast.value = false;
+    getBusinesses(Strings.trending);
+    getRecentlyAddedBusinesses(Strings.trending);
+    getNearbyBusinesses(Strings.trending);
   }
 
   setFavoritesTab(){
@@ -45,18 +51,26 @@ class BusinessesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = true;
     isPast.value = false;
+    getBusinesses(Strings.favorites);
+    getRecentlyAddedBusinesses(Strings.favorites);
+    getNearbyBusinesses(Strings.favorites);
   }
 
   setPostTab(){
     isFeatured.value = false;
     isTrending.value = false;
     isFavorites.value = false;
+    getBusinesses(Strings.past);
+    getRecentlyAddedBusinesses(Strings.past);
+    getNearbyBusinesses(Strings.past);
     isPast.value = true;
   }
 
-  getBusinesses() async {
+  getBusinesses(String selectedTab) async {
     isBusinessLoading.value = true;
-    businessList =  await (BusinessRemoteRepository.fetchBusinesses({}));
+    businessList =  await (BusinessRemoteRepository.fetchBusinesses({
+      selectedTab: true
+    }));
     if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
       isError.value = true;
       isBusinessLoading.value = false;
@@ -68,15 +82,19 @@ class BusinessesController extends GetxController{
     isBusinessLoading.value = false;
   }
 
-  getRecentlyAddedBusinesses() async {
+  getRecentlyAddedBusinesses(String selectedTab) async {
     isRecentlyAddedBusinessLoading.value = true;
-    recentlyAddedBusinessList =  await (BusinessRemoteRepository.fetchBusinesses({}));
+    recentlyAddedBusinessList =  await (BusinessRemoteRepository.fetchBusinesses({
+      selectedTab: true,
+      Strings.recent: true
+    }));
     isRecentlyAddedBusinessLoading.value = false;
   }
 
-  getNearbyBusinesses() async {
+  getNearbyBusinesses(String selectedTab) async {
     isNearByBusinessLoading.value = true;
     nearbyBusinessList =  await (BusinessRemoteRepository.fetchBusinesses({
+      selectedTab: true,
       Strings.nearby : true
     }));
     isNearByBusinessLoading.value = false;

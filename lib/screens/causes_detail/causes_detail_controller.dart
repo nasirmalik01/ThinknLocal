@@ -5,6 +5,7 @@ import 'package:flutter_app/model/causes_stats.dart';
 import 'package:flutter_app/model/follows.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
+import 'package:flutter_app/network/remote_repositories/follows_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
@@ -99,6 +100,15 @@ class CausesDetailController extends GetxController {
     }else{
       isCauseFollowed.value = true;
       await CausesRemoteRepository.followCause(id);
+    }
+  }
+
+  getFollowCause(int id) async {
+    follows = await FollowsRemoteRepository.fetchFollows();
+    for(var cause in follows!.causes!){
+      if(cause.toString().contains(id.toString())){
+        isCauseFollowed.value = true;
+      }
     }
   }
 

@@ -84,7 +84,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
           child: ListView.builder(
             controller: _recentlyStartedController,
             scrollDirection: Axis.horizontal,
-            itemCount: 6,
+            itemCount: _causesController.recentlyStartedCauses!.isEmpty ? 0 : 6,
             itemBuilder: (context, index){
               return index == 5
                 ? GestureDetector(
@@ -123,7 +123,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: const ScrollPhysics(),
-                itemCount: 3,
+                itemCount: _causesController.upcomingCauses!.isEmpty ? 0 : 3,
                 itemBuilder: (context, index){
                   return UpcomingCauses(
                       image:  _causesController.upcomingCauses![index].image ?? Strings.dummyBgImage,
