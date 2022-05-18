@@ -75,7 +75,7 @@ class _CausesDetailState extends State<CausesDetail>
                               _causesDetailController.causeDetail!.image,
                               logoImage: _causesDetailController
                                   .causeDetail!.organization?.logo,
-                              completePercentage: 0.7,
+                              completePercentage: _causesDetailController.causeDetail!.percentage!,
                               collectedAmount: _causesDetailController
                                   .causeDetail!.raised
                                   .toString(),
@@ -253,11 +253,8 @@ class _CausesDetailState extends State<CausesDetail>
                                                         .isFoodAndDrink.value,
                                                     isDetail: true,
                                                     onTap: () {
-                                                      _causesDetailController
-                                                          .getCauseBottomDetails(
-                                                          _id, 21);
-                                                      _causesDetailController
-                                                          .setFoodAndDrinkTab();
+                                                      _causesDetailController.getCauseBottomDetails(_id, 21);
+                                                      _causesDetailController.setFoodAndDrinkTab();
                                                     }),
                                                 customTabBar(
                                                     title: Strings.toDoThings,

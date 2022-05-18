@@ -56,7 +56,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 name: _causesController.topCausesContainersList![index].name!,
                 fullBoxImage: _causesController.topCausesContainersList![index].image ?? Strings.dummyBgImage,
                 logoImage: _causesController.topCausesContainersList![index].organization!.logo ?? Strings.dummyLogo,
-                completePercentage:   0.7,
+                completePercentage: _causesController.topCausesContainersList![index].percentage!,
                 collectedAmount: _causesController.topCausesContainersList![index].raised.toString(),
                 totalAmount: _causesController.topCausesContainersList![index].goal.toString(),
                 endDate: _causesController.topCausesContainersList![index].end.toString(),

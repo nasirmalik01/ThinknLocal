@@ -17,6 +17,7 @@ class CauseDetail {
   int? daysTillStart;
   String? end;
   int? daysRemaining;
+  double? percentage;
 
   CauseDetail(
       {this.id,
@@ -33,7 +34,9 @@ class CauseDetail {
       this.start,
       this.daysTillStart,
       this.end,
-      this.daysRemaining});
+      this.daysRemaining,
+      this.percentage
+      });
 
   CauseDetail.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -48,6 +51,7 @@ class CauseDetail {
     image = json['image'];
     goal = json['goal'];
     raised = json['raised'];
+    percentage = (raised!/goal!) > 1 ? 1 : raised!/goal!;
     remaining = json['remaining'];
     goalProbability = json['goal_probability'];
     contributors = json['contributors'];

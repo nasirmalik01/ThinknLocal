@@ -18,6 +18,7 @@ class Causes {
   String? end;
   int? daysRemaining;
   bool? isFavorite;
+  double? percentage;
 
   Causes(
       {
@@ -36,7 +37,8 @@ class Causes {
         daysTillStart,
         end,
         daysRemaining,
-        isFavorite = false
+        isFavorite = false,
+        percentage
       });
 
   Causes.fromJson(Map<String, dynamic> json) {
@@ -52,6 +54,7 @@ class Causes {
     image = json['image'];
     goal = json['goal'];
     raised = json['raised'];
+    percentage = (raised!/goal!) > 1 ? 1 : raised!/goal!;
     remaining = json['remaining'];
     goalProbability = json['goal_probability'];
     contributors = json['contributors'];

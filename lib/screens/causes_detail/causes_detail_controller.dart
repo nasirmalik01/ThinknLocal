@@ -74,6 +74,7 @@ class CausesDetailController extends GetxController {
     isFeaturedLoading.value = true;
     causeFeaturedList = (await BusinessRemoteRepository.fetchBusinesses({
       Strings.causeId: id,
+      Strings.featured: true
     }));
     isFeaturedLoading.value = false;
   }
@@ -81,7 +82,7 @@ class CausesDetailController extends GetxController {
   getCauseBottomDetails(int id, int parentId) async {
     isCauseBottomLoading.value = true;
     causeBottomDetails = await (BusinessRemoteRepository.fetchBusinesses({
-      Strings.cause: id,
+      Strings.causeId: id,
       Strings.parentCategoryId: parentId,
     }));
     isCauseBottomLoading.value = false;

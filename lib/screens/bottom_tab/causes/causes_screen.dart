@@ -107,7 +107,6 @@ class CausesScreen extends StatelessWidget{
                 const CausesCategoryScreen(),
               ],
             ),
-
           ],
         ),
       ),),

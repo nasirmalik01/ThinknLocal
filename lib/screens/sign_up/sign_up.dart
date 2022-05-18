@@ -100,7 +100,7 @@ class SignUpScreen extends StatelessWidget {
                   SizedBox(height: getHeight() * 0.06),
                   Button(onPress: () {
 
-                    if(firstNameController!.text.trim().isEmpty || lastNameController!.text.trim().isEmpty || emailController!.text.trim().isEmpty || passwordController!.text.trim().isEmpty || confirmPasswordController!.text.trim().isEmpty || zipCodeController!.text.trim().isEmpty || groupCodeController!.text.trim().isEmpty){
+                    if(firstNameController!.text.trim().isEmpty || lastNameController!.text.trim().isEmpty || emailController!.text.trim().isEmpty || passwordController!.text.trim().isEmpty || confirmPasswordController!.text.trim().isEmpty || zipCodeController!.text.trim().isEmpty){
                        return showSnackBar(subTitle: 'Please fill all the required fields');
                     }
 

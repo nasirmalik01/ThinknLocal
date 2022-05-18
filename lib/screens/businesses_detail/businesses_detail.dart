@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/businesses_detail/business_detail_controller.dart';
@@ -176,7 +177,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                         totalAmount: _businessDetailController.recentlyFundedBusinessCausesList![index].goal.toString(),
                                         colors: const [Colors.transparent, AppColors.greenColor,],
                                         index: index,
-                                        onPressFullContainer: (){
+                                        onPressFullContainer: (){},
+                                        onFavPress: (){
                                           bool _isFavorite = _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite!;
                                           int _causeId = _businessDetailController.recentlyFundedBusinessCausesList![index].id!;
                                           _businessDetailController.followCauses(_causeId, _isFavorite);

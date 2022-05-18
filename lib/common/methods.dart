@@ -60,7 +60,11 @@ convertDateToString({required String dateTime}){
   var parsedDate = DateTime.parse(dateTime);
   DateFormat _dateTime = DateFormat.MMMEd();
   String formattedDate = _dateTime.format(parsedDate);
-  return formattedDate.split(',')[1];
+  String splitDate = formattedDate.split(',')[1];
+  List<String> splitDateList = splitDate.split(' ');
+  String month = splitDateList[1];
+  int day = int.parse(splitDateList[2])-1;
+  return '$month ${day.toString()}';
 }
 
 locationParams(Map<String, dynamic> query){

@@ -1,7 +1,10 @@
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/local/my_hive.dart';
+import 'package:flutter_app/local/user_location.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 
 class BusinessesController extends GetxController{
@@ -14,12 +17,14 @@ class BusinessesController extends GetxController{
   RxBool isNearByBusinessLoading = false.obs;
   List<Businesses>? businessList = [];
   List<Businesses>? recentlyAddedBusinessList = [];
+  RxString locationAddress = Strings.noLocation.obs;
   List<Businesses>? nearbyBusinessList = [];
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
 
   @override
   void onInit() {
+    getLocationAddress();
     getBusinesses(Strings.featured);
     getRecentlyAddedBusinesses(Strings.featured);
     getNearbyBusinesses(Strings.featured);
@@ -98,5 +103,18 @@ class BusinessesController extends GetxController{
       Strings.nearby : true
     }));
     isNearByBusinessLoading.value = false;
+  }
+
+
+  getLocationAddress() async {
+    if (MyHive.getLocation() != null) {
+      locationAddress.value = await findAddress(MyHive.getLocation());
+    }
+  }
+
+  Future<String> findAddress(UserLocation type) async {
+    var placeMarkers = await placemarkFromCoordinates(type.latitude, type.longitude);
+    var completeAddress = '${placeMarkers.first.street},${placeMarkers.first.locality},${placeMarkers.first.country}';
+    return completeAddress;
   }
 }
