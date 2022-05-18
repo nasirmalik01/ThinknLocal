@@ -29,60 +29,57 @@ class BusinessNearBy extends StatelessWidget {
     bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
     return Column(
       children: [
-        GestureDetector(
-          onTap: ()=> onViewCourse.call(),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: getHeight()*0.075,
-                width: getHeight()*0.075,
-                decoration: BoxDecoration(
-                  //color: AppColors.lightGrey,
-                    image: DecorationImage(
-                        image: isImageUrl ? NetworkImage(image!): AssetImage(image!) as ImageProvider,
-                        fit: BoxFit.fill),
-                    borderRadius: BorderRadius.circular(getHeight() * 0.01)
-                ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: getHeight()*0.075,
+              width: getHeight()*0.075,
+              decoration: BoxDecoration(
+                //color: AppColors.lightGrey,
+                  image: DecorationImage(
+                      image: isImageUrl ? NetworkImage(image!): AssetImage(image!) as ImageProvider,
+                      fit: BoxFit.fill),
+                  borderRadius: BorderRadius.circular(getHeight() * 0.01)
               ),
-              Container(
-                padding: EdgeInsets.only(left: getWidth()*0.02),
-                width: getWidth()*0.68,
-                // color: AppColors.redDarkColor,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: isBusinessCategory ? sizes.fontSize16 : sizes.fontSize15),
-                    SizedBox(height: getHeight() * 0.004),
-                    TextView.subHeader(
-                        streetAddress?? "",
-                        color: AppColors.lightBlack,
-                        lines: 1,
-                        fontFamily: Assets.poppinsRegular,
-                        textDecoration: TextDecoration.underline,
-                        fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
-                    ),
-                    TextView.subHeader(
-                        address?? "",
-                        color: AppColors.lightBlack,
-                        lines: 1,
-                        fontFamily: Assets.poppinsRegular,
-                        textDecoration: TextDecoration.underline,
-                        fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
-                    ),
-                    SizedBox(height: getHeight() * 0.01),
-                    TextView.subHeader(
-                      phoneNumber ?? "",
-                      color: AppColors.grayColor,
+            ),
+            Container(
+              padding: EdgeInsets.only(left: getWidth()*0.02),
+              width: getWidth()*0.68,
+              // color: AppColors.redDarkColor,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: isBusinessCategory ? sizes.fontSize16 : sizes.fontSize15),
+                  SizedBox(height: getHeight() * 0.004),
+                  TextView.subHeader(
+                      streetAddress?? "",
+                      color: AppColors.lightBlack,
                       lines: 1,
                       fontFamily: Assets.poppinsRegular,
-                        fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+                      textDecoration: TextDecoration.underline,
+                      fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
+                  ),
+                  TextView.subHeader(
+                      address?? "",
+                      color: AppColors.lightBlack,
+                      lines: 1,
+                      fontFamily: Assets.poppinsRegular,
+                      textDecoration: TextDecoration.underline,
+                      fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
+                  ),
+                  SizedBox(height: getHeight() * 0.01),
+                  TextView.subHeader(
+                    phoneNumber ?? "",
+                    color: AppColors.grayColor,
+                    lines: 1,
+                    fontFamily: Assets.poppinsRegular,
+                      fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ],
     );

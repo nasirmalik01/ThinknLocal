@@ -122,7 +122,11 @@ class Strings {
   static const String uploadId = 'upload_id';
   static const String rating = 'rating';
   static const String firstPurchase = 'first_purchase';
-  static const String thinkLocal = 'ThinkLocal';
+  static const String thinkLocal = 'ThinknLocal';
+  static const String notificationId = 'high_importance_channel';
+  static const String notificationTitle = 'High Importance Notifications';
+  static const String notificationDesc = 'This channel is used for important notifications';
+  static const String mipmapIcLauncher = '@mipmap/ic_launcher';
   static const String dynamicLinkInitialUrl = 'https://thinknlocal.page.link';
   static const String dynamicLinkImageUrl = 'https://www.thinknlocal.com/assets/welcome/logo-dark-07b7bfc0671b940febf94d1af4f88fb133e8cd1e.png';
 

@@ -1,14 +1,16 @@
-import 'dart:developer';
-
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/local/user_location.dart';
+import 'package:flutter_app/main.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 
@@ -35,6 +37,7 @@ class CausesController extends GetxController{
     getCauses(Strings.featured);
     getUpComingCauses(Strings.featured);
     getRecentlyStartedCauses(Strings.featured);
+    PushNotificationConfig.handleForeGroundPushNotifications();
     super.onInit();
   }
 

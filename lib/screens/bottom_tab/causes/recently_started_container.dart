@@ -15,52 +15,49 @@ class RecentlyStartedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isImageUrl = Uri.tryParse(image!)?.hasAbsolutePath ?? false;
-    return GestureDetector(
-      onTap: ()=> onPressFullContainer.call(),
+    return Container(
+      width: getWidth() * 0.40,
+      margin: EdgeInsets.only(left: index == 0 ? getWidth()*0.06 : getWidth()*0.04),
+      decoration: BoxDecoration(
+          color: AppColors.lightGrey,
+          borderRadius: BorderRadius.circular(getHeight() * 0.015),
+          image: DecorationImage(
+              image: isImageUrl ? NetworkImage(image!): AssetImage(image!) as ImageProvider,
+              fit: BoxFit.cover)
+      ),
       child: Container(
-        width: getWidth() * 0.40,
-        margin: EdgeInsets.only(left: index == 0 ? getWidth()*0.06 : getWidth()*0.04),
         decoration: BoxDecoration(
-            color: AppColors.lightGrey,
-            borderRadius: BorderRadius.circular(getHeight() * 0.015),
-            image: DecorationImage(
-                image: isImageUrl ? NetworkImage(image!): AssetImage(image!) as ImageProvider,
-                fit: BoxFit.cover)
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.015)),
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: colors
-            ),
+          borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.015)),
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: colors
           ),
-          child: Padding(
-            padding: EdgeInsets.only(top: getHeight() * 0.08, left: getWidth() * 0.03, right: getWidth() * 0.02),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name??"",
-                  softWrap: true,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 3,
-                  style: TextStyle(
-                    height: getHeight() * 0.0015,
-                    fontSize: sizes.fontSize17,
-                    fontFamily: Assets.poppinsMedium,
-                    color: AppColors.pureWhiteColor,
-                    shadows: const [
-                      Shadow(
-                        blurRadius: 5,
-                        //offset: Offset(0.0, 1)
-                      ),
-                    ],
-                  ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(top: getHeight() * 0.08, left: getWidth() * 0.03, right: getWidth() * 0.02),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name??"",
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
+                style: TextStyle(
+                  height: getHeight() * 0.0015,
+                  fontSize: sizes.fontSize17,
+                  fontFamily: Assets.poppinsMedium,
+                  color: AppColors.pureWhiteColor,
+                  shadows: const [
+                    Shadow(
+                      blurRadius: 5,
+                      //offset: Offset(0.0, 1)
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

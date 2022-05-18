@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
@@ -39,16 +43,20 @@ class DetailScreen extends StatelessWidget {
                       physics: const ScrollPhysics(),
                       itemCount: detailList.length,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
-                          child: UpcomingCauses(
-                              image:  detailList[index].image ?? Strings.dummyBgImage,
-                              headerText: detailList[index].organization!.name,
-                              description:   detailList[index].name!,
-                              onViewCourse: (){
-                              },
-                              totalAmount:  detailList[index].raised.toString(),
-                              date: detailList[index].start.toString()
+                        return GestureDetector(
+                          onTap: (){
+                            Get.toNamed(Routes.causesDetailScreen, arguments: detailList[index].id);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
+                            child: UpcomingCauses(
+                                image:  detailList[index].image ?? Strings.dummyBgImage,
+                                headerText: detailList[index].organization!.name,
+                                description:   detailList[index].name!,
+                                onViewCourse: (){},
+                                totalAmount:  detailList[index].raised.toString(),
+                                date: detailList[index].start.toString()
+                            ),
                           ),
                         );
                       },

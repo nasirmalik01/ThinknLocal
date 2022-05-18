@@ -199,14 +199,18 @@ class BusinessesScreen extends StatelessWidget {
                               Get.to(BusinessesDetail(title: Strings.recentlyAddedBusiness, detailList: _businessesController.recentlyAddedBusinessList!,));
                             },
                             child: CommonWidgets.seeAllButton(30))
-                            : RecentlyAddedBusiness(
+                            : GestureDetector(
+                           onTap: (){
+                             Get.toNamed(Routes.businessDetailScreen, arguments: _businessesController.recentlyAddedBusinessList![index].id);
+                           },
+                           child: RecentlyAddedBusiness(
                           name: _businessesController.recentlyAddedBusinessList![index].name,
                           fullImage: _businessesController.recentlyAddedBusinessList![index].image ?? Strings.dummyBgImage,
                           logoImage: _businessesController.recentlyAddedBusinessList![index].logo ?? Strings.dummyLogo,
                           index: index,
-                          onPressFullContainer: (){
-                          },
-                        );
+                          onPressFullContainer: (){},
+                        ),
+                       );
                       },
                     ),
                   ),
@@ -229,15 +233,20 @@ class BusinessesScreen extends StatelessWidget {
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                           physics: const ScrollPhysics(),
-                          itemCount: 3,
+                          itemCount: _businessesController.nearbyBusinessList!.isEmpty ? 0 : 3,
                           itemBuilder: (context, index){
-                            return BusinessNearBy(
-                                image:  _businessesController.nearbyBusinessList![index].image ?? Strings.dummyBgImage,
-                                headerText: _businessesController.nearbyBusinessList![index].name,
-                                onViewCourse: (){},
-                                address: _businessesController.nearbyBusinessList![index].address1,
-                                streetAddress: _businessesController.nearbyBusinessList![index].address2 ?? Strings.unknown,
-                                phoneNumber: _businessesController.nearbyBusinessList![index].phone.toString()
+                            return GestureDetector(
+                              onTap: (){
+                                Get.toNamed(Routes.businessDetailScreen, arguments: _businessesController.nearbyBusinessList![index].id);
+                              },
+                              child: BusinessNearBy(
+                                  image:  _businessesController.nearbyBusinessList![index].image ?? Strings.dummyBgImage,
+                                  headerText: _businessesController.nearbyBusinessList![index].name,
+                                  onViewCourse: (){},
+                                  address: _businessesController.nearbyBusinessList![index].address1,
+                                  streetAddress: _businessesController.nearbyBusinessList![index].address2 ?? Strings.unknown,
+                                  phoneNumber: _businessesController.nearbyBusinessList![index].phone.toString()
+                              ),
                             );
                           }, separatorBuilder: (BuildContext context, int index) {
                           return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.001 ,color: AppColors.borderColor);

@@ -62,8 +62,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 endDate: _causesController.topCausesContainersList![index].end.toString(),
                 index: index,
                 onClickBox: () async {
-                  Get.toNamed(Routes.causesDetailScreen,
-                      arguments: _causesController.topCausesContainersList![index].id);
+                  Get.toNamed(Routes.causesDetailScreen, arguments: _causesController.topCausesContainersList![index].id);
                 },
               );
             },
@@ -92,13 +91,18 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                     Get.to(DetailScreen(title: Strings.recentlyStarted, detailList: _causesController.recentlyStartedCauses as dynamic));
                   },
                   child: CommonWidgets.seeAllButton(30))
-                : RecentlyStartedContainer(
-                name: _causesController.recentlyStartedCauses![index].name,
-                image: _causesController.recentlyStartedCauses![index].image ?? Strings.dummyBgImage,
-                colors: const [Colors.transparent, AppColors.greenColor,],
-                index: index,
-                onPressFullContainer: (){},
-              );
+                : GestureDetector(
+                  onTap: (){
+                    Get.toNamed(Routes.causesDetailScreen, arguments: _causesController.recentlyStartedCauses![index].id);
+                  },
+                  child: RecentlyStartedContainer(
+                  name: _causesController.recentlyStartedCauses![index].name,
+                  image: _causesController.recentlyStartedCauses![index].image ?? Strings.dummyBgImage,
+                  colors: const [Colors.transparent, AppColors.greenColor,],
+                  index: index,
+                  onPressFullContainer: (){},
+              ),
+                );
             },
           ),
         ),),
@@ -125,15 +129,20 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 physics: const ScrollPhysics(),
                 itemCount: _causesController.upcomingCauses!.isEmpty ? 0 : 3,
                 itemBuilder: (context, index){
-                  return UpcomingCauses(
-                      image:  _causesController.upcomingCauses![index].image ?? Strings.dummyBgImage,
-                      headerText: _causesController.upcomingCauses![index].organization!.name,
-                      description:  _causesController.upcomingCauses![index].name,
-                      onViewCourse: (){
-                      },
-                      totalAmount: _causesController.upcomingCauses![index].raised.toString(),
-                      date: _causesController.upcomingCauses![index].start!.toString()
+                  return GestureDetector(
+                    onTap: (){
+                      Get.toNamed(Routes.causesDetailScreen, arguments: _causesController.upcomingCauses![index].id);
+                    },
+                    child: UpcomingCauses(
+                        image:  _causesController.upcomingCauses![index].image ?? Strings.dummyBgImage,
+                        headerText: _causesController.upcomingCauses![index].organization!.name,
+                        description:  _causesController.upcomingCauses![index].name,
+                        onViewCourse: (){
+                        },
+                        totalAmount: _causesController.upcomingCauses![index].raised.toString(),
+                        date: _causesController.upcomingCauses![index].start!.toString()
 
+                    ),
                   );
 
                 }, separatorBuilder: (BuildContext context, int index) {

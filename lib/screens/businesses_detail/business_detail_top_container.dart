@@ -87,7 +87,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                           GestureDetector(
                             onTap: onShareClick,
                             child: Icon(
-                              Icons.save_alt,
+                              Icons.ios_share,
                               color: AppColors.pureWhiteColor,
                               size: getHeight() * 0.03,
                             ),

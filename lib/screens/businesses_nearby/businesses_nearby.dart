@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_list_view_layout.dart';
+import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
@@ -42,13 +44,21 @@ class BusinessesDetail extends StatelessWidget {
                       physics: const ScrollPhysics(),
                       itemCount: detailList.length,
                       itemBuilder: (context, index) {
-                        return BusinessListViewLayout(
-                            image:  detailList[index].image ?? Strings.dummyBgImage,
-                            headerText: detailList[index].name,
-                            onViewCourse: (){},
-                            address: detailList[index].address1,
-                            streetAddress: detailList[index].address2,
-                            phoneNumber: detailList[index].phone.toString()
+                        return GestureDetector(
+                          onTap: (){
+                            Get.toNamed(Routes.businessDetailScreen, arguments: detailList[index].id);
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            child: BusinessListViewLayout(
+                                image:  detailList[index].image ?? Strings.dummyBgImage,
+                                headerText: detailList[index].name,
+                                onViewCourse: (){},
+                                address: detailList[index].address1,
+                                streetAddress: detailList[index].address2,
+                                phoneNumber: detailList[index].phone.toString()
+                            ),
+                          ),
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {

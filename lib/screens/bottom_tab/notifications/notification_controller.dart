@@ -1,5 +1,4 @@
 import 'package:flutter_app/model/contributions.dart';
-import 'package:flutter_app/model/dummy/notification.dart';
 import 'package:flutter_app/model/notification.dart';
 import 'package:flutter_app/network/remote_repositories/notification_repository.dart';
 import 'package:get/get.dart';
