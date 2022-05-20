@@ -32,6 +32,7 @@ class Strings {
   static const String groupCode = "group_code";
   static const String businessId = "business_id";
   static const String causeId = "cause_id";
+  static const String categoryId = "category_id";
   static const String parentCategoryId = "parent_category_id";
   static const String allCauses = "All causes ";
   static const String allBusinesses = "All businesses ";
@@ -129,6 +130,10 @@ class Strings {
   static const String mipmapIcLauncher = '@mipmap/ic_launcher';
   static const String dynamicLinkInitialUrl = 'https://thinknlocal.page.link';
   static const String dynamicLinkImageUrl = 'https://www.thinknlocal.com/assets/welcome/logo-dark-07b7bfc0671b940febf94d1af4f88fb133e8cd1e.png';
+  static const String q = 'q';
+  static const String cities = 'cities';
+  static const String searchForCity = 'Search for a city...';
+  static const String citiesNearYou = 'Cities near you';
 
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";

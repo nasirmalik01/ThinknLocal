@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import 'package:flutter_app/screens/cause_search/cause_search_controller.dart';
+import 'package:flutter_app/widgets/network_error.dart';
+import 'package:get/get.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -11,15 +16,24 @@ import '../../widgets/text_views.dart';
 class CauseSearch extends StatelessWidget {
   final TextEditingController? searchController = TextEditingController();
   final bool isBusiness;
+  final CauseSearchController _causeSearchController = Get.put(CauseSearchController());
 
   CauseSearch({this.isBusiness = false, Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
+      body:  Obx(() =>
+      _causeSearchController.isError.value
+          ?  NetworkErrorException(exceptionMessage: _causeSearchController.errorMessage.value, onPress: (){
+        _causeSearchController.isError.value = false;
+        _causeSearchController.getSearchedCauses('');
+         searchController!.clear();
+      })
+       :
+        SingleChildScrollView(
         child: Container(
           width: sizes.width,
           decoration: const BoxDecoration(
@@ -31,6 +45,9 @@ class CauseSearch extends StatelessWidget {
                   title: "",
                   hint: '${Strings.searchForA} ${isBusiness ? Strings.business : Strings.cause}',
                   textEditingController: searchController,
+                  onChanged: (val){
+                      _causeSearchController.getSearchedCauses(val);
+                  },
                   onPressBackArrow: () {
                     Navigator.pop(context);
                   }),
@@ -44,22 +61,28 @@ class CauseSearch extends StatelessWidget {
                         color: AppColors.lightBlack,
                         fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.01),
-                    TextView.headerWithBlurRadius("- ${Strings.dummyLocation}", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12),
+                    TextView.headerWithBlurRadius("- ${_causeSearchController.locationAddress.value}", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12),
                     SizedBox(height: getHeight() * 0.02),
-                    ListView.separated(
+                      _causeSearchController.isSearchedCauseLoading.value
+                      ?  circularProgressIndicator()
+                      : ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: 13,
+                      itemCount: _causeSearchController.searchedCausesList!.length,
                       itemBuilder: (context, index) {
-                        return UpcomingCauses(
-                            image:  "",
-                            headerText: "Chino Hills High Softball Team",
-                            description:  "Spring Training Equipment Fundraiser",
-                            onViewCourse: (){
-                            },
-                            totalAmount: "500",
-                            date: "Mar 25"
+                        return GestureDetector(
+                          onTap: (){
+                            Get.toNamed(Routes.causesDetailScreen, arguments: _causeSearchController.searchedCausesList![index].id);
+                          },
+                          child: UpcomingCauses(
+                              image:  _causeSearchController.searchedCausesList![index].image,
+                              headerText: _causeSearchController.searchedCausesList![index].name,
+                              description:  _causeSearchController.searchedCausesList![index].description,
+                              onViewCourse: (){},
+                              totalAmount: _causeSearchController.searchedCausesList![index].raised.toString(),
+                              date: _causeSearchController.searchedCausesList![index].start.toString()
+                          ),
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {
@@ -75,6 +98,7 @@ class CauseSearch extends StatelessWidget {
               ),
             ],
           ),
+      ),
         ),
       ),
     );

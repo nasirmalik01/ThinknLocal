@@ -1,3 +1,4 @@
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/local/user_location.dart';
@@ -107,14 +108,6 @@ class BusinessesController extends GetxController{
 
 
   getLocationAddress() async {
-    if (MyHive.getLocation() != null) {
-      locationAddress.value = await findAddress(MyHive.getLocation());
-    }
-  }
-
-  Future<String> findAddress(UserLocation type) async {
-    var placeMarkers = await placemarkFromCoordinates(type.latitude, type.longitude);
-    var completeAddress = '${placeMarkers.first.street},${placeMarkers.first.locality},${placeMarkers.first.country}';
-    return completeAddress;
+    locationAddress.value = await getUserLocationAddress();
   }
 }

@@ -8,6 +8,7 @@ import 'package:flutter_app/screens/bottom_tab/businesses/business_tabs_containe
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_components.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/recently_added_business.dart';
+import 'package:flutter_app/screens/business_search/business_search.dart';
 import 'package:flutter_app/screens/businesses_categories/business_category.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
@@ -66,8 +67,9 @@ class BusinessesScreen extends StatelessWidget {
                   children: [
                     TextView.titleWithDecoration(Strings.businessNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
                     GestureDetector(
-                      onTap: (){
-                        Get.toNamed(Routes.locationSearchScreen);
+                      onTap: () async {
+                         final result = await Get.toNamed(Routes.locationSearchScreen);
+                        _businessesController.onInit();
                       },
                       child: Row(
                         children: [
@@ -97,8 +99,7 @@ class BusinessesScreen extends StatelessWidget {
                             controller: searchController,
                             hint: Strings.searchBusiness,
                             onPressSearch: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) => CauseSearch(isBusiness: true,)));
+                              Get.toNamed(Routes.businessSearch);
                             }
                         ),
                         SizedBox(height: getHeight() * 0.03),
@@ -109,28 +110,28 @@ class BusinessesScreen extends StatelessWidget {
                                 image: Assets.foodIcon, label: Strings.foodDrink,
                                 onPressCategory: () {
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.foodDrink, icon: Assets.foodIcon,)));
+                                      MaterialPageRoute(builder: (_) => BusinessCategory(businessType: Strings.foodDrink, icon: Assets.foodIcon, id: 22,)));
                                 }
                             ),
                             _businessesComponents.businessCategoryIcon(
                                 image: Assets.thingsIcon, label: Strings.toDoThings,
                                 onPressCategory: () {
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.toDoThings, icon: Assets.thingsIcon,)));
+                                      MaterialPageRoute(builder: (_) => BusinessCategory(businessType: Strings.toDoThings, icon: Assets.thingsIcon, id: 29,)));
                                 }
                             ),
                             _businessesComponents.businessCategoryIcon(
                                 image: Assets.bagIcon, label: Strings.retail,
                                 onPressCategory: () {
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.retail, icon: Assets.bagIcon,)));
+                                      MaterialPageRoute(builder: (_) => BusinessCategory(businessType: Strings.retail, icon: Assets.bagIcon, id: 3,)));
                                 }
                             ),
                             _businessesComponents.businessCategoryIcon(
                                 image: Assets.servicesIcon, label: Strings.services,
                                 onPressCategory: () {
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) => const BusinessCategory(businessType: Strings.services, icon: Assets.servicesIcon,)));
+                                      MaterialPageRoute(builder: (_) => BusinessCategory(businessType: Strings.services, icon: Assets.servicesIcon, id: 33,)));
                                 }
                             ),
                           ],

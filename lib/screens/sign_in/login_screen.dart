@@ -84,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                         }
 
                         showLoadingDialog(message: 'Authenticating User');
-                        _logInController.authenticateUser(email: _emailController!.text, password: _passwordController!.text,);
+                        _logInController.authenticateUserWithEmailPassword(email: _emailController!.text, password: _passwordController!.text,);
                       },
                           btnColor: AppColors.greenColor,
                           textColor: AppColors.pureWhiteColor,
@@ -118,16 +118,26 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: getHeight() * 0.05),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          Image(
-                            image: AssetImage(Assets.appleLogo,),
-                            fit: BoxFit.fill,
+                        children: [
+                          GestureDetector(
+                            onTap: (){
+                              _logInController.loginWithApple();
+                            },
+                            child: const Image(
+                              image: AssetImage(Assets.appleLogo,),
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                          Image(
-                            image: AssetImage(Assets.googleLogo,),
-                            fit: BoxFit.fill,
+                          GestureDetector(
+                            onTap: (){
+                              _logInController.loginWithGoogle();
+                            },
+                            child: const Image(
+                              image: AssetImage(Assets.googleLogo,),
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                          Image(
+                          const Image(
                             image: AssetImage(Assets.facebookLogo,),
                             fit: BoxFit.fill,
                           ),

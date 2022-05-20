@@ -94,6 +94,7 @@ class CommonWidgets {
     String? hint,
     TextEditingController? textEditingController,
     required Function onPressBackArrow,
+    Function(String)? onChanged,
 
   }){
     return Container(
@@ -133,13 +134,13 @@ class CommonWidgets {
             ],
           ),
           SizedBox(height: getHeight()*0.02),
-          searchAppBarField(controller: textEditingController, hint: hint)
+          searchAppBarField(controller: textEditingController, hint: hint, onChanged: onChanged)
         ],
       ),
     );
   }
 
-  static Widget searchAppBarField({TextEditingController? controller, String? hint}) {
+  static Widget searchAppBarField({TextEditingController? controller, String? hint, Function(String)? onChanged}) {
     return Container(
       padding: EdgeInsets.only(right: getWidth() * 0.02),
       decoration: BoxDecoration(
@@ -168,6 +169,7 @@ class CommonWidgets {
             color: AppColors.darkGrey,
           ),
         ),
+        onChanged: onChanged,
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
@@ -115,18 +116,6 @@ class CausesController extends GetxController{
     isRecentlyStartedCausesLoading.value = false;
   }
 
-  getLocationAddress() async {
-    if (MyHive.getLocation() != null) {
-      locationAddress.value = await findAddress(MyHive.getLocation());
-    }
-  }
-
-  Future<String> findAddress(UserLocation type) async {
-    var placeMarkers = await placemarkFromCoordinates(type.latitude, type.longitude);
-    var completeAddress = '${placeMarkers.first.street},${placeMarkers.first.locality},${placeMarkers.first.country}';
-    return completeAddress;
-  }
-
   void initDynamicLinks() async {
     FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
       final Uri? deeplink = dynamicLinkData.link;
@@ -141,6 +130,10 @@ class CausesController extends GetxController{
     }
   }
 
+  getLocationAddress() async {
+    locationAddress.value = await getUserLocationAddress();
+  }
+
   void handleDynamicLink(Uri url) {
     List<String> _splitDynamicLink = [];
     _splitDynamicLink.addAll(url.path.split('/'));
@@ -151,4 +144,6 @@ class CausesController extends GetxController{
       Get.toNamed(Routes.businessDetailScreen, arguments: int.parse(_splitDynamicLink[2]));
     }
   }
+
+
 }

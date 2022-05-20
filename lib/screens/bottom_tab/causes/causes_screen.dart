@@ -57,8 +57,9 @@ class CausesScreen extends StatelessWidget{
                 children: [
                   TextView.titleWithDecoration(Strings.showingCausesNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
                   GestureDetector(
-                    onTap: (){
-                      Get.toNamed(Routes.locationSearchScreen);
+                    onTap: () async {
+                      final result = await Get.toNamed(Routes.locationSearchScreen);
+                      _causesController.onInit();
                     },
                     child: Row(
                       children: [
@@ -86,8 +87,7 @@ class CausesScreen extends StatelessWidget{
                       controller: searchController,
                       hint: Strings.searchForCause,
                       onPressSearch: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => CauseSearch()));
+                        Get.toNamed(Routes.causeSearch);
                       }
                   ),
                 ),

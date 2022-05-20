@@ -36,7 +36,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> wit
         break;
       case AppLifecycleState.resumed:
         if(_mainController.isLocationServiceEnabled.value){
-          Get.toNamed(Routes.notificationPermissionScreen);
+          Get.toNamed(Routes.loginScreen);
         }
         break;
       case AppLifecycleState.paused:

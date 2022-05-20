@@ -2,8 +2,10 @@ import 'package:flutter_app/screens/about_visit/about_visit.dart';
 import 'package:flutter_app/screens/bottom_tab/bottom_tab_new.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_screen.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_screen.dart';
+import 'package:flutter_app/screens/business_search/business_search.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
+import 'package:flutter_app/screens/cause_search/cause_search.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
@@ -42,6 +44,8 @@ class Routes {
   static const String notificationPermissionScreen = '/notificationPermissionScreen';
   static const String locationSearchScreen = '/locationSearchScreen';
   static const String aboutVisit = '/aboutVisit';
+  static const String causeSearch = '/causeSearch';
+  static const String businessSearch = '/businessSearch';
 
 
   static getUnknownRoute() {
@@ -133,6 +137,14 @@ class Routes {
       GetPage(
         name: aboutVisit,
         page: () => AboutVisit(),
+      ),
+      GetPage(
+        name: causeSearch,
+        page: () => CauseSearch(),
+      ),
+      GetPage(
+        name: businessSearch,
+        page: () => BusinessSearch(),
       ),
     ];
   }

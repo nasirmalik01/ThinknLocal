@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
+import 'package:flutter_app/local/user_location.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
@@ -97,4 +99,18 @@ buildDynamicLinks(String category, String id) async {
   String? desc = dynamicLink.shortUrl.toString();
 
   await Share.share(desc, subject: Strings.thinkLocal);
+}
+
+Future<String> getUserLocationAddress() async {
+  if (MyHive.getLocation() != null) {
+    final _address = await findAddress(MyHive.getLocation());
+    return _address;
+  }
+  return '';
+}
+
+Future<String> findAddress(UserLocation type) async {
+  var placeMarkers = await placemarkFromCoordinates(type.latitude, type.longitude);
+  var completeAddress = '${placeMarkers.first.street},${placeMarkers.first.locality},${placeMarkers.first.country}';
+  return completeAddress;
 }

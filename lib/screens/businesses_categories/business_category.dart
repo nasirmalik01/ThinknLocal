@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/business_category.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_nearby.dart';
+import 'package:flutter_app/screens/businesses_categories/business_category_controller.dart';
+import 'package:get/get.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
 
-
 class BusinessCategory extends StatelessWidget {
   final String businessType;
   final String icon;
-  const BusinessCategory({Key? key, required this.businessType, required this.icon}) : super(key: key);
+  final int id;
+  BusinessCategory({Key? key, required this.businessType, required this.icon, required this.id}) : super(key: key);
+
+  final BusinessCategoryController _businessCategoryController = Get.put(BusinessCategoryController());
 
   @override
   Widget build(BuildContext context) {
+    _businessCategoryController.getBusinessCategory(id);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -49,22 +56,30 @@ class BusinessCategory extends StatelessWidget {
                             title: businessType
                         ),
                         SizedBox(height: getHeight() * 0.04),
-                        ListView.separated(
+                        Obx(() =>
+                          _businessCategoryController.isLoading.value
+                          ? circularProgressIndicator()
+                          : ListView.separated(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                           physics: const ScrollPhysics(),
-                          itemCount: businessCategoryDataList.length,
+                          itemCount: _businessCategoryController.businessCategoryList!.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: EdgeInsets.only(top: getHeight()*0.01, left: getWidth()*0.03),
-                              child: BusinessNearBy(
-                                image:  businessCategoryDataList[index].backgroundImage,
-                                headerText: businessCategoryDataList[index].title,
-                                onViewCourse: (){},
-                                address: businessCategoryDataList[index].mainAddress,
-                                streetAddress: businessCategoryDataList[index].streetAddress,
-                                phoneNumber: businessCategoryDataList[index].phoneNumber,
-                                isBusinessCategory: true,
+                              child: GestureDetector(
+                                onTap: (){
+                                  Get.toNamed(Routes.businessDetailScreen, arguments: _businessCategoryController.businessCategoryList![index].id);
+                                },
+                                child: BusinessNearBy(
+                                  image: _businessCategoryController.businessCategoryList![index].image,
+                                  headerText: _businessCategoryController.businessCategoryList![index].name,
+                                  onViewCourse: (){},
+                                  address: _businessCategoryController.businessCategoryList![index].address1,
+                                  streetAddress: _businessCategoryController.businessCategoryList![index].address2,
+                                  phoneNumber: _businessCategoryController.businessCategoryList![index].phone.toString(),
+                                  isBusinessCategory: true,
+                                ),
                               ),
                             );
                           },
@@ -74,7 +89,7 @@ class BusinessCategory extends StatelessWidget {
                                 thickness: getHeight() * 0.002,
                                 color: AppColors.borderColor);
                           },
-                        ),
+                        ),),
                         SizedBox(height: getHeight() * 0.04),
                       ],
                     ),
