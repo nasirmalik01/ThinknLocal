@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
@@ -154,7 +155,8 @@ class BusinessesScreen extends StatelessWidget {
                     height: 20.h,
                     child: _businessesController.isBusinessLoading.value
                         ? circularProgressIndicator()
-                        : ListView.builder(
+                        : _businessesController.businessList!.isNotEmpty
+                        ? ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 6,
                       itemBuilder: (context, index){
@@ -180,7 +182,8 @@ class BusinessesScreen extends StatelessWidget {
                             onPressFavoriteIcon: () {}
                         );
                       },
-                    ),
+                    )
+                    : handleEmptyState(context, Strings.noBusinesses),
                   ),
                   SizedBox(height: getHeight() * 0.045),
                   Padding(
@@ -192,7 +195,8 @@ class BusinessesScreen extends StatelessWidget {
                     height: getHeight()*0.14,
                     child: _businessesController.isRecentlyAddedBusinessLoading.value
                         ? circularProgressIndicator()
-                        : ListView.builder(
+                        : _businessesController.recentlyAddedBusinessList!.isNotEmpty
+                        ? ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 6,
                       itemBuilder: (context, index){
@@ -215,7 +219,8 @@ class BusinessesScreen extends StatelessWidget {
                         ),
                        );
                       },
-                    ),
+                    )
+                    : handleEmptyState(context, Strings.noRecentBusinesses),
                   ),
                   SizedBox(height: getHeight() * 0.045),
                   Padding(
@@ -232,7 +237,8 @@ class BusinessesScreen extends StatelessWidget {
                         SizedBox(height: getHeight() * 0.018),
                         _businessesController.isNearByBusinessLoading.value
                             ? circularProgressIndicator()
-                            : ListView.separated(
+                            : _businessesController.nearbyBusinessList!.isNotEmpty
+                            ? ListView.separated(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                           physics: const ScrollPhysics(),
@@ -254,7 +260,8 @@ class BusinessesScreen extends StatelessWidget {
                           }, separatorBuilder: (BuildContext context, int index) {
                           return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.001 ,color: AppColors.borderColor);
                         },
-                        ),
+                        )
+                        : handleEmptyState(context, Strings.noNearbyBusinesses),
                         SizedBox(height: getHeight() * 0.03),
                       ],
                     ),

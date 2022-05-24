@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account_settings_card.dart';
@@ -64,13 +65,9 @@ class AccountScreen extends StatelessWidget {
                       name: '${_accountController.account!.firstName} ${_accountController.account!.lastName}',
                       email: _accountController.account!.email,
                       nameShort: '${_accountController.account!.firstName![0]}${_accountController.account!.lastName![0]}',
-                      onTapEdit: () {
-                        pushNewScreen(
-                          context,
-                          screen: const EditAccount(),
-                          withNavBar: false,
-                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                        );
+                      onTapEdit: () async {
+                        await Get.to(EditAccount(account: _accountController.account,));
+                        _accountController.getProfileInfo();
                       }
                   ),
                   SizedBox(height: getHeight() * 0.02),
@@ -83,8 +80,6 @@ class AccountScreen extends StatelessWidget {
                       AccountSettingCard(onChange: (val) => _accountController.changePushNotificationValue(val), title: Strings.pushNotifications, subTitle: Strings.enablePushNotifications, leadingIcon: Assets.bellIcon, switchValue: _accountController.isPushNotifications.value),
                       AccountSettingCard(onChange: (val) => _accountController.changeEmailValue(val), title: Strings.email, subTitle: Strings.allowSystemEmails, leadingIcon: Assets.mailIcon, switchValue: _accountController.isEmail.value),
                       AccountSettingCard(onChange: (val) => _accountController.changeLocationServicesValue(val), title: Strings.locationServices, subTitle: Strings.allowLocationServices, leadingIcon: Assets.locationIcon, switchValue: _accountController.isLocation.value),
-                      AccountSettingCard(onChange: (val) => _accountController.changeOtherOptionValue(val), title: Strings.otherOption, subTitle: Strings.otherOptionDescription, leadingIcon: Assets.squareIcon, switchValue: _accountController.isOtherOption.value),
-                      AccountSettingCard(onChange: (val) => _accountController.changeOtherOption2Value(val), title: Strings.otherOption2, subTitle: Strings.otherOptionDescription, leadingIcon: Assets.squareIcon, switchValue: _accountController.isOtherOption2.value, isLast: true,),
                     ],
                   ),
                 ],

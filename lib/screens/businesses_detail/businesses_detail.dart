@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
@@ -156,9 +157,10 @@ class BusinessesDetailScreen extends StatelessWidget {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: getHeight() * 0.01),
-                                child: SizedBox(
+                                child: _businessDetailController.recentlyFundedBusinessCausesList!.isNotEmpty
+                                  ? SizedBox(
                                   height: getHeight()*0.18,
-                                  child: ListView.builder(
+                                  child:ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     itemCount: _businessDetailController.recentlyFundedBusinessCausesList!.length > 6 ? 6 : _businessDetailController.recentlyFundedBusinessCausesList!.length,
                                     itemBuilder: (context, index){
@@ -192,7 +194,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                       );
                                     },
                                   ),
-                                ),
+                                )
+                                : handleEmptyState(context, Strings.noRecentFundedCauses),
                               ),
                             ],
                           ),
@@ -213,7 +216,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(height: sizes.height * 0.01),
-                                ListView.separated(
+                                _businessDetailController.pastFundedBusinessCausesList!.isNotEmpty
+                                ? ListView.separated(
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const ScrollPhysics(),
@@ -231,7 +235,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                   }, separatorBuilder: (BuildContext context, int index) {
                                   return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
                                 },
-                                ),
+                                )
+                                : handleEmptyState(context, Strings.noPastFundedCauses),
                                 SizedBox(height: getHeight() * 0.03),
                               ],
                             ),
@@ -326,7 +331,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                     }
                                 ),
                                 SizedBox(height: 2.h),
-                                ListView.separated(
+                                _businessDetailController.businessStats!.recentContributions!.isNotEmpty
+                                ? ListView.separated(
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const ScrollPhysics(),
@@ -340,7 +346,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                   }, separatorBuilder: (BuildContext context, int index) {
                                   return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
                                 },
-                                ),
+                                )
+                                : handleEmptyState(context, Strings.noRecentContributions),
                                 SizedBox(height: getHeight() * 0.03),
                               ],
                             ),

@@ -1,8 +1,12 @@
 
+import 'dart:developer';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/about_visit.dart';
+import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
 import 'package:flutter_app/screens/about_visit/auto_complete_text_field.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/contribution_controller.dart';
@@ -32,11 +36,9 @@ class AboutVisit extends StatelessWidget {
     final _xFile = ModalRoute.of(context)!.settings.arguments as XFile;
 
     return Scaffold(
-      body: Obx(() =>
-       _contributionController.isUploading.value ? Uploading(value: _contributionController.progress.value,)
-      : _contributionController.isUploadFailed.value ? const UploadFailed()
-      : _contributionController.isUploadSuccess.value ? const UploadSuccess()
-      : SingleChildScrollView(
+      body: Obx(() => (_aboutVisitController.isBusinessLoading.value || _aboutVisitController.isCausesLoading.value)
+        ? circularProgressIndicator()
+        : SingleChildScrollView(
         child: Container(
           width: sizes.width,
           decoration: const BoxDecoration(
@@ -55,9 +57,7 @@ class AboutVisit extends StatelessWidget {
                     SizedBox(height: getHeight() * 0.04,),
                     TextView.headerWithBlurRadius(Strings.whereDidYouGo, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01,),
-                    AutoFieldTextField(list: businessList, hintText: Strings.businessName, onSelect: (value){
-                      _aboutVisitController.selectedBusiness.value = value;
-                    }),
+                    AutoFieldTextField(hintText: Strings.businessName, onSelect: _aboutVisitController.onBusinessCompletePress, isBusiness: true,),
                     SizedBox(height: getHeight() * 0.04,),
                     TextView.headerWithBlurRadius(Strings.howWasYourVisit, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01,),
@@ -122,9 +122,7 @@ class AboutVisit extends StatelessWidget {
                     SizedBox(height: getHeight() * 0.04),
                     TextView.headerWithBlurRadius(Strings.whatCauseYouSupport, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01),
-                    AutoFieldTextField(list: causesList, hintText: Strings.courseName, onSelect: (value){
-                      _aboutVisitController.selectedCourse.value = value;
-                    }),
+                    AutoFieldTextField(hintText: Strings.courseName, onSelect: _aboutVisitController.onCauseCompletePress),
                     SizedBox(height: getHeight() * 0.07),
                     Button(
                         onPress: () async {

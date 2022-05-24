@@ -1,10 +1,14 @@
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/model/cause_detail.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/model/causes_stats.dart';
+import 'package:flutter_app/model/update_causes.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get_it/get_it.dart';
+
+import '../../constants/strings.dart';
 
 class CausesRemoteRepository{
   static Future<List<Causes>?> fetchCauses(Map<String, dynamic> query) async {
@@ -51,12 +55,31 @@ class CausesRemoteRepository{
     _causeDetail.end = _endDate;
     return _causeDetail;
   }
+
   static Future<void> followCause(int id) async {
     await GetIt.I<RemoteServices>().postRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.follow}', {});
   }
 
   static Future<void> unFollowCause(int id) async {
     await GetIt.I<RemoteServices>().postRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.unfollow}', {});
+  }
+
+  static Future<List<UpdateCauses>?> fetchUpdatedCauses(int id) async {
+    List<UpdateCauses> _updateCauses = [];
+    var location = MyHive.getLocation();
+    final response = await GetIt.I<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.posts}', {
+      Strings.latitude: location.latitude,
+      Strings.longitude: location.longitude
+    });
+    if (response == null) {
+      return null;
+    }
+
+    final List<dynamic> _updatedCausesDecodeList = response.map((item) => UpdateCauses.fromJson(item)).toList();
+    for(var updateCausesItem in _updatedCausesDecodeList){
+      _updateCauses.add(updateCausesItem);
+    }
+    return _updateCauses;
   }
 
 }

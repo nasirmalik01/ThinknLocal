@@ -1,8 +1,10 @@
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/cause_detail.dart';
+import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/model/causes_stats.dart';
 import 'package:flutter_app/model/follows.dart';
+import 'package:flutter_app/model/update_causes.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_repositories/follows_repository.dart';
@@ -18,11 +20,14 @@ class CausesDetailController extends GetxController {
   CausesStats? causesStats;
   List<Businesses>? causeBottomDetails = [];
   List<Businesses>? causeFeaturedList = [];
+  List<UpdateCauses>? updatedCausesList = [];
   Follows? follows;
   RxBool isLoading = false.obs;
+  RxBool isBottomTabLoading = false.obs;
   RxBool isStatsLoading = false.obs;
   RxBool isCauseBottomLoading = false.obs;
   RxBool isFeaturedLoading = false.obs;
+  RxBool isCauseUpdate = false.obs;
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
   RxBool isCauseFollowed = false.obs;
@@ -79,13 +84,25 @@ class CausesDetailController extends GetxController {
     isFeaturedLoading.value = false;
   }
 
-  getCauseBottomDetails(int id, int parentId) async {
-    isCauseBottomLoading.value = true;
+  getCauseBottomDetails(int id, int parentId, {bool isBottomTab = false}) async {
+    if(isBottomTab){
+      isBottomTabLoading.value = true;
+    }
+    else{
+      isBottomTabLoading.value = true;
+      isCauseBottomLoading.value = true;
+    }
     causeBottomDetails = await (BusinessRemoteRepository.fetchBusinesses({
       Strings.causeId: id,
       Strings.parentCategoryId: parentId,
     }));
-    isCauseBottomLoading.value = false;
+    if(isBottomTab){
+      isBottomTabLoading.value = false;
+    }
+    else{
+      isBottomTabLoading.value = false;
+      isCauseBottomLoading.value = false;
+    }
   }
 
   getCauseStats(int id) async {
@@ -111,6 +128,12 @@ class CausesDetailController extends GetxController {
         isCauseFollowed.value = true;
       }
     }
+  }
+
+  getUpdatedCauses(int id) async {
+    isCauseUpdate.value = true;
+    updatedCausesList =  await CausesRemoteRepository.fetchUpdatedCauses(id);
+    isCauseUpdate.value = false;
   }
 
 }

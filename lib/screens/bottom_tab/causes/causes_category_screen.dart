@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
@@ -42,7 +43,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
           height: 23.h,
           child: Obx(() =>  _causesController.isTopCausesContainersList.value
             ? circularProgressIndicator()
-            : ListView.builder(
+            : _causesController.topCausesContainersList!.isNotEmpty
+            ? ListView.builder(
             controller: _tabViewsController,
             scrollDirection: Axis.horizontal,
             itemCount:  _causesController.topCausesContainersList!.isEmpty ? 0 : 6,
@@ -66,7 +68,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 },
               );
             },
-          ),),
+          )
+          : handleEmptyState(context, Strings.noCauses),),
         ),
         SizedBox(height: getHeight() * 0.03),
         Padding(
@@ -78,7 +81,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
         /// Recently Started Causes
         Obx(() => _causesController.isRecentlyStartedCausesLoading.value
           ? circularProgressIndicator()
-          : SizedBox(
+          : _causesController.recentlyStartedCauses!.isNotEmpty
+          ? SizedBox(
           height: getHeight()*0.17,
           child: ListView.builder(
             controller: _recentlyStartedController,
@@ -105,7 +109,9 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 );
             },
           ),
-        ),),
+        )
+        : handleEmptyState(context, Strings.noRecentCauses)
+          ,),
         SizedBox(height: getHeight() * 0.03),
 
         /// Upcoming causes
@@ -123,7 +129,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
               SizedBox(height: getHeight() * 0.018),
                 _causesController.isUpcomingCausesLoading.value
                 ? circularProgressIndicator()
-                : ListView.separated(
+                : _causesController.upcomingCauses!.isNotEmpty
+                ? ListView.separated(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: const ScrollPhysics(),
@@ -148,7 +155,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 }, separatorBuilder: (BuildContext context, int index) {
                 return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
               },
-              ),
+              )
+              : handleEmptyState(context, Strings.noUpcomingCauses),
               SizedBox(height: getHeight() * 0.03),
             ],
           ),

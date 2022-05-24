@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/model/businesses.dart';
+import 'package:flutter_app/model/causes.dart';
+import 'package:flutter_app/model/dummy/causess.dart';
 import 'package:flutter_app/res/res.dart';
+import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class AutoFieldTextField extends StatelessWidget {
-  final List<String> list;
   final String hintText;
   final Function(String) onSelect;
-  const AutoFieldTextField({required this.list, required this.hintText, required this.onSelect, Key? key}) : super(key: key);
+  final bool isBusiness;
+  AutoFieldTextField({required this.hintText, this.isBusiness = false, required this.onSelect, Key? key}) : super(key: key);
+
+  final AboutVisitController _aboutVisitController = Get.put(AboutVisitController());
 
 
   @override
   Widget build(BuildContext context) {
     return Autocomplete<String>(
       optionsBuilder: (TextEditingValue value) {
-        // When the field is empty
-        if (value.text.isEmpty) {
-          return [];
-        }
-
-        // The logic to find out which ones should appear
-        return list.where((business) =>
-            business.toLowerCase().startsWith(value.text.toLowerCase()));
+        Iterable<String> list = _aboutVisitController.setOptionsBuilder(value, isBusiness: isBusiness);
+        return list;
       },
       onSelected: onSelect,
       fieldViewBuilder: (
@@ -59,3 +60,5 @@ class AutoFieldTextField extends StatelessWidget {
     );
   }
 }
+
+

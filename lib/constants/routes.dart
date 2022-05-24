@@ -2,6 +2,7 @@ import 'package:flutter_app/screens/about_visit/about_visit.dart';
 import 'package:flutter_app/screens/bottom_tab/bottom_tab_new.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_screen.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_screen.dart';
+import 'package:flutter_app/screens/bottom_tab/notifications/full_photo_screen.dart';
 import 'package:flutter_app/screens/business_search/business_search.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
@@ -46,6 +47,7 @@ class Routes {
   static const String aboutVisit = '/aboutVisit';
   static const String causeSearch = '/causeSearch';
   static const String businessSearch = '/businessSearch';
+  static const String fullPhotoScreen = '/fullPhotoScreen';
 
 
   static getUnknownRoute() {
@@ -145,6 +147,10 @@ class Routes {
       GetPage(
         name: businessSearch,
         page: () => BusinessSearch(),
+      ),
+      GetPage(
+        name: fullPhotoScreen,
+        page: () => const FullPhoto(imageUrl: ''),
       ),
     ];
   }

@@ -78,6 +78,10 @@ class Assets {
   static const String cancelIcon = "assets/png/cancel.png";
   static const String blurEffect = 'assets/png/blur_effect.png';
   static const String warningIcon = 'assets/png/warning.png';
+  static const String noImageAvailable = 'assets/png/no_image.jpeg';
+  static const String errorImage = 'assets/png/error.jpeg';
+  static const String thinkLocal = 'assets/png/thinknlocal.png';
+  static const String loading = 'assets/png/loading.png';
 
   // fonts
   static const String poppinsRegular = "Poppins-Regular";

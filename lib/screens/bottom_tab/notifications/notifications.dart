@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/screens/bottom_tab/notifications/full_photo_screen.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notification_card.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notification_controller.dart';
 import 'package:flutter_app/widgets/text_views.dart';
@@ -138,7 +140,8 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                       padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.02),
                       child: Column(
                         children: [
-                          Expanded(
+                          _notificationController.notificationList!.isNotEmpty
+                          ? Expanded(
                             child: ListView.separated(
                               padding: EdgeInsets.symmetric(vertical: 1.8.h),
                               itemCount: _notificationController.notificationList!.length,
@@ -152,13 +155,12 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                       padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.notificationList!.length - 1 ? 4.h : 0),
                                       child: NotificationCard(
                                           isNetworkImage: false,
-                                          image: Assets.notificationIcon1,
+                                          image: Assets.noImageAvailable,
                                           text: _notificationController.notificationList![index].title,
                                           subText: _notificationController.notificationList![index].message,
                                           date: _notificationController.notificationList![index].id.toString(),
                                           onPressNotification: () {}
                                       ),
-
                                     )
                                 );
                               },
@@ -166,7 +168,8 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                 return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
                               },
                             ),
-                          ),
+                          )
+                          : handleEmptyState(context, Strings.noNotifications),
                         ],
                       ),
                     ),
@@ -176,7 +179,8 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                         children: [
                           Expanded(
                             child:
-                            ListView.separated(
+                            _notificationController.pendingContributionsList!.isNotEmpty
+                             ? ListView.separated(
                               padding: EdgeInsets.symmetric(vertical: 1.8.h),
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
@@ -185,6 +189,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                     onTap: () {
+                                      Get.to(() => FullPhoto(imageUrl: _notificationController.pendingContributionsList![index].receiptUrl!));
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.pendingContributionsList!.length - 1 ? 4.h : 0),
@@ -200,7 +205,8 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                               separatorBuilder: (BuildContext context, int index) {
                                 return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
                               },
-                            ),
+                            )
+                            : handleEmptyState(context, Strings.noPendingReceipts),
                           ),
                         ],
                       ),
@@ -211,7 +217,8 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                         children: [
                           Expanded(
                             child:
-                            ListView.separated(
+                            _notificationController.approvedContributionsList!.isNotEmpty
+                            ? ListView.separated(
                               padding: EdgeInsets.symmetric(vertical: 1.8.h),
                               itemCount: _notificationController.approvedContributionsList!.length,
                               shrinkWrap: true,
@@ -219,6 +226,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                     onTap: () {
+                                      Get.to(() => FullPhoto(imageUrl: _notificationController.approvedContributionsList![index].receiptUrl!));
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.approvedContributionsList!.length - 1 ? 4.h : 0),
@@ -235,7 +243,8 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                               separatorBuilder: (BuildContext context, int index) {
                                 return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
                               },
-                            ),
+                            )
+                            : handleEmptyState(context, Strings.noSentReceipts),
                           ),
                         ],
                       ),

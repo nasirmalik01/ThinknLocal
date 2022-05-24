@@ -134,6 +134,20 @@ class Strings {
   static const String cities = 'cities';
   static const String searchForCity = 'Search for a city...';
   static const String citiesNearYou = 'Cities near you';
+  static const String noUpcomingCauses = 'There are no upcoming causes';
+  static const String noCauses = 'There are no causes';
+  static const String noRecentCauses = 'There are no recent started causes';
+  static const String noBusinesses = 'There are no upcoming businesses';
+  static const String noRecentBusinesses = 'There are no added businesses';
+  static const String noNearbyBusinesses = 'There are no nearby businesses';
+  static const String noFeaturedSponsors = 'There are no featured sponsors';
+  static const String noCauseUpdates = 'There are no cause updates';
+  static const String noRecentContributions = 'There are no recent contributions';
+  static const String noRecentFundedCauses = 'There are no recent funded causes';
+  static const String noPastFundedCauses = 'There are no past funded causes';
+  static const String noNotifications = 'There are no notifications';
+  static const String noPendingReceipts = 'There are no pending receipts';
+  static const String noSentReceipts = 'There are no sent receipts';
 
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";

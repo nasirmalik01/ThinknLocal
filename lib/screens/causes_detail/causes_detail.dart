@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/causes_detail.dart';
@@ -196,7 +197,8 @@ class _CausesDetailState extends State<CausesDetail>
                                           child: Obx(() => _causesDetailController
                                               .isFeaturedLoading.value
                                               ? circularProgressIndicator()
-                                              : ListView.builder(
+                                              : _causesDetailController.causeFeaturedList!.isNotEmpty
+                                              ? ListView.builder(
                                             scrollDirection:
                                             Axis.horizontal,
                                             shrinkWrap: true,
@@ -229,7 +231,8 @@ class _CausesDetailState extends State<CausesDetail>
                                                 onPressFullContainer: () {},
                                               );
                                             },
-                                          )),
+                                          )
+                                          : handleEmptyState(context, Strings.noFeaturedSponsors)),
                                         ),
                                       ),
 
@@ -253,7 +256,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                         .isFoodAndDrink.value,
                                                     isDetail: true,
                                                     onTap: () {
-                                                      _causesDetailController.getCauseBottomDetails(_id, 21);
+                                                      _causesDetailController.getCauseBottomDetails(_id, 21, isBottomTab: true);
                                                       _causesDetailController.setFoodAndDrinkTab();
                                                     }),
                                                 customTabBar(
@@ -265,7 +268,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                     onTap: () {
                                                       _causesDetailController
                                                           .getCauseBottomDetails(
-                                                          _id, 27);
+                                                          _id, 27, isBottomTab: true);
                                                       _causesDetailController
                                                           .setThingsToDoTab();
                                                     }),
@@ -278,7 +281,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                     onTap: () {
                                                       _causesDetailController
                                                           .getCauseBottomDetails(
-                                                          _id, 1);
+                                                          _id, 1, isBottomTab: true);
                                                       _causesDetailController
                                                           .setRetailTab();
                                                     }),
@@ -291,7 +294,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                     onTap: () {
                                                       _causesDetailController
                                                           .getCauseBottomDetails(
-                                                          _id, 32);
+                                                          _id, 32, isBottomTab: true);
                                                       _causesDetailController
                                                           .setServicesTab();
                                                     }),
@@ -299,15 +302,10 @@ class _CausesDetailState extends State<CausesDetail>
                                             ),
                                             SizedBox(height: sizes.height * 0.02),
                                             Obx(() => _causesDetailController
-                                                .isCauseBottomLoading.value
-                                                ? Padding(
-                                              padding: EdgeInsets.only(
-                                                top: 20.h,
-                                              ),
-                                              child:
-                                              circularProgressIndicator(),
-                                            )
-                                                : ListView.separated(
+                                                .isBottomTabLoading.value
+                                                ? circularProgressIndicator()
+                                                : _causesDetailController.causeBottomDetails!.isNotEmpty
+                                                ? ListView.separated(
                                               scrollDirection:
                                               Axis.vertical,
                                               shrinkWrap: true,
@@ -363,7 +361,8 @@ class _CausesDetailState extends State<CausesDetail>
                                                     color: AppColors
                                                         .borderColor);
                                               },
-                                            )),
+                                            )
+                                            : handleEmptyState(context, Strings.noCauses)),
                                           ],
                                         ),
                                       ),
@@ -373,7 +372,8 @@ class _CausesDetailState extends State<CausesDetail>
                               ),
 
                               ///2nd page
-                              ListView(
+                              _causesDetailController.updatedCausesList!.isNotEmpty
+                              ? ListView(
                                 padding: EdgeInsets.symmetric(
                                     vertical: getHeight() * 0.03),
                                 shrinkWrap: true,
@@ -388,17 +388,12 @@ class _CausesDetailState extends State<CausesDetail>
                                           scrollDirection: Axis.vertical,
                                           shrinkWrap: true,
                                           physics: const ScrollPhysics(),
-                                          itemCount: updateFundRaiserList.length,
+                                          itemCount: _causesDetailController.updatedCausesList!.length,
                                           itemBuilder: (context, index) {
                                             return UpdateFundRaiser(
-                                                header:
-                                                updateFundRaiserList[index]
-                                                    .title!,
-                                                detail:
-                                                updateFundRaiserList[index]
-                                                    .detail!,
-                                                date: updateFundRaiserList[index]
-                                                    .date!);
+                                                header: _causesDetailController.updatedCausesList![index].title!,
+                                                detail: _causesDetailController.updatedCausesList![index].message!,
+                                                date: updateFundRaiserList[0].date!);
                                           },
                                           separatorBuilder:
                                               (BuildContext context, int index) {
@@ -413,7 +408,8 @@ class _CausesDetailState extends State<CausesDetail>
                                     ),
                                   ),
                                 ],
-                              ),
+                              )
+                              : handleEmptyState(context, Strings.noCauseUpdates),
 
                               /// 3rd page
                               ListView(
@@ -520,7 +516,8 @@ class _CausesDetailState extends State<CausesDetail>
                                             trailingText: Strings.seeAll,
                                             onPressSeeAllButton: () {}),
                                         SizedBox(height: 2.h),
-                                        ListView.separated(
+                                        _causesDetailController.causesStats!.topContributors!.isNotEmpty
+                                          ? ListView.separated(
                                           scrollDirection: Axis.vertical,
                                           shrinkWrap: true,
                                           physics: const ScrollPhysics(),
@@ -548,7 +545,8 @@ class _CausesDetailState extends State<CausesDetail>
                                                 thickness: getHeight() * 0.002,
                                                 color: AppColors.borderColor);
                                           },
-                                        ),
+                                        )
+                                        : handleEmptyState(context, Strings.noRecentContributions),
                                         SizedBox(height: getHeight() * 0.03),
                                       ],
                                     ),
@@ -572,5 +570,6 @@ class _CausesDetailState extends State<CausesDetail>
     _causesDetailController.getCauseBottomDetails(_id, 21);
     _causesDetailController.getCauseFeatured(_id);
     _causesDetailController.getFollowCause(_id);
+    _causesDetailController.getUpdatedCauses(_id);
 }
 }

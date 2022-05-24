@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/model/account.dart';
+import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/password_text_field.dart';
 import 'package:flutter_app/widgets/text_field.dart';
+import 'package:get/get.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/text_views.dart';
 
 class EditAccount extends StatefulWidget {
-  const EditAccount({Key? key}) : super(key: key);
+  final Account? account;
+  const EditAccount({this.account, Key? key}) : super(key: key);
 
   @override
   _EditAccountState createState() => _EditAccountState();
@@ -19,21 +25,34 @@ class _EditAccountState extends State<EditAccount> {
   TextEditingController? lastNameController;
   TextEditingController? emailController;
   TextEditingController? passwordController;
-  TextEditingController? confirmPasswordController;
   TextEditingController? zipCodeController;
   TextEditingController? groupCodeController;
   bool hiddenPassword = true;
+  final AccountController _accountController = Get.put(AccountController());
+
+
+
 
   @override
   void initState() {
     super.initState();
-    firstNameController = TextEditingController(text: "Johnathon");
-    lastNameController = TextEditingController(text: "Doe");
-    emailController = TextEditingController(text: "johnathon.doe@email.com");
+    firstNameController = TextEditingController(text: widget.account!.firstName);
+    lastNameController = TextEditingController(text: widget.account!.lastName);
+    emailController = TextEditingController(text: widget.account!.email);
     passwordController = TextEditingController(text: "John123!");
-    confirmPasswordController = TextEditingController();
-    zipCodeController = TextEditingController(text: "90145");
-    groupCodeController = TextEditingController(text: "AYALHIGHSCHOOL");
+    zipCodeController = TextEditingController(text: widget.account!.zip);
+    groupCodeController = TextEditingController(text: widget.account!.groupCode);
+  }
+
+  @override
+  void dispose() {
+    firstNameController!.dispose();
+    lastNameController!.dispose();
+    emailController!.dispose();
+    passwordController!.dispose();
+    zipCodeController!.dispose();
+    groupCodeController!.dispose();
+    super.dispose();
   }
 
   @override
@@ -112,7 +131,17 @@ class _EditAccountState extends State<EditAccount> {
                             width: sizes.width * 0.42, height: getHeight() * 0.08,
                             text: 'Cancel', textColor: AppColors.pureWhiteColor,
                             btnColor: AppColors.borderColor),
-                        Button(onPress: (){}, width: sizes.width * 0.42, height: getHeight() * 0.08,
+                        Button(onPress: () async {
+                          await _accountController.editAccountInfo({
+                            Strings.firstName: firstNameController?.text,
+                            Strings.lastName: lastNameController?.text,
+                            Strings.email: emailController?.text,
+                            Strings.zip: zipCodeController?.text,
+                            Strings.groupCode: groupCodeController?.text,
+                          });
+                          Get.back();
+                        },
+                            width: sizes.width * 0.42, height: getHeight() * 0.08,
                             text: 'Update', textColor: AppColors.pureWhiteColor,
                             btnColor: AppColors.greenColor),
                       ],
