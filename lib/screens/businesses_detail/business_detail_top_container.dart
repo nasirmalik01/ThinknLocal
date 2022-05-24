@@ -21,6 +21,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
   final Function onPressBackArrow;
   final Function onPressFavoriteIcon;
   final Function()? onShareClick;
+  final Function()? onPhoneClick;
 
 
   const BusinessDetailTopContainer(
@@ -38,7 +39,8 @@ class BusinessDetailTopContainer extends StatelessWidget {
       required this.isFavorite,
       required this.onPressBackArrow,
       required this.onPressFavoriteIcon,
-      required this.onShareClick
+      required this.onShareClick,
+      this.onPhoneClick
       }) : super(key: key);
 
   @override
@@ -157,15 +159,18 @@ class BusinessDetailTopContainer extends StatelessWidget {
                                     )
                                 ),
                                 SizedBox(height: getHeight() * 0.005),
-                                SizedBox(
-                                    width: getWidth() * 0.65,
-                                    child:
-                                    TextView.headerWithBlurRadius(
-                                      phoneNumber?? "",
-                                      color: AppColors.pureWhiteColor,
-                                      lines: 1,
-                                      fontFamily: Assets.poppinsRegular,
-                                    )
+                                GestureDetector(
+                                  onTap: onPhoneClick,
+                                  child: SizedBox(
+                                      width: getWidth() * 0.65,
+                                      child:
+                                      TextView.headerWithBlurRadius(
+                                        phoneNumber?? "",
+                                        color: AppColors.pureWhiteColor,
+                                        lines: 1,
+                                        fontFamily: Assets.poppinsRegular,
+                                      )
+                                  ),
                                 ),
                               ],
                             ),

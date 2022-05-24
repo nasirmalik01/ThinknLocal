@@ -116,7 +116,7 @@ class _EditAccountState extends State<EditAccount> {
                     SizedBox(height: getHeight() * 0.03),
                     TextView.titleWithDecoration("Zip Code", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.01),
-                    TextFieldWidget(textEditingController: zipCodeController, hint: "Zip Code",),
+                    TextFieldWidget(textEditingController: zipCodeController, hint: "Zip Code", textInputType: TextInputType.number,),
                     SizedBox(height: getHeight() * 0.03),
                     TextView.titleWithDecoration("Group Code", color: AppColors.lightBlue, fontFamily: Assets.poppinsMedium),
                     SizedBox(height: getHeight() * 0.01),
@@ -132,6 +132,9 @@ class _EditAccountState extends State<EditAccount> {
                             text: 'Cancel', textColor: AppColors.pureWhiteColor,
                             btnColor: AppColors.borderColor),
                         Button(onPress: () async {
+                          if(zipCodeController!.text.length != 5){
+                            return showSnackBar(subTitle: 'Zip code should be 5 of digits');
+                          }
                           await _accountController.editAccountInfo({
                             Strings.firstName: firstNameController?.text,
                             Strings.lastName: lastNameController?.text,

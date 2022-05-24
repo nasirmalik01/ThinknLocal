@@ -196,7 +196,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                       child: NotificationCard(
                                           image: _notificationController.pendingContributionsList![index].receiptUrl,
                                           text: _notificationController.pendingContributionsList![index].business!.name,
-                                          subText: "${_notificationController.pendingContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
+                                          subText: "\$${_notificationController.pendingContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
                                           date: _notificationController.getTime(_notificationController.pendingContributionsList![index].receiptDate!),
                                           onPressNotification: () {}),
                                     )
@@ -233,7 +233,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                       child: NotificationCard(
                                           image: _notificationController.approvedContributionsList![index].receiptUrl,
                                           text: _notificationController.approvedContributionsList![index].business!.name,
-                                          subText: "${_notificationController.approvedContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
+                                          subText: "\$${_notificationController.approvedContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
                                           date: _notificationController.getTime(_notificationController.approvedContributionsList![index].receiptDate!),
                                           isSentReceipts: true,
                                           onPressNotification: () {}),

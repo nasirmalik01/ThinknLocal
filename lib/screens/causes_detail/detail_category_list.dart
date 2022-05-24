@@ -13,6 +13,7 @@ class DetailCategoryList extends StatelessWidget {
   final String? address;
   final String? phoneNumber;
   final Function onViewCourse;
+  final Function()? onPhoneClick;
 
   const DetailCategoryList(
       {Key? key,
@@ -22,7 +23,9 @@ class DetailCategoryList extends StatelessWidget {
       required this.onViewCourse,
       required this.image,
       required this.headerText,
-      required this.categoryPercent}) : super(key: key);
+      required this.categoryPercent,
+      this.onPhoneClick
+      }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -84,12 +87,15 @@ class DetailCategoryList extends StatelessWidget {
                         fontSize: sizes.fontSize12
                     ),
                     SizedBox(height: getHeight() * 0.01),
-                    TextView.subHeader(
-                      phoneNumber?? "",
-                      color: AppColors.grayColor,
-                      lines: 1,
-                      fontFamily: Assets.poppinsRegular,
-                      fontSize: sizes.fontSize11
+                    GestureDetector(
+                      onTap: onPhoneClick,
+                      child: TextView.subHeader(
+                        phoneNumber?? "",
+                        color: AppColors.grayColor,
+                        lines: 1,
+                        fontFamily: Assets.poppinsRegular,
+                        fontSize: sizes.fontSize11
+                      ),
                     ),
                     SizedBox(height: getHeight() * 0.008),
                     SizedBox(

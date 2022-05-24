@@ -20,6 +20,14 @@ class PushNotificationConfig{
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
+
+    await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation
+    <IOSFlutterLocalNotificationsPlugin>()?.requestPermissions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
     await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
@@ -46,6 +54,11 @@ class PushNotificationConfig{
                 playSound: true,
                 icon: Strings.mipmapIcLauncher,
               ),
+              iOS: const IOSNotificationDetails(
+                  presentSound: true,
+                  presentBadge: true,
+                  presentAlert: true
+              )
             ));
       }
    },);

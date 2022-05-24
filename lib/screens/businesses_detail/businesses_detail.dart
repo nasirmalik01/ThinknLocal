@@ -82,6 +82,9 @@ class BusinessesDetailScreen extends StatelessWidget {
                       onShareClick: (){
                         buildDynamicLinks(Strings.businesses, _id.toString());
                       },
+                      onPhoneClick: (){
+                        openPhoneDialPad(_businessDetailController.businessDetail!.phone.toString(), context);
+                      },
                   ),
                 ),
                 SizedBox(height: sizes.height * 0.01),

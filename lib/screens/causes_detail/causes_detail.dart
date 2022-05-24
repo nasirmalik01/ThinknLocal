@@ -348,7 +348,11 @@ class _CausesDetailState extends State<CausesDetail>
                                                     _causesDetailController
                                                         .causeBottomDetails![
                                                     index]
-                                                        .phone);
+                                                        .phone,
+                                                  onPhoneClick: (){
+                                                      openPhoneDialPad(_causesDetailController.causeBottomDetails![index].phone.toString(), context);
+                                                  },
+                                                );
                                               },
                                               separatorBuilder:
                                                   (BuildContext context,

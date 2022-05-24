@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
@@ -13,6 +15,9 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:sizer/sizer.dart';
+
 
 dependencyInjectionSetUp() async {
   /// To register a singleton class
@@ -85,7 +90,7 @@ buildDynamicLinks(String category, String id) async {
       minimumVersion: 0,
     ),
     iosParameters: const IOSParameters(
-      bundleId: "Bundle-ID",
+      bundleId: 'com.thinknlocal.Thinknlocal',
       minimumVersion: '0',
     ),
     socialMetaTagParameters: SocialMetaTagParameters(
@@ -113,4 +118,42 @@ Future<String> findAddress(UserLocation type) async {
   var placeMarkers = await placemarkFromCoordinates(type.latitude, type.longitude);
   var completeAddress = '${placeMarkers.first.street},${placeMarkers.first.locality},${placeMarkers.first.country}';
   return completeAddress;
+}
+
+openPhoneDialPad(String phone, BuildContext context) async {
+  try {
+    String number = phone.toString();
+    if (number == '') {
+      showDialogWidget(title: 'No Phone Number Found', context: context);
+    }
+    else {
+      await FlutterPhoneDirectCaller.callNumber(number);
+    }
+  }catch(e){
+    log("Error thrown: ${e.toString()}");
+  }
+}
+
+Future<dynamic> showDialogWidget({required BuildContext context, required String title}){
+  return Get.defaultDialog(
+      title: '',
+      content: Padding(
+        padding: EdgeInsets.only(bottom: 2.h),
+        child: Column(
+          children: [
+            TextView.title(title, color: Colors.black),
+            SizedBox(height: 3.h,),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.38,
+              height: MediaQuery.of(context).size.height * 0.06,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: TextView.subTitle('Okay', color: AppColors.pureWhiteColor,)),
+            ),
+          ],
+        ),
+      )
+  );
 }
