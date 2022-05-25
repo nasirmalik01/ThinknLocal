@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/model/businesses.dart';
-import 'package:flutter_app/model/causes.dart';
-import 'package:flutter_app/model/dummy/causess.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
 import 'package:get/get.dart';

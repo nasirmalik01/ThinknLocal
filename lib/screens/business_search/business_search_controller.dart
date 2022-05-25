@@ -1,9 +1,7 @@
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
-import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
-import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 

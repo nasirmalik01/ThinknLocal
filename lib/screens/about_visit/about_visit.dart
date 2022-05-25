@@ -1,17 +1,12 @@
 
-import 'dart:developer';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/dummy_data/about_visit.dart';
-import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
 import 'package:flutter_app/screens/about_visit/auto_complete_text_field.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/contribution_controller.dart';
-import 'package:flutter_app/screens/upload/uploading_failed/uploading_failed.dart';
-import 'package:flutter_app/screens/upload/uploading_success/uploading_success.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -19,7 +14,6 @@ import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../constants/assets.dart';
-import '../upload/uploading/uploading.dart';
 
 // ignore: must_be_immutable
 class AboutVisit extends StatelessWidget {

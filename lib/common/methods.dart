@@ -17,6 +17,7 @@ import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 dependencyInjectionSetUp() async {
@@ -156,4 +157,13 @@ Future<dynamic> showDialogWidget({required BuildContext context, required String
         ),
       )
   );
+}
+
+Future<void> launchInBrowser(Uri url) async {
+  if (!await launchUrl(
+    url,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw 'Could not launch $url';
+  }
 }

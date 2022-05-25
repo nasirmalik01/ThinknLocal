@@ -1,6 +1,7 @@
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/local/my_hive.dart';
+import 'package:flutter_app/model/cause_advertisement.dart';
 import 'package:flutter_app/model/cause_detail.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/model/causes_stats.dart';
@@ -80,6 +81,25 @@ class CausesRemoteRepository{
       _updateCauses.add(updateCausesItem);
     }
     return _updateCauses;
+  }
+
+  static Future<List<CauseAdvertisement>?> fetchCauseAdvertisements(int id) async {
+    List<CauseAdvertisement> _causeAdvertisements = [];
+    var location = MyHive.getLocation();
+    final response = await GetIt.I<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.advertisements}', {
+      Strings.latitude: location.latitude,
+      Strings.longitude: location.longitude,
+      Strings.corporate: true
+    });
+    if (response == null) {
+      return null;
+    }
+
+    final List<dynamic> _causeAdvertisementsList = response.map((item) => CauseAdvertisement.fromJson(item)).toList();
+    for(var _causeAdvertisementItem in _causeAdvertisementsList){
+      _causeAdvertisements.add(_causeAdvertisementItem);
+    }
+    return _causeAdvertisements;
   }
 
 }

@@ -16,6 +16,7 @@ class Strings {
   static const update = "Update";
   static const stats = "Stats";
   static const String featuredSponsors = "Featured Sponsors";
+  static const String corporateSponsors = "Corporate Sponsors";
   static const String trending = "trending";
   static const String favorites = "favorites";
   static const String past = "past";
@@ -39,6 +40,7 @@ class Strings {
   static const String upcomingCausesNearYou = "Upcoming causes near you";
   static const String businessesNearYou = "Businesses near you";
   static const String upcomingCauses = "Upcoming causes";
+  static const String nothing = '';
   static const String recentlyStarted = "Recently Started";
   static const String recentlyFundedBusinessCauses = "Recently funded causes";
   static const String pastFundedBusinessCauses = "Past funded causes";
@@ -106,7 +108,7 @@ class Strings {
   static const String and = 'and';
   static const String tryAgain = 'Try Again';
   static const String helloScan = 'Hello Scan';
-  static const String showingResultsFor = 'Showing results for"';
+  static const String showingResultsFor = 'Showing results for';
   static const String contributed = 'Contributed';
   static const String joined = 'Joined';
   static const String customerRatings = 'customer ratings';
@@ -148,7 +150,9 @@ class Strings {
   static const String noNotifications = 'There are no notifications';
   static const String noPendingReceipts = 'There are no pending receipts';
   static const String noSentReceipts = 'There are no sent receipts';
+  static const String corporate = 'corporate';
 
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";
+  static const String dummyLogoForDialog = "https://cdn.dribbble.com/users/24078/screenshots/15522433/media/e92e58ec9d338a234945ae3d3ffd5be3.jpg?compress=1&resize=400x300";
 }

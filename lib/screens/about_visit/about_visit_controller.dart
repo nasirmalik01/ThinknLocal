@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/causes.dart';

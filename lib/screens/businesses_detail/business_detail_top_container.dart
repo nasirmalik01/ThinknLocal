@@ -22,6 +22,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
   final Function onPressFavoriteIcon;
   final Function()? onShareClick;
   final Function()? onPhoneClick;
+  final Function()? onAddressClick;
 
 
   const BusinessDetailTopContainer(
@@ -40,7 +41,8 @@ class BusinessDetailTopContainer extends StatelessWidget {
       required this.onPressBackArrow,
       required this.onPressFavoriteIcon,
       required this.onShareClick,
-      this.onPhoneClick
+      this.onPhoneClick,
+      this.onAddressClick
       }) : super(key: key);
 
   @override
@@ -136,27 +138,35 @@ class BusinessDetailTopContainer extends StatelessWidget {
                                     TextView.titleWithBlurRadius(name ?? "", Assets.poppinsMedium, color: AppColors.pureWhiteColor,  lines: 1, blurRadius: 0)
                                 ),
                                 SizedBox(height: getHeight() * 0.001),
-                                SizedBox(
-                                    width: getWidth() * 0.65,
-                                    child:
-                                    TextView.headerWithBlurRadius(
-                                        streetAddress?? "",
-                                        color: AppColors.pureWhiteColor,
-                                        lines: 1,
-                                        fontFamily: Assets.poppinsRegular,
-                                        textDecoration: TextDecoration.underline
-                                    )
-                                ),
-                                SizedBox(
-                                    width: getWidth() * 0.65,
-                                    child:
-                                    TextView.headerWithBlurRadius(
-                                        address?? "",
-                                        color: AppColors.pureWhiteColor,
-                                        lines: 1,
-                                        fontFamily: Assets.poppinsRegular,
-                                        textDecoration: TextDecoration.underline
-                                    )
+                                GestureDetector(
+                                  onTap: onAddressClick,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                          width: getWidth() * 0.65,
+                                          child:
+                                          TextView.headerWithBlurRadius(
+                                              streetAddress?? "",
+                                              color: AppColors.pureWhiteColor,
+                                              lines: 1,
+                                              fontFamily: Assets.poppinsRegular,
+                                              textDecoration: TextDecoration.underline
+                                          )
+                                      ),
+                                      SizedBox(
+                                          width: getWidth() * 0.65,
+                                          child:
+                                          TextView.headerWithBlurRadius(
+                                              address?? "",
+                                              color: AppColors.pureWhiteColor,
+                                              lines: 1,
+                                              fontFamily: Assets.poppinsRegular,
+                                              textDecoration: TextDecoration.underline
+                                          )
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(height: getHeight() * 0.005),
                                 GestureDetector(

@@ -1,7 +1,5 @@
 import 'dart:developer';
-import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/constants/routes.dart';
@@ -12,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:http/http.dart' as http;
 
 
 class LogInController extends GetxController{
@@ -35,14 +32,12 @@ class LogInController extends GetxController{
   }
 
   loginWithApple() async {
-    final credential = await SignInWithApple.getAppleIDCredential(
+    await SignInWithApple.getAppleIDCredential(
       scopes: [
         AppleIDAuthorizationScopes.email,
         AppleIDAuthorizationScopes.fullName,
       ],
     );
-
-    print(credential);
   }
 
   void loginWithGoogle() async {

@@ -9,7 +9,6 @@ import 'package:flutter_app/screens/bottom_tab/businesses/business_tabs_containe
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_components.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/recently_added_business.dart';
-import 'package:flutter_app/screens/business_search/business_search.dart';
 import 'package:flutter_app/screens/businesses_categories/business_category.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
@@ -21,7 +20,6 @@ import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
-import '../../cause_search/cause_search.dart';
 
 
 class BusinessesScreen extends StatelessWidget {
@@ -69,7 +67,7 @@ class BusinessesScreen extends StatelessWidget {
                     TextView.titleWithDecoration(Strings.businessNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
                     GestureDetector(
                       onTap: () async {
-                         final result = await Get.toNamed(Routes.locationSearchScreen);
+                         await Get.toNamed(Routes.locationSearchScreen);
                         _businessesController.onInit();
                       },
                       child: Row(
@@ -173,7 +171,7 @@ class BusinessesScreen extends StatelessWidget {
                             bookName:  '',
                             streetAddress: _businessesController.businessList![index].address1,
                             address: _businessesController.businessList![index].address2,
-                            phoneNumber: _businessesController.businessList![index].phone.toString(),
+                            phoneNumber:  '+1 ${_businessesController.businessList![index].phone!.substring(0,3)} ${_businessesController.businessList![index].phone!.substring(4, )}',
                             index: index,
                             isFavorite: false,
                             onClickBox: () async {
@@ -246,7 +244,7 @@ class BusinessesScreen extends StatelessWidget {
                           itemBuilder: (context, index){
                             return GestureDetector(
                               onTap: (){
-                                Get.toNamed(Routes.businessDetailScreen, arguments: _businessesController.nearbyBusinessList![index].id);
+                                 Get.toNamed(Routes.businessDetailScreen, arguments: _businessesController.nearbyBusinessList![index].id);
                               },
                               child: BusinessNearBy(
                                   image:  _businessesController.nearbyBusinessList![index].image ?? Strings.dummyBgImage,
@@ -254,7 +252,7 @@ class BusinessesScreen extends StatelessWidget {
                                   onViewCourse: (){},
                                   address: _businessesController.nearbyBusinessList![index].address1,
                                   streetAddress: _businessesController.nearbyBusinessList![index].address2 ?? Strings.unknown,
-                                  phoneNumber: _businessesController.nearbyBusinessList![index].phone.toString()
+                                  phoneNumber: '+1 ${_businessesController.nearbyBusinessList![index].phone!.substring(0,3)} ${_businessesController.nearbyBusinessList![index].phone!.substring(4, )}',
                               ),
                             );
                           }, separatorBuilder: (BuildContext context, int index) {
@@ -268,11 +266,10 @@ class BusinessesScreen extends StatelessWidget {
                   )
                 ],
               ),
-
             ],
           ),
-        ),)
-
+        ),
+       ),
       ),
     );
   }

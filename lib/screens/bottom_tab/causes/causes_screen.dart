@@ -4,7 +4,6 @@ import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_category_screen.dart';
-import 'package:flutter_app/screens/cause_search/cause_search.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/network_error.dart';
@@ -58,7 +57,7 @@ class CausesScreen extends StatelessWidget{
                   TextView.titleWithDecoration(Strings.showingCausesNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
                   GestureDetector(
                     onTap: () async {
-                      final result = await Get.toNamed(Routes.locationSearchScreen);
+                      await Get.toNamed(Routes.locationSearchScreen);
                       _causesController.onInit();
                     },
                     child: Row(

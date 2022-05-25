@@ -1,7 +1,7 @@
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
+import 'package:flutter_app/model/cause_advertisement.dart';
 import 'package:flutter_app/model/cause_detail.dart';
-import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/model/causes_stats.dart';
 import 'package:flutter_app/model/follows.dart';
 import 'package:flutter_app/model/update_causes.dart';
@@ -21,6 +21,7 @@ class CausesDetailController extends GetxController {
   List<Businesses>? causeBottomDetails = [];
   List<Businesses>? causeFeaturedList = [];
   List<UpdateCauses>? updatedCausesList = [];
+  List<CauseAdvertisement>? causeAdvertisementList = [];
   Follows? follows;
   RxBool isLoading = false.obs;
   RxBool isBottomTabLoading = false.obs;
@@ -28,6 +29,7 @@ class CausesDetailController extends GetxController {
   RxBool isCauseBottomLoading = false.obs;
   RxBool isFeaturedLoading = false.obs;
   RxBool isCauseUpdate = false.obs;
+  RxBool isCauseAdvertisementLoading = false.obs;
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
   RxBool isCauseFollowed = false.obs;
@@ -136,4 +138,9 @@ class CausesDetailController extends GetxController {
     isCauseUpdate.value = false;
   }
 
+  getCauseAdvertisements(int id) async {
+    isCauseAdvertisementLoading.value = true;
+    causeAdvertisementList =  await CausesRemoteRepository.fetchCauseAdvertisements(id);
+    isCauseAdvertisementLoading.value = false;
+  }
 }

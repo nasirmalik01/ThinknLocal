@@ -14,6 +14,8 @@ class DetailCategoryList extends StatelessWidget {
   final String? phoneNumber;
   final Function onViewCourse;
   final Function()? onPhoneClick;
+  final Function()? onAddressClick;
+  final Function()? onShowRestrictionsTap;
 
   const DetailCategoryList(
       {Key? key,
@@ -24,7 +26,9 @@ class DetailCategoryList extends StatelessWidget {
       required this.image,
       required this.headerText,
       required this.categoryPercent,
-      this.onPhoneClick
+      this.onPhoneClick,
+      this.onAddressClick,
+      this.onShowRestrictionsTap
       }) : super(key: key);
 
   @override
@@ -70,21 +74,29 @@ class DetailCategoryList extends StatelessWidget {
                         ),
                       ],
                     ),
-                    TextView.subHeader(
-                        streetAddress?? "",
-                        color: AppColors.lightBlack,
-                        lines: 1,
-                        fontFamily: Assets.poppinsRegular,
-                        textDecoration: TextDecoration.underline,
-                        fontSize: sizes.fontSize12
-                    ),
-                    TextView.subHeader(
-                        address?? "",
-                        color: AppColors.lightBlack,
-                        lines: 1,
-                        fontFamily: Assets.poppinsRegular,
-                        textDecoration: TextDecoration.underline,
-                        fontSize: sizes.fontSize12
+                    GestureDetector(
+                      onTap: onAddressClick,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextView.subHeader(
+                              streetAddress?? "",
+                              color: AppColors.lightBlack,
+                              lines: 1,
+                              fontFamily: Assets.poppinsRegular,
+                              textDecoration: TextDecoration.underline,
+                              fontSize: sizes.fontSize12
+                          ),
+                          TextView.subHeader(
+                              address?? "",
+                              color: AppColors.lightBlack,
+                              lines: 1,
+                              fontFamily: Assets.poppinsRegular,
+                              textDecoration: TextDecoration.underline,
+                              fontSize: sizes.fontSize12
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: getHeight() * 0.01),
                     GestureDetector(
@@ -98,16 +110,19 @@ class DetailCategoryList extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: getHeight() * 0.008),
-                    SizedBox(
-                        width: getWidth() * 0.45,
-                        child: TextView.subHeader(
-                            "* some restrictions apply",
-                            color: AppColors.orangeColor,
-                            lines: 1,
-                            fontFamily: Assets.poppinsRegular,
-                            textDecoration: TextDecoration.underline,
-                            fontSize: sizes.fontSize12
-                        )
+                    GestureDetector(
+                      onTap: onShowRestrictionsTap,
+                      child: SizedBox(
+                          width: getWidth() * 0.45,
+                          child: TextView.subHeader(
+                              "* some restrictions apply",
+                              color: AppColors.orangeColor,
+                              lines: 1,
+                              fontFamily: Assets.poppinsRegular,
+                              textDecoration: TextDecoration.underline,
+                              fontSize: sizes.fontSize12
+                          )
+                      ),
                     ),
                   ],
                 ),

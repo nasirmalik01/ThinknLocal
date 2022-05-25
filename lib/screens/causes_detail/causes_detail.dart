@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widgets/custom_dialog.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/dummy_data/causes_detail.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_controller.dart';
+import 'package:flutter_app/screens/causes_detail/corporate_sponsor.dart';
 import 'package:flutter_app/screens/causes_detail/detail_category_list.dart';
 import 'package:flutter_app/screens/causes_detail/featured_sponsors.dart';
 import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
@@ -14,6 +16,7 @@ import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:sizer/sizer.dart';
 import '/common/methods.dart';
 import '/constants/assets.dart';
@@ -56,7 +59,7 @@ class _CausesDetailState extends State<CausesDetail>
                   _causesDetailController.isError.value = false;
                   getCauseDetail(_id);
                 })
-                : (_causesDetailController.isLoading.value || _causesDetailController.isStatsLoading.value || _causesDetailController.isCauseBottomLoading.value || _causesDetailController.isFeaturedLoading.value)
+                : (_causesDetailController.isLoading.value || _causesDetailController.isStatsLoading.value || _causesDetailController.isCauseBottomLoading.value || _causesDetailController.isFeaturedLoading.value || _causesDetailController.isCauseAdvertisementLoading.value)
                 ? circularProgressIndicator()
                 : SingleChildScrollView(
                   child: Container(
@@ -175,71 +178,97 @@ class _CausesDetailState extends State<CausesDetail>
                                                 .causeDetail!.description
                                                 .toString()),
                                       ),
-                                      SizedBox(height: sizes.height * 0.045),
-
-                                      ///FeaturedSponsors
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: sizes.width * 0.06),
-                                        child: TextView.titleWithDecoration(
-                                            Strings.featuredSponsors,
-                                            color: AppColors.blackColor,
-                                            fontFamily: Assets.poppinsMedium,
-                                            fontSize: sizes.fontSize17),
-                                      ),
-                                      SizedBox(height: getHeight() * 0.01),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          left: getWidth() * 0.06,
-                                        ),
-                                        child: SizedBox(
-                                          height: getHeight() * 0.16,
-                                          child: Obx(() => _causesDetailController
-                                              .isFeaturedLoading.value
-                                              ? circularProgressIndicator()
-                                              : _causesDetailController.causeFeaturedList!.isNotEmpty
-                                              ? ListView.builder(
-                                            scrollDirection:
-                                            Axis.horizontal,
-                                            shrinkWrap: true,
-                                            itemCount:
-                                            _causesDetailController
-                                                .causeFeaturedList!
-                                                .length,
-                                            itemBuilder: (context, index) {
-                                              return FeaturedSponsors(
-                                                name:
-                                                _causesDetailController
-                                                    .causeFeaturedList![
-                                                index]
-                                                    .name,
-                                                image:
-                                                _causesDetailController
-                                                    .causeFeaturedList![
-                                                index]
-                                                    .image,
-                                                logoImage:
-                                                _causesDetailController
-                                                    .causeFeaturedList![
-                                                index]
-                                                    .logo,
-                                                givingBack:
-                                                _causesDetailController
-                                                    .causeFeaturedList![
-                                                index]
-                                                    .contributionAmount,
-                                                onPressFullContainer: () {},
+                                      SizedBox(height: sizes.height * 0.04),
+                                      ///Corporate Sponsors
+                                      _causesDetailController.causeAdvertisementList!.isNotEmpty
+                                          ? GestureDetector(
+                                            onTap: (){
+                                              customDialog(
+                                                title: _causesDetailController.causeAdvertisementList![0].headline,
+                                                summary: _causesDetailController.causeAdvertisementList![0].summary,
+                                                backgroundImage: _causesDetailController.causeAdvertisementList![0].business!.image!,
+                                                icon: _causesDetailController.causeAdvertisementList![0].business!.logo!,
+                                                description: _causesDetailController.causeAdvertisementList![0].business!.description!,
+                                                onClickLearnMore: (){
+                                                  Get.back();
+                                                  launchInBrowser(Uri.parse(_causesDetailController.causeAdvertisementList![0].url!));
+                                                }
                                               );
                                             },
-                                          )
-                                          : handleEmptyState(context, Strings.noFeaturedSponsors)),
-                                        ),
-                                      ),
+                                            child: CorporateSponsor(
+                                                backgroundImage: _causesDetailController.causeAdvertisementList![0].business!.image!,
+                                                  icon: _causesDetailController.causeAdvertisementList![0].business!.logo!,
+                                                  title: _causesDetailController.causeAdvertisementList![0].headline!,
+                                                  summary: _causesDetailController.causeAdvertisementList![0].summary!,
+                                       ),
+                                          ) : const SizedBox(),
 
-                                      ///end of FeaturedSponsors
-                                      SizedBox(height: sizes.height * 0.04),
+                                      ///Featured Sponsors
+                                      _causesDetailController.causeFeaturedList!.isNotEmpty
+                                       ?  Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: sizes.width * 0.06),
+                                            child: TextView.titleWithDecoration(
+                                                Strings.featuredSponsors,
+                                                color: AppColors.blackColor,
+                                                fontFamily: Assets.poppinsMedium,
+                                                fontSize: sizes.fontSize17),
+                                          ),
+                                          SizedBox(height: getHeight() * 0.01),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: getWidth() * 0.06,
+                                            ),
+                                            child: SizedBox(
+                                              height: getHeight() * 0.16,
+                                              child: Obx(() => _causesDetailController
+                                                  .isFeaturedLoading.value
+                                                  ? circularProgressIndicator()
+                                                  : ListView.builder(
+                                                scrollDirection:
+                                                Axis.horizontal,
+                                                shrinkWrap: true,
+                                                itemCount:
+                                                _causesDetailController
+                                                    .causeFeaturedList!
+                                                    .length,
+                                                itemBuilder: (context, index) {
+                                                  return FeaturedSponsors(
+                                                    name:
+                                                    _causesDetailController
+                                                        .causeFeaturedList![
+                                                    index]
+                                                        .name,
+                                                    image:
+                                                    _causesDetailController
+                                                        .causeFeaturedList![
+                                                    index]
+                                                        .image,
+                                                    logoImage:
+                                                    _causesDetailController
+                                                        .causeFeaturedList![
+                                                    index]
+                                                        .logo,
+                                                    givingBack:
+                                                    _causesDetailController
+                                                        .causeFeaturedList![
+                                                    index]
+                                                        .contributionAmount,
+                                                    onPressFullContainer: () {},
+                                                  );
+                                                },
+                                              )
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: sizes.height * 0.04),
+                                        ],
+                                      )
+                                       : const SizedBox(),
 
-                                      ///child tabview => Food & drink
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: sizes.width * 0.06),
@@ -344,14 +373,16 @@ class _CausesDetailState extends State<CausesDetail>
                                                     index]
                                                         .address2 ??
                                                         Strings.unknown,
-                                                    phoneNumber:
-                                                    _causesDetailController
-                                                        .causeBottomDetails![
-                                                    index]
-                                                        .phone,
+                                                    phoneNumber: '+1 ${_causesDetailController.causeBottomDetails![index].phone!.substring(0,3)} ${_causesDetailController.causeBottomDetails![index].phone!.substring(4, )}',
                                                   onPhoneClick: (){
-                                                      openPhoneDialPad(_causesDetailController.causeBottomDetails![index].phone.toString(), context);
+                                                      openPhoneDialPad('+1${_causesDetailController.causeBottomDetails![index].phone.toString()}', context);
                                                   },
+                                                  onAddressClick: (){
+                                                    MapsLauncher.launchCoordinates(_causesDetailController.causeBottomDetails![index].latitude!, _causesDetailController.causeBottomDetails![index].longitude!);
+                                                  },
+                                                  onShowRestrictionsTap: (){
+                                                      customDialog();
+                                                  }
                                                 );
                                               },
                                               separatorBuilder:
@@ -575,5 +606,6 @@ class _CausesDetailState extends State<CausesDetail>
     _causesDetailController.getCauseFeatured(_id);
     _causesDetailController.getFollowCause(_id);
     _causesDetailController.getUpdatedCauses(_id);
+    _causesDetailController.getCauseAdvertisements(_id);
 }
 }

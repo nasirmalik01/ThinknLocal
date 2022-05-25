@@ -15,4 +15,5 @@ class ApiEndPoints{
   static const uploadContributions = 'contributions/direct_upload';
   static const resetPassword = 'password_reset';
   static const resetPin = 'password_reset/verify';
+  static const advertisements = 'advertisements';
 }

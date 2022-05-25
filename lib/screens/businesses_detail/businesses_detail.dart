@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
-import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/businesses_detail/business_detail_controller.dart';
@@ -18,6 +17,7 @@ import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
@@ -69,7 +69,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                       joinDate: _businessDetailController.businessDetail!.createdAt.toString(),
                       streetAddress: _businessDetailController.businessDetail!.address2,
                       address: _businessDetailController.businessDetail!.address1,
-                      phoneNumber: _businessDetailController.businessDetail!.phone.toString(),
+                      phoneNumber: '+1 ${_businessDetailController.businessDetail!.phone!.substring(0,3)} ${_businessDetailController.businessDetail!.phone!.substring(4, )}',
                       isFavorite: _businessDetailController.isBusinessFollowed.value,
                       onClickBox: (){},
                       onPressBackArrow: () {
@@ -83,8 +83,11 @@ class BusinessesDetailScreen extends StatelessWidget {
                         buildDynamicLinks(Strings.businesses, _id.toString());
                       },
                       onPhoneClick: (){
-                        openPhoneDialPad(_businessDetailController.businessDetail!.phone.toString(), context);
+                        openPhoneDialPad('+1${_businessDetailController.businessDetail!.phone.toString()}', context);
                       },
+                     onAddressClick: (){
+                        MapsLauncher.launchCoordinates(_businessDetailController.businessDetail!.latitude!, _businessDetailController.businessDetail!.longitude!);
+                     },
                   ),
                 ),
                 SizedBox(height: sizes.height * 0.01),
@@ -151,7 +154,9 @@ class BusinessesDetailScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: sizes.height * 0.03),
-                          Column(
+
+                          _businessDetailController.recentlyFundedBusinessCausesList!.isNotEmpty
+                           ? Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
@@ -160,8 +165,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: getHeight() * 0.01),
-                                child: _businessDetailController.recentlyFundedBusinessCausesList!.isNotEmpty
-                                  ? SizedBox(
+                                child: SizedBox(
                                   height: getHeight()*0.18,
                                   child:ListView.builder(
                                     scrollDirection: Axis.horizontal,
@@ -198,54 +202,61 @@ class BusinessesDetailScreen extends StatelessWidget {
                                     },
                                   ),
                                 )
-                                : handleEmptyState(context, Strings.noRecentFundedCauses),
+                              ),
+                              SizedBox(height: sizes.height * 0.03),
+                            ],
+                          )
+                           : const SizedBox(),
+
+                          _businessDetailController.pastFundedBusinessCausesList!.isNotEmpty
+                           ? Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
+                                child: CommonWidgets.getTextWithSeeAll(
+                                    leadingText: Strings.pastFundedCauses,
+                                    trailingText: Strings.seeAll,
+                                    onPressSeeAllButton: () {
+                                      Get.to(() => DetailScreen(title: Strings.pastFundedBusinessCauses, detailList: _businessDetailController.pastFundedBusinessCausesList as dynamic));
+                                    }
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06, vertical: getHeight() * 0.005),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: sizes.height * 0.01),
+                                     ListView.separated(
+                                      scrollDirection: Axis.vertical,
+                                      shrinkWrap: true,
+                                      physics: const ScrollPhysics(),
+                                      itemCount: _businessDetailController.pastFundedBusinessCausesList!.length > 4 ? 4 : _businessDetailController.pastFundedBusinessCausesList!.length,
+                                      itemBuilder: (context, index){
+                                        return UpcomingCauses(
+                                            image:  _businessDetailController.pastFundedBusinessCausesList![index].image,
+                                            headerText: _businessDetailController.pastFundedBusinessCausesList![index].name,
+                                            description:  _businessDetailController.pastFundedBusinessCausesList![index].description,
+                                            onViewCourse: (){},
+                                            totalAmount: _businessDetailController.pastFundedBusinessCausesList![index].goal.toString(),
+                                            date: _businessDetailController.pastFundedBusinessCausesList![index].start
+                                        );
+
+                                      }, separatorBuilder: (BuildContext context, int index) {
+                                      return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                                    },
+                                    ),
+                                    SizedBox(height: getHeight() * 0.03),
+                                  ],
+                                ),
                               ),
                             ],
-                          ),
-                          SizedBox(height: sizes.height * 0.03),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
-                            child: CommonWidgets.getTextWithSeeAll(
-                                leadingText: Strings.pastFundedCauses,
-                                trailingText: Strings.seeAll,
-                                onPressSeeAllButton: () {
-                                  Get.to(() => DetailScreen(title: Strings.pastFundedBusinessCauses, detailList: _businessDetailController.pastFundedBusinessCausesList as dynamic));
-                                }
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06, vertical: getHeight() * 0.005),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: sizes.height * 0.01),
-                                _businessDetailController.pastFundedBusinessCausesList!.isNotEmpty
-                                ? ListView.separated(
-                                  scrollDirection: Axis.vertical,
-                                  shrinkWrap: true,
-                                  physics: const ScrollPhysics(),
-                                  itemCount: _businessDetailController.pastFundedBusinessCausesList!.length > 4 ? 4 : _businessDetailController.pastFundedBusinessCausesList!.length,
-                                  itemBuilder: (context, index){
-                                    return UpcomingCauses(
-                                        image:  _businessDetailController.pastFundedBusinessCausesList![index].image,
-                                        headerText: _businessDetailController.pastFundedBusinessCausesList![index].name,
-                                        description:  _businessDetailController.pastFundedBusinessCausesList![index].description,
-                                        onViewCourse: (){},
-                                        totalAmount: _businessDetailController.pastFundedBusinessCausesList![index].goal.toString(),
-                                        date: _businessDetailController.pastFundedBusinessCausesList![index].start
-                                    );
-
-                                  }, separatorBuilder: (BuildContext context, int index) {
-                                  return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
-                                },
-                                )
-                                : handleEmptyState(context, Strings.noPastFundedCauses),
-                                SizedBox(height: getHeight() * 0.03),
-                              ],
-                            ),
-                          ),
+                          )
+                           : const SizedBox()
                         ],
                       ),
+                      /// End of businesses overview
+
                       _businessDetailController.isLoading.value ? Padding(
                         padding: EdgeInsets.only(top: getHeight()*0.1),
                         child: Wrap(

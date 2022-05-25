@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/dummy_data/location.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/local/user_location.dart';
 import 'package:flutter_app/screens/location_search/get_cities.dart';

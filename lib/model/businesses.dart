@@ -19,6 +19,8 @@ class Businesses {
   double? rating;
   double? totalContributions;
   String? createdAt;
+  double? latitude;
+  double? longitude;
 
   Businesses(
       {this.id,
@@ -38,7 +40,10 @@ class Businesses {
         this.contributionAmountMax,
         this.rating,
         this.totalContributions,
-        this.createdAt});
+        this.createdAt,
+        this.latitude,
+        this.longitude
+      });
 
   Businesses.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -61,6 +66,8 @@ class Businesses {
     rating = json['rating'];
     totalContributions = json['total_contributions'];
     createdAt = json['created_at'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
   }
 
   Map<String, dynamic> toJson() {
@@ -85,6 +92,8 @@ class Businesses {
     data['rating'] = rating;
     data['total_contributions'] = totalContributions;
     data['created_at'] = createdAt;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
     return data;
   }
 }

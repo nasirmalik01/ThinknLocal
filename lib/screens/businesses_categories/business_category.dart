@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/dummy_data/business_category.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_nearby.dart';
 import 'package:flutter_app/screens/businesses_categories/business_category_controller.dart';
 import 'package:get/get.dart';
