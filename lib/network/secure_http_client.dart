@@ -11,7 +11,7 @@ class MySecureHttpClient {
       BaseOptions(
         baseUrl: Strings.baseUrl,
         headers: {
-          'Authorization': MyHive.getToken(),
+          'Authorization': Strings.testingToken,
         },
         responseType: ResponseType.plain,
       ),
@@ -19,6 +19,20 @@ class MySecureHttpClient {
   }
 
   static Dio getInsecureClient() {
-    return insecureClient ??= Dio(BaseOptions(baseUrl: 'https://staging-api.thinknlocal.com/v2/'));
+    return insecureClient ??=
+        Dio(BaseOptions(baseUrl: 'https://staging-api.thinknlocal.com/v2/'));
+  }
+
+  static Dio getTestingClient() {
+    var testCliecnt = Dio(
+      BaseOptions(
+        baseUrl: Strings.baseUrl,
+        headers: {
+          'Authorization': Strings.testingToken,
+        },
+        responseType: ResponseType.plain,
+      ),
+    );
+    return testCliecnt;
   }
 }

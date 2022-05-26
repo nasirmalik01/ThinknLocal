@@ -1,22 +1,15 @@
+import 'package:flutter_app/network/remote_repositories/auth_repository.dart';
 import 'package:get/get.dart';
-import 'package:get_it/get_it.dart';
 import '/common/methods.dart';
 import '/constants/colors.dart';
 import '/constants/routes.dart';
-import '/network/remote_services.dart';
 
 class ResetPasswordController extends GetxController {
   Future resetPassword(String? email) async {
-    final response =
-        await GetIt.I<RemoteServices>().postRequest('password_reset', {
-      'email': email,
-    });
-
-    /// if any Exception occurs
+    final response = await AuthRepository.resetPassword(email: email!);
     if (response == null) {
       return;
     }
-
     await showSnackBar(
         title: 'Reset Code Sent', backgroundColor: AppColors.greenColor);
     Get.offAndToNamed(

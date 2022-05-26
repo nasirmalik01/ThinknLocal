@@ -13,13 +13,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   String? token = await FirebaseMessaging.instance.getToken();
   debugPrint('FCM TOKEN: ${token.toString()}');
-  FirebaseMessaging.onBackgroundMessage(PushNotificationConfig.handleBackgroundPushNotifications);
+  FirebaseMessaging.onBackgroundMessage(
+      PushNotificationConfig.handleBackgroundPushNotifications);
   PushNotificationConfig.initNotifications();
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   SystemChromeConfig.setOverLayStyle();
   SystemChromeConfig.setOrientation();
@@ -34,21 +35,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return Sizer(
-      builder: (BuildContext context, Orientation orientation, DeviceType deviceType) {
+      builder: (BuildContext context, Orientation orientation,
+          DeviceType deviceType) {
         return GetMaterialApp(
-            builder: (BuildContext context, child) {
-              final mediaQueryData = MediaQuery.of(context);
-              final scale = mediaQueryData.textScaleFactor.clamp(1.0, 1.07);
-              return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(textScaleFactor: scale),
-                  child: child!);
-            },
-            debugShowCheckedModeBanner: false,
-            title: Strings.thinkLocal,
-            unknownRoute: Routes.getUnknownRoute(),
-            initialRoute: Routes.getInitialRoute(),
-            getPages: Routes.getPages(),
+          builder: (BuildContext context, child) {
+            final mediaQueryData = MediaQuery.of(context);
+            final scale = mediaQueryData.textScaleFactor.clamp(1.0, 1.07);
+            return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: scale),
+                child: child!);
+          },
+          debugShowCheckedModeBanner: false,
+          title: Strings.thinkLocal,
+          unknownRoute: Routes.getUnknownRoute(),
+          initialRoute: Routes.getInitialRoute(),
+          getPages: Routes.getPages(),
         );
       },
     );

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/config/aws_service.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/widgets/button.dart';
@@ -12,9 +13,9 @@ import '../../../res/res.dart';
 class ImagePreviewScreen extends StatefulWidget {
   const ImagePreviewScreen(
       {Key? key,
-        required this.notSaveImage,
-        required this.saveImage,
-        required this.image})
+      required this.notSaveImage,
+      required this.saveImage,
+      required this.image})
       : super(key: key);
   final XFile image;
   final Function saveImage;
@@ -25,7 +26,6 @@ class ImagePreviewScreen extends StatefulWidget {
 }
 
 class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -42,8 +42,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                   image: DecorationImage(
                       image: FileImage(File(widget.image.path)),
                       fit: BoxFit.contain),
-                )
-            ),
+                )),
             Container(
               width: getWidth(),
               height: getHeight(),
@@ -52,20 +51,16 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                 border: Border(
                   top: BorderSide(
                       color: Colors.black.withOpacity(0.3),
-                      width: getWidth() * 0.15
-                  ),
+                      width: getWidth() * 0.15),
                   bottom: BorderSide(
                       color: Colors.black.withOpacity(0.3),
-                      width: getWidth() * 0.42
-                  ),
+                      width: getWidth() * 0.42),
                   right: BorderSide(
                       color: Colors.black.withOpacity(0.3),
-                      width: getWidth() * 0.06
-                  ),
+                      width: getWidth() * 0.06),
                   left: BorderSide(
                       color: Colors.black.withOpacity(0.3),
-                      width: getWidth() * 0.06
-                  ),
+                      width: getWidth() * 0.06),
                 ),
               ),
             ),
@@ -84,8 +79,10 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                         onPress: () {
                           widget.notSaveImage.call();
                         },
-                        width: sizes.width * 0.4, height: getHeight() * 0.08,
-                        text: Strings.tryAgain, btnColor: AppColors.darkGrey),
+                        width: sizes.width * 0.4,
+                        height: getHeight() * 0.08,
+                        text: Strings.tryAgain,
+                        btnColor: AppColors.darkGrey),
                     SizedBox(
                       width: getWidth() * .05,
                     ),
@@ -98,25 +95,29 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                           //   Strings.checksum: 1234,
                           // };
                           // await _contributionController.uploadDirectContributions(_query);
-                          Get.toNamed(Routes.aboutVisit, arguments:  widget.image);
+                          await AWSService()
+                              .uploadFile(File(widget.image.path));
+                          // Get.toNamed(Routes.aboutVisit, arguments:  widget.image);
                         },
-                        width: sizes.width * 0.4, height: getHeight() * 0.08,
-                        text: Strings.looksGood, btnColor: AppColors.greenColor),
+                        width: sizes.width * 0.4,
+                        height: getHeight() * 0.08,
+                        text: Strings.looksGood,
+                        btnColor: AppColors.greenColor),
                   ],
                 ),
               ),
             ),
             cameraLabel(),
             Positioned(
-              top: getHeight()*0.087,
-              right: getWidth()*0.07,
+              top: getHeight() * 0.087,
+              right: getWidth() * 0.07,
               child: GestureDetector(
                 onTap: () {
                   widget.notSaveImage.call();
                 },
                 child: SizedBox(
-                  height: getHeight()*0.05,
-                  width: getHeight()*0.05,
+                  height: getHeight() * 0.05,
+                  width: getHeight() * 0.05,
                   child: const Image(
                     image: AssetImage(Assets.cancelIcon),
                   ),
@@ -128,6 +129,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
       ),
     );
   }
+
   Widget cameraLabel() {
     return Positioned(
       bottom: getHeight() * 0.13,
@@ -183,8 +185,7 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                               fontFamily: Assets.poppinsRegular,
                             ),
                           ),
-                        ]
-                    ),
+                        ]),
                   ),
                 ),
               ],

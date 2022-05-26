@@ -6,6 +6,7 @@ import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
+import 'package:flutter_app/screens/dummy.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
 import 'package:flutter_app/screens/location_permission/location_permission_screen.dart';
 import 'package:flutter_app/screens/location_search/location_search.dart';
@@ -28,7 +29,8 @@ class Routes {
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String resetPinScreen = '/resetPinScreen';
   static const String newPasswordScreen = '/newPasswordScreen';
-  static const String resetPasswordSuccessScreen = '/resetPasswordSuccessScreen';
+  static const String resetPasswordSuccessScreen =
+      '/resetPasswordSuccessScreen';
   static const String editAccountInfoScreen = '/editAccountInfoScreen';
   static const String bottomNavBarScreen = '/bottomNavBarScreen';
   static const String causeScreen = '/causeScreen';
@@ -36,13 +38,16 @@ class Routes {
   static const String causesDetailScreen = '/causesDetailScreen';
   static const String businessDetailScreen = '/businessDetailScreen';
   static const String businessCategoryScreen = '/businessCategoryScreen';
-  static const String seeAllUpcomingCausesScreen = '/seeAllUpcomingCausesScreen';
-  static const String seeAllNearbyBusinessesScreen = '/seeAllNearbyBusinessesScreen';
+  static const String seeAllUpcomingCausesScreen =
+      '/seeAllUpcomingCausesScreen';
+  static const String seeAllNearbyBusinessesScreen =
+      '/seeAllNearbyBusinessesScreen';
   static const String locationPermissionScreen = '/locationPermissionScreen';
-  static const String notificationPermissionScreen = '/notificationPermissionScreen';
+  static const String notificationPermissionScreen =
+      '/notificationPermissionScreen';
   static const String locationSearchScreen = '/locationSearchScreen';
   static const String aboutVisit = '/aboutVisit';
-
+  static const String dummyRoute = '/dummyRoute';
 
   static getUnknownRoute() {
     return GetPage(
@@ -58,6 +63,10 @@ class Routes {
 
   static getPages() {
     return [
+      GetPage(
+        name: dummyRoute,
+        page: () => const Dummy(),
+      ),
       GetPage(
         name: onBoardingScreen,
         page: () => const OnBoardingPage(),
@@ -91,8 +100,10 @@ class Routes {
         page: () => const EditAccount(),
       ),
       GetPage(
-          name: bottomNavBarScreen,
-          page: () => const BottomTabNew(pageIndex: 0,),
+        name: bottomNavBarScreen,
+        page: () => const BottomTabNew(
+          pageIndex: 0,
+        ),
       ),
       GetPage(
         name: causeScreen,

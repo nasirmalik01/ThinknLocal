@@ -1,4 +1,5 @@
 import 'dart:async' show Future;
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/constants/colors.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_app/res/res.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferenceUtils {
-
   static Future<SharedPreferences> get _instance async =>
       _prefsInstance ??= await SharedPreferences.getInstance();
   static SharedPreferences? _prefsInstance;
@@ -48,7 +48,7 @@ class PreferenceUtils {
     return _prefsInstance?.getInt(key) ?? defValue ?? 0;
   }
 
-  static List<Color> getGradient(){
+  static List<Color> getGradient() {
     return [
       AppColors.lightGreenColor,
       AppColors.pureWhiteColor,
@@ -89,7 +89,6 @@ class PreferenceUtils {
               width: getWidth() * 0.05,
               color: AppColors.greenColor,
               borderRadius: const BorderRadius.all(Radius.zero)),
-
         ],
       ),
       BarChartGroupData(
@@ -123,5 +122,17 @@ class PreferenceUtils {
         ],
       ),
     ];
+  }
+
+  static String getImgExtension(String url) {
+    String type = 'image';
+    if (url.endsWith('.png')) {
+      type = type + '/' + 'png';
+    } else if (url.endsWith('.jpg')) {
+      type = type + '/' + 'jpeg';
+    } else if (url.endsWith('.jpeg')) {
+      type = type + '/' + 'jpeg';
+    }
+    return type;
   }
 }
