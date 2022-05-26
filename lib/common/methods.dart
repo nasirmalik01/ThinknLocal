@@ -6,6 +6,8 @@ import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/local/user_location.dart';
+import 'package:flutter_app/model/cities.dart';
+import 'package:flutter_app/network/remote_repositories/location_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
@@ -113,6 +115,20 @@ Future<String> getUserLocationAddress() async {
     return _address;
   }
   return '';
+}
+
+Future<Cities?> getLowestDistanceCity() async {
+  Cities? _lowestDistanceCity;
+  List<Cities> citiesList = [];
+  var location = MyHive.getLocation();
+  citiesList = await LocationRepository.fetchCities({Strings.latitude:  location.latitude, Strings.longitude: location.longitude}) ?? [];
+  double _distance = citiesList[0].distance ?? 0.0;
+  for(Cities city in citiesList){
+    if(city.distance! <= _distance){
+      _lowestDistanceCity = city;
+    }
+  }
+  return _lowestDistanceCity;
 }
 
 Future<String> findAddress(UserLocation type) async {

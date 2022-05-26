@@ -1,6 +1,7 @@
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
+import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
@@ -95,6 +96,7 @@ class BusinessesController extends GetxController{
 
 
   getLocationAddress() async {
-    locationAddress.value = await getUserLocationAddress();
+    Cities? _lowestDistanceCity = await getLowestDistanceCity();
+    locationAddress.value = _lowestDistanceCity?.name ?? Strings.noLocation;
   }
 }

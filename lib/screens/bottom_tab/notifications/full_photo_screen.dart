@@ -23,7 +23,6 @@ class FullPhoto extends StatelessWidget {
                 constrained: true,
                 alignPanAxis: false,
                 panEnabled: false,
-                boundaryMargin: EdgeInsets.symmetric(vertical: 100.h),
                 minScale: 0.5,
                 maxScale: 2,
                 child: CustomNetworkImage(

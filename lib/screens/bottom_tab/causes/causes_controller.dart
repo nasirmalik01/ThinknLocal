@@ -4,6 +4,7 @@ import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/causes.dart';
+import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
@@ -13,15 +14,17 @@ class CausesController extends GetxController{
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
   RxBool isPast = false.obs;
-  RxString locationAddress = Strings.noLocation.obs;
+  RxBool isLocationLoading = false.obs;
   RxBool isUpcomingCausesLoading = false.obs;
   RxBool isRecentlyStartedCausesLoading = false.obs;
   RxBool isTopCausesContainersList = false.obs;
   late List<Causes>? topCausesContainersList = [];
   late List<Causes>? upcomingCauses = [];
   late List<Causes>? recentlyStartedCauses = [];
+  List<Cities> citiesList = [];
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
+  RxString locationAddress = Strings.noLocation.obs;
 
 
   @override
@@ -114,7 +117,8 @@ class CausesController extends GetxController{
   }
 
   getLocationAddress() async {
-    locationAddress.value = await getUserLocationAddress();
+     Cities? _lowestDistanceCity = await getLowestDistanceCity();
+     locationAddress.value = _lowestDistanceCity?.name ?? Strings.noLocation;
   }
 
   void handleDynamicLink(Uri url) {

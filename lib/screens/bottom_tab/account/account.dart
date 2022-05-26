@@ -24,70 +24,72 @@ class AccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     _accountController.getProfileInfo();
 
-    return Scaffold(
-      body: Obx(() =>
-      _accountController.isError.value
-       ? NetworkErrorException(exceptionMessage: _accountController.errorMessage.value, onPress: (){
-         _accountController.isError.value = false;
-         _accountController.getProfileInfo();
-      })
-       : _accountController.isLoading.value
-       ? circularProgressIndicator()
-       : Container(
-        height: sizes.height,
-        width: sizes.width,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-        ),
-        child: ListView(
-          children: [
-            Container(
-              height: getHeight() * 0.1,
-              padding: EdgeInsets.only(bottom: sizes.height * 0.02),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: PreferenceUtils.getGradient()
+    return SafeArea(
+      child: Scaffold(
+        body: Obx(() =>
+        _accountController.isError.value
+         ? NetworkErrorException(exceptionMessage: _accountController.errorMessage.value, onPress: (){
+           _accountController.isError.value = false;
+           _accountController.getProfileInfo();
+        })
+         : _accountController.isLoading.value
+         ? circularProgressIndicator()
+         : Container(
+          height: sizes.height,
+          width: sizes.width,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+          ),
+          child: ListView(
+            children: [
+              Container(
+                height: getHeight() * 0.1,
+                padding: EdgeInsets.only(bottom: sizes.height * 0.02),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: PreferenceUtils.getGradient()
+                  ),
+                ),
+                child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: TextView.title(Strings.hello, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                child: Column(
+                  children: [
+                    UserProfileBox(
+                        name: '${_accountController.account!.firstName} ${_accountController.account!.lastName}',
+                        email: _accountController.account!.email,
+                        nameShort: '${_accountController.account!.firstName![0]}${_accountController.account!.lastName![0]}',
+                        onTapEdit: () async {
+                          await Get.to(() => EditAccount(account: _accountController.account,));
+                          _accountController.getProfileInfo();
+                        }
+                    ),
+                    SizedBox(height: getHeight() * 0.02),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: TextView.titleWithDecoration(Strings.accountSettings, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
+                    SizedBox(height: sizes.height * 0.03),
+                    Column(
+                      children: [
+                        AccountSettingCard(onChange: (val) => _accountController.changePushNotificationValue(val), title: Strings.pushNotifications, subTitle: Strings.enablePushNotifications, leadingIcon: Assets.bellIcon, switchValue: _accountController.isPushNotifications.value),
+                        AccountSettingCard(onChange: (val) => _accountController.changeEmailValue(val), title: Strings.email, subTitle: Strings.allowSystemEmails, leadingIcon: Assets.mailIcon, switchValue: _accountController.isEmail.value),
+                        AccountSettingCard(onChange: (val) => _accountController.changeLocationServicesValue(val), title: Strings.locationServices, subTitle: Strings.allowLocationServices, leadingIcon: Assets.locationIcon, switchValue: _accountController.isLocation.value),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: TextView.title(Strings.hello, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-              child: Column(
-                children: [
-                  UserProfileBox(
-                      name: '${_accountController.account!.firstName} ${_accountController.account!.lastName}',
-                      email: _accountController.account!.email,
-                      nameShort: '${_accountController.account!.firstName![0]}${_accountController.account!.lastName![0]}',
-                      onTapEdit: () async {
-                        await Get.to(EditAccount(account: _accountController.account,));
-                        _accountController.getProfileInfo();
-                      }
-                  ),
-                  SizedBox(height: getHeight() * 0.02),
-                  Align(
-                      alignment: Alignment.centerLeft,
-                      child: TextView.titleWithDecoration(Strings.accountSettings, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
-                  SizedBox(height: sizes.height * 0.03),
-                  Column(
-                    children: [
-                      AccountSettingCard(onChange: (val) => _accountController.changePushNotificationValue(val), title: Strings.pushNotifications, subTitle: Strings.enablePushNotifications, leadingIcon: Assets.bellIcon, switchValue: _accountController.isPushNotifications.value),
-                      AccountSettingCard(onChange: (val) => _accountController.changeEmailValue(val), title: Strings.email, subTitle: Strings.allowSystemEmails, leadingIcon: Assets.mailIcon, switchValue: _accountController.isEmail.value),
-                      AccountSettingCard(onChange: (val) => _accountController.changeLocationServicesValue(val), title: Strings.locationServices, subTitle: Strings.allowLocationServices, leadingIcon: Assets.locationIcon, switchValue: _accountController.isLocation.value),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-      )
+        )
 
+      ),
     );
   }
 }

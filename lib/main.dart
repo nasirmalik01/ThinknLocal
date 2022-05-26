@@ -21,7 +21,7 @@ void main() async {
   PushNotificationConfig.initNotifications();
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  SystemChromeConfig.setOverLayStyle();
+  await SystemChromeConfig.setOverLayStyle();
   SystemChromeConfig.setOrientation();
   await Hive.initFlutter();
   await MyHive.init();

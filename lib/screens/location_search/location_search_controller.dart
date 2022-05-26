@@ -36,6 +36,7 @@ class LocationSearchController extends GetxController {
   }
 
   getLocationAddress() async {
-    locationAddress.value = await getUserLocationAddress();
+    Cities? _lowestDistanceCity = await getLowestDistanceCity();
+    locationAddress.value = _lowestDistanceCity?.name ?? Strings.noLocation;
   }
 }

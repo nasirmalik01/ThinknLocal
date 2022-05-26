@@ -48,6 +48,8 @@ class Strings {
   static const String seeAll = "See All";
   static const String latitude = "latitude";
   static const String longitude = "longitude";
+  static const String dummyLatitude = '33.9898';
+  static const String dummyLongitude = "-117.7326";
   static const String yes = "Yes";
   static const String no = "No";
   static const String organizationId = "organization_id";
@@ -130,7 +132,7 @@ class Strings {
   static const String notificationTitle = 'High Importance Notifications';
   static const String notificationDesc = 'This channel is used for important notifications';
   static const String mipmapIcLauncher = '@mipmap/ic_launcher';
-  static const String dynamicLinkInitialUrl = 'https://thinknlocal.page.link';
+  static const String dynamicLinkInitialUrl = 'https://links.thinknlocal.com';
   static const String dynamicLinkImageUrl = 'https://www.thinknlocal.com/assets/welcome/logo-dark-07b7bfc0671b940febf94d1af4f88fb133e8cd1e.png';
   static const String q = 'q';
   static const String cities = 'cities';
@@ -151,6 +153,8 @@ class Strings {
   static const String noPendingReceipts = 'There are no pending receipts';
   static const String noSentReceipts = 'There are no sent receipts';
   static const String corporate = 'corporate';
+  static const String zipCodeError = 'Zip code should be of 5 digits';
+  static const String passwordError = 'Password should be minimum 6 characters';
 
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";

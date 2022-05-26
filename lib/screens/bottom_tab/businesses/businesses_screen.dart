@@ -72,11 +72,9 @@ class BusinessesScreen extends StatelessWidget {
                       },
                       child: Row(
                         children: [
-                          SizedBox(
-                              width: getWidth()*0.5,
-                              child: TextView.header(_businessesController.locationAddress.value, color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25)),
+                          TextView.header(_businessesController.locationAddress.value, color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
                           Padding(
-                            padding: EdgeInsets.only(left: 2.w, bottom: 0.5.h),
+                            padding: EdgeInsets.only(left: 1.w, bottom: 0.5.h),
                             child: Image(
                               height: getHeight() * 0.03,
                               image: const AssetImage(Assets.vectorIcon),),
