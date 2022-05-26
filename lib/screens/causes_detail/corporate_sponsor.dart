@@ -59,13 +59,16 @@ class CorporateSponsor extends StatelessWidget {
                   SizedBox(width: getWidth()*0.04,),
                   Padding(
                     padding: EdgeInsets.only(bottom: getHeight()*0.005),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextView.titleWithBlurRadius(title, Assets.poppinsMedium, color: AppColors.pureWhiteColor, fontSize: sizes.fontSize18, lines: 1),
-                        TextView.caption(summary, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12,)
-                      ],
+                    child: SizedBox(
+                      width: getWidth()*0.6,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextView.titleWithBlurRadius(title, Assets.poppinsMedium, color: AppColors.pureWhiteColor, fontSize: sizes.fontSize18, lines: 1),
+                          TextView.caption(summary, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12, isEllipsis: true)
+                        ],
+                      ),
                     ),
                   )
                 ],
