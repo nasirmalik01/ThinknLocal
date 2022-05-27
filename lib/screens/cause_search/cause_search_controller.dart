@@ -1,6 +1,7 @@
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/causes.dart';
+import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
@@ -35,6 +36,7 @@ class CauseSearchController extends GetxController{
   }
 
   getLocationAddress() async {
-    locationAddress.value = await getUserLocationAddress();
+    Cities? _lowestDistanceCity = await getLowestDistanceCity();
+    locationAddress.value = _lowestDistanceCity?.name ?? Strings.noLocation;
   }
 }

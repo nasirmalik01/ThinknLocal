@@ -186,6 +186,6 @@ Future<void> launchInBrowser(Uri url) async {
 }
 
 userNotLoggedIn(){
-  Get.toNamed(Routes.loginScreen);
+  Get.offAllNamed(Routes.loginScreen);
   showSnackBar(subTitle: Strings.notLoggedIn);
 }
