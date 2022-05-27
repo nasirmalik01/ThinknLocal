@@ -155,6 +155,8 @@ class Strings {
   static const String corporate = 'corporate';
   static const String zipCodeError = 'Zip code should be of 5 digits';
   static const String passwordError = 'Password should be minimum 6 characters';
+  static const String notLoggedIn = 'You are not logged in';
+  static const String fetchingLocation = 'Fetching location';
 
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";

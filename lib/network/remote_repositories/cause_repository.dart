@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/local/my_hive.dart';
@@ -58,7 +60,11 @@ class CausesRemoteRepository{
   }
 
   static Future<void> followCause(int id) async {
-    await GetIt.I<RemoteServices>().postRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.follow}', {});
+    try{
+      await GetIt.I<RemoteServices>().postRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.follow}', {});
+    }catch(e){
+      log(e.toString());
+    }
   }
 
   static Future<void> unFollowCause(int id) async {

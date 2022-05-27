@@ -185,6 +185,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                         raisedAmount: _businessDetailController.recentlyFundedBusinessCausesList![index].raised.toString(),
                                         totalAmount: _businessDetailController.recentlyFundedBusinessCausesList![index].goal.toString(),
                                         colors: const [Colors.transparent, AppColors.greenColor,],
+                                        recentlyFundedBusinessList: _businessDetailController.recentlyFundedBusinessCausesList!,
                                         index: index,
                                         onPressFullContainer: (){},
                                         onFavPress: (){
@@ -385,7 +386,10 @@ class BusinessesDetailScreen extends StatelessWidget {
     _businessDetailController.getBusinessStats(id: _id);
     _businessDetailController.getRecentlyFundedBusinessCauses(id: _id);
     _businessDetailController.getPastFundedBusinessCauses(id: _id);
-    _businessDetailController.getFollowBusiness(id: _id);
+    bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
+    if(_isUserAuthenticated) {
+      _businessDetailController.getFollowBusiness(id: _id);
+    }
   }
 }
 

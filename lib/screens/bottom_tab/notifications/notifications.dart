@@ -124,7 +124,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                         ),
                         child: Center(child: Padding(
                           padding: EdgeInsets.only(bottom: 0.2.h),
-                          child: TextView.caption(_notificationController.notificationList!.length.toString(), color: AppColors.pureWhiteColor, fontSize: 7.5.sp, textAlign: TextAlign.center, lines: 1),
+                          child: TextView.caption(_notificationController.notificationList?.length.toString(), color: AppColors.pureWhiteColor, fontSize: 7.5.sp, textAlign: TextAlign.center, lines: 1),
                         ),),
                       ),
                     )
@@ -140,7 +140,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                       padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.02),
                       child: Column(
                         children: [
-                          _notificationController.notificationList!.isNotEmpty
+                          _notificationController.notificationList?.isNotEmpty ?? false
                           ? Expanded(
                             child: ListView.separated(
                               padding: EdgeInsets.symmetric(vertical: 1.8.h),
@@ -178,8 +178,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                       child: Column(
                         children: [
                           Expanded(
-                            child:
-                            _notificationController.pendingContributionsList!.isNotEmpty
+                            child: _notificationController.pendingContributionsList?.isNotEmpty ?? false
                              ? ListView.separated(
                               padding: EdgeInsets.symmetric(vertical: 1.8.h),
                               scrollDirection: Axis.vertical,
@@ -217,7 +216,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                         children: [
                           Expanded(
                             child:
-                            _notificationController.approvedContributionsList!.isNotEmpty
+                            _notificationController.approvedContributionsList?.isNotEmpty ?? false
                             ? ListView.separated(
                               padding: EdgeInsets.symmetric(vertical: 1.8.h),
                               itemCount: _notificationController.approvedContributionsList!.length,

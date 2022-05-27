@@ -25,6 +25,13 @@ class RemoteServices  {
     }
     catch (e) {
       serverHandlingExceptions(e, statusCode, error);
+      if(e is DioError){
+        final errorMessage = DioExceptions.fromDioError(e).toString();
+        showSnackBar(subTitle: errorMessage);
+        error = errorMessage;
+        statusCode = e.response?.statusCode;
+        if (kDebugMode) print(errorMessage);
+      }
     }
   }
 

@@ -24,5 +24,6 @@ serverHandlingExceptions(dynamic e, int? statusCode, String error){
         error = errorMessage;
         statusCode = e.response?.statusCode;
         Get.back();
+        return;
   }
 }

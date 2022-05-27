@@ -1,3 +1,6 @@
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/cause_advertisement.dart';
@@ -33,6 +36,7 @@ class CausesDetailController extends GetxController {
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
   RxBool isCauseFollowed = false.obs;
+  final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
 
   setFoodAndDrinkTab() {
     isFoodAndDrink.value = true;
@@ -118,8 +122,13 @@ class CausesDetailController extends GetxController {
       isCauseFollowed.value = false;
       await CausesRemoteRepository.unFollowCause(id);
     }else{
-      isCauseFollowed.value = true;
-      await CausesRemoteRepository.followCause(id);
+      if(_isUserAuthenticated) {
+        isCauseFollowed.value = true;
+        await CausesRemoteRepository.followCause(id);
+      }
+      else{
+        userNotLoggedIn();
+      }
     }
   }
 

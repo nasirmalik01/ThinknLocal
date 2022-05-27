@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/dummy_data/businesses.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 
@@ -18,6 +17,7 @@ class RecentlyFundedBusiness extends StatelessWidget {
   final Function() onFavPress;
   final List<Color> colors;
   final int index;
+  final List recentlyFundedBusinessList;
 
 
 
@@ -32,7 +32,8 @@ class RecentlyFundedBusiness extends StatelessWidget {
       required this.onPressFullContainer,
       required this.onFavPress,
       required this.colors,
-      required this.index
+      required this.index,
+      required this.recentlyFundedBusinessList
       }) : super(key: key);
 
   @override

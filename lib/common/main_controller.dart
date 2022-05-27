@@ -1,3 +1,5 @@
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/local/user_location.dart';
 import 'package:geolocator/geolocator.dart';
@@ -23,10 +25,12 @@ class MainController extends GetxController{
       permission = await Geolocator.requestPermission();
       return false;
     }
+    showLoadingDialog(message: Strings.fetchingLocation);
     var location = Location();
     isLocationServiceEnabled.value = await location.serviceEnabled();
     position = await getCurrentLocation();
     MyHive.setLocation(UserLocation(longitude: position!.longitude, latitude: position!.latitude));
+    Get.back();
     return true;
   }
 

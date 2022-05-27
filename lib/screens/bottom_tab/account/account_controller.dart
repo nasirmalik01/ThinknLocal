@@ -48,6 +48,7 @@ class AccountController extends GetxController{
       return;
     }
     isPushNotifications.value = account?.settings?.pushNotifications ?? false;
+    isEmail.value = account?.settings?.weeklyUpdates ?? false;
     isLoading.value = false;
   }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/main_controller.dart';
+import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/widgets/enable_permissions.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +26,8 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                 onGoToSettingsTap: () async {
                    bool isLocationAllowed = await _mainController.getLocation();
                    if(isLocationAllowed){
-                     Get.toNamed(Routes.loginScreen);
+                     PreferenceUtils.setBool(Strings.showHome, true);
+                     Get.toNamed(Routes.bottomNavBarScreen);
                    }
                 },
                 buttonText: 'Allow location',

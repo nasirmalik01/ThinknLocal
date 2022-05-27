@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/business_detail.dart';
 import 'package:flutter_app/model/business_stats.dart';
@@ -25,6 +27,7 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
   TabController? tabController;
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
+  final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
 
 
   @override
@@ -61,8 +64,13 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
       isBusinessFollowed.value = false;
       await BusinessRemoteRepository.unFollowBusiness(id);
     }else{
-      isBusinessFollowed.value = true;
-      await BusinessRemoteRepository.followBusiness(id);
+      if(_isUserAuthenticated) {
+        isBusinessFollowed.value = true;
+        await BusinessRemoteRepository.followBusiness(id);
+      }
+      else{
+         userNotLoggedIn();
+      }
     }
   }
 
@@ -72,15 +80,17 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
       Strings.businessId: id,
       Strings.recent: true,
     }));
-    List<int> followCauseIds = [];
-    follows = await FollowsRemoteRepository.fetchFollows();
-    for(var cause in follows!.causes!){
-      followCauseIds.add(cause);
-    }
-    for(var _recentlyFundedBusiness in recentlyFundedBusinessCausesList!){
-      for(int i=0; i<followCauseIds.length; i++){
-        if(_recentlyFundedBusiness.id.toString().contains(followCauseIds[i].toString())){
-          _recentlyFundedBusiness.isFavorite = true;
+    if(_isUserAuthenticated){
+      List<int> followCauseIds = [];
+      follows = await FollowsRemoteRepository.fetchFollows();
+      for(var cause in follows!.causes!){
+        followCauseIds.add(cause);
+      }
+      for(var _recentlyFundedBusiness in recentlyFundedBusinessCausesList!){
+        for(int i=0; i<followCauseIds.length; i++){
+          if(_recentlyFundedBusiness.id.toString().contains(followCauseIds[i].toString())){
+            _recentlyFundedBusiness.isFavorite = true;
+          }
         }
       }
     }
@@ -109,7 +119,12 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
     if(isFollowed) {
       await CausesRemoteRepository.unFollowCause(id);
     }else{
-      await CausesRemoteRepository.followCause(id);
+      if(_isUserAuthenticated){
+        await CausesRemoteRepository.followCause(id);
+      }
+      else{
+        userNotLoggedIn();
+      }
     }
   }
 }

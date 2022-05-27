@@ -13,12 +13,9 @@ import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 
-
 class AccountScreen extends StatelessWidget {
   AccountScreen({Key? key}) : super(key: key);
-
   final AccountController _accountController = Get.put(AccountController());
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +51,7 @@ class AccountScreen extends StatelessWidget {
                 ),
                 child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: TextView.title(Strings.hello, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium)),
+                    child: TextView.title(Strings.hello, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium,)),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),

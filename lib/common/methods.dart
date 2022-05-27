@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/local/user_location.dart';
@@ -182,4 +183,9 @@ Future<void> launchInBrowser(Uri url) async {
   )) {
     throw 'Could not launch $url';
   }
+}
+
+userNotLoggedIn(){
+  Get.toNamed(Routes.loginScreen);
+  showSnackBar(subTitle: Strings.notLoggedIn);
 }

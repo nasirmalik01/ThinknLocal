@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_app/config/system_chrome_config.dart';
 import 'package:flutter_app/widgets/custom_dialog.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/dummy_data/causes_detail.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_controller.dart';
 import 'package:flutter_app/screens/causes_detail/corporate_sponsor.dart';
@@ -430,7 +427,7 @@ class _CausesDetailState extends State<CausesDetail>
                                             return UpdateFundRaiser(
                                                 header: _causesDetailController.updatedCausesList![index].title!,
                                                 detail: _causesDetailController.updatedCausesList![index].message!,
-                                                date: updateFundRaiserList[0].date!);
+                                                date: 'Mar 6th');
                                           },
                                           separatorBuilder:
                                               (BuildContext context, int index) {
@@ -606,7 +603,10 @@ class _CausesDetailState extends State<CausesDetail>
     _causesDetailController.getCauseStats(_id);
     _causesDetailController.getCauseBottomDetails(_id, 21);
     _causesDetailController.getCauseFeatured(_id);
-    _causesDetailController.getFollowCause(_id);
+    bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
+    if(_isUserAuthenticated) {
+      _causesDetailController.getFollowCause(_id);
+    }
     _causesDetailController.getUpdatedCauses(_id);
     _causesDetailController.getCauseAdvertisements(_id);
 }

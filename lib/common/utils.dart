@@ -2,6 +2,8 @@ import 'dart:async' show Future;
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/constants/colors.dart';
+import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -124,4 +126,11 @@ class PreferenceUtils {
       ),
     ];
   }
+
+  static bool isUserAuthenticated(){
+    bool _isUserAuthenticated = MyHive.getToken() != Strings.dummyToken;
+    return _isUserAuthenticated;
+  }
 }
+
+
