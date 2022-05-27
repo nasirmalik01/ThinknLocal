@@ -25,17 +25,19 @@ class AWSService {
     File image,
   ) async {
     try {
+      var body = await getBodyPayload(image);
       Response? urlResponse = await generateUrl(
-        body: getBodyPayload(image),
+        body: body,
       );
       Map<String, dynamic> mapData = json.decode(urlResponse?.data);
       String dURL = mapData['upload_url'];
       var response = await _dio.put(
         dURL,
-        data: image.readAsBytesSync().lengthInBytes,
+        options: Options(headers: mapData['headers']),
+        data: image.readAsBytesSync(),
         onSendProgress: (rec, total) {
           double progress = (rec / total * 100).toDouble();
-          log('Uploading : $progress');
+          log('Uploading : $progress $rec bytes');
         },
       );
       if (response.statusCode == 200) {
@@ -59,15 +61,16 @@ class AWSService {
     }
   }
 
-  String generateMd5(String input) {
-    return md5.convert(utf8.encode(input)).toString();
+  Future<String> generateMd5(String filePath) async {
+    var hash = await md5.bind(File(filePath).openRead()).first;
+    return base64.encode(hash.bytes);
   }
 
-  Map<String, dynamic> getBodyPayload(File image) {
+  Future<Map<String, dynamic>> getBodyPayload(File image) async {
     final bytes = getImageSizeInBytes(image);
     String fileName = image.path.split('/').last;
     String getExt = PreferenceUtils.getImgExtension(image.path);
-    String md5Hash = generateMd5(image.path);
+    String md5Hash = await generateMd5(image.path);
 
     return {
       'file_name': fileName,
