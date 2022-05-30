@@ -35,6 +35,7 @@
 	<string>Location permission is required to get current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location permission is required to get current location</string>
+
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

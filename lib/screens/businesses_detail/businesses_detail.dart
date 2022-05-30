@@ -11,7 +11,7 @@ import 'package:flutter_app/screens/businesses_detail/business_rating.dart';
 import 'package:flutter_app/screens/businesses_detail/recently_funded_business.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
-import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
+import 'package:flutter_app/screens/causes_detail_listing/causes_listing.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
@@ -173,7 +173,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                     itemBuilder: (context, index){
                                       return index == 5 ? GestureDetector(
                                           onTap: (){
-                                            Get.to(() => DetailScreen(title: Strings.recentlyFundedBusinessCauses, detailList: _businessDetailController.recentlyFundedBusinessCausesList as dynamic));
+                                            Get.to(() => CausesListingScreen(title: Strings.recentlyFundedBusinessCauses, detailList: _businessDetailController.recentlyFundedBusinessCausesList as dynamic));
                                           },
                                           child: CommonWidgets.seeAllButton(30)
                                       ) : RecentlyFundedBusiness(
@@ -218,7 +218,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                     leadingText: Strings.pastFundedCauses,
                                     trailingText: Strings.seeAll,
                                     onPressSeeAllButton: () {
-                                      Get.to(() => DetailScreen(title: Strings.pastFundedBusinessCauses, detailList: _businessDetailController.pastFundedBusinessCausesList as dynamic));
+                                      Get.to(() => CausesListingScreen(title: Strings.pastFundedBusinessCauses, detailList: _businessDetailController.pastFundedBusinessCausesList as dynamic));
                                     }
                                 ),
                               ),

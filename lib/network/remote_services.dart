@@ -38,7 +38,7 @@ class RemoteServices  {
   Future<dynamic> getRequest(String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      dynamic _result = await MySecureHttpClient.getClient().get(endPoint, queryParameters: map);
+      Response _result = await MySecureHttpClient.getClient().get(endPoint, queryParameters: map);
       log('status_code: ${_result.statusCode}');
       if (_result.statusCode == 200) {
           statusCode = 200;

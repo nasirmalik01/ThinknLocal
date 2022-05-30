@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:get/get.dart';
 import '../../constants/colors.dart';
@@ -8,15 +10,21 @@ import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 
 
-class DetailScreen extends StatelessWidget {
-  final List<dynamic> detailList;
-  final String title;
-  const DetailScreen({Key? key, required this.title, required this.detailList}) : super(key: key);
+class MainCauseListing extends StatelessWidget {
+  final String? param;
+  final String? title;
+  MainCauseListing({Key? key, this.title, this.param,}) : super(key: key);
+
+  final CausesController _causesController = Get.put(CausesController());
 
   @override
   Widget build(BuildContext context) {
+    _causesController.getCauses(param!);
+
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Obx(() => _causesController.isTopCausesContainersList.value
+          ? circularProgressIndicator()
+          :  SingleChildScrollView(
         child: Container(
           width: sizes.width,
           decoration: const BoxDecoration(
@@ -25,10 +33,10 @@ class DetailScreen extends StatelessWidget {
           child: Column(
             children: [
               CommonWidgets.getSimpleAppBar(
-                title: title,
+                  title: title,
                   onPressBackArrow: () {
-                  Navigator.pop(context);
-                }),
+                    Navigator.pop(context);
+                  }),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: ListView(
@@ -39,21 +47,21 @@ class DetailScreen extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
-                      itemCount: detailList.length,
+                      itemCount: _causesController.topCausesContainersList!.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: (){
-                            Get.toNamed(Routes.causesDetailScreen, arguments: detailList[index].id);
+                            // Get.toNamed(Routes.causesDetailScreen, arguments: detailList[index].id);
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
                             child: UpcomingCauses(
-                                image:  detailList[index].image ?? Strings.dummyBgImage,
-                                headerText: detailList[index].organization!.name,
-                                description:   detailList[index].name!,
+                                image:  _causesController.topCausesContainersList![index].image ?? Strings.dummyBgImage,
+                                headerText: _causesController.topCausesContainersList![index].organization!.name,
+                                description:   _causesController.topCausesContainersList![index].name!,
                                 onViewCourse: (){},
-                                totalAmount:  detailList[index].raised.toString(),
-                                date: detailList[index].start.toString()
+                                totalAmount:  _causesController.topCausesContainersList![index].raised.toString(),
+                                date: _causesController.topCausesContainersList![index].start.toString()
                             ),
                           ),
                         );
@@ -70,7 +78,7 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+          ),),
         ),
       ),
     );

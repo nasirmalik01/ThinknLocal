@@ -8,8 +8,12 @@ import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/screens/cause_search/cause_search.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
-import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
+import 'package:flutter_app/screens/causes_detail_listing/causes_listing.dart';
+import 'package:flutter_app/screens/causes_detail_listing/main_cause_listing.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
+import 'package:flutter_app/screens/issues/something_wrong_screen.dart';
+import 'package:flutter_app/screens/issues/under_maintenance_screen.dart';
+import 'package:flutter_app/screens/issues/update_required_screen.dart';
 import 'package:flutter_app/screens/location_permission/location_permission_screen.dart';
 import 'package:flutter_app/screens/location_search/location_search.dart';
 import 'package:flutter_app/screens/notification_permission/notification_permission_screen.dart';
@@ -48,6 +52,10 @@ class Routes {
   static const String causeSearch = '/causeSearch';
   static const String businessSearch = '/businessSearch';
   static const String fullPhotoScreen = '/fullPhotoScreen';
+  static const String updateRequiredScreen = '/updateRequiredScreen';
+  static const String underMaintenanceScreen = '/underMaintenanceScreen';
+  static const String somethingWrongScreen = '/somethingWrongScreen';
+  static const String causeListing = '/causeListing';
 
 
   static getUnknownRoute() {
@@ -118,7 +126,7 @@ class Routes {
       ),
       GetPage(
         name: seeAllUpcomingCausesScreen,
-        page: () => const DetailScreen(title: '', detailList: []),
+        page: () => const CausesListingScreen(title: '', detailList: []),
       ),
       GetPage(
         name: seeAllNearbyBusinessesScreen,
@@ -151,6 +159,22 @@ class Routes {
       GetPage(
         name: fullPhotoScreen,
         page: () => const FullPhoto(imageUrl: ''),
+      ),
+      GetPage(
+        name: updateRequiredScreen,
+        page: () => const UpdateRequiredScreen(),
+      ),
+      GetPage(
+        name: underMaintenanceScreen,
+        page: () => const UnderMaintenanceScreen(),
+      ),
+      GetPage(
+        name: somethingWrongScreen,
+        page: () => const SomethingWrong(),
+      ),
+      GetPage(
+        name: causeListing,
+        page: () =>  MainCauseListing(),
       ),
     ];
   }

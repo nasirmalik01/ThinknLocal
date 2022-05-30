@@ -157,6 +157,14 @@ class Strings {
   static const String passwordError = 'Password should be minimum 6 characters';
   static const String notLoggedIn = 'You are not logged in';
   static const String fetchingLocation = 'Fetching location';
+  static const String updateRequired = 'Update Required';
+  static const String updateRequiredDesc = 'Your app is out of date and needs to be updated to continue.';
+  static const String updateAppNow = 'Update App Now';
+  static const String underMaintenance = 'Under Maintenance';
+  static const String underMaintenanceDesc = 'We are currently under maintenance, please try again later.';
+  static const String somethingWrong = 'Oops something went wrong!';
+  static const String somethingWrongDesc = 'Sorry we encountered an error please try again later.';
+
 
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";

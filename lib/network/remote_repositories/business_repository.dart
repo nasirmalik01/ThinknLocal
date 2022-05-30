@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/model/business_detail.dart';

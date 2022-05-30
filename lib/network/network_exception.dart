@@ -43,6 +43,7 @@ class DioExceptions implements Exception {
         break;
       case 403:
         message = 'Forbidden! You are running an outdated app version and must upgrade';
+        Get.offAllNamed(Routes.updateRequiredScreen);
         break;
       case 422:
         message = 'Form data is invalid';
@@ -58,9 +59,11 @@ class DioExceptions implements Exception {
         break;
         case 503:
         message = 'Service unavailable! Application under maintenance.';
+        Get.offAllNamed(Routes.underMaintenanceScreen);
         break;
       default:
         message = 'Oops something went wrong';
+        Get.offAllNamed(Routes.somethingWrongScreen);
         break;
     }
     return message;

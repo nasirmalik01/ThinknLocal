@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
@@ -25,6 +27,8 @@ class LoginScreen extends StatelessWidget {
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
+            /// Text(Age) /// 22
+            ///  Button (Increment age)
             child: ListView(
               children: [
                 Container(
@@ -84,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                         }
 
                         showLoadingDialog(message: 'Authenticating User');
-                        _logInController.authenticateUserWithEmailPassword(email: _emailController!.text, password: _passwordController!.text,);
+                        _logInController.loginWithEmailPassword(email: _emailController!.text, password: _passwordController!.text,);
                       },
                           btnColor: AppColors.greenColor,
                           textColor: AppColors.pureWhiteColor,
@@ -117,9 +121,9 @@ class LoginScreen extends StatelessWidget {
                       ),
                       SizedBox(height: getHeight() * 0.05),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: Platform.isIOS ? MainAxisAlignment.spaceEvenly : MainAxisAlignment.center,
                         children: [
-                          GestureDetector(
+                         Platform.isIOS ? GestureDetector(
                             onTap: (){
                               _logInController.loginWithApple();
                             },
@@ -127,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                               image: AssetImage(Assets.appleLogo,),
                               fit: BoxFit.fill,
                             ),
-                          ),
+                          ) : const SizedBox(),
                           GestureDetector(
                             onTap: (){
                               _logInController.loginWithGoogle();
@@ -137,6 +141,7 @@ class LoginScreen extends StatelessWidget {
                               fit: BoxFit.fill,
                             ),
                           ),
+                          SizedBox(width: Platform.isIOS ? 0 : getWidth() * 0.07),
                           const Image(
                             image: AssetImage(Assets.facebookLogo,),
                             fit: BoxFit.fill,

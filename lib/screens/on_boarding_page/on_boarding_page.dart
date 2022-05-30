@@ -118,11 +118,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       seconds: 2,
     ));
     if (PreferenceUtils.getBool(Strings.showHome)) {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (_) => const BottomTabNew(pageIndex: 0)));
+      Get.offAll(() => const BottomTabNew(pageIndex: 0));
       FlutterNativeSplash.remove();
-
-
     } else {
       FlutterNativeSplash.remove();
       setState(() {

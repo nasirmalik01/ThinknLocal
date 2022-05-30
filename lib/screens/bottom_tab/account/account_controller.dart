@@ -40,7 +40,7 @@ class AccountController extends GetxController{
 
   getProfileInfo() async {
     isLoading.value = true;
-    account = (await ProfileRemoteRepository.fetchProfileInfo({}));
+    account = await ProfileRemoteRepository.fetchProfileInfo({});
     if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
       isError.value = true;
       isLoading.value = false;

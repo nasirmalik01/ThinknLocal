@@ -13,7 +13,8 @@ import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_funds_container.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/recently_started_container.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
-import 'package:flutter_app/screens/causes_upcoming/causes_upcoming.dart';
+import 'package:flutter_app/screens/causes_detail_listing/causes_listing.dart';
+import 'package:flutter_app/screens/causes_detail_listing/main_cause_listing.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
@@ -51,7 +52,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
             itemBuilder: (context, index){
               return index == 5 ? GestureDetector(
                 onTap: (){
-                  Get.to(DetailScreen(title: Strings.allCauses, detailList: _causesController.topCausesContainersList as dynamic));
+                  Get.to(() => MainCauseListing(title: 'All causes', param: Strings.featured,));
                 },
                 child: CommonWidgets.seeAllButton(40)
               ) : CausesFundContainer(
@@ -92,7 +93,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
               return index == 5
                 ? GestureDetector(
                   onTap: (){
-                    Get.to(DetailScreen(title: Strings.recentlyStarted, detailList: _causesController.recentlyStartedCauses as dynamic));
+                    Get.to(CausesListingScreen(title: Strings.recentlyStarted, detailList: _causesController.recentlyStartedCauses as dynamic));
                   },
                   child: CommonWidgets.seeAllButton(30))
                 : GestureDetector(
@@ -123,7 +124,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                   leadingText: Strings.upcomingCauses,
                   trailingText: Strings.seeAll,
                   onPressSeeAllButton: () {
-                    Get.to(DetailScreen(title: Strings.upcomingCausesNearYou, detailList:  _causesController.upcomingCauses as dynamic,));
+                    Get.to(CausesListingScreen(title: Strings.upcomingCausesNearYou, detailList:  _causesController.upcomingCauses as dynamic,));
                   }
               ),
               SizedBox(height: getHeight() * 0.018),

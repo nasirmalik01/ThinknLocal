@@ -82,6 +82,9 @@ class Assets {
   static const String errorImage = 'assets/png/error.jpeg';
   static const String thinkLocal = 'assets/png/thinknlocal.png';
   static const String loading = 'assets/png/loading.png';
+  static const String updateRequired = 'assets/png/update_required.png';
+  static const String underMaintenance = 'assets/png/under_maintenance.png';
+  static const String somethingWrong = 'assets/png/something_wrong.png';
 
   // fonts
   static const String poppinsRegular = "Poppins-Regular";

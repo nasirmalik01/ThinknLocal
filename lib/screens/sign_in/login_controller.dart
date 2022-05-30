@@ -16,7 +16,7 @@ class LogInController extends GetxController{
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
 
-  authenticateUserWithEmailPassword({String? email, String? password}) async {
+  loginWithEmailPassword({String? email, String? password}) async {
     final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, {
       Strings.email: email,
       Strings.password: password,
@@ -32,15 +32,16 @@ class LogInController extends GetxController{
   }
 
   loginWithApple() async {
-    await SignInWithApple.getAppleIDCredential(
+    final credentials = await SignInWithApple.getAppleIDCredential(
       scopes: [
         AppleIDAuthorizationScopes.email,
         AppleIDAuthorizationScopes.fullName,
       ],
     );
+    print(credentials);
   }
 
-  void loginWithGoogle() async {
+  loginWithGoogle() async {
     GoogleSignIn googleSignIn = GoogleSignIn();
     GoogleSignInAccount? account = await googleSignIn.signIn();
     log(account?.email ?? ' Null');
