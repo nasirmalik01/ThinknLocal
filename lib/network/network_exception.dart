@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
 class DioExceptions implements Exception {
@@ -56,6 +57,9 @@ class DioExceptions implements Exception {
         break;
       case 500:
         message = 'Internal server error, Try Again!';
+        if(Get.isDialogOpen!){
+          Get.back();
+        }
         break;
         case 503:
         message = 'Service unavailable! Application under maintenance.';

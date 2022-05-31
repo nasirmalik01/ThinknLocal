@@ -9,7 +9,7 @@ import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/screens/cause_search/cause_search.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/screens/causes_detail_listing/causes_listing.dart';
-import 'package:flutter_app/screens/causes_detail_listing/main_cause_listing.dart';
+import 'package:flutter_app/screens/causes_detail_listing/main_causes_listing.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
 import 'package:flutter_app/screens/issues/something_wrong_screen.dart';
 import 'package:flutter_app/screens/issues/under_maintenance_screen.dart';
@@ -174,7 +174,7 @@ class Routes {
       ),
       GetPage(
         name: causeListing,
-        page: () =>  MainCauseListing(),
+        page: () =>  MainCausesListing(),
       ),
     ];
   }

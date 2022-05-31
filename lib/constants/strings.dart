@@ -21,6 +21,7 @@ class Strings {
   static const String favorites = "favorites";
   static const String past = "past";
   static const String recent = "recent";
+  static const String recentCauses = "Recent causes";
   static const String active = "active";
   static const String upcoming = "upcoming";
   static const String unknown = "Unknown";
@@ -136,6 +137,7 @@ class Strings {
   static const String dynamicLinkImageUrl = 'https://www.thinknlocal.com/assets/welcome/logo-dark-07b7bfc0671b940febf94d1af4f88fb133e8cd1e.png';
   static const String q = 'q';
   static const String cities = 'cities';
+  static const String page = 'page';
   static const String searchForCity = 'Search for a city...';
   static const String citiesNearYou = 'Cities near you';
   static const String noUpcomingCauses = 'There are no upcoming causes';
@@ -164,6 +166,7 @@ class Strings {
   static const String underMaintenanceDesc = 'We are currently under maintenance, please try again later.';
   static const String somethingWrong = 'Oops something went wrong!';
   static const String somethingWrongDesc = 'Sorry we encountered an error please try again later.';
+  static const String loadingMoreData = 'Loading more data';
 
 
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";

@@ -14,7 +14,9 @@ import 'package:flutter_app/screens/bottom_tab/causes/causes_funds_container.dar
 import 'package:flutter_app/screens/bottom_tab/causes/recently_started_container.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/causes_detail_listing/causes_listing.dart';
-import 'package:flutter_app/screens/causes_detail_listing/main_cause_listing.dart';
+import 'package:flutter_app/screens/causes_detail_listing/main_causes_listing.dart';
+import 'package:flutter_app/screens/causes_detail_listing/recent_causes_listing.dart';
+import 'package:flutter_app/screens/causes_detail_listing/upcoming_causes_listing.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
@@ -51,8 +53,10 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
             itemCount:  _causesController.topCausesContainersList!.isEmpty ? 0 : 6,
             itemBuilder: (context, index){
               return index == 5 ? GestureDetector(
-                onTap: (){
-                  Get.to(() => MainCauseListing(title: 'All causes', param: Strings.featured,));
+                onTap: () async {
+                  final result = await Get.to(() => MainCausesListing(title: Strings.allCauses));
+                  _causesController.isError.value = false;
+                  _causesController.getCauses(Strings.featured);
                 },
                 child: CommonWidgets.seeAllButton(40)
               ) : CausesFundContainer(
@@ -92,8 +96,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
             itemBuilder: (context, index){
               return index == 5
                 ? GestureDetector(
-                  onTap: (){
-                    Get.to(CausesListingScreen(title: Strings.recentlyStarted, detailList: _causesController.recentlyStartedCauses as dynamic));
+                  onTap: () async {
+                    Get.to(() => RecentCausesListing(title: Strings.recentCauses));
                   },
                   child: CommonWidgets.seeAllButton(30))
                 : GestureDetector(
@@ -124,7 +128,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                   leadingText: Strings.upcomingCauses,
                   trailingText: Strings.seeAll,
                   onPressSeeAllButton: () {
-                    Get.to(CausesListingScreen(title: Strings.upcomingCausesNearYou, detailList:  _causesController.upcomingCauses as dynamic,));
+                    Get.to(() => UpcomingCausesListing(title: Strings.upcomingCauses));
                   }
               ),
               SizedBox(height: getHeight() * 0.018),

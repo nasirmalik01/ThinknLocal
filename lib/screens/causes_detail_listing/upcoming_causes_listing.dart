@@ -4,27 +4,31 @@ import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import 'package:flutter_app/widgets/network_error.dart';
 import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 
-
-class MainCauseListing extends StatelessWidget {
-  final String? param;
+class UpcomingCausesListing extends StatelessWidget {
   final String? title;
-  MainCauseListing({Key? key, this.title, this.param,}) : super(key: key);
+  UpcomingCausesListing({Key? key, this.title,}) : super(key: key);
 
   final CausesController _causesController = Get.put(CausesController());
 
   @override
   Widget build(BuildContext context) {
-    _causesController.getCauses(param!);
+    Future.delayed(const Duration(milliseconds: 100), (){
+      _causesController.setPagination(paramValue: Strings.upcoming, isFirst: true);
+      _causesController.getUpComingCauses(page: 1);
+    });
 
     return Scaffold(
-      body: Obx(() => _causesController.isTopCausesContainersList.value
+      body: Obx(() =>( _causesController.isUpcomingCausesLoading.value && !_causesController.isPaginatedLoading.value && (Get.isDialogOpen == false))
           ? circularProgressIndicator()
-          :  SingleChildScrollView(
+          : SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        controller: _causesController.scrollController,
         child: Container(
           width: sizes.width,
           decoration: const BoxDecoration(
@@ -40,28 +44,28 @@ class MainCauseListing extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: ListView(
-                  shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
                   children: [
                     ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      physics: const ScrollPhysics(),
-                      itemCount: _causesController.topCausesContainersList!.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: _causesController.upcomingCauses!.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: (){
-                            // Get.toNamed(Routes.causesDetailScreen, arguments: detailList[index].id);
+                            Get.toNamed(Routes.causesDetailScreen, arguments: _causesController.upcomingCauses![index].id);
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
                             child: UpcomingCauses(
-                                image:  _causesController.topCausesContainersList![index].image ?? Strings.dummyBgImage,
-                                headerText: _causesController.topCausesContainersList![index].organization!.name,
-                                description:   _causesController.topCausesContainersList![index].name!,
+                                image:  _causesController.upcomingCauses![index].image ?? Strings.dummyBgImage,
+                                headerText: _causesController.upcomingCauses![index].organization!.name,
+                                description:   _causesController.upcomingCauses![index].name!,
                                 onViewCourse: (){},
-                                totalAmount:  _causesController.topCausesContainersList![index].raised.toString(),
-                                date: _causesController.topCausesContainersList![index].start.toString()
+                                totalAmount:  _causesController.upcomingCauses![index].raised.toString(),
+                                date: _causesController.upcomingCauses![index].start.toString()
                             ),
                           ),
                         );
@@ -79,7 +83,7 @@ class MainCauseListing extends StatelessWidget {
               ),
             ],
           ),),
-        ),
+      ),
       ),
     );
   }
