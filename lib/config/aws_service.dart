@@ -33,8 +33,14 @@ class AWSService {
       String dURL = mapData['upload_url'];
       var response = await _dio.put(
         dURL,
-        options: Options(headers: mapData['headers']),
-        data: image.readAsBytesSync(),
+        options: Options(
+          headers: {
+            'Content-Type': body['content_type'],
+            'Content-Length': body['byte_size'],
+            'Content-MD5': body['checksum'],
+          },
+        ),
+        data: image.openRead(),
         onSendProgress: (rec, total) {
           double progress = (rec / total * 100).toDouble();
           log('Uploading : $progress $rec bytes');
