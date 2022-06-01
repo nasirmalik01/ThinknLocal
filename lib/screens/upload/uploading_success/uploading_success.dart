@@ -23,8 +23,7 @@ class _UploadSuccessState extends State<UploadSuccess> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return Container(
         height: sizes.height,
         width: sizes.width,
         decoration: const BoxDecoration(
@@ -90,7 +89,6 @@ class _UploadSuccessState extends State<UploadSuccess> {
 
           ],
         ),
-      ),
     );
   }
 }

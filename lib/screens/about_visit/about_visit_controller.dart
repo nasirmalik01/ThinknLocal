@@ -24,6 +24,7 @@ class AboutVisitController extends GetxController {
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
 
+
   changeFirstTimeVisit() {
     isVisitFirstTime.value = !isVisitFirstTime.value;
   }
@@ -48,7 +49,6 @@ class AboutVisitController extends GetxController {
     }
     isCausesLoading.value = false;
   }
-
   getBusinesses() async {
     isBusinessLoading.value = true;
     businessList = await (BusinessRemoteRepository.fetchBusinesses({}));
@@ -94,39 +94,20 @@ class AboutVisitController extends GetxController {
 
   onCauseCompletePress(value) {
     selectedCourse.value = value;
-    for (var item in businessList!) {
+    for (var item in causesList!) {
       if (item.name == value) {
         selectedCourseId.value = item.id!;
       }
     }
   }
 
-  onBusinessCompletePress(value) {
+   onBusinessCompletePress(value) {
     selectedBusiness.value = value;
-    for (var item in causesList!) {
+    for (var item in businessList!) {
       if (item.name == value) {
         selectedBusinessId.value = item.id!;
       }
     }
   }
 
-  Future<void> uploadFile({
-    required File image,
-    required Function(UploadFileResponse) onUploadError,
-    required Function(UploadFileResponse) onUploadComplete,
-    required Function(double) onProgressChange,
-  }) async {
-    await AWSService().uploadFile(
-      File(image.path),
-      onProgressChange: (value) {
-        log(value.toString());
-      },
-      onUploadComplete: (UploadFileResponse response) {
-        log(response.data.toString());
-      },
-      onUploadError: (UploadFileResponse response) {
-        log(response.toString());
-      },
-    );
-  }
 }

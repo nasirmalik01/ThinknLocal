@@ -23,8 +23,7 @@ class _UploadFailedState extends State<UploadFailed> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return Container(
         height: sizes.height,
         width: sizes.width,
         decoration: const BoxDecoration(
@@ -100,7 +99,6 @@ class _UploadFailedState extends State<UploadFailed> {
             ),
           ],
         ),
-      ),
     );
   }
 }

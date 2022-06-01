@@ -56,7 +56,12 @@ class AWSService {
         },
       );
       if (response.statusCode == 200) {
-        onUploadComplete.call(getFileResponse(r: response));
+        onUploadComplete.call(
+          getFileResponse(
+            r: response,
+            uploadId: mapData['id'],
+          ),
+        );
       }
     } on DioError catch (e) {
       log(e.toString());
@@ -100,7 +105,7 @@ class AWSService {
     return image.readAsBytesSync().lengthInBytes;
   }
 
-  UploadFileResponse getFileResponse({dynamic r}) {
+  UploadFileResponse getFileResponse({dynamic r, String? uploadId}) {
     if (r is DioError) {
       DioError e = r;
       return UploadFileResponse(
@@ -108,6 +113,7 @@ class AWSService {
         message: e.response?.statusMessage ?? e.message,
         isSuccess: false,
         data: e.response?.data,
+        uploadId: uploadId,
       );
     } else {
       Response response = r;
@@ -118,6 +124,7 @@ class AWSService {
 
         /// [response.headers] because it container e-tag, id , etc related to file Uploading
         data: response.headers.map,
+        uploadId: uploadId,
       );
     }
   }

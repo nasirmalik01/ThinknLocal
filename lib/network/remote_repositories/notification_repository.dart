@@ -39,7 +39,6 @@ class NotificationRepository {
         UploadDirectContributions.fromJson(response);
     return _uploadDirectContributions;
   }
-
   static Future<dynamic> createContribution(Map<String, dynamic> query) async {
     final response = await getItLocator<RemoteServices>()
         .postRequest(ApiEndPoints.contributions, query);

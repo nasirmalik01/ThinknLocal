@@ -26,6 +26,9 @@ import 'package:flutter_app/screens/password/reset_password/reset_password.dart'
 import 'package:flutter_app/screens/sign_in/login_screen.dart';
 import 'package:flutter_app/screens/sign_up/sign_up.dart';
 import 'package:flutter_app/screens/unknown_route.dart';
+import 'package:flutter_app/screens/upload/uploading/uploading.dart';
+import 'package:flutter_app/screens/upload/uploading_failed/uploading_failed.dart';
+import 'package:flutter_app/screens/upload/uploading_success/uploading_success.dart';
 import 'package:get/get.dart';
 
 class Routes {
@@ -62,6 +65,9 @@ class Routes {
   static const String underMaintenanceScreen = '/underMaintenanceScreen';
   static const String somethingWrongScreen = '/somethingWrongScreen';
   static const String causeListing = '/causeListing';
+  static const String uploading = '/uploading';
+  static const String uploadSuccess = '/uploadSuccess';
+  static const String uploadFailed = '/uploadFailed';
 
   static getUnknownRoute() {
     return GetPage(
@@ -186,6 +192,18 @@ class Routes {
       GetPage(
         name: causeListing,
         page: () => MainCausesListing(),
+      ),
+      GetPage(
+        name: uploading,
+        page: () => const Uploading(),
+      ),
+      GetPage(
+        name: uploadSuccess,
+        page: () => const UploadSuccess(),
+      ),
+      GetPage(
+        name: uploadFailed,
+        page: () => const UploadFailed(),
       ),
     ];
   }
