@@ -5,6 +5,7 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/business_detail.dart';
 import 'package:flutter_app/model/business_stats.dart';
 import 'package:flutter_app/model/causes.dart';
+import 'package:flutter_app/model/chart_stats_model.dart';
 import 'package:flutter_app/model/follows.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
@@ -12,7 +13,8 @@ import 'package:flutter_app/network/remote_repositories/follows_repository.dart'
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
-class BusinessDetailController extends GetxController with GetTickerProviderStateMixin{
+class BusinessDetailController extends GetxController
+    with GetTickerProviderStateMixin {
   BusinessDetail? businessDetail;
   late BusinessStats? businessStats;
   List<Causes>? recentlyFundedBusinessCausesList = [];
@@ -27,6 +29,7 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
   TabController? tabController;
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
+  List<ChartData> businessStatsHistory = <ChartData>[];
   final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
 
 
@@ -38,8 +41,11 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
 
   getBusinessDetails({required int id}) async {
     isLoading.value = true;
-    businessDetail = (await BusinessRemoteRepository.fetchBusinessDetails(id, {}));
-    if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
+    businessDetail =
+        (await BusinessRemoteRepository.fetchBusinessDetails(id, {}));
+    if (RemoteServices.statusCode != 200 &&
+        RemoteServices.statusCode != 201 &&
+        RemoteServices.statusCode != 204) {
       isError.value = true;
       isLoading.value = false;
       isStatsLoading.value = false;
@@ -56,11 +62,18 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
   getBusinessStats({required int id}) async {
     isStatsLoading.value = true;
     businessStats = (await BusinessRemoteRepository.fetchBusinessStats(id, {}));
+    if (businessStats?.history?.isNotEmpty ?? false) {
+      businessStatsHistory.clear();
+      for (var item in businessStats!.history!) {
+        businessStatsHistory.add(ChartData(item.date!, item.amount));
+      }
+    }
+    update(['businessBuilder']);
     isStatsLoading.value = false;
   }
 
   followBusiness(int id) async {
-    if(isBusinessFollowed.value) {
+    if (isBusinessFollowed.value) {
       isBusinessFollowed.value = false;
       await BusinessRemoteRepository.unFollowBusiness(id);
     }else{
@@ -76,7 +89,8 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
 
   getRecentlyFundedBusinessCauses({required int id}) async {
     isRecentlyFundedBusinessCauses.value = true;
-    recentlyFundedBusinessCausesList = (await CausesRemoteRepository.fetchCauses({
+    recentlyFundedBusinessCausesList =
+        (await CausesRemoteRepository.fetchCauses({
       Strings.businessId: id,
       Strings.recent: true,
     }));
@@ -108,15 +122,15 @@ class BusinessDetailController extends GetxController with GetTickerProviderStat
 
   getFollowBusiness({required int id}) async {
     follows = await FollowsRemoteRepository.fetchFollows();
-    for(var business in follows!.businesses!){
-      if(business.toString().contains(id.toString())){
+    for (var business in follows!.businesses!) {
+      if (business.toString().contains(id.toString())) {
         isBusinessFollowed.value = true;
-     }
+      }
+    }
   }
-}
 
   followCauses(int id, bool isFollowed) async {
-    if(isFollowed) {
+    if (isFollowed) {
       await CausesRemoteRepository.unFollowCause(id);
     }else{
       if(_isUserAuthenticated){

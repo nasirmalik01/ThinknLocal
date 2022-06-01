@@ -5,6 +5,7 @@ import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/cause_advertisement.dart';
 import 'package:flutter_app/model/cause_detail.dart';
 import 'package:flutter_app/model/causes_stats.dart';
+import 'package:flutter_app/model/chart_stats_model.dart';
 import 'package:flutter_app/model/follows.dart';
 import 'package:flutter_app/model/update_causes.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
@@ -36,6 +37,7 @@ class CausesDetailController extends GetxController {
   RxString errorMessage = ''.obs;
   RxBool isCauseFollowed = false.obs;
   final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
+  List<ChartData> causesStatsHistory = <ChartData>[];
 
   setFoodAndDrinkTab() {
     isFoodAndDrink.value = true;
@@ -68,7 +70,9 @@ class CausesDetailController extends GetxController {
   getCauseDetail(int id) async {
     isLoading.value = true;
     causeDetail = (await CausesRemoteRepository.fetchCauseDetails(id, {}));
-    if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
+    if (RemoteServices.statusCode != 200 &&
+        RemoteServices.statusCode != 201 &&
+        RemoteServices.statusCode != 204) {
       isError.value = true;
       isLoading.value = false;
       isFeaturedLoading.value = false;
@@ -82,10 +86,8 @@ class CausesDetailController extends GetxController {
 
   getCauseFeatured(int id) async {
     isFeaturedLoading.value = true;
-    causeFeaturedList = (await BusinessRemoteRepository.fetchBusinesses({
-      Strings.causeId: id,
-      Strings.featured: true
-    }));
+    causeFeaturedList = (await BusinessRemoteRepository.fetchBusinesses(
+        {Strings.causeId: id, Strings.featured: true}));
     isFeaturedLoading.value = false;
   }
 
@@ -113,11 +115,18 @@ class CausesDetailController extends GetxController {
   getCauseStats(int id) async {
     isStatsLoading.value = true;
     causesStats = (await CausesRemoteRepository.fetchCausesStats(id, {}));
+    if (causesStats?.history?.isNotEmpty ?? false) {
+      causesStatsHistory.clear();
+      for (var item in causesStats!.history!) {
+        causesStatsHistory.add(ChartData(item.date!, item.amount));
+      }
+    }
+    update(['causesBuilder']);
     isStatsLoading.value = false;
   }
 
   followCauses(int id) async {
-    if(isCauseFollowed.value) {
+    if (isCauseFollowed.value) {
       isCauseFollowed.value = false;
       await CausesRemoteRepository.unFollowCause(id);
     }else{
@@ -133,8 +142,8 @@ class CausesDetailController extends GetxController {
 
   getFollowCause(int id) async {
     follows = await FollowsRemoteRepository.fetchFollows();
-    for(var cause in follows!.causes!){
-      if(cause.toString().contains(id.toString())){
+    for (var cause in follows!.causes!) {
+      if (cause.toString().contains(id.toString())) {
         isCauseFollowed.value = true;
       }
     }

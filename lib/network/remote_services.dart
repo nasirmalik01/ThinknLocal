@@ -4,28 +4,28 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_app/common/registration_exceptions.dart';
 import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/common/registration_exceptions.dart';
 import 'package:flutter_app/network/network_exception.dart';
 import 'package:flutter_app/network/secure_http_client.dart';
 
-class RemoteServices  {
+class RemoteServices {
   static String error = '';
   static int? statusCode = 200;
 
-
-  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map, {void Function(int, int)? uploadFile}) async {
+  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map,
+      {void Function(int, int)? uploadFile}) async {
     dynamic resJson;
     try {
-      dynamic _result = await MySecureHttpClient.getClient().post(endPoint, data: map, onSendProgress: uploadFile);
+      dynamic _result = await MySecureHttpClient.getClient()
+          .post(endPoint, data: map, onSendProgress: uploadFile);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
         resJson = json.decode(_result.toString());
         return resJson;
       }
-    }
-    catch (e) {
+    } catch (e) {
       serverHandlingExceptions(e, statusCode, error);
-      if(e is DioError){
+      if (e is DioError) {
         final errorMessage = DioExceptions.fromDioError(e).toString();
         showSnackBar(subTitle: errorMessage);
         error = errorMessage;
@@ -38,28 +38,31 @@ class RemoteServices  {
   Future<dynamic> getRequest(String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      Response _result = await MySecureHttpClient.getClient().get(endPoint, queryParameters: map);
+      Response _result = await MySecureHttpClient.getClient()
+          .get(endPoint, queryParameters: map);
       log('status_code: ${_result.statusCode}');
       if (_result.statusCode == 200) {
-          statusCode = 200;
-          resJson = json.decode(_result.toString());
-          return resJson;
+        statusCode = 200;
+        resJson = json.decode(_result.toString());
+        return resJson;
+      }
+    } catch (e) {
+      if (e is DioError) {
+        final errorMessage = DioExceptions.fromDioError(e).toString();
+        showSnackBar(subTitle: errorMessage);
+        error = errorMessage;
+        statusCode = e.response?.statusCode;
+        if (kDebugMode) print(errorMessage);
       }
     }
-    catch (e) {
-     if(e is DioError){
-       final errorMessage = DioExceptions.fromDioError(e).toString();
-       showSnackBar(subTitle: errorMessage);
-       error = errorMessage;
-       statusCode = e.response?.statusCode;
-       debugPrint(errorMessage);
-     }
-    }
   }
-  Future<dynamic> patchRequest(String endPoint, Map<String, dynamic> map) async {
+
+  Future<dynamic> patchRequest(
+      String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      dynamic _result = await MySecureHttpClient.getClient().patch(endPoint, data: map);
+      dynamic _result =
+          await MySecureHttpClient.getClient().patch(endPoint, data: map);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
         resJson = json.decode(_result.toString());
         return resJson;
@@ -68,5 +71,4 @@ class RemoteServices  {
       serverHandlingExceptions(e, statusCode, error);
     }
   }
-
 }

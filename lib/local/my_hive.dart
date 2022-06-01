@@ -1,6 +1,5 @@
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/user_location.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class MyHive {
@@ -15,7 +14,6 @@ class MyHive {
     Hive.registerAdapter(UserLocationAdapter());
     _ins = await Hive.openBox('ThinknLocal_DB');
   }
-
 
   static getToken() {
     ///dummy token : -Gqw
@@ -33,6 +31,4 @@ class MyHive {
   static setLocation(UserLocation type) {
     _ins.put(_location, type);
   }
-
 }
-

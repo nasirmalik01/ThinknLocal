@@ -1,12 +1,13 @@
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/model/account.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get_it/get_it.dart';
 
-class ProfileRemoteRepository{
-
+class ProfileRemoteRepository {
   static Future<Account?> fetchProfileInfo(Map<String, dynamic> query) async {
-    final response = await GetIt.I<RemoteServices>().getRequest(ApiEndPoints.me, query);
+    final response =
+        await getItLocator<RemoteServices>().getRequest(ApiEndPoints.me, query);
     if (response == null) {
       return null;
     }
@@ -14,7 +15,8 @@ class ProfileRemoteRepository{
   }
 
   static Future<Account?> editAccountInfo(Map<String, dynamic> body) async {
-    final response = await GetIt.I<RemoteServices>().patchRequest(ApiEndPoints.profile, body);
+    final response = await GetIt.I<RemoteServices>()
+        .patchRequest(ApiEndPoints.profile, body);
     if (response == null) {
       return null;
     }

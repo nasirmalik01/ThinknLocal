@@ -23,34 +23,51 @@ import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-dependencyInjectionSetUp() async {
-  /// To register a singleton class
-  GetIt.I.registerSingleton<RemoteServices>(RemoteServices());
+///my dependency locator
+GetIt getItLocator = GetIt.instance;
+dependencyInjectionSetUp() {
+  getItLocator.registerSingleton<RemoteServices>(RemoteServices());
 }
 
-showSnackBar({String? title, String? subTitle, Color? backgroundColor}){
+///remove all Dependencies at the end of testing in tearDown
+removeDependencies() {
+  getItLocator.unregister(instance: RemoteServices());
+}
+
+showSnackBar({String? title, String? subTitle, Color? backgroundColor}) {
   Get.closeCurrentSnackbar();
-  Get.snackbar(title ?? 'Alert', subTitle ?? 'Please try again', snackPosition: SnackPosition.BOTTOM, backgroundColor: backgroundColor ?? Colors.redAccent, colorText: AppColors.pureWhiteColor, duration: const Duration(seconds: 2),);
+  Get.snackbar(
+    title ?? 'Alert',
+    subTitle ?? 'Please try again',
+    snackPosition: SnackPosition.BOTTOM,
+    backgroundColor: backgroundColor ?? Colors.redAccent,
+    colorText: AppColors.pureWhiteColor,
+    duration: const Duration(seconds: 2),
+  );
 }
 
-showLoadingDialog({String? message}){
+showLoadingDialog({String? message}) {
   Get.dialog(
     Center(
       child: Container(
-        height: getHeight()*0.15,
-        width: getWidth()*0.6,
+        height: getHeight() * 0.15,
+        width: getWidth() * 0.6,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: AppColors.pureWhiteColor.withOpacity(0.4)
-        ),
+            color: AppColors.pureWhiteColor.withOpacity(0.4)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SpinKitFadingCircle(color: AppColors.pureWhiteColor,),
-            SizedBox(height: getHeight()*0.01,),
+            const SpinKitFadingCircle(
+              color: AppColors.pureWhiteColor,
+            ),
+            SizedBox(
+              height: getHeight() * 0.01,
+            ),
             Material(
                 color: Colors.transparent,
-                child: TextView.title(message ?? 'Please wait', color: AppColors.pureWhiteColor))
+                child: TextView.title(message ?? 'Please wait',
+                    color: AppColors.pureWhiteColor))
           ],
         ),
       ),
@@ -59,7 +76,7 @@ showLoadingDialog({String? message}){
   );
 }
 
-circularProgressIndicator(){
+circularProgressIndicator() {
   return const Center(
     child: SpinKitFadingCircle(
       color: AppColors.greenColor,
@@ -67,18 +84,18 @@ circularProgressIndicator(){
   );
 }
 
-convertDateToString({required String dateTime}){
+convertDateToString({required String dateTime}) {
   var parsedDate = DateTime.parse(dateTime);
   DateFormat _dateTime = DateFormat.MMMEd();
   String formattedDate = _dateTime.format(parsedDate);
   String splitDate = formattedDate.split(',')[1];
   List<String> splitDateList = splitDate.split(' ');
   String month = splitDateList[1];
-  int day = int.parse(splitDateList[2])-1;
+  int day = int.parse(splitDateList[2]) - 1;
   return '$month ${day.toString()}';
 }
 
-locationParams(Map<String, dynamic> query){
+locationParams(Map<String, dynamic> query) {
   var location = MyHive.getLocation();
   query[Strings.latitude] = location.latitude;
   query[Strings.longitude] = location.longitude;
@@ -99,12 +116,11 @@ buildDynamicLinks(String category, String id) async {
     ),
     socialMetaTagParameters: SocialMetaTagParameters(
         description: '',
-        imageUrl:
-        Uri.parse(Strings.dynamicLinkImageUrl),
-        title: Strings.thinkLocal
-    ),
+        imageUrl: Uri.parse(Strings.dynamicLinkImageUrl),
+        title: Strings.thinkLocal),
   );
-  final dynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
+  final dynamicLink =
+      await FirebaseDynamicLinks.instance.buildShortLink(parameters);
   String? desc = dynamicLink.shortUrl.toString();
 
   await Share.share(desc, subject: Strings.thinkLocal);

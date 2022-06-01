@@ -1,4 +1,9 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_app/config/aws_response.dart';
+import 'package:flutter_app/config/aws_service.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
@@ -6,7 +11,7 @@ import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
-class AboutVisitController extends GetxController{
+class AboutVisitController extends GetxController {
   RxBool isVisitFirstTime = true.obs;
   RxString selectedBusiness = ''.obs;
   RxString selectedCourse = ''.obs;
@@ -19,7 +24,7 @@ class AboutVisitController extends GetxController{
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
 
-  changeFirstTimeVisit(){
+  changeFirstTimeVisit() {
     isVisitFirstTime.value = !isVisitFirstTime.value;
   }
 
@@ -32,8 +37,10 @@ class AboutVisitController extends GetxController{
 
   getCauses() async {
     isCausesLoading.value = true;
-    causesList =  await (CausesRemoteRepository.fetchCauses({}));
-    if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
+    causesList = await (CausesRemoteRepository.fetchCauses({}));
+    if (RemoteServices.statusCode != 200 &&
+        RemoteServices.statusCode != 201 &&
+        RemoteServices.statusCode != 204) {
       isError.value = true;
       isCausesLoading.value = false;
       errorMessage.value = RemoteServices.error;
@@ -44,8 +51,10 @@ class AboutVisitController extends GetxController{
 
   getBusinesses() async {
     isBusinessLoading.value = true;
-    businessList =  await (BusinessRemoteRepository.fetchBusinesses({}));
-    if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
+    businessList = await (BusinessRemoteRepository.fetchBusinesses({}));
+    if (RemoteServices.statusCode != 200 &&
+        RemoteServices.statusCode != 201 &&
+        RemoteServices.statusCode != 204) {
       isError.value = true;
       isBusinessLoading.value = false;
       errorMessage.value = RemoteServices.error;
@@ -54,14 +63,15 @@ class AboutVisitController extends GetxController{
     isBusinessLoading.value = false;
   }
 
-  Iterable<String> setOptionsBuilder(TextEditingValue value, {bool isBusiness = false}){
+  Iterable<String> setOptionsBuilder(TextEditingValue value,
+      {bool isBusiness = false}) {
     if (value.text.isEmpty) {
       return [];
     }
     List<String> causesStringList = [];
     List<String> businessStringList = [];
 
-    if(isBusiness){
+    if (isBusiness) {
       if (businessList!.isNotEmpty) {
         for (int i = 0; i < businessList!.length; i++) {
           businessStringList.add(businessList![i].name!);
@@ -69,7 +79,7 @@ class AboutVisitController extends GetxController{
         return businessStringList.where((business) =>
             business.toLowerCase().startsWith(value.text.toLowerCase()));
       }
-    }else {
+    } else {
       if (causesList!.isNotEmpty) {
         for (int i = 0; i < causesList!.length; i++) {
           causesStringList.add(causesList![i].name!);
@@ -82,21 +92,41 @@ class AboutVisitController extends GetxController{
     return [];
   }
 
-  onCauseCompletePress(value){
+  onCauseCompletePress(value) {
     selectedCourse.value = value;
-    for(var item in businessList!){
-      if(item.name == value){
+    for (var item in businessList!) {
+      if (item.name == value) {
         selectedCourseId.value = item.id!;
       }
     }
   }
 
-  onBusinessCompletePress(value){
+  onBusinessCompletePress(value) {
     selectedBusiness.value = value;
-    for(var item in causesList!){
-      if(item.name == value){
+    for (var item in causesList!) {
+      if (item.name == value) {
         selectedBusinessId.value = item.id!;
       }
     }
+  }
+
+  Future<void> uploadFile({
+    required File image,
+    required Function(UploadFileResponse) onUploadError,
+    required Function(UploadFileResponse) onUploadComplete,
+    required Function(double) onProgressChange,
+  }) async {
+    await AWSService().uploadFile(
+      File(image.path),
+      onProgressChange: (value) {
+        log(value.toString());
+      },
+      onUploadComplete: (UploadFileResponse response) {
+        log(response.data.toString());
+      },
+      onUploadError: (UploadFileResponse response) {
+        log(response.toString());
+      },
+    );
   }
 }

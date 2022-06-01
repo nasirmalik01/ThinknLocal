@@ -11,13 +11,13 @@ import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
-
-class LogInController extends GetxController{
+class LogInController extends GetxController {
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
 
   loginWithEmailPassword({String? email, String? password}) async {
-    final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, {
+    final response =
+        await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, {
       Strings.email: email,
       Strings.password: password,
     });
@@ -38,7 +38,6 @@ class LogInController extends GetxController{
         AppleIDAuthorizationScopes.fullName,
       ],
     );
-
   }
 
   loginWithGoogle() async {
