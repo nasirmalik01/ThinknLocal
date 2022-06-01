@@ -1,11 +1,13 @@
+import 'dart:developer';
 import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/config/aws_response.dart';
 import 'package:flutter_app/config/aws_service.dart';
-import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/widgets/button.dart';
-import 'package:get/get.dart';
+
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -95,8 +97,18 @@ class _ImagePreviewScreenState extends State<ImagePreviewScreen> {
                           //   Strings.checksum: 1234,
                           // };
                           // await _contributionController.uploadDirectContributions(_query);
-                          await AWSService()
-                              .uploadFile(File(widget.image.path));
+                          await AWSService().uploadFile(
+                            File(widget.image.path),
+                            onProgressChange: (value) {
+                              log(value.toString());
+                            },
+                            onUploadComplete: (UploadFileResponse response) {
+                              log(response.data.toString());
+                            },
+                            onUploadError: (UploadFileResponse response) {
+                              log(response.toString());
+                            },
+                          );
                           // Get.toNamed(Routes.aboutVisit, arguments:  widget.image);
                         },
                         width: sizes.width * 0.4,

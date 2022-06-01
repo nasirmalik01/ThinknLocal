@@ -5,14 +5,14 @@ import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/config/aws_response.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/network/secure_http_client.dart';
 
 class AWSService {
-  Function(String)? onUploadError;
-  Function(String)? onUploadComplete;
+  Function(UploadFileResponse)? onUploadError;
+  Function(UploadFileResponse)? onUploadComplete;
   Function(double)? onProgressChange;
-  final String _bucketName = 'thinknlocal-staging';
   final Dio _dio = Dio(
     BaseOptions(
         receiveDataWhenStatusError: true,
@@ -22,8 +22,16 @@ class AWSService {
   );
 
   Future<void> uploadFile(
-    File image,
-  ) async {
+    File image, {
+    required Function(UploadFileResponse) onUploadError,
+    required Function(UploadFileResponse) onUploadComplete,
+    required Function(double) onProgressChange,
+  }) async {
+    /// set listeners
+    this.onProgressChange = onProgressChange;
+    this.onUploadError = onUploadError;
+    this.onUploadComplete = onUploadComplete;
+
     try {
       var body = await getBodyPayload(image);
       Response? urlResponse = await generateUrl(
@@ -38,19 +46,21 @@ class AWSService {
             'Content-Type': body['content_type'],
             'Content-Length': body['byte_size'],
             'Content-MD5': body['checksum'],
+            'x-amz-acl': 'public-read',
           },
         ),
         data: image.openRead(),
         onSendProgress: (rec, total) {
           double progress = (rec / total * 100).toDouble();
-          log('Uploading : $progress $rec bytes');
+          onProgressChange.call(progress);
         },
       );
       if (response.statusCode == 200) {
-        log(response.toString());
+        onUploadComplete.call(getFileResponse(r: response));
       }
-    } catch (e) {
+    } on DioError catch (e) {
       log(e.toString());
+      onUploadError.call(getFileResponse(r: e));
     }
   }
 
@@ -90,7 +100,25 @@ class AWSService {
     return image.readAsBytesSync().lengthInBytes;
   }
 
-//   final bytes = image.readAsBytesSync().lengthInBytes;
-// final kb = bytes / 1024;
-// final mb = kb / 1024;
+  UploadFileResponse getFileResponse({dynamic r}) {
+    if (r is DioError) {
+      DioError e = r;
+      return UploadFileResponse(
+        statusCode: e.response?.statusCode,
+        message: e.response?.statusMessage ?? e.message,
+        isSuccess: false,
+        data: e.response?.data,
+      );
+    } else {
+      Response response = r;
+      return UploadFileResponse(
+        statusCode: response.statusCode,
+        isSuccess: true,
+        message: 'File Uploaded Successfully',
+
+        /// [response.headers] because it container e-tag, id , etc related to file Uploading
+        data: response.headers.map,
+      );
+    }
+  }
 }
