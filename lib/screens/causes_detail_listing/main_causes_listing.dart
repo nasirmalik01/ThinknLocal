@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/enums/request_type.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/widgets/network_error.dart';
@@ -21,7 +22,8 @@ class MainCausesListing extends StatelessWidget {
    Future.delayed(const Duration(milliseconds: 500), (){
      String _selectedCategory = _causesController.getSelectedCategory();
      print(_selectedCategory);
-     _causesController.setPagination(isCauses: true, isFirst: true);
+     _causesController.requestType.value = RequestType.causes;
+     _causesController.setPagination(isFirst: true,);
      _causesController.getCauses(_selectedCategory, page: 1);
    });
 

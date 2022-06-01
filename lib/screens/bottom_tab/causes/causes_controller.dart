@@ -7,6 +7,7 @@ import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/enums/request_type.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
@@ -33,6 +34,7 @@ class CausesController extends GetxController{
   RxString locationAddress = Strings.noLocation.obs;
   late ScrollController scrollController;
   RxInt pageIndex = 1.obs;
+  Rx<RequestType> requestType = RequestType.none.obs;
 
 
   @override
@@ -81,7 +83,10 @@ class CausesController extends GetxController{
 
   getCauses(String selectedTab, {bool isPagination = false, int page = 1}) async {
     if(isPagination){
-      handleCausePagination(selectedTab);
+      List<Causes>? paginatedList = await handleCausePagination(selectedTab);
+      if(paginatedList!=null) {
+        topCausesContainersList!.addAll(paginatedList);
+      }
     } else {
       isTopCausesContainersList.value = true;
       isNoMoreData.value = false;
@@ -103,7 +108,10 @@ class CausesController extends GetxController{
 
   getUpComingCauses({bool isPagination = false, int page = 1}) async {
     if(isPagination){
-      handleCausePagination(Strings.upcoming);
+      List<Causes>? paginatedList = await handleCausePagination(Strings.upcoming);;
+      if(paginatedList!=null) {
+        upcomingCauses!.addAll(paginatedList);
+      }
     }else {
       isUpcomingCausesLoading.value = true;
       upcomingCauses = await (CausesRemoteRepository.fetchCauses({
@@ -115,7 +123,10 @@ class CausesController extends GetxController{
 
   getRecentlyStartedCauses({bool isPagination = false, int page = 1}) async {
     if(isPagination){
-      handleCausePagination(Strings.recent);
+      List<Causes>? paginatedList = await handleCausePagination(Strings.recent);
+      if(paginatedList!=null) {
+        recentlyStartedCauses!.addAll(paginatedList);
+      }
     }else {
       isRecentlyStartedCausesLoading.value = true;
       recentlyStartedCauses = await (CausesRemoteRepository.fetchCauses({
@@ -156,9 +167,11 @@ class CausesController extends GetxController{
     }
   }
 
-  Future<void> setPagination({bool isFirst = false, bool isCauses = false, String? paramValue}) async{
+  Future<void> setPagination({bool isFirst = false,}) async{
     if(isFirst){
       pageIndex.value = 1;
+      isNoMoreData.value = false;
+      update();
     }
       // ignore: invalid_use_of_protected_member
     if (scrollController.hasListeners == false) {
@@ -168,14 +181,25 @@ class CausesController extends GetxController{
                 pageIndex.value = pageIndex.value + 1;
                 log('Index : ${pageIndex.value}');
                 String _selectedCategory = getSelectedCategory();
-                getCauses(isCauses ? _selectedCategory : paramValue!, isPagination: true);
+                switch(requestType.value){
+                  case RequestType.causes:
+                    getCauses(_selectedCategory, isPagination: true);
+                    break;
+                  case RequestType.upcoming:
+                    getUpComingCauses(isPagination: true);
+                    break;
+                  case RequestType.recent:
+                    getRecentlyStartedCauses(isPagination: true);
+                    break;
+                  default:break;
+                }
             }
           }
         });
     }
   }
 
-  handleCausePagination(String selectedTab) async{
+  Future<List<Causes>?> handleCausePagination(String selectedTab) async{
     isPaginatedLoading.value = true;
     showLoadingDialog(message: Strings.loadingMoreData);
     List<Causes>? _paginatedList = [];
@@ -187,10 +211,8 @@ class CausesController extends GetxController{
       isNoMoreData.value = true;
     }
     Get.back();
-    if(_paginatedList!=null) {
-      topCausesContainersList!.addAll(_paginatedList);
-    }
     isPaginatedLoading.value = false;
+    return _paginatedList;
   }
 
   String getSelectedCategory(){

@@ -52,6 +52,7 @@ class RemoteServices  {
        showSnackBar(subTitle: errorMessage);
        error = errorMessage;
        statusCode = e.response?.statusCode;
+       debugPrint(errorMessage);
      }
     }
   }
