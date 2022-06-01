@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/enums/request_type.dart';
+import 'package:flutter_app/enums/cause_request_type.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
-import 'package:flutter_app/widgets/network_error.dart';
 import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -20,7 +19,7 @@ class UpcomingCausesListing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 100), (){
-      _causesController.requestType.value = RequestType.upcoming;
+      _causesController.requestType.value = CauseRequestType.upcoming;
       _causesController.setPagination(isFirst: true,);
       _causesController.getUpComingCauses(page: 1);
     });

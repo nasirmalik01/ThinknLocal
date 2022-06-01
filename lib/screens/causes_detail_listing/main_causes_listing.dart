@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/enums/request_type.dart';
+import 'package:flutter_app/enums/cause_request_type.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
-import 'package:flutter_app/widgets/network_error.dart';
 import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -21,14 +20,13 @@ class MainCausesListing extends StatelessWidget {
   Widget build(BuildContext context) {
    Future.delayed(const Duration(milliseconds: 500), (){
      String _selectedCategory = _causesController.getSelectedCategory();
-     print(_selectedCategory);
-     _causesController.requestType.value = RequestType.causes;
+     _causesController.requestType.value = CauseRequestType.causes;
      _causesController.setPagination(isFirst: true,);
      _causesController.getCauses(_selectedCategory, page: 1);
    });
 
     return Scaffold(
-      body: Obx(() =>( _causesController.isTopCausesContainersList.value && !_causesController.isPaginatedLoading.value && (Get.isDialogOpen == false))
+      body: Obx(() =>(_causesController.isTopCausesContainersList.value && !_causesController.isPaginatedLoading.value)
           ? circularProgressIndicator()
           : SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),

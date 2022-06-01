@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
 class DioExceptions implements Exception {

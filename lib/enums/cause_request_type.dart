@@ -1,4 +1,4 @@
-enum RequestType{
+enum CauseRequestType{
   causes,
   recent,
   upcoming,

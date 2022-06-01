@@ -9,8 +9,10 @@ import 'package:flutter_app/screens/bottom_tab/businesses/business_tabs_containe
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_components.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/recently_added_business.dart';
+import 'package:flutter_app/screens/business_detail_listing/main_businesses_listing.dart';
+import 'package:flutter_app/screens/business_detail_listing/nearby_businesses_listing.dart';
+import 'package:flutter_app/screens/business_detail_listing/recently_added_businesses.dart';
 import 'package:flutter_app/screens/businesses_categories/business_category.dart';
-import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
@@ -157,8 +159,10 @@ class BusinessesScreen extends StatelessWidget {
                       itemCount: 6,
                       itemBuilder: (context, index){
                         return index == 5 ? GestureDetector(
-                            onTap: (){
-                              Get.to(BusinessesDetail(title: Strings.allBusinesses, detailList: _businessesController.businessList!,));
+                            onTap: () async {
+                              await Get.to(() => MainBusinessListing(title: Strings.allBusinesses));
+                              _businessesController.isError.value = false;
+                              _businessesController.getBusinesses(Strings.featured);
                             },
                             child: CommonWidgets.seeAllButton(40)
                         )
@@ -199,7 +203,7 @@ class BusinessesScreen extends StatelessWidget {
                         return index == 5
                             ? GestureDetector(
                             onTap: (){
-                              Get.to(BusinessesDetail(title: Strings.recentlyAddedBusiness, detailList: _businessesController.recentlyAddedBusinessList!,));
+                              Get.to(() => RecentBusinessListing(title: Strings.recentlyAddedBusiness));
                             },
                             child: CommonWidgets.seeAllButton(30))
                             : GestureDetector(
@@ -227,7 +231,7 @@ class BusinessesScreen extends StatelessWidget {
                             leadingText: Strings.nearby,
                             trailingText: Strings.seeAll,
                             onPressSeeAllButton: () {
-                              Get.to(BusinessesDetail(title: Strings.businessesNearYou, detailList: _businessesController.nearbyBusinessList!,));
+                              Get.to(() => NearbyBusinessListing(title: Strings.businessesNearYou));
                             }
                         ),
                         SizedBox(height: getHeight() * 0.018),

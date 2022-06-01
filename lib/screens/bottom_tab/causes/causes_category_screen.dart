@@ -13,7 +13,6 @@ import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_funds_container.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/recently_started_container.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
-import 'package:flutter_app/screens/causes_detail_listing/causes_listing.dart';
 import 'package:flutter_app/screens/causes_detail_listing/main_causes_listing.dart';
 import 'package:flutter_app/screens/causes_detail_listing/recent_causes_listing.dart';
 import 'package:flutter_app/screens/causes_detail_listing/upcoming_causes_listing.dart';
@@ -54,7 +53,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
             itemBuilder: (context, index){
               return index == 5 ? GestureDetector(
                 onTap: () async {
-                  final result = await Get.to(() => MainCausesListing(title: Strings.allCauses));
+                  await Get.to(() => MainCausesListing(title: Strings.allCauses));
                   _causesController.isError.value = false;
                   _causesController.getCauses(Strings.featured);
                 },

@@ -32,13 +32,13 @@ class LogInController extends GetxController{
   }
 
   loginWithApple() async {
-    final credentials = await SignInWithApple.getAppleIDCredential(
+    await SignInWithApple.getAppleIDCredential(
       scopes: [
         AppleIDAuthorizationScopes.email,
         AppleIDAuthorizationScopes.fullName,
       ],
     );
-    print(credentials);
+
   }
 
   loginWithGoogle() async {

@@ -1,13 +1,12 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/enums/request_type.dart';
+import 'package:flutter_app/enums/cause_request_type.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
@@ -34,7 +33,7 @@ class CausesController extends GetxController{
   RxString locationAddress = Strings.noLocation.obs;
   late ScrollController scrollController;
   RxInt pageIndex = 1.obs;
-  Rx<RequestType> requestType = RequestType.none.obs;
+  Rx<CauseRequestType> requestType = CauseRequestType.none.obs;
 
 
   @override
@@ -108,7 +107,7 @@ class CausesController extends GetxController{
 
   getUpComingCauses({bool isPagination = false, int page = 1}) async {
     if(isPagination){
-      List<Causes>? paginatedList = await handleCausePagination(Strings.upcoming);;
+      List<Causes>? paginatedList = await handleCausePagination(Strings.upcoming);
       if(paginatedList!=null) {
         upcomingCauses!.addAll(paginatedList);
       }
@@ -182,13 +181,13 @@ class CausesController extends GetxController{
                 log('Index : ${pageIndex.value}');
                 String _selectedCategory = getSelectedCategory();
                 switch(requestType.value){
-                  case RequestType.causes:
+                  case CauseRequestType.causes:
                     getCauses(_selectedCategory, isPagination: true);
                     break;
-                  case RequestType.upcoming:
+                  case CauseRequestType.upcoming:
                     getUpComingCauses(isPagination: true);
                     break;
-                  case RequestType.recent:
+                  case CauseRequestType.recent:
                     getRecentlyStartedCauses(isPagination: true);
                     break;
                   default:break;
