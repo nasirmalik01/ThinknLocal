@@ -169,8 +169,7 @@ class AboutVisit extends StatelessWidget {
                                             .isVisitFirstTime.value
                                         ? AppColors.blackColor
                                         : AppColors.greenColor,
-                                    textColor: _aboutVisitController
-                                            .isVisitFirstTime.value
+                                    textColor: _aboutVisitController.isVisitFirstTime.value
                                         ? AppColors.darkGrey
                                         : AppColors.pureWhiteColor,
                                     width: getWidth() * 0.43,
@@ -190,17 +189,19 @@ class AboutVisit extends StatelessWidget {
                             SizedBox(height: getHeight() * 0.07),
                             Button(
                               onPress: () async {
+                                if(_aboutVisitController.selectedBusinessId.value == 0){
+                                  return showSnackBar(subTitle: 'Please select business');
+                                }
+                                if(_aboutVisitController.selectedCauseId.value == 0){
+                                  return showSnackBar(subTitle: 'Please select cause');
+                                }
                                 Map<String, dynamic> body = {};
-                                body['business_id'] =
-                                    _aboutVisitController.selectedBusinessId.value;
-                                body['cause_id'] =
-                                    _aboutVisitController.selectedCourseId.value;
+                                body['business_id'] = _aboutVisitController.selectedBusinessId.value;
+                                body['cause_id'] = _aboutVisitController.selectedCauseId.value;
                                 body['rating'] = getRating;
-                                body['first_purchase'] = _aboutVisitController
-                                    .isVisitFirstTime.value;
-                                 _contributionController.uploadAndCreateContributions(body, File(_xFile.path),
+                                body['first_purchase'] = _aboutVisitController.isVisitFirstTime.value;
+                                _contributionController.uploadAndCreateContributions(body, File(_xFile.path),
                                 );
-
                               },
                               text: Strings.looksGood,
                               height: getHeight() * 0.08,

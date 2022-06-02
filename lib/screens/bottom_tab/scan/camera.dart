@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/about_visit/about_visit.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -195,9 +196,12 @@ class _CameraScreenState extends State<CameraScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image(
-                image: const AssetImage(Assets.galleryIcon),
-                height: getHeight() * 0.08,
+              GestureDetector(
+                onTap: _selectImageFromGallery,
+                child: Image(
+                  image: const AssetImage(Assets.galleryIcon),
+                  height: getHeight() * 0.08,
+                ),
               ),
               _cameraButton(onClick: () {
                 _takePicture();
@@ -232,6 +236,24 @@ class _CameraScreenState extends State<CameraScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _selectImageFromGallery() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? _image = await _picker.pickImage(source: ImageSource.gallery);
+    if(_image != null){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ImagePreviewScreen(
+                image: _image,
+                notSaveImage: () {
+                  Navigator.pop(context);
+                },
+                saveImage: ()async {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => AboutVisit()));},
+              )));
+    }
   }
 
   void _takePicture() async {

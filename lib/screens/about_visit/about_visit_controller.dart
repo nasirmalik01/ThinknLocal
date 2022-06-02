@@ -15,7 +15,7 @@ class AboutVisitController extends GetxController {
   RxBool isVisitFirstTime = true.obs;
   RxString selectedBusiness = ''.obs;
   RxString selectedCourse = ''.obs;
-  RxInt selectedCourseId = 0.obs;
+  RxInt selectedCauseId = 0.obs;
   RxInt selectedBusinessId = 0.obs;
   List<Causes>? causesList = [];
   List<Businesses>? businessList = [];
@@ -96,7 +96,7 @@ class AboutVisitController extends GetxController {
     selectedCourse.value = value;
     for (var item in causesList!) {
       if (item.name == value) {
-        selectedCourseId.value = item.id!;
+        selectedCauseId.value = item.id!;
       }
     }
   }
