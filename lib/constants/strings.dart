@@ -61,7 +61,7 @@ class Strings {
   static const String no = "No";
   static const String organizationId = "organization_id";
   static const String businessNear = "Businesses near";
-  static const String noLocation = 'Loading ... ';
+  static const String noLocation = 'Loading';
   static const String of = 'of';
   static const String ends = 'Ends';
   static const String dummyLocation = "Chino Hills, CA";

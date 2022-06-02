@@ -1,5 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
@@ -169,14 +171,21 @@ class _InitializeCameraScreenState extends State<InitializeCameraScreen> {
   }
 
 Future<void> initializeCamera() async {
-  allCameras = await availableCameras();
-  WidgetsBinding.instance!.addPostFrameCallback((_) {
-    pushNewScreen(
-      context,
-      screen: CameraScreen(camera: allCameras[0]),
-      withNavBar: false,
-      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-    );
+  Future.delayed(100.milliseconds, () async {
+    final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
+    if(!_isUserAuthenticated){
+      userNotLoggedIn();
+    }else {
+      allCameras = await availableCameras();
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
+        pushNewScreen(
+          context,
+          screen: CameraScreen(camera: allCameras[0]),
+          withNavBar: false,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
+      });
+    }
   });
 }
 }

@@ -139,10 +139,12 @@ Future<Cities?> getLowestDistanceCity() async {
   List<Cities> citiesList = [];
   var location = MyHive.getLocation();
   citiesList = await LocationRepository.fetchCities({Strings.latitude:  location.latitude, Strings.longitude: location.longitude}) ?? [];
-  double _distance = citiesList[0].distance ?? 0.0;
-  for(Cities city in citiesList){
-    if(city.distance! <= _distance){
-      _lowestDistanceCity = city;
+  if(citiesList.isNotEmpty) {
+    double _distance = citiesList[0].distance ?? 0.0;
+    for (Cities city in citiesList) {
+      if (city.distance! <= _distance) {
+        _lowestDistanceCity = city;
+      }
     }
   }
   return _lowestDistanceCity;
