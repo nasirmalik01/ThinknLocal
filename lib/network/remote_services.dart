@@ -6,12 +6,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/registration_exceptions.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/network/network_exception.dart';
 import 'package:flutter_app/network/secure_http_client.dart';
 
 class RemoteServices {
   static String error = '';
   static int? statusCode = 200;
+  static bool isNextPage = false;
 
   Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map,
       {void Function(int, int)? uploadFile}) async {
@@ -39,7 +41,7 @@ class RemoteServices {
     dynamic resJson;
     try {
       Response _result = await MySecureHttpClient.getClient().get(endPoint, queryParameters: map);
-      log('Headers: ${_result.headers}');
+      checkNextPage(_result.headers);
       log('status_code: ${_result.statusCode}');
       if (_result.statusCode == 200) {
         statusCode = 200;
@@ -69,6 +71,14 @@ class RemoteServices {
       }
     } catch (e) {
       serverHandlingExceptions(e, statusCode, error);
+    }
+  }
+
+  checkNextPage(Headers headers){
+    if(headers.toString().contains(Strings.next)){
+      isNextPage = true;
+    }else{
+      isNextPage = false;
     }
   }
 }

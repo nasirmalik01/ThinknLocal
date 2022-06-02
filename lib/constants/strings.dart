@@ -90,6 +90,7 @@ class Strings {
   static const String enablePushNotifications =
       'Enable push notifications lorem ipsum.';
   static const String emails = 'Emails';
+  static const String next = 'next';
   static const String allowSystemEmails =
       'Allow system emails for causes lorem ipsum.';
   static const String locationServices = 'Location Services';

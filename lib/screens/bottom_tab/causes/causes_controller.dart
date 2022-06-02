@@ -23,7 +23,6 @@ class CausesController extends GetxController{
   RxBool isRecentlyStartedCausesLoading = false.obs;
   RxBool isTopCausesContainersList = false.obs;
   RxBool isPaginatedLoading = false.obs;
-  RxBool isNoMoreData = false.obs;
   late List<Causes>? topCausesContainersList = [];
   late List<Causes>? upcomingCauses = [];
   late List<Causes>? recentlyStartedCauses = [];
@@ -88,7 +87,6 @@ class CausesController extends GetxController{
       }
     } else {
       isTopCausesContainersList.value = true;
-      isNoMoreData.value = false;
       topCausesContainersList =  await (CausesRemoteRepository.fetchCauses({
       selectedTab : true,
       Strings.page: page
@@ -169,14 +167,13 @@ class CausesController extends GetxController{
   Future<void> setPagination({bool isFirst = false,}) async{
     if(isFirst){
       pageIndex.value = 1;
-      isNoMoreData.value = false;
       update();
     }
       // ignore: invalid_use_of_protected_member
     if (scrollController.hasListeners == false) {
           scrollController.addListener(() async {
             if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-              if(isNoMoreData.value == false) {
+              if(RemoteServices.isNextPage == true) {
                 pageIndex.value = pageIndex.value + 1;
                 log('Index : ${pageIndex.value}');
                 String _selectedCategory = getSelectedCategory();
@@ -206,9 +203,6 @@ class CausesController extends GetxController{
       selectedTab: true,
       Strings.page: pageIndex.value
     },));
-    if(RemoteServices.statusCode == 500){
-      isNoMoreData.value = true;
-    }
     Get.back();
     isPaginatedLoading.value = false;
     return _paginatedList;

@@ -18,7 +18,6 @@ class BusinessesController extends GetxController{
   RxBool isBusinessLoading = false.obs;
   RxBool isRecentlyAddedBusinessLoading = false.obs;
   RxBool isNearByBusinessLoading = false.obs;
-  RxBool isNoMoreData = false.obs;
   RxBool isPaginatedLoading = false.obs;
   List<Businesses>? businessList = [];
   List<Businesses>? recentlyAddedBusinessList = [];
@@ -137,14 +136,13 @@ class BusinessesController extends GetxController{
   Future<void> setPagination({bool isFirst = false,}) async{
     if(isFirst){
       pageIndex.value = 1;
-      isNoMoreData.value = false;
       update();
     }
     // ignore: invalid_use_of_protected_member
     if (scrollController.hasListeners == false) {
       scrollController.addListener(() async {
         if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-          if(isNoMoreData.value == false) {
+          if(RemoteServices.isNextPage == true) {
             pageIndex.value = pageIndex.value + 1;
             log('Index : ${pageIndex.value}');
             String _selectedCategory = getSelectedCategory();
@@ -174,9 +172,6 @@ class BusinessesController extends GetxController{
       selectedTab: true,
       Strings.page: pageIndex.value
     },));
-    if(RemoteServices.statusCode == 500){
-      isNoMoreData.value = true;
-    }
     Get.back();
     isPaginatedLoading.value = false;
     return _paginatedList;

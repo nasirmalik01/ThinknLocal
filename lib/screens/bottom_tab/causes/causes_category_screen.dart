@@ -53,9 +53,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
             itemBuilder: (context, index){
               return index == 5 ? GestureDetector(
                 onTap: () async {
-                  await Get.to(() => MainCausesListing(title: Strings.allCauses));
-                  _causesController.isError.value = false;
-                  _causesController.getCauses(Strings.featured);
+                   Get.to(() => MainCausesListing(title: Strings.allCauses));
                 },
                 child: CommonWidgets.seeAllButton(40)
               ) : CausesFundContainer(

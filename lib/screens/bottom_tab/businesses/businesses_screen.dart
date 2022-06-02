@@ -160,9 +160,7 @@ class BusinessesScreen extends StatelessWidget {
                       itemBuilder: (context, index){
                         return index == 5 ? GestureDetector(
                             onTap: () async {
-                              await Get.to(() => MainBusinessListing(title: Strings.allBusinesses));
-                              _businessesController.isError.value = false;
-                              _businessesController.getBusinesses(Strings.featured);
+                               Get.to(() => MainBusinessListing(title: Strings.allBusinesses));
                             },
                             child: CommonWidgets.seeAllButton(40)
                         )
