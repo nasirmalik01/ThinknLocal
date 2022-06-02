@@ -17,6 +17,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:sizer/sizer.dart';
@@ -206,4 +207,35 @@ Future<void> launchInBrowser(Uri url) async {
 userNotLoggedIn(){
   Get.offAllNamed(Routes.loginScreen);
   showSnackBar(subTitle: Strings.notLoggedIn);
+}
+
+Future<bool> checkCameraPermissions() async {
+  final status = await Permission.camera.request();
+  if (status == PermissionStatus.granted) {
+    log('Camera: Permission granted');
+    final isMicEnabled = await checkMicroPhonePermission();
+    if(isMicEnabled){
+      return true;
+    }
+  } else if (status == PermissionStatus.denied) {
+    log('Camera: Permission denied. Show a dialog and again ask for the permission');
+  } else if (status == PermissionStatus.permanentlyDenied) {
+    log('Camera: Take the user to the settings page.');
+    await openAppSettings();
+  }
+  return false;
+}
+
+Future<bool> checkMicroPhonePermission() async {
+  final status = await Permission.microphone.request();
+  if (status == PermissionStatus.granted) {
+    log('Microphone: Permission granted');
+    return true;
+  } else if (status == PermissionStatus.denied) {
+    print('Microphone: Permission denied. Show a dialog and again ask for the permission');
+  } else if (status == PermissionStatus.permanentlyDenied) {
+    print('Microphone: Take the user to the settings page.');
+    await openAppSettings();
+  }
+  return false;
 }

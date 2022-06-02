@@ -12,7 +12,6 @@ Future<void> main() async {
   group('Follows', () {
     test('Fetch Follows', () async {
       Follows? follows = await FollowsRemoteRepository.fetchFollows();
-
       expect(
         true,
         (follows?.businesses?.isNotEmpty ?? false) &&

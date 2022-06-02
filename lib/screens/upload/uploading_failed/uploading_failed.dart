@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/bottom_tab/bottom_tab_new.dart';
 import 'package:flutter_app/screens/upload/uploading_success/uploading_success.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:get/get.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -87,8 +89,7 @@ class _UploadFailedState extends State<UploadFailed> {
                   SizedBox(height: getHeight() * 0.08),
                   Button(
                     onPress: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => const UploadSuccess()));
+                      Get.offAll(const BottomTabNew(pageIndex: 0));
                     },
                     text: "Try Again",
                     btnColor: AppColors.greenColor,

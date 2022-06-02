@@ -18,7 +18,7 @@ class MainCausesListing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   Future.delayed(const Duration(milliseconds: 500), (){
+   Future.delayed(const Duration(milliseconds: 10), (){
      String _selectedCategory = _causesController.getSelectedCategory();
      _causesController.requestType.value = CauseRequestType.causes;
      _causesController.setPagination(isFirst: true,);

@@ -14,11 +14,11 @@ class AWSService {
   Function(UploadFileResponse)? onUploadComplete;
   Function(double)? onProgressChange;
   final Dio _dio = Dio(
-    BaseOptions(
-        receiveDataWhenStatusError: true,
-        connectTimeout: 60 * 1000, // 60 seconds
-        receiveTimeout: 60 * 1000 // 60 seconds
-        ),
+    // BaseOptions(
+    //     receiveDataWhenStatusError: true,
+    //     connectTimeout: 60 * 1000, // 60 seconds
+    //     receiveTimeout: 60 * 1000 // 60 seconds
+    //     ),
   );
 
   Future<void> uploadFile(

@@ -1,11 +1,9 @@
 class Strings {
   static const baseUrl = 'https://staging-api.thinknlocal.com/v2/';
-  static const dummyToken =
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOm51bGwsImRhdGEiOm51bGx9.rTBYjY035F8ni5Jprku9A_YTugZGMp3G3n7xgNX-Gqw';
+  static const dummyToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOm51bGwsImRhdGEiOm51bGx9.rTBYjY035F8ni5Jprku9A_YTugZGMp3G3n7xgNX-Gqw';
 
   ///update this token when you need to test cases
-  static const testingToken =
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImRhdGEiOm51bGwsImV4cCI6MTY4NDU3NTk2NX0.VUWhCIHoQCVlx_EIo5yOA7OQNjlHQF68ikyVhhLIkYs';
+  static const testingToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImRhdGEiOm51bGwsImV4cCI6MTY4NDU3NTk2NX0.VUWhCIHoQCVlx_EIo5yOA7OQNjlHQF68ikyVhhLIkYs';
 
   static const String loginUserId = "loginUserId";
   static const String loginName = "loginName";

@@ -1,4 +1,6 @@
 import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/model/business_detail.dart';
 import 'package:flutter_app/model/business_stats.dart';
 import 'package:flutter_app/model/businesses.dart';
@@ -14,7 +16,7 @@ Future<void> main() async {
   group(
     'Businesses',
     () {
-      ///success Cases
+      ///Success Cases
       test('Fetch Business', () async {
         List<Businesses>? businessList =
             await BusinessRemoteRepository.fetchBusinesses({
@@ -41,7 +43,7 @@ Future<void> main() async {
         expect(true, businessDetails != null);
       });
 
-      ///Failuer cases
+      ///Failure cases
       test('follow Business', () async {
         bool isFollowDone = await BusinessRemoteRepository.followBusiness(1);
         expect(true, isFollowDone);
@@ -52,8 +54,43 @@ Future<void> main() async {
         bool isFollowDone = await BusinessRemoteRepository.unFollowBusiness(1);
         expect(true, isFollowDone);
       },
-          skip:
-              'UnFollow Business : Failuer case is working but , Succes case is still in Queue');
+          skip: 'UnFollow Business : Failuer case is working but , Succes case is still in Queue');
+
+      test('Food & Drink Business Category', () async {
+        List<Businesses>? businessCategoryList =  await (BusinessRemoteRepository.fetchBusinesses({
+          Strings.categoryId: 22,
+          Strings.latitude: Strings.dummyLatitude,
+          Strings.longitude: Strings.dummyLongitude,
+        }));
+        expect(true, businessCategoryList?.isNotEmpty);
+      });
+
+      test('Things to do Business Category', () async {
+        List<Businesses>? businessCategoryList =  await (BusinessRemoteRepository.fetchBusinesses({
+          Strings.categoryId: 29,
+          Strings.latitude: Strings.dummyLatitude,
+          Strings.longitude: Strings.dummyLongitude,
+        }));
+        expect(true, businessCategoryList?.isNotEmpty);
+      });
+
+      test('Retail Business Category', () async {
+        List<Businesses>? businessCategoryList =  await (BusinessRemoteRepository.fetchBusinesses({
+          Strings.categoryId: 3,
+          Strings.latitude: Strings.dummyLatitude,
+          Strings.longitude: Strings.dummyLongitude,
+        }));
+        expect(true, businessCategoryList?.isNotEmpty);
+      });
+
+      test('Services Business Category', () async {
+        List<Businesses>? businessCategoryList =  await (BusinessRemoteRepository.fetchBusinesses({
+          Strings.categoryId: 33,
+          Strings.latitude: Strings.dummyLatitude,
+          Strings.longitude: Strings.dummyLongitude,
+        }));
+        expect(true, businessCategoryList?.isNotEmpty);
+      });
     },
   );
 }

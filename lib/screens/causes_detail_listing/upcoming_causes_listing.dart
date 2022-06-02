@@ -18,7 +18,7 @@ class UpcomingCausesListing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 100), (){
+    Future.delayed(const Duration(milliseconds: 10), (){
       _causesController.requestType.value = CauseRequestType.upcoming;
       _causesController.setPagination(isFirst: true,);
       _causesController.getUpComingCauses(page: 1);

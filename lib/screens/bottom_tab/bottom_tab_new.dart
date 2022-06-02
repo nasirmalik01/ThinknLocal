@@ -15,6 +15,7 @@ import 'causes/causes_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 
+
 class BottomTabNew extends StatefulWidget {
   final int pageIndex;
 
@@ -92,7 +93,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
           left: sizes.isPhone ? getWidth()*0.405 : getWidth()*0.433,
           child:  GestureDetector(
             onTap: (){
-              Get.to(const InitializeCameraScreen());
+              Get.to(() => const InitializeCameraScreen());
             },
             child: Card(
               elevation: 5,

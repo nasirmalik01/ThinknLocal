@@ -21,7 +21,7 @@ class MainBusinessListing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 100), (){
+    Future.delayed(const Duration(milliseconds: 10), (){
       String _selectedCategory = _businessesController.getSelectedCategory();
       _businessesController.requestType.value = BusinessRequestType.business;
       _businessesController.setPagination(isFirst: true,);

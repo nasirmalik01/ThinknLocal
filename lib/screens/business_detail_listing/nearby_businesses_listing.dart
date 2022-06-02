@@ -21,7 +21,7 @@ class NearbyBusinessListing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 100), (){
+    Future.delayed(const Duration(milliseconds: 10), (){
       _businessesController.requestType.value = BusinessRequestType.nearby;
       _businessesController.setPagination(isFirst: true);
       _businessesController.getNearbyBusinesses(page: 1);

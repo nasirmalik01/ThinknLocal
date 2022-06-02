@@ -27,7 +27,7 @@ Future<void> main() async {
     });
 
     /// NOTE : Failed don't test this yet in
-    test('Create Contriburion', () async {
+    test('Create Contribution', () async {
       var result = await NotificationRepository.createContribution({
         Strings.uploadId:
             'eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19',

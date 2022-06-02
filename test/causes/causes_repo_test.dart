@@ -38,7 +38,7 @@ Future<void> main() async {
       expect(true, causeDetail != null);
     });
 
-    ///Failuer cases
+    ///Failure cases
     test('follow Causes', () async {
       bool isFollowDone = await CausesRemoteRepository.followCause(1);
       expect(false, isFollowDone);

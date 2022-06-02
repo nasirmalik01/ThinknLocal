@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:get/get.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -76,8 +77,7 @@ class _UploadSuccessState extends State<UploadSuccess> {
                   SizedBox(height: getHeight() * 0.08),
                   Button(
                       onPress: () {
-                        Navigator.pushAndRemoveUntil(context,
-                            MaterialPageRoute (builder: (_) => const BottomTabNew(pageIndex: 0)), (route) => false);
+                        Get.offAll(const BottomTabNew(pageIndex: 0));
                       },
                       text: "Finish",
                       btnColor: AppColors.greenColor,
