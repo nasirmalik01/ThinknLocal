@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/sign_in/login_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'profile/user_profile_repo_test.dart';
-
 void main() {
   group("SignIn screen test", () {
     testWidgets("Lets test Button", (WidgetTester tester) async {

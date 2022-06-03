@@ -8,20 +8,17 @@ import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/network/remote_services.dart';
 
 class BusinessRemoteRepository {
-  static Future<List<Businesses>?> fetchBusinesses(
-      Map<String, dynamic>? query) async {
+  static Future<List<Businesses>?> fetchBusinesses(Map<String, dynamic>? query) async {
     List<Businesses> businessList = [];
     if (query == null) {
       locationParams(query!);
     }
 
-    final response = await getItLocator<RemoteServices>()
-        .getRequest(ApiEndPoints.businesses, query);
+    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.businesses, query);
     if (response == null) {
       return null;
     }
-    final List<dynamic> _businessDecodeList =
-        response.map((item) => Businesses.fromJson(item)).toList();
+    final List<dynamic> _businessDecodeList = response.map((item) => Businesses.fromJson(item)).toList();
     for (var businessItem in _businessDecodeList) {
       businessList.add(businessItem);
     }

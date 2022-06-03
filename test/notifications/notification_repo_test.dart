@@ -11,18 +11,15 @@ Future<void> main() async {
     dependencyInjectionSetUp();
   });
 
-  group('Notification', () {
+  group('Notifications', () {
     test('Fetch Contributions', () async {
-      List<Contributions>? contributionsList =
-          await NotificationRepository.fetchContributions({});
-      expect(
-        true,
-        contributionsList?.isNotEmpty ?? false,
+      List<Contributions>? contributionsList = await NotificationRepository.fetchContributions({});
+      expect(true, contributionsList?.isNotEmpty ?? false,
       );
     });
+
     test('get Notifications', () async {
-      List<Notification>? _notificationList =
-          await NotificationRepository.getNotifications({});
+      List<Notification>? _notificationList = await NotificationRepository.getNotifications({});
       expect(true, _notificationList?.isNotEmpty ?? false);
     });
 
@@ -37,6 +34,6 @@ Future<void> main() async {
         Strings.firstPurchase: '1234',
       });
       expect(true, result != null);
-    }, skip: 'Create Contriburion : Functionality is not implemented yet');
+    },);
   });
 }

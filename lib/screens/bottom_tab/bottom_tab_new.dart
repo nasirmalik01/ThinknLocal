@@ -47,6 +47,8 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
   @override
   Widget build(BuildContext context) {
+    initializeResources(context: context);
+
     return Stack(
       children: [
         PersistentTabView(

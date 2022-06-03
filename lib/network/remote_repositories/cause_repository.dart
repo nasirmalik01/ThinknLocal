@@ -18,11 +18,14 @@ class CausesRemoteRepository {
 
     /// Passing location parameters
     if (query == null) {
+      /// Works in test cases
       locationParams(query!);
+    }else{
+      /// Works in app flow
+      locationParams(query);
     }
 
-    final response = await getItLocator<RemoteServices>()
-        .getRequest(ApiEndPoints.causes, query);
+    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.causes, query);
     if (response == null) {
       return null;
     }

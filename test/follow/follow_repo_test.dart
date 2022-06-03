@@ -12,11 +12,7 @@ Future<void> main() async {
   group('Follows', () {
     test('Fetch Follows', () async {
       Follows? follows = await FollowsRemoteRepository.fetchFollows();
-      expect(
-        true,
-        (follows?.businesses?.isNotEmpty ?? false) &&
-            (follows?.causes?.isNotEmpty ?? false) &&
-            (follows?.organizations?.isNotEmpty ?? false),
+      expect(true, (follows?.businesses?.isNotEmpty ?? false) && (follows?.causes?.isNotEmpty ?? false) && (follows?.organizations?.isNotEmpty ?? false),
       );
     });
   });

@@ -17,7 +17,9 @@ class MyHive {
 
   static getToken() {
     ///dummy token : -Gqw
-    return _ins.get(_token, defaultValue: Strings.dummyToken);
+    // return _ins.get(_token, defaultValue: Strings.dummyToken);
+    /// For testing
+    return _ins.get(Strings.testingToken);
   }
 
   static setToken(String? type) {

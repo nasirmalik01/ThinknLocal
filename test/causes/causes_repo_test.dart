@@ -18,24 +18,26 @@ Future<void> main() async {
         'latitude': 31.415198188563153,
         'longitude': 73.09159506885499,
       });
-
       expect(true, (causesList?.isNotEmpty ?? false));
     });
+
     test('Fetch Causes Stats', () async {
-      CausesStats? causesStats =
-          await CausesRemoteRepository.fetchCausesStats(1, {
+      CausesStats? causesStats = await CausesRemoteRepository.fetchCausesStats(1, {
         'latitude': 31.415198188563153,
         'longitude': 73.09159506885499,
       });
       expect(true, causesStats?.history?.isNotEmpty ?? false);
+      expect(true, causesStats?.topContributors?.isNotEmpty ?? false);
+      expect(12, causesStats?.history?.length);
     });
+
     test('Fetch Causes Details', () async {
-      CauseDetail? causeDetail =
-          await CausesRemoteRepository.fetchCauseDetails(1, {
+      CauseDetail? causeDetail = await CausesRemoteRepository.fetchCauseDetails(1, {
         'latitude': 31.415198188563153,
         'longitude': 73.09159506885499,
       });
       expect(true, causeDetail != null);
+      expect(1, causeDetail!.id);
     });
 
     ///Failure cases
@@ -43,6 +45,7 @@ Future<void> main() async {
       bool isFollowDone = await CausesRemoteRepository.followCause(1);
       expect(false, isFollowDone);
     });
+
     test('UnFollow Causes', () async {
       bool isUnFollowDone = await CausesRemoteRepository.unFollowCause(1);
       expect(false, isUnFollowDone);
