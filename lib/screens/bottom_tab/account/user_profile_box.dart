@@ -7,6 +7,8 @@ import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
+
 
 class UserProfileBox extends StatelessWidget {
   final String? name;
@@ -26,7 +28,16 @@ class UserProfileBox extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextView.headerWithBlurRadius(Strings.help, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                GestureDetector(
+                    onTap: () async {
+                      final Email email = Email(
+                        recipients: ['support@thinknlocal.com'],
+                        isHTML: false,
+                      );
+
+                      await FlutterEmailSender.send(email);
+                    },
+                    child: TextView.headerWithBlurRadius(Strings.help, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
                 GestureDetector(
                     onTap: (){
                       MyHive.setToken(Strings.dummyToken);

@@ -8,8 +8,7 @@ void main() {
     testWidgets("OnBoarding Page Widgets test", (WidgetTester tester) async {
 
       var pageWidget = find.byKey(const ValueKey("onBoardingPageSettingWidget"));
-      await tester.pumpWidget(const MaterialApp(
-          home: OnBoardingPage()));
+      await tester.pumpWidget(const MaterialApp(home: OnBoardingPage()));
       await tester.tap(pageWidget);
       await tester.pump();
 
