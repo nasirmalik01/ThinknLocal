@@ -68,7 +68,7 @@ class NearbyBusinessListing extends StatelessWidget {
                                   onViewCourse: (){},
                                   address: _businessesController.nearbyBusinessList![index].address1,
                                   streetAddress: _businessesController.nearbyBusinessList![index].address2,
-                                  phoneNumber: '+1 ${_businessesController.nearbyBusinessList![index].phone!.substring(0,3)} ${_businessesController.nearbyBusinessList![index].phone!.substring(4, )}'
+                                  phoneNumber: '(${_businessesController.nearbyBusinessList![index].phone!.substring(0,3)}) ${_businessesController.nearbyBusinessList![index].phone!.substring(3, 6)}-${_businessesController.nearbyBusinessList![index].phone!.substring(6, )}'
                               ),
                             ),
                           );

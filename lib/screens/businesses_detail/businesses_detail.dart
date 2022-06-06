@@ -1,4 +1,3 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_app/screens/businesses_detail/business_detail_controller
 import 'package:flutter_app/screens/businesses_detail/business_detail_top_container.dart';
 import 'package:flutter_app/screens/businesses_detail/business_rating.dart';
 import 'package:flutter_app/screens/businesses_detail/recently_funded_business.dart';
-import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
 import 'package:flutter_app/screens/causes_detail_listing/causes_listing.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
@@ -27,9 +25,7 @@ import '../../constants/colors.dart';
 
 class BusinessesDetailScreen extends StatelessWidget {
   BusinessesDetailScreen({Key? key}) : super(key: key);
-  final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
-  final BusinessDetailController _businessDetailController =
-      Get.put(BusinessDetailController());
+  final BusinessDetailController _businessDetailController = Get.put(BusinessDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -91,10 +87,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                           .businessDetail!.address2,
                                       address: _businessDetailController
                                           .businessDetail!.address1,
-                                      phoneNumber:
-                                          '+1 ${_businessDetailController.businessDetail!.phone!.substring(0, 3)} ${_businessDetailController.businessDetail!.phone!.substring(
-                                        4,
-                                      )}',
+                                      phoneNumber: '(${_businessDetailController.businessDetail!.phone!.substring(0,3)}) ${_businessDetailController.businessDetail!.phone!.substring(3, 6)}-${_businessDetailController.businessDetail!.phone!.substring(6, )}',
                                       isFavorite: _businessDetailController
                                           .isBusinessFollowed.value,
                                       onClickBox: () {},

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/contribution_controller.dart';
-import 'package:flutter_app/screens/upload/uploading_failed/uploading_failed.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import '../../../constants/assets.dart';

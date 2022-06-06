@@ -4,10 +4,8 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/network/remote_services.dart';
 
 class AuthRepository {
-  static Future<dynamic> login(
-      {required String email, required String password}) async {
-    final response = await getItLocator<RemoteServices>()
-        .postRequest(ApiEndPoints.authenticate, {
+  static Future<dynamic> login({required String email, required String password}) async {
+    final response = await getItLocator<RemoteServices>().postRequest(ApiEndPoints.authenticate, {
       Strings.email: email,
       Strings.password: password,
     });
@@ -17,7 +15,7 @@ class AuthRepository {
   static Future<dynamic> setNewPassword({
     required String token,
     required String password,
-    required String confrimPassowrd,
+    required String confirmPassowrd,
     required String email,
   }) async {
     final response = await getItLocator<RemoteServices>()

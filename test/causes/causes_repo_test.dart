@@ -19,6 +19,10 @@ Future<void> main() async {
         'longitude': 73.09159506885499,
       });
       expect(true, (causesList?.isNotEmpty ?? false));
+      for(Causes cause in causesList!){
+        expect(true, cause.organization != null);
+        expect(true, cause.category != null);
+      }
     });
 
     test('Fetch Causes Stats', () async {
@@ -38,6 +42,8 @@ Future<void> main() async {
       });
       expect(true, causeDetail != null);
       expect(1, causeDetail!.id);
+      expect(true, causeDetail.category != null);
+      expect(true, causeDetail.organization != null);
     });
 
     ///Failure cases
@@ -49,6 +55,33 @@ Future<void> main() async {
     test('UnFollow Causes', () async {
       bool isUnFollowDone = await CausesRemoteRepository.unFollowCause(1);
       expect(false, isUnFollowDone);
+    });
+
+    test('Fetch Causes', () async {
+      List<Causes>? causesList = await CausesRemoteRepository.fetchCauses({
+        'latitude': 31.415198188563153,
+        'longitude': 73.09159506885499,
+      });
+      expect(false, (causesList?.isEmpty));
+    });
+
+    test('Fetch Causes Stats', () async {
+      CausesStats? causesStats = await CausesRemoteRepository.fetchCausesStats(1, {
+        'latitude': 31.415198188563153,
+        'longitude': 73.09159506885499,
+      });
+      expect(false, causesStats?.history?.isEmpty);
+      expect(false, causesStats?.topContributors?.isEmpty);
+    });
+
+    test('Fetch Causes Details', () async {
+      CauseDetail? causeDetail = await CausesRemoteRepository.fetchCauseDetails(1, {
+        'latitude': 31.415198188563153,
+        'longitude': 73.09159506885499,
+      });
+      expect(false, causeDetail == null);
+      expect(false, causeDetail?.category == null);
+      expect(false, causeDetail?.organization == null);
     });
   });
 }

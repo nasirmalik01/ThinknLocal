@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/bottom_tab/bottom_tab_new.dart';
-import 'package:flutter_app/screens/upload/uploading_success/uploading_success.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';

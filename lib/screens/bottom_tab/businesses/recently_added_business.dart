@@ -47,13 +47,13 @@ class RecentlyAddedBusiness extends StatelessWidget {
             children: [
               const Expanded(child: SizedBox()),
               Container(
-                height: getHeight()*0.07,
-                width: getHeight()*0.07,
+                height: getWidth()*0.15,
+                width: getWidth()*0.15,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(getHeight() * 0.01),
                     image: DecorationImage(
                         image: isImageUrlLogo ? NetworkImage(logoImage!) :  AssetImage(logoImage!) as ImageProvider,
-                        fit: BoxFit.fill)
+                        fit: BoxFit.cover)
                 ),
               ),
               SizedBox(height: getHeight() * 0.01),

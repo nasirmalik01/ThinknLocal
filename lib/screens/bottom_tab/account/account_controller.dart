@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class AccountController extends GetxController{
   RxBool isPushNotifications = false.obs;
   RxBool isEmail = false.obs;
-  RxBool isLocation = false.obs;
+  RxBool isLocation = true.obs;
   RxBool isOtherOption = false.obs;
   RxBool isOtherOption2 = false.obs;
   Account? account;

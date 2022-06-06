@@ -1,7 +1,5 @@
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/model/business.dart';
 import 'package:flutter_app/model/business_detail.dart';
 import 'package:flutter_app/model/business_stats.dart';
 import 'package:flutter_app/model/businesses.dart';

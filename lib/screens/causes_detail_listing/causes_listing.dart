@@ -52,7 +52,7 @@ class CausesListingScreen extends StatelessWidget {
                                 headerText: detailList[index].organization!.name,
                                 description:   detailList[index].name!,
                                 onViewCourse: (){},
-                                totalAmount:  detailList[index].raised.toString(),
+                                totalAmount:  detailList[index].raised.toStringAsFixed(2),
                                 date: detailList[index].start.toString()
                             ),
                           ),

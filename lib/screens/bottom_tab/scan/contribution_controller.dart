@@ -6,7 +6,6 @@ import 'package:flutter_app/config/aws_response.dart';
 import 'package:flutter_app/config/aws_service.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/model/contributions_direct_upload.dart';
-import 'package:flutter_app/network/remote_repositories/notification_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
@@ -43,7 +42,7 @@ class ContributionController extends GetxController {
       );
       uploadContributionsQuery['upload_id'] =uResponse.uploadId;
 
-     var response  = await createContribution(uploadContributionsQuery);
+      await createContribution(uploadContributionsQuery);
       isUploading.value = false;
       return uploadDirectContribution;
     } catch (e) {

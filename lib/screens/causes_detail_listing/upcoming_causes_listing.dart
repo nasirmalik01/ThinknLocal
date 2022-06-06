@@ -65,7 +65,7 @@ class UpcomingCausesListing extends StatelessWidget {
                                 headerText: _causesController.upcomingCauses![index].organization!.name,
                                 description:   _causesController.upcomingCauses![index].name!,
                                 onViewCourse: (){},
-                                totalAmount:  _causesController.upcomingCauses![index].raised.toString(),
+                                totalAmount:  _causesController.upcomingCauses![index].raised!.toStringAsFixed(2),
                                 date: _causesController.upcomingCauses![index].start.toString()
                             ),
                           ),

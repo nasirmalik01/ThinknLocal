@@ -232,9 +232,9 @@ Future<bool> checkMicroPhonePermission() async {
     log('Microphone: Permission granted');
     return true;
   } else if (status == PermissionStatus.denied) {
-    print('Microphone: Permission denied. Show a dialog and again ask for the permission');
+    log('Microphone: Permission denied. Show a dialog and again ask for the permission');
   } else if (status == PermissionStatus.permanentlyDenied) {
-    print('Microphone: Take the user to the settings page.');
+    log('Microphone: Take the user to the settings page.');
     await openAppSettings();
   }
   return false;

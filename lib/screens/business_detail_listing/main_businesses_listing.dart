@@ -69,7 +69,7 @@ class MainBusinessListing extends StatelessWidget {
                                 onViewCourse: (){},
                                 address: _businessesController.businessList![index].address1,
                                 streetAddress: _businessesController.businessList![index].address2,
-                                phoneNumber: '+1 ${_businessesController.businessList![index].phone!.substring(0,3)} ${_businessesController.businessList![index].phone!.substring(4, )}',
+                                phoneNumber: '(${_businessesController.businessList![index].phone!.substring(0,3)}) ${_businessesController.businessList![index].phone!.substring(3, 6)}-${_businessesController.businessList![index].phone!.substring(6, )}',
                             ),
                           ),
                         );

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/business_request_type.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
@@ -131,6 +132,7 @@ class BusinessesController extends GetxController{
   getLocationAddress() async {
     Cities? _lowestDistanceCity = await getLowestDistanceCity();
     locationAddress.value = _lowestDistanceCity?.name ?? Strings.noLocation;
+    MyHive.setLocationAddress(locationAddress.value);
   }
 
   Future<void> setPagination({bool isFirst = false,}) async{

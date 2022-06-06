@@ -76,7 +76,7 @@ class BusinessCategory extends StatelessWidget {
                                   onViewCourse: (){},
                                   address: _businessCategoryController.businessCategoryList![index].address1,
                                   streetAddress: _businessCategoryController.businessCategoryList![index].address2,
-                                  phoneNumber: '+1 ${_businessCategoryController.businessCategoryList![index].phone!.substring(0,3)} ${_businessCategoryController.businessCategoryList![index].phone!.substring(4, )}',
+                                  phoneNumber: '(${_businessCategoryController.businessCategoryList![index].phone!.substring(0,3)}) ${_businessCategoryController.businessCategoryList![index].phone!.substring(3, 6)}-${_businessCategoryController.businessCategoryList![index].phone!.substring(6, )}',
                                   isBusinessCategory: true,
                                 ),
                               ),

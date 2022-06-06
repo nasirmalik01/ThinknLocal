@@ -65,7 +65,7 @@ class RecentCausesListing extends StatelessWidget {
                                 headerText: _causesController.recentlyStartedCauses![index].organization!.name,
                                 description:   _causesController.recentlyStartedCauses![index].name!,
                                 onViewCourse: (){},
-                                totalAmount:  _causesController.recentlyStartedCauses![index].raised.toString(),
+                                totalAmount:  _causesController.recentlyStartedCauses![index].raised!.toStringAsFixed(2),
                                 date: _causesController.recentlyStartedCauses![index].start.toString()
                             ),
                           ),

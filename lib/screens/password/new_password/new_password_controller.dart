@@ -1,8 +1,6 @@
 import 'package:flutter_app/network/remote_repositories/auth_repository.dart';
 import 'package:get/get.dart';
-import 'package:get_it/get_it.dart';
 import '/common/methods.dart';
-import '/constants/api_endpoints.dart';
 import '/constants/colors.dart';
 import '/constants/routes.dart';
 
@@ -11,7 +9,7 @@ class NewPasswordController extends GetxController {
     final response = await AuthRepository.setNewPassword(
         token: token,
         password: password,
-        confrimPassowrd: password,
+        confirmPassowrd: password,
         email: email);
 
     /// if any Exception occurs

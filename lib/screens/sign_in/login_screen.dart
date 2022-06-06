@@ -141,11 +141,6 @@ class LoginScreen extends StatelessWidget {
                               fit: BoxFit.fill,
                             ),
                           ),
-                          SizedBox(width: Platform.isIOS ? 0 : getWidth() * 0.07),
-                          const Image(
-                            image: AssetImage(Assets.facebookLogo,),
-                            fit: BoxFit.fill,
-                          ),
                         ],
                       ),
                       SizedBox(height: getHeight() * 0.09),

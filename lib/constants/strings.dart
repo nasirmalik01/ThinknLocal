@@ -1,10 +1,8 @@
 class Strings {
   static const baseUrl = 'https://staging-api.thinknlocal.com/v2/';
   static const dummyToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOm51bGwsImRhdGEiOm51bGx9.rTBYjY035F8ni5Jprku9A_YTugZGMp3G3n7xgNX-Gqw';
-
   ///update this token when you need to test cases
   static const testingToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImRhdGEiOm51bGwsImV4cCI6MTY4NDU3NTk2NX0.VUWhCIHoQCVlx_EIo5yOA7OQNjlHQF68ikyVhhLIkYs';
-
   static const String loginUserId = "loginUserId";
   static const String loginName = "loginName";
   static const String loginEmail = "loginEmail";
@@ -16,9 +14,9 @@ class Strings {
   static const String businesses = "Businesses";
   static const String nearby = "nearby";
   static const String featured = "featured";
-  static const overview = "Overview";
-  static const update = "Update";
-  static const stats = "Stats";
+  static const String overview = "Overview";
+  static const String update = "Update";
+  static const String stats = "Stats";
   static const String featuredSponsors = "Featured Sponsors";
   static const String corporateSponsors = "Corporate Sponsors";
   static const String trending = "trending";
@@ -69,8 +67,7 @@ class Strings {
   static const String retail = "Retail";
   static const String services = "Services";
   static const String contributionsOverTime = "Contributions over time";
-  static const String numberOfContributions =
-      "Number of contributions from individuals over time.";
+  static const String numberOfContributions = 'Number of contributions from individuals over time.';
   static const String recentContributions = "Recent Contributions";
   static const String recentlyAdded = "Recently Added";
   static const String tellUsAboutVisit = "Tell us about your visit!";
@@ -81,24 +78,19 @@ class Strings {
   static const String courseName = 'Course name';
   static const String howWasYourVisit = 'How was your visit?';
   static const String wasThisFirstTime = 'Was this your first time?';
-  static const String whatCauseYouSupport =
-      'What cause do you want to support?';
+  static const String whatCauseYouSupport = 'What cause do you want to support?';
   static const String looksGood = 'Looks Good!';
   static const String hello = 'Hello,';
   static const String accountSettings = 'Account Settings';
   static const String pushNotifications = 'Push Notifications';
-  static const String enablePushNotifications =
-      'Enable push notifications lorem ipsum.';
+  static const String enablePushNotifications = 'Enable push notifications lorem ipsum.';
   static const String emails = 'Emails';
   static const String next = 'next';
-  static const String allowSystemEmails =
-      'Allow system emails for causes lorem ipsum.';
+  static const String allowSystemEmails = 'Allow system emails for causes lorem ipsum.';
   static const String locationServices = 'Location Services';
-  static const String allowLocationServices =
-      'Allow location services while the app is running.';
+  static const String allowLocationServices = 'Allow location services while the app is running.';
   static const String otherOption = 'Other Option';
-  static const String otherOptionDescription =
-      'Other option description related to something.';
+  static const String otherOptionDescription = 'Other option description related to something.';
   static const String otherOption2 = 'Other Option 2';
   static const String help = 'Help';
   static const String signOut = 'Sign out';
@@ -108,8 +100,7 @@ class Strings {
   static const String raising = 'Raising';
   static const String starting = 'starting';
   static const String yourNotifications = 'Your Notifications';
-  static const String wantToEditNotification =
-      'Want to edit your notification settings?';
+  static const String wantToEditNotification = 'Want to edit your notification settings?';
   static const String editSettings = 'Edit Settings';
   static const String notifications = 'Notifications';
   static const String account = 'Account';
@@ -143,8 +134,7 @@ class Strings {
   static const String thinkLocal = 'ThinknLocal';
   static const String notificationId = 'high_importance_channel';
   static const String notificationTitle = 'High Importance Notifications';
-  static const String notificationDesc =
-      'This channel is used for important notifications';
+  static const String notificationDesc = 'This channel is used for important notifications';
   static const String mipmapIcLauncher = '@mipmap/ic_launcher';
   static const String dynamicLinkInitialUrl = 'https://links.thinknlocal.com';
   static const String dynamicLinkImageUrl = 'https://www.thinknlocal.com/assets/welcome/logo-dark-07b7bfc0671b940febf94d1af4f88fb133e8cd1e.png';
@@ -180,8 +170,6 @@ class Strings {
   static const String somethingWrong = 'Oops something went wrong!';
   static const String somethingWrongDesc = 'Sorry we encountered an error please try again later.';
   static const String loadingMoreData = 'Loading more data';
-
-
   static const String dummyBgImage = "https://img.freepik.com/free-photo/abstract-grunge-decorative-relief-navy-blue-stucco-wall-texture-wide-angle-rough-colored-background_1258-28311.jpg?w=2000";
   static const String dummyLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvAoOOgHtZloYXgy0AFzd9SuxDlVw8s0sVg&usqp=CAU";
   static const String dummyLogoForDialog = "https://cdn.dribbble.com/users/24078/screenshots/15522433/media/e92e58ec9d338a234945ae3d3ffd5be3.jpg?compress=1&resize=400x300";

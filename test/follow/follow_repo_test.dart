@@ -10,10 +10,21 @@ Future<void> main() async {
   });
 
   group('Follows', () {
+
+    /// Success case
     test('Fetch Follows', () async {
       Follows? follows = await FollowsRemoteRepository.fetchFollows();
-      expect(true, (follows?.businesses?.isNotEmpty ?? false) && (follows?.causes?.isNotEmpty ?? false) && (follows?.organizations?.isNotEmpty ?? false),
-      );
+      expect(true, follows?.businesses?.isNotEmpty);
+      expect(true, follows?.causes?.isNotEmpty);
+      expect(true, follows?.organizations?.isNotEmpty);
+    });
+
+    /// Failure case
+    test('Fetch Follows', () async {
+      Follows? follows = await FollowsRemoteRepository.fetchFollows();
+      expect(false, follows?.businesses?.isEmpty);
+      expect(false, follows?.causes?.isEmpty);
+      expect(false, follows?.organizations?.isEmpty);
     });
   });
 }

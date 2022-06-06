@@ -142,7 +142,6 @@ class BusinessesScreen extends StatelessWidget {
                             customTabBar(title: Strings.featured.capitalize!, isSelected: _businessesController.isFeatured.value,  onTap: (){ _businessesController.setFeaturedTab(); }),
                             customTabBar(title: Strings.trending.capitalize!, isSelected: _businessesController.isTrending.value, onTap: (){ _businessesController.setTrendingTab(); }),
                             customTabBar(title: Strings.favorites.capitalize!, isSelected: _businessesController.isFavorites.value, onTap: (){ _businessesController.setFavoritesTab(); }),
-                            customTabBar(title: Strings.past.capitalize!, isSelected: _businessesController.isPast.value, onTap: (){ _businessesController.setPostTab(); }),
                           ],
                         ),
                       ],
@@ -171,7 +170,7 @@ class BusinessesScreen extends StatelessWidget {
                             bookName:  '',
                             streetAddress: _businessesController.businessList![index].address1,
                             address: _businessesController.businessList![index].address2,
-                            phoneNumber:  '+1 ${_businessesController.businessList![index].phone!.substring(0,3)} ${_businessesController.businessList![index].phone!.substring(4, )}',
+                            phoneNumber:  '(${_businessesController.businessList![index].phone!.substring(0,3)}) ${_businessesController.businessList![index].phone!.substring(3, 6)}-${_businessesController.businessList![index].phone!.substring(6, )}',
                             index: index,
                             isFavorite: false,
                             onClickBox: () async {
@@ -252,7 +251,7 @@ class BusinessesScreen extends StatelessWidget {
                                   onViewCourse: (){},
                                   address: _businessesController.nearbyBusinessList![index].address1,
                                   streetAddress: _businessesController.nearbyBusinessList![index].address2 ?? Strings.unknown,
-                                  phoneNumber: '+1 ${_businessesController.nearbyBusinessList![index].phone!.substring(0,3)} ${_businessesController.nearbyBusinessList![index].phone!.substring(4, )}',
+                                  phoneNumber: '(${_businessesController.nearbyBusinessList![index].phone!.substring(0,3)}) ${_businessesController.nearbyBusinessList![index].phone!.substring(3, 6)}-${_businessesController.nearbyBusinessList![index].phone!.substring(6, )}',
                               ),
                             );
                           }, separatorBuilder: (BuildContext context, int index) {

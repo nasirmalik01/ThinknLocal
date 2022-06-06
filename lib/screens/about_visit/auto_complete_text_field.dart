@@ -11,7 +11,6 @@ class AutoFieldTextField extends StatelessWidget {
   final Function(String) onSelect;
   final bool isBusiness;
   AutoFieldTextField({required this.hintText, this.isBusiness = false, required this.onSelect, Key? key}) : super(key: key);
-
   final AboutVisitController _aboutVisitController = Get.put(AboutVisitController());
 
 

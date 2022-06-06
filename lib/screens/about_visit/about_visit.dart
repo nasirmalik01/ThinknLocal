@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
 import 'package:flutter_app/screens/about_visit/auto_complete_text_field.dart';

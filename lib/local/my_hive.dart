@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 class MyHive {
   static const String _token = 'userToken';
   static const String _location = 'UserLocation';
+  static const String _locationAddress = 'LocationAddress';
 
   static late Box _ins;
 
@@ -17,9 +18,7 @@ class MyHive {
 
   static getToken() {
     ///dummy token : -Gqw
-    // return _ins.get(_token, defaultValue: Strings.dummyToken);
-    /// For testing
-    return _ins.get(Strings.testingToken);
+    return _ins.get(_token, defaultValue: Strings.dummyToken);
   }
 
   static setToken(String? type) {
@@ -32,5 +31,13 @@ class MyHive {
 
   static setLocation(UserLocation type) {
     _ins.put(_location, type);
+  }
+
+  static setLocationAddress(String? locationAddress) {
+    _ins.put(_locationAddress, locationAddress);
+  }
+
+  static getLocationAddress() {
+    return _ins.get(_locationAddress);
   }
 }

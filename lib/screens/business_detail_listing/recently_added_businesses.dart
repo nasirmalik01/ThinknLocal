@@ -68,7 +68,7 @@ class RecentBusinessListing extends StatelessWidget {
                                   onViewCourse: (){},
                                   address: _businessesController.recentlyAddedBusinessList![index].address1,
                                   streetAddress: _businessesController.recentlyAddedBusinessList![index].address2,
-                                  phoneNumber:'+1 ${_businessesController.recentlyAddedBusinessList![index].phone!.substring(0,3)} ${_businessesController.recentlyAddedBusinessList![index].phone!.substring(4, )}'
+                                  phoneNumber: '(${_businessesController.recentlyAddedBusinessList![index].phone!.substring(0,3)}) ${_businessesController.recentlyAddedBusinessList![index].phone!.substring(3, 6)}-${_businessesController.recentlyAddedBusinessList![index].phone!.substring(6, )}'
                               ),
                             ),
                           );

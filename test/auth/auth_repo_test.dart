@@ -12,31 +12,55 @@ Future<void> main() async {
     'Auth',
     () {
       ///success Cases
-      test('login', () async {
-        final response = await AuthRepository.login(
-            email: 'admin@example.com', password: 'admin123');
-        expect(true, response['token'] != null);
+      test('Request reset password', () async {
+        final response = await AuthRepository.login(email: 'admin@example.com', password: 'admin123');
+        expect(true, response != null);
+        /// It only returns 200 status code so we are only testing response here
       });
 
-      test('set New Password', () async {
+      test('Verify ResetPin', () async {
+        final response = await AuthRepository.verifyResetPin(email: 'admin@example.com', pin: '374101');
+        expect(true, response['token'] != null);
+        expect(true, response.resetToken != null);
+      });
+
+      test('Set New Password', () async {
         final response = await AuthRepository.setNewPassword(
-            token:
-                'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImRhdGEiOm51bGwsImV4cCI6MTY4NDU5MTIzN30.jBEID8ZQvKJ1NOh5gKW_VKdEkQUyDifrAmgL4-29QMM',
-            password: 'admin123',
-            confrimPassowrd: 'admin123',
+            token: 'BAh7CEkiCGdpZAY6BkVUSSIfZ2lkOi8vdGhpbmtubG9jYWwvVXNlci8xMTIGOwBUSSIMcHVycG9zZQY7AFRJIhNwYXNzd29yZF9yZXNldAY7AFRJIg9leHBpcmVzX2F0BjsAVEkiHTIwMjItMDctMDZUMTA6NDM6MTUuNzU5WgY7AFQ=--45317b802b81caac13bb673d9b89495314c26c0a',
+            password: '112233',
+            confirmPassowrd: '112233',
             email: 'admin@example.com');
+
         expect(true, response['token'] != null);
+        expect(true, response.email == 'admin@example.com');
+        expect(true, response.firstName == 'Admin');
+        expect(true, response.lastName == 'User');
       });
 
-      test('verify ResetPin', () async {
-        final response = await AuthRepository.login(
-            email: 'admin@example.com', password: 'admin123');
-        expect(true, response['token'] != null);
+      /// Failure cases
+      test('Request reset password', () async {
+        final response = await AuthRepository.login(email: 'admin@example.com', password: 'admin123');
+        expect(false, response == null);
+        /// It only returns 200 status code so we are only testing response here
       });
-      test('Reset Password', () async {
-        final response = await AuthRepository.login(
-            email: 'admin@example.com', password: 'admin123');
-        expect(true, response['token'] != null);
+
+      test('Verify ResetPin', () async {
+        final response = await AuthRepository.verifyResetPin(email: 'admin@example.com', pin: '374101');
+        expect(false, response['token'] == null);
+        expect(false, response.resetToken == null);
+      });
+
+      test('Set New Password', () async {
+        final response = await AuthRepository.setNewPassword(
+            token: 'BAh7CEkiCGdpZAY6BkVUSSIfZ2lkOi8vdGhpbmtubG9jYWwvVXNlci8xMTIGOwBUSSIMcHVycG9zZQY7AFRJIhNwYXNzd29yZF9yZXNldAY7AFRJIg9leHBpcmVzX2F0BjsAVEkiHTIwMjItMDctMDZUMTA6NDM6MTUuNzU5WgY7AFQ=--45317b802b81caac13bb673d9b89495314c26c0a',
+            password: '112233',
+            confirmPassowrd: '112233',
+            email: 'admin@example.com');
+
+        expect(false, response['token'] == null);
+        expect(false, response.email != 'admin@example.com');
+        expect(false, response.firstName != 'Admin');
+        expect(false, response.lastName != 'User');
       });
     },
   );

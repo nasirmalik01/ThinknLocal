@@ -66,7 +66,7 @@ class MainCausesListing extends StatelessWidget {
                                 headerText: _causesController.topCausesContainersList![index].organization!.name,
                                 description:   _causesController.topCausesContainersList![index].name!,
                                 onViewCourse: (){},
-                                totalAmount:  _causesController.topCausesContainersList![index].raised.toString(),
+                                totalAmount:  _causesController.topCausesContainersList![index].raised!.toStringAsFixed(2),
                                 date: _causesController.topCausesContainersList![index].start.toString()
                             ),
                           ),

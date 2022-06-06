@@ -87,12 +87,8 @@ class _CausesDetailState extends State<CausesDetail>
                                   .causeDetail!.organization?.logo,
                               completePercentage: _causesDetailController
                                   .causeDetail!.percentage!,
-                              collectedAmount: _causesDetailController
-                                  .causeDetail!.raised
-                                  .toString(),
-                              totalAmount: _causesDetailController
-                                  .causeDetail!.goal
-                                  .toString(),
+                              collectedAmount: _causesDetailController.causeDetail!.raised!.toStringAsFixed(2),
+                              totalAmount: _causesDetailController.causeDetail!.goal!.toStringAsFixed(2),
                               endDate:
                                   "${_causesDetailController.causeDetail!.start} - ${_causesDetailController.causeDetail!.end}",
                               isFavorite:

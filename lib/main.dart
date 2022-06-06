@@ -17,8 +17,7 @@ void main() async {
   await Firebase.initializeApp();
   String? token = await FirebaseMessaging.instance.getToken();
   debugPrint('FCM TOKEN: ${token.toString()}');
-  FirebaseMessaging.onBackgroundMessage(
-      PushNotificationConfig.handleBackgroundPushNotifications);
+  FirebaseMessaging.onBackgroundMessage(PushNotificationConfig.handleBackgroundPushNotifications);
   PushNotificationConfig.initNotifications();
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);

@@ -1,4 +1,3 @@
-import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/model/cities.dart';
@@ -36,7 +35,6 @@ class LocationSearchController extends GetxController {
   }
 
   getLocationAddress() async {
-    Cities? _lowestDistanceCity = await getLowestDistanceCity();
-    locationAddress.value = _lowestDistanceCity?.name ?? Strings.noLocation;
+    locationAddress.value = MyHive.getLocationAddress();
   }
 }
