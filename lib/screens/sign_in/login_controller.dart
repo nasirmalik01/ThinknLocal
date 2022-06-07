@@ -14,6 +14,8 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class LogInController extends GetxController {
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
+  RxBool isEmptyTextFieldValues = false.obs;
+  RxBool isPasswordShort = false.obs;
 
   loginWithEmailPassword({String? email, String? password}) async {
     final response =

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/sign_up/sign_up_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_field.dart';
@@ -58,36 +59,43 @@ class SignUpScreen extends StatelessWidget {
                   TextView.titleWithDecoration("Create your account to continue!", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize16),
                   SizedBox(height: getHeight() * 0.03),
                   TextFieldWidget(
+                      key: const ValueKey(Strings.firstName),
                       textEditingController: firstNameController,
                       hint: "First Name",
                       textInputType: TextInputType.emailAddress
                   ),
                   SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
-                      textEditingController: lastNameController,
+                    key: const ValueKey(Strings.lastName),
+                    textEditingController: lastNameController,
                       hint: "Last Name",
                   ),
                   SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
-                      textEditingController: emailController,
+                    key: const ValueKey(Strings.email),
+                    textEditingController: emailController,
                       hint: "Email",
                   ),SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
+                      key: const ValueKey(Strings.password),
                       textEditingController: passwordController,
                       hint: "Password",
                       obscureText: true
                   ),SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
+                      key: const ValueKey(Strings.passwordConfirmation),
                       textEditingController: confirmPasswordController,
                       hint: "Confirm Password",
                       obscureText: true
                   ),SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
-                      textEditingController: zipCodeController,
+                    key: const ValueKey(Strings.zip),
+                    textEditingController: zipCodeController,
                       hint: "Zip Code",
                       textInputType: TextInputType.number,
                   ),SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
+                      key: const ValueKey(Strings.groupCode),
                       textEditingController: groupCodeController,
                       hint: "Group Code",
                       textColor: AppColors.lightBlue,
@@ -98,13 +106,16 @@ class SignUpScreen extends StatelessWidget {
                   SizedBox(height: getHeight() * 0.01),
                   TextView.subTitleWithBlurRadius("*Part of a club, organization or special group?", color: AppColors.lightBlue, fontFamily: Assets.poppinsMedium),
                   SizedBox(height: getHeight() * 0.06),
-                  Button(onPress: () {
-
+                  Button(
+                      key: const ValueKey(Strings.signUpKeyButton),
+                      onPress: () {
                     if(firstNameController!.text.trim().isEmpty || lastNameController!.text.trim().isEmpty || emailController!.text.trim().isEmpty || passwordController!.text.trim().isEmpty || confirmPasswordController!.text.trim().isEmpty || zipCodeController!.text.trim().isEmpty){
+                      _signUpController.isEmptyTextFieldValues.value = true;
                        return showSnackBar(subTitle: 'Please fill all the required fields');
                     }
 
                     if(passwordController!.text.length < 6){
+                      _signUpController.isShortPassword.value = true;
                       return showSnackBar(title: 'Password too short', subTitle: 'It should be of minimum 6 characters');
                     }
 
@@ -113,10 +124,12 @@ class SignUpScreen extends StatelessWidget {
                     }
 
                     if(passwordController!.text != confirmPasswordController!.text){
+                      _signUpController.isPasswordNotMatches.value = true;
                       return showSnackBar(subTitle: 'Password doesn\'t matched');
                     }
 
                     if(zipCodeController!.text.length < 5){
+                      _signUpController.isZipLengthNotFive.value = true;
                       return showSnackBar(title: 'Zip Code too short', subTitle: 'It should be of minimum 5 characters');
                     }
 

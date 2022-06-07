@@ -8,6 +8,10 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 
 class SignUpController extends GetxController{
+  RxBool isEmptyTextFieldValues = false.obs;
+  RxBool isShortPassword = false.obs;
+  RxBool isPasswordNotMatches = false.obs;
+  RxBool isZipLengthNotFive = false.obs;
 
   Future registerUser({String? email, String? password, String? confirmPassword, String? firstName, String? lastName, String? zipCode, String? groupCode, String? businessId, String? causeId, String? organizationId}) async {
     final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.users, {

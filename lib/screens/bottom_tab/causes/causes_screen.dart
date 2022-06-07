@@ -32,6 +32,8 @@ class CausesScreen extends StatelessWidget{
           ?  NetworkErrorException(exceptionMessage: _causesController.errorMessage.value, onPress: (){
             _causesController.isError.value = false;
             _causesController.getCauses(Strings.featured);
+            _causesController.getRecentlyStartedCauses();
+            _causesController.getUpComingCauses();
           })
           : Container(
           height: sizes.height,
@@ -102,7 +104,7 @@ class CausesScreen extends StatelessWidget{
                       ],
                     ),
                   ),
-                  const CausesCategoryScreen(),
+                  const   CausesCategoryScreen(),
                 ],
               ),
             ],

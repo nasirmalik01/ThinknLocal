@@ -35,7 +35,6 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    log('TOKEN: ${MyHive.getToken()}');
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

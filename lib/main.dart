@@ -19,7 +19,6 @@ void main() async {
   debugPrint('FCM TOKEN: ${token.toString()}');
   FirebaseMessaging.onBackgroundMessage(PushNotificationConfig.handleBackgroundPushNotifications);
   PushNotificationConfig.initNotifications();
-
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await SystemChromeConfig.setOverLayStyle();
   SystemChromeConfig.setOrientation();

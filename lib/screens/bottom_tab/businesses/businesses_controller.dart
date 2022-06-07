@@ -33,7 +33,7 @@ class BusinessesController extends GetxController{
   @override
   void onInit() {
     scrollController = ScrollController();
-    getLocationAddress();
+    // getLocationAddress();
     getBusinesses(Strings.featured);
     getRecentlyAddedBusinesses();
     getNearbyBusinesses();

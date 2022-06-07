@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/sign_in/login_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_field.dart';
@@ -54,12 +55,14 @@ class LoginScreen extends StatelessWidget {
                       ),
                       SizedBox(height: getHeight() * 0.08),
                       TextFieldWidget(
+                          key: const ValueKey(Strings.emailTextField),
                           textEditingController: _emailController,
                           hint: "Email Address",
                           textInputType: TextInputType.emailAddress
                       ),
                       SizedBox(height: getHeight() * 0.03),
                       TextFieldWidget(
+                          key: const ValueKey(Strings.passwordTextField),
                           textEditingController: _passwordController,
                           hint: "Password",
                           obscureText: true
@@ -68,22 +71,25 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          TextView.titleWithBlurRadius("Forgot password? ", Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
+                          TextView.titleWithBlurRadius(Strings.forgotPassword, Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
                           GestureDetector(
                               onTap: () {
                                 Get.toNamed(Routes.resetPasswordScreen);
                               },
-                              child: TextView.titleWithBlurRadius("Reset it", Assets.poppinsMedium, color: AppColors.greenColor, lines: 1, isUnderLine: true)),
-
+                              child: TextView.titleWithBlurRadius(Strings.resetIt, Assets.poppinsMedium, color: AppColors.greenColor, lines: 1, isUnderLine: true)),
                         ],
                       ),
                       SizedBox(height: getHeight() * 0.04),
-                      Button(onPress: () async {
+                      Button(
+                          key: const ValueKey(Strings.signInKeyButton),
+                          onPress: () async {
                         if(_emailController!.text.trim().isEmpty || _passwordController!.text.trim().isEmpty){
+                          _logInController.isEmptyTextFieldValues.value = true;
                           return showSnackBar(subTitle: 'Please fill all the required fields');
                         }
 
                         if(_passwordController!.text.length < 6){
+                          _logInController.isPasswordShort.value = true;
                           return showSnackBar(title: 'Password too short', subTitle: 'It should be of minimum 6 characters');
                         }
 
@@ -98,23 +104,27 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: sizes.width * 0.2,
-                            child: Divider(
-                              height: getHeight() * 0.01,
-                              thickness: getHeight() * 0.002,
-                              color: AppColors.borderColor,
+                          Expanded(
+                            child: SizedBox(
+                              width: sizes.width * 0.2,
+                              child: Divider(
+                                height: getHeight() * 0.01,
+                                thickness: getHeight() * 0.002,
+                                color: AppColors.borderColor,
+                              ),
                             ),
                           ),
                           SizedBox(width: getWidth() * 0.05),
-                          TextView.titleWithDecoration("Or continue with", color: AppColors.lightBlack),
+                          TextView.titleWithDecoration(Strings.orContinueWith, color: AppColors.lightBlack),
                           SizedBox(width: getWidth() * 0.05),
-                          SizedBox(
-                            width: sizes.width * 0.2,
-                            child: Divider(
-                              height: getHeight() * 0.01,
-                              thickness: getHeight() * 0.002,
-                              color: AppColors.borderColor,
+                          Expanded(
+                            child: SizedBox(
+                              width: sizes.width * 0.2,
+                              child: Divider(
+                                height: getHeight() * 0.01,
+                                thickness: getHeight() * 0.002,
+                                color: AppColors.borderColor,
+                              ),
                             ),
                           ),
                         ],
@@ -147,12 +157,12 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          TextView.titleWithDecoration("Don't have an account? ", fontFamily: Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
+                          TextView.titleWithDecoration(Strings.didNotHaveAccount, fontFamily: Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
                           GestureDetector(
                               onTap: () {
                                 Get.toNamed(Routes.signUpScreen);
                               },
-                              child: TextView.titleWithDecoration("Register", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1, textDecoration: TextDecoration.underline)),
+                              child: TextView.titleWithDecoration(Strings.register, fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1, textDecoration: TextDecoration.underline)),
                         ],
                       ),
                     ],

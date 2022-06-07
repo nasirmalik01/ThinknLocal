@@ -94,6 +94,10 @@ class Strings {
   static const String otherOption2 = 'Other Option 2';
   static const String help = 'Help';
   static const String signOut = 'Sign out';
+  static const String signIn = 'Sign In';
+  static const String signUpKeyButton = 'signUpKeyButton';
+  static const String partOfClubOrGroup = '*Part of a club, organization or special group?';
+  static const String alreadyAnAccount = "Already have an account? ";
   static const String editAccountInfo = 'Edit Account Info';
   static const String showingCausesNear = 'Showing causes near';
   static const String searchForCause = 'Search for a cause';
@@ -111,7 +115,15 @@ class Strings {
   static const String total = 'total';
   static const String areClearlyVisible = 'are clearly visible';
   static const String cancel = 'Cancel';
+  static const String resetIt = 'Reset it';
   static const String and = 'and';
+  static const String forgotPassword = 'Forgot password? ';
+  static const String emailTextField = 'emailTextField';
+  static const String passwordTextField = 'passwordTextField';
+  static const String signInKeyButton = 'signInKeyButton';
+  static const String didNotHaveAccount = "Don't have an account? ";
+  static const String register = 'Register';
+  static const String orContinueWith = 'Or continue with';
   static const String tryAgain = 'Try Again';
   static const String helloScan = 'Hello Scan';
   static const String showingResultsFor = 'Showing results for';
