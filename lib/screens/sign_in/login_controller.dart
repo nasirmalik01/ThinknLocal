@@ -18,11 +18,43 @@ class LogInController extends GetxController {
   RxBool isPasswordShort = false.obs;
 
   loginWithEmailPassword({String? email, String? password}) async {
-    final response =
-        await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, {
+    Map<String, dynamic> _query = {
       Strings.email: email,
       Strings.password: password,
-    });
+    };
+    authenticateUser(query: _query);
+  }
+
+  loginWithApple() async {
+    try {
+      final credentials = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+      Map<String, dynamic> _query = {
+        Strings.provider: Strings.apple,
+        Strings.authorization: credentials.identityToken.toString(),
+        Strings.zip: '12345'
+      };
+      authenticateUser(query: _query);
+    }catch(e){
+      log(e.toString());
+    }
+  }
+
+  loginWithGoogle() async {
+    GoogleSignIn googleSignIn = GoogleSignIn();
+    GoogleSignInAccount? account = await googleSignIn.signIn();
+    var response = await account?.authentication;
+    log('Token: ${response?.idToken ?? 'Null'}');
+    log('Email: ${account?.email ?? 'Null'}');
+    log('Id: ${account?.id ?? 'Null'}');
+  }
+
+  Future<void> authenticateUser({required Map<String, dynamic> query}) async {
+    final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, query);
 
     if (response != null) {
       String token = response['token'];
@@ -31,20 +63,5 @@ class LogInController extends GetxController {
       PreferenceUtils.setBool(Strings.showHome, true);
       Get.offAndToNamed(Routes.bottomNavBarScreen);
     }
-  }
-
-  loginWithApple() async {
-    await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-    );
-  }
-
-  loginWithGoogle() async {
-    GoogleSignIn googleSignIn = GoogleSignIn();
-    GoogleSignInAccount? account = await googleSignIn.signIn();
-    log(account?.email ?? ' Null');
   }
 }

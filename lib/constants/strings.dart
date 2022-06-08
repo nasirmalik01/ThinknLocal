@@ -28,6 +28,9 @@ class Strings {
   static const String upcoming = "upcoming";
   static const String unknown = "Unknown";
   static const String email = "email";
+  static const String provider = "provider";
+  static const String apple = "apple";
+  static const String authorization = "authorization";
   static const String password = "password";
   static const String passwordConfirmation = "password_confirmation";
   static const String firstName = "first_name";

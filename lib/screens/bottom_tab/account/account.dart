@@ -53,9 +53,9 @@ class AccountScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     UserProfileBox(
-                        name: '${_accountController.account!.firstName} ${_accountController.account!.lastName}',
-                        email: _accountController.account!.email,
-                        nameShort: '${_accountController.account!.firstName![0]}${_accountController.account!.lastName![0]}',
+                        name: '${_accountController.account?.firstName ?? Strings.unknown} ${_accountController.account!.lastName ?? ''}',
+                        email: _accountController.account?.email,
+                        nameShort: '${_accountController.account?.firstName?[0] ?? ''}${_accountController.account?.lastName?[0] ?? ''}',
                         onTapEdit: () async {
                           await Get.to(() => EditAccount(account: _accountController.account,));
                           _accountController.getProfileInfo();

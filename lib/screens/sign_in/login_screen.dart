@@ -28,8 +28,6 @@ class LoginScreen extends StatelessWidget {
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
-            /// Text(Age) /// 22
-            ///  Button (Increment age)
             child: ListView(
               children: [
                 Container(
