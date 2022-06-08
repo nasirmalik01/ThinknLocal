@@ -18,8 +18,7 @@ class ContributionController extends GetxController {
   UploadDirectContributions? uploadDirectContribution;
   RxDouble fileUploadingProgress = 0.0.obs;
 
-  Future<UploadDirectContributions?> uploadAndCreateContributions(
-      Map<String, dynamic> uploadContributionsQuery, File file) async {
+  Future<UploadDirectContributions?> uploadAndCreateContributions(Map<String, dynamic> uploadContributionsQuery, File file) async {
     try {
       late UploadFileResponse uResponse;
       isUploading.value = true;
@@ -52,7 +51,6 @@ class ContributionController extends GetxController {
     return null;
   }
 
-
   static Future<dynamic> createContribution(Map<String, dynamic> query) async {
     final response = await getItLocator<RemoteServices>()
         .postRequest(ApiEndPoints.contributions, query);
@@ -63,5 +61,4 @@ class ContributionController extends GetxController {
 
     return response;
   }
-
 }

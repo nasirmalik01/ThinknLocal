@@ -18,7 +18,11 @@ class AutoFieldTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Autocomplete<String>(
       optionsBuilder: (TextEditingValue value) {
-        Iterable<String> list = _aboutVisitController.setOptionsBuilder(value, isBusiness: isBusiness);
+        if(value.text == ''){
+          Iterable<String> list = _aboutVisitController.setOptionsBuilder(isEmptyTextFieldValue: true, isBusiness: isBusiness);
+          return list;
+        }
+        Iterable<String> list = _aboutVisitController.setOptionsBuilder(value: value, isBusiness: isBusiness);
         return list;
       },
       onSelected: onSelect,

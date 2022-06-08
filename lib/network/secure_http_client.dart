@@ -11,9 +11,9 @@ class MySecureHttpClient {
       BaseOptions(
         baseUrl: Strings.baseUrl,
         headers: {
-           // 'Authorization': MyHive.getToken(),
+            'Authorization': MyHive.getToken(),
           /// For test cases use below token
-          'Authorization': Strings.testingToken,
+          // 'Authorization': Strings.testingToken,
         },
         responseType: ResponseType.plain,
       ),

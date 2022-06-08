@@ -136,11 +136,8 @@ class AboutVisit extends StatelessWidget {
                               children: [
                                 Button(
                                     onPress: () {
-                                      if (_aboutVisitController
-                                              .isVisitFirstTime.value ==
-                                          false) {
-                                        _aboutVisitController
-                                            .changeFirstTimeVisit();
+                                      if (_aboutVisitController.isVisitFirstTime.value == false) {
+                                        _aboutVisitController.changeFirstTimeVisit();
                                       }
                                     },
                                     text: Strings.yes,

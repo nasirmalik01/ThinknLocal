@@ -3,9 +3,11 @@ import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/full_photo_screen.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notification_card.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notification_controller.dart';
+import 'package:flutter_app/screens/edit_account/edit_account.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -23,7 +25,7 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen>  with SingleTickerProviderStateMixin {
   TabController? _tabController;
   final NotificationController _notificationController = Get.put(NotificationController());
-
+  final AccountController _accountController = Get.put(AccountController());
 
   @override
   void initState() {
@@ -33,7 +35,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
 
   @override
   Widget build(BuildContext context) {
-    initializeResources(context: context);
+    _accountController.getProfileInfo();
 
     return Scaffold(
         body: Obx(() =>
@@ -67,7 +69,12 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                     SizedBox(height: getHeight() * 0.01),
                     TextView.titleWithDecoration(Strings.wantToEditNotification, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01),
-                    TextView.titleWithDecoration(Strings.editSettings, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline),
+                    GestureDetector(
+                        onTap: () async {
+                          await Get.to(() => EditAccount(account: _accountController.account,));
+                          _accountController.getProfileInfo();
+                        },
+                        child: TextView.titleWithDecoration(Strings.editSettings, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
                   ],
                 ),
               ),

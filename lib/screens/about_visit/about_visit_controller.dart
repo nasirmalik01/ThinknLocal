@@ -59,11 +59,7 @@ class AboutVisitController extends GetxController {
     isBusinessLoading.value = false;
   }
 
-  Iterable<String> setOptionsBuilder(TextEditingValue value,
-      {bool isBusiness = false}) {
-    if (value.text.isEmpty) {
-      return [];
-    }
+  Iterable<String> setOptionsBuilder({TextEditingValue? value, bool isBusiness = false, bool isEmptyTextFieldValue = false}) {
     List<String> causesStringList = [];
     List<String> businessStringList = [];
 
@@ -72,16 +68,26 @@ class AboutVisitController extends GetxController {
         for (int i = 0; i < businessList!.length; i++) {
           businessStringList.add(businessList![i].name!);
         }
-        return businessStringList.where((business) =>
-            business.toLowerCase().startsWith(value.text.toLowerCase()));
+        if(isEmptyTextFieldValue){
+          return businessStringList;
+        }
+        else {
+          return businessStringList.where((business) =>
+              business.toLowerCase().startsWith(value!.text.toLowerCase()));
+        }
       }
     } else {
       if (causesList!.isNotEmpty) {
         for (int i = 0; i < causesList!.length; i++) {
           causesStringList.add(causesList![i].name!);
         }
-        return causesStringList.where((causes) =>
-            causes.toLowerCase().startsWith(value.text.toLowerCase()));
+        if(isEmptyTextFieldValue){
+          return causesStringList;
+        }
+        else {
+          return causesStringList.where((causes) =>
+              causes.toLowerCase().startsWith(value!.text.toLowerCase()));
+        }
       }
     }
 
