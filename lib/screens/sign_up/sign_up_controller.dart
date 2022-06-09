@@ -3,6 +3,8 @@ import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/local/deep_link_info.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -13,7 +15,8 @@ class SignUpController extends GetxController{
   RxBool isPasswordNotMatches = false.obs;
   RxBool isZipLengthNotFive = false.obs;
 
-  Future registerUser({String? email, String? password, String? confirmPassword, String? firstName, String? lastName, String? zipCode, String? groupCode, String? businessId, String? causeId, String? organizationId}) async {
+  Future registerUser({String? email, String? password, String? confirmPassword, String? firstName, String? lastName, String? zipCode, String? groupCode}) async {
+    DeepLinkInfo? _deepLinkInfo = MyHive.getDeepLinkInfo();
     final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.users, {
       Strings.email: email,
       Strings.password: password,
@@ -22,9 +25,9 @@ class SignUpController extends GetxController{
       Strings.lastName: lastName,
       Strings.zip: zipCode,
       Strings.groupCode: groupCode,
-      Strings.businessId: businessId,
-      Strings.causeId: causeId,
-      Strings.organizationId: organizationId
+      Strings.businessId: _deepLinkInfo?.businessId ?? '',
+      Strings.causeId: _deepLinkInfo?.causeId ?? '',
+      Strings.organizationId: _deepLinkInfo?.organizationId ?? ''
     });
 
     /// if any Exception occurs

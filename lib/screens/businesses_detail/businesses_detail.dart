@@ -3,6 +3,8 @@ import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/local/deep_link_info.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/businesses_detail/business_detail_controller.dart';
 import 'package:flutter_app/screens/businesses_detail/business_detail_top_container.dart';
@@ -100,13 +102,12 @@ class BusinessesDetailScreen extends StatelessWidget {
                                             .followBusiness(_id);
                                       },
                                       onShareClick: () {
-                                        buildDynamicLinks(
-                                            Strings.businesses, _id.toString());
+                                        buildDynamicLinks(Strings.businesses, _id.toString());
+                                        DeepLinkInfo? _deepLinkInfo = MyHive.getDeepLinkInfo();
+                                        MyHive.setDeepLinkInfo(DeepLinkInfo(causeId: _deepLinkInfo?.causeId, businessId: _id, organizationId: _deepLinkInfo?.organizationId));
                                       },
                                       onPhoneClick: () {
-                                        openPhoneDialPad(
-                                            '+1${_businessDetailController.businessDetail!.phone.toString()}',
-                                            context);
+                                        openPhoneDialPad('+1${_businessDetailController.businessDetail!.phone.toString()}', context);
                                       },
                                       onAddressClick: () {
                                         MapsLauncher.launchCoordinates(
@@ -546,12 +547,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                         .recentContributions![
                                                                             index]
                                                                         .name,
-                                                                amount: _businessDetailController
-                                                                    .businessStats!
-                                                                    .recentContributions![
-                                                                        index]
-                                                                    .amount
-                                                                    .toString());
+                                                                amount: _businessDetailController.businessStats!.recentContributions![index].amount?.toStringAsFixed(2));
                                                           },
                                                           separatorBuilder:
                                                               (BuildContext

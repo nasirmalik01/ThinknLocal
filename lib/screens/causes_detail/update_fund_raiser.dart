@@ -22,7 +22,9 @@ class UpdateFundRaiser extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextView.subTitleWithBlurRadius(header, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, lines: 1, fontSize: sizes.fontSize15),
+              SizedBox(
+                  width: getWidth()*0.7,
+                  child: TextView.subTitleWithBlurRadius(header, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, lines: 2, fontSize: sizes.fontSize15)),
               TextView.caption(date, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize13,)
             ],
           ),

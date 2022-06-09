@@ -47,7 +47,7 @@ class DetailCategoryList extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: isImageUrl ? NetworkImage(image!): AssetImage(image!) as ImageProvider,
-                        fit: BoxFit.fill),
+                        fit: BoxFit.cover),
                     borderRadius: BorderRadius.circular(getHeight() * 0.01)
                 ),
               ),

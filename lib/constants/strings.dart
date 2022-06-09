@@ -174,6 +174,7 @@ class Strings {
   static const String noSentReceipts = 'There are no sent receipts';
   static const String corporate = 'corporate';
   static const String zipCodeError = 'Zip code should be of 5 digits';
+  static const String requiredFieldError = 'Please add all the required fields';
   static const String passwordError = 'Password should be minimum 6 characters';
   static const String notLoggedIn = 'You are not logged in';
   static const String fetchingLocation = 'Fetching location';

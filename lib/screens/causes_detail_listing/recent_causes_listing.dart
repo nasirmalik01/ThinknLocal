@@ -56,7 +56,10 @@ class RecentCausesListing extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: (){
-                             Get.toNamed(Routes.causesDetailScreen, arguments: _causesController.recentlyStartedCauses![index].id);
+                             Get.toNamed(Routes.causesDetailScreen, arguments: {
+                               Strings.causeId: _causesController.recentlyStartedCauses![index].id,
+                               Strings.organizationId: _causesController.recentlyStartedCauses![index].organization!.id,
+                             });
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),

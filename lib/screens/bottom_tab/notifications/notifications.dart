@@ -35,8 +35,6 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
 
   @override
   Widget build(BuildContext context) {
-    _accountController.getProfileInfo();
-
     return Scaffold(
         body: Obx(() =>
           (_notificationController.isNotificationsLoading.value || _notificationController.isContributionLoading.value)

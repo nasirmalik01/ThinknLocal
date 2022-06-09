@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/constants/routes.dart';
@@ -25,7 +26,7 @@ class LogInController extends GetxController {
     authenticateUser(query: _query);
   }
 
-  loginWithApple() async {
+  loginWithApple({String? firstName, String? lastName, String? zip, String? groupCode}) async {
     try {
       final credentials = await SignInWithApple.getAppleIDCredential(
         scopes: [
@@ -33,28 +34,46 @@ class LogInController extends GetxController {
           AppleIDAuthorizationScopes.fullName,
         ],
       );
+
       Map<String, dynamic> _query = {
         Strings.provider: Strings.apple,
         Strings.authorization: credentials.identityToken.toString(),
-        Strings.zip: '12345'
+        Strings.zip: zip ?? '',
+        Strings.firstName: firstName ?? '',
+        Strings.lastName: lastName ?? '',
+        Strings.groupCode: groupCode ?? ''
       };
-      authenticateUser(query: _query);
+
+      showLoadingDialog(message: 'Authenticating User');
+      await authenticateUser(query: _query);
+      Get.back();
+
+
     }catch(e){
       log(e.toString());
     }
   }
 
   loginWithGoogle() async {
-    GoogleSignIn googleSignIn = GoogleSignIn();
-    GoogleSignInAccount? account = await googleSignIn.signIn();
-    var response = await account?.authentication;
-    log('Token: ${response?.idToken ?? 'Null'}');
-    log('Email: ${account?.email ?? 'Null'}');
-    log('Id: ${account?.id ?? 'Null'}');
+    try{
+      GoogleSignIn googleSignIn = GoogleSignIn();
+      GoogleSignInAccount? account = await googleSignIn.signIn();
+      var response = await account?.authentication;
+      log('Token: ${response?.idToken ?? 'Null'}');
+      log('Email: ${account?.email ?? 'Null'}');
+      log('Id: ${account?.id ?? 'Null'}');
+    }catch(e){
+      log('Error: ${e.toString()}');
+    }
   }
 
   Future<void> authenticateUser({required Map<String, dynamic> query}) async {
     final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, query);
+
+    if(RemoteServices.isZipRequired){
+      Get.toNamed(Routes.requiredParamsScreen);
+      showSnackBar(subTitle: Strings.requiredFieldError);
+    }
 
     if (response != null) {
       String token = response['token'];

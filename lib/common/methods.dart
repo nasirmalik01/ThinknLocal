@@ -36,7 +36,9 @@ removeDependencies() {
 }
 
 showSnackBar({String? title, String? subTitle, Color? backgroundColor}) {
-  Get.closeCurrentSnackbar();
+  if(Get.isSnackbarOpen) {
+    Get.closeCurrentSnackbar();
+  }
   Get.snackbar(
     title ?? 'Alert',
     subTitle ?? 'Please try again',
@@ -102,11 +104,11 @@ locationParams(Map<String, dynamic> query) {
   query[Strings.longitude] = location.longitude;
 }
 
-buildDynamicLinks(String category, String id) async {
+buildDynamicLinks(String category, String id, {String? organizationId}) async {
   String url = Strings.dynamicLinkInitialUrl;
   final DynamicLinkParameters parameters = DynamicLinkParameters(
     uriPrefix: url,
-    link: Uri.parse('$url/$category/$id'),
+    link: Uri.parse('$url/$category/$id/${organizationId ?? '1'}'),
     androidParameters: const AndroidParameters(
       packageName: 'com.thinknlocal.Thinknlocal',
       minimumVersion: 0,
@@ -118,10 +120,11 @@ buildDynamicLinks(String category, String id) async {
     socialMetaTagParameters: SocialMetaTagParameters(
         description: '',
         imageUrl: Uri.parse(Strings.dynamicLinkImageUrl),
-        title: Strings.thinkLocal),
+        title: Strings.thinkLocal,
+    ),
   );
   final dynamicLink =
-      await FirebaseDynamicLinks.instance.buildShortLink(parameters);
+  await FirebaseDynamicLinks.instance.buildShortLink(parameters);
   String? desc = dynamicLink.shortUrl.toString();
 
   await Share.share(desc, subject: Strings.thinkLocal);
@@ -139,12 +142,16 @@ Future<Cities?> getLowestDistanceCity() async {
   Cities? _lowestDistanceCity;
   List<Cities> citiesList = [];
   var location = MyHive.getLocation();
-  citiesList = await LocationRepository.fetchCities({Strings.latitude:  location.latitude, Strings.longitude: location.longitude}) ?? [];
+  citiesList = await LocationRepository.fetchCities({
+    Strings.latitude:  location.latitude,
+    Strings.longitude: location.longitude,
+  }) ?? [];
   if(citiesList.isNotEmpty) {
     double _distance = citiesList[0].distance ?? 0.0;
     for (Cities city in citiesList) {
       if (city.distance! <= _distance) {
         _lowestDistanceCity = city;
+        _distance = _lowestDistanceCity.distance!;
       }
     }
   }

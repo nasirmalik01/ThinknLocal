@@ -17,7 +17,7 @@ class GetCities extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-            width: getWidth() * 0.6,
+            width: getWidth() * 0.5,
             child: TextView.title(cityName ?? "", color: AppColors.blackColor, fontFamily: Assets.poppinsSemiBold, lines: 1, fontSize: sizes.fontSize15)),
         RichText(
           text: TextSpan(

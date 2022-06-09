@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/local/deep_link_info.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_controller.dart';
 import 'package:flutter_app/screens/causes_detail/corporate_sponsor.dart';
@@ -36,8 +38,7 @@ class CausesDetail extends StatefulWidget {
 class _CausesDetailState extends State<CausesDetail>
     with SingleTickerProviderStateMixin {
   final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
-  final CausesDetailController _causesDetailController =
-      Get.put(CausesDetailController());
+  final CausesDetailController _causesDetailController = Get.put(CausesDetailController());
   TabController? _tabController;
 
   @override
@@ -48,8 +49,10 @@ class _CausesDetailState extends State<CausesDetail>
 
   @override
   Widget build(BuildContext context) {
-    final _id = ModalRoute.of(context)!.settings.arguments as int;
-    getCauseDetail(_id);
+    final _causeInfo = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    int _causeId = _causeInfo[Strings.causeId];
+    int _organizationId = _causeInfo[Strings.organizationId];
+    getCauseDetail(_causeId);
 
     return SafeArea(
       child: Scaffold(
@@ -59,7 +62,7 @@ class _CausesDetailState extends State<CausesDetail>
                 exceptionMessage: _causesDetailController.errorMessage.value,
                 onPress: () {
                   _causesDetailController.isError.value = false;
-                  getCauseDetail(_id);
+                  getCauseDetail(_causeId);
                 })
             : (_causesDetailController.isLoading.value ||
                     _causesDetailController.isStatsLoading.value ||
@@ -98,11 +101,12 @@ class _CausesDetailState extends State<CausesDetail>
                                 Navigator.pop(context);
                               },
                               onPressFavoriteIcon: () {
-                                _causesDetailController.followCauses(_id);
+                                _causesDetailController.followCauses(_causeId);
                               },
                               onShareClick: () {
-                                buildDynamicLinks(
-                                    Strings.causes, _id.toString());
+                                buildDynamicLinks(Strings.causes, _causeId.toString(), organizationId: _organizationId.toString());
+                                DeepLinkInfo? _deepLinkInfo = MyHive.getDeepLinkInfo();
+                                MyHive.setDeepLinkInfo(DeepLinkInfo(causeId: _causeId, organizationId: _organizationId, businessId: _deepLinkInfo?.businessId));
                               },
                             ),
                           ),
@@ -338,8 +342,7 @@ class _CausesDetailState extends State<CausesDetail>
                                             : const SizedBox(),
 
                                         Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: sizes.width * 0.06),
+                                          padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                                           child: Column(
                                             children: [
                                               Row(
@@ -357,7 +360,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                       onTap: () {
                                                         _causesDetailController
                                                             .getCauseBottomDetails(
-                                                                _id, 21,
+                                                                _causeId, 21,
                                                                 isBottomTab:
                                                                     true);
                                                         _causesDetailController
@@ -373,7 +376,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                       onTap: () {
                                                         _causesDetailController
                                                             .getCauseBottomDetails(
-                                                                _id, 27,
+                                                                _causeId, 27,
                                                                 isBottomTab:
                                                                     true);
                                                         _causesDetailController
@@ -388,7 +391,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                       onTap: () {
                                                         _causesDetailController
                                                             .getCauseBottomDetails(
-                                                                _id, 1,
+                                                                _causeId, 1,
                                                                 isBottomTab:
                                                                     true);
                                                         _causesDetailController
@@ -403,7 +406,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                       onTap: () {
                                                         _causesDetailController
                                                             .getCauseBottomDetails(
-                                                                _id, 32,
+                                                                _causeId, 32,
                                                                 isBottomTab:
                                                                     true);
                                                         _causesDetailController
@@ -458,10 +461,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                         .address2 ??
                                                                     Strings
                                                                         .unknown,
-                                                                phoneNumber:
-                                                                    '+1 ${_causesDetailController.causeBottomDetails![index].phone!.substring(0, 3)} ${_causesDetailController.causeBottomDetails![index].phone!.substring(
-                                                                  4,
-                                                                )}',
+                                                                phoneNumber: '(${_causesDetailController.causeBottomDetails![index].phone!.substring(0,3)}) ${_causesDetailController.causeBottomDetails![index].phone!.substring(3, 6)}-${_causesDetailController.causeBottomDetails![index].phone!.substring(6, )}',
                                                                 onPhoneClick:
                                                                     () {
                                                                   openPhoneDialPad(
@@ -539,10 +539,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                   itemBuilder:
                                                       (context, index) {
                                                     return UpdateFundRaiser(
-                                                        header: _causesDetailController
-                                                            .updatedCausesList![
-                                                                index]
-                                                            .title!,
+                                                        header: _causesDetailController.updatedCausesList![index].title!,
                                                         detail: _causesDetailController
                                                             .updatedCausesList![
                                                                 index]
@@ -640,12 +637,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                     index]
                                                                 .name,
                                                         amount:
-                                                            _causesDetailController
-                                                                .causesStats!
-                                                                .topContributors![
-                                                                    index]
-                                                                .amount
-                                                                .toString());
+                                                        _causesDetailController.causesStats!.topContributors![index].amount?.toStringAsFixed(2));
                                                   },
                                                   separatorBuilder:
                                                       (BuildContext context,

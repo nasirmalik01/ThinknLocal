@@ -62,7 +62,10 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 endDate: _causesController.topCausesContainersList![index].end.toString(),
                 index: index,
                 onClickBox: () async {
-                  Get.toNamed(Routes.causesDetailScreen, arguments: _causesController.topCausesContainersList![index].id);
+                  Get.toNamed(Routes.causesDetailScreen, arguments: {
+                    Strings.causeId: _causesController.topCausesContainersList![index].id,
+                    Strings.organizationId: _causesController.topCausesContainersList![index].organization!.id,
+                  });
                 },
               );
             },
@@ -95,7 +98,10 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                   child: CommonWidgets.seeAllButton(30))
                 : GestureDetector(
                   onTap: (){
-                    Get.toNamed(Routes.causesDetailScreen, arguments: _causesController.recentlyStartedCauses![index].id);
+                    Get.toNamed(Routes.causesDetailScreen, arguments: {
+                      Strings.causeId: _causesController.recentlyStartedCauses![index].id,
+                      Strings.organizationId: _causesController.recentlyStartedCauses![index].organization!.id,
+                    });
                   },
                   child: RecentlyStartedContainer(
                   name: _causesController.recentlyStartedCauses![index].name,
@@ -136,7 +142,10 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 itemBuilder: (context, index){
                   return GestureDetector(
                     onTap: (){
-                      Get.toNamed(Routes.causesDetailScreen, arguments: _causesController.upcomingCauses![index].id);
+                      Get.toNamed(Routes.causesDetailScreen, arguments: {
+                        Strings.causeId: _causesController.upcomingCauses![index].id,
+                        Strings.organizationId: _causesController.upcomingCauses![index].organization!.id,
+                      });
                     },
                     child: UpcomingCauses(
                         image:  _causesController.upcomingCauses![index].image ?? Strings.dummyBgImage,

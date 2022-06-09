@@ -14,9 +14,11 @@ class RemoteServices {
   static String error = '';
   static int? statusCode = 200;
   static bool isNextPage = false;
+  static bool isZipRequired = false;
 
   Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map, {void Function(int, int)? uploadFile}) async {
     dynamic resJson;
+    isZipRequired = false;
     try {
       dynamic _result = await MySecureHttpClient.getClient().post(endPoint, data: map, onSendProgress: uploadFile);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
@@ -24,7 +26,8 @@ class RemoteServices {
         return resJson;
       }
     } catch (e) {
-      serverHandlingExceptions(e, statusCode, error);
+      final _isServerException = serverHandlingExceptions(e, statusCode, error);
+      if(_isServerException) return;
       if (e is DioError) {
         final errorMessage = DioExceptions.fromDioError(e).toString();
         showSnackBar(subTitle: errorMessage);

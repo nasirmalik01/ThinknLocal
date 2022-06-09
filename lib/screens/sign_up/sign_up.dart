@@ -128,9 +128,9 @@ class SignUpScreen extends StatelessWidget {
                       return showSnackBar(subTitle: 'Password doesn\'t matched');
                     }
 
-                    if(zipCodeController!.text.length < 5){
+                    if(zipCodeController!.text.length != 5){
                       _signUpController.isZipLengthNotFive.value = true;
-                      return showSnackBar(title: 'Zip Code too short', subTitle: 'It should be of minimum 5 characters');
+                      return showSnackBar(subTitle: 'Zip code should contains 5 characters');
                     }
 
                     showLoadingDialog(message: 'Registering User');
@@ -142,7 +142,8 @@ class SignUpScreen extends StatelessWidget {
                       password: passwordController!.text,
                       confirmPassword: confirmPasswordController!.text,
                       zipCode: zipCodeController!.text,
-                      groupCode: groupCodeController!.text
+                      groupCode: groupCodeController!.text,
+
                     );
                   },
                   text: "Sign Up!"),

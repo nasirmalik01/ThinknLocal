@@ -160,13 +160,16 @@ class CausesController extends GetxController{
     _splitDynamicLink.addAll(url.path.split('/'));
     String _category = _splitDynamicLink[1];
     if(_category == Strings.causes){
-      Get.toNamed(Routes.causesDetailScreen, arguments: int.parse(_splitDynamicLink[2]));
+      Get.toNamed(Routes.causesDetailScreen, arguments: {
+        Strings.causeId: int.parse(_splitDynamicLink[2]),
+        Strings.organizationId: int.parse(_splitDynamicLink[3])
+      });
     }else{
       Get.toNamed(Routes.businessDetailScreen, arguments: int.parse(_splitDynamicLink[2]));
     }
   }
 
-  Future<void> setPagination({bool isFirst = false,}) async{
+  Future<void> setPagination({bool isFirst = false}) async{
     if(isFirst){
       pageIndex.value = 1;
       update();

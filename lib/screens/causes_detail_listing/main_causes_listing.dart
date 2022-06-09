@@ -57,7 +57,10 @@ class MainCausesListing extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: (){
-                             Get.toNamed(Routes.causesDetailScreen, arguments: _causesController.topCausesContainersList![index].id);
+                             Get.toNamed(Routes.causesDetailScreen, arguments: {
+                               Strings.causeId: _causesController.topCausesContainersList![index].id,
+                               Strings.organizationId: _causesController.topCausesContainersList![index].organization!.id,
+                             });
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
