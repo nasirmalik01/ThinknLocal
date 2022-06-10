@@ -593,7 +593,9 @@ class _CausesDetailState extends State<CausesDetail>
                                               Strings.numberOfContributions,
                                               color: AppColors.darkGrey,
                                               fontFamily: Assets.poppinsRegular,
-                                              fontSize: sizes.fontSize13),
+                                              fontSize: sizes.fontSize13,
+                                              lines: 2
+                                          ),
                                           SizedBox(height: 0.7.h),
 
                                           ///chart v2
@@ -602,9 +604,7 @@ class _CausesDetailState extends State<CausesDetail>
                                               builder: (_) {
                                                 return StatsBarChartWidget(
                                                   popUpTitle: 'Causes Stats',
-                                                  dataSource:
-                                                      _causesDetailController
-                                                          .causesStatsHistory,
+                                                  dataSource: _causesDetailController.causesStatsHistory,
                                                 );
                                               }),
                                           SizedBox(height: 3.h),

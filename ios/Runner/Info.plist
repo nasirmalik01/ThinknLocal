@@ -35,6 +35,12 @@
 	<string>Location permission is required to get current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location permission is required to get current location</string>
+	<key>NSCameraUsageDescription</key>
+    <string>This application requires camera usage for capturing images</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This application need to pick images from the gallery</string>
+
+
 
 	<key>UIBackgroundModes</key>
 	<array>

@@ -45,33 +45,42 @@ class LogInController extends GetxController {
       };
 
       showLoadingDialog(message: 'Authenticating User');
-      await authenticateUser(query: _query);
+      await authenticateUser(query: _query, provider: Strings.apple);
       Get.back();
-
 
     }catch(e){
       log(e.toString());
     }
   }
 
-  loginWithGoogle() async {
+  loginWithGoogle({String? firstName, String? lastName, String? zip, String? groupCode}) async {
     try{
       GoogleSignIn googleSignIn = GoogleSignIn();
       GoogleSignInAccount? account = await googleSignIn.signIn();
-      var response = await account?.authentication;
-      log('Token: ${response?.idToken ?? 'Null'}');
-      log('Email: ${account?.email ?? 'Null'}');
-      log('Id: ${account?.id ?? 'Null'}');
+      var credentials = await account?.authentication;
+
+      Map<String, dynamic> _query = {
+        Strings.provider: Strings.google,
+        Strings.authorization: credentials?.idToken.toString(),
+        Strings.zip: zip ?? '',
+        Strings.firstName: firstName ?? '',
+        Strings.lastName: lastName ?? '',
+        Strings.groupCode: groupCode ?? ''
+      };
+
+      showLoadingDialog(message: 'Authenticating User');
+      await authenticateUser(query: _query, provider: Strings.google);
+      Get.back();
     }catch(e){
       log('Error: ${e.toString()}');
     }
   }
 
-  Future<void> authenticateUser({required Map<String, dynamic> query}) async {
+  Future<void> authenticateUser({required Map<String, dynamic> query, String? provider}) async {
     final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, query);
 
     if(RemoteServices.isZipRequired){
-      Get.toNamed(Routes.requiredParamsScreen);
+      Get.toNamed(Routes.requiredParamsScreen, arguments: provider);
       showSnackBar(subTitle: Strings.requiredFieldError);
     }
 

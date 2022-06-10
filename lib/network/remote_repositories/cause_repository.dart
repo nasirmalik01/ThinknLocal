@@ -48,8 +48,7 @@ class CausesRemoteRepository {
 
   static Future<CausesStats?> fetchCausesStats(
       int id, Map<String, dynamic> query) async {
-    final response = await getItLocator<RemoteServices>()
-        .getRequest('${ApiEndPoints.causes}/$id/stats', query);
+    final response = await getItLocator<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id/stats', query);
     if (response == null) {
       return null;
     }

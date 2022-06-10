@@ -46,6 +46,7 @@ class _RequiredParamsScreenState extends State<RequiredParamsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _provider = ModalRoute.of(context)!.settings.arguments as String;
 
     return SafeArea(
       child: Scaffold(
@@ -124,12 +125,12 @@ class _RequiredParamsScreenState extends State<RequiredParamsScreen> {
                               return showSnackBar(subTitle: Strings.zipCodeError);
                             }
 
-                            _logInController.loginWithApple(
-                              firstName: firstNameController!.text,
-                              lastName: lastNameController!.text,
-                              zip: zipCodeController!.text,
-                              groupCode: groupCodeController?.text
-                            );
+                            if(_provider == Strings.apple) {
+                              _logInController.loginWithApple(firstName: firstNameController!.text, lastName: lastNameController!.text, zip: zipCodeController!.text, groupCode: groupCodeController?.text);
+                            }
+                            else{
+                              _logInController.loginWithGoogle(firstName: firstNameController!.text, lastName: lastNameController!.text, zip: zipCodeController!.text, groupCode: groupCodeController?.text);
+                            }
                           },
                               width: sizes.width * 0.42, height: getHeight() * 0.08,
                               text: 'Submit', textColor: AppColors.pureWhiteColor,

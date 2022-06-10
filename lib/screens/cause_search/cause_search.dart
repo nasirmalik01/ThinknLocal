@@ -73,7 +73,10 @@ class CauseSearch extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: (){
-                            Get.toNamed(Routes.causesDetailScreen, arguments: _causeSearchController.searchedCausesList![index].id);
+                            Get.toNamed(Routes.causesDetailScreen, arguments: {
+                              Strings.causeId: _causeSearchController.searchedCausesList![index].id,
+                              Strings.organizationId: _causeSearchController.searchedCausesList![index].organization!.id,
+                            });
                           },
                           child: UpcomingCauses(
                               image:  _causeSearchController.searchedCausesList![index].image,

@@ -57,7 +57,7 @@ class StatsBarChartWidget extends StatelessWidget {
               majorTickLines: const MajorTickLines(width: 0),
               minorTickLines: const MinorTickLines(width: 0),
               labelStyle: TextStyle(
-                fontSize: 8.sp,
+                fontSize: 6.5.sp,
                 color: AppColors.grayColor,
               ),
             ),

@@ -1,11 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/deep_link_info.dart';
-import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_category_screen.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
@@ -91,11 +87,7 @@ class CausesScreen extends StatelessWidget{
                         controller: searchController,
                         hint: Strings.searchForCause,
                         onPressSearch: () {
-                          // Get.toNamed(Routes.causeSearch);
-                          DeepLinkInfo? _deepLinkInfo = MyHive.getDeepLinkInfo();
-                          log('causeId: ${_deepLinkInfo?.causeId}');
-                          log('businessId: ${_deepLinkInfo?.businessId}');
-                          log('organizationId: ${_deepLinkInfo?.organizationId}');
+                          Get.toNamed(Routes.causeSearch);
                         }
                     ),
                   ),

@@ -60,7 +60,7 @@ class CorporateSponsor extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(bottom: getHeight()*0.005),
                     child: SizedBox(
-                      width: getWidth()*0.6,
+                      width: getWidth()*0.55,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
