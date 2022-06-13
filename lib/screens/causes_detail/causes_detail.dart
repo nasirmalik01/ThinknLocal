@@ -610,7 +610,7 @@ class _CausesDetailState extends State<CausesDetail>
                                           SizedBox(height: 3.h),
                                           CommonWidgets.getTextWithSeeAll(
                                               leadingText:
-                                                  Strings.recentContributions,
+                                                  Strings.topContributions,
                                               trailingText: Strings.seeAll,
                                               onPressSeeAllButton: () {}),
                                           SizedBox(height: 2.h),

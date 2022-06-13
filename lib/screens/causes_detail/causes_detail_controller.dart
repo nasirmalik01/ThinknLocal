@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
@@ -118,6 +120,8 @@ class CausesDetailController extends GetxController {
     if (causesStats?.history?.isNotEmpty ?? false) {
       causesStatsHistory.clear();
       for (var item in causesStats!.history!) {
+        List<String> splitDate = item.date!.split(' ');
+        item.date = splitDate[0];
         causesStatsHistory.add(ChartData(item.date!, item.amount));
       }
     }

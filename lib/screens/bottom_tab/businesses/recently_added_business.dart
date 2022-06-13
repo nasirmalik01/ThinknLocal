@@ -53,7 +53,7 @@ class RecentlyAddedBusiness extends StatelessWidget {
                     borderRadius: BorderRadius.circular(getHeight() * 0.01),
                     image: DecorationImage(
                         image: isImageUrlLogo ? NetworkImage(logoImage!) :  AssetImage(logoImage!) as ImageProvider,
-                        fit: BoxFit.cover)
+                        fit: BoxFit.fill)
                 ),
               ),
               SizedBox(height: getHeight() * 0.01),

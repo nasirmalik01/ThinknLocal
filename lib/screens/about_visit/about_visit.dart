@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/enums/first_time_visit.dart';
 import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
 import 'package:flutter_app/screens/about_visit/auto_complete_text_field.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/contribution_controller.dart';
@@ -136,38 +137,20 @@ class AboutVisit extends StatelessWidget {
                               children: [
                                 Button(
                                     onPress: () {
-                                      if (_aboutVisitController.isVisitFirstTime.value == false) {
-                                        _aboutVisitController.changeFirstTimeVisit();
-                                      }
+                                        _aboutVisitController.changeFirstTimeVisit(isFirst: true);
                                     },
                                     text: Strings.yes,
-                                    btnColor: _aboutVisitController
-                                            .isVisitFirstTime.value
-                                        ? AppColors.greenColor
-                                        : AppColors.blackColor,
-                                    textColor: _aboutVisitController
-                                            .isVisitFirstTime.value
-                                        ? AppColors.pureWhiteColor
-                                        : AppColors.darkGrey,
+                                    btnColor: _aboutVisitController.isVisitFirstTime.value == IsFirstTime.nothing ? AppColors.blackColor : _aboutVisitController.isVisitFirstTime.value == IsFirstTime.yes ? AppColors.greenColor : AppColors.blackColor,
+                                    textColor: _aboutVisitController.isVisitFirstTime.value == IsFirstTime.nothing ? AppColors.darkGrey : _aboutVisitController.isVisitFirstTime.value == IsFirstTime.yes ? AppColors.pureWhiteColor : AppColors.darkGrey,
                                     width: getWidth() * 0.43,
                                     height: getHeight() * 0.08),
                                 Button(
                                     onPress: () {
-                                      if (_aboutVisitController
-                                              .isVisitFirstTime.value ==
-                                          true) {
-                                        _aboutVisitController
-                                            .changeFirstTimeVisit();
-                                      }
+                                        _aboutVisitController.changeFirstTimeVisit(isFirst: false);
                                     },
                                     text: Strings.no,
-                                    btnColor: _aboutVisitController
-                                            .isVisitFirstTime.value
-                                        ? AppColors.blackColor
-                                        : AppColors.greenColor,
-                                    textColor: _aboutVisitController.isVisitFirstTime.value
-                                        ? AppColors.darkGrey
-                                        : AppColors.pureWhiteColor,
+                                    btnColor: _aboutVisitController.isVisitFirstTime.value == IsFirstTime.nothing ? AppColors.blackColor : _aboutVisitController.isVisitFirstTime.value == IsFirstTime.no ? AppColors.greenColor : AppColors.blackColor ,
+                                    textColor: _aboutVisitController.isVisitFirstTime.value == IsFirstTime.nothing ? AppColors.darkGrey : _aboutVisitController.isVisitFirstTime.value == IsFirstTime.no ? AppColors.pureWhiteColor : AppColors.darkGrey,
                                     width: getWidth() * 0.43,
                                     height: getHeight() * 0.08),
                               ],
@@ -195,7 +178,7 @@ class AboutVisit extends StatelessWidget {
                                 body['business_id'] = _aboutVisitController.selectedBusinessId.value;
                                 body['cause_id'] = _aboutVisitController.selectedCauseId.value;
                                 body['rating'] = getRating;
-                                body['first_purchase'] = _aboutVisitController.isVisitFirstTime.value;
+                                body['first_purchase'] = _aboutVisitController.isVisitFirstTime.value == IsFirstTime.yes ? true : _aboutVisitController.isVisitFirstTime.value == IsFirstTime.no ? false : null;
                                 _contributionController.uploadAndCreateContributions(body, File(_xFile.path),
                                 );
                               },

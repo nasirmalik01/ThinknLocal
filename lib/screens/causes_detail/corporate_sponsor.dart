@@ -52,7 +52,7 @@ class CorporateSponsor extends StatelessWidget {
                            image: NetworkImage(
                                icon
                            ),
-                           fit: BoxFit.cover
+                           fit: BoxFit.fill
                        )
                    ),
                  ),

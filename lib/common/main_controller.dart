@@ -5,12 +5,13 @@ import 'package:flutter_app/local/user_location.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class MainController extends GetxController{
   RxBool isLoading = false.obs;
   RxBool isLocationServiceEnabled = false.obs;
   Position? position;
-
+  PersistentTabController? controller;
 
   Future<bool> getLocation() async {
     LocationPermission permission;

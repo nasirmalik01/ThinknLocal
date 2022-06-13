@@ -3,6 +3,7 @@ import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/location_repository.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class LocationSearchController extends GetxController {
   List<Cities> citiesList = [];
@@ -37,4 +38,6 @@ class LocationSearchController extends GetxController {
   getLocationAddress() async {
     locationAddress.value = MyHive.getLocationAddress();
   }
+
+
 }

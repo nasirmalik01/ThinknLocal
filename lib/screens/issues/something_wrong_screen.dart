@@ -13,6 +13,7 @@ class SomethingWrong extends StatelessWidget {
         icon: Assets.somethingWrong,
         title: Strings.somethingWrong,
         description: Strings.somethingWrongDesc,
+
       ),
     );
   }

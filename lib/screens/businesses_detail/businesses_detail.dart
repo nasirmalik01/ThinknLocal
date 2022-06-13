@@ -343,19 +343,13 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                         0.06),
                                                         child: CommonWidgets
                                                             .getTextWithSeeAll(
-                                                                leadingText: Strings
-                                                                    .pastFundedCauses,
-                                                                trailingText:
-                                                                    Strings
-                                                                        .seeAll,
+                                                                leadingText: Strings.pastFundedCauses,
+                                                                trailingText: Strings.seeAll,
                                                                 onPressSeeAllButton:
                                                                     () {
                                                                   Get.to(() => CausesListingScreen(
-                                                                      title: Strings
-                                                                          .pastFundedBusinessCauses,
-                                                                      detailList:
-                                                                          _businessDetailController.pastFundedBusinessCausesList
-                                                                              as dynamic));
+                                                                      title: Strings.pastFundedBusinessCauses,
+                                                                      detailList: _businessDetailController.pastFundedBusinessCausesList as dynamic));
                                                                 }),
                                                       ),
                                                       Padding(
@@ -390,9 +384,9 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                   : _businessDetailController
                                                                       .pastFundedBusinessCausesList!
                                                                       .length,
-                                                              itemBuilder:
-                                                                  (context,
-                                                                      index) {
+                                                              itemBuilder: (context, index) {
+                                                                dynamic _raisedFormattedAmount = commaFormatter(double.parse( _businessDetailController.pastFundedBusinessCausesList![index].raised.toString()));
+
                                                                 return UpcomingCauses(
                                                                     image: _businessDetailController
                                                                         .pastFundedBusinessCausesList![
@@ -408,11 +402,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                         .description,
                                                                     onViewCourse:
                                                                         () {},
-                                                                    totalAmount: _businessDetailController
-                                                                        .pastFundedBusinessCausesList![
-                                                                            index]
-                                                                        .goal
-                                                                        .toString(),
+                                                                    totalAmount: _raisedFormattedAmount,
                                                                     date: _businessDetailController
                                                                         .pastFundedBusinessCausesList![
                                                                             index]

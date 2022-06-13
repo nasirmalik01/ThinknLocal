@@ -65,6 +65,8 @@ class BusinessDetailController extends GetxController
     if (businessStats?.history?.isNotEmpty ?? false) {
       businessStatsHistory.clear();
       for (var item in businessStats!.history!) {
+        List<String> splitDate = item.date!.split(' ');
+        item.date = splitDate[0];
         businessStatsHistory.add(ChartData(item.date!, item.amount));
       }
     }

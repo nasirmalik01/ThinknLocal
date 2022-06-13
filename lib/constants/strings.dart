@@ -64,7 +64,7 @@ class Strings {
   static const String businessNear = "Businesses near";
   static const String noLocation = 'Loading';
   static const String of = 'of';
-  static const String ends = 'Ends';
+  static const String ends = 'Ended';
   static const String dummyLocation = "Chino Hills, CA";
   static const String searchBusiness = "Search for a business";
   static const String foodDrink = "Food & Drink";
@@ -74,6 +74,7 @@ class Strings {
   static const String contributionsOverTime = "Contributions over time";
   static const String numberOfContributions = 'Number of contributions from individuals over time.';
   static const String recentContributions = "Recent Contributions";
+  static const String topContributions = "Top Contributors";
   static const String recentlyAdded = "Recently Added";
   static const String tellUsAboutVisit = "Tell us about your visit!";
   static const String howWasYourExperience = 'How was your experience?';
@@ -88,10 +89,10 @@ class Strings {
   static const String hello = 'Hello,';
   static const String accountSettings = 'Account Settings';
   static const String pushNotifications = 'Push Notifications';
-  static const String enablePushNotifications = 'Enable push notifications lorem ipsum.';
+  static const String enablePushNotifications = 'Enable push notifications.';
   static const String emails = 'Emails';
   static const String next = 'next';
-  static const String allowSystemEmails = 'Allow system emails for causes lorem ipsum.';
+  static const String allowSystemEmails = 'Allow system emails for causes.';
   static const String locationServices = 'Location Services';
   static const String allowLocationServices = 'Allow location services while the app is running.';
   static const String otherOption = 'Other Option';

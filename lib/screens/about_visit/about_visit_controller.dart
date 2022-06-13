@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_app/enums/first_time_visit.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
 class AboutVisitController extends GetxController {
-  RxBool isVisitFirstTime = true.obs;
+  Rx<IsFirstTime> isVisitFirstTime = IsFirstTime.nothing.obs;
   RxString selectedBusiness = ''.obs;
   RxString selectedCourse = ''.obs;
   RxInt selectedCauseId = 0.obs;
@@ -21,8 +21,8 @@ class AboutVisitController extends GetxController {
   RxString errorMessage = ''.obs;
 
 
-  changeFirstTimeVisit() {
-    isVisitFirstTime.value = !isVisitFirstTime.value;
+  changeFirstTimeVisit({bool isFirst = false}) {
+    isVisitFirstTime.value = isFirst ? IsFirstTime.yes : !isFirst ? IsFirstTime.no : IsFirstTime.nothing;
   }
 
   @override

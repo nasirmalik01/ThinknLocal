@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
+import 'package:flutter_app/common/main_controller.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
@@ -26,6 +27,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
   TabController? _tabController;
   final NotificationController _notificationController = Get.put(NotificationController());
   final AccountController _accountController = Get.put(AccountController());
+  final MainController _mainController = Get.put(MainController());
 
   @override
   void initState() {
@@ -68,9 +70,8 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                     TextView.titleWithDecoration(Strings.wantToEditNotification, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
                     SizedBox(height: getHeight() * 0.01),
                     GestureDetector(
-                        onTap: () async {
-                          await Get.to(() => EditAccount(account: _accountController.account,));
-                          _accountController.getProfileInfo();
+                        onTap: (){
+                          _mainController.controller!.jumpToTab(4);
                         },
                         child: TextView.titleWithDecoration(Strings.editSettings, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
                   ],
@@ -142,7 +143,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                   controller: _tabController,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.02),
+                      padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.03),
                       child: Column(
                         children: [
                           _notificationController.notificationList?.isNotEmpty ?? false
@@ -159,6 +160,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                     child: Padding(
                                       padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.notificationList!.length - 1 ? 4.h : 0),
                                       child: NotificationCard(
+                                          isShowImage: false,
                                           isNetworkImage: false,
                                           image: Assets.noImageAvailable,
                                           text: _notificationController.notificationList![index].title,
@@ -179,7 +181,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.02),
+                      padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.03),
                       child: Column(
                         children: [
                           Expanded(
@@ -216,7 +218,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.02),
+                      padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.03),
                       child: Column(
                         children: [
                           Expanded(

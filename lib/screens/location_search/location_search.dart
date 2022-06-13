@@ -61,17 +61,19 @@ class LocationSearchScreen extends StatelessWidget {
                       physics: const ScrollPhysics(),
                       itemCount: _locationSearchController.citiesList.length,
                       itemBuilder: (context, index) {
+                        dynamic formattedDistance =  commaFormatter(_locationSearchController.citiesList[index].distance);
+
                         return GestureDetector(
                           onTap: (){
                             MyHive.setLocation(UserLocation(longitude: _locationSearchController.citiesList[index].longitude!, latitude: _locationSearchController.citiesList[index].latitude!));
                             Get.back(result: 1);
                           },
                           child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: getHeight() * 0.01),
+                            padding: EdgeInsets.symmetric(vertical: getHeight() * 0.01),
                             child: GetCities(
                                 cityName: _locationSearchController.citiesList[index].name,
-                                distance: _locationSearchController.citiesList[index].distance.toString()),
+                                distance: formattedDistance
+                            ),
                           ),
                         );
                       },

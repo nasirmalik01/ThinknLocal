@@ -246,3 +246,14 @@ Future<bool> checkMicroPhonePermission() async {
   }
   return false;
 }
+
+dynamic commaFormatter(dynamic distance){
+  NumberFormat _formatter = NumberFormat('#,##,000.00');
+  dynamic formatterFormat =  _formatter.format(distance);
+  dynamic formattedDistance = formatterFormat.replaceAll(RegExp(r'^0+(?=.)'), '');
+  if(formattedDistance.toString() == '.00'){
+    return '0';
+  }
+  return formattedDistance;
+}
+

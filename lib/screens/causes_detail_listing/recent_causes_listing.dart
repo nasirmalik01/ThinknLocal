@@ -5,6 +5,7 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/cause_request_type.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import 'package:flutter_app/widgets/empty_state.dart';
 import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -42,18 +43,21 @@ class RecentCausesListing extends StatelessWidget {
                   onPressBackArrow: () {
                     Navigator.pop(context);
                   }),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                child: ListView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children: [
-                    ListView.separated(
-                      scrollDirection: Axis.vertical,
+              _causesController.recentlyStartedCauses?.isEmpty ?? false
+                  ? emptyState('No recently started causes')
+                  : Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                    child: ListView(
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
+                      children: [
+                        ListView.separated(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: _causesController.recentlyStartedCauses!.length,
                       itemBuilder: (context, index) {
+                        dynamic _raisedFormattedAmount = commaFormatter(_causesController.recentlyStartedCauses![index].raised);
                         return GestureDetector(
                           onTap: (){
                              Get.toNamed(Routes.causesDetailScreen, arguments: {
@@ -68,7 +72,7 @@ class RecentCausesListing extends StatelessWidget {
                                 headerText: _causesController.recentlyStartedCauses![index].organization!.name,
                                 description:   _causesController.recentlyStartedCauses![index].name!,
                                 onViewCourse: (){},
-                                totalAmount:  _causesController.recentlyStartedCauses![index].raised!.toStringAsFixed(2),
+                                totalAmount:  _raisedFormattedAmount,
                                 date: _causesController.recentlyStartedCauses![index].start.toString()
                             ),
                           ),

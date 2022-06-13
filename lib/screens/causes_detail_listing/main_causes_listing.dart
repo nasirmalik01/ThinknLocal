@@ -5,6 +5,7 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/cause_request_type.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import 'package:flutter_app/widgets/empty_state.dart';
 import 'package:get/get.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -18,7 +19,7 @@ class MainCausesListing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   Future.delayed(const Duration(milliseconds: 10), (){
+   Future.delayed(const Duration(milliseconds: 2), (){
      String _selectedCategory = _causesController.getSelectedCategory();
      _causesController.requestType.value = CauseRequestType.causes;
      _causesController.setPagination(isFirst: true,);
@@ -43,18 +44,21 @@ class MainCausesListing extends StatelessWidget {
                   onPressBackArrow: () {
                     Navigator.pop(context);
                   }),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                child: ListView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children: [
-                    ListView.separated(
+              _causesController.topCausesContainersList?.isEmpty ?? false
+                  ? emptyState('No causes')
+                  : Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                    child: ListView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      children: [
+                        ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: _causesController.topCausesContainersList!.length,
                       itemBuilder: (context, index) {
+                        dynamic _raisedFormattedAmount = commaFormatter(_causesController.topCausesContainersList![index].raised);
                         return GestureDetector(
                           onTap: (){
                              Get.toNamed(Routes.causesDetailScreen, arguments: {
@@ -69,7 +73,7 @@ class MainCausesListing extends StatelessWidget {
                                 headerText: _causesController.topCausesContainersList![index].organization!.name,
                                 description:   _causesController.topCausesContainersList![index].name!,
                                 onViewCourse: (){},
-                                totalAmount:  _causesController.topCausesContainersList![index].raised!.toStringAsFixed(2),
+                                totalAmount:  _raisedFormattedAmount,
                                 date: _causesController.topCausesContainersList![index].start.toString()
                             ),
                           ),

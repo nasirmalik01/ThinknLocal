@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/main_controller.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
@@ -14,8 +15,6 @@ import 'businesses/businesses_screen.dart';
 import 'causes/causes_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-
-
 class BottomTabNew extends StatefulWidget {
   final int pageIndex;
 
@@ -26,13 +25,14 @@ class BottomTabNew extends StatefulWidget {
 }
 
 class _BottomTabNewState extends State<BottomTabNew> {
-  PersistentTabController? _controller;
+  final MainController _mainController = Get.put(MainController());
 
 
-    @override
+
+  @override
   void initState() {
     super.initState();
-    _controller = PersistentTabController(initialIndex: widget.pageIndex);
+    _mainController.controller = PersistentTabController(initialIndex: widget.pageIndex);
   }
 
   List<Widget> _buildScreens() {
@@ -55,7 +55,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
           context,
           bottomScreenMargin: getHeight() * 0.09,
           navBarHeight: getHeight() * 0.09,
-          controller: _controller,
+          controller: _mainController.controller,
           screens: _buildScreens(),
           items: _navBarsItems(),
           confineInSafeArea: true,
@@ -91,7 +91,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
         ),
         Positioned(
-          bottom: sizes.isPhone ? getHeight()*0.044 : getHeight()*0.05,
+          bottom: sizes.isPhone ? getHeight()*0.048 : getHeight()*0.05,
           left: sizes.isPhone ? getWidth()*0.405 : getWidth()*0.433,
           child:  GestureDetector(
             onTap: (){
@@ -103,9 +103,9 @@ class _BottomTabNewState extends State<BottomTabNew> {
                 borderRadius: BorderRadius.circular(50),
               ),
               child: CircleAvatar(
-                radius: sizes.isPhone ? 35 : 50,
+                radius: sizes.isPhone ? 33 : 50,
                 backgroundColor: AppColors.greenColor,
-                child: Image(image: const AssetImage(Assets.scannerIcon), height: sizes.height * 0.05,),
+                child: Image(image: const AssetImage(Assets.scannerIcon), height: sizes.height * 0.04,),
               ),
             ),
 

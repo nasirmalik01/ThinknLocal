@@ -10,7 +10,6 @@ import 'package:flutter_app/screens/cause_search/cause_search.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/screens/causes_detail_listing/causes_listing.dart';
 import 'package:flutter_app/screens/causes_detail_listing/main_causes_listing.dart';
-import 'package:flutter_app/screens/dummy.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
 import 'package:flutter_app/screens/issues/something_wrong_screen.dart';
 import 'package:flutter_app/screens/issues/under_maintenance_screen.dart';
@@ -54,7 +53,6 @@ class Routes {
   static const String notificationPermissionScreen = '/notificationPermissionScreen';
   static const String locationSearchScreen = '/locationSearchScreen';
   static const String aboutVisit = '/aboutVisit';
-  static const String dummyRoute = '/dummyRoute';
   static const String causeSearch = '/causeSearch';
   static const String businessSearch = '/businessSearch';
   static const String fullPhotoScreen = '/fullPhotoScreen';
@@ -81,10 +79,6 @@ class Routes {
 
   static getPages() {
     return [
-      GetPage(
-        name: dummyRoute,
-        page: () => const Dummy(),
-      ),
       GetPage(
         name: onBoardingScreen,
         page: () => const OnBoardingPage(),

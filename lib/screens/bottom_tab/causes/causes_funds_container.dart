@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/strings.dart';
@@ -34,6 +35,9 @@ class CausesFundContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isImageUrl = Uri.tryParse(fullBoxImage)?.hasAbsolutePath ?? false;
+    dynamic _collectedFormattedAmount = commaFormatter(double.parse(collectedAmount));
+    dynamic _totalFormattedAmount = commaFormatter(double.parse(totalAmount));
+
     return GestureDetector(
       onTap: ()=> onClickBox.call(),
       child: Container(
@@ -79,7 +83,7 @@ class CausesFundContainer extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(getHeight() * 0.01),
                                 image: DecorationImage(
                                     image: NetworkImage(logoImage),
-                                    fit: BoxFit.cover)
+                                    fit: BoxFit.fill)
                             ),
                           ),
                           SizedBox(width: getWidth() * 0.03),
@@ -109,8 +113,8 @@ class CausesFundContainer extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        TextView.subHeader("\$$collectedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
-                        TextView.subHeader(" ${Strings.of} \$$totalAmount", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                        TextView.subHeader("\$$_collectedFormattedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
+                        TextView.subHeader(" ${Strings.of} \$$_totalFormattedAmount", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                       ],
                     ),
                     TextView.subHeader("${Strings.ends} $endDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),

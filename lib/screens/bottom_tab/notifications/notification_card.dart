@@ -13,6 +13,7 @@ class NotificationCard extends StatelessWidget {
   final Function? onPressNotification;
   final bool isSentReceipts;
   final bool isNetworkImage;
+  final bool isShowImage;
 
 
   const NotificationCard(
@@ -23,6 +24,7 @@ class NotificationCard extends StatelessWidget {
         this.onPressNotification,
         this.isSentReceipts = false,
         this.isNetworkImage = true,
+        this.isShowImage = true
       }) : super(key: key);
 
   @override
@@ -37,17 +39,17 @@ class NotificationCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+             isShowImage ? SizedBox(
                   width: sizes.width * 0.16,
                   height: sizes.width * 0.16,
                   child: isNetworkImage ? CustomNetworkImage(imageUrl: image, fit: BoxFit.fill,): Image(
                     image: AssetImage(image!),
                     fit: BoxFit.fill,
                   )
-              ),
+              ) : const SizedBox(),
               SizedBox(width: sizes.width * 0.03),
               SizedBox(
-                width: sizes.width * 0.70,
+                width: isShowImage ? sizes.width * 0.70 : sizes.width * 0.88,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

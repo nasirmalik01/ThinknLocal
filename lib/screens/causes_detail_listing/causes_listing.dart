@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
@@ -41,6 +42,8 @@ class CausesListingScreen extends StatelessWidget {
                       physics: const ScrollPhysics(),
                       itemCount: detailList.length,
                       itemBuilder: (context, index) {
+                        dynamic _raisedFormattedAmount = commaFormatter(detailList[index].raised);
+
                         return GestureDetector(
                           onTap: (){
                             Get.toNamed(Routes.causesDetailScreen, arguments: detailList[index].id);
@@ -52,7 +55,7 @@ class CausesListingScreen extends StatelessWidget {
                                 headerText: detailList[index].organization!.name,
                                 description:   detailList[index].name!,
                                 onViewCourse: (){},
-                                totalAmount:  detailList[index].raised.toStringAsFixed(2),
+                                totalAmount:  _raisedFormattedAmount,
                                 date: detailList[index].start.toString()
                             ),
                           ),

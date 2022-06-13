@@ -5,7 +5,10 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/cause_request_type.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import 'package:flutter_app/widgets/empty_state.dart';
+import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
@@ -42,7 +45,9 @@ class UpcomingCausesListing extends StatelessWidget {
                   onPressBackArrow: () {
                     Navigator.pop(context);
                   }),
-              Padding(
+              _causesController.upcomingCauses?.isEmpty ?? false
+                  ? emptyState('No upcoming causes')
+                  :  Padding(
                 padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                 child: ListView(
                   physics: const NeverScrollableScrollPhysics(),
@@ -54,6 +59,8 @@ class UpcomingCausesListing extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: _causesController.upcomingCauses!.length,
                       itemBuilder: (context, index) {
+                        dynamic _upcomingFormattedAmount = commaFormatter(_causesController.upcomingCauses![index].raised);
+
                         return GestureDetector(
                           onTap: (){
                             Get.toNamed(Routes.causesDetailScreen, arguments: {
@@ -68,7 +75,7 @@ class UpcomingCausesListing extends StatelessWidget {
                                 headerText: _causesController.upcomingCauses![index].organization!.name,
                                 description:   _causesController.upcomingCauses![index].name!,
                                 onViewCourse: (){},
-                                totalAmount:  _causesController.upcomingCauses![index].raised!.toStringAsFixed(2),
+                                totalAmount: _upcomingFormattedAmount,
                                 date: _causesController.upcomingCauses![index].start.toString()
                             ),
                           ),

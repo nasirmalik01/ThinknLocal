@@ -225,7 +225,7 @@ class BusinessesScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         CommonWidgets.getTextWithSeeAll(
-                            leadingText: Strings.nearby,
+                            leadingText: 'Nearby',
                             trailingText: Strings.seeAll,
                             onPressSeeAllButton: () {
                               Get.to(() => NearbyBusinessListing(title: Strings.businessesNearYou));

@@ -20,27 +20,18 @@ class RequiredParamsScreen extends StatefulWidget {
 }
 
 class _RequiredParamsScreenState extends State<RequiredParamsScreen> {
-  TextEditingController? firstNameController;
-  TextEditingController? lastNameController;
   TextEditingController? zipCodeController;
-  TextEditingController? groupCodeController;
   final LogInController _logInController = Get.put(LogInController());
 
   @override
   void initState() {
     super.initState();
-    firstNameController = TextEditingController();
-    lastNameController = TextEditingController();
     zipCodeController = TextEditingController();
-    groupCodeController = TextEditingController();
   }
 
   @override
   void dispose() {
-    firstNameController!.dispose();
-    lastNameController!.dispose();
     zipCodeController!.dispose();
-    groupCodeController!.dispose();
     super.dispose();
   }
 
@@ -95,17 +86,9 @@ class _RequiredParamsScreenState extends State<RequiredParamsScreen> {
                       SizedBox(height: getHeight() * 0.04),
                       TextView.titleWithDecoration("Basic info", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
-                      TextFieldWidget(textEditingController: firstNameController, hint: "First Name", textInputType: TextInputType.emailAddress),
-                      SizedBox(height: getHeight() * 0.03),
-                      TextFieldWidget(textEditingController: lastNameController, hint: "Last Name",),
-                      SizedBox(height: getHeight() * 0.03),
                       TextView.titleWithDecoration("Zip Code", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
                       TextFieldWidget(textEditingController: zipCodeController, hint: "Zip Code", textInputType: TextInputType.number,),
-                      SizedBox(height: getHeight() * 0.03),
-                      TextView.titleWithDecoration("Group Code", color: AppColors.lightBlue, fontFamily: Assets.poppinsMedium),
-                      SizedBox(height: getHeight() * 0.01),
-                      TextFieldWidget(textEditingController: groupCodeController, hint: "Group Code", textColor: AppColors.lightBlue, hintTextColor: AppColors.lightBlue, cursorColor: AppColors.lightBlue),
                       SizedBox(height: getHeight() * 0.04),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,7 +100,7 @@ class _RequiredParamsScreenState extends State<RequiredParamsScreen> {
                               text: 'Cancel', textColor: AppColors.pureWhiteColor,
                               btnColor: AppColors.borderColor),
                           Button(onPress: () async {
-                            if(firstNameController!.text.isEmpty || lastNameController!.text.isEmpty || zipCodeController!.text.isEmpty){
+                            if( zipCodeController!.text.isEmpty){
                               return showSnackBar(subTitle: Strings.requiredFieldError);
                             }
 
@@ -126,10 +109,10 @@ class _RequiredParamsScreenState extends State<RequiredParamsScreen> {
                             }
 
                             if(_provider == Strings.apple) {
-                              _logInController.loginWithApple(firstName: firstNameController!.text, lastName: lastNameController!.text, zip: zipCodeController!.text, groupCode: groupCodeController?.text);
+                              _logInController.loginWithApple( zip: zipCodeController!.text);
                             }
                             else{
-                              _logInController.loginWithGoogle(firstName: firstNameController!.text, lastName: lastNameController!.text, zip: zipCodeController!.text, groupCode: groupCodeController?.text);
+                              _logInController.loginWithGoogle(zip: zipCodeController!.text);
                             }
                           },
                               width: sizes.width * 0.42, height: getHeight() * 0.08,

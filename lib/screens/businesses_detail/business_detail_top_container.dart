@@ -125,7 +125,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(getHeight() * 0.02),
                                   image: DecorationImage(
                                       image: NetworkImage(logoImage!),
-                                      fit: BoxFit.cover)
+                                      fit: BoxFit.fill)
                               ),
                             ),
                             SizedBox(width: getWidth() * 0.02),

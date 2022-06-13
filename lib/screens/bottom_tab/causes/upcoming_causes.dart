@@ -36,7 +36,7 @@ class UpcomingCauses extends StatelessWidget {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: isImageUrl ? NetworkImage(image!): const AssetImage(Assets.dummyLogo) as ImageProvider,
-                      fit: BoxFit.cover),
+                      fit: BoxFit.fill),
                   borderRadius: BorderRadius.circular(getHeight() * 0.01)
               ),
             ),

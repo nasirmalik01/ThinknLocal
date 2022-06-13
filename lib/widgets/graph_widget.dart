@@ -80,7 +80,7 @@ class StatsBarChartWidget extends StatelessWidget {
                 dataSource: dataSource!,
                 xValueMapper: (ChartData data, _) => data.day,
                 yValueMapper: (ChartData data, _) => data.sales,
-                width: 0.8,
+                width: 0.65,
                 name: popUpTitle ?? 'Business Stats',
                 color: AppColors.greenColor,
                 isTrackVisible: false,

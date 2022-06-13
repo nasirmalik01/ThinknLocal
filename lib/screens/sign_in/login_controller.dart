@@ -26,7 +26,7 @@ class LogInController extends GetxController {
     authenticateUser(query: _query);
   }
 
-  loginWithApple({String? firstName, String? lastName, String? zip, String? groupCode}) async {
+  loginWithApple({String? zip}) async {
     try {
       final credentials = await SignInWithApple.getAppleIDCredential(
         scopes: [
@@ -39,21 +39,17 @@ class LogInController extends GetxController {
         Strings.provider: Strings.apple,
         Strings.authorization: credentials.identityToken.toString(),
         Strings.zip: zip ?? '',
-        Strings.firstName: firstName ?? '',
-        Strings.lastName: lastName ?? '',
-        Strings.groupCode: groupCode ?? ''
       };
 
       showLoadingDialog(message: 'Authenticating User');
       await authenticateUser(query: _query, provider: Strings.apple);
-      Get.back();
 
     }catch(e){
       log(e.toString());
     }
   }
 
-  loginWithGoogle({String? firstName, String? lastName, String? zip, String? groupCode}) async {
+  loginWithGoogle({String? zip}) async {
     try{
       GoogleSignIn googleSignIn = GoogleSignIn();
       GoogleSignInAccount? account = await googleSignIn.signIn();
@@ -63,14 +59,10 @@ class LogInController extends GetxController {
         Strings.provider: Strings.google,
         Strings.authorization: credentials?.idToken.toString(),
         Strings.zip: zip ?? '',
-        Strings.firstName: firstName ?? '',
-        Strings.lastName: lastName ?? '',
-        Strings.groupCode: groupCode ?? ''
       };
 
       showLoadingDialog(message: 'Authenticating User');
       await authenticateUser(query: _query, provider: Strings.google);
-      Get.back();
     }catch(e){
       log('Error: ${e.toString()}');
     }
