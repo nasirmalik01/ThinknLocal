@@ -20,10 +20,11 @@ class CauseSearchController extends GetxController{
   }
 
   getSearchedCauses(String query) async {
+    if(query.length <=2 && query.trim().isNotEmpty) return;
     isSearchedCauseLoading.value = true;
-    searchedCausesList = [];
+    searchedCausesList?.clear();
     searchedCausesList =  await (CausesRemoteRepository.fetchCauses({
-      Strings.q : query,
+      Strings.q :  query.trim().isEmpty ? '' : query,
     },));
     if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
       isError.value = true;
@@ -31,6 +32,7 @@ class CauseSearchController extends GetxController{
       errorMessage.value = RemoteServices.error;
       return;
     }
+    update();
     isSearchedCauseLoading.value = false;
   }
 

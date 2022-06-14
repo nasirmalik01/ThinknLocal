@@ -19,7 +19,7 @@ class RecentlyStartedContainer extends StatelessWidget {
       width: getWidth() * 0.40,
       margin: EdgeInsets.only(left: index == 0 ? getWidth()*0.06 : getWidth()*0.04),
       decoration: BoxDecoration(
-          color: AppColors.lightGrey,
+          color: AppColors.pureWhiteColor,
           borderRadius: BorderRadius.circular(getHeight() * 0.015),
           image: DecorationImage(
               image: isImageUrl ? NetworkImage(image!): AssetImage(image!) as ImageProvider,

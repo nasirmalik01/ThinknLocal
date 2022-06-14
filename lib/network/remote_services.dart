@@ -6,17 +6,22 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/registration_exceptions.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/network/network_exception.dart';
 import 'package:flutter_app/network/secure_http_client.dart';
+import 'package:get/get.dart' hide Response;
+import 'package:package_info_plus/package_info_plus.dart';
 
 class RemoteServices {
   static String error = '';
   static int? statusCode = 200;
   static bool isNextPage = false;
   static bool isZipRequired = false;
+  bool appUnderMaintenance = false;
 
-  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map, {void Function(int, int)? uploadFile}) async {
+  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map,
+      {void Function(int, int)? uploadFile}) async {
     dynamic resJson;
     isZipRequired = false;
     try {
@@ -30,6 +35,7 @@ class RemoteServices {
       if(_isServerException) return;
       if (e is DioError) {
         final errorMessage = DioExceptions.fromDioError(e).toString();
+        log('error in post request: $errorMessage');
         showSnackBar(subTitle: errorMessage);
         error = errorMessage;
         statusCode = e.response?.statusCode;
@@ -41,7 +47,9 @@ class RemoteServices {
   Future<dynamic> getRequest(String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      Response _result = await MySecureHttpClient.getClient().get(endPoint, queryParameters: map);
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+      Response _result = await MySecureHttpClient.getClient(version: '${packageInfo.version}+${packageInfo.buildNumber}').get(endPoint, queryParameters: map);
       checkNextPage(_result.headers);
       log('status_code: ${_result.statusCode}');
       if (_result.statusCode == 200) {
@@ -52,7 +60,7 @@ class RemoteServices {
     } catch (e) {
       if (e is DioError) {
         final errorMessage = DioExceptions.fromDioError(e).toString();
-        showSnackBar(subTitle: errorMessage);
+        log('error: $errorMessage');
         error = errorMessage;
         statusCode = e.response?.statusCode;
         if (kDebugMode) print(errorMessage);

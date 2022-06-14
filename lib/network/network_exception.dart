@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:get/get.dart';
 
@@ -39,11 +40,15 @@ class DioExceptions implements Exception {
         break;
       case 401:
         message = 'You are not logged in';
-        Get.offAllNamed(Routes.loginScreen);
+        Get.offAllNamed(Routes.loginScreen, arguments: true);
+        showSnackBar(subTitle: 'You are not logged in');
         break;
       case 403:
         message = 'Forbidden! You are running an outdated app version and must upgrade';
-        Get.offAllNamed(Routes.updateRequiredScreen);
+        if (Get.currentRoute != Routes.updateRequiredScreen) {
+          showSnackBar(subTitle: 'You are running an outdated app version and must upgrade');
+          Routes.offAllTo(Routes.updateRequiredScreen);
+        }
         break;
       case 422:
         message = 'Form data is invalid';
@@ -62,7 +67,10 @@ class DioExceptions implements Exception {
         break;
         case 503:
         message = 'Service unavailable! Application under maintenance.';
-        Get.offAllNamed(Routes.underMaintenanceScreen);
+        if (Get.currentRoute != Routes.underMaintenanceScreen) {
+          showSnackBar(subTitle: 'Service unavailable! Application under maintenance.');
+          Routes.offAllTo(Routes.underMaintenanceScreen);
+        }
         break;
       default:
         message = 'Oops something went wrong';

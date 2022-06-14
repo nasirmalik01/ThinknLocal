@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -21,6 +22,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool? canClosed = ModalRoute.of(context)?.settings.arguments as bool? ?? false;
+
     return Scaffold(
       body:  Container(
             height: sizes.height,
@@ -30,18 +33,36 @@ class LoginScreen extends StatelessWidget {
             ),
             child: ListView(
               children: [
-                Container(
-                  height: getHeight() * 0.1,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        AppColors.lightGreenColor,
-                        AppColors.pureWhiteColor,
-                      ],
+                Stack(
+                  children: [
+                    Container(
+                      height: getHeight() * 0.1,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            AppColors.lightGreenColor,
+                            AppColors.pureWhiteColor,
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    canClosed
+                    ? Positioned(
+                      right: getWidth()*0.05,
+                      top: getHeight()*0.02,
+                      child: GestureDetector(
+                        onTap: (){
+                          Get.offAndToNamed(Routes.bottomNavBarScreen);
+                        },
+                        child: const SizedBox(
+                          child: Icon(Icons.close),
+                        ),
+                      ),
+                    )
+                    : const SizedBox(),
+                  ],
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),

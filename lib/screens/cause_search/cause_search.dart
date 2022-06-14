@@ -4,6 +4,7 @@ import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/cause_search/cause_search_controller.dart';
+import 'package:flutter_app/widgets/empty_state.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:get/get.dart';
 import '../../constants/assets.dart';
@@ -65,6 +66,8 @@ class CauseSearch extends StatelessWidget {
                     SizedBox(height: getHeight() * 0.02),
                       _causeSearchController.isSearchedCauseLoading.value
                       ?  circularProgressIndicator()
+                      :  _causeSearchController.searchedCausesList?.isEmpty ?? false
+                      ? emptyState('No results', height: getHeight()*0.2)
                       : ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,

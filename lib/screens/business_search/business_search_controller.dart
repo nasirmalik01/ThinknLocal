@@ -20,10 +20,11 @@ class BusinessSearchController extends GetxController{
   }
 
   getSearchedBusinesses(String query) async {
+    if(query.length <=2 && query.trim().isNotEmpty) return;
     isSearchedBusinessLoading.value = true;
-    searchedBusinessList = [];
+    searchedBusinessList?.clear();
     searchedBusinessList =  await (BusinessRemoteRepository.fetchBusinesses({
-      Strings.q : query,
+      Strings.q : query.trim().isEmpty ? '' : query,
     },));
     if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
       isError.value = true;
@@ -31,6 +32,7 @@ class BusinessSearchController extends GetxController{
       errorMessage.value = RemoteServices.error;
       return;
     }
+    update();
     isSearchedBusinessLoading.value = false;
   }
 

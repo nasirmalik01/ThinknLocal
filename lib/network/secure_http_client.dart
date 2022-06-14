@@ -6,12 +6,13 @@ class MySecureHttpClient {
   static Dio? secureClient;
   static Dio? insecureClient;
 
-  static Dio getClient() {
+  static Dio getClient({String? version}) {
     return Dio(
       BaseOptions(
         baseUrl: Strings.baseUrl,
         headers: {
             'Authorization': MyHive.getToken(),
+            'App-Version': version ?? ''
           /// For test cases use below token
           // 'Authorization': Strings.testingToken,
         },

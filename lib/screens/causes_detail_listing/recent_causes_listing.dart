@@ -26,72 +26,80 @@ class RecentCausesListing extends StatelessWidget {
     });
 
     return Scaffold(
-      body: Obx(() =>( _causesController.isRecentlyStartedCausesLoading.value && !_causesController.isPaginatedLoading.value && (Get.isDialogOpen == false))
-          ? circularProgressIndicator()
-          : SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        controller: _causesController.scrollController,
-        child: Container(
-          width: sizes.width,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: Column(
-            children: [
-              CommonWidgets.getSimpleAppBar(
-                  title: title,
-                  onPressBackArrow: () {
-                    Navigator.pop(context);
-                  }),
-              _causesController.recentlyStartedCauses?.isEmpty ?? false
-                  ? emptyState('No recently started causes')
-                  : Padding(
-                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                    child: ListView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      children: [
-                        ListView.separated(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _causesController.recentlyStartedCauses!.length,
-                      itemBuilder: (context, index) {
-                        dynamic _raisedFormattedAmount = commaFormatter(_causesController.recentlyStartedCauses![index].raised);
-                        return GestureDetector(
-                          onTap: (){
-                             Get.toNamed(Routes.causesDetailScreen, arguments: {
-                               Strings.causeId: _causesController.recentlyStartedCauses![index].id,
-                               Strings.organizationId: _causesController.recentlyStartedCauses![index].organization!.id,
-                             });
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
-                            child: UpcomingCauses(
-                                image:  _causesController.recentlyStartedCauses![index].image ?? Strings.dummyBgImage,
-                                headerText: _causesController.recentlyStartedCauses![index].organization!.name,
-                                description:   _causesController.recentlyStartedCauses![index].name!,
-                                onViewCourse: (){},
-                                totalAmount:  _raisedFormattedAmount,
-                                date: _causesController.recentlyStartedCauses![index].start.toString()
+      body: RefreshIndicator(
+        color: AppColors.greenColor,
+        onRefresh: () async{
+          _causesController.requestType.value = CauseRequestType.recent;
+          _causesController.setPagination(isFirst: true);
+          _causesController.getRecentlyStartedCauses(page: 1);
+        },
+        child: Obx(() =>( _causesController.isRecentlyStartedCausesLoading.value && !_causesController.isPaginatedLoading.value && (Get.isDialogOpen == false))
+            ? circularProgressIndicator()
+            : SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          controller: _causesController.scrollController,
+          child: Container(
+            width: sizes.width,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
+            child: Column(
+              children: [
+                CommonWidgets.getSimpleAppBar(
+                    title: title,
+                    onPressBackArrow: () {
+                      Navigator.pop(context);
+                    }),
+                _causesController.recentlyStartedCauses?.isEmpty ?? false
+                    ? emptyState('No recently started causes')
+                    : Padding(
+                      padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                      child: ListView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        children: [
+                          ListView.separated(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: _causesController.recentlyStartedCauses!.length,
+                        itemBuilder: (context, index) {
+                          dynamic _raisedFormattedAmount = commaFormatter(_causesController.recentlyStartedCauses![index].raised);
+                          return GestureDetector(
+                            onTap: (){
+                               Get.toNamed(Routes.causesDetailScreen, arguments: {
+                                 Strings.causeId: _causesController.recentlyStartedCauses![index].id,
+                                 Strings.organizationId: _causesController.recentlyStartedCauses![index].organization!.id,
+                               });
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
+                              child: UpcomingCauses(
+                                  image:  _causesController.recentlyStartedCauses![index].image ?? Strings.dummyBgImage,
+                                  headerText: _causesController.recentlyStartedCauses![index].organization!.name,
+                                  description:   _causesController.recentlyStartedCauses![index].name!,
+                                  onViewCourse: (){},
+                                  totalAmount:  _raisedFormattedAmount,
+                                  date: _causesController.recentlyStartedCauses![index].start.toString()
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return Divider(
-                            height: getHeight() * 0.04,
-                            thickness: getHeight() * 0.002,
-                            color: AppColors.borderColor);
-                      },
-                    ),
-                    SizedBox(height: getHeight() * 0.04),
-                  ],
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return Divider(
+                              height: getHeight() * 0.04,
+                              thickness: getHeight() * 0.002,
+                              color: AppColors.borderColor);
+                        },
+                      ),
+                      SizedBox(height: getHeight() * 0.04),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),),
-      ),
+              ],
+            ),),
+        ),
+        ),
       ),
     );
   }

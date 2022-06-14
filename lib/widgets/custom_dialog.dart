@@ -57,7 +57,7 @@ customDialog({String? backgroundImage, String? icon, String? title, String? summ
                                 image: NetworkImage(
                                     icon ?? Strings.dummyLogoForDialog
                                 ),
-                                fit: BoxFit.cover
+                                fit: BoxFit.fill
                             )
                         ),
                       ),

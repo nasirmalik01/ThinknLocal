@@ -212,7 +212,7 @@ Future<void> launchInBrowser(Uri url) async {
 }
 
 userNotLoggedIn(){
-  Get.offAllNamed(Routes.loginScreen);
+  Get.offAllNamed(Routes.loginScreen, arguments: true);
   showSnackBar(subTitle: Strings.notLoggedIn);
 }
 
@@ -256,4 +256,3 @@ dynamic commaFormatter(dynamic distance){
   }
   return formattedDistance;
 }
-

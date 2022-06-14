@@ -88,7 +88,7 @@ class _UploadFailedState extends State<UploadFailed> {
                   SizedBox(height: getHeight() * 0.08),
                   Button(
                     onPress: () {
-                      Get.offAll(BottomTabNew(pageIndex: 0));
+                      Get.offAll(const BottomTabNew(pageIndex: 0));
                     },
                     text: "Try Again",
                     btnColor: AppColors.greenColor,

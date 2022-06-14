@@ -41,7 +41,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
           height: 23.h,
           child: Obx(() =>  _causesController.isTopCausesContainersList.value
             ? circularProgressIndicator()
-            : _causesController.topCausesContainersList!.isNotEmpty
+            : _causesController.topCausesContainersList?.isNotEmpty ?? false
             ? ListView.builder(
             controller: _tabViewsController,
             scrollDirection: Axis.horizontal,
@@ -82,7 +82,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
         /// Recently Started Causes
         Obx(() => _causesController.isRecentlyStartedCausesLoading.value
           ? circularProgressIndicator()
-          : _causesController.recentlyStartedCauses!.isNotEmpty
+          : _causesController.recentlyStartedCauses?.isNotEmpty ?? false
           ? SizedBox(
           height: getHeight()*0.17,
           child: ListView.builder(
@@ -133,7 +133,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
               SizedBox(height: getHeight() * 0.018),
                 _causesController.isUpcomingCausesLoading.value
                 ? circularProgressIndicator()
-                : _causesController.upcomingCauses!.isNotEmpty
+                : _causesController.upcomingCauses?.isNotEmpty ?? false
                 ? ListView.separated(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,

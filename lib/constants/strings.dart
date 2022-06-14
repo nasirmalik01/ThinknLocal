@@ -27,7 +27,7 @@ class Strings {
   static const String recentCauses = "Recent causes";
   static const String active = "active";
   static const String upcoming = "upcoming";
-  static const String unknown = "Unknown";
+  static const String unknown = "";
   static const String email = "email";
   static const String provider = "provider";
   static const String apple = "apple";

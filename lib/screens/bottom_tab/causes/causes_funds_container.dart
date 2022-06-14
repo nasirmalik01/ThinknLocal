@@ -44,7 +44,7 @@ class CausesFundContainer extends StatelessWidget {
         width: getWidth() * 0.7,
         margin: EdgeInsets.only(left: index == 0 ? getWidth()*0.06 : getWidth()*0.03),
         decoration: BoxDecoration(
-            color: AppColors.greenColor,
+            color: AppColors.pureWhiteColor,
             borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.02)),
             image: DecorationImage(
                 image: isImageUrl ? NetworkImage(fullBoxImage) : AssetImage(fullBoxImage) as ImageProvider,

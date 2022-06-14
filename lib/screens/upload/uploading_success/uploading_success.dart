@@ -77,7 +77,7 @@ class _UploadSuccessState extends State<UploadSuccess> {
                   SizedBox(height: getHeight() * 0.08),
                   Button(
                       onPress: () {
-                        Get.offAll(BottomTabNew(pageIndex: 0));
+                        Get.offAll(const BottomTabNew(pageIndex: 0));
                       },
                       text: "Finish",
                       btnColor: AppColors.greenColor,

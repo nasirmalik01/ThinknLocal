@@ -19,6 +19,7 @@ class CausesController extends GetxController{
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
   RxBool isPast = false.obs;
+  RxBool selectedTab = false.obs;
   RxBool isLocationLoading = false.obs;
   RxBool isUpcomingCausesLoading = false.obs;
   RxBool isRecentlyStartedCausesLoading = false.obs;
