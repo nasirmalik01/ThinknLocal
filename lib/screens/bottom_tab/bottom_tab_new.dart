@@ -9,6 +9,7 @@ import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart'
 import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import 'businesses/businesses_screen.dart';
@@ -118,15 +119,21 @@ class _BottomTabNewState extends State<BottomTabNew> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: ImageIcon(const AssetImage(Assets.causeIcon), size: sizes.height * 0.1),
+        icon: ImageIcon(const AssetImage(Assets.causeIcon), size: sizes.height * 0.035),
         title: Strings.causes,
         activeColorPrimary: AppColors.greenColor,
+        textStyle: TextStyle(
+            fontSize: 8.5.sp
+        ),
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(const AssetImage(Assets.storeIcon), size: sizes.height * 0.1),
+        icon: ImageIcon(const AssetImage(Assets.storeIcon), size: sizes.height * 0.035),
         title: Strings.businesses,
         activeColorPrimary: AppColors.greenColor,
+        textStyle: TextStyle(
+            fontSize: 8.5.sp
+        ),
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
@@ -136,14 +143,20 @@ class _BottomTabNewState extends State<BottomTabNew> {
         inactiveColorPrimary: Colors.transparent,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(const AssetImage(Assets.notificationIcon), size: sizes.height * 0.1),
+        icon: ImageIcon(const AssetImage(Assets.notificationIcon), size: sizes.height * 0.035),
         title: Strings.notifications,
         activeColorPrimary: AppColors.greenColor,
+        textStyle: TextStyle(
+            fontSize: 8.5.sp
+        ),
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(const AssetImage(Assets.accountIcon), size: sizes.height * 0.1),
+        icon: ImageIcon(const AssetImage(Assets.accountIcon), size: sizes.height * 0.035),
         title: Strings.account,
+        textStyle: TextStyle(
+          fontSize: 8.5.sp
+        ),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
@@ -180,7 +193,7 @@ Future<void> initializeCamera() async {
       userNotLoggedIn();
     }else {
       allCameras = await availableCameras();
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         pushNewScreen(
           context,
           screen: CameraScreen(camera: allCameras[0]),

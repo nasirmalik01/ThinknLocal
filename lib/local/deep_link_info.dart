@@ -13,8 +13,4 @@ class DeepLinkInfo {
   final int? organizationId;
 
   DeepLinkInfo({this.causeId, this.businessId, this.organizationId});
-
-
-
-
 }

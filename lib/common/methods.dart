@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/local/app_info.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/local/user_location.dart';
 import 'package:flutter_app/model/cities.dart';
@@ -17,6 +18,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -255,4 +257,9 @@ dynamic commaFormatter(dynamic distance){
     return '0';
   }
   return formattedDistance;
+}
+
+setAppInfo() async {
+  PackageInfo _packageInfo = await PackageInfo.fromPlatform();
+  MyHive.setAppInfo(AppInfo(appName: _packageInfo.appName, appVersion: _packageInfo.version, packageName: _packageInfo.packageName, buildNumber: _packageInfo.buildNumber));
 }

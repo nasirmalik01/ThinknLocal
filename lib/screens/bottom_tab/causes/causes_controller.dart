@@ -7,12 +7,14 @@ import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/cause_request_type.dart';
+import 'package:flutter_app/local/app_info.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class CausesController extends GetxController{
   RxBool isFeatured = true.obs;

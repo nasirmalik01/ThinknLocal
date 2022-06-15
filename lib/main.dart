@@ -25,6 +25,7 @@ void main() async {
   await Hive.initFlutter();
   await MyHive.init();
   await dependencyInjectionSetUp();
+  setAppInfo();
 
   runApp(const MyApp());
 }

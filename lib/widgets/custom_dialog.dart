@@ -9,7 +9,7 @@ import 'package:flutter_app/widgets/dialog_button.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 
-customDialog({String? backgroundImage, String? icon, String? title, String? summary, String? description, Function()? onClickLearnMore}){
+customDialog({String? backgroundImage, String? icon, String? title, String? summary, String? description, Function()? onClickLearnMore, bool isLearnMoreButton = true}){
   Get.dialog(
     Center(
       child: Container(
@@ -79,7 +79,8 @@ customDialog({String? backgroundImage, String? icon, String? title, String? summ
                         height: getHeight()*0.072,
                         child: TextView.header(description ?? 'Lorem ipsum dolor sit amet, sonsectetur adipiscing elit. Suspensisse quis metus vel nisl aliquam trislique. Etiam sit amet.', color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 3, fontSize: sizes.fontSize12, )),
                     SizedBox(height: getHeight()*0.03,),
-                    Row(
+                    isLearnMoreButton
+                    ? Row(
                       children: [
                         Expanded(
                           child: DialogButton(
@@ -105,6 +106,19 @@ customDialog({String? backgroundImage, String? icon, String? title, String? summ
                           ),
                         )
                       ],
+                    )
+                    :  Center(
+                      child: DialogButton(
+                        height: getHeight()*0.06,
+                        textColor: AppColors.lightPurpleColor,
+                        btnColor: AppColors.pureWhiteColor,
+                        text: 'Close',
+                        borderColor: AppColors.lightPurpleColor,
+                        onPress: (){
+                          log('Okay');
+                          Get.back();
+                        },
+                      ),
                     )
                   ],
                 ),

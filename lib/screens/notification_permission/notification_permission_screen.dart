@@ -18,13 +18,13 @@ class _NotificationPermissionScreenState extends State<NotificationPermissionScr
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
   }
 
   @override
@@ -32,7 +32,7 @@ class _NotificationPermissionScreenState extends State<NotificationPermissionScr
     if (state == AppLifecycleState.resumed) {
           permissionStatusFuture = getCheckNotificationPermStatus();
     }
-  }
+}
 
   /// Checks the notification permission status
   Future<String> getCheckNotificationPermStatus() {

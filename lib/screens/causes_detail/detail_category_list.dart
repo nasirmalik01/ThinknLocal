@@ -16,6 +16,7 @@ class DetailCategoryList extends StatelessWidget {
   final Function()? onPhoneClick;
   final Function()? onAddressClick;
   final Function()? onShowRestrictionsTap;
+  final bool isRestrictionsApply;
 
   const DetailCategoryList(
       {Key? key,
@@ -28,7 +29,8 @@ class DetailCategoryList extends StatelessWidget {
       required this.categoryPercent,
       this.onPhoneClick,
       this.onAddressClick,
-      this.onShowRestrictionsTap
+      this.onShowRestrictionsTap,
+      this.isRestrictionsApply = true
       }) : super(key: key);
 
   @override
@@ -108,7 +110,8 @@ class DetailCategoryList extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: getHeight() * 0.008),
-                  GestureDetector(
+                  isRestrictionsApply
+                   ? GestureDetector(
                     onTap: onShowRestrictionsTap,
                     child: SizedBox(
                         width: getWidth() * 0.45,
@@ -121,7 +124,8 @@ class DetailCategoryList extends StatelessWidget {
                             fontSize: sizes.fontSize12
                         )
                     ),
-                  ),
+                  )
+                  : const SizedBox(),
                 ],
               ),
             )

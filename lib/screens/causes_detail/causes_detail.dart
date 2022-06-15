@@ -496,25 +496,26 @@ class _CausesDetailState extends State<CausesDetail>
                                                                                   index]
                                                                               .longitude!);
                                                                     },
-                                                                    onShowRestrictionsTap:
-                                                                        () {
-                                                                      customDialog();
-                                                                    }),
+                                                                    isRestrictionsApply: _causesDetailController.causeBottomDetails![index].restrictions == null ? false : true,
+                                                                    onShowRestrictionsTap: () {
+                                                                      customDialog(
+                                                                        backgroundImage: _causesDetailController.causeBottomDetails![index].image,
+                                                                        icon: _causesDetailController.causeBottomDetails![index].logo,
+                                                                        title: _causesDetailController.causeBottomDetails![index].name,
+                                                                        description:  _causesDetailController.causeBottomDetails![index].description,
+                                                                        summary:  _causesDetailController.causeBottomDetails![index].address1,
+                                                                        isLearnMoreButton: false
+                                                                      );
+                                                                    },
+                                                                ),
                                                               );
                                                             },
-                                                            separatorBuilder:
-                                                                (BuildContext
-                                                                        context,
-                                                                    int index) {
+                                                            separatorBuilder: (BuildContext context, int index) {
                                                               return Divider(
-                                                                  height:
-                                                                      getHeight() *
-                                                                          0.04,
-                                                                  thickness:
-                                                                      getHeight() *
-                                                                          0.002,
-                                                                  color: AppColors
-                                                                      .borderColor);
+                                                                  height: getHeight() * 0.04,
+                                                                  thickness: getHeight() * 0.002,
+                                                                  color: AppColors.borderColor
+                                                              );
                                                             },
                                                           )
                                                         : handleEmptyState(

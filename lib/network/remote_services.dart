@@ -47,9 +47,7 @@ class RemoteServices {
   Future<dynamic> getRequest(String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
-      Response _result = await MySecureHttpClient.getClient(version: '${packageInfo.version == '' ? '2.0.0' : packageInfo.version}+${packageInfo.buildNumber}').get(endPoint, queryParameters: map);
+      Response _result = await MySecureHttpClient.getClient().get(endPoint, queryParameters: map);
       checkNextPage(_result.headers);
       log('status_code: ${_result.statusCode}');
       if (_result.statusCode == 200) {
@@ -72,13 +70,13 @@ class RemoteServices {
       String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      dynamic _result =
-          await MySecureHttpClient.getClient().patch(endPoint, data: map);
+      dynamic _result = await MySecureHttpClient.getClient().patch(endPoint, data: map);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
         resJson = json.decode(_result.toString());
         return resJson;
       }
-    } catch (e) {
+    }
+    catch (e) {
       serverHandlingExceptions(e, statusCode, error);
     }
   }
