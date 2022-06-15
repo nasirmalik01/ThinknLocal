@@ -24,10 +24,8 @@ import '../../constants/colors.dart';
 class AboutVisit extends StatelessWidget {
   AboutVisit({Key? key}) : super(key: key);
 
-  final AboutVisitController _aboutVisitController =
-      Get.put(AboutVisitController());
-  final ContributionController _contributionController =
-      Get.put(ContributionController());
+  final AboutVisitController _aboutVisitController = Get.put(AboutVisitController());
+  final ContributionController _contributionController = Get.put(ContributionController());
   double getRating = 0.0;
 
   @override
@@ -163,7 +161,8 @@ class AboutVisit extends StatelessWidget {
                             SizedBox(height: getHeight() * 0.01),
                             AutoFieldTextField(
                                 hintText: Strings.courseName,
-                                onSelect: _aboutVisitController.onCauseCompletePress
+                                onSelect: _aboutVisitController.onCauseCompletePress,
+                                isEnabled: _aboutVisitController.selectedBusinessId.value == 0 ? false : true,
                             ),
                             SizedBox(height: getHeight() * 0.07),
                             Button(

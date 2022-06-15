@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/first_time_visit.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/causes.dart';
@@ -27,14 +30,14 @@ class AboutVisitController extends GetxController {
 
   @override
   void onInit() {
-    getCauses();
     getBusinesses();
     super.onInit();
   }
 
-  getCauses() async {
-    isCausesLoading.value = true;
-    causesList = await (CausesRemoteRepository.fetchCauses({}));
+  getCauses(int businessId) async {
+    causesList = await (CausesRemoteRepository.fetchCauses({
+      Strings.businessId: businessId
+    }));
     if (RemoteServices.statusCode != 200 &&
         RemoteServices.statusCode != 201 &&
         RemoteServices.statusCode != 204) {
@@ -43,7 +46,6 @@ class AboutVisitController extends GetxController {
       errorMessage.value = RemoteServices.error;
       return;
     }
-    isCausesLoading.value = false;
   }
   getBusinesses() async {
     isBusinessLoading.value = true;
@@ -76,7 +78,8 @@ class AboutVisitController extends GetxController {
               business.toLowerCase().startsWith(value!.text.toLowerCase()));
         }
       }
-    } else {
+    }
+    else {
       if (causesList!.isNotEmpty) {
         for (int i = 0; i < causesList!.length; i++) {
           causesStringList.add(causesList![i].name!);
@@ -108,6 +111,8 @@ class AboutVisitController extends GetxController {
     for (var item in businessList!) {
       if (item.name == value) {
         selectedBusinessId.value = item.id!;
+        getCauses(selectedBusinessId.value);
+        log('selectedBusinessId.value: ${selectedBusinessId.value}');
       }
     }
   }

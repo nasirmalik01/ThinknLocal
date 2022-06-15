@@ -47,8 +47,8 @@ class RecentlyAddedBusiness extends StatelessWidget {
             children: [
               const Expanded(child: SizedBox()),
               Container(
-                height: getWidth()*0.15,
-                width: getWidth()*0.15,
+                height: sizes.isPhone ? getWidth()*0.15 : getWidth() * 0.12,
+                width: sizes.isPhone ? getWidth()*0.15 : getWidth() * 0.12,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(getHeight() * 0.01),
                     image: DecorationImage(

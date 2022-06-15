@@ -10,7 +10,8 @@ class AutoFieldTextField extends StatelessWidget {
   final String hintText;
   final Function(String) onSelect;
   final bool isBusiness;
-  AutoFieldTextField({required this.hintText, this.isBusiness = false, required this.onSelect, Key? key}) : super(key: key);
+  final bool isEnabled;
+  AutoFieldTextField({required this.hintText, this.isBusiness = false, this.isEnabled = true, required this.onSelect, Key? key}) : super(key: key);
   final AboutVisitController _aboutVisitController = Get.put(AboutVisitController());
 
 
@@ -26,12 +27,7 @@ class AutoFieldTextField extends StatelessWidget {
         return list;
       },
       onSelected: onSelect,
-      fieldViewBuilder: (
-          BuildContext context,
-          TextEditingController fieldTextEditingController,
-          FocusNode fieldFocusNode,
-          VoidCallback onFieldSubmitted
-          ) {
+      fieldViewBuilder: (BuildContext context, TextEditingController fieldTextEditingController, FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
         return Container(
             decoration: BoxDecoration(
               color: const Color.fromRGBO(48, 54, 63, 1),
@@ -40,6 +36,7 @@ class AutoFieldTextField extends StatelessWidget {
             child: Padding(
                 padding: EdgeInsets.only(left: getWidth()*0.04, right: getWidth()*0.04, top: 0.7.h),
                 child: TextFormField(
+                    enabled:  isEnabled ? true : false,
                     controller: fieldTextEditingController,
                     focusNode: fieldFocusNode,
                     style: TextStyle(

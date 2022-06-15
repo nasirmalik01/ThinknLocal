@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
                 child: child!);
           },
           debugShowCheckedModeBanner: false,
-          title: Strings.thinkLocal,
+          title: Strings.thinknLocal,
           unknownRoute: Routes.getUnknownRoute(),
           initialRoute: Routes.getInitialRoute(),
           getPages: Routes.getPages(),

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/model/cities.dart';

@@ -120,14 +120,14 @@ buildDynamicLinks(String category, String id, {String? organizationId}) async {
     socialMetaTagParameters: SocialMetaTagParameters(
         description: '',
         imageUrl: Uri.parse(Strings.dynamicLinkImageUrl),
-        title: Strings.thinkLocal,
+        title: Strings.thinknLocal,
     ),
   );
   final dynamicLink =
   await FirebaseDynamicLinks.instance.buildShortLink(parameters);
   String? desc = dynamicLink.shortUrl.toString();
 
-  await Share.share(desc, subject: Strings.thinkLocal);
+  await Share.share(desc, subject: Strings.thinknLocal);
 }
 
 Future<String> getUserLocationAddress() async {

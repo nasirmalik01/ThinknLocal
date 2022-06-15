@@ -201,7 +201,7 @@ class BusinessesScreen extends StatelessWidget {
                       height: getHeight()*0.14,
                       child: _businessesController.isRecentlyAddedBusinessLoading.value
                           ? circularProgressIndicator()
-                          : _businessesController.recentlyAddedBusinessList!.isNotEmpty
+                          : _businessesController.recentlyAddedBusinessList?.isNotEmpty ?? false
                           ? ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 6,
@@ -243,7 +243,7 @@ class BusinessesScreen extends StatelessWidget {
                           SizedBox(height: getHeight() * 0.018),
                           _businessesController.isNearByBusinessLoading.value
                               ? circularProgressIndicator()
-                              : _businessesController.nearbyBusinessList!.isNotEmpty
+                              : _businessesController.nearbyBusinessList?.isNotEmpty ?? false
                               ? ListView.separated(
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,

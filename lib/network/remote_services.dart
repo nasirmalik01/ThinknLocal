@@ -49,7 +49,7 @@ class RemoteServices {
     try {
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
-      Response _result = await MySecureHttpClient.getClient(version: '${packageInfo.version}+${packageInfo.buildNumber}').get(endPoint, queryParameters: map);
+      Response _result = await MySecureHttpClient.getClient(version: '${packageInfo.version == '' ? '2.0.0' : packageInfo.version}+${packageInfo.buildNumber}').get(endPoint, queryParameters: map);
       checkNextPage(_result.headers);
       log('status_code: ${_result.statusCode}');
       if (_result.statusCode == 200) {

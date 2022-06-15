@@ -149,7 +149,7 @@ class Strings {
   static const String uploadId = 'upload_id';
   static const String rating = 'rating';
   static const String firstPurchase = 'first_purchase';
-  static const String thinkLocal = 'ThinknLocal';
+  static const String thinknLocal = 'ThinknLocal';
   static const String notificationId = 'high_importance_channel';
   static const String notificationTitle = 'High Importance Notifications';
   static const String notificationDesc = 'This channel is used for important notifications';
