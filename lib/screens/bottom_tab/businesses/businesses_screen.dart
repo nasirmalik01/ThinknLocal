@@ -207,7 +207,7 @@ class BusinessesScreen extends StatelessWidget {
                           : _businessesController.recentlyAddedBusinessList?.isNotEmpty ?? false
                           ? ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: 6,
+                        itemCount: _businessesController.recentlyAddedBusinessList!.isEmpty ? 0 : _businessesController.recentlyAddedBusinessList!.length > 6 ? 6 : _businessesController.recentlyAddedBusinessList!.length,
                         itemBuilder: (context, index){
                           return index == 5
                               ? GestureDetector(
@@ -251,7 +251,7 @@ class BusinessesScreen extends StatelessWidget {
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
                             physics: const ScrollPhysics(),
-                            itemCount: _businessesController.nearbyBusinessList!.isEmpty ? 0 : 3,
+                            itemCount: _businessesController.nearbyBusinessList!.isEmpty ? 0 : _businessesController.nearbyBusinessList!.length > 3 ? 3 : _businessesController.nearbyBusinessList!.length,
                             itemBuilder: (context, index){
                               return GestureDetector(
                                 onTap: (){

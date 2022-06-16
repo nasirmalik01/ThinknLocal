@@ -45,7 +45,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
             ? ListView.builder(
             controller: _tabViewsController,
             scrollDirection: Axis.horizontal,
-            itemCount:  _causesController.topCausesContainersList!.isEmpty ? 0 :  _causesController.topCausesContainersList!.length > 6 ? 6 : _causesController.topCausesContainersList!.length,
+            itemCount:  _causesController.topCausesContainersList!.isEmpty ? 0 : _causesController.topCausesContainersList!.length > 6 ? 6 : _causesController.topCausesContainersList!.length,
             itemBuilder: (context, index){
               return index == 5 ? GestureDetector(
                 onTap: () async {
@@ -72,7 +72,10 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
               );
             },
           )
-          : handleEmptyState(context, Strings.noCauses),),
+          : Padding(
+            padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
+            child: handleEmptyState(context, Strings.noCauses),
+          ),),
         ),
         SizedBox(height: getHeight() * 0.03),
         Padding(
@@ -90,7 +93,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
           child: ListView.builder(
             controller: _recentlyStartedController,
             scrollDirection: Axis.horizontal,
-            itemCount: _causesController.recentlyStartedCauses!.isEmpty ? 0 : 6,
+            itemCount:  _causesController.recentlyStartedCauses!.isEmpty ? 0 :  _causesController.recentlyStartedCauses!.length > 6 ? 6 : _causesController.recentlyStartedCauses!.length,
             itemBuilder: (context, index){
               return index == 5
                 ? GestureDetector(
@@ -140,7 +143,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: const ScrollPhysics(),
-                itemCount: _causesController.upcomingCauses!.isEmpty ? 0 : 3,
+                  itemCount:  _causesController.recentlyStartedCauses!.isEmpty ? 0 :  _causesController.recentlyStartedCauses!.length > 3 ? 3 : _causesController.recentlyStartedCauses!.length,
                 itemBuilder: (context, index){
                   return GestureDetector(
                     onTap: (){
