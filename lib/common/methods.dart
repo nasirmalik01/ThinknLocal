@@ -125,20 +125,19 @@ buildDynamicLinks(String category, String id, {String? organizationId}) async {
         title: Strings.thinknLocal,
     ),
   );
-  final dynamicLink =
-  await FirebaseDynamicLinks.instance.buildShortLink(parameters);
+  final dynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
   String? desc = dynamicLink.shortUrl.toString();
 
   await Share.share(desc, subject: Strings.thinknLocal);
 }
 
-Future<String> getUserLocationAddress() async {
-  if (MyHive.getLocation() != null) {
-    final _address = await findAddress(MyHive.getLocation());
-    return _address;
-  }
-  return '';
-}
+// Future<String> getUserLocationAddress() async {
+//   if (MyHive.getLocation() != null) {
+//     final _address = await findAddress(MyHive.getLocation());
+//     return _address;
+//   }
+//   return '';
+// }
 
 Future<Cities?> getLowestDistanceCity() async {
   Cities? _lowestDistanceCity;
@@ -160,9 +159,9 @@ Future<Cities?> getLowestDistanceCity() async {
   return _lowestDistanceCity;
 }
 
-Future<String> findAddress(UserLocation type) async {
-  var placeMarkers = await placemarkFromCoordinates(type.latitude, type.longitude);
-  var completeAddress = '${placeMarkers.first.street},${placeMarkers.first.locality},${placeMarkers.first.country}';
+Future<String>? findAddress(double latitude, double longitude) async {
+  var placeMarkers = await placemarkFromCoordinates(latitude, longitude);
+  var completeAddress = placeMarkers.first.locality.toString();
   return completeAddress;
 }
 

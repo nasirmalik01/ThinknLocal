@@ -13,8 +13,10 @@ import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
+import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CausesController extends GetxController{
   RxBool isFeatured = true.obs;
@@ -37,7 +39,6 @@ class CausesController extends GetxController{
   late ScrollController scrollController;
   RxInt pageIndex = 1.obs;
   Rx<CauseRequestType> requestType = CauseRequestType.none.obs;
-
 
   @override
   void onInit() {
@@ -72,7 +73,7 @@ class CausesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = true;
     isPast.value = false;
-    getCauses(Strings.favorites);
+    getCauses(Strings.favorite);
   }
 
   setPastTab(){
@@ -153,9 +154,8 @@ class CausesController extends GetxController{
   }
 
   getLocationAddress() async {
-     Cities? _lowestDistanceCity = await getLowestDistanceCity();
-     locationAddress.value = _lowestDistanceCity?.name ?? Strings.noLocation;
-     MyHive.setLocationAddress(locationAddress.value);
+    final LocationSearchController _locationSearchController = Get.find<LocationSearchController>();
+    _locationSearchController.locationAddress.value = MyHive.getLocationAddress();
   }
 
   void handleDynamicLink(Uri url) {

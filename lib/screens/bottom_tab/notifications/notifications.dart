@@ -97,13 +97,13 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                         indicatorPadding: EdgeInsets.symmetric(vertical: sizes.heightRatio * 5),
                         labelColor: AppColors.blackColor,
                         labelStyle: TextStyle(
-                            fontSize: sizes.fontRatio * 13,
+                            fontSize: sizes.fontRatio * 12.5,
                             fontFamily: Assets.poppinsMedium,
                             fontWeight: FontWeight.w500
                         ),
                         unselectedLabelColor: AppColors.darkGrey,
                         unselectedLabelStyle: TextStyle(
-                            fontSize: sizes.fontRatio * 13,
+                            fontSize: sizes.fontRatio * 12,
                             fontFamily: Assets.poppinsMedium,
                             fontWeight: FontWeight.w400
                         ),
@@ -117,7 +117,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                             text: Strings.pendingReceipts,
                           ),
                           Tab(
-                            text: Strings.sentReceipts,
+                            text: Strings.approvedReceipts,
                           ),
                         ],
                       ),

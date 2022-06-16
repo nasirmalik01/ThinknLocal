@@ -64,7 +64,7 @@ class NotificationCard extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: sizes.height * 0.005),
-                    TextView.headerWithBlurRadius(subText, color: isSentReceipts ? AppColors.greenColor : AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 2),
+                    TextView.headerWithBlurRadius(subText, color: isSentReceipts ? AppColors.greenColor : AppColors.darkGrey, fontFamily: Assets.poppinsRegular, isShowFullText: true),
                   ],
                 ),
               ),

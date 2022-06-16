@@ -11,20 +11,29 @@ import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 
-class UpcomingCausesListing extends StatelessWidget {
+class UpcomingCausesListing extends StatefulWidget {
   final String? title;
-  UpcomingCausesListing({Key? key, this.title,}) : super(key: key);
+  const UpcomingCausesListing({Key? key, this.title,}) : super(key: key);
 
+  @override
+  State<UpcomingCausesListing> createState() => _UpcomingCausesListingState();
+}
+
+class _UpcomingCausesListingState extends State<UpcomingCausesListing> {
   final CausesController _causesController = Get.put(CausesController());
 
   @override
-  Widget build(BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 10), (){
+  void initState() {
+    Future.delayed(const Duration(milliseconds: 0), (){
       _causesController.requestType.value = CauseRequestType.upcoming;
       _causesController.setPagination(isFirst: true,);
       _causesController.getUpComingCauses(page: 1);
     });
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: RefreshIndicator(
         color: AppColors.greenColor,
@@ -46,7 +55,7 @@ class UpcomingCausesListing extends StatelessWidget {
             child: Column(
               children: [
                 CommonWidgets.getSimpleAppBar(
-                    title: title,
+                    title: widget.title,
                     onPressBackArrow: () {
                       Navigator.pop(context);
                     }),

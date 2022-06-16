@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/screens/bottom_tab/businesses/businesses_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_category_screen.dart';
+import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/network_error.dart';
@@ -16,13 +18,15 @@ import '../../../res/res.dart';
 
 
 class CausesScreen extends StatelessWidget{
-  final TextEditingController? searchController = TextEditingController();
-
   CausesScreen({Key? key}) : super(key: key);
+
+  final TextEditingController? searchController = TextEditingController();
+  final LocationSearchController _locationSearchController = Get.put(LocationSearchController());
+  final CausesController _causesController = Get.put(CausesController());
+
 
   @override
   Widget build(BuildContext context) {
-    final CausesController _causesController = Get.put(CausesController());
     final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
 
     return SafeArea(
@@ -74,7 +78,7 @@ class CausesScreen extends StatelessWidget{
                         },
                         child: Row(
                           children: [
-                            Obx(() => TextView.header(_causesController.locationAddress.value, color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),),
+                            Obx(() => TextView.header(_locationSearchController.locationAddress.value, color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),),
                             Padding(
                               padding: EdgeInsets.only(bottom: 0.2.h, left: 1.w),
                               child: Image(

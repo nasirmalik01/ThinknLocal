@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainController extends GetxController{
   RxBool isLoading = false.obs;
@@ -31,6 +32,13 @@ class MainController extends GetxController{
     isLocationServiceEnabled.value = await location.serviceEnabled();
     position = await getCurrentLocation();
     MyHive.setLocation(UserLocation(longitude: position!.longitude, latitude: position!.latitude));
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String? _userCurrentLocationAddress = await findAddress(position!.latitude, position!.longitude);
+    MyHive.setLocationAddress(_userCurrentLocationAddress);
+    _prefs.setDouble(Strings.currentLat, position!.latitude);
+    _prefs.setDouble(Strings.currentLong, position!.longitude);
+    _prefs.setString(Strings.currentLocationAddress, _userCurrentLocationAddress!);
+
     Get.back();
     return true;
   }

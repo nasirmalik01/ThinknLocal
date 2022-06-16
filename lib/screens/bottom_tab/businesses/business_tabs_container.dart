@@ -73,11 +73,11 @@ class BusinessTabContainer extends StatelessWidget {
                       height: getWidth()*0.15,
                       width: getWidth()*0.15,
                       decoration: BoxDecoration(
-                          color: AppColors.blackColor,
+                          color: AppColors.pureWhiteColor,
                           borderRadius: BorderRadius.circular(getHeight() * 0.02),
                           image: DecorationImage(
                               image: NetworkImage(logoImage!),
-                              fit: BoxFit.fill)
+                              fit: BoxFit.contain)
                       ),
                     ),
                     SizedBox(width: getWidth() * 0.02),

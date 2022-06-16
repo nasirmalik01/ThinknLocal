@@ -45,9 +45,10 @@ class DetailCategoryList extends StatelessWidget {
               height: 8.h,
               width: 8.h,
               decoration: BoxDecoration(
+                color: AppColors.pureWhiteColor,
                   image: DecorationImage(
                       image: isImageUrl ? NetworkImage(image!): AssetImage(image!) as ImageProvider,
-                      fit: BoxFit.cover),
+                      fit: BoxFit.contain),
                   borderRadius: BorderRadius.circular(getHeight() * 0.01)
               ),
             ),
@@ -79,14 +80,16 @@ class DetailCategoryList extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextView.subHeader(
-                            streetAddress?? "",
+                        streetAddress != null
+                        ?TextView.subHeader(
+                            streetAddress ?? "",
                             color: AppColors.lightBlack,
                             lines: 1,
                             fontFamily: Assets.poppinsRegular,
                             textDecoration: TextDecoration.underline,
                             fontSize: sizes.fontSize12
-                        ),
+                        )
+                        : const SizedBox(),
                         TextView.subHeader(
                             address?? "",
                             color: AppColors.lightBlack,

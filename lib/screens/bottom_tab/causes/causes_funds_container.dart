@@ -79,11 +79,14 @@ class CausesFundContainer extends StatelessWidget {
                             height: getWidth()*0.12,
                             width: getWidth()*0.12,
                             decoration: BoxDecoration(
-                                color: AppColors.blackColor,
+                                color: AppColors.pureWhiteColor,
                                 borderRadius: BorderRadius.circular(getHeight() * 0.01),
                                 image: DecorationImage(
-                                    image: NetworkImage(logoImage),
-                                    fit: BoxFit.fill)
+                                    image: NetworkImage(
+                                        logoImage,
+                                    ),
+                                    fit: BoxFit.contain,
+                                )
                             ),
                           ),
                           SizedBox(width: getWidth() * 0.03),

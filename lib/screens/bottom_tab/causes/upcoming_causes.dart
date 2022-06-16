@@ -34,9 +34,10 @@ class UpcomingCauses extends StatelessWidget {
               height: getHeight()*0.085,
               width: getWidth()*0.18,
               decoration: BoxDecoration(
+                color: AppColors.pureWhiteColor,
                   image: DecorationImage(
                       image: isImageUrl ? NetworkImage(image!): const AssetImage(Assets.dummyLogo) as ImageProvider,
-                      fit: BoxFit.fill),
+                      fit: BoxFit.contain),
                   borderRadius: BorderRadius.circular(getHeight() * 0.01)
               ),
             ),

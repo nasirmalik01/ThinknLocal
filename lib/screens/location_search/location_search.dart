@@ -7,6 +7,7 @@ import 'package:flutter_app/screens/location_search/get_cities.dart';
 import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:flutter_app/widgets/empty_state.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '/constants/assets.dart';
 import '/constants/colors.dart';
 import '/res/res.dart';
@@ -20,6 +21,9 @@ class LocationSearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _locationSearchController.getLocationAddress();
+    _locationSearchController.getCities('');
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -67,9 +71,8 @@ class LocationSearchScreen extends StatelessWidget {
                       dynamic formattedDistance =  commaFormatter(_locationSearchController.citiesList[index].distance);
 
                       return GestureDetector(
-                        onTap: (){
-                          MyHive.setLocation(UserLocation(longitude: _locationSearchController.citiesList[index].longitude!, latitude: _locationSearchController.citiesList[index].latitude!));
-                          Get.back(result: 1);
+                        onTap: ()  {
+                          _locationSearchController.saveSelectedAddress(index);
                         },
                         child: Padding(
                           padding: EdgeInsets.symmetric(vertical: getHeight() * 0.01),

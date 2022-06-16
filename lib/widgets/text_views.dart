@@ -144,13 +144,13 @@ class TextView {
     );
   }
 
-  static Text headerWithBlurRadius(final text, {@required final color, final TextAlign textAlign = TextAlign.start, final shadowColor = AppColors.pureWhiteColor, final  double blurRadius = 0, final fontFamily, final TextDecoration textDecoration = TextDecoration.none, final lines, final fontSize}) {
+  static Text headerWithBlurRadius(final text, {@required final color, final TextAlign textAlign = TextAlign.start, final shadowColor = AppColors.pureWhiteColor, final  double blurRadius = 0, final fontFamily, final TextDecoration textDecoration = TextDecoration.none, final lines, final fontSize, final isShowFullText = false}) {
     return Text(
       text ?? "",
       textAlign: textAlign,
       softWrap: true,
       maxLines: lines,
-      overflow: TextOverflow.ellipsis,
+      overflow: isShowFullText ? TextOverflow.visible : TextOverflow.ellipsis,
       style: TextStyle(
         decoration: textDecoration,
         fontSize: fontSize ?? sizes.fontSize12,

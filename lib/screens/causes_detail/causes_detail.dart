@@ -154,7 +154,7 @@ class _CausesDetailState extends State<CausesDetail>
                                     text: Strings.overview,
                                   ),
                                   Tab(
-                                    text: Strings.update,
+                                    text: Strings.updates,
                                   ),
                                   Tab(
                                     text: Strings.stats,
@@ -471,12 +471,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                         .causeBottomDetails![
                                                                             index]
                                                                         .address1,
-                                                                    streetAddress: _causesDetailController
-                                                                            .causeBottomDetails![
-                                                                                index]
-                                                                            .address2 ??
-                                                                        Strings
-                                                                            .unknown,
+                                                                    streetAddress: _causesDetailController.causeBottomDetails?[index].address2,
                                                                     phoneNumber: '(${_causesDetailController.causeBottomDetails![index].phone!.substring(0,3)}) ${_causesDetailController.causeBottomDetails![index].phone!.substring(3, 6)}-${_causesDetailController.causeBottomDetails![index].phone!.substring(6, )}',
                                                                     onPhoneClick:
                                                                         () {
@@ -487,14 +482,9 @@ class _CausesDetailState extends State<CausesDetail>
                                                                     onAddressClick:
                                                                         () {
                                                                       MapsLauncher.launchCoordinates(
-                                                                          _causesDetailController
-                                                                              .causeBottomDetails![
-                                                                                  index]
-                                                                              .latitude!,
-                                                                          _causesDetailController
-                                                                              .causeBottomDetails![
-                                                                                  index]
-                                                                              .longitude!);
+                                                                          _causesDetailController.causeBottomDetails![index].latitude!,
+                                                                          _causesDetailController.causeBottomDetails![index].longitude!,
+                                                                      );
                                                                     },
                                                                     isRestrictionsApply: _causesDetailController.causeBottomDetails![index].restrictions == null ? false : true,
                                                                     onShowRestrictionsTap: () {
@@ -503,7 +493,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                         icon: _causesDetailController.causeBottomDetails![index].logo,
                                                                         title: _causesDetailController.causeBottomDetails![index].name,
                                                                         description:  _causesDetailController.causeBottomDetails![index].description,
-                                                                        summary:  _causesDetailController.causeBottomDetails![index].address1,
+                                                                        summary:  '',
                                                                         isLearnMoreButton: false
                                                                       );
                                                                     },
@@ -518,9 +508,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                               );
                                                             },
                                                           )
-                                                        : handleEmptyState(
-                                                            context,
-                                                            Strings.noCauses)),
+                                                        : handleEmptyState(context, Strings.noBusinessesFound)),
                                               ],
                                             ),
                                           ),

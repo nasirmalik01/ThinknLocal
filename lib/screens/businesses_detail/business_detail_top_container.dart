@@ -12,7 +12,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
   final String? streetAddress;
   final String? address;
   final String? phoneNumber;
-  final String? contributedAmount;
+  String? contributedAmount;
   final String? totalAmount;
   final String? joinDate;
   final Function onClickBox;
@@ -25,7 +25,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
   final Function()? onAddressClick;
 
 
-  const BusinessDetailTopContainer(
+  BusinessDetailTopContainer(
       {Key? key, this.fullBoxImage,
       this.logoImage,
       this.name,
@@ -48,6 +48,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isImageUrl = Uri.tryParse(fullBoxImage!)?.hasAbsolutePath ?? false;
+    contributedAmount = contributedAmount!.replaceAll('%', '');
     return GestureDetector(
       onTap: ()=> onClickBox.call(),
       child: Container(
@@ -121,11 +122,11 @@ class BusinessDetailTopContainer extends StatelessWidget {
                               height: getHeight()*0.09,
                               width: getWidth() * 0.18,
                               decoration: BoxDecoration(
-                                  color: AppColors.blackColor,
+                                  color: AppColors.pureWhiteColor,
                                   borderRadius: BorderRadius.circular(getHeight() * 0.02),
                                   image: DecorationImage(
                                       image: NetworkImage(logoImage!),
-                                      fit: BoxFit.fill)
+                                      fit: BoxFit.contain)
                               ),
                             ),
                             SizedBox(width: getWidth() * 0.02),

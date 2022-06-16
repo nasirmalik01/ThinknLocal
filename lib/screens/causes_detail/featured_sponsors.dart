@@ -49,11 +49,11 @@ class FeaturedSponsors extends StatelessWidget {
                 height: getHeight()*0.038,
                 width: getWidth() * 0.075,
                 decoration: BoxDecoration(
-                    color: AppColors.blackColor,
+                    color: AppColors.pureWhiteColor,
                     borderRadius: BorderRadius.circular(0.8.h),
                     image: DecorationImage(
                         image: NetworkImage(logoImage!),
-                        fit: BoxFit.fill)
+                        fit: BoxFit.contain)
                 ),
               ),
               SizedBox(width: getWidth() * 0.02),

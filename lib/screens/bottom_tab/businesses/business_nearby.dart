@@ -36,9 +36,10 @@ class BusinessNearBy extends StatelessWidget {
               height: getHeight()*0.075,
               width: getHeight()*0.075,
               decoration: BoxDecoration(
+                color: AppColors.pureWhiteColor,
                   image: DecorationImage(
                       image: isImageUrl ? NetworkImage(image!): AssetImage(image!) as ImageProvider,
-                      fit: BoxFit.fill),
+                      fit: BoxFit.contain),
                   borderRadius: BorderRadius.circular(getHeight() * 0.01)
               ),
             ),

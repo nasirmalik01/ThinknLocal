@@ -49,10 +49,8 @@ class CorporateSponsor extends StatelessWidget {
                        color: AppColors.pureWhiteColor
                      ),
                        image: DecorationImage(
-                           image: NetworkImage(
-                               icon
-                           ),
-                           fit: BoxFit.fill
+                           image: NetworkImage(icon),
+                           fit: BoxFit.contain
                        )
                    ),
                  ),

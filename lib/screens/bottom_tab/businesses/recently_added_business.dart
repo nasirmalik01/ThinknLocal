@@ -50,10 +50,11 @@ class RecentlyAddedBusiness extends StatelessWidget {
                 height: sizes.isPhone ? getWidth()*0.15 : getWidth() * 0.12,
                 width: sizes.isPhone ? getWidth()*0.15 : getWidth() * 0.12,
                 decoration: BoxDecoration(
+                    color: AppColors.pureWhiteColor,
                     borderRadius: BorderRadius.circular(getHeight() * 0.01),
                     image: DecorationImage(
                         image: isImageUrlLogo ? NetworkImage(logoImage!) :  AssetImage(logoImage!) as ImageProvider,
-                        fit: BoxFit.fill)
+                        fit: BoxFit.contain)
                 ),
               ),
               SizedBox(height: getHeight() * 0.01),

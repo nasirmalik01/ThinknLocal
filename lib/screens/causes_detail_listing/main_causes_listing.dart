@@ -11,21 +11,30 @@ import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
 
-class MainCausesListing extends StatelessWidget {
+class MainCausesListing extends StatefulWidget {
   final String? title;
-  MainCausesListing({Key? key, this.title}) : super(key: key);
+  const MainCausesListing({Key? key, this.title}) : super(key: key);
+
+  @override
+  State<MainCausesListing> createState() => _MainCausesListingState();
+}
+
+class _MainCausesListingState extends State<MainCausesListing> {
+  @override
+  void initState() {
+    Future.delayed(const Duration(milliseconds: 0), (){
+      String _selectedCategory = _causesController.getSelectedCategory();
+      _causesController.requestType.value = CauseRequestType.causes;
+      _causesController.setPagination(isFirst: true,);
+      _causesController.getCauses(_selectedCategory, page: 1);
+    });
+    super.initState();
+  }
 
   final CausesController _causesController = Get.put(CausesController());
 
   @override
   Widget build(BuildContext context) {
-   Future.delayed(const Duration(milliseconds: 2), (){
-     String _selectedCategory = _causesController.getSelectedCategory();
-     _causesController.requestType.value = CauseRequestType.causes;
-     _causesController.setPagination(isFirst: true,);
-     _causesController.getCauses(_selectedCategory, page: 1);
-   });
-
     return Scaffold(
       body: RefreshIndicator(
         color: AppColors.greenColor,
@@ -48,7 +57,7 @@ class MainCausesListing extends StatelessWidget {
             child: Column(
               children: [
                 CommonWidgets.getSimpleAppBar(
-                    title: title,
+                    title: widget.title,
                     onPressBackArrow: () {
                       Navigator.pop(context);
                     }),

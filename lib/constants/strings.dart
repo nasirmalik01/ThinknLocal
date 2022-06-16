@@ -16,12 +16,13 @@ class Strings {
   static const String nearby = "nearby";
   static const String featured = "featured";
   static const String overview = "Overview";
-  static const String update = "Update";
+  static const String updates = "Updates";
   static const String stats = "Stats";
   static const String featuredSponsors = "Featured Sponsors";
   static const String corporateSponsors = "Corporate Sponsors";
   static const String trending = "trending";
   static const String favorites = "favorites";
+  static const String favorite = "favorite";
   static const String past = "past";
   static const String recent = "recent";
   static const String recentCauses = "Recent causes";
@@ -108,7 +109,7 @@ class Strings {
   static const String showingCausesNear = 'Showing causes near';
   static const String searchForCause = 'Search for a cause';
   static const String raising = 'Raising';
-  static const String starting = 'starting';
+  static const String starting = 'Starting';
   static const String yourNotifications = 'Your Notifications';
   static const String wantToEditNotification = 'Want to edit your notification settings?';
   static const String editSettings = 'Edit Settings';
@@ -116,6 +117,10 @@ class Strings {
   static const String account = 'Account';
   static const String pendingReceipts = 'Pending Receipts';
   static const String sentReceipts = 'Sent Receipts';
+  static const String approvedReceipts = 'Approved Receipts';
+  static const String currentLat = 'currentLat';
+  static const String currentLong = 'currentLong';
+  static const String currentLocationAddress = 'currentLocationAddress';
   static const String ago = 'ago';
   static const String makeSure = 'Make sure ';
   static const String total = 'total';
@@ -163,6 +168,7 @@ class Strings {
   static const String citiesNearYou = 'Cities near you';
   static const String noUpcomingCauses = 'There are no upcoming causes';
   static const String noCauses = 'There are no causes';
+  static const String noBusinessesFound = 'There are no businesses available in this category';
   static const String noRecentCauses = 'There are no recent started causes';
   static const String noBusinesses = 'There are no upcoming businesses';
   static const String noRecentBusinesses = 'There are no added businesses';

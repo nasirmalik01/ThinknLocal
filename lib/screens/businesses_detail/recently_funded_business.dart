@@ -72,10 +72,11 @@ class RecentlyFundedBusiness extends StatelessWidget {
                     height: getHeight()*0.05,
                     width: getWidth() * 0.11,
                     decoration: BoxDecoration(
+                      color: AppColors.pureWhiteColor,
                         borderRadius: BorderRadius.circular(getHeight() * 0.01),
                         image: DecorationImage(
                             image: isImageUrlLogo ? NetworkImage(logoImage!): AssetImage(logoImage!) as ImageProvider,
-                            fit: BoxFit.fill)
+                            fit: BoxFit.contain)
                     ),
                   ),
                   GestureDetector(

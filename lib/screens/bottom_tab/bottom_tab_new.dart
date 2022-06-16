@@ -8,6 +8,7 @@ import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
 import 'package:flutter_app/res/res.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../constants/assets.dart';
@@ -29,11 +30,11 @@ class _BottomTabNewState extends State<BottomTabNew> {
   final MainController _mainController = Get.put(MainController());
 
 
-
   @override
   void initState() {
     super.initState();
     _mainController.controller = PersistentTabController(initialIndex: widget.pageIndex);
+    Future.delayed(10.milliseconds);
   }
 
   List<Widget> _buildScreens() {
@@ -48,7 +49,6 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
   @override
   Widget build(BuildContext context) {
-    initializeResources(context: context);
 
     return Stack(
       children: [
@@ -57,6 +57,9 @@ class _BottomTabNewState extends State<BottomTabNew> {
           bottomScreenMargin: getHeight() * 0.09,
           navBarHeight: getHeight() * 0.09,
           controller: _mainController.controller,
+          onItemSelected: (index){
+            setState((){});
+          },
           screens: _buildScreens(),
           items: _navBarsItems(),
           confineInSafeArea: true,
@@ -119,7 +122,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: ImageIcon(const AssetImage(Assets.causeIcon), size: sizes.height * 0.035),
+        icon: SvgPicture.asset(Assets.causesSvg, height: sizes.height * 0.038, width: sizes.height * 0.038, color: _mainController.controller!.index == 0 ? AppColors.greenColor : AppColors.darkGrey),
         title: Strings.causes,
         activeColorPrimary: AppColors.greenColor,
         textStyle: TextStyle(
@@ -128,7 +131,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(const AssetImage(Assets.storeIcon), size: sizes.height * 0.035),
+        icon: SvgPicture.asset(Assets.businessSvg, height: sizes.height * 0.038, width: sizes.height * 0.038, color: _mainController.controller!.index == 1 ? AppColors.greenColor : AppColors.darkGrey),
         title: Strings.businesses,
         activeColorPrimary: AppColors.greenColor,
         textStyle: TextStyle(
@@ -137,13 +140,13 @@ class _BottomTabNewState extends State<BottomTabNew> {
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const ImageIcon(AssetImage(Assets.scannerIcon), color: AppColors.pureWhiteColor, size: 0),
+        icon: SvgPicture.asset(Assets.scanSvg, height: 0, width: 0, color: AppColors.pureWhiteColor),
         title: ("."),
         activeColorPrimary: Colors.transparent,
         inactiveColorPrimary: Colors.transparent,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(const AssetImage(Assets.notificationIcon), size: sizes.height * 0.035),
+        icon: SvgPicture.asset(Assets.notificationSvg, height: sizes.height * 0.038, width: sizes.height * 0.038, color: _mainController.controller!.index == 3 ? AppColors.greenColor : AppColors.darkGrey,),
         title: Strings.notifications,
         activeColorPrimary: AppColors.greenColor,
         textStyle: TextStyle(
@@ -152,7 +155,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: ImageIcon(const AssetImage(Assets.accountIcon), size: sizes.height * 0.035),
+        icon: SvgPicture.asset(Assets.accountSvg, height: sizes.height * 0.038, width: sizes.height * 0.038, color: _mainController.controller!.index == 4 ? AppColors.greenColor : AppColors.darkGrey,),
         title: Strings.account,
         textStyle: TextStyle(
           fontSize: 8.5.sp

@@ -3,8 +3,11 @@ import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
 
 class PushNotificationConfig{
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -33,11 +36,21 @@ class PushNotificationConfig{
       badge: true,
       sound: true,
     );
+
   }
 
   static handleForeGroundPushNotifications(){
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async{
+      log("onMessage: $message");
+      showSnackBar(subTitle: 'okkkk');
+      // log('Title: ${message.notification!.title}');
+      // log('Body: ${message.notification!.body}');
+      // log('Notification: ${message.notification}');
+      // log('Data: ${message.data}');
+    });
+
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-      log(message.toString());
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
       if (notification != null && android != null) {
@@ -58,7 +71,7 @@ class PushNotificationConfig{
                   presentSound: true,
                   presentBadge: true,
                   presentAlert: true
-              )
+              ),
             ));
       }
    },);
@@ -70,5 +83,16 @@ class PushNotificationConfig{
     RemoteNotification? notification = message.notification;
     debugPrint('Title: ${notification!.title!}');
     debugPrint('Body: ${notification.body!}');
+  }
+
+  static handleNotificationPayLoad({required String category, required int id}){
+    if(category == Strings.causes){
+      Get.toNamed(Routes.causesDetailScreen, arguments: {
+        Strings.causeId: id,
+        Strings.organizationId: 1
+      });
+    }else{
+      Get.toNamed(Routes.businessDetailScreen, arguments: id);
+    }
   }
 }

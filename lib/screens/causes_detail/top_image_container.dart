@@ -119,11 +119,11 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                             height: getHeight()*0.06,
                             width: getHeight()*0.06,
                             decoration: BoxDecoration(
-                                color: AppColors.blackColor,
+                                color: AppColors.pureWhiteColor,
                                 borderRadius: BorderRadius.circular(getHeight() * 0.01),
                                 image: DecorationImage(
                                     image: NetworkImage(logoImage!),
-                                    fit: BoxFit.fill)
+                                    fit: BoxFit.contain)
                             ),
                           ),
                           SizedBox(width: getWidth() * 0.03),

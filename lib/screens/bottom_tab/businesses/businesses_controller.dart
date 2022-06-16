@@ -9,7 +9,9 @@ import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
+import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BusinessesController extends GetxController{
   RxBool isFeatured = true.obs;
@@ -33,7 +35,7 @@ class BusinessesController extends GetxController{
   @override
   void onInit() {
     scrollController = ScrollController();
-     getLocationAddress();
+    getLocationAddress();
     getBusinesses(Strings.featured);
     getRecentlyAddedBusinesses();
     getNearbyBusinesses();
@@ -61,7 +63,7 @@ class BusinessesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = true;
     isPast.value = false;
-    getBusinesses(Strings.favorites);
+    getBusinesses(Strings.favorite);
   }
 
   setPostTab(){
@@ -128,11 +130,9 @@ class BusinessesController extends GetxController{
     isNearByBusinessLoading.value = false;
   }
 
-
   getLocationAddress() async {
-    Cities? _lowestDistanceCity = await getLowestDistanceCity();
-    locationAddress.value = _lowestDistanceCity?.name ?? Strings.noLocation;
-    MyHive.setLocationAddress(locationAddress.value);
+    final LocationSearchController _locationSearchController = Get.find<LocationSearchController>();
+    _locationSearchController.locationAddress.value = MyHive.getLocationAddress();
   }
 
   Future<void> setPagination({bool isFirst = false,}) async{

@@ -9,10 +9,12 @@ import 'package:flutter_app/screens/bottom_tab/businesses/business_tabs_containe
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_components.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/recently_added_business.dart';
+import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/business_detail_listing/main_businesses_listing.dart';
 import 'package:flutter_app/screens/business_detail_listing/nearby_businesses_listing.dart';
 import 'package:flutter_app/screens/business_detail_listing/recently_added_businesses.dart';
 import 'package:flutter_app/screens/businesses_categories/business_category.dart';
+import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
@@ -29,6 +31,7 @@ class BusinessesScreen extends StatelessWidget {
   final TextEditingController? searchController = TextEditingController();
   final BusinessesComponents _businessesComponents = BusinessesComponents();
   final BusinessesController _businessesController = Get.put(BusinessesController());
+  final LocationSearchController _locationSearchController = Get.put(LocationSearchController());
   final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
 
 
@@ -83,7 +86,7 @@ class BusinessesScreen extends StatelessWidget {
                         },
                         child: Row(
                           children: [
-                            TextView.header(_businessesController.locationAddress.value, color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
+                            TextView.header(_locationSearchController.locationAddress.value, color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize25),
                             Padding(
                               padding: EdgeInsets.only(left: 1.w, bottom: 0.5.h),
                               child: Image(
@@ -164,7 +167,7 @@ class BusinessesScreen extends StatelessWidget {
                           : _businessesController.businessList!.isNotEmpty
                           ? ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: 6,
+                        itemCount: _businessesController.businessList!.isEmpty ? 0 : _businessesController.businessList!.length > 6 ? 6 : _businessesController.businessList!.length,
                         itemBuilder: (context, index){
                           return index == 5 ? GestureDetector(
                               onTap: () async {

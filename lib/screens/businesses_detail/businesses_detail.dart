@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/deep_link_info.dart';
 import 'package:flutter_app/local/my_hive.dart';
@@ -267,65 +268,73 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                           },
                                                                           child: CommonWidgets.seeAllButton(
                                                                               30))
-                                                                      : RecentlyFundedBusiness(
-                                                                          name: _businessDetailController
-                                                                              .recentlyFundedBusinessCausesList![index]
-                                                                              .name,
-                                                                          fullImage: _businessDetailController
-                                                                              .recentlyFundedBusinessCausesList![index]
-                                                                              .image,
-                                                                          logoImage: _businessDetailController
-                                                                              .recentlyFundedBusinessCausesList![index]
-                                                                              .organization!
-                                                                              .logo,
-                                                                          isFavorite: _businessDetailController
-                                                                              .recentlyFundedBusinessCausesList![index]
-                                                                              .isFavorite!,
-                                                                          endDate: _businessDetailController
-                                                                              .recentlyFundedBusinessCausesList![index]
-                                                                              .end,
-                                                                          raisedAmount: _businessDetailController
-                                                                              .recentlyFundedBusinessCausesList![index]
-                                                                              .raised
-                                                                              .toString(),
-                                                                          totalAmount: _businessDetailController
-                                                                              .recentlyFundedBusinessCausesList![index]
-                                                                              .goal
-                                                                              .toString(),
-                                                                          colors: const [
-                                                                            Colors
-                                                                                .transparent,
-                                                                            AppColors
-                                                                                .greenColor,
-                                                                          ],
-                                                                          recentlyFundedBusinessList:
-                                                                              _businessDetailController.recentlyFundedBusinessCausesList!,
-                                                                          index:
-                                                                              index,
-                                                                          onPressFullContainer:
-                                                                              () {},
-                                                                          onFavPress:
-                                                                              () {
-                                                                            bool _isFavorite = _businessDetailController
+                                                                      : GestureDetector(
+                                                                        onTap: (){
+                                                                          Get.toNamed(Routes.causesDetailScreen, arguments: {
+                                                                            Strings.causeId: _businessDetailController.recentlyFundedBusinessCausesList![index].id,
+                                                                            Strings.organizationId: _businessDetailController.recentlyFundedBusinessCausesList![index].organization!.id,
+                                                                          });
+                                                                        },
+                                                                        child: RecentlyFundedBusiness(
+                                                                            name: _businessDetailController
                                                                                 .recentlyFundedBusinessCausesList![index]
-                                                                                .isFavorite!;
-                                                                            int _causeId = _businessDetailController
+                                                                                .name,
+                                                                            fullImage: _businessDetailController
                                                                                 .recentlyFundedBusinessCausesList![index]
-                                                                                .id!;
-                                                                            _businessDetailController.followCauses(
-                                                                                _causeId,
-                                                                                _isFavorite);
-                                                                            if (_isFavorite) {
-                                                                              _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite =
-                                                                                  false;
-                                                                            } else {
-                                                                              _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite =
-                                                                                  true;
-                                                                            }
-                                                                            _businessDetailController.getRecentlyFundedBusinessCauses(
-                                                                                id: _id);
-                                                                          },
-                                                                        );
+                                                                                .image,
+                                                                            logoImage: _businessDetailController
+                                                                                .recentlyFundedBusinessCausesList![index]
+                                                                                .organization!
+                                                                                .logo,
+                                                                            isFavorite: _businessDetailController
+                                                                                .recentlyFundedBusinessCausesList![index]
+                                                                                .isFavorite!,
+                                                                            endDate: _businessDetailController
+                                                                                .recentlyFundedBusinessCausesList![index]
+                                                                                .end,
+                                                                            raisedAmount: _businessDetailController
+                                                                                .recentlyFundedBusinessCausesList![index]
+                                                                                .raised
+                                                                                .toString(),
+                                                                            totalAmount: _businessDetailController
+                                                                                .recentlyFundedBusinessCausesList![index]
+                                                                                .goal
+                                                                                .toString(),
+                                                                            colors: const [
+                                                                              Colors
+                                                                                  .transparent,
+                                                                              AppColors
+                                                                                  .greenColor,
+                                                                            ],
+                                                                            recentlyFundedBusinessList:
+                                                                                _businessDetailController.recentlyFundedBusinessCausesList!,
+                                                                            index:
+                                                                                index,
+                                                                            onPressFullContainer:
+                                                                                () {},
+                                                                            onFavPress:
+                                                                                () {
+                                                                              bool _isFavorite = _businessDetailController
+                                                                                  .recentlyFundedBusinessCausesList![index]
+                                                                                  .isFavorite!;
+                                                                              int _causeId = _businessDetailController
+                                                                                  .recentlyFundedBusinessCausesList![index]
+                                                                                  .id!;
+                                                                              _businessDetailController.followCauses(
+                                                                                  _causeId,
+                                                                                  _isFavorite);
+                                                                              if (_isFavorite) {
+                                                                                _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite =
+                                                                                    false;
+                                                                              } else {
+                                                                                _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite =
+                                                                                    true;
+                                                                              }
+                                                                              _businessDetailController.getRecentlyFundedBusinessCauses(
+                                                                                  id: _id);
+                                                                            },
+                                                                          ),
+                                                                      );
                                                                 },
                                                               ),
                                                             )),

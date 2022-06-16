@@ -41,7 +41,7 @@ class UserProfileBox extends StatelessWidget {
                 GestureDetector(
                     onTap: (){
                       MyHive.setToken(Strings.dummyToken);
-                      Get.offAllNamed(Routes.loginScreen);
+                      Get.offAllNamed(Routes.loginScreen, arguments: true);
                     },
                     child: TextView.headerWithBlurRadius(Strings.signOut, color: AppColors.orangeColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
               ],

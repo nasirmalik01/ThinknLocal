@@ -45,11 +45,11 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
             ? ListView.builder(
             controller: _tabViewsController,
             scrollDirection: Axis.horizontal,
-            itemCount:  _causesController.topCausesContainersList!.isEmpty ? 0 : 6,
+            itemCount:  _causesController.topCausesContainersList!.isEmpty ? 0 :  _causesController.topCausesContainersList!.length > 6 ? 6 : _causesController.topCausesContainersList!.length,
             itemBuilder: (context, index){
               return index == 5 ? GestureDetector(
                 onTap: () async {
-                   Get.to(() => MainCausesListing(title: Strings.allCauses));
+                   Get.to(() => const MainCausesListing(title: Strings.allCauses));
                 },
                 child: CommonWidgets.seeAllButton(40)
               ) : CausesFundContainer(
@@ -65,7 +65,9 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                   Get.toNamed(Routes.causesDetailScreen, arguments: {
                     Strings.causeId: _causesController.topCausesContainersList![index].id,
                     Strings.organizationId: _causesController.topCausesContainersList![index].organization!.id,
-                  });
+                  },
+
+                  );
                 },
               );
             },
@@ -93,7 +95,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
               return index == 5
                 ? GestureDetector(
                   onTap: () async {
-                    Get.to(() => RecentCausesListing(title: Strings.recentCauses));
+                    Get.to(() => const RecentCausesListing(title: Strings.recentCauses));
                   },
                   child: CommonWidgets.seeAllButton(30))
                 : GestureDetector(
@@ -127,7 +129,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                   leadingText: Strings.upcomingCauses,
                   trailingText: Strings.seeAll,
                   onPressSeeAllButton: () {
-                    Get.to(() => UpcomingCausesListing(title: Strings.upcomingCauses));
+                    Get.to(() => const UpcomingCausesListing(title: Strings.upcomingCauses));
                   }
               ),
               SizedBox(height: getHeight() * 0.018),

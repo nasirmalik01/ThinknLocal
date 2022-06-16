@@ -33,10 +33,10 @@ class BusinessListViewLayout extends StatelessWidget {
               height: getHeight()*0.09,
               width: getHeight()*0.09,
               decoration: BoxDecoration(
-                //color: AppColors.lightGrey,
+                color: AppColors.pureWhiteColor,
                   image: DecorationImage(
                       image: isImageUrl ? NetworkImage(image!): AssetImage(image!) as ImageProvider,
-                      fit: BoxFit.fill),
+                      fit: BoxFit.contain),
                   borderRadius: BorderRadius.circular(getHeight() * 0.01)
               ),
             ),
