@@ -69,12 +69,22 @@ class BusinessDetailTopContainer extends StatelessWidget {
               ],
             ),
           ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: getWidth()*0.03),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: getHeight()*0.07,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.black,
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+                child: Padding(
                   padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03, top: getHeight() * 0.02),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,29 +97,35 @@ class BusinessDetailTopContainer extends StatelessWidget {
                           size: getHeight() * 0.03,
                         ),
                       ),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: onShareClick,
-                            child: Icon(
-                              Icons.ios_share,
-                              color: AppColors.pureWhiteColor,
-                              size: getHeight() * 0.03,
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: getWidth()*0.03),
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: onShareClick,
+                              child: Icon(
+                                Icons.ios_share,
+                                color: AppColors.pureWhiteColor,
+                                size: getHeight() * 0.03,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: sizes.width * 0.03),
-                          GestureDetector(
-                            onTap: () => onPressFavoriteIcon(),
-                            child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
-                            Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,),
-                          )
-                        ],
+                            SizedBox(width: sizes.width * 0.03),
+                            GestureDetector(
+                              onTap: () => onPressFavoriteIcon(),
+                              child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
+                              Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,),
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-                const Expanded(child: SizedBox()),
-                Container(
+              ),
+              const Expanded(child: SizedBox()),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: getWidth()*0.03),
+                child: Container(
                   padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03),
                   child: SizedBox(
                     child: Column(
@@ -193,24 +209,24 @@ class BusinessDetailTopContainer extends StatelessWidget {
                     ),
                   ),
                 ),
-                //SizedBox(height: getHeight() * 0.01),
-                Padding(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03, bottom: getHeight() * 0.025),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          TextView.headerWithBlurRadius("${Strings.contributed}: ", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
-                          TextView.headerWithBlurRadius("\$$contributedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
-                        ],
-                      ),
-                      TextView.headerWithBlurRadius("${Strings.joined} $joinDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
-                    ],
-                  ),
+              ),
+              //SizedBox(height: getHeight() * 0.01),
+              Padding(
+                padding: EdgeInsets.only(left: getWidth()*0.06, right: getWidth()*0.06, bottom: getHeight() * 0.025),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        TextView.headerWithBlurRadius("${Strings.contributed}: ", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                        TextView.headerWithBlurRadius("\$$contributedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
+                      ],
+                    ),
+                    TextView.headerWithBlurRadius("${Strings.joined} $joinDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

@@ -143,7 +143,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: const ScrollPhysics(),
-                  itemCount:  _causesController.recentlyStartedCauses!.isEmpty ? 0 :  _causesController.recentlyStartedCauses!.length > 3 ? 3 : _causesController.recentlyStartedCauses!.length,
+                  itemCount:  _causesController.upcomingCauses?.isEmpty ?? false ? 0 :  _causesController.upcomingCauses!.length > 3 ? 3 : _causesController.upcomingCauses!.length,
                 itemBuilder: (context, index){
                   return GestureDetector(
                     onTap: (){
