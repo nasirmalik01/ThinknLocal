@@ -31,6 +31,8 @@ customDialog({String? backgroundImage, String? icon, String? title, String? summ
                       height: getHeight()*0.12,
                       width: getHeight(),
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(getHeight() * 0.02), topRight: Radius.circular(getHeight() * 0.02)),
+                        color: AppColors.pureWhiteColor,
                           image: DecorationImage(
                               image: NetworkImage(
                                   backgroundImage ?? Strings.dummyBgImage
@@ -48,6 +50,7 @@ customDialog({String? backgroundImage, String? icon, String? title, String? summ
                         height: getHeight()*0.1,
                         width: getHeight()*0.1,
                         decoration: BoxDecoration(
+                          color: AppColors.pureWhiteColor,
                             borderRadius: BorderRadius.circular(getHeight()*0.02),
                             border: Border.all(
                                 width: 2,
@@ -57,7 +60,7 @@ customDialog({String? backgroundImage, String? icon, String? title, String? summ
                                 image: NetworkImage(
                                     icon ?? Strings.dummyLogoForDialog
                                 ),
-                                fit: BoxFit.fill
+                                fit: BoxFit.contain
                             )
                         ),
                       ),

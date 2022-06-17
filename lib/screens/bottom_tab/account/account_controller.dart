@@ -1,10 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/model/account.dart';
 import 'package:flutter_app/network/remote_repositories/profile_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
 class AccountController extends GetxController{
+  bool isPushNotificationsEnabled = MyHive.isPushNotificationsEnabled();
+  bool isEmailEnabled = MyHive.isEmailEnabled();
+  bool isLocationServicesEnabled = MyHive.isLocationServicesEnabled();
   RxBool isPushNotifications = false.obs;
   RxBool isEmail = false.obs;
   RxBool isLocation = true.obs;
@@ -16,17 +22,26 @@ class AccountController extends GetxController{
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
 
-
+  @override
+  void onInit() {
+    isPushNotifications.value = isPushNotificationsEnabled;
+    isEmail.value = isEmailEnabled;
+    isLocation.value = isLocationServicesEnabled;
+    super.onInit();
+  }
 
   void changePushNotificationValue(bool value) {
+    MyHive.setPushNotificationsEnabled(value);
     isPushNotifications.value = value;
   }
 
   void changeEmailValue(bool value) {
+    MyHive.setEmailEnabled(value);
     isEmail.value = value;
   }
 
   void changeLocationServicesValue(bool value) {
+    MyHive.setLocationServicesEnabled(value);
     isLocation.value = value;
   }
 
@@ -47,8 +62,6 @@ class AccountController extends GetxController{
       errorMessage.value = RemoteServices.error;
       return;
     }
-    isPushNotifications.value = account?.settings?.pushNotifications ?? false;
-    isEmail.value = account?.settings?.weeklyUpdates ?? false;
     isLoading.value = false;
   }
 

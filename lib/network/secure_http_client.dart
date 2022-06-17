@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/app_info.dart';

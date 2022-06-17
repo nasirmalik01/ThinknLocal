@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/first_time_visit.dart';
 import 'package:flutter_app/model/businesses.dart';
@@ -93,7 +94,6 @@ class AboutVisitController extends GetxController {
         }
       }
     }
-
     return [];
   }
 
@@ -104,6 +104,7 @@ class AboutVisitController extends GetxController {
         selectedCauseId.value = item.id!;
       }
     }
+    dismissKeyboard();
   }
 
    onBusinessCompletePress(value) {
@@ -115,6 +116,7 @@ class AboutVisitController extends GetxController {
         log('selectedBusinessId.value: ${selectedBusinessId.value}');
       }
     }
-  }
+    dismissKeyboard();
+   }
 
 }

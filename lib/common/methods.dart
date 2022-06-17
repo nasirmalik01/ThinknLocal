@@ -7,7 +7,6 @@ import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/app_info.dart';
 import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/local/user_location.dart';
 import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/location_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
@@ -165,6 +164,12 @@ Future<String>? findAddress(double latitude, double longitude) async {
   return completeAddress;
 }
 
+Future<String>? findCompleteAddress(double latitude, double longitude) async {
+  var placeMarkers = await placemarkFromCoordinates(latitude, longitude);
+  var completeAddress = '${placeMarkers.first.street},${placeMarkers.first.locality},${placeMarkers.first.country}';
+  return completeAddress;
+}
+
 openPhoneDialPad(String phone, BuildContext context) async {
   try {
     String number = phone.toString();
@@ -261,4 +266,8 @@ dynamic commaFormatter(dynamic distance){
 setAppInfo() async {
   PackageInfo _packageInfo = await PackageInfo.fromPlatform();
   MyHive.setAppInfo(AppInfo(appName: _packageInfo.appName, appVersion: _packageInfo.version, packageName: _packageInfo.packageName, buildNumber: _packageInfo.buildNumber));
+}
+
+dismissKeyboard(){
+  FocusManager.instance.primaryFocus?.unfocus();
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/res/res.dart';
 
-Widget handleEmptyState(BuildContext context, String title){
+Widget handleEmptyState(BuildContext context, String title, {Widget? widget}){
   return  Container(
     height: getHeight()*0.1,
     width: MediaQuery.of(context).size.width,
@@ -9,6 +9,6 @@ Widget handleEmptyState(BuildContext context, String title){
         border: Border.all(color: Colors.black12),
         borderRadius: BorderRadius.circular(5)
     ),
-    child: Center(child: Text(title)),
+    child: widget ??  Center(child: Text(title)),
   );
 }

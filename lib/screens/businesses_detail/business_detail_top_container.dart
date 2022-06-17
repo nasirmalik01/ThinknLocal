@@ -5,6 +5,7 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 
+// ignore: must_be_immutable
 class BusinessDetailTopContainer extends StatelessWidget {
   final String? fullBoxImage;
   final String? logoImage;
@@ -79,7 +80,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.black,
+                      Colors.black54,
                       Colors.transparent,
                     ],
                   ),

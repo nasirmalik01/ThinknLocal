@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/screens/bottom_tab/businesses/businesses_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/causes_category_screen.dart';
 import 'package:flutter_app/screens/location_search/location_search_controller.dart';
@@ -82,6 +81,7 @@ class CausesScreen extends StatelessWidget{
                             Padding(
                               padding: EdgeInsets.only(bottom: 0.2.h, left: 1.w),
                               child: Image(
+                                color: AppColors.greenColor,
                                 height: getHeight() * 0.03,
                                 image: const AssetImage(Assets.vectorIcon),),
                             ),

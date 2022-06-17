@@ -29,7 +29,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -87,57 +87,72 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                   decoration: const BoxDecoration(
                     color: AppColors.pureWhiteColor,
                   ),
-                  child: Stack(
-                    children: [
-                      TabBar(
-                        controller: _tabController,
-                        onTap: (index) {},
-                        indicatorColor: AppColors.greenColor,
-                        indicatorSize: TabBarIndicatorSize.label,
-                        indicatorPadding: EdgeInsets.symmetric(vertical: sizes.heightRatio * 5),
-                        labelColor: AppColors.blackColor,
-                        labelStyle: TextStyle(
-                            fontSize: sizes.fontRatio * 12.5,
-                            fontFamily: Assets.poppinsMedium,
-                            fontWeight: FontWeight.w500
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.05),
+                    child: TabBar(
+                      isScrollable: true,
+                      controller: _tabController,
+                      onTap: (index) {},
+                      indicatorColor: AppColors.greenColor,
+                      indicatorSize: TabBarIndicatorSize.label,
+                      indicatorPadding: EdgeInsets.symmetric(vertical: sizes.heightRatio * 5),
+                      labelColor: AppColors.blackColor,
+                      labelStyle: TextStyle(
+                          fontSize: sizes.fontRatio * 12.5,
+                          fontFamily: Assets.poppinsMedium,
+                          fontWeight: FontWeight.w500
+                      ),
+                      unselectedLabelColor: AppColors.darkGrey,
+                      unselectedLabelStyle: TextStyle(
+                          fontSize: sizes.fontRatio * 12,
+                          fontFamily: Assets.poppinsMedium,
+                          fontWeight: FontWeight.w400
+                      ),
+                      labelPadding: EdgeInsets.symmetric(horizontal: sizes.smallPadding),
+                      tabs: [
+                        Stack(
+                          children: [
+                            const Tab(
+                              text: Strings.notifications,
+                            ),
+                            Positioned(
+                              right: 0,
+                              top: getHeight()*0.002,
+                              child: Container(
+                                height: getWidth()*0.04,
+                                width: getWidth()*0.04,
+                                decoration: BoxDecoration(
+                                    color: AppColors.orangeColor,
+                                    borderRadius: BorderRadius.circular(0.4.h)
+                                ),
+                                child: Center(child: Padding(
+                                  padding: EdgeInsets.only(bottom: 0.2.h),
+                                  child: TextView.caption(_notificationController.notificationList?.length.toString(), color: AppColors.pureWhiteColor, fontSize: 7.5.sp, textAlign: TextAlign.center, lines: 1),
+                                ),),
+                              ),
+                            )
+                          ],
                         ),
-                        unselectedLabelColor: AppColors.darkGrey,
-                        unselectedLabelStyle: TextStyle(
-                            fontSize: sizes.fontRatio * 12,
-                            fontFamily: Assets.poppinsMedium,
-                            fontWeight: FontWeight.w400
-                        ),
-                        labelPadding: EdgeInsets.symmetric(horizontal: sizes.smallPadding),
-                        tabs: const [
-                          Tab(
-                            text: Strings.notifications,
-
-                          ),
-                          Tab(
+                        Padding(
+                          padding: EdgeInsets.only(left: getWidth()*0.01),
+                          child: const Tab(
                             text: Strings.pendingReceipts,
                           ),
-                          Tab(
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: getWidth()*0.01),
+                          child: const Tab(
                             text: Strings.approvedReceipts,
                           ),
-                        ],
-                      ),
-                      Positioned(
-                        left: getWidth()*0.26,
-                        top: getHeight()*0.003,
-                        child: Container(
-                          height: getWidth()*0.04,
-                          width: getWidth()*0.04,
-                          decoration: BoxDecoration(
-                              color: AppColors.orangeColor,
-                              borderRadius: BorderRadius.circular(0.4.h)
-                          ),
-                          child: Center(child: Padding(
-                            padding: EdgeInsets.only(bottom: 0.2.h),
-                            child: TextView.caption(_notificationController.notificationList?.length.toString(), color: AppColors.pureWhiteColor, fontSize: 7.5.sp, textAlign: TextAlign.center, lines: 1),
-                          ),),
                         ),
-                      )
-                    ],
+                        Padding(
+                          padding: EdgeInsets.only(left: getWidth()*0.01),
+                          child: const Tab(
+                            text: Strings.deniedReceipts,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -159,7 +174,14 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                 physics: const ScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        if(_notificationController.notificationList![index].read == false){
+                                          _notificationController.markNotificationAsRead(_notificationController.notificationList![index].id!);
+                                        }
+                                        else {
+                                            _notificationController.markNotificationAsUnRead(_notificationController.notificationList![index].id!);
+                                          }
+                                      },
                                       child: Padding(
                                         padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.notificationList!.length - 1 ? 4.h : 0),
                                         child: NotificationCard(
@@ -254,6 +276,44 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                 },
                               )
                               : handleEmptyState(context, Strings.noSentReceipts),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.03),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child:
+                              _notificationController.deniedContributionsList?.isNotEmpty ?? false
+                              ? ListView.separated(
+                                padding: EdgeInsets.symmetric(vertical: 1.8.h),
+                                itemCount: _notificationController.deniedContributionsList!.length,
+                                shrinkWrap: true,
+                                physics: const ScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                      onTap: () {
+                                        Get.to(() => FullPhoto(imageUrl: _notificationController.deniedContributionsList![index].receiptUrl!));
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.approvedContributionsList!.length - 1 ? 4.h : 0),
+                                        child: NotificationCard(
+                                            image: _notificationController.deniedContributionsList![index].receiptUrl,
+                                            text: _notificationController.deniedContributionsList![index].business!.name,
+                                            subText: "\$${_notificationController.deniedContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
+                                            date: _notificationController.getTime(_notificationController.deniedContributionsList![index].receiptDate!),
+                                            isSentReceipts: true,
+                                            onPressNotification: () {}),
+                                      )
+                                  );
+                                },
+                                separatorBuilder: (BuildContext context, int index) {
+                                  return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                                },
+                              )
+                              : handleEmptyState(context, Strings.noDeniedReceipts),
                             ),
                           ],
                         ),

@@ -86,12 +86,14 @@ class Assets {
   static const String underMaintenance = 'assets/png/under_maintenance.png';
   static const String somethingWrong = 'assets/png/something_wrong.png';
 
-  //Bottom navigation Svg icons
+  //Svg icons
   static const String causesSvg = 'assets/svg/causes.svg';
   static const String businessSvg = 'assets/svg/businesses.svg';
   static const String scanSvg = 'assets/svg/scan.svg';
   static const String notificationSvg = 'assets/svg/notification.svg';
   static const String accountSvg = 'assets/svg/account.svg';
+  static const String locationSvg = 'assets/svg/location.svg';
+  static const String emailSvg = 'assets/svg/email.svg';
 
 
   // fonts

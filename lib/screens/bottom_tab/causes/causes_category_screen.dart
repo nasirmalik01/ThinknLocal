@@ -32,7 +32,6 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -49,7 +48,12 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
             itemBuilder: (context, index){
               return index == 5 ? GestureDetector(
                 onTap: () async {
-                   Get.to(() => const MainCausesListing(title: Strings.allCauses));
+                  Get.to(() => MainCausesListing(
+                   title: _causesController.selectedCategory.value == Strings.featured ? Strings.featured.capitalizeFirst
+                   : _causesController.selectedCategory.value == Strings.trending ? Strings.trending.capitalizeFirst
+                   : _causesController.selectedCategory.value == Strings.favorites ? Strings.favorites.capitalizeFirst
+                   :  Strings.past.capitalizeFirst
+                   ));
                 },
                 child: CommonWidgets.seeAllButton(40)
               ) : CausesFundContainer(
@@ -74,7 +78,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
           )
           : Padding(
             padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
-            child: handleEmptyState(context, Strings.noCauses),
+            child: handleEmptyState(context, _causesController.selectedCategory.value == Strings.favorites ? Strings.noCausesFavorites : Strings.noCauses),
           ),),
         ),
         SizedBox(height: getHeight() * 0.03),

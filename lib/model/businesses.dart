@@ -47,7 +47,7 @@ class Businesses {
   Businesses.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     category = json['category'] != null
-        ? new Category.fromJson(json['category'])
+        ? Category.fromJson(json['category'])
         : null;
     name = json['name'];
     description = json['description'];
@@ -71,30 +71,30 @@ class Businesses {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.category != null) {
-      data['category'] = this.category!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    if (category != null) {
+      data['category'] = category!.toJson();
     }
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['restrictions'] = this.restrictions;
-    data['phone'] = this.phone;
-    data['url'] = this.url;
-    data['image'] = this.image;
-    data['logo'] = this.logo;
-    data['address_1'] = this.address1;
-    data['address_2'] = this.address2;
-    data['city'] = this.city;
-    data['state'] = this.state;
-    data['zip'] = this.zip;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    data['contribution_amount'] = this.contributionAmount;
-    data['contribution_amount_max'] = this.contributionAmountMax;
-    data['rating'] = this.rating;
-    data['total_contributions'] = this.totalContributions;
-    data['created_at'] = this.createdAt;
+    data['name'] = name;
+    data['description'] = description;
+    data['restrictions'] = restrictions;
+    data['phone'] = phone;
+    data['url'] = url;
+    data['image'] = image;
+    data['logo'] = logo;
+    data['address_1'] = address1;
+    data['address_2'] = address2;
+    data['city'] = city;
+    data['state'] = state;
+    data['zip'] = zip;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    data['contribution_amount'] = contributionAmount;
+    data['contribution_amount_max'] = contributionAmountMax;
+    data['rating'] = rating;
+    data['total_contributions'] = totalContributions;
+    data['created_at'] = createdAt;
     return data;
   }
 }
@@ -117,12 +117,12 @@ class Category {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['icon'] = this.icon;
-    data['parent_id'] = this.parentId;
-    data['parent_name'] = this.parentName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['icon'] = icon;
+    data['parent_id'] = parentId;
+    data['parent_name'] = parentName;
     return data;
   }
 }

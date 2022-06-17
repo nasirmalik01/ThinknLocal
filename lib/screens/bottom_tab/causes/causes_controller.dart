@@ -7,7 +7,6 @@ import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/cause_request_type.dart';
-import 'package:flutter_app/local/app_info.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/model/causes.dart';
 import 'package:flutter_app/model/cities.dart';
@@ -15,15 +14,12 @@ import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:get/get.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class CausesController extends GetxController{
   RxBool isFeatured = true.obs;
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
   RxBool isPast = false.obs;
-  RxBool selectedTab = false.obs;
   RxBool isLocationLoading = false.obs;
   RxBool isUpcomingCausesLoading = false.obs;
   RxBool isRecentlyStartedCausesLoading = false.obs;
@@ -39,6 +35,7 @@ class CausesController extends GetxController{
   late ScrollController scrollController;
   RxInt pageIndex = 1.obs;
   Rx<CauseRequestType> requestType = CauseRequestType.none.obs;
+  RxString selectedCategory = Strings.featured.obs;
 
   @override
   void onInit() {
@@ -57,6 +54,7 @@ class CausesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = false;
     isPast.value = false;
+    selectedCategory.value = Strings.featured;
     getCauses(Strings.featured);
   }
 
@@ -65,6 +63,7 @@ class CausesController extends GetxController{
     isTrending.value = true;
     isFavorites.value = false;
     isPast.value = false;
+    selectedCategory.value = Strings.trending;
     getCauses(Strings.trending);
   }
 
@@ -73,6 +72,7 @@ class CausesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = true;
     isPast.value = false;
+    selectedCategory.value = Strings.favorites;
     getCauses(Strings.favorite);
   }
 
@@ -81,6 +81,7 @@ class CausesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = false;
     isPast.value = true;
+    selectedCategory.value = Strings.past;
     getCauses(Strings.past);
   }
 
@@ -217,19 +218,18 @@ class CausesController extends GetxController{
   }
 
   String getSelectedCategory(){
-    String _selectedCategory = Strings.featured;
-    if(isFeatured.value){
-      _selectedCategory = Strings.featured;
+    if(isFeatured.value == true){
+      selectedCategory.value = Strings.featured;
     }
-    else if(isTrending.value){
-      _selectedCategory = Strings.trending;
+    else if(isTrending.value == true){
+      selectedCategory.value = Strings.trending;
     }
-    else if(isFavorites.value){
-      _selectedCategory = Strings.favorites;
+    else if(isFavorites.value == true){
+      selectedCategory.value = Strings.favorites;
     }
     else{
-      _selectedCategory = Strings.past;
+      selectedCategory.value = Strings.past;
     }
-    return _selectedCategory;
+    return selectedCategory.value;
   }
 }

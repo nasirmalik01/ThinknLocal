@@ -64,6 +64,7 @@ class DioExceptions implements Exception {
         if(Get.isDialogOpen!){
           Get.back();
         }
+        showSnackBar(subTitle: message);
         break;
         case 503:
         message = 'Service unavailable! Application under maintenance.';

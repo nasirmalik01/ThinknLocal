@@ -9,6 +9,9 @@ class MyHive {
   static const String _location = 'UserLocation';
   static const String _deepLinkInfo = 'DeepLinkInfo';
   static const String _appInfo = 'AppInfo';
+  static const String _isPushNotificationsEnabled = 'IsPushNotificationsEnabled';
+  static const String _isEmailEnabled = 'IsEmailEnabled';
+  static const String _isLocationServicesEnabled = 'IsLocationServicesEnabled';
   static const String _locationAddress = 'LocationAddress';
 
   static late Box _ins;
@@ -62,5 +65,31 @@ class MyHive {
   static getAppInfo() {
     return _ins.get(_appInfo, defaultValue: null);
   }
+
+  static setPushNotificationsEnabled(bool value) {
+    _ins.put(_isPushNotificationsEnabled, value);
+  }
+
+  static isPushNotificationsEnabled() {
+    return _ins.get(_isPushNotificationsEnabled, defaultValue: true);
+  }
+
+  static setEmailEnabled(bool value) {
+    _ins.put(_isEmailEnabled, value);
+  }
+
+  static isEmailEnabled() {
+    return _ins.get(_isEmailEnabled, defaultValue: true);
+  }
+
+  static setLocationServicesEnabled(bool value) {
+    _ins.put(_isLocationServicesEnabled, value);
+  }
+
+  static isLocationServicesEnabled() {
+    return _ins.get(_isLocationServicesEnabled, defaultValue: true);
+  }
+
+
 
 }

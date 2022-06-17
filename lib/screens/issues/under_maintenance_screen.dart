@@ -16,6 +16,7 @@ class UnderMaintenanceScreen extends StatelessWidget {
         icon: Assets.underMaintenance,
         title: Strings.underMaintenance,
         description: Strings.underMaintenanceDesc,
+        buttonText: Strings.retry,
         isButtonRequired: true,
         onPress: (){
           PreferenceUtils.setBool(Strings.showHome, true);

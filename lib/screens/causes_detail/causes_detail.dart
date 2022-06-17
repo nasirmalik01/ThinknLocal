@@ -467,10 +467,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                             .causeBottomDetails![
                                                                                 index]
                                                                             .contributionAmount,
-                                                                    address: _causesDetailController
-                                                                        .causeBottomDetails![
-                                                                            index]
-                                                                        .address1,
+                                                                    address: '${_causesDetailController.causeBottomDetails![index].address1}\n${_causesDetailController.causeBottomDetails?[index].city}, ${_causesDetailController.causeBottomDetails?[index].state}, ${_causesDetailController.causeBottomDetails?[index].zip}',
                                                                     streetAddress: _causesDetailController.causeBottomDetails?[index].address2,
                                                                     phoneNumber: '(${_causesDetailController.causeBottomDetails![index].phone!.substring(0,3)}) ${_causesDetailController.causeBottomDetails![index].phone!.substring(3, 6)}-${_causesDetailController.causeBottomDetails![index].phone!.substring(6, )}',
                                                                     onPhoneClick:
@@ -480,19 +477,16 @@ class _CausesDetailState extends State<CausesDetail>
                                                                           context);
                                                                     },
                                                                     onAddressClick:
-                                                                        () {
-                                                                      MapsLauncher.launchCoordinates(
-                                                                          _causesDetailController.causeBottomDetails![index].latitude!,
-                                                                          _causesDetailController.causeBottomDetails![index].longitude!,
-                                                                      );
-                                                                    },
+                                                                        () async {
+                                                                          MapsLauncher.launchQuery(_causesDetailController.causeBottomDetails![index].address1!);
+                                                                        },
                                                                     isRestrictionsApply: _causesDetailController.causeBottomDetails![index].restrictions == null ? false : true,
                                                                     onShowRestrictionsTap: () {
                                                                       customDialog(
                                                                         backgroundImage: _causesDetailController.causeBottomDetails![index].image,
                                                                         icon: _causesDetailController.causeBottomDetails![index].logo,
                                                                         title: _causesDetailController.causeBottomDetails![index].name,
-                                                                        description:  _causesDetailController.causeBottomDetails![index].description,
+                                                                        description:  _causesDetailController.causeBottomDetails![index].restrictions,
                                                                         summary:  '',
                                                                         isLearnMoreButton: false
                                                                       );
@@ -614,11 +608,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                   );
                                                 }),
                                             SizedBox(height: 3.h),
-                                            CommonWidgets.getTextWithSeeAll(
-                                                leadingText:
-                                                    Strings.topContributions,
-                                                trailingText: Strings.seeAll,
-                                                onPressSeeAllButton: () {}),
+                                            TextView.titleWithDecoration(Strings.topContributions, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
                                             SizedBox(height: 2.h),
                                             _causesDetailController.causesStats!
                                                     .topContributors!.isNotEmpty

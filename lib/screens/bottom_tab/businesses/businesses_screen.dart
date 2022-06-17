@@ -9,7 +9,6 @@ import 'package:flutter_app/screens/bottom_tab/businesses/business_tabs_containe
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_components.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/recently_added_business.dart';
-import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/business_detail_listing/main_businesses_listing.dart';
 import 'package:flutter_app/screens/business_detail_listing/nearby_businesses_listing.dart';
 import 'package:flutter_app/screens/business_detail_listing/recently_added_businesses.dart';
@@ -37,6 +36,7 @@ class BusinessesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String _selectedCategory = _businessesController.getSelectedCategory();
 
     return SafeArea(
       child: Scaffold(
@@ -90,6 +90,7 @@ class BusinessesScreen extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(left: 1.w, bottom: 0.5.h),
                               child: Image(
+                                color: AppColors.greenColor,
                                 height: getHeight() * 0.03,
                                 image: const AssetImage(Assets.vectorIcon),),
                             ),
@@ -171,7 +172,11 @@ class BusinessesScreen extends StatelessWidget {
                         itemBuilder: (context, index){
                           return index == 5 ? GestureDetector(
                               onTap: () async {
-                                 Get.to(() => MainBusinessListing(title: Strings.allBusinesses));
+                                 Get.to(() => MainBusinessListing(
+                                     title: _businessesController.selectedCategory.value == Strings.featured ? Strings.featured.capitalizeFirst
+                                         : _businessesController.selectedCategory.value == Strings.trending ? Strings.trending.capitalizeFirst
+                                         : Strings.favorites
+                                 ));
                               },
                               child: CommonWidgets.seeAllButton(40)
                           )
@@ -192,7 +197,7 @@ class BusinessesScreen extends StatelessWidget {
                           );
                         },
                       )
-                      : handleEmptyState(context, Strings.noBusinesses),
+                      : handleEmptyState(context, _selectedCategory == Strings.favorites ? Strings.noBusinessFavorites : Strings.noBusinesses),
                     ),
                     SizedBox(height: getHeight() * 0.045),
                     Padding(
@@ -258,7 +263,7 @@ class BusinessesScreen extends StatelessWidget {
                                    Get.toNamed(Routes.businessDetailScreen, arguments: _businessesController.nearbyBusinessList![index].id);
                                 },
                                 child: BusinessNearBy(
-                                    image:  _businessesController.nearbyBusinessList![index].image ?? Strings.dummyBgImage,
+                                    image:  _businessesController.nearbyBusinessList![index].logo ?? Strings.dummyBgImage,
                                     headerText: _businessesController.nearbyBusinessList![index].name,
                                     onViewCourse: (){},
                                     address: _businessesController.nearbyBusinessList![index].address1,

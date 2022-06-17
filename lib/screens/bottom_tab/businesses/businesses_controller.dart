@@ -6,12 +6,10 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/business_request_type.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/model/businesses.dart';
-import 'package:flutter_app/model/cities.dart';
 import 'package:flutter_app/network/remote_repositories/business_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class BusinessesController extends GetxController{
   RxBool isFeatured = true.obs;
@@ -31,6 +29,7 @@ class BusinessesController extends GetxController{
   late ScrollController scrollController;
   RxInt pageIndex = 1.obs;
   Rx<BusinessRequestType> requestType = BusinessRequestType.none.obs;
+  RxString selectedCategory = Strings.featured.obs;
 
   @override
   void onInit() {
@@ -47,6 +46,7 @@ class BusinessesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = false;
     isPast.value = false;
+    selectedCategory.value = Strings.featured;
     getBusinesses(Strings.featured);
   }
 
@@ -55,6 +55,7 @@ class BusinessesController extends GetxController{
     isTrending.value = true;
     isFavorites.value = false;
     isPast.value = false;
+    selectedCategory.value = Strings.trending;
     getBusinesses(Strings.trending);
   }
 
@@ -63,10 +64,11 @@ class BusinessesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = true;
     isPast.value = false;
+    selectedCategory.value = Strings.favorites;
     getBusinesses(Strings.favorite);
   }
 
-  setPostTab(){
+  setPastTab(){
     isFeatured.value = false;
     isTrending.value = false;
     isFavorites.value = false;

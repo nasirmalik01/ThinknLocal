@@ -68,9 +68,9 @@ class AccountScreen extends StatelessWidget {
                     SizedBox(height: sizes.height * 0.03),
                     Column(
                       children: [
-                        AccountSettingCard(onChange: (val) => _accountController.changePushNotificationValue(val), title: Strings.pushNotifications, subTitle: Strings.enablePushNotifications, leadingIcon: Assets.bellIcon, switchValue: _accountController.isPushNotifications.value),
-                        AccountSettingCard(onChange: (val) => _accountController.changeEmailValue(val), title: Strings.email.capitalizeFirst, subTitle: Strings.allowSystemEmails, leadingIcon: Assets.mailIcon, switchValue: _accountController.isEmail.value),
-                        AccountSettingCard(onChange: (val) => _accountController.changeLocationServicesValue(val), title: Strings.locationServices, subTitle: Strings.allowLocationServices, leadingIcon: Assets.locationIcon, switchValue: _accountController.isLocation.value),
+                        AccountSettingCard(onChange: (val) => _accountController.changePushNotificationValue(val), title: Strings.pushNotifications, subTitle: Strings.enablePushNotifications, leadingIcon: Assets.notificationSvg, switchValue: _accountController.isPushNotifications.value),
+                        AccountSettingCard(onChange: (val) => _accountController.changeEmailValue(val), title: Strings.email.capitalizeFirst, subTitle: Strings.allowSystemEmails, leadingIcon: Assets.emailSvg, switchValue: _accountController.isEmail.value),
+                        AccountSettingCard(onChange: (val) => _accountController.changeLocationServicesValue(val), title: Strings.locationServices, subTitle: Strings.allowLocationServices, leadingIcon: Assets.locationSvg, switchValue: _accountController.isLocation.value),
                       ],
                     ),
                   ],

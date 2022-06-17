@@ -116,11 +116,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                           openPhoneDialPad('+1${_businessDetailController.businessDetail!.phone.toString()}', context);
                                         },
                                         onAddressClick: () {
-                                          MapsLauncher.launchCoordinates(
-                                              _businessDetailController
-                                                  .businessDetail!.latitude!,
-                                              _businessDetailController
-                                                  .businessDetail!.longitude!);
+                                          MapsLauncher.launchQuery(_businessDetailController.businessDetail!.address1!);
                                         },
                                       ),
                               ),

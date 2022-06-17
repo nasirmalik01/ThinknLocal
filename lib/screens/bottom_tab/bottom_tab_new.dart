@@ -95,19 +95,19 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
         ),
         Positioned(
-          bottom: sizes.isPhone ? getHeight()*0.048 : getHeight()*0.05,
-          left: sizes.isPhone ? getWidth()*0.405 : getWidth()*0.433,
+          bottom: sizes.isPhone ? getHeight()*0.006 : getHeight()*0.05,
+          left: sizes.isPhone ? getWidth()*0.412 : getWidth()*0.433,
           child:  GestureDetector(
             onTap: (){
               Get.to(() => const InitializeCameraScreen());
             },
             child: Card(
-              elevation: 5,
+              elevation: 2,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
               ),
               child: CircleAvatar(
-                radius: sizes.isPhone ? 33 : 50,
+                radius: sizes.isPhone ? 30 : 50,
                 backgroundColor: AppColors.greenColor,
                 child: Image(image: const AssetImage(Assets.scannerIcon), height: sizes.height * 0.04,),
               ),

@@ -16,4 +16,6 @@ class ApiEndPoints{
   static const resetPassword = 'password_reset';
   static const resetPin = 'password_reset/verify';
   static const advertisements = 'advertisements';
+  static const String read = 'read';
+  static const String unread = 'unread';
 }

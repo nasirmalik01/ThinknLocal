@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/local/user_location.dart';
 import 'package:flutter_app/screens/location_search/get_cities.dart';
 import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:flutter_app/widgets/empty_state.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '/constants/assets.dart';
 import '/constants/colors.dart';
 import '/res/res.dart';

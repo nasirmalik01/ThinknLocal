@@ -26,7 +26,7 @@ class CorporateSponsor extends StatelessWidget {
             width: getWidth(),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(getHeight()*0.02),
-              color: Colors.grey,
+              color: AppColors.pureWhiteColor,
               image: DecorationImage(
                   image: NetworkImage(
                     backgroundImage
@@ -43,7 +43,8 @@ class CorporateSponsor extends StatelessWidget {
                    height: getHeight()*0.09,
                    width: getHeight()*0.09,
                    decoration: BoxDecoration(
-                     borderRadius: BorderRadius.circular(getHeight()*0.02),
+                       color: AppColors.pureWhiteColor,
+                       borderRadius: BorderRadius.circular(getHeight()*0.02),
                      border: Border.all(
                        width: 2,
                        color: AppColors.pureWhiteColor

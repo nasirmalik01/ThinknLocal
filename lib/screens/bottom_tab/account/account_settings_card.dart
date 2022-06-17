@@ -4,6 +4,7 @@ import 'package:flutter_app/constants/assets.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
 class AccountSettingCard extends StatelessWidget {
@@ -29,9 +30,9 @@ class AccountSettingCard extends StatelessWidget {
             children: [
               SizedBox(width: sizes.width * 0.02),
               SizedBox(
-                  height: getHeight() * 0.04,
-                  width: getWidth() * 0.06,
-                  child: Image.asset(leadingIcon!, color: switchValue! ? AppColors.greenColor: AppColors.darkGrey,)),
+                  height: getHeight() * 0.035,
+                  width: getHeight() * 0.035,
+                  child: SvgPicture.asset(leadingIcon!, color:  switchValue! ? AppColors.greenColor: AppColors.darkGrey,)),
               SizedBox(width: sizes.width * 0.05),
               Row(
                 children: [

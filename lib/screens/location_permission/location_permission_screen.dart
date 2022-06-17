@@ -27,7 +27,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                    bool isLocationAllowed = await _mainController.getLocation();
                    if(isLocationAllowed){
                      PreferenceUtils.setBool(Strings.showHome, true);
-                     Get.toNamed(Routes.bottomNavBarScreen);
+                     Get.offAndToNamed(Routes.bottomNavBarScreen);
                    }
                 },
                 buttonText: 'Allow location',

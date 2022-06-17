@@ -1,6 +1,9 @@
+import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/model/contributions.dart';
 import 'package:flutter_app/model/notification.dart';
 import 'package:flutter_app/network/remote_repositories/notification_repository.dart';
+import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -11,6 +14,7 @@ class NotificationController extends GetxController{
   List<Notification>? notificationList = [];
   List<Contributions>? pendingContributionsList = [];
   List<Contributions>? approvedContributionsList = [];
+  List<Contributions>? deniedContributionsList = [];
   @override
   void onInit() {
     getNotifications();
@@ -30,6 +34,7 @@ class NotificationController extends GetxController{
     contributionsList = await NotificationRepository.fetchContributions({});
     pendingContributionsList = contributionsList?.where((e) => e.status == "pending").toList();
     approvedContributionsList = contributionsList?.where((e) => e.status == "approved").toList();
+    deniedContributionsList = contributionsList?.where((e) => e.status == "denied").toList();
     isContributionLoading.value = false;
   }
 
@@ -49,5 +54,13 @@ class NotificationController extends GetxController{
     } else {
       return 'just now';
     }
+  }
+
+  markNotificationAsRead(int id) async {
+     await getItLocator<RemoteServices>().postRequest('${ApiEndPoints.notifications}/$id/${ApiEndPoints.read}', {}) ;
+  }
+
+  markNotificationAsUnRead(int id) async {
+    await getItLocator<RemoteServices>().postRequest('${ApiEndPoints.notifications}/$id/${ApiEndPoints.unread}', {}) ;
   }
 }

@@ -63,14 +63,23 @@ class CausesDetailTopImageContainer extends StatelessWidget {
               ],
             ),
           ),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: getWidth()*0.03),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: getWidth()*0.01, right: getWidth()*0.01, top: getHeight() * 0.02),
-
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: getHeight()*0.07,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.black54,
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(left: getWidth()*0.04, right: getWidth()*0.04, top: getHeight() * 0.02),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -107,8 +116,11 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Expanded(child: SizedBox()),
-                Container(
+              ),
+              const Expanded(child: SizedBox()),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: getWidth()*0.02),
+                child: Container(
                   padding: EdgeInsets.only(left: getWidth()*0.03),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,7 +149,10 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                     ],
                   ),
                 ),
-                LinearPercentIndicator(
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: getWidth()*0.02),
+                child: LinearPercentIndicator(
                   padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.04),
                   barRadius: Radius.circular(sizes.height* 0.01),
                   lineHeight: sizes.height * 0.01,
@@ -145,26 +160,26 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                   backgroundColor: AppColors.pureWhiteColor,
                   progressColor: AppColors.greenColor,
                 ),
-                SizedBox(height: getHeight() * 0.01),
-                Padding(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03, bottom: 1.h),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          TextView.headerWithBlurRadius("Raised: ", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
-                          TextView.headerWithBlurRadius("\$$_collectedFormattedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
-                          TextView.headerWithBlurRadius(" of \$$_totalFormattedAmount", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
-                        ],
-                      ),
-                      TextView.headerWithBlurRadius("$endDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
-                    ],
-                  ),
-
+              ),
+              SizedBox(height: getHeight() * 0.01),
+              Padding(
+                padding: EdgeInsets.only(left: getWidth()*0.05, right: getWidth()*0.05, bottom: 1.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        TextView.headerWithBlurRadius("Raised: ", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                        TextView.headerWithBlurRadius("\$$_collectedFormattedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
+                        TextView.headerWithBlurRadius(" of \$$_totalFormattedAmount", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
+                      ],
+                    ),
+                    TextView.headerWithBlurRadius("$endDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
+                  ],
                 ),
-              ],
-            ),
+
+              ),
+            ],
           ),
         ),
       ),

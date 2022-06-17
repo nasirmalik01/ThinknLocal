@@ -61,6 +61,8 @@ class LogInController extends GetxController {
         Strings.zip: zip ?? '',
       };
 
+      log('idToken: ${credentials?.idToken.toString()}');
+
       showLoadingDialog(message: 'Authenticating User');
       await authenticateUser(query: _query, provider: Strings.google);
     }catch(e){

@@ -6,12 +6,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/registration_exceptions.dart';
-import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/network/network_exception.dart';
 import 'package:flutter_app/network/secure_http_client.dart';
-import 'package:get/get.dart' hide Response;
-import 'package:package_info_plus/package_info_plus.dart';
 
 class RemoteServices {
   static String error = '';
@@ -20,8 +17,7 @@ class RemoteServices {
   static bool isZipRequired = false;
   bool appUnderMaintenance = false;
 
-  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map,
-      {void Function(int, int)? uploadFile}) async {
+  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map, {void Function(int, int)? uploadFile}) async {
     dynamic resJson;
     isZipRequired = false;
     try {
@@ -31,6 +27,7 @@ class RemoteServices {
         return resJson;
       }
     } catch (e) {
+      log('EEE: ${e.toString()}');
       final _isServerException = serverHandlingExceptions(e, statusCode, error);
       if(_isServerException) return;
       if (e is DioError) {

@@ -93,7 +93,7 @@ class DetailCategoryList extends StatelessWidget {
                         TextView.subHeader(
                             address?? "",
                             color: AppColors.lightBlack,
-                            lines: 1,
+                            lines: 2,
                             fontFamily: Assets.poppinsRegular,
                             textDecoration: TextDecoration.underline,
                             fontSize: sizes.fontSize12

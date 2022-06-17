@@ -183,7 +183,7 @@ class Routes {
       ),
       GetPage(
         name: causeListing,
-        page: () => MainCausesListing(),
+        page: () => const MainCausesListing(),
       ),
       GetPage(
         name: uploading,

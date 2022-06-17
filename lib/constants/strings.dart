@@ -71,6 +71,7 @@ class Strings {
   static const String foodDrink = "Food & Drink";
   static const String toDoThings = "Things to do";
   static const String retail = "Retail";
+  static const String retry = "RETRY";
   static const String services = "Services";
   static const String contributionsOverTime = "Contributions over time";
   static const String numberOfContributions = 'Number of contributions from individuals over time.';
@@ -118,6 +119,7 @@ class Strings {
   static const String pendingReceipts = 'Pending Receipts';
   static const String sentReceipts = 'Sent Receipts';
   static const String approvedReceipts = 'Approved Receipts';
+  static const String deniedReceipts = 'Denied Receipts';
   static const String currentLat = 'currentLat';
   static const String currentLong = 'currentLong';
   static const String currentLocationAddress = 'currentLocationAddress';
@@ -168,6 +170,8 @@ class Strings {
   static const String citiesNearYou = 'Cities near you';
   static const String noUpcomingCauses = 'There are no upcoming causes';
   static const String noCauses = 'There are no causes';
+  static const String noCausesFavorites = 'You have no favorited causes';
+  static const String noBusinessFavorites = 'You have no favorited businesses';
   static const String noBusinessesFound = 'There are no businesses available in this category';
   static const String noRecentCauses = 'There are no recent started causes';
   static const String noBusinesses = 'There are no upcoming businesses';
@@ -181,6 +185,7 @@ class Strings {
   static const String noNotifications = 'There are no notifications';
   static const String noPendingReceipts = 'There are no pending receipts';
   static const String noSentReceipts = 'There are no sent receipts';
+  static const String noDeniedReceipts = 'There are no denied receipts';
   static const String corporate = 'corporate';
   static const String zipCodeError = 'Zip code should be of 5 digits';
   static const String requiredFieldError = 'Please add all the required fields';
