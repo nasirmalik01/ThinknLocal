@@ -34,43 +34,56 @@ class CorporateSponsor extends StatelessWidget {
                 fit: BoxFit.cover
               )
             ),
-            child: Padding(
-              padding: EdgeInsets.only(left: getWidth()*0.05, bottom: getHeight()*0.01),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                 Container(
-                   height: getHeight()*0.09,
-                   width: getHeight()*0.09,
-                   decoration: BoxDecoration(
-                       color: AppColors.pureWhiteColor,
-                       borderRadius: BorderRadius.circular(getHeight()*0.02),
-                     border: Border.all(
-                       width: 2,
-                       color: AppColors.pureWhiteColor
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(getHeight() * 0.02)),
+                gradient: const LinearGradient(
+                  begin: Alignment.center,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    AppColors.blackColor,
+                  ],
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(left: getWidth()*0.05, bottom: getHeight()*0.01),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                   Container(
+                     height: getHeight()*0.09,
+                     width: getHeight()*0.09,
+                     decoration: BoxDecoration(
+                         color: AppColors.pureWhiteColor,
+                         borderRadius: BorderRadius.circular(getHeight()*0.02),
+                       border: Border.all(
+                         width: 2,
+                         color: AppColors.pureWhiteColor
+                       ),
+                         image: DecorationImage(
+                             image: NetworkImage(icon),
+                             fit: BoxFit.contain
+                         )
                      ),
-                       image: DecorationImage(
-                           image: NetworkImage(icon),
-                           fit: BoxFit.contain
-                       )
                    ),
-                 ),
-                  SizedBox(width: getWidth()*0.04,),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: getHeight()*0.005),
-                    child: SizedBox(
-                      width: getWidth()*0.55,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextView.titleWithBlurRadius(title, Assets.poppinsMedium, color: AppColors.pureWhiteColor, fontSize: sizes.fontSize18, lines: 1),
-                          TextView.caption(summary, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12, isEllipsis: true)
-                        ],
+                    SizedBox(width: getWidth()*0.04,),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: getHeight()*0.005),
+                      child: SizedBox(
+                        width: getWidth()*0.55,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextView.titleWithBlurRadius(title, Assets.poppinsMedium, color: AppColors.pureWhiteColor, fontSize: sizes.fontSize18, lines: 1),
+                            TextView.caption(summary, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12, isEllipsis: true)
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

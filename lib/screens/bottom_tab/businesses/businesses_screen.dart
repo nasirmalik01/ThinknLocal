@@ -36,7 +36,6 @@ class BusinessesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String _selectedCategory = _businessesController.getSelectedCategory();
 
     return SafeArea(
       child: Scaffold(
@@ -44,8 +43,7 @@ class BusinessesScreen extends StatelessWidget {
         body:  RefreshIndicator(
           color: AppColors.greenColor,
           onRefresh: () async{
-            String _selectedCategory = _businessesController.getSelectedCategory();
-            _businessesController.getBusinesses(_selectedCategory);
+            _businessesController.getBusinesses(_businessesController.selectedCategory.value);
             _businessesController.getRecentlyAddedBusinesses();
             _businessesController.getNearbyBusinesses();
           },
@@ -197,7 +195,7 @@ class BusinessesScreen extends StatelessWidget {
                           );
                         },
                       )
-                      : handleEmptyState(context, _selectedCategory == Strings.favorites ? Strings.noBusinessFavorites : Strings.noBusinesses),
+                      : handleEmptyState(context, _businessesController.selectedCategory.value == Strings.favorite ? Strings.noBusinessFavorites : Strings.noBusinesses),
                     ),
                     SizedBox(height: getHeight() * 0.045),
                     Padding(

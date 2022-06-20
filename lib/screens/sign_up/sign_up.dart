@@ -133,8 +133,7 @@ class SignUpScreen extends StatelessWidget {
                       return showSnackBar(subTitle: 'Zip code should contains 5 characters');
                     }
 
-                    showLoadingDialog(message: 'Registering User');
-
+                    showLoadingSpinner();
                     _signUpController.registerUser(
                       firstName: firstNameController!.text,
                       lastName: lastNameController!.text,

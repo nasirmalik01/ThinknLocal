@@ -64,7 +64,7 @@ class BusinessesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = true;
     isPast.value = false;
-    selectedCategory.value = Strings.favorites;
+    selectedCategory.value = Strings.favorite;
     getBusinesses(Strings.favorite);
   }
 

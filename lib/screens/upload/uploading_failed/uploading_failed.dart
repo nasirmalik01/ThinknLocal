@@ -8,19 +8,11 @@ import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 
 
-class UploadFailed extends StatefulWidget {
-  const UploadFailed({Key? key}) : super(key: key);
+class UploadFailed extends StatelessWidget {
+  final Function()? onTryAgainClick;
+  const UploadFailed({this.onTryAgainClick, Key? key}) : super(key: key);
 
-  @override
-  _UploadFailedState createState() => _UploadFailedState();
-}
 
-class _UploadFailedState extends State<UploadFailed> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +24,34 @@ class _UploadFailedState extends State<UploadFailed> {
         ),
         child: Column(
           children: [
-            Container(
-              height: getHeight() * 0.1,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    AppColors.lightGreenColor,
-                    AppColors.pureWhiteColor,
-                  ],
+            Stack(
+              children: [
+                Container(
+                  height: getHeight() * 0.1,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        AppColors.lightGreenColor,
+                        AppColors.pureWhiteColor,
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                Positioned(
+                  right: getWidth()*0.05,
+                  top: getHeight()*0.045,
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.pop(context);
+                    },
+                    child: const SizedBox(
+                      child: Icon(Icons.close),
+                    ),
+                  ),
+                )
+              ],
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
@@ -87,9 +95,7 @@ class _UploadFailedState extends State<UploadFailed> {
                       )),
                   SizedBox(height: getHeight() * 0.08),
                   Button(
-                    onPress: () {
-                      Get.offAll(const BottomTabNew(pageIndex: 0));
-                    },
+                    onPress: onTryAgainClick,
                     text: "Try Again",
                     btnColor: AppColors.greenColor,
                     textColor: AppColors.pureWhiteColor

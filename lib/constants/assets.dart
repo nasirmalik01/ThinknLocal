@@ -85,6 +85,7 @@ class Assets {
   static const String updateRequired = 'assets/png/update_required.png';
   static const String underMaintenance = 'assets/png/under_maintenance.png';
   static const String somethingWrong = 'assets/png/something_wrong.png';
+  static const String cameraScan = 'assets/png/camera_scan.png';
 
   //Svg icons
   static const String causesSvg = 'assets/svg/causes.svg';
@@ -94,7 +95,6 @@ class Assets {
   static const String accountSvg = 'assets/svg/account.svg';
   static const String locationSvg = 'assets/svg/location.svg';
   static const String emailSvg = 'assets/svg/email.svg';
-
 
   // fonts
   static const String poppinsRegular = "Poppins-Regular";

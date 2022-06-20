@@ -78,7 +78,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
           )
           : Padding(
             padding: EdgeInsets.symmetric(horizontal: getWidth()*0.05),
-            child: handleEmptyState(context, _causesController.selectedCategory.value == Strings.favorites ? Strings.noCausesFavorites : Strings.noCauses),
+            child: handleEmptyState(context, _causesController.selectedCategory.value == Strings.favorite ? Strings.noCausesFavorites : Strings.noCauses),
           ),),
         ),
         SizedBox(height: getHeight() * 0.03),
@@ -115,7 +115,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                   child: RecentlyStartedContainer(
                   name: _causesController.recentlyStartedCauses![index].name,
                   image: _causesController.recentlyStartedCauses![index].image ?? Strings.dummyBgImage,
-                  colors: const [Colors.transparent, AppColors.greenColor,],
+                  colors: const [Colors.transparent, AppColors.blackColor,],
                   index: index,
                   onPressFullContainer: (){},
               ),

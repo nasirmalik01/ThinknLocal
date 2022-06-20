@@ -174,7 +174,7 @@ class Strings {
   static const String noBusinessFavorites = 'You have no favorited businesses';
   static const String noBusinessesFound = 'There are no businesses available in this category';
   static const String noRecentCauses = 'There are no recent started causes';
-  static const String noBusinesses = 'There are no upcoming businesses';
+  static const String noBusinesses = 'There are no businesses';
   static const String noRecentBusinesses = 'There are no added businesses';
   static const String noNearbyBusinesses = 'There are no nearby businesses';
   static const String noFeaturedSponsors = 'There are no featured sponsors';

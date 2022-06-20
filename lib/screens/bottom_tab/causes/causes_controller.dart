@@ -45,7 +45,6 @@ class CausesController extends GetxController{
     getCauses(Strings.featured, page: 1);
     getUpComingCauses();
     getRecentlyStartedCauses();
-    PushNotificationConfig.handleForeGroundPushNotifications();
     super.onInit();
   }
 
@@ -72,7 +71,7 @@ class CausesController extends GetxController{
     isTrending.value = false;
     isFavorites.value = true;
     isPast.value = false;
-    selectedCategory.value = Strings.favorites;
+    selectedCategory.value = Strings.favorite;
     getCauses(Strings.favorite);
   }
 

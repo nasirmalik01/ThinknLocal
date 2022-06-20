@@ -300,7 +300,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                               Colors
                                                                                   .transparent,
                                                                               AppColors
-                                                                                  .greenColor,
+                                                                                  .blackColor,
                                                                             ],
                                                                             recentlyFundedBusinessList:
                                                                                 _businessDetailController.recentlyFundedBusinessCausesList!,

@@ -41,7 +41,7 @@ class LogInController extends GetxController {
         Strings.zip: zip ?? '',
       };
 
-      showLoadingDialog(message: 'Authenticating User');
+      showLoadingSpinner();
       await authenticateUser(query: _query, provider: Strings.apple);
 
     }catch(e){
@@ -53,17 +53,19 @@ class LogInController extends GetxController {
     try{
       GoogleSignIn googleSignIn = GoogleSignIn();
       GoogleSignInAccount? account = await googleSignIn.signIn();
-      var credentials = await account?.authentication;
+      if(account == null) return;
+
+      var credentials = await account.authentication;
 
       Map<String, dynamic> _query = {
         Strings.provider: Strings.google,
-        Strings.authorization: credentials?.idToken.toString(),
+        Strings.authorization: credentials.idToken.toString(),
         Strings.zip: zip ?? '',
       };
 
-      log('idToken: ${credentials?.idToken.toString()}');
+      log('idToken: ${credentials.idToken.toString()}');
 
-      showLoadingDialog(message: 'Authenticating User');
+      showLoadingSpinner();
       await authenticateUser(query: _query, provider: Strings.google);
     }catch(e){
       log('Error: ${e.toString()}');

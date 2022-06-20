@@ -80,6 +80,29 @@ showLoadingDialog({String? message}) {
   );
 }
 
+showLoadingSpinner() {
+  Get.dialog(
+    Center(
+      child: Container(
+        height: getHeight() * 0.1,
+        width: getWidth() * 0.4,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: AppColors.pureWhiteColor.withOpacity(0.7)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            SpinKitFadingCircle(
+              color: AppColors.greenColor,
+            ),
+          ],
+        ),
+      ),
+    ),
+    barrierDismissible: false,
+  );
+}
+
 circularProgressIndicator() {
   return const Center(
     child: SpinKitFadingCircle(

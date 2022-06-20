@@ -16,6 +16,8 @@ import '../../constants/colors.dart';
 import 'businesses/businesses_screen.dart';
 import 'causes/causes_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'dart:io' show Platform;  //at the top
+
 
 class BottomTabNew extends StatefulWidget {
   final int pageIndex;
@@ -95,7 +97,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
         ),
         Positioned(
-          bottom: sizes.isPhone ? getHeight()*0.006 : getHeight()*0.05,
+          bottom: sizes.isPhone ? Platform.isIOS ? getHeight()*0 : getHeight()*0.005 : getHeight()*0.05,
           left: sizes.isPhone ? getWidth()*0.412 : getWidth()*0.433,
           child:  GestureDetector(
             onTap: (){
@@ -107,7 +109,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
                 borderRadius: BorderRadius.circular(50),
               ),
               child: CircleAvatar(
-                radius: sizes.isPhone ? 30 : 50,
+                radius: sizes.isPhone ?  Platform.isIOS ? 28 : 30 : 50,
                 backgroundColor: AppColors.greenColor,
                 child: Image(image: const AssetImage(Assets.scannerIcon), height: sizes.height * 0.04,),
               ),
@@ -139,9 +141,15 @@ class _BottomTabNewState extends State<BottomTabNew> {
         ),
         inactiveColorPrimary: AppColors.darkGrey,
       ),
+      // PersistentBottomNavBarItem(
+      //   icon: SvgPicture.asset(Assets.scanSvg, height: 0, width: 0, color: AppColors.pureWhiteColor),
+      //   title: ("."),
+      //   activeColorPrimary: Colors.transparent,
+      //   inactiveColorPrimary: Colors.transparent,
+      // ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(Assets.scanSvg, height: 0, width: 0, color: AppColors.pureWhiteColor),
-        title: ("."),
+        icon: Transform.scale(scale: 0.2, child: Image(fit: BoxFit.scaleDown, image: AssetImage(Assets.cameraScan), height: 5, width: 5, ),),
+        title: '',
         activeColorPrimary: Colors.transparent,
         inactiveColorPrimary: Colors.transparent,
       ),

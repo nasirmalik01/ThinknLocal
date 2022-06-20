@@ -34,8 +34,7 @@ class CausesScreen extends StatelessWidget{
         body: RefreshIndicator(
           color: AppColors.greenColor,
           onRefresh: () async{
-            String _selectedCategory = _causesController.getSelectedCategory();
-            _causesController.getCauses(_selectedCategory);
+            _causesController.getCauses(_causesController.selectedCategory.value);
             _causesController.getRecentlyStartedCauses();
             _causesController.getUpComingCauses();
           },
@@ -127,7 +126,7 @@ class CausesScreen extends StatelessWidget{
                         ],
                       ),
                     ),
-                    const   CausesCategoryScreen(),
+                    const CausesCategoryScreen(),
                   ],
                 ),
               ],

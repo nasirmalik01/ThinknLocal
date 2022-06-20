@@ -38,7 +38,15 @@ class AboutVisit extends StatelessWidget {
             ? circularProgressIndicator()
             : _contributionController.isUploading.value ? const Uploading()
             : _contributionController.isUploadSuccess.value ? const UploadSuccess()
-            : _contributionController.isUploadFailed.value ? const UploadFailed()
+            : _contributionController.isUploadFailed.value ? UploadFailed(
+              onTryAgainClick: (){
+                    Map<String, dynamic> body = {};
+                    body['business_id'] = _aboutVisitController.selectedBusinessId.value;
+                    body['cause_id'] = _aboutVisitController.selectedCauseId.value;
+                    body['rating'] = getRating;
+                    body['first_purchase'] = _aboutVisitController.isVisitFirstTime.value == IsFirstTime.yes ? true : _aboutVisitController.isVisitFirstTime.value == IsFirstTime.no ? false : null;
+                    _contributionController.uploadAndCreateContributions(body, File(_xFile.path),);
+                },)
             : SingleChildScrollView(
                 child: Container(
                   width: sizes.width,
@@ -178,8 +186,7 @@ class AboutVisit extends StatelessWidget {
                                 body['cause_id'] = _aboutVisitController.selectedCauseId.value;
                                 body['rating'] = getRating;
                                 body['first_purchase'] = _aboutVisitController.isVisitFirstTime.value == IsFirstTime.yes ? true : _aboutVisitController.isVisitFirstTime.value == IsFirstTime.no ? false : null;
-                                _contributionController.uploadAndCreateContributions(body, File(_xFile.path),
-                                );
+                                _contributionController.uploadAndCreateContributions(body, File(_xFile.path),);
                               },
                               text: Strings.looksGood,
                               height: getHeight() * 0.08,

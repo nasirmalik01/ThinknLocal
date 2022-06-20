@@ -111,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                           return showSnackBar(title: 'Password too short', subTitle: 'It should be of minimum 6 characters');
                         }
 
-                        showLoadingDialog(message: 'Authenticating User');
+                        showLoadingSpinner();
                         _logInController.loginWithEmailPassword(email: _emailController!.text, password: _passwordController!.text,);
                       },
                           btnColor: AppColors.greenColor,

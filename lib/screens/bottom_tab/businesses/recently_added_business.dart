@@ -36,7 +36,7 @@ class RecentlyAddedBusiness extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [
               Colors.transparent,
-              AppColors.greenColor,
+              AppColors.blackColor,
             ],
           ),
         ),
