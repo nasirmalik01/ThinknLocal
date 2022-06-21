@@ -55,66 +55,18 @@ class CausesScreen extends StatelessWidget {
                     decoration: const BoxDecoration(
                       color: Colors.white,
                     ),
-                    child: ListView(
-                      children: [
-                        Container(
-                          height: getHeight() * 0.12,
-                          width: getWidth(),
-                          padding: EdgeInsets.only(
-                              left: sizes.width * 0.06,
-                              right: sizes.width * 0.06,
-                              top: sizes.height * 0.02),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: PreferenceUtils.getGradient()),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextView.titleWithDecoration(
-                                Strings.showingCausesNear,
-                                color: AppColors.darkGrey,
-                                fontFamily: Assets.poppinsRegular,
-                              ),
-                              GestureDetector(
-                                onTap: () async {
-                                  await Get.toNamed(
-                                      Routes.locationSearchScreen);
-                                  _causesController.onInit();
-                                  // StoreRedirect.redirect(androidAppId: "com.thinknlocal.Thinknlocal", iOSAppId: "com.thinknlocal.Thinknlocal");
-                                },
-                                child: Row(
-                                  children: [
-                                    Obx(
-                                      () => TextView.header(
-                                          _locationSearchController
-                                              .locationAddress.value,
-                                          color: AppColors.greenColor,
-                                          fontFamily: Assets.poppinsRegular,
-                                          textDecoration:
-                                              TextDecoration.underline,
-                                          fontSize: sizes.fontSize25),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          bottom: 0.2.h, left: 1.w),
-                                      child: Image(
-                                        color: AppColors.greenColor,
-                                        height: getHeight() * 0.03,
-                                        image:
-                                            const AssetImage(Assets.vectorIcon),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextView.titleWithDecoration(Strings.showingCausesNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
+                      GestureDetector(
+                        onTap: () async {
+                          // await Get.toNamed(Routes.locationSearchScreen);
+                          // _causesController.onInit();
+                          StoreRedirect.redirect(androidAppId: "com.thinknlocal.Thinknlocal", iOSAppId: '1524846479');
+                        },
+                        child: Row(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(

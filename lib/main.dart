@@ -32,8 +32,7 @@ void main() async {
   setAppInfo();
 
   runZonedGuarded(() async {
-    await SentryFlutter.init(
-          (options) {
+    await SentryFlutter.init((options) {
         options.dsn = 'https://257e0a1e6bec4cd78d1c4fdce7ae7f92@o514172.ingest.sentry.io/5617038';
         options.tracesSampleRate = 1.0;
         options.reportPackages = false;
