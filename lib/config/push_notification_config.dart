@@ -81,10 +81,17 @@ class PushNotificationConfig{
     });
   }
 
-  static handleForeGroundNotificationClick(String payload){
-    Map<String, dynamic> payLoadMap = json.decode(payload);
-    String category = payLoadMap['category'];
-    String id = payLoadMap['id'];
+  static handleForeGroundNotificationClick(String? payload, {RemoteMessage? message}){
+    late String category;
+    late String id;
+    if(message == null){
+      Map<String, dynamic> payLoadMap = json.decode(payload!);
+        category = payLoadMap['category'];
+        id = payLoadMap['id'];
+    }else{
+      category = message.data['category'];
+      id = message.data['id'];
+    }
 
     if(category == Strings.causes){
       Get.toNamed(Routes.causesDetailScreen, arguments: {
@@ -99,7 +106,7 @@ class PushNotificationConfig{
   static handleForeGroundPushNotifications() {
     ///background state -> pause
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-      handleForeGroundNotificationClick(message.data.toString());
+      handleForeGroundNotificationClick(null, message: message);
     });
 
     /// Setup--->
