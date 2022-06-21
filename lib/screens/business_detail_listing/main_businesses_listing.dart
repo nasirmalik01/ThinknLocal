@@ -89,7 +89,7 @@ class MainBusinessListing extends StatelessWidget {
                           return Divider(
                               height: getHeight() * 0.04,
                               thickness: getHeight() * 0.002,
-                              color: AppColors.borderColor);
+                              color: AppColors.barSeperatorGrey);
                         },
                       ),
                       SizedBox(height: getHeight() * 0.04),

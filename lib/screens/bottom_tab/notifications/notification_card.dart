@@ -14,6 +14,7 @@ class NotificationCard extends StatelessWidget {
   final bool isSentReceipts;
   final bool isNetworkImage;
   final bool isShowImage;
+  final bool isSubTitleBold;
 
 
   const NotificationCard(
@@ -24,7 +25,8 @@ class NotificationCard extends StatelessWidget {
         this.onPressNotification,
         this.isSentReceipts = false,
         this.isNetworkImage = true,
-        this.isShowImage = true
+        this.isShowImage = true,
+        this.isSubTitleBold = false
       }) : super(key: key);
 
   @override
@@ -64,7 +66,7 @@ class NotificationCard extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: sizes.height * 0.005),
-                    TextView.headerWithBlurRadius(subText, color: isSentReceipts ? AppColors.greenColor : AppColors.darkGrey, fontFamily: Assets.poppinsRegular, isShowFullText: true),
+                    TextView.headerWithBlurRadius(subText, color: isSentReceipts ? AppColors.greenColor : AppColors.darkGrey, fontFamily: isSubTitleBold ? Assets.poppinsSemiBold : Assets.poppinsRegular, isShowFullText: true),
                   ],
                 ),
               ),

@@ -24,6 +24,7 @@ class NotificationController extends GetxController{
 
   getNotifications() async {
     isNotificationsLoading.value = true;
+    notificationList?.clear();
     notificationList = await NotificationRepository.getNotifications({});
     isNotificationsLoading.value = false;
   }
@@ -57,10 +58,12 @@ class NotificationController extends GetxController{
   }
 
   markNotificationAsRead(int id) async {
-     await getItLocator<RemoteServices>().postRequest('${ApiEndPoints.notifications}/$id/${ApiEndPoints.read}', {}) ;
+    isNotificationsLoading.value = true;
+    await getItLocator<RemoteServices>().postRequest('${ApiEndPoints.notifications}/$id/${ApiEndPoints.read}', {}) ;
   }
 
   markNotificationAsUnRead(int id) async {
+    isNotificationsLoading.value = true;
     await getItLocator<RemoteServices>().postRequest('${ApiEndPoints.notifications}/$id/${ApiEndPoints.unread}', {}) ;
   }
 }

@@ -9,6 +9,7 @@ class AppColors{
   static const lightPurpleColorForTextField = Color(0xFFF3F3FC);
   static const lightOrangeColor = Color(0xFFE48353);
   static const lightGrey = Color.fromRGBO(246, 246, 248, 1);
+  static const barSeperatorGrey = Color.fromRGBO(246, 246, 248, 1);
   static const darkGrey = Color.fromRGBO(141, 154, 174, 1);
   static const blackColor = Color.fromRGBO(48, 54, 63, 1);
   static const pureWhiteColor = Color.fromRGBO(255, 255, 255, 1);

@@ -10,7 +10,9 @@ import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sizer/sizer.dart';
+import 'package:store_redirect/store_redirect.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
@@ -73,6 +75,7 @@ class CausesScreen extends StatelessWidget{
                         onTap: () async {
                           await Get.toNamed(Routes.locationSearchScreen);
                           _causesController.onInit();
+                          // StoreRedirect.redirect(androidAppId: "com.thinknlocal.Thinknlocal", iOSAppId: "com.thinknlocal.Thinknlocal");
                         },
                         child: Row(
                           children: [

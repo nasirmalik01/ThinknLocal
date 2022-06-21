@@ -27,7 +27,6 @@ class RemoteServices {
         return resJson;
       }
     } catch (e) {
-      log('EEE: ${e.toString()}');
       final _isServerException = serverHandlingExceptions(e, statusCode, error);
       if(_isServerException) return;
       if (e is DioError) {
@@ -38,6 +37,7 @@ class RemoteServices {
         statusCode = e.response?.statusCode;
         if (kDebugMode) print(errorMessage);
       }
+      throw Exception(e.toString());
     }
   }
 
@@ -60,6 +60,7 @@ class RemoteServices {
         statusCode = e.response?.statusCode;
         if (kDebugMode) print(errorMessage);
       }
+      throw Exception(e.toString());
     }
   }
 
@@ -75,6 +76,7 @@ class RemoteServices {
     }
     catch (e) {
       serverHandlingExceptions(e, statusCode, error);
+      throw Exception(e.toString());
     }
   }
 

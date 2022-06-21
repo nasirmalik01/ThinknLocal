@@ -77,7 +77,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
             boxShadow: const [
               BoxShadow(
                 color: AppColors.shadowColor,
-                blurRadius: 5,
+                blurRadius: 0,
                 offset: Offset(0, 0),
               ),
             ],
@@ -104,7 +104,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
               Get.to(() => const InitializeCameraScreen());
             },
             child: Card(
-              elevation: 2,
+              elevation: 1,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
               ),

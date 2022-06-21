@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +12,9 @@ import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sizer/sizer.dart';
+
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +31,27 @@ void main() async {
   await dependencyInjectionSetUp();
   setAppInfo();
 
-  runApp(const MyApp());
+  runZonedGuarded(() async {
+    await SentryFlutter.init(
+          (options) {
+        options.dsn = 'https://257e0a1e6bec4cd78d1c4fdce7ae7f92@o514172.ingest.sentry.io/5617038';
+        options.tracesSampleRate = 1.0;
+        options.reportPackages = false;
+        options.addInAppInclude('ThinknLocal');
+        options.considerInAppFramesByDefault = false;
+        options.attachThreads = true;
+      },
+    );
+
+    runApp(
+        DefaultAssetBundle(
+            bundle: SentryAssetBundle(enableStructuredDataTracing: true),
+          child: const MyApp(),
+        ),
+    );
+  }, (exception, stackTrace) async {
+    await Sentry.captureException(exception, stackTrace: stackTrace);
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -39,6 +63,9 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, Orientation orientation,
           DeviceType deviceType) {
         return GetMaterialApp(
+          navigatorObservers: [
+            SentryNavigatorObserver(),
+          ],
           builder: (BuildContext context, child) {
             final mediaQueryData = MediaQuery.of(context);
             final scale = mediaQueryData.textScaleFactor.clamp(1.0, 1.07);

@@ -55,7 +55,7 @@ class AccountSettingCard extends StatelessWidget {
         ),
         isLast! ? SizedBox(
           height: 3.h,
-        ) : Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.borderColor),
+        ) : Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.001 ,color: AppColors.barSeperatorGrey),
       ],
     );
   }

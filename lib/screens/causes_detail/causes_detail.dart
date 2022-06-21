@@ -90,10 +90,8 @@ class _CausesDetailState extends State<CausesDetail>
                               height: sizes.height * 0.35,
                               child: CausesDetailTopImageContainer(
                                 name: _causesDetailController.causeDetail!.name,
-                                fullBoxImage:
-                                    _causesDetailController.causeDetail!.image,
-                                logoImage: _causesDetailController
-                                    .causeDetail!.organization?.logo,
+                                fullBoxImage: _causesDetailController.causeDetail!.image,
+                                logoImage: _causesDetailController.causeDetail!.organization?.logo,
                                 completePercentage: _causesDetailController
                                     .causeDetail!.percentage!,
                                 collectedAmount: _causesDetailController.causeDetail!.raised!.toStringAsFixed(2),
@@ -171,19 +169,16 @@ class _CausesDetailState extends State<CausesDetail>
                                 children: [
                                   /// 1st page
                                   ListView(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: getHeight() * 0.03),
+                                    padding: EdgeInsets.symmetric(vertical: getHeight() * 0.03),
                                     shrinkWrap: true,
                                     physics: const NeverScrollableScrollPhysics(),
                                     children: [
                                       Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           ///Chino Hills HS Girls Water Polo
                                           Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: sizes.width * 0.06),
+                                            padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                                             child: _causeDetailComponents
                                                 .descriptionTextContainer(
                                                     heading:
@@ -431,8 +426,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                         }),
                                                   ],
                                                 ),
-                                                SizedBox(
-                                                    height: sizes.height * 0.02),
+                                                SizedBox(height: sizes.height * 0.02),
                                                 Obx(() => _causesDetailController
                                                         .isBottomTabLoading.value
                                                     ? circularProgressIndicator()
@@ -451,10 +445,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                   Get.toNamed(Routes.businessDetailScreen, arguments: _causesDetailController.causeBottomDetails![index].id);
                                                                 },
                                                                 child: DetailCategoryList(
-                                                                    image: _causesDetailController
-                                                                        .causeBottomDetails![
-                                                                            index]
-                                                                        .image,
+                                                                    image: _causesDetailController.causeBottomDetails![index].logo,
                                                                     headerText:
                                                                         _causesDetailController
                                                                             .causeBottomDetails![
@@ -498,7 +489,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                               return Divider(
                                                                   height: getHeight() * 0.04,
                                                                   thickness: getHeight() * 0.002,
-                                                                  color: AppColors.borderColor
+                                                                  color: AppColors.barSeperatorGrey
                                                               );
                                                             },
                                                           )

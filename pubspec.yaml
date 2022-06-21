@@ -67,6 +67,7 @@ dependencies:
   package_info_plus: ^1.4.2
   flutter_svg: ^1.1.0
   store_redirect: ^2.0.1
+  sentry_flutter: ^6.5.1
 
 dev_dependencies:
   hive_generator: ^1.1.2

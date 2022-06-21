@@ -169,7 +169,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                   );
 
                 }, separatorBuilder: (BuildContext context, int index) {
-                return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.002 ,color: AppColors.barSeperatorGrey);
               },
               )
               : handleEmptyState(context, Strings.noUpcomingCauses),

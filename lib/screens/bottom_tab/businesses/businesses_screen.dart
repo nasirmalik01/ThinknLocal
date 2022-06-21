@@ -204,7 +204,7 @@ class BusinessesScreen extends StatelessWidget {
                     ),
                     SizedBox(height: getHeight() * 0.01),
                     SizedBox(
-                      height: getHeight()*0.14,
+                      height: getHeight()*0.15,
                       child: _businessesController.isRecentlyAddedBusinessLoading.value
                           ? circularProgressIndicator()
                           : _businessesController.recentlyAddedBusinessList?.isNotEmpty ?? false
@@ -270,7 +270,7 @@ class BusinessesScreen extends StatelessWidget {
                                 ),
                               );
                             }, separatorBuilder: (BuildContext context, int index) {
-                            return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.001 ,color: AppColors.borderColor);
+                            return Divider(height: getHeight() * 0.04, thickness: getHeight() * 0.001 ,color: AppColors.barSeperatorGrey);
                           },
                           )
                           : handleEmptyState(context, Strings.noNearbyBusinesses),

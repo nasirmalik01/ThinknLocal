@@ -99,6 +99,7 @@ class CausesDetailController extends GetxController {
       isBottomTabLoading.value = true;
       isCauseBottomLoading.value = true;
     }
+    causeBottomDetails?.clear();
     causeBottomDetails = await (BusinessRemoteRepository.fetchBusinesses({
       Strings.causeId: id,
       Strings.parentCategoryId: parentId,

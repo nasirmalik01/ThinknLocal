@@ -158,13 +158,14 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                 physics: const ScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
-                                      onTap: () {
+                                      onTap: () async {
                                         if(_notificationController.notificationList![index].read == false){
-                                          _notificationController.markNotificationAsRead(_notificationController.notificationList![index].id!);
+                                         await _notificationController.markNotificationAsRead(_notificationController.notificationList![index].id!);
                                         }
                                         else {
-                                            _notificationController.markNotificationAsUnRead(_notificationController.notificationList![index].id!);
+                                          await _notificationController.markNotificationAsUnRead(_notificationController.notificationList![index].id!);
                                           }
+                                        _notificationController.getNotifications();
                                       },
                                       child: Padding(
                                         padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.notificationList!.length - 1 ? 4.h : 0),
@@ -175,13 +176,14 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                             text: _notificationController.notificationList![index].title,
                                             subText: _notificationController.notificationList![index].message,
                                             date: _notificationController.notificationList![index].id.toString(),
+                                            isSubTitleBold: _notificationController.notificationList![index].read == false ? true : false,
                                             onPressNotification: () {}
                                         ),
                                       )
                                   );
                                 },
                                 separatorBuilder: (BuildContext context, int index) {
-                                  return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                                  return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.barSeperatorGrey);
                                 },
                               ),
                             )
@@ -210,7 +212,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                         padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.pendingContributionsList!.length - 1 ? 4.h : 0),
                                         child: NotificationCard(
                                             image: _notificationController.pendingContributionsList![index].receiptUrl,
-                                            text: _notificationController.pendingContributionsList![index].business!.name,
+                                            text: _notificationController.pendingContributionsList![index].business?.name,
                                             subText: "\$${_notificationController.pendingContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
                                             date: _notificationController.getTime(_notificationController.pendingContributionsList![index].receiptDate!),
                                             onPressNotification: () {}),
@@ -218,7 +220,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                   );
                                 },
                                 separatorBuilder: (BuildContext context, int index) {
-                                  return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                                  return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.barSeperatorGrey);
                                 },
                               )
                               : handleEmptyState(context, Strings.noPendingReceipts),
@@ -256,10 +258,10 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                   );
                                 },
                                 separatorBuilder: (BuildContext context, int index) {
-                                  return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                                  return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002, color: AppColors.barSeperatorGrey);
                                 },
                               )
-                              : handleEmptyState(context, Strings.noSentReceipts),
+                              : handleEmptyState(context, Strings.noApprovedReceipts),
                             ),
                           ],
                         ),
@@ -294,7 +296,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                   );
                                 },
                                 separatorBuilder: (BuildContext context, int index) {
-                                  return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.borderColor);
+                                  return Divider(height: getHeight() * 0.03, thickness: getHeight() * 0.002 ,color: AppColors.barSeperatorGrey);
                                 },
                               )
                               : handleEmptyState(context, Strings.noDeniedReceipts),
