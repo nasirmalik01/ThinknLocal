@@ -73,9 +73,8 @@ class CausesScreen extends StatelessWidget{
                       TextView.titleWithDecoration(Strings.showingCausesNear, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular,),
                       GestureDetector(
                         onTap: () async {
-                          // await Get.toNamed(Routes.locationSearchScreen);
-                          // _causesController.onInit();
-                          StoreRedirect.redirect(androidAppId: "com.thinknlocal.Thinknlocal", iOSAppId: "1524846479");
+                          await Get.toNamed(Routes.locationSearchScreen);
+                          _causesController.onInit();
                         },
                         child: Row(
                           children: [

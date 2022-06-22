@@ -20,12 +20,12 @@ class ContributionController extends GetxController {
 
   Future<UploadDirectContributions?> uploadAndCreateContributions(Map<String, dynamic> uploadContributionsQuery, File file) async {
     try {
-      late UploadFileResponse uResponse;
-      isUploading.value = true;
+       UploadFileResponse? uResponse;
       await AWSService().uploadFile(
         file,
         onProgressChange: (progress) {
           log(progress.toString());
+          isUploading.value = true;
           fileUploadingProgress.value = progress;
         },
         onUploadComplete: (UploadFileResponse r) {
@@ -37,18 +37,25 @@ class ContributionController extends GetxController {
           log(er.toString());
           uResponse = er;
           isUploadFailed.value = true;
+          isUploadSuccess.value = false;
+          return;
         },
       );
-      uploadContributionsQuery['upload_id'] =uResponse.uploadId;
+      if(uResponse?.uploadId == null){
+        isUploadFailed.value = true;
+        isUploadSuccess.value = false;
+        return null;
+      }
+      uploadContributionsQuery['upload_id'] =uResponse?.uploadId;
 
       await createContribution(uploadContributionsQuery);
       isUploading.value = false;
       return uploadDirectContribution;
-    } catch (e) {
+    } catch(e){
       isUploadFailed.value = true;
       isUploadSuccess.value = false;
+      return null;
     }
-    return null;
   }
 
   static Future<dynamic> createContribution(Map<String, dynamic> query) async {

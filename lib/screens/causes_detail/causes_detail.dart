@@ -502,10 +502,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                     },
                                                                     child:
                                                                         DetailCategoryList(
-                                                                      image: _causesDetailController
-                                                                          .causeBottomDetails![
-                                                                              index]
-                                                                          .image,
+                                                                      image: _causesDetailController.causeBottomDetails![index].logo,
                                                                       headerText: _causesDetailController
                                                                           .causeBottomDetails![
                                                                               index]

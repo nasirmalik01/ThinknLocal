@@ -37,7 +37,6 @@ class RemoteServices {
         statusCode = e.response?.statusCode;
         if (kDebugMode) print(errorMessage);
       }
-      throw Exception(e.toString());
     }
   }
 
@@ -60,7 +59,6 @@ class RemoteServices {
         statusCode = e.response?.statusCode;
         if (kDebugMode) print(errorMessage);
       }
-      throw Exception(e.toString());
     }
   }
 

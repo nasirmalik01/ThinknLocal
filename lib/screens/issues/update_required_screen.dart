@@ -17,7 +17,7 @@ class UpdateRequiredScreen extends StatelessWidget {
         buttonText: Strings.updateAppNow,
         isButtonRequired: true,
         onPress: (){
-          StoreRedirect.redirect(androidAppId: "com.thinknlocal.Thinknlocal", iOSAppId: "com.thinknlocal.Thinknlocal");
+          StoreRedirect.redirect(androidAppId: "com.thinknlocal.Thinknlocal", iOSAppId: "1524846479");
         },
       ),
     );

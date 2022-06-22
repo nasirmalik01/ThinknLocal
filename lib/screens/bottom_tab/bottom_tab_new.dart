@@ -96,27 +96,27 @@ class _BottomTabNewState extends State<BottomTabNew> {
           navBarStyle: NavBarStyle.style17, // Choose the nav bar style with this property.
 
         ),
-        Positioned(
-          bottom: sizes.isPhone ? Platform.isIOS ? getHeight()*0 : getHeight()*0.005 : getHeight()*0.05,
-          left: sizes.isPhone ? getWidth()*0.412 : getWidth()*0.433,
-          child:  GestureDetector(
-            onTap: (){
-              Get.to(() => const InitializeCameraScreen());
-            },
-            child: Card(
-              elevation: 1,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: CircleAvatar(
-                radius: sizes.isPhone ?  Platform.isIOS ? 28 : 30 : 50,
-                backgroundColor: AppColors.greenColor,
-                child: Image(image: const AssetImage(Assets.scannerIcon), height: sizes.height * 0.04,),
-              ),
-            ),
-
-          ),
-        )
+        // Positioned(
+        //   bottom: sizes.isPhone ? Platform.isIOS ? getHeight()*0 : getHeight()*0.005 : getHeight()*0.05,
+        //   left: sizes.isPhone ? getWidth()*0.412 : getWidth()*0.433,
+        //   child:  GestureDetector(
+        //     onTap: (){
+        //       Get.to(() => const InitializeCameraScreen());
+        //     },
+        //     child: Card(
+        //       elevation: 1,
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(50),
+        //       ),
+        //       child: CircleAvatar(
+        //         radius: sizes.isPhone ?  Platform.isIOS ? 28 : 30 : 50,
+        //         backgroundColor: AppColors.greenColor,
+        //         child: Image(image: const AssetImage(Assets.scannerIcon), height: sizes.height * 0.04,),
+        //       ),
+        //     ),
+        //
+        //   ),
+        // )
       ],
     );
   }
@@ -148,7 +148,9 @@ class _BottomTabNewState extends State<BottomTabNew> {
       //   inactiveColorPrimary: Colors.transparent,
       // ),
       PersistentBottomNavBarItem(
-        icon: Transform.scale(scale: 0.2, child: Image(fit: BoxFit.scaleDown, image: AssetImage(Assets.cameraScan), height: 5, width: 5, ),),
+        icon: Transform.scale(
+            scale: 1.3,
+            child: Image.asset(Assets.cameraScan, fit: BoxFit.contain,)),
         title: '',
         activeColorPrimary: Colors.transparent,
         inactiveColorPrimary: Colors.transparent,

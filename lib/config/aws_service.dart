@@ -9,6 +9,10 @@ import 'package:flutter_app/config/aws_response.dart';
 import 'package:flutter_app/constants/api_endpoints.dart';
 import 'package:flutter_app/network/secure_http_client.dart';
 
+
+
+
+
 class AWSService {
   Function(UploadFileResponse)? onUploadError;
   Function(UploadFileResponse)? onUploadComplete;
@@ -61,6 +65,8 @@ class AWSService {
     } on DioError catch (e) {
       log(e.toString());
       onUploadError.call(getFileResponse(r: e));
+    } on SocketException catch(e){
+      onUploadError.call(getFileResponse(r: e));
     }
   }
 
@@ -72,7 +78,6 @@ class AWSService {
       );
       return response;
     } on DioError catch (e) {
-      log('Error : $e');
       return null;
     }
   }
@@ -109,6 +114,14 @@ class AWSService {
         isSuccess: false,
         data: e.response?.data,
         uploadId: uploadId,
+      );
+    }else if(r is SocketException){
+      return UploadFileResponse(
+        statusCode: 501,
+        isSuccess: false,
+        message: 'No internet connection',
+        data: {},
+        uploadId: null,
       );
     } else {
       Response response = r;

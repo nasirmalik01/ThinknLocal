@@ -173,9 +173,9 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                             isShowImage: false,
                                             isNetworkImage: false,
                                             image: Assets.noImageAvailable,
-                                            text: _notificationController.notificationList![index].title,
-                                            subText: _notificationController.notificationList![index].message,
-                                            date: _notificationController.notificationList![index].id.toString(),
+                                            text: _notificationController.notificationList?[index].title,
+                                            subText: _notificationController.notificationList?[index].message,
+                                            date: _notificationController.notificationList?[index].id.toString(),
                                             isSubTitleBold: _notificationController.notificationList![index].read == false ? true : false,
                                             onPressNotification: () {}
                                         ),
@@ -211,9 +211,9 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                       child: Padding(
                                         padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.pendingContributionsList!.length - 1 ? 4.h : 0),
                                         child: NotificationCard(
-                                            image: _notificationController.pendingContributionsList![index].receiptUrl,
-                                            text: _notificationController.pendingContributionsList![index].business?.name,
-                                            subText: "\$${_notificationController.pendingContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
+                                            image: _notificationController.pendingContributionsList?[index].receiptUrl,
+                                            text: _notificationController.pendingContributionsList?[index].business?.name,
+                                            subText: "\$${_notificationController.pendingContributionsList?[index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
                                             date: _notificationController.getTime(_notificationController.pendingContributionsList![index].receiptDate!),
                                             onPressNotification: () {}),
                                       )
@@ -248,9 +248,9 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                       child: Padding(
                                         padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.approvedContributionsList!.length - 1 ? 4.h : 0),
                                         child: NotificationCard(
-                                            image: _notificationController.approvedContributionsList![index].receiptUrl,
-                                            text: _notificationController.approvedContributionsList![index].business!.name,
-                                            subText: "\$${_notificationController.approvedContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
+                                            image: _notificationController.approvedContributionsList?[index].receiptUrl,
+                                            text: _notificationController.approvedContributionsList?[index].business!.name,
+                                            subText: "\$${_notificationController.approvedContributionsList?[index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
                                             date: _notificationController.getTime(_notificationController.approvedContributionsList![index].receiptDate!),
                                             isSentReceipts: true,
                                             onPressNotification: () {}),
@@ -286,9 +286,9 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                       child: Padding(
                                         padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.approvedContributionsList!.length - 1 ? 4.h : 0),
                                         child: NotificationCard(
-                                            image: _notificationController.deniedContributionsList![index].receiptUrl,
-                                            text: _notificationController.deniedContributionsList![index].business!.name,
-                                            subText: "\$${_notificationController.deniedContributionsList![index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
+                                            image: _notificationController.deniedContributionsList?[index].receiptUrl,
+                                            text: _notificationController.deniedContributionsList![index].business?.name,
+                                            subText: "\$${_notificationController.deniedContributionsList?[index].receiptAmount?.toStringAsFixed(2)} will be sent to cause",
                                             date: _notificationController.getTime(_notificationController.deniedContributionsList![index].receiptDate!),
                                             isSentReceipts: true,
                                             onPressNotification: () {}),
