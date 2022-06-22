@@ -35,7 +35,7 @@ class MainController extends GetxController{
     MyHive.setLocation(UserLocation(longitude: position!.longitude, latitude: position!.latitude));
     SharedPreferences _prefs = await SharedPreferences.getInstance();
      String? _userCurrentLocationAddress = await findAddress(position!.latitude, position!.longitude);
-    Cities? _lowestDistanceCity =  await getLowestDistanceCity();
+    Cities? _lowestDistanceCity =  await getFirstIndexCity();
     MyHive.setLocationAddress(_lowestDistanceCity!.name);
     _prefs.setDouble(Strings.currentLat, position!.latitude);
     _prefs.setDouble(Strings.currentLong, position!.longitude);

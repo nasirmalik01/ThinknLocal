@@ -184,7 +184,7 @@ class Strings {
   static const String noPastFundedCauses = 'There are no past funded causes';
   static const String noNotifications = 'There are no notifications';
   static const String noPendingReceipts = 'There are no pending receipts';
-  static const String noApprovedReceipts = 'Sent needs to be approved';
+  static const String noApprovedReceipts = 'There are no approved receipts';
   static const String noDeniedReceipts = 'There are no denied receipts';
   static const String corporate = 'corporate';
   static const String zipCodeError = 'Zip code should be of 5 digits';

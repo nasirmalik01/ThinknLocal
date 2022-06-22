@@ -181,6 +181,20 @@ Future<Cities?> getLowestDistanceCity() async {
   return _lowestDistanceCity;
 }
 
+Future<Cities?> getFirstIndexCity() async {
+  Cities? _lowestDistanceCity;
+  List<Cities> citiesList = [];
+  var location = MyHive.getLocation();
+  citiesList = await LocationRepository.fetchCities({
+    Strings.latitude:  location.latitude,
+    Strings.longitude: location.longitude,
+  }) ?? [];
+  if(citiesList.isNotEmpty) {
+    _lowestDistanceCity = citiesList[0];
+  }
+  return _lowestDistanceCity;
+}
+
 Future<String>? findAddress(double latitude, double longitude) async {
   var placeMarkers = await placemarkFromCoordinates(latitude, longitude);
   var completeAddress = placeMarkers.first.locality.toString();

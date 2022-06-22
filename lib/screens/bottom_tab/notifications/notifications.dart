@@ -111,10 +111,26 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                       labelPadding: EdgeInsets.symmetric(horizontal: sizes.smallPadding),
                       tabs: [
                         Stack(
-                          children: const [
-                            Tab(
+                          children: [
+                            const Tab(
                               text: Strings.notifications,
                             ),
+                            Positioned(
+                              right: 0,
+                              top: getHeight()*0.002,
+                              child: Container(
+                                height: getWidth()*0.04,
+                                width: getWidth()*0.04,
+                                decoration: BoxDecoration(
+                                    color: AppColors.orangeColor,
+                                    borderRadius: BorderRadius.circular(0.4.h)
+                                ),
+                                child: Center(child: Padding(
+                                  padding: EdgeInsets.only(bottom: 0.2.h),
+                                  child: TextView.caption(_notificationController.notificationList?.length.toString(), color: AppColors.pureWhiteColor, fontSize: 7.5.sp, textAlign: TextAlign.center, lines: 1),
+                                ),),
+                              ),
+                            )
                           ],
                         ),
                         Padding(
@@ -175,7 +191,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                             image: Assets.noImageAvailable,
                                             text: _notificationController.notificationList?[index].title,
                                             subText: _notificationController.notificationList?[index].message,
-                                            date: _notificationController.notificationList?[index].id.toString(),
+                                            date: '',
                                             isSubTitleBold: _notificationController.notificationList![index].read == false ? true : false,
                                             onPressNotification: () {}
                                         ),
