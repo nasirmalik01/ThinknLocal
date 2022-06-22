@@ -12,6 +12,7 @@ class NotificationController extends GetxController{
   RxBool isContributionLoading = false.obs;
   List<Contributions>? contributionsList = [];
   List<Notification>? notificationList = [];
+  List<Notification>? notificationUnreadList = [];
   List<Contributions>? pendingContributionsList = [];
   List<Contributions>? approvedContributionsList = [];
   List<Contributions>? deniedContributionsList = [];
