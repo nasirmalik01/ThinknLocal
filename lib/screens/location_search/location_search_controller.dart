@@ -12,6 +12,7 @@ class LocationSearchController extends GetxController {
   List<Cities> citiesList = [];
   var isLoading = false.obs;
   RxString locationAddress = Strings.noLocation.obs;
+  RxString noLocation = ''.obs;
 
 
   Future<void> getCities(String query) async {

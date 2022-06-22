@@ -32,7 +32,7 @@ class LocationSearchScreen extends StatelessWidget {
           child: Column(
             children: [
               Obx(() => CommonWidgets.getAppBarWithSearch(
-                  title: '',
+                  title: _locationSearchController.noLocation.value,
                   hint: Strings.searchForCity,
                   textEditingController: searchController,
                   onChanged: (val){

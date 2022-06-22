@@ -12,7 +12,7 @@ class NotificationController extends GetxController{
   RxBool isContributionLoading = false.obs;
   List<Contributions>? contributionsList = [];
   List<Notification>? notificationList = [];
-  List<Notification>? notificationUnreadList = [];
+  RxInt unreadNotifications = 0.obs;
   List<Contributions>? pendingContributionsList = [];
   List<Contributions>? approvedContributionsList = [];
   List<Contributions>? deniedContributionsList = [];
@@ -24,9 +24,15 @@ class NotificationController extends GetxController{
   }
 
   getNotifications() async {
+    unreadNotifications.value = 0;
     isNotificationsLoading.value = true;
     notificationList?.clear();
     notificationList = await NotificationRepository.getNotifications({});
+    for(Notification notification in notificationList!){
+      if(notification.read == false){
+        unreadNotifications.value = unreadNotifications.value + 1;
+      }
+    }
     isNotificationsLoading.value = false;
   }
 
