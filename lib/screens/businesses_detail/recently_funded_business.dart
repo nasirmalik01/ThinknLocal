@@ -85,7 +85,7 @@ class RecentlyFundedBusiness extends StatelessWidget {
                 ],
               ),
               SizedBox(height: getHeight() * 0.01),
-              TextView.subTitleWithBlurRadius(name??"", color: AppColors.pureWhiteColor, lines: 2, fontFamily: Assets.poppinsMedium, blurRadius: 5),
+              TextView.subTitleWithBlurRadius(name??"", color: AppColors.pureWhiteColor, lines: 2, fontFamily: Assets.poppinsMedium, blurRadius: 0),
               SizedBox(height: getHeight() * 0.001),
               TextView.caption('\$$raisedAmount ${Strings.of} \$$totalAmount', color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1),
               SizedBox(height: getHeight() * 0.001),

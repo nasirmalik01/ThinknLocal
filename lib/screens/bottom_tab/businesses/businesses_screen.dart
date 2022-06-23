@@ -16,6 +16,7 @@ import 'package:flutter_app/screens/businesses_categories/business_category.dart
 import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
@@ -260,7 +261,7 @@ class BusinessesScreen extends StatelessWidget {
                           height: 20.h,
                           child: _businessesController
                               .isBusinessLoading.value
-                              ? circularProgressIndicator()
+                              ? bouncingLoadingIndicator()
                               : _businessesController
                               .businessList!.isNotEmpty
                               ? ListView.builder(
@@ -376,7 +377,7 @@ class BusinessesScreen extends StatelessWidget {
                           height: getHeight() * 0.15,
                           child: _businessesController
                               .isRecentlyAddedBusinessLoading.value
-                              ? circularProgressIndicator()
+                              ? bouncingLoadingIndicator()
                               : _businessesController
                               .recentlyAddedBusinessList
                               ?.isNotEmpty ??
@@ -465,7 +466,7 @@ class BusinessesScreen extends StatelessWidget {
                               SizedBox(height: getHeight() * 0.018),
                               _businessesController
                                   .isNearByBusinessLoading.value
-                                  ? circularProgressIndicator()
+                                  ? bouncingLoadingIndicator()
                                   : _businessesController.nearbyBusinessList
                                   ?.isNotEmpty ??
                                   false

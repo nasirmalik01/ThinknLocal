@@ -28,7 +28,7 @@ class MainController extends GetxController{
       permission = await Geolocator.requestPermission();
       return false;
     }
-    showLoadingDialog(message: Strings.fetchingLocation);
+    showThreeBounceLoading();
     var location = Location();
     isLocationServiceEnabled.value = await location.serviceEnabled();
     position = await getCurrentLocation();

@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/app_info.dart';
 import 'package:flutter_app/local/my_hive.dart';
+import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MySecureHttpClient {
   static Dio? secureClient;
@@ -9,6 +12,7 @@ class MySecureHttpClient {
 
   static Dio getClient() {
     AppInfo appInfo = MyHive.getAppInfo();
+    checkPermissions();
 
     return Dio(
       BaseOptions(
@@ -28,5 +32,12 @@ class MySecureHttpClient {
   static Dio getInsecureClient() {
     return insecureClient ??=
         Dio(BaseOptions(baseUrl: 'https://staging-api.thinknlocal.com/v2/'));
+  }
+
+  static checkPermissions() async {
+    PermissionStatus status = await Permission.location.status;
+    if (status.isDenied) {
+      Get.offAllNamed(Routes.locationPermissionScreen);
+    }
   }
 }

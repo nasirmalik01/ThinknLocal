@@ -7,6 +7,7 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/full_photo_screen.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notification_card.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notification_controller.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -44,7 +45,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
           },
           child: Obx(() =>
             (_notificationController.isNotificationsLoading.value || _notificationController.isContributionLoading.value)
-            ? circularProgressIndicator()
+            ? bouncingLoadingIndicator()
             : Container(
               height: sizes.height,
               width: sizes.width,

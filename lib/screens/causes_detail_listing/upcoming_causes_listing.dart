@@ -6,6 +6,7 @@ import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/widgets/empty_state.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -55,7 +56,7 @@ class _UpcomingCausesListingState extends State<UpcomingCausesListing> {
           () => (_causesController.isUpcomingCausesLoading.value &&
                   !_causesController.isPaginatedLoading.value &&
                   (Get.isDialogOpen == false))
-              ? circularProgressIndicator()
+              ? bouncingLoadingIndicator()
               : SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
                   controller: _causesController.scrollController,

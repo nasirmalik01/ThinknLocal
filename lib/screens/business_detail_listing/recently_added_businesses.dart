@@ -6,6 +6,7 @@ import 'package:flutter_app/screens/bottom_tab/businesses/business_list_view_lay
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_controller.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/widgets/empty_state.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -39,7 +40,7 @@ class RecentBusinessListing extends StatelessWidget {
       child: Obx(
         () => (_businessesController.isRecentlyAddedBusinessLoading.value &&
                 !_businessesController.isPaginatedLoading.value)
-            ? circularProgressIndicator()
+            ? bouncingLoadingIndicator()
             : SingleChildScrollView(
                 controller: _businessesController.scrollController,
                 child: Container(

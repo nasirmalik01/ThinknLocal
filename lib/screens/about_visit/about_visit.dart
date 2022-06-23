@@ -12,6 +12,7 @@ import 'package:flutter_app/screens/upload/uploading/uploading.dart';
 import 'package:flutter_app/screens/upload/uploading_failed/uploading_failed.dart';
 import 'package:flutter_app/screens/upload/uploading_success/uploading_success.dart';
 import 'package:flutter_app/widgets/button.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -35,7 +36,7 @@ class AboutVisit extends StatelessWidget {
     return Scaffold(
       body: Obx(
         () => (_aboutVisitController.isBusinessLoading.value || _aboutVisitController.isCausesLoading.value)
-            ? circularProgressIndicator()
+            ? bouncingLoadingIndicator()
             : _contributionController.isUploading.value ? const Uploading()
             : _contributionController.isUploadSuccess.value ? const UploadSuccess()
             : _contributionController.isUploadFailed.value ? UploadFailed(

@@ -17,6 +17,7 @@ import 'package:flutter_app/screens/causes_detail/update_fund_raiser.dart';
 import 'package:flutter_app/widgets/custom_dialog.dart';
 import 'package:flutter_app/widgets/custom_tab_bar.dart';
 import 'package:flutter_app/widgets/graph_widget.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
@@ -89,7 +90,7 @@ class _CausesDetailState extends State<CausesDetail>
                         _causesDetailController.isFeaturedLoading.value ||
                         _causesDetailController
                             .isCauseAdvertisementLoading.value)
-                    ? circularProgressIndicator()
+                    ? bouncingLoadingIndicator()
                     : _causesDetailController.causeDetail == null
                         ? const SizedBox()
                         : CustomScrollView(
@@ -352,7 +353,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                 child: Obx(() => _causesDetailController
                                                                         .isFeaturedLoading
                                                                         .value
-                                                                    ? circularProgressIndicator()
+                                                                    ? bouncingLoadingIndicator()
                                                                     : ListView
                                                                         .builder(
                                                                         scrollDirection:
@@ -497,7 +498,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                         Obx(() => _causesDetailController
                                                                 .isBottomTabLoading
                                                                 .value
-                                                            ? circularProgressIndicator()
+                                                            ? bouncingLoadingIndicator()
                                                             : _causesDetailController
                                                                     .causeBottomDetails!
                                                                     .isNotEmpty

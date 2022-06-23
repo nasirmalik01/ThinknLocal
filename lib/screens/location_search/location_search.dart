@@ -4,6 +4,7 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/location_search/get_cities.dart';
 import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:flutter_app/widgets/empty_state.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:get/get.dart';
 
 import '/constants/assets.dart';
@@ -55,7 +56,7 @@ class LocationSearchScreen extends StatelessWidget {
                     SizedBox(height: getHeight() * 0.02),
                 MixinBuilder<LocationSearchController>(builder: (_){
                   return  _locationSearchController.isLoading.value
-                      ? circularProgressIndicator()
+                      ? bouncingLoadingIndicator()
                       :  _locationSearchController.citiesList.isEmpty
                       ? emptyState('No results', height: getHeight()*0.2)
                       :  ListView.separated(

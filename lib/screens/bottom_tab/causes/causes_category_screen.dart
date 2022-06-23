@@ -16,6 +16,7 @@ import 'package:flutter_app/screens/causes_detail_listing/main_causes_listing.da
 import 'package:flutter_app/screens/causes_detail_listing/recent_causes_listing.dart';
 import 'package:flutter_app/screens/causes_detail_listing/upcoming_causes_listing.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -44,7 +45,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
           height: 23.h,
           child: Obx(
             () => _causesController.isTopCausesContainersList.value
-                ? circularProgressIndicator()
+                ? bouncingLoadingIndicator()
                 : _causesController.topCausesContainersList?.isNotEmpty ?? false
                     ? ListView.builder(
                         controller: _tabViewsController,
@@ -108,6 +109,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                                       .toString(),
                                   index: index,
                                   onClickBox: () async {
+                                    return openAppSettings();
                                     pushNewScreen(
                                       context,
                                       screen: CausesDetail(
@@ -149,7 +151,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
         /// Recently Started Causes
         Obx(
           () => _causesController.isRecentlyStartedCausesLoading.value
-              ? circularProgressIndicator()
+              ? bouncingLoadingIndicator()
               : _causesController.recentlyStartedCauses?.isNotEmpty ?? false
                   ? SizedBox(
                       height: getHeight() * 0.17,
@@ -222,7 +224,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                       }),
                   SizedBox(height: getHeight() * 0.018),
                   _causesController.isUpcomingCausesLoading.value
-                      ? circularProgressIndicator()
+                      ? bouncingLoadingIndicator()
                       : _causesController.upcomingCauses?.isNotEmpty ?? false
                           ? ListView.separated(
                               scrollDirection: Axis.vertical,

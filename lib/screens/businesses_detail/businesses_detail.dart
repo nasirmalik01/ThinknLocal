@@ -16,6 +16,7 @@ import 'package:flutter_app/screens/causes_detail/recent_contributions.dart';
 import 'package:flutter_app/screens/causes_detail_listing/causes_listing.dart';
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/graph_widget.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -44,7 +45,7 @@ class BusinessesDetailScreen extends StatelessWidget {
         body: RefreshIndicator(
           color: AppColors.greenColor,
           onRefresh: () async {
-            // getBusinessDetails(_id);
+             getBusinessDetails(_id);
           },
           child: Obx(
             () => _businessDetailController.isError.value
@@ -61,7 +62,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                             .isRecentlyFundedBusinessCauses.value ||
                         _businessDetailController
                             .isPastFundedBusinessCauses.value)
-                    ? circularProgressIndicator()
+                    ? bouncingLoadingIndicator()
                     : _businessDetailController.businessDetail == null
                         ? const SizedBox()
                         : CustomScrollView(
@@ -77,7 +78,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                       height: sizes.height * 0.35,
                                       child: _businessDetailController
                                               .isLoading.value
-                                          ? circularProgressIndicator()
+                                          ? bouncingLoadingIndicator()
                                           : BusinessDetailTopContainer(
                                               name: _businessDetailController
                                                   .businessDetail!.name,
@@ -195,7 +196,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                         children: [
                                           _businessDetailController
                                                   .isLoading.value
-                                              ? circularProgressIndicator()
+                                              ? bouncingLoadingIndicator()
                                               : ListView(
                                                   shrinkWrap: true,
                                                   physics:

@@ -121,7 +121,8 @@ class CausesScreen extends StatelessWidget{
                             children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: sizes.width * 0.06),
+                                    horizontal: sizes.width * 0.06
+                                ),
                                 child: CommonWidgets.searchLocationTextField(
                                     controller: searchController,
                                     hint: Strings.searchForCause,

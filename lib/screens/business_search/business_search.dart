@@ -5,6 +5,7 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_list_view_layout.dart';
 import 'package:flutter_app/screens/business_search/business_search_controller.dart';
 import 'package:flutter_app/widgets/empty_state.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:get/get.dart';
 
@@ -65,7 +66,7 @@ class BusinessSearch extends StatelessWidget {
                     TextView.headerWithBlurRadius("- ${_businessSearchController.locationAddress.value}", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12),
                     SizedBox(height: getHeight() * 0.02),
                     _businessSearchController.isSearchedBusinessLoading.value
-                        ?  circularProgressIndicator()
+                        ? bouncingLoadingIndicator()
                         :  _businessSearchController.searchedBusinessList?.isEmpty ?? false
                         ? emptyState('No results', height: getHeight()*0.2)
                         : ListView(

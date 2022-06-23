@@ -6,6 +6,7 @@ import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account_settings_card.dart';
 import 'package:flutter_app/screens/bottom_tab/account/user_profile_box.dart';
 import 'package:flutter_app/screens/edit_account/edit_account.dart';
+import 'package:flutter_app/widgets/loading_indicator.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +27,7 @@ class AccountScreen extends StatelessWidget {
         body: Obx(() => _accountController.isError.value
          ? const SizedBox()
          : _accountController.isLoading.value
-         ? circularProgressIndicator()
+         ? bouncingLoadingIndicator()
          : Container(
           height: sizes.height ,
           width: sizes.width,
