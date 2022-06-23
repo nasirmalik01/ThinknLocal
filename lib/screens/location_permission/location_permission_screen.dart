@@ -7,7 +7,6 @@ import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/widgets/enable_permissions.dart';
 import 'package:get/get.dart';
-import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LocationPermissionScreen extends StatefulWidget {
@@ -28,11 +27,17 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                 title:'Enable Location',
                 description: 'By allowing location permissions you are able to explore the causes near you that need your help.',
                 onGoToSettingsTap: () async {
-                   bool isLocationAllowed = await _mainController.getLocation();
-                   if(isLocationAllowed){
-                     PreferenceUtils.setBool(Strings.showHome, true);
-                     Get.offAndToNamed(Routes.bottomNavBarScreen);
-                   }
+                  PermissionStatus status = await Permission.location.status;
+                  if(status.isPermanentlyDenied){
+                    openAppSettings();
+                  }
+                  else {
+                    bool isLocationAllowed = await _mainController.getLocation();
+                    if (isLocationAllowed) {
+                      PreferenceUtils.setBool(Strings.showHome, true);
+                      Get.offAndToNamed(Routes.bottomNavBarScreen);
+                    }
+                  }
                 },
                 buttonText: 'Allow location',
                 isLocation: true,

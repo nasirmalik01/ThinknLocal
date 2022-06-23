@@ -36,7 +36,7 @@ class MySecureHttpClient {
 
   static checkPermissions() async {
     PermissionStatus status = await Permission.location.status;
-    if (status.isDenied) {
+    if (status.isDenied || status.isPermanentlyDenied) {
       Get.offAllNamed(Routes.locationPermissionScreen);
     }
   }
