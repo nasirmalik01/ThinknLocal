@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/routes.dart';
@@ -12,6 +11,7 @@ import 'package:flutter_app/network/remote_repositories/location_repository.dart
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
@@ -19,11 +19,8 @@ import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 
 ///my dependency locator
 GetIt getItLocator = GetIt.instance;
@@ -37,7 +34,7 @@ removeDependencies() {
 }
 
 showSnackBar({String? title, String? subTitle, Color? backgroundColor}) {
-  if(Get.isSnackbarOpen) {
+  if (Get.isSnackbarOpen) {
     Get.closeCurrentSnackbar();
   }
   Get.snackbar(
@@ -128,31 +125,6 @@ locationParams(Map<String, dynamic> query) {
   query[Strings.longitude] = location.longitude;
 }
 
-buildDynamicLinks(String category, String id, {String? organizationId}) async {
-  String url = Strings.dynamicLinkInitialUrl;
-  final DynamicLinkParameters parameters = DynamicLinkParameters(
-    uriPrefix: url,
-    link: Uri.parse('$url/$category/$id/${organizationId ?? '1'}'),
-    androidParameters: const AndroidParameters(
-      packageName: 'com.thinknlocal.Thinknlocal',
-      minimumVersion: 0,
-    ),
-    iosParameters: const IOSParameters(
-      bundleId: 'com.thinknlocal.Thinknlocal',
-      minimumVersion: '0',
-    ),
-    socialMetaTagParameters: SocialMetaTagParameters(
-        description: '',
-        imageUrl: Uri.parse(Strings.dynamicLinkImageUrl),
-        title: Strings.thinknLocal,
-    ),
-  );
-  final dynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
-  String? desc = dynamicLink.shortUrl.toString();
-
-  await Share.share(desc, subject: Strings.thinknLocal);
-}
-
 // Future<String> getUserLocationAddress() async {
 //   if (MyHive.getLocation() != null) {
 //     final _address = await findAddress(MyHive.getLocation());
@@ -166,10 +138,11 @@ Future<Cities?> getLowestDistanceCity() async {
   List<Cities> citiesList = [];
   var location = MyHive.getLocation();
   citiesList = await LocationRepository.fetchCities({
-    Strings.latitude:  location.latitude,
-    Strings.longitude: location.longitude,
-  }) ?? [];
-  if(citiesList.isNotEmpty) {
+        Strings.latitude: location.latitude,
+        Strings.longitude: location.longitude,
+      }) ??
+      [];
+  if (citiesList.isNotEmpty) {
     double _distance = citiesList[0].distance ?? 0.0;
     for (Cities city in citiesList) {
       if (city.distance! <= _distance) {
@@ -186,10 +159,11 @@ Future<Cities?> getFirstIndexCity() async {
   List<Cities> citiesList = [];
   var location = MyHive.getLocation();
   citiesList = await LocationRepository.fetchCities({
-    Strings.latitude:  location.latitude,
-    Strings.longitude: location.longitude,
-  }) ?? [];
-  if(citiesList.isNotEmpty) {
+        Strings.latitude: location.latitude,
+        Strings.longitude: location.longitude,
+      }) ??
+      [];
+  if (citiesList.isNotEmpty) {
     _lowestDistanceCity = citiesList[0];
   }
   return _lowestDistanceCity;
@@ -203,7 +177,8 @@ Future<String>? findAddress(double latitude, double longitude) async {
 
 Future<String>? findCompleteAddress(double latitude, double longitude) async {
   var placeMarkers = await placemarkFromCoordinates(latitude, longitude);
-  var completeAddress = '${placeMarkers.first.street},${placeMarkers.first.locality},${placeMarkers.first.country}';
+  var completeAddress =
+      '${placeMarkers.first.street},${placeMarkers.first.locality},${placeMarkers.first.country}';
   return completeAddress;
 }
 
@@ -212,16 +187,16 @@ openPhoneDialPad(String phone, BuildContext context) async {
     String number = phone.toString();
     if (number == '') {
       showDialogWidget(title: 'No Phone Number Found', context: context);
-    }
-    else {
+    } else {
       await FlutterPhoneDirectCaller.callNumber(number);
     }
-  }catch(e){
+  } catch (e) {
     log("Error thrown: ${e.toString()}");
   }
 }
 
-Future<dynamic> showDialogWidget({required BuildContext context, required String title}){
+Future<dynamic> showDialogWidget(
+    {required BuildContext context, required String title}) {
   return Get.defaultDialog(
       title: '',
       content: Padding(
@@ -229,7 +204,9 @@ Future<dynamic> showDialogWidget({required BuildContext context, required String
         child: Column(
           children: [
             TextView.title(title, color: Colors.black),
-            SizedBox(height: 3.h,),
+            SizedBox(
+              height: 3.h,
+            ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.38,
               height: MediaQuery.of(context).size.height * 0.06,
@@ -237,12 +214,14 @@ Future<dynamic> showDialogWidget({required BuildContext context, required String
                   onPressed: () {
                     Get.back();
                   },
-                  child: TextView.subTitle('Okay', color: AppColors.pureWhiteColor,)),
+                  child: TextView.subTitle(
+                    'Okay',
+                    color: AppColors.pureWhiteColor,
+                  )),
             ),
           ],
         ),
-      )
-  );
+      ));
 }
 
 Future<void> launchInBrowser(Uri url) async {
@@ -254,7 +233,7 @@ Future<void> launchInBrowser(Uri url) async {
   }
 }
 
-userNotLoggedIn(){
+userNotLoggedIn() {
   Get.offAllNamed(Routes.loginScreen, arguments: true);
   showSnackBar(subTitle: Strings.notLoggedIn);
 }
@@ -264,7 +243,7 @@ Future<bool> checkCameraPermissions() async {
   if (status == PermissionStatus.granted) {
     log('Camera: Permission granted');
     final isMicEnabled = await checkMicroPhonePermission();
-    if(isMicEnabled){
+    if (isMicEnabled) {
       return true;
     }
   } else if (status == PermissionStatus.denied) {
@@ -290,11 +269,12 @@ Future<bool> checkMicroPhonePermission() async {
   return false;
 }
 
-dynamic commaFormatter(dynamic distance){
+dynamic commaFormatter(dynamic distance) {
   NumberFormat _formatter = NumberFormat('#,##,000.00');
-  dynamic formatterFormat =  _formatter.format(distance);
-  dynamic formattedDistance = formatterFormat.replaceAll(RegExp(r'^0+(?=.)'), '');
-  if(formattedDistance.toString() == '.00'){
+  dynamic formatterFormat = _formatter.format(distance);
+  dynamic formattedDistance =
+      formatterFormat.replaceAll(RegExp(r'^0+(?=.)'), '');
+  if (formattedDistance.toString() == '.00') {
     return '0';
   }
   return formattedDistance;
@@ -302,9 +282,13 @@ dynamic commaFormatter(dynamic distance){
 
 setAppInfo() async {
   PackageInfo _packageInfo = await PackageInfo.fromPlatform();
-  MyHive.setAppInfo(AppInfo(appName: _packageInfo.appName, appVersion: _packageInfo.version, packageName: _packageInfo.packageName, buildNumber: _packageInfo.buildNumber));
+  MyHive.setAppInfo(AppInfo(
+      appName: _packageInfo.appName,
+      appVersion: _packageInfo.version,
+      packageName: _packageInfo.packageName,
+      buildNumber: _packageInfo.buildNumber));
 }
 
-dismissKeyboard(){
+dismissKeyboard() {
   FocusManager.instance.primaryFocus?.unfocus();
 }

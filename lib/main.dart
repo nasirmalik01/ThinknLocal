@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/config/firebase_dynamic_links.dart';
 import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/config/system_chrome_config.dart';
 import 'package:flutter_app/constants/routes.dart';
@@ -15,13 +16,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sizer/sizer.dart';
 
-
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   String? token = await FirebaseMessaging.instance.getToken();
   debugPrint('FCM TOKEN: ${token.toString()}');
-  FirebaseMessaging.onBackgroundMessage(PushNotificationConfig.handleBackgroundPushNotifications);
+  FirebaseMessaging.onBackgroundMessage(
+      PushNotificationConfig.handleBackgroundPushNotifications);
+  await FirebaseDynamicApi.initDynamicLinks();
   PushNotificationConfig.initNotifications();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await SystemChromeConfig.setOverLayStyle();
@@ -32,8 +34,10 @@ void main() async {
   setAppInfo();
 
   runZonedGuarded(() async {
-    await SentryFlutter.init((options) {
-        options.dsn = 'https://257e0a1e6bec4cd78d1c4fdce7ae7f92@o514172.ingest.sentry.io/5617038';
+    await SentryFlutter.init(
+      (options) {
+        options.dsn =
+            'https://257e0a1e6bec4cd78d1c4fdce7ae7f92@o514172.ingest.sentry.io/5617038';
         options.tracesSampleRate = 1.0;
         options.reportPackages = false;
         options.addInAppInclude('ThinknLocal');
@@ -43,10 +47,10 @@ void main() async {
     );
 
     runApp(
-        DefaultAssetBundle(
-            bundle: SentryAssetBundle(enableStructuredDataTracing: true),
-          child: const MyApp(),
-        ),
+      DefaultAssetBundle(
+        bundle: SentryAssetBundle(enableStructuredDataTracing: true),
+        child: const MyApp(),
+      ),
     );
   }, (exception, stackTrace) async {
     await Sentry.captureException(exception, stackTrace: stackTrace);

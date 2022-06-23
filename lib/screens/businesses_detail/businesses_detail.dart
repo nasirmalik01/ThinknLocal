@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/config/firebase_dynamic_links.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/deep_link_info.dart';
@@ -116,7 +117,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                 .followBusiness(_id);
                                           },
                                           onShareClick: () {
-                                            buildDynamicLinks(
+                                            FirebaseDynamicApi.buildDynamicLinks(
                                                 Strings.businesses,
                                                 _id.toString());
                                             DeepLinkInfo? _deepLinkInfo =
