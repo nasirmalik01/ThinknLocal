@@ -4,20 +4,19 @@ import 'package:flutter_app/common/main_controller.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
-import 'package:flutter_app/res/res.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:sizer/sizer.dart';
+
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import 'businesses/businesses_screen.dart';
 import 'causes/causes_screen.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'dart:io' show Platform;  //at the top
-
 
 class BottomTabNew extends StatefulWidget {
   final int pageIndex;
@@ -31,11 +30,11 @@ class BottomTabNew extends StatefulWidget {
 class _BottomTabNewState extends State<BottomTabNew> {
   final MainController _mainController = Get.put(MainController());
 
-
   @override
   void initState() {
     super.initState();
-    _mainController.controller = PersistentTabController(initialIndex: widget.pageIndex);
+    _mainController.controller =
+        PersistentTabController(initialIndex: widget.pageIndex);
     Future.delayed(10.milliseconds);
   }
 
@@ -51,7 +50,6 @@ class _BottomTabNewState extends State<BottomTabNew> {
 
   @override
   Widget build(BuildContext context) {
-
     return Stack(
       children: [
         PersistentTabView(
@@ -59,17 +57,19 @@ class _BottomTabNewState extends State<BottomTabNew> {
           bottomScreenMargin: getHeight() * 0.09,
           navBarHeight: getHeight() * 0.09,
           controller: _mainController.controller,
-          onItemSelected: (index){
-            setState((){});
+          onItemSelected: (index) {
+            setState(() {});
           },
           screens: _buildScreens(),
           items: _navBarsItems(),
           confineInSafeArea: true,
           backgroundColor: Colors.white, // Default is Colors.white.
           handleAndroidBackButtonPress: true, // Default is true.
-          resizeToAvoidBottomInset: false, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+          resizeToAvoidBottomInset:
+              false, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
           stateManagement: true, // Default is true.
-          hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+          hideNavigationBarWhenKeyboardShows:
+              true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
           decoration: NavBarDecoration(
             borderRadius: BorderRadius.circular(getWidth() * 0.001),
             border: Border.all(color: AppColors.borderColor),
@@ -84,39 +84,20 @@ class _BottomTabNewState extends State<BottomTabNew> {
           ),
           popAllScreensOnTapOfSelectedTab: true,
           popActionScreens: PopActionScreensType.all,
-          itemAnimationProperties: const ItemAnimationProperties( // Navigation Bar's items animation properties.
+          itemAnimationProperties: const ItemAnimationProperties(
+            // Navigation Bar's items animation properties.
             duration: Duration(milliseconds: 200),
             curve: Curves.ease,
           ),
-          screenTransitionAnimation: const ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+          screenTransitionAnimation: const ScreenTransitionAnimation(
+            // Screen transition animation on change of selected tab.
             animateTabTransition: true,
             curve: Curves.ease,
             duration: Duration(milliseconds: 200),
           ),
-          navBarStyle: NavBarStyle.style17, // Choose the nav bar style with this property.
-
+          navBarStyle: NavBarStyle
+              .style17, // Choose the nav bar style with this property.
         ),
-        // Positioned(
-        //   bottom: sizes.isPhone ? Platform.isIOS ? getHeight()*0 : getHeight()*0.005 : getHeight()*0.05,
-        //   left: sizes.isPhone ? getWidth()*0.412 : getWidth()*0.433,
-        //   child:  GestureDetector(
-        //     onTap: (){
-        //       Get.to(() => const InitializeCameraScreen());
-        //     },
-        //     child: Card(
-        //       elevation: 1,
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(50),
-        //       ),
-        //       child: CircleAvatar(
-        //         radius: sizes.isPhone ?  Platform.isIOS ? 28 : 30 : 50,
-        //         backgroundColor: AppColors.greenColor,
-        //         child: Image(image: const AssetImage(Assets.scannerIcon), height: sizes.height * 0.04,),
-        //       ),
-        //     ),
-        //
-        //   ),
-        // )
       ],
     );
   }
@@ -124,52 +105,65 @@ class _BottomTabNewState extends State<BottomTabNew> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(Assets.causesSvg, height: sizes.height * 0.038, width: sizes.height * 0.038, color: _mainController.controller!.index == 0 ? AppColors.greenColor : AppColors.darkGrey),
+        icon: SvgPicture.asset(Assets.causesSvg,
+            height: sizes.height * 0.038,
+            width: sizes.height * 0.038,
+            color: _mainController.controller!.index == 0
+                ? AppColors.greenColor
+                : AppColors.darkGrey),
         title: Strings.causes,
         activeColorPrimary: AppColors.greenColor,
-        textStyle: TextStyle(
-            fontSize: 8.5.sp
-        ),
+        textStyle: TextStyle(fontSize: 8.5.sp),
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(Assets.businessSvg, height: sizes.height * 0.038, width: sizes.height * 0.038, color: _mainController.controller!.index == 1 ? AppColors.greenColor : AppColors.darkGrey),
+        icon: SvgPicture.asset(Assets.businessSvg,
+            height: sizes.height * 0.038,
+            width: sizes.height * 0.038,
+            color: _mainController.controller!.index == 1
+                ? AppColors.greenColor
+                : AppColors.darkGrey),
         title: Strings.businesses,
         activeColorPrimary: AppColors.greenColor,
-        textStyle: TextStyle(
-            fontSize: 8.5.sp
-        ),
+        textStyle: TextStyle(fontSize: 8.5.sp),
         inactiveColorPrimary: AppColors.darkGrey,
       ),
-      // PersistentBottomNavBarItem(
-      //   icon: SvgPicture.asset(Assets.scanSvg, height: 0, width: 0, color: AppColors.pureWhiteColor),
-      //   title: ("."),
-      //   activeColorPrimary: Colors.transparent,
-      //   inactiveColorPrimary: Colors.transparent,
-      // ),
       PersistentBottomNavBarItem(
         icon: Transform.scale(
             scale: 1.3,
-            child: Image.asset(Assets.cameraScan, fit: BoxFit.contain,)),
+            child: Image.asset(
+              Assets.cameraScan,
+              fit: BoxFit.contain,
+            )),
         title: '',
         activeColorPrimary: Colors.transparent,
         inactiveColorPrimary: Colors.transparent,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(Assets.notificationSvg, height: sizes.height * 0.038, width: sizes.height * 0.038, color: _mainController.controller!.index == 3 ? AppColors.greenColor : AppColors.darkGrey,),
+        icon: SvgPicture.asset(
+          Assets.notificationSvg,
+          height: sizes.height * 0.038,
+          width: sizes.height * 0.038,
+          color: _mainController.controller!.index == 3
+              ? AppColors.greenColor
+              : AppColors.darkGrey,
+        ),
         title: Strings.notifications,
         activeColorPrimary: AppColors.greenColor,
-        textStyle: TextStyle(
-            fontSize: 8.5.sp
-        ),
+        textStyle: TextStyle(fontSize: 8.5.sp),
         inactiveColorPrimary: AppColors.darkGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(Assets.accountSvg, height: sizes.height * 0.038, width: sizes.height * 0.038, color: _mainController.controller!.index == 4 ? AppColors.greenColor : AppColors.darkGrey,),
-        title: Strings.account,
-        textStyle: TextStyle(
-          fontSize: 8.5.sp
+        icon: SvgPicture.asset(
+          Assets.accountSvg,
+          height: sizes.height * 0.038,
+          width: sizes.height * 0.038,
+          color: _mainController.controller!.index == 4
+              ? AppColors.greenColor
+              : AppColors.darkGrey,
         ),
+        title: Strings.account,
+        textStyle: TextStyle(fontSize: 8.5.sp),
         activeColorPrimary: AppColors.greenColor,
         inactiveColorPrimary: AppColors.darkGrey,
       ),
@@ -187,7 +181,6 @@ class InitializeCameraScreen extends StatefulWidget {
 class _InitializeCameraScreenState extends State<InitializeCameraScreen> {
   late List<CameraDescription> allCameras;
 
-
   @override
   Widget build(BuildContext context) {
     return Container();
@@ -199,22 +192,22 @@ class _InitializeCameraScreenState extends State<InitializeCameraScreen> {
     initializeCamera();
   }
 
-Future<void> initializeCamera() async {
-  Future.delayed(100.milliseconds, () async {
-    final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
-    if(!_isUserAuthenticated){
-      userNotLoggedIn();
-    }else {
-      allCameras = await availableCameras();
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        pushNewScreen(
-          context,
-          screen: CameraScreen(camera: allCameras[0]),
-          withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
-      });
-    }
-  });
-}
+  Future<void> initializeCamera() async {
+    Future.delayed(100.milliseconds, () async {
+      final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
+      if (!_isUserAuthenticated) {
+        userNotLoggedIn();
+      } else {
+        allCameras = await availableCameras();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          pushNewScreen(
+            context,
+            screen: CameraScreen(camera: allCameras[0]),
+            withNavBar: false,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+          );
+        });
+      }
+    });
+  }
 }

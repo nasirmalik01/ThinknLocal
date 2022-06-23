@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/utils.dart';
-import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/deep_link_info.dart';
 import 'package:flutter_app/local/my_hive.dart';
+import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_components.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail_controller.dart';
 import 'package:flutter_app/screens/causes_detail/corporate_sponsor.dart';
@@ -20,6 +20,7 @@ import 'package:flutter_app/widgets/network_error.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:maps_launcher/maps_launcher.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:sizer/sizer.dart';
 
 import '/common/methods.dart';
@@ -28,7 +29,10 @@ import '/constants/colors.dart';
 import '/res/res.dart';
 
 class CausesDetail extends StatefulWidget {
-  const CausesDetail({Key? key}) : super(key: key);
+  int? causeId;
+  int? organizationId;
+
+  CausesDetail({this.causeId, this.organizationId, Key? key}) : super(key: key);
 
   @override
   _CausesDetailState createState() => _CausesDetailState();
@@ -49,16 +53,18 @@ class _CausesDetailState extends State<CausesDetail>
 
   @override
   Widget build(BuildContext context) {
-    final _causeInfo =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    int _causeId = _causeInfo[Strings.causeId];
-    int _organizationId = _causeInfo[Strings.organizationId];
+    // final _causeInfo =
+    //     ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    // int _causeId = _causeInfo[Strings.causeId];
+    // int _organizationId = _causeInfo[Strings.organizationId];
+    int? _causeId = widget.causeId;
+    int? _organizationId = widget.organizationId;
     _causesDetailController.isLoading.value = false;
     _causesDetailController.isStatsLoading.value = false;
     _causesDetailController.isCauseBottomLoading.value = false;
     _causesDetailController.isFeaturedLoading.value = false;
     _causesDetailController.isCauseAdvertisementLoading.value = false;
-    getCauseDetail(_causeId);
+    getCauseDetail(_causeId!);
 
     return SafeArea(
       child: Scaffold(
@@ -508,9 +514,13 @@ class _CausesDetailState extends State<CausesDetail>
                                                                       return GestureDetector(
                                                                         onTap:
                                                                             () {
-                                                                          Get.toNamed(
-                                                                              Routes.businessDetailScreen,
-                                                                              arguments: _causesDetailController.causeBottomDetails![index].id);
+                                                                          pushNewScreen(
+                                                                            context,
+                                                                            screen:
+                                                                                BusinessesDetailScreen(businessId: _causesDetailController.causeBottomDetails![index].id),
+                                                                            withNavBar:
+                                                                                true,
+                                                                          );
                                                                         },
                                                                         child:
                                                                             DetailCategoryList(

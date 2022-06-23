@@ -39,7 +39,8 @@ class Routes {
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String resetPinScreen = '/resetPinScreen';
   static const String newPasswordScreen = '/newPasswordScreen';
-  static const String resetPasswordSuccessScreen = '/resetPasswordSuccessScreen';
+  static const String resetPasswordSuccessScreen =
+      '/resetPasswordSuccessScreen';
   static const String editAccountInfoScreen = '/editAccountInfoScreen';
   static const String bottomNavBarScreen = '/bottomNavBarScreen';
   static const String causeScreen = '/causeScreen';
@@ -47,10 +48,13 @@ class Routes {
   static const String causesDetailScreen = '/causesDetailScreen';
   static const String businessDetailScreen = '/businessDetailScreen';
   static const String businessCategoryScreen = '/businessCategoryScreen';
-  static const String seeAllUpcomingCausesScreen = '/seeAllUpcomingCausesScreen';
-  static const String seeAllNearbyBusinessesScreen = '/seeAllNearbyBusinessesScreen';
+  static const String seeAllUpcomingCausesScreen =
+      '/seeAllUpcomingCausesScreen';
+  static const String seeAllNearbyBusinessesScreen =
+      '/seeAllNearbyBusinessesScreen';
   static const String locationPermissionScreen = '/locationPermissionScreen';
-  static const String notificationPermissionScreen = '/notificationPermissionScreen';
+  static const String notificationPermissionScreen =
+      '/notificationPermissionScreen';
   static const String locationSearchScreen = '/locationSearchScreen';
   static const String aboutVisit = '/aboutVisit';
   static const String causeSearch = '/causeSearch';
@@ -127,7 +131,7 @@ class Routes {
       ),
       GetPage(
         name: causesDetailScreen,
-        page: () => const CausesDetail(),
+        page: () => CausesDetail(),
       ),
       GetPage(
         name: businessDetailScreen,
