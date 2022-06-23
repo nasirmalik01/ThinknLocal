@@ -46,8 +46,8 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
             (_notificationController.isNotificationsLoading.value || _notificationController.isContributionLoading.value)
             ? circularProgressIndicator()
             : Container(
-              height: sizes.height ,
-            width: sizes.width,
+              height: sizes.height,
+              width: sizes.width,
               decoration:  BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -68,10 +68,10 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                  child: Container(
-                    color: Colors.white,
+                Container(
+                  color: AppColors.pureWhiteColor,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -88,7 +88,9 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                     ),
                   ),
                 ),
-                SizedBox(height: getHeight() * 0.04),
+                Container(
+                    color: AppColors.pureWhiteColor,
+                    child: SizedBox(height: getHeight() * 0.04)),
                 Container(
                   padding: EdgeInsets.symmetric(
                       vertical: sizes.heightRatio * 5),
@@ -214,8 +216,10 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                             : handleEmptyState(context, Strings.noNotifications),
                           ],
                         ),
+                        color: AppColors.pureWhiteColor,
                       ),
                       Container(
+                        color: AppColors.pureWhiteColor,
                         padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.03),
                         child: Column(
                           children: [
@@ -253,6 +257,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                         ),
                       ),
                       Container(
+                        color: AppColors.pureWhiteColor,
                         padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.03),
                         child: Column(
                           children: [

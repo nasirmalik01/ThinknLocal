@@ -41,6 +41,7 @@ class AccountScreen extends StatelessWidget {
             children: [
               Container(
                 height: getHeight() * 0.1,
+                width: getWidth(),
                 padding: EdgeInsets.only(bottom: sizes.height * 0.02),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -53,10 +54,10 @@ class AccountScreen extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: TextView.title(Strings.hello, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium,)),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                child: Container(
-                  color: Colors.white,
+              Container(
+                color: AppColors.pureWhiteColor,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                   child: Column(
                     children: [
                       UserProfileBox(
