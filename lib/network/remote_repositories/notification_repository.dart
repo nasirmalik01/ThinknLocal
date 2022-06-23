@@ -9,7 +9,8 @@ class NotificationRepository {
   static Future<List<Contributions>?> fetchContributions(
       Map<String, dynamic> query) async {
     List<Contributions> contributionsList = [];
-    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.contributions, query);
+    final response = await getItLocator<RemoteServices>()
+        .getRequest(ApiEndPoints.contributions, query);
     if (response == null) {
       return null;
     }
@@ -38,6 +39,7 @@ class NotificationRepository {
         UploadDirectContributions.fromJson(response);
     return _uploadDirectContributions;
   }
+
   static Future<dynamic> createContribution(Map<String, dynamic> query) async {
     final response = await getItLocator<RemoteServices>()
         .postRequest(ApiEndPoints.contributions, query);
@@ -56,7 +58,7 @@ class NotificationRepository {
     List<Notification> _notificationList = [];
 
     if (response == null) {
-      return null;
+      return [];
     }
 
     final List<dynamic> _notificationsDecodeList =
