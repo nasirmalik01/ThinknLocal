@@ -258,6 +258,7 @@ class BusinessesScreen extends StatelessWidget {
                             : _businessesController
                             .businessList!.isNotEmpty
                             ? ListView.builder(
+                          physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemCount: _businessesController
                               .businessList!.isEmpty
@@ -375,6 +376,7 @@ class BusinessesScreen extends StatelessWidget {
                             ?.isNotEmpty ??
                             false
                             ? ListView.builder(
+                          physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemCount: _businessesController
                               .recentlyAddedBusinessList!
@@ -464,7 +466,7 @@ class BusinessesScreen extends StatelessWidget {
                                 ? ListView.separated(
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
-                              physics: const ScrollPhysics(),
+                              physics: const BouncingScrollPhysics(),
                               itemCount: _businessesController
                                   .nearbyBusinessList!
                                   .isEmpty

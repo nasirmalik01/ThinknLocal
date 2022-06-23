@@ -58,12 +58,14 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This application requires camera usage for capturing pictures of receipts</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Location permission is required to get current location</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location permission is required to get current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location permission is required to get current location</string>
+    <string>Need location when in use</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Always and when in use!</string>
+    <key>NSLocationUsageDescription</key>
+    <string>Older devices need location.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Can I have location always?</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone usage is required by camera view to capture pictures of receipts</string>
 	<key>NSPhotoLibraryUsageDescription</key>

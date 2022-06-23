@@ -32,5 +32,9 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:59271748190:ios:6abf4de96396d107a672cf</string>
+	<key>NSLocationUsageDescription</key>
+    <string></string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string></string>
 </dict>
 </plist>

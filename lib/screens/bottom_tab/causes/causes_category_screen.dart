@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
@@ -16,6 +18,7 @@ import 'package:flutter_app/screens/causes_detail_listing/upcoming_causes_listin
 import 'package:flutter_app/widgets/common_widgets.dart';
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:sizer/sizer.dart';
 
@@ -105,6 +108,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                                       .toString(),
                                   index: index,
                                   onClickBox: () async {
+                                    return openAppSettings();
                                     pushNewScreen(
                                       context,
                                       screen: CausesDetail(
