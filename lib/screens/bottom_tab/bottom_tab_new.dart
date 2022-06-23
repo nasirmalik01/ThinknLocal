@@ -199,15 +199,18 @@ class _InitializeCameraScreenState extends State<InitializeCameraScreen> {
       if (!_isUserAuthenticated) {
         userNotLoggedIn();
       } else {
-        allCameras = await availableCameras();
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          pushNewScreen(
-            context,
-            screen: CameraScreen(camera: allCameras[0]),
-            withNavBar: false,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
-        });
+        bool _isPermissionsEnabled = await checkCameraPermissions();
+        if(_isPermissionsEnabled) {
+          allCameras = await availableCameras();
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            pushNewScreen(
+              context,
+              screen: CameraScreen(camera: allCameras[0]),
+              withNavBar: false,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+            );
+          });
+        }
       }
     });
   }
