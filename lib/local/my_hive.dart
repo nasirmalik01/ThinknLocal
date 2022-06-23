@@ -9,10 +9,12 @@ class MyHive {
   static const String _location = 'UserLocation';
   static const String _deepLinkInfo = 'DeepLinkInfo';
   static const String _appInfo = 'AppInfo';
-  static const String _isPushNotificationsEnabled = 'IsPushNotificationsEnabled';
+  static const String _isPushNotificationsEnabled =
+      'IsPushNotificationsEnabled';
   static const String _isEmailEnabled = 'IsEmailEnabled';
   static const String _isLocationServicesEnabled = 'IsLocationServicesEnabled';
   static const String _locationAddress = 'LocationAddress';
+  static const String _fcmToken = '_fcmToken';
 
   static late Box _ins;
 
@@ -48,6 +50,14 @@ class MyHive {
 
   static getLocationAddress() {
     return _ins.get(_locationAddress);
+  }
+
+  static setFCMToken(String? fcmToken) {
+    _ins.put(_fcmToken, fcmToken);
+  }
+
+  static getFCMToken() {
+    return _ins.get(_fcmToken);
   }
 
   static setDeepLinkInfo(DeepLinkInfo deepLinkInfo) {
@@ -89,7 +99,4 @@ class MyHive {
   static isLocationServicesEnabled() {
     return _ins.get(_isLocationServicesEnabled, defaultValue: true);
   }
-
-
-
 }

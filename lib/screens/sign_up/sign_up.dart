@@ -6,18 +6,19 @@ import 'package:flutter_app/screens/sign_up/sign_up_controller.dart';
 import 'package:flutter_app/widgets/button.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';
+
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/text_views.dart';
 
 class SignUpScreen extends StatelessWidget {
-
   final TextEditingController? firstNameController = TextEditingController();
   final TextEditingController? lastNameController = TextEditingController();
   final TextEditingController? emailController = TextEditingController();
   final TextEditingController? passwordController = TextEditingController();
-  final TextEditingController? confirmPasswordController = TextEditingController();
+  final TextEditingController? confirmPasswordController =
+      TextEditingController();
   final TextEditingController? zipCodeController = TextEditingController();
   final TextEditingController? groupCodeController = TextEditingController();
   final SignUpController _signUpController = Get.put(SignUpController());
@@ -52,48 +53,56 @@ class SignUpScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const Image(
-                    image: AssetImage(Assets.logo,),
+                    image: AssetImage(
+                      Assets.logo,
+                    ),
                     fit: BoxFit.fill,
                   ),
                   SizedBox(height: getHeight() * 0.06),
-                  TextView.titleWithDecoration("Create your account to continue!", color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize16),
+                  TextView.titleWithDecoration(
+                      "Create your account to continue!",
+                      color: AppColors.blackColor,
+                      fontFamily: Assets.poppinsRegular,
+                      lines: 1,
+                      fontSize: sizes.fontSize16),
                   SizedBox(height: getHeight() * 0.03),
                   TextFieldWidget(
                       key: const ValueKey(Strings.firstName),
                       textEditingController: firstNameController,
                       hint: "First Name",
-                      textInputType: TextInputType.emailAddress
-                  ),
+                      textInputType: TextInputType.emailAddress),
                   SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
                     key: const ValueKey(Strings.lastName),
                     textEditingController: lastNameController,
-                      hint: "Last Name",
+                    hint: "Last Name",
                   ),
                   SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
                     key: const ValueKey(Strings.email),
                     textEditingController: emailController,
-                      hint: "Email",
-                  ),SizedBox(height: getHeight() * 0.035),
+                    hint: "Email",
+                  ),
+                  SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
                       key: const ValueKey(Strings.password),
                       textEditingController: passwordController,
                       hint: "Password",
-                      obscureText: true
-                  ),SizedBox(height: getHeight() * 0.035),
+                      obscureText: true),
+                  SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
                       key: const ValueKey(Strings.passwordConfirmation),
                       textEditingController: confirmPasswordController,
                       hint: "Confirm Password",
-                      obscureText: true
-                  ),SizedBox(height: getHeight() * 0.035),
+                      obscureText: true),
+                  SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
                     key: const ValueKey(Strings.zip),
                     textEditingController: zipCodeController,
-                      hint: "Zip Code",
-                      textInputType: TextInputType.number,
-                  ),SizedBox(height: getHeight() * 0.035),
+                    hint: "Zip Code",
+                    textInputType: TextInputType.number,
+                  ),
+                  SizedBox(height: getHeight() * 0.035),
                   TextFieldWidget(
                       key: const ValueKey(Strings.groupCode),
                       textEditingController: groupCodeController,
@@ -101,62 +110,83 @@ class SignUpScreen extends StatelessWidget {
                       textColor: AppColors.lightBlue,
                       hintTextColor: AppColors.lightBlue,
                       cursorColor: AppColors.lightBlue,
-                      bgColor: AppColors.lightPurpleColorForTextField
-                  ),
+                      bgColor: AppColors.lightPurpleColorForTextField),
                   SizedBox(height: getHeight() * 0.01),
-                  TextView.subTitleWithBlurRadius("*Part of a club, organization or special group?", color: AppColors.lightBlue, fontFamily: Assets.poppinsMedium),
+                  TextView.subTitleWithBlurRadius(
+                      "*Part of a club, organization or special group?",
+                      color: AppColors.lightBlue,
+                      fontFamily: Assets.poppinsMedium),
                   SizedBox(height: getHeight() * 0.06),
                   Button(
                       key: const ValueKey(Strings.signUpKeyButton),
                       onPress: () {
-                    if(firstNameController!.text.trim().isEmpty || lastNameController!.text.trim().isEmpty || emailController!.text.trim().isEmpty || passwordController!.text.trim().isEmpty || confirmPasswordController!.text.trim().isEmpty || zipCodeController!.text.trim().isEmpty){
-                      _signUpController.isEmptyTextFieldValues.value = true;
-                       return showSnackBar(subTitle: 'Please fill all the required fields');
-                    }
+                        if (firstNameController!.text.trim().isEmpty ||
+                            lastNameController!.text.trim().isEmpty ||
+                            emailController!.text.trim().isEmpty ||
+                            passwordController!.text.trim().isEmpty ||
+                            confirmPasswordController!.text.trim().isEmpty ||
+                            zipCodeController!.text.trim().isEmpty) {
+                          _signUpController.isEmptyTextFieldValues.value = true;
+                          return showSnackBar(
+                              subTitle: 'Please fill all the required fields');
+                        }
 
-                    if(passwordController!.text.length < 6){
-                      _signUpController.isShortPassword.value = true;
-                      return showSnackBar(title: 'Password too short', subTitle: 'It should be of minimum 6 characters');
-                    }
+                        if (passwordController!.text.length < 6) {
+                          _signUpController.isShortPassword.value = true;
+                          return showSnackBar(
+                              title: 'Password too short',
+                              subTitle: 'It should be of minimum 6 characters');
+                        }
 
-                    if(confirmPasswordController!.text.length < 6){
-                      return showSnackBar(title: 'Confirm Password too short', subTitle: 'It should be of minimum 6 characters');
-                    }
+                        if (confirmPasswordController!.text.length < 6) {
+                          return showSnackBar(
+                              title: 'Confirm Password too short',
+                              subTitle: 'It should be of minimum 6 characters');
+                        }
 
-                    if(passwordController!.text != confirmPasswordController!.text){
-                      _signUpController.isPasswordNotMatches.value = true;
-                      return showSnackBar(subTitle: 'Password doesn\'t matched');
-                    }
+                        if (passwordController!.text !=
+                            confirmPasswordController!.text) {
+                          _signUpController.isPasswordNotMatches.value = true;
+                          return showSnackBar(
+                              subTitle: 'Password doesn\'t matched');
+                        }
 
-                    if(zipCodeController!.text.length != 5){
-                      _signUpController.isZipLengthNotFive.value = true;
-                      return showSnackBar(subTitle: 'Zip code should contains 5 characters');
-                    }
+                        if (zipCodeController!.text.length != 5) {
+                          _signUpController.isZipLengthNotFive.value = true;
+                          return showSnackBar(
+                              subTitle:
+                                  'Zip code should contains 5 characters');
+                        }
 
-                    showLoadingSpinner();
-                    _signUpController.registerUser(
-                      firstName: firstNameController!.text,
-                      lastName: lastNameController!.text,
-                      email: emailController!.text,
-                      password: passwordController!.text,
-                      confirmPassword: confirmPasswordController!.text,
-                      zipCode: zipCodeController!.text,
-                      groupCode: groupCodeController!.text,
-
-                    );
-                  },
-                  text: "Sign Up!"),
+                        showThreeBounceLoading();
+                        _signUpController.registerUser(
+                          firstName: firstNameController!.text,
+                          lastName: lastNameController!.text,
+                          email: emailController!.text,
+                          password: passwordController!.text,
+                          confirmPassword: confirmPasswordController!.text,
+                          zipCode: zipCodeController!.text,
+                          groupCode: groupCodeController!.text,
+                        );
+                      },
+                      text: "Sign Up!"),
                   SizedBox(height: getHeight() * 0.04),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextView.titleWithDecoration("Already have an account? ", fontFamily: Assets.poppinsRegular, color: AppColors.blackColor, lines: 1),
+                      TextView.titleWithDecoration("Already have an account? ",
+                          fontFamily: Assets.poppinsRegular,
+                          color: AppColors.blackColor,
+                          lines: 1),
                       GestureDetector(
-                        onTap: () {
-                          Get.toNamed(Routes.loginScreen);
-                        },
-                          child: TextView.titleWithDecoration("Sign In", fontFamily: Assets.poppinsMedium, color: AppColors.greenColor, lines: 1, textDecoration: TextDecoration.underline)),
-
+                          onTap: () {
+                            Get.toNamed(Routes.loginScreen);
+                          },
+                          child: TextView.titleWithDecoration("Sign In",
+                              fontFamily: Assets.poppinsMedium,
+                              color: AppColors.greenColor,
+                              lines: 1,
+                              textDecoration: TextDecoration.underline)),
                     ],
                   ),
                   SizedBox(height: getHeight() * 0.06),

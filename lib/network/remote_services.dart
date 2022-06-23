@@ -17,18 +17,20 @@ class RemoteServices {
   static bool isZipRequired = false;
   bool appUnderMaintenance = false;
 
-  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map, {void Function(int, int)? uploadFile}) async {
+  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map,
+      {void Function(int, int)? uploadFile}) async {
     dynamic resJson;
     isZipRequired = false;
     try {
-      dynamic _result = await MySecureHttpClient.getClient().post(endPoint, data: map, onSendProgress: uploadFile);
+      dynamic _result = await MySecureHttpClient.getClient()
+          .post(endPoint, data: map, onSendProgress: uploadFile);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
         resJson = json.decode(_result.toString());
         return resJson;
       }
     } catch (e) {
       final _isServerException = serverHandlingExceptions(e, statusCode, error);
-      if(_isServerException) return;
+      if (_isServerException) return;
       if (e is DioError) {
         final errorMessage = DioExceptions.fromDioError(e).toString();
         log('error in post request: $errorMessage');
@@ -43,7 +45,8 @@ class RemoteServices {
   Future<dynamic> getRequest(String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      Response _result = await MySecureHttpClient.getClient().get(endPoint, queryParameters: map);
+      Response _result = await MySecureHttpClient.getClient()
+          .get(endPoint, queryParameters: map);
       checkNextPage(_result.headers);
       log('status_code: ${_result.statusCode}');
       if (_result.statusCode == 200) {
@@ -66,22 +69,22 @@ class RemoteServices {
       String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      dynamic _result = await MySecureHttpClient.getClient().patch(endPoint, data: map);
+      dynamic _result =
+          await MySecureHttpClient.getClient().patch(endPoint, data: map);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
         resJson = json.decode(_result.toString());
         return resJson;
       }
-    }
-    catch (e) {
+    } catch (e) {
       serverHandlingExceptions(e, statusCode, error);
       throw Exception(e.toString());
     }
   }
 
-  checkNextPage(Headers headers){
-    if(headers.toString().contains(Strings.next)){
+  checkNextPage(Headers headers) {
+    if (headers.toString().contains(Strings.next)) {
       isNextPage = true;
-    }else{
+    } else {
       isNextPage = false;
     }
   }

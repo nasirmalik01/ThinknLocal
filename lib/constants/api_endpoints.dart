@@ -1,4 +1,4 @@
-class ApiEndPoints{
+class ApiEndPoints {
   static const authenticate = 'authenticate';
   static const me = 'me';
   static const users = 'users';
@@ -18,4 +18,6 @@ class ApiEndPoints{
   static const advertisements = 'advertisements';
   static const String read = 'read';
   static const String unread = 'unread';
+  static const String devices = 'devices';
+  static const String add = 'add';
 }

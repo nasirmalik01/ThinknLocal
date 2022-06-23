@@ -9,15 +9,23 @@ import 'package:flutter_app/network/remote_services.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 
-class SignUpController extends GetxController{
+class SignUpController extends GetxController {
   RxBool isEmptyTextFieldValues = false.obs;
   RxBool isShortPassword = false.obs;
   RxBool isPasswordNotMatches = false.obs;
   RxBool isZipLengthNotFive = false.obs;
 
-  Future registerUser({String? email, String? password, String? confirmPassword, String? firstName, String? lastName, String? zipCode, String? groupCode}) async {
+  Future registerUser(
+      {String? email,
+      String? password,
+      String? confirmPassword,
+      String? firstName,
+      String? lastName,
+      String? zipCode,
+      String? groupCode}) async {
     DeepLinkInfo? _deepLinkInfo = MyHive.getDeepLinkInfo();
-    final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.users, {
+    final response =
+        await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.users, {
       Strings.email: email,
       Strings.password: password,
       Strings.passwordConfirmation: confirmPassword,
@@ -36,8 +44,19 @@ class SignUpController extends GetxController{
     }
 
     /// User registered successfully
-   Get.back();
-   await showSnackBar(title: 'User Registered successfully', subTitle: 'Lets login with your credentials', backgroundColor: AppColors.greenColor);
-   Get.offAndToNamed(Routes.loginScreen);
+    addFcmToken();
+    Get.back();
+    await showSnackBar(
+        title: 'User Registered successfully',
+        subTitle: 'Lets login with your credentials',
+        backgroundColor: AppColors.greenColor);
+    Get.offAndToNamed(Routes.loginScreen);
+  }
+
+  addFcmToken() async {
+    String fcmToken = MyHive.getFCMToken();
+    await getItLocator<RemoteServices>().postRequest(
+        '${ApiEndPoints.devices}/${ApiEndPoints.add}',
+        {Strings.token: fcmToken});
   }
 }

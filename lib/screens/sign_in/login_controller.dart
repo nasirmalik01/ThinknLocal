@@ -41,19 +41,18 @@ class LogInController extends GetxController {
         Strings.zip: zip ?? '',
       };
 
-      showLoadingSpinner();
+      showThreeBounceLoading();
       await authenticateUser(query: _query, provider: Strings.apple);
-
-    }catch(e){
+    } catch (e) {
       log(e.toString());
     }
   }
 
   loginWithGoogle({String? zip}) async {
-    try{
+    try {
       GoogleSignIn googleSignIn = GoogleSignIn();
       GoogleSignInAccount? account = await googleSignIn.signIn();
-      if(account == null) return;
+      if (account == null) return;
 
       var credentials = await account.authentication;
 
@@ -65,17 +64,19 @@ class LogInController extends GetxController {
 
       log('idToken: ${credentials.idToken.toString()}');
 
-      showLoadingSpinner();
+      showThreeBounceLoading();
       await authenticateUser(query: _query, provider: Strings.google);
-    }catch(e){
+    } catch (e) {
       log('Error: ${e.toString()}');
     }
   }
 
-  Future<void> authenticateUser({required Map<String, dynamic> query, String? provider}) async {
-    final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, query);
+  Future<void> authenticateUser(
+      {required Map<String, dynamic> query, String? provider}) async {
+    final response = await GetIt.I<RemoteServices>()
+        .postRequest(ApiEndPoints.authenticate, query);
 
-    if(RemoteServices.isZipRequired){
+    if (RemoteServices.isZipRequired) {
       Get.toNamed(Routes.requiredParamsScreen, arguments: provider);
       showSnackBar(subTitle: Strings.requiredFieldError);
     }
@@ -83,9 +84,17 @@ class LogInController extends GetxController {
     if (response != null) {
       String token = response['token'];
       await MyHive.setToken(token);
+      addFcmToken();
       Get.back();
       PreferenceUtils.setBool(Strings.showHome, true);
       Get.offAndToNamed(Routes.bottomNavBarScreen);
     }
+  }
+
+  addFcmToken() async {
+    String fcmToken = MyHive.getFCMToken();
+    await getItLocator<RemoteServices>().postRequest(
+        '${ApiEndPoints.devices}/${ApiEndPoints.add}',
+        {Strings.token: fcmToken});
   }
 }

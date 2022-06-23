@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/cause_request_type.dart';
@@ -14,8 +13,9 @@ import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_app/network/remote_services.dart';
 import 'package:flutter_app/screens/location_search/location_search_controller.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-class CausesController extends GetxController{
+class CausesController extends GetxController {
   RxBool isFeatured = true.obs;
   RxBool isTrending = false.obs;
   RxBool isFavorites = false.obs;
@@ -45,10 +45,11 @@ class CausesController extends GetxController{
     getCauses(Strings.featured, page: 1);
     getUpComingCauses();
     getRecentlyStartedCauses();
+    checkPermissions();
     super.onInit();
   }
 
-  setFeaturedTab(){
+  setFeaturedTab() {
     isFeatured.value = true;
     isTrending.value = false;
     isFavorites.value = false;
@@ -57,7 +58,7 @@ class CausesController extends GetxController{
     getCauses(Strings.featured);
   }
 
-  setTrendingTab(){
+  setTrendingTab() {
     isFeatured.value = false;
     isTrending.value = true;
     isFavorites.value = false;
@@ -66,7 +67,7 @@ class CausesController extends GetxController{
     getCauses(Strings.trending);
   }
 
-  setFavoritesTab(){
+  setFavoritesTab() {
     isFeatured.value = false;
     isTrending.value = false;
     isFavorites.value = true;
@@ -75,7 +76,7 @@ class CausesController extends GetxController{
     getCauses(Strings.favorite);
   }
 
-  setPastTab(){
+  setPastTab() {
     isFeatured.value = false;
     isTrending.value = false;
     isFavorites.value = false;
@@ -84,20 +85,22 @@ class CausesController extends GetxController{
     getCauses(Strings.past);
   }
 
-  getCauses(String selectedTab, {bool isPagination = false, int page = 1}) async {
-    if(isPagination){
+  getCauses(String selectedTab,
+      {bool isPagination = false, int page = 1}) async {
+    if (isPagination) {
       List<Causes>? paginatedList = await handleCausePagination(selectedTab);
-      if(paginatedList!=null) {
+      if (paginatedList != null) {
         topCausesContainersList!.addAll(paginatedList);
       }
     } else {
       isTopCausesContainersList.value = true;
-      topCausesContainersList =  await (CausesRemoteRepository.fetchCauses({
-      selectedTab : true,
-      Strings.page: page
-    },));
+      topCausesContainersList = await (CausesRemoteRepository.fetchCauses(
+        {selectedTab: true, Strings.page: page},
+      ));
     }
-    if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
+    if (RemoteServices.statusCode != 200 &&
+        RemoteServices.statusCode != 201 &&
+        RemoteServices.statusCode != 204) {
       isError.value = true;
       isTopCausesContainersList.value = false;
       isUpcomingCausesLoading.value = false;
@@ -109,12 +112,13 @@ class CausesController extends GetxController{
   }
 
   getUpComingCauses({bool isPagination = false, int page = 1}) async {
-    if(isPagination){
-      List<Causes>? paginatedList = await handleCausePagination(Strings.upcoming);
-      if(paginatedList!=null) {
+    if (isPagination) {
+      List<Causes>? paginatedList =
+          await handleCausePagination(Strings.upcoming);
+      if (paginatedList != null) {
         upcomingCauses!.addAll(paginatedList);
       }
-    }else {
+    } else {
       isUpcomingCausesLoading.value = true;
       upcomingCauses = await (CausesRemoteRepository.fetchCauses({
         Strings.upcoming: true,
@@ -124,17 +128,15 @@ class CausesController extends GetxController{
   }
 
   getRecentlyStartedCauses({bool isPagination = false, int page = 1}) async {
-    if(isPagination){
+    if (isPagination) {
       List<Causes>? paginatedList = await handleCausePagination(Strings.recent);
-      if(paginatedList!=null) {
+      if (paginatedList != null) {
         recentlyStartedCauses!.addAll(paginatedList);
       }
-    }else {
+    } else {
       isRecentlyStartedCausesLoading.value = true;
-      recentlyStartedCauses = await (CausesRemoteRepository.fetchCauses({
-        Strings.recent: true,
-        Strings.page: page
-      }));
+      recentlyStartedCauses = await (CausesRemoteRepository.fetchCauses(
+          {Strings.recent: true, Strings.page: page}));
     }
     isRecentlyStartedCausesLoading.value = false;
   }
@@ -147,88 +149,97 @@ class CausesController extends GetxController{
         handleDynamicLink(deeplink);
       }
     }).onError((error) {});
-    final pendingDynamicLink = await FirebaseDynamicLinks.instance.getInitialLink();
-    if(pendingDynamicLink != null) {
+    final pendingDynamicLink =
+        await FirebaseDynamicLinks.instance.getInitialLink();
+    if (pendingDynamicLink != null) {
       handleDynamicLink(pendingDynamicLink.link);
     }
   }
 
   getLocationAddress() async {
-    final LocationSearchController _locationSearchController = Get.find<LocationSearchController>();
-    _locationSearchController.locationAddress.value = MyHive.getLocationAddress();
+    final LocationSearchController _locationSearchController =
+        Get.find<LocationSearchController>();
+    _locationSearchController.locationAddress.value =
+        MyHive.getLocationAddress();
   }
 
   void handleDynamicLink(Uri url) {
     List<String> _splitDynamicLink = [];
     _splitDynamicLink.addAll(url.path.split('/'));
     String _category = _splitDynamicLink[1];
-    if(_category == Strings.causes){
+    if (_category == Strings.causes) {
       Get.toNamed(Routes.causesDetailScreen, arguments: {
         Strings.causeId: int.parse(_splitDynamicLink[2]),
         Strings.organizationId: int.parse(_splitDynamicLink[3])
       });
-    }else{
-      Get.toNamed(Routes.businessDetailScreen, arguments: int.parse(_splitDynamicLink[2]));
+    } else {
+      Get.toNamed(Routes.businessDetailScreen,
+          arguments: int.parse(_splitDynamicLink[2]));
     }
   }
 
-  Future<void> setPagination({bool isFirst = false}) async{
-    if(isFirst){
+  Future<void> setPagination({bool isFirst = false}) async {
+    if (isFirst) {
       pageIndex.value = 1;
       update();
     }
-      // ignore: invalid_use_of_protected_member
+    // ignore: invalid_use_of_protected_member
     if (scrollController.hasListeners == false) {
-          scrollController.addListener(() async {
-            if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-              if(RemoteServices.isNextPage == true) {
-                pageIndex.value = pageIndex.value + 1;
-                log('Index : ${pageIndex.value}');
-                String _selectedCategory = getSelectedCategory();
-                switch(requestType.value){
-                  case CauseRequestType.causes:
-                    getCauses(_selectedCategory, isPagination: true);
-                    break;
-                  case CauseRequestType.upcoming:
-                    getUpComingCauses(isPagination: true);
-                    break;
-                  case CauseRequestType.recent:
-                    getRecentlyStartedCauses(isPagination: true);
-                    break;
-                  default:break;
-                }
+      scrollController.addListener(() async {
+        if (scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent) {
+          if (RemoteServices.isNextPage == true) {
+            pageIndex.value = pageIndex.value + 1;
+            log('Index : ${pageIndex.value}');
+            String _selectedCategory = getSelectedCategory();
+            switch (requestType.value) {
+              case CauseRequestType.causes:
+                getCauses(_selectedCategory, isPagination: true);
+                break;
+              case CauseRequestType.upcoming:
+                getUpComingCauses(isPagination: true);
+                break;
+              case CauseRequestType.recent:
+                getRecentlyStartedCauses(isPagination: true);
+                break;
+              default:
+                break;
             }
           }
-        });
+        }
+      });
     }
   }
 
-  Future<List<Causes>?> handleCausePagination(String selectedTab) async{
+  Future<List<Causes>?> handleCausePagination(String selectedTab) async {
     isPaginatedLoading.value = true;
     showLoadingDialog(message: Strings.loadingMoreData);
     List<Causes>? _paginatedList = [];
-    _paginatedList = await (CausesRemoteRepository.fetchCauses({
-      selectedTab: true,
-      Strings.page: pageIndex.value
-    },));
+    _paginatedList = await (CausesRemoteRepository.fetchCauses(
+      {selectedTab: true, Strings.page: pageIndex.value},
+    ));
     Get.back();
     isPaginatedLoading.value = false;
     return _paginatedList;
   }
 
-  String getSelectedCategory(){
-    if(isFeatured.value == true){
+  String getSelectedCategory() {
+    if (isFeatured.value == true) {
       selectedCategory.value = Strings.featured;
-    }
-    else if(isTrending.value == true){
+    } else if (isTrending.value == true) {
       selectedCategory.value = Strings.trending;
-    }
-    else if(isFavorites.value == true){
+    } else if (isFavorites.value == true) {
       selectedCategory.value = Strings.favorites;
-    }
-    else{
+    } else {
       selectedCategory.value = Strings.past;
     }
     return selectedCategory.value;
+  }
+
+  checkPermissions() async {
+    PermissionStatus status = await Permission.location.status;
+    if (status.isDenied) {
+      Get.offAllNamed(Routes.locationPermissionScreen);
+    }
   }
 }
