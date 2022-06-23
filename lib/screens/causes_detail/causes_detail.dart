@@ -37,8 +37,7 @@ class CausesDetail extends StatefulWidget {
 class _CausesDetailState extends State<CausesDetail>
     with SingleTickerProviderStateMixin {
   final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
-  final CausesDetailController _causesDetailController =
-      Get.put(CausesDetailController());
+  final CausesDetailController _causesDetailController = Get.put(CausesDetailController());
   TabController? _tabController;
 
   @override
@@ -53,6 +52,11 @@ class _CausesDetailState extends State<CausesDetail>
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     int _causeId = _causeInfo[Strings.causeId];
     int _organizationId = _causeInfo[Strings.organizationId];
+    _causesDetailController.isLoading.value = false;
+    _causesDetailController.isStatsLoading.value = false;
+    _causesDetailController.isCauseBottomLoading.value = false;
+    _causesDetailController.isFeaturedLoading.value = false;
+    _causesDetailController.isCauseAdvertisementLoading.value= false;
     getCauseDetail(_causeId);
 
     return SafeArea(
@@ -75,8 +79,7 @@ class _CausesDetailState extends State<CausesDetail>
                         _causesDetailController.isStatsLoading.value ||
                         _causesDetailController.isCauseBottomLoading.value ||
                         _causesDetailController.isFeaturedLoading.value ||
-                        _causesDetailController
-                            .isCauseAdvertisementLoading.value)
+                        _causesDetailController.isCauseAdvertisementLoading.value)
                     ? circularProgressIndicator()
                     : CustomScrollView(
                         physics: const AlwaysScrollableScrollPhysics(),
@@ -92,23 +95,20 @@ class _CausesDetailState extends State<CausesDetail>
                                   height: sizes.height * 0.35,
                                   child: CausesDetailTopImageContainer(
                                     name: _causesDetailController
-                                        .causeDetail!.name,
+                                        .causeDetail?.name,
                                     fullBoxImage: _causesDetailController
-                                        .causeDetail!.image,
+                                        .causeDetail?.image,
                                     logoImage: _causesDetailController
-                                        .causeDetail!.organization?.logo,
+                                        .causeDetail?.organization?.logo,
                                     completePercentage: _causesDetailController
-                                        .causeDetail!.percentage!,
+                                        .causeDetail?.percentage ?? 0.0,
                                     collectedAmount: _causesDetailController
-                                        .causeDetail!.raised!
-                                        .toStringAsFixed(2),
+                                        .causeDetail?.raised?.toStringAsFixed(2) ?? '0.0',
                                     totalAmount: _causesDetailController
-                                        .causeDetail!.goal!
-                                        .toStringAsFixed(2),
+                                        .causeDetail?.goal?.toStringAsFixed(2) ?? '0.0',
                                     endDate:
-                                        "${_causesDetailController.causeDetail!.start} - ${_causesDetailController.causeDetail!.end}",
-                                    isFavorite: _causesDetailController
-                                        .isCauseFollowed.value,
+                                        "${_causesDetailController.causeDetail?.start} - ${_causesDetailController.causeDetail?.end}",
+                                    isFavorite: _causesDetailController.isCauseFollowed.value,
                                     onClickBox: () {},
                                     onPressBackArrow: () {
                                       Navigator.pop(context);
@@ -771,15 +771,17 @@ class _CausesDetailState extends State<CausesDetail>
   }
 
   getCauseDetail(int _id) {
-    _causesDetailController.getCauseDetail(_id);
-    _causesDetailController.getCauseStats(_id);
-    _causesDetailController.getCauseBottomDetails(_id, 21);
-    _causesDetailController.getCauseFeatured(_id);
-    bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
-    if (_isUserAuthenticated) {
-      _causesDetailController.getFollowCause(_id);
-    }
-    _causesDetailController.getUpdatedCauses(_id);
-    _causesDetailController.getCauseAdvertisements(_id);
+    Future.delayed(2000.milliseconds, (){
+      _causesDetailController.getCauseDetail(_id);
+      _causesDetailController.getCauseStats(_id);
+      _causesDetailController.getCauseBottomDetails(_id, 21);
+      _causesDetailController.getCauseFeatured(_id);
+      bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
+      if (_isUserAuthenticated) {
+        _causesDetailController.getFollowCause(_id);
+      }
+      _causesDetailController.getUpdatedCauses(_id);
+      _causesDetailController.getCauseAdvertisements(_id);
+    });
   }
 }
