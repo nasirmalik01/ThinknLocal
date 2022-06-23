@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/config/firebase_dynamic_links.dart';
 import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/config/system_chrome_config.dart';
 import 'package:flutter_app/constants/routes.dart';
@@ -20,6 +21,7 @@ void main() async {
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(
       PushNotificationConfig.handleBackgroundPushNotifications);
+  await FirebaseDynamicApi.initDynamicLinks();
   PushNotificationConfig.initNotifications();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await SystemChromeConfig.setOverLayStyle();

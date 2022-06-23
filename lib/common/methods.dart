@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/routes.dart';
@@ -20,7 +19,6 @@ import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -137,32 +135,6 @@ locationParams(Map<String, dynamic> query) {
   var location = MyHive.getLocation();
   query[Strings.latitude] = location.latitude;
   query[Strings.longitude] = location.longitude;
-}
-
-buildDynamicLinks(String category, String id, {String? organizationId}) async {
-  String url = Strings.dynamicLinkInitialUrl;
-  final DynamicLinkParameters parameters = DynamicLinkParameters(
-    uriPrefix: url,
-    link: Uri.parse('$url/$category/$id/${organizationId ?? '1'}'),
-    androidParameters: const AndroidParameters(
-      packageName: 'com.thinknlocal.Thinknlocal',
-      minimumVersion: 0,
-    ),
-    iosParameters: const IOSParameters(
-      bundleId: 'com.thinknlocal.Thinknlocal',
-      minimumVersion: '0',
-    ),
-    socialMetaTagParameters: SocialMetaTagParameters(
-      description: '',
-      imageUrl: Uri.parse(Strings.dynamicLinkImageUrl),
-      title: Strings.thinknLocal,
-    ),
-  );
-  final dynamicLink =
-      await FirebaseDynamicLinks.instance.buildShortLink(parameters);
-  String? desc = dynamicLink.shortUrl.toString();
-
-  await Share.share(desc, subject: Strings.thinknLocal);
 }
 
 // Future<String> getUserLocationAddress() async {

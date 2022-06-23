@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/password/password_pin/reset_password_pin_controller.dart';
 import 'package:flutter_app/widgets/text_field.dart';
 import 'package:get/get.dart';
+
 import '../../../common/methods.dart';
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';

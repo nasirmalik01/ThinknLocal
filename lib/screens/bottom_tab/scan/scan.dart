@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/widgets/text_views.dart';
+
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
 

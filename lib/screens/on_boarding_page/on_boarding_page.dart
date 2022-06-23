@@ -5,11 +5,12 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import '../../common/utils.dart';
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
-import '../../res/res.dart';
 import '../../constants/strings.dart';
+import '../../res/res.dart';
 import '../bottom_tab/bottom_tab_new.dart';
 
 class OnBoardingPage extends StatefulWidget {

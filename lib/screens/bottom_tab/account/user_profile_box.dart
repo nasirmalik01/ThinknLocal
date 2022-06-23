@@ -6,8 +6,8 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/my_hive.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/widgets/text_views.dart';
-import 'package:get/get.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:get/get.dart';
 
 
 class UserProfileBox extends StatelessWidget {

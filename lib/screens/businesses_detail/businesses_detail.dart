@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/config/firebase_dynamic_links.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/deep_link_info.dart';
 import 'package:flutter_app/local/my_hive.dart';
@@ -43,7 +44,7 @@ class BusinessesDetailScreen extends StatelessWidget {
         body: RefreshIndicator(
           color: AppColors.greenColor,
           onRefresh: () async {
-            getBusinessDetails(_id);
+            // getBusinessDetails(_id);
           },
           child: Obx(
             () => _businessDetailController.isError.value
@@ -64,7 +65,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                     : _businessDetailController.businessDetail == null
                         ? const SizedBox()
                         : CustomScrollView(
-                            physics: const AlwaysScrollableScrollPhysics(),
+                            physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.vertical,
                             slivers: [
                               SliverFillRemaining(
@@ -80,43 +81,34 @@ class BusinessesDetailScreen extends StatelessWidget {
                                           : BusinessDetailTopContainer(
                                               name: _businessDetailController
                                                   .businessDetail!.name,
-                                              fullBoxImage:
-                                                  _businessDetailController
-                                                          .businessDetail!
-                                                          .image ??
-                                                      Strings.dummyBgImage,
-                                              logoImage:
-                                                  _businessDetailController
-                                                          .businessDetail!
-                                                          .logo ??
-                                                      Strings.dummyLogo,
+                                              fullBoxImage: _businessDetailController
+                                                      .businessDetail!.image ??
+                                                  Strings.dummyBgImage,
+                                              logoImage: _businessDetailController
+                                                      .businessDetail!.logo ??
+                                                  Strings.dummyLogo,
                                               completePercentage: 0.7,
                                               contributedAmount:
                                                   _businessDetailController
                                                       .businessDetail!
                                                       .contributionAmount
                                                       .toString(),
-                                              totalAmount:
-                                                  _businessDetailController
-                                                      .businessDetail!
-                                                      .totalContributions
-                                                      .toString(),
-                                              joinDate:
-                                                  _businessDetailController
-                                                      .businessDetail!.createdAt
-                                                      .toString(),
+                                              totalAmount: _businessDetailController
+                                                  .businessDetail!
+                                                  .totalContributions
+                                                  .toString(),
+                                              joinDate: _businessDetailController
+                                                  .businessDetail!.createdAt
+                                                  .toString(),
                                               streetAddress:
                                                   _businessDetailController
                                                       .businessDetail!.address2,
                                               address: _businessDetailController
                                                   .businessDetail!.address1,
-                                              phoneNumber:
-                                                  '(${_businessDetailController.businessDetail!.phone!.substring(0, 3)}) ${_businessDetailController.businessDetail!.phone!.substring(3, 6)}-${_businessDetailController.businessDetail!.phone!.substring(
+                                              phoneNumber: '(${_businessDetailController.businessDetail!.phone!.substring(0, 3)}) ${_businessDetailController.businessDetail!.phone!.substring(3, 6)}-${_businessDetailController.businessDetail!.phone!.substring(
                                                 6,
                                               )}',
-                                              isFavorite:
-                                                  _businessDetailController
-                                                      .isBusinessFollowed.value,
+                                              isFavorite: _businessDetailController.isBusinessFollowed.value,
                                               onClickBox: () {},
                                               onPressBackArrow: () {
                                                 Navigator.pop(context, 1);
@@ -127,9 +119,10 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                     .followBusiness(_id);
                                               },
                                               onShareClick: () {
-                                                buildDynamicLinks(
-                                                    Strings.businesses,
-                                                    _id.toString());
+                                                FirebaseDynamicApi
+                                                    .buildDynamicLinks(
+                                                        Strings.businesses,
+                                                        _id.toString());
                                                 DeepLinkInfo? _deepLinkInfo =
                                                     MyHive.getDeepLinkInfo();
                                                 MyHive.setDeepLinkInfo(
@@ -149,10 +142,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                               onAddressClick: () {
                                                 MapsLauncher.launchQuery(
                                                     _businessDetailController
-                                                        .businessDetail!
-                                                        .address1!);
-                                              },
-                                            ),
+                                                        .followBusiness(_id));
+                                              }),
                                     ),
                                     SizedBox(height: sizes.height * 0.01),
                                     Container(
@@ -208,7 +199,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                               : ListView(
                                                   shrinkWrap: true,
                                                   physics:
-                                                      const NeverScrollableScrollPhysics(),
+                                                      const BouncingScrollPhysics(),
                                                   children: [
                                                     Padding(
                                                       padding:
@@ -275,11 +266,17 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                           0.01),
                                                                   child:
                                                                       SizedBox(
+                                                                    width:
+                                                                        getWidth(),
                                                                     height:
                                                                         getHeight() *
                                                                             0.18,
                                                                     child: ListView
                                                                         .builder(
+                                                                      shrinkWrap:
+                                                                          true,
+                                                                      physics:
+                                                                          const BouncingScrollPhysics(),
                                                                       scrollDirection:
                                                                           Axis.horizontal,
                                                                       itemCount: _businessDetailController.recentlyFundedBusinessCausesList!.length >
@@ -396,7 +393,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                       shrinkWrap:
                                                                           true,
                                                                       physics:
-                                                                          const ScrollPhysics(),
+                                                                          const BouncingScrollPhysics(),
                                                                       itemCount: _businessDetailController.pastFundedBusinessCausesList!.length >
                                                                               4
                                                                           ? 4
@@ -468,7 +465,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                               : ListView(
                                                   shrinkWrap: true,
                                                   physics:
-                                                      const NeverScrollableScrollPhysics(),
+                                                      const BouncingScrollPhysics(),
                                                   children: [
                                                     Padding(
                                                       padding:
@@ -538,7 +535,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                   shrinkWrap:
                                                                       true,
                                                                   physics:
-                                                                      const ScrollPhysics(),
+                                                                      const BouncingScrollPhysics(),
                                                                   itemCount: _businessDetailController
                                                                               .businessStats!
                                                                               .recentContributions!
@@ -598,7 +595,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                 ),
                               )
                             ],
-                     ),
+                          ),
           ),
         ),
       ),

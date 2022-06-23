@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/handling_empty_states.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/config/firebase_dynamic_links.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/local/deep_link_info.dart';
 import 'package:flutter_app/local/my_hive.dart';
@@ -135,7 +136,8 @@ class _CausesDetailState extends State<CausesDetail>
                                               .followCauses(_causeId);
                                         },
                                         onShareClick: () {
-                                          buildDynamicLinks(Strings.causes,
+                                          FirebaseDynamicApi.buildDynamicLinks(
+                                              Strings.causes,
                                               _causeId.toString(),
                                               organizationId:
                                                   _organizationId.toString());
@@ -355,6 +357,8 @@ class _CausesDetailState extends State<CausesDetail>
                                                                         .builder(
                                                                         scrollDirection:
                                                                             Axis.horizontal,
+                                                                        physics:
+                                                                            const BouncingScrollPhysics(),
                                                                         shrinkWrap:
                                                                             true,
                                                                         itemCount: _causesDetailController
@@ -618,7 +622,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                 Axis.vertical,
                                                             shrinkWrap: true,
                                                             physics:
-                                                                const ScrollPhysics(),
+                                                                const BouncingScrollPhysics(),
                                                             itemCount:
                                                                 _causesDetailController
                                                                     .updatedCausesList!
@@ -736,7 +740,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                 Axis.vertical,
                                                             shrinkWrap: true,
                                                             physics:
-                                                                const ScrollPhysics(),
+                                                                const BouncingScrollPhysics(),
                                                             itemCount:
                                                                 _causesDetailController
                                                                     .causesStats!

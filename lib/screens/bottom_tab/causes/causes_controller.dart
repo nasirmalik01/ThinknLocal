@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
+import 'package:flutter_app/config/firebase_dynamic_links.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/cause_request_type.dart';
@@ -41,10 +41,10 @@ class CausesController extends GetxController {
   void onInit() {
     scrollController = ScrollController();
     getLocationAddress();
-    initDynamicLinks();
     getCauses(Strings.featured, page: 1);
     getUpComingCauses();
     getRecentlyStartedCauses();
+    FirebaseDynamicApi.getPendingDynamicLink();
     checkPermissions();
     super.onInit();
   }
@@ -141,20 +141,7 @@ class CausesController extends GetxController {
     isRecentlyStartedCausesLoading.value = false;
   }
 
-  void initDynamicLinks() async {
-    FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
-      final Uri? deeplink = dynamicLinkData.link;
 
-      if (deeplink != null) {
-        handleDynamicLink(deeplink);
-      }
-    }).onError((error) {});
-    final pendingDynamicLink =
-        await FirebaseDynamicLinks.instance.getInitialLink();
-    if (pendingDynamicLink != null) {
-      handleDynamicLink(pendingDynamicLink.link);
-    }
-  }
 
   getLocationAddress() async {
     final LocationSearchController _locationSearchController =
@@ -163,20 +150,7 @@ class CausesController extends GetxController {
         MyHive.getLocationAddress();
   }
 
-  void handleDynamicLink(Uri url) {
-    List<String> _splitDynamicLink = [];
-    _splitDynamicLink.addAll(url.path.split('/'));
-    String _category = _splitDynamicLink[1];
-    if (_category == Strings.causes) {
-      Get.toNamed(Routes.causesDetailScreen, arguments: {
-        Strings.causeId: int.parse(_splitDynamicLink[2]),
-        Strings.organizationId: int.parse(_splitDynamicLink[3])
-      });
-    } else {
-      Get.toNamed(Routes.businessDetailScreen,
-          arguments: int.parse(_splitDynamicLink[2]));
-    }
-  }
+
 
   Future<void> setPagination({bool isFirst = false}) async {
     if (isFirst) {
