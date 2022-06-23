@@ -82,6 +82,7 @@ class Routes {
       GetPage(
         name: onBoardingScreen,
         page: () => const OnBoardingPage(),
+
       ),
       GetPage(
         name: loginScreen,

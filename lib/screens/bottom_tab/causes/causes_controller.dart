@@ -1,10 +1,8 @@
 import 'dart:developer';
 
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/config/push_notification_config.dart';
-import 'package:flutter_app/constants/routes.dart';
+import 'package:flutter_app/config/firebase_dynamic_links.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/enums/cause_request_type.dart';
 import 'package:flutter_app/local/my_hive.dart';
@@ -44,6 +42,7 @@ class CausesController extends GetxController{
     getCauses(Strings.featured, page: 1);
     getUpComingCauses();
     getRecentlyStartedCauses();
+    FirebaseDynamicApi.getPendingDynamicLink();
     super.onInit();
   }
 

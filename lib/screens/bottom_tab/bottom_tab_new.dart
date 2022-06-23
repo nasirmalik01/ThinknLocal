@@ -4,19 +4,19 @@ import 'package:flutter_app/common/main_controller.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
 import 'package:flutter_app/constants/strings.dart';
+import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
 import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
-import 'package:flutter_app/res/res.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:sizer/sizer.dart';
+
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import 'businesses/businesses_screen.dart';
 import 'causes/causes_screen.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'dart:io' show Platform;  //at the top
 
 
 class BottomTabNew extends StatefulWidget {
@@ -52,72 +52,83 @@ class _BottomTabNewState extends State<BottomTabNew> {
   @override
   Widget build(BuildContext context) {
 
-    return Stack(
-      children: [
-        PersistentTabView(
-          context,
-          bottomScreenMargin: getHeight() * 0.09,
-          navBarHeight: getHeight() * 0.09,
-          controller: _mainController.controller,
-          onItemSelected: (index){
-            setState((){});
-          },
-          screens: _buildScreens(),
-          items: _navBarsItems(),
-          confineInSafeArea: true,
-          backgroundColor: Colors.white, // Default is Colors.white.
-          handleAndroidBackButtonPress: true, // Default is true.
-          resizeToAvoidBottomInset: false, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-          stateManagement: true, // Default is true.
-          hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-          decoration: NavBarDecoration(
-            borderRadius: BorderRadius.circular(getWidth() * 0.001),
-            border: Border.all(color: AppColors.borderColor),
-            colorBehindNavBar: Colors.white,
-            boxShadow: const [
-              BoxShadow(
-                color: AppColors.shadowColor,
-                blurRadius: 0,
-                offset: Offset(0, 0),
-              ),
-            ],
-          ),
-          popAllScreensOnTapOfSelectedTab: true,
-          popActionScreens: PopActionScreensType.all,
-          itemAnimationProperties: const ItemAnimationProperties( // Navigation Bar's items animation properties.
-            duration: Duration(milliseconds: 200),
-            curve: Curves.ease,
-          ),
-          screenTransitionAnimation: const ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
-            animateTabTransition: true,
-            curve: Curves.ease,
-            duration: Duration(milliseconds: 200),
-          ),
-          navBarStyle: NavBarStyle.style17, // Choose the nav bar style with this property.
-
+    return Container(
+      height: getHeight(),
+      width: getWidth(),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: PreferenceUtils.getGradient(),
         ),
-        // Positioned(
-        //   bottom: sizes.isPhone ? Platform.isIOS ? getHeight()*0 : getHeight()*0.005 : getHeight()*0.05,
-        //   left: sizes.isPhone ? getWidth()*0.412 : getWidth()*0.433,
-        //   child:  GestureDetector(
-        //     onTap: (){
-        //       Get.to(() => const InitializeCameraScreen());
-        //     },
-        //     child: Card(
-        //       elevation: 1,
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(50),
-        //       ),
-        //       child: CircleAvatar(
-        //         radius: sizes.isPhone ?  Platform.isIOS ? 28 : 30 : 50,
-        //         backgroundColor: AppColors.greenColor,
-        //         child: Image(image: const AssetImage(Assets.scannerIcon), height: sizes.height * 0.04,),
-        //       ),
-        //     ),
-        //
-        //   ),
-        // )
-      ],
+      ),
+      child: Stack(
+        children: [
+          PersistentTabView(
+            context,
+            bottomScreenMargin: getHeight() * 0.09,
+            navBarHeight: getHeight() * 0.09,
+            controller: _mainController.controller,
+            onItemSelected: (index){
+              setState((){});
+            },
+            screens: _buildScreens(),
+            items: _navBarsItems(),
+            confineInSafeArea: true,
+            backgroundColor: Colors.white, // Default is Colors.white.
+            handleAndroidBackButtonPress: true, // Default is true.
+            resizeToAvoidBottomInset: false, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+            stateManagement: true, // Default is true.
+            hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+            decoration: NavBarDecoration(
+              borderRadius: BorderRadius.circular(getWidth() * 0.001),
+              border: Border.all(color: AppColors.borderColor),
+              colorBehindNavBar: Colors.green,
+              boxShadow: const [
+                BoxShadow(
+                  color: AppColors.shadowColor,
+                  blurRadius: 0,
+                  offset: Offset(0, 0),
+                ),
+              ],
+            ),
+            popAllScreensOnTapOfSelectedTab: true,
+            popActionScreens: PopActionScreensType.all,
+            itemAnimationProperties: const ItemAnimationProperties( // Navigation Bar's items animation properties.
+              duration: Duration(milliseconds: 200),
+              curve: Curves.ease,
+            ),
+            screenTransitionAnimation: const ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+              animateTabTransition: true,
+              curve: Curves.ease,
+              duration: Duration(milliseconds: 200),
+            ),
+            navBarStyle: NavBarStyle.style17, // Choose the nav bar style with this property.
+
+          ),
+          // Positioned(
+          //   bottom: sizes.isPhone ? Platform.isIOS ? getHeight()*0 : getHeight()*0.005 : getHeight()*0.05,
+          //   left: sizes.isPhone ? getWidth()*0.412 : getWidth()*0.433,
+          //   child:  GestureDetector(
+          //     onTap: (){
+          //       Get.to(() => const InitializeCameraScreen());
+          //     },
+          //     child: Card(
+          //       elevation: 1,
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(50),
+          //       ),
+          //       child: CircleAvatar(
+          //         radius: sizes.isPhone ?  Platform.isIOS ? 28 : 30 : 50,
+          //         backgroundColor: AppColors.greenColor,
+          //         child: Image(image: const AssetImage(Assets.scannerIcon), height: sizes.height * 0.04,),
+          //       ),
+          //     ),
+          //
+          //   ),
+          // )
+        ],
+      ),
     );
   }
 

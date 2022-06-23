@@ -4,6 +4,7 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/model/businesses.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_list_view_layout.dart';
 import 'package:get/get.dart';
+
 import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';

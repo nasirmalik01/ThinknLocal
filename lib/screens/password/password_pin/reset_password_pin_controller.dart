@@ -1,6 +1,7 @@
 
 import 'package:flutter_app/network/remote_repositories/auth_repository.dart';
 import 'package:get/get.dart';
+
 import '/common/methods.dart';
 import '/constants/colors.dart';
 import '/constants/routes.dart';

@@ -53,6 +53,8 @@ class PreferenceUtils {
   static List<Color> getGradient() {
     return [
       AppColors.lightGreenColor,
+      AppColors.lightGreenColor,
+      AppColors.lightGreenColor,
       AppColors.pureWhiteColor,
     ];
   }

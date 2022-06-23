@@ -10,6 +10,7 @@ import 'package:flutter_app/screens/bottom_tab/notifications/notification_contro
 import 'package:flutter_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+
 import '/constants/assets.dart';
 import '/constants/colors.dart';
 import '/res/res.dart';
@@ -45,11 +46,15 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
             (_notificationController.isNotificationsLoading.value || _notificationController.isContributionLoading.value)
             ? circularProgressIndicator()
             : Container(
-            height: sizes.height,
+              height: sizes.height ,
             width: sizes.width,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-            ),
+              decoration:  BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.center,
+                    colors: PreferenceUtils.getGradient()
+                ),
+              ),
             child: ListView(
               children: [
                 Container(
@@ -65,19 +70,22 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextView.header(Strings.yourNotifications, color: AppColors.lightBlack, fontFamily: Assets.poppinsSemiBold, fontSize: sizes.fontSize25),
-                      SizedBox(height: getHeight() * 0.01),
-                      TextView.titleWithDecoration(Strings.wantToEditNotification, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
-                      SizedBox(height: getHeight() * 0.01),
-                      GestureDetector(
-                          onTap: (){
-                            _mainController.controller!.jumpToTab(4);
-                          },
-                          child: TextView.titleWithDecoration(Strings.editSettings, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
-                    ],
+                  child: Container(
+                    color: Colors.white,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextView.header(Strings.yourNotifications, color: AppColors.lightBlack, fontFamily: Assets.poppinsSemiBold, fontSize: sizes.fontSize25),
+                        SizedBox(height: getHeight() * 0.01),
+                        TextView.titleWithDecoration(Strings.wantToEditNotification, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular),
+                        SizedBox(height: getHeight() * 0.01),
+                        GestureDetector(
+                            onTap: (){
+                              _mainController.controller!.jumpToTab(4);
+                            },
+                            child: TextView.titleWithDecoration(Strings.editSettings, color: AppColors.greenColor, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: getHeight() * 0.04),

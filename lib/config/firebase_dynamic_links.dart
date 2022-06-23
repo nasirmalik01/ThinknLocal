@@ -1,3 +1,6 @@
+
+import 'dart:developer';
+
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
@@ -5,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
 class FirebaseDynamicApi {
+
+
   static Future<void> initDynamicLinks() async {
     await getPendingDynamicLink();
     FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
@@ -67,6 +72,7 @@ class FirebaseDynamicApi {
     final PendingDynamicLinkData? initialLink =
         await FirebaseDynamicLinks.instance.getInitialLink();
     if (initialLink?.link != null) {
+      log("Newly Generated PendingLink : $initialLink");
       handleDynamicLink(initialLink!.link);
     }
   }

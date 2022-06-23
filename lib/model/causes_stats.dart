@@ -1,4 +1,5 @@
 import 'package:flutter_app/model/top_contributors.dart';
+
 import 'history.dart';
 
 class CausesStats {

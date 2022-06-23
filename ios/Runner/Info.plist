@@ -32,6 +32,16 @@
 				<string>com.googleusercontent.apps.59271748190-dcej7ej4on86vrhb1j200sndo1dg7vat</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Bundle Id</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.thinknlocal.Thinknlocal</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
@@ -88,5 +98,11 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>FirebaseDynamicLinksCustomDomains</key>
+    <array>
+        <string>https://thinknlocal.page.link/homepage</string>
+        <string>https://links.thinknlocal.com</string>
+        <string>https://thinknlocal.page.link</string>
+    </array>
 </dict>
 </plist>

@@ -7,6 +7,7 @@ import 'package:flutter_app/screens/cause_search/cause_search_controller.dart';
 import 'package:flutter_app/widgets/empty_state.dart';
 import 'package:flutter_app/widgets/network_error.dart';
 import 'package:get/get.dart';
+
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import '../../res/res.dart';

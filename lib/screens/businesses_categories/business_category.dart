@@ -5,11 +5,12 @@ import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/screens/bottom_tab/businesses/business_nearby.dart';
 import 'package:flutter_app/screens/businesses_categories/business_category_controller.dart';
 import 'package:get/get.dart';
-import '../../constants/assets.dart';
-import '../../constants/colors.dart';
+
 import '../../../res/res.dart';
 import '../../../widgets/common_widgets.dart';
 import '../../../widgets/text_views.dart';
+import '../../constants/assets.dart';
+import '../../constants/colors.dart';
 
 class BusinessCategory extends StatelessWidget {
   final String businessType;

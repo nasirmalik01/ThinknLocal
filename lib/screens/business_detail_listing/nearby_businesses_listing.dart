@@ -7,6 +7,7 @@ import 'package:flutter_app/screens/bottom_tab/businesses/business_list_view_lay
 import 'package:flutter_app/screens/bottom_tab/businesses/businesses_controller.dart';
 import 'package:flutter_app/widgets/empty_state.dart';
 import 'package:get/get.dart';
+
 import '../../constants/colors.dart';
 import '../../res/res.dart';
 import '../../widgets/common_widgets.dart';
