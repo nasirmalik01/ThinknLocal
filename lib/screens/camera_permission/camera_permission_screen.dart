@@ -22,18 +22,18 @@ class _CameraPermissionScreenState extends State<CameraPermissionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() => !_mainController.isLoading.value
-          ? EnablePermission(
+        ? EnablePermission(
         isIcon: false,
         title:'Enable Camera',
         description: 'By allowing camera permissions you are able to capture and upload receipts',
         onGoToSettingsTap: () async {
-          PermissionStatus status = await Permission.camera.status;
-          if(status.isPermanentlyDenied){
-            openAppSettings();
-          }
-          else {
-            checkCameraPermissions2();
-          }
+            PermissionStatus status = await Permission.camera.status;
+            if(status.isPermanentlyDenied){
+              openAppSettings();
+            }
+            else {
+              checkCameraPermission();
+            }
         },
         buttonText: 'Allow camera',
         isLocation: true,

@@ -48,7 +48,7 @@ class EnablePermission extends StatelessWidget {
                  height: getHeight()*0.24,
                  // height: 22.h,
                ) : const SizedBox(),
-                SizedBox(height: getHeight()*0.03,),
+                isIcon ? SizedBox(height: getHeight()*0.03,) : SizedBox(height: getHeight()*0.1,),
                 TextView.subTitle(title, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, isSetFontWeight: false, fontSize: 17.sp),
                 SizedBox(height: getHeight()*0.025,),
                 SizedBox(

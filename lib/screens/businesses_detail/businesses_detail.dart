@@ -33,13 +33,13 @@ class BusinessesDetailScreen extends StatelessWidget {
   final int? businessId;
 
   BusinessesDetailScreen({this.businessId, Key? key}) : super(key: key);
-  final BusinessDetailController _businessDetailController =
-      Get.put(BusinessDetailController());
+  final BusinessDetailController _businessDetailController = Get.put(BusinessDetailController());
 
   @override
   Widget build(BuildContext context) {
     final _id = businessId;
     getBusinessDetails(_id!);
+
     return Scaffold(
       body: RefreshIndicator(
         color: AppColors.greenColor,
@@ -63,9 +63,9 @@ class BusinessesDetailScreen extends StatelessWidget {
                           .isPastFundedBusinessCauses.value)
                   ? bouncingLoadingIndicator()
                   : _businessDetailController.businessDetail == null
-                      ? const SizedBox()
-                      : CustomScrollView(
-                          physics: const BouncingScrollPhysics(),
+                  ? const SizedBox()
+                  : CustomScrollView(
+                          physics: const AlwaysScrollableScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           slivers: [
                             SliverFillRemaining(

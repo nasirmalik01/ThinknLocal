@@ -251,24 +251,7 @@ userNotLoggedIn() {
   showSnackBar(subTitle: Strings.notLoggedIn);
 }
 
-Future<bool> checkCameraPermissions() async {
-  final status = await Permission.camera.request();
-  if (status == PermissionStatus.granted) {
-    log('Camera: Permission granted');
-    final isMicEnabled = await checkMicroPhonePermission();
-    if (isMicEnabled) {
-      return true;
-    }
-  } else if (status == PermissionStatus.denied) {
-    log('Camera: Permission denied. Show a dialog and again ask for the permission');
-  } else if (status == PermissionStatus.permanentlyDenied) {
-    log('Camera: Take the user to the settings page.');
-    await openAppSettings();
-  }
-  return false;
-}
-
-Future<void> checkCameraPermissions2() async {
+Future<void> checkCameraPermission() async {
   final status = await Permission.camera.request();
   if (status == PermissionStatus.granted) {
     log('Camera: Permission granted');
