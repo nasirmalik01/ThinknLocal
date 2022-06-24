@@ -21,7 +21,7 @@ class MySecureHttpClient {
             'Authorization': MyHive.getToken(),
             'App-Version': '${appInfo.appVersion == '' ? '2.0.0' : appInfo.appVersion}+${appInfo.buildNumber}'
 
-          /// For test cases use below token
+          /// For test cases use below tokenh
           // 'Authorization': Strings.testingToken,
         },
         responseType: ResponseType.plain,
@@ -36,7 +36,7 @@ class MySecureHttpClient {
 
   static checkPermissions() async {
     PermissionStatus status = await Permission.location.status;
-    if (status.isDenied || status.isPermanentlyDenied) {
+    if (status == PermissionStatus.permanentlyDenied) {
       Get.offAllNamed(Routes.locationPermissionScreen);
     }
   }

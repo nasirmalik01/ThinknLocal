@@ -109,7 +109,6 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                                       .toString(),
                                   index: index,
                                   onClickBox: () async {
-                                    return openAppSettings();
                                     pushNewScreen(
                                       context,
                                       screen: CausesDetail(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/main_controller.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/common/utils.dart';
+import 'package:flutter_app/constants/routes.dart';
 import 'package:flutter_app/constants/strings.dart';
 import 'package:flutter_app/res/res.dart';
 import 'package:flutter_app/screens/bottom_tab/account/account.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_app/screens/bottom_tab/notifications/notifications.dart'
 import 'package:flutter_app/screens/bottom_tab/scan/camera.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:sizer/sizer.dart';
 
@@ -199,9 +201,12 @@ class _InitializeCameraScreenState extends State<InitializeCameraScreen> {
       if (!_isUserAuthenticated) {
         userNotLoggedIn();
       } else {
-        bool _isPermissionsEnabled = await checkCameraPermissions();
-        if(_isPermissionsEnabled) {
-          allCameras = await availableCameras();
+        PermissionStatus cameraStatus = await Permission.camera.status;
+        PermissionStatus microphoneStatus = await Permission.microphone.status;
+        if(cameraStatus == PermissionStatus.permanentlyDenied || microphoneStatus == PermissionStatus.permanentlyDenied){
+          return Get.offAndToNamed(Routes.cameraPermissionScreen);
+        }
+        allCameras = await availableCameras();
           WidgetsBinding.instance.addPostFrameCallback((_) {
             pushNewScreen(
               context,
@@ -210,7 +215,6 @@ class _InitializeCameraScreenState extends State<InitializeCameraScreen> {
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
           });
-        }
       }
     });
   }

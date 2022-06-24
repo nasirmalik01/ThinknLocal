@@ -29,194 +29,192 @@ class CausesScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
 
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: RefreshIndicator(
-          color: AppColors.greenColor,
-          onRefresh: () async{
-            _causesController.getCauses(_causesController.selectedCategory.value);
-            _causesController.getRecentlyStartedCauses();
-            _causesController.getUpComingCauses();
-          },
-          child: Obx(() =>
-          _causesController.isError.value
-              ?  NetworkErrorException(exceptionMessage: _causesController.errorMessage.value, onPress: (){
-            _causesController.isError.value = false;
-            _causesController.getCauses(Strings.featured);
-            _causesController.getRecentlyStartedCauses();
-            _causesController.getUpComingCauses();
-          })
-              : Container(
-                    height: sizes.height,
-                    width: sizes.width,
-                    decoration:  BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.center,
-                          colors: PreferenceUtils.getGradient()
-                      ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: RefreshIndicator(
+        color: AppColors.greenColor,
+        onRefresh: () async{
+          _causesController.getCauses(_causesController.selectedCategory.value);
+          _causesController.getRecentlyStartedCauses();
+          _causesController.getUpComingCauses();
+        },
+        child: Obx(() =>
+        _causesController.isError.value
+            ?  NetworkErrorException(exceptionMessage: _causesController.errorMessage.value, onPress: (){
+          _causesController.isError.value = false;
+          _causesController.getCauses(Strings.featured);
+          _causesController.getRecentlyStartedCauses();
+          _causesController.getUpComingCauses();
+        })
+            : Container(
+                  height: sizes.height,
+                  width: sizes.width,
+                  decoration:  BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.center,
+                        colors: PreferenceUtils.getGradient()
                     ),
-                    child: ListView(
-                      children: [
-                        Container(
-                          height: getHeight() * 0.12,
-                          width: getWidth(),
-                          padding: EdgeInsets.only(
-                              left: sizes.width * 0.06,
-                              right: sizes.width * 0.06,
-                              top: sizes.height * 0.02),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: PreferenceUtils.getGradient()),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextView.titleWithDecoration(
-                                Strings.showingCausesNear,
-                                color: AppColors.darkGrey,
-                                fontFamily: Assets.poppinsRegular,
-                              ),
-                              GestureDetector(
-                                onTap: () async {
-                                  await Get.toNamed(
-                                      Routes.locationSearchScreen);
-                                  _causesController.onInit();
-                                },
-                                child: Row(
-                                  children: [
-                                    Obx(
-                                      () => TextView.header(
-                                          _locationSearchController
-                                              .locationAddress.value,
-                                          color: AppColors.greenColor,
-                                          fontFamily: Assets.poppinsRegular,
-                                          textDecoration:
-                                              TextDecoration.underline,
-                                          fontSize: sizes.fontSize25),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          bottom: 0.2.h, left: 1.w),
-                                      child: Image(
+                  ),
+                  child: ListView(
+                    children: [
+                      Container(
+                        height: getHeight() * 0.12,
+                        width: getWidth(),
+                        padding: EdgeInsets.only(
+                            left: sizes.width * 0.06,
+                            right: sizes.width * 0.06,
+                            top: sizes.height * 0.02),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: PreferenceUtils.getGradient()),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextView.titleWithDecoration(
+                              Strings.showingCausesNear,
+                              color: AppColors.darkGrey,
+                              fontFamily: Assets.poppinsRegular,
+                            ),
+                            GestureDetector(
+                              onTap: () async {
+                                await Get.toNamed(
+                                    Routes.locationSearchScreen);
+                                _causesController.onInit();
+                              },
+                              child: Row(
+                                children: [
+                                  Obx(
+                                    () => TextView.header(
+                                        _locationSearchController
+                                            .locationAddress.value,
                                         color: AppColors.greenColor,
-                                        height: getHeight() * 0.03,
-                                        image:
-                                            const AssetImage(Assets.vectorIcon),
-                                      ),
+                                        fontFamily: Assets.poppinsRegular,
+                                        textDecoration:
+                                            TextDecoration.underline,
+                                        fontSize: sizes.fontSize25),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        bottom: 0.2.h, left: 1.w),
+                                    child: Image(
+                                      color: AppColors.greenColor,
+                                      height: getHeight() * 0.03,
+                                      image:
+                                          const AssetImage(Assets.vectorIcon),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        Container(
-                          color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: sizes.width * 0.06
-                                ),
-                                child: CommonWidgets.searchLocationTextField(
-                                    controller: searchController,
-                                    hint: Strings.searchForCause,
-                                    onPressSearch: () {
-                                      Get.toNamed(Routes.causeSearch);
-                                    }),
+                      ),
+                      Container(
+                        color: Colors.white,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: sizes.width * 0.06
                               ),
-                              SizedBox(height: getHeight() * 0.02),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: sizes.width * 0.06,
-                                    right: sizes.width * 0.06,
-                                    bottom: 1.h),
-                                child: _isUserAuthenticated
-                                    ? Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          customTabBar(
-                                              title:
-                                                  Strings.featured.capitalize!,
-                                              isSelected: _causesController
-                                                  .isFeatured.value,
-                                              onTap: () {
-                                                _causesController
-                                                    .setFeaturedTab();
-                                              }),
-                                          customTabBar(
-                                              title:
-                                                  Strings.trending.capitalize!,
-                                              isSelected: _causesController
-                                                  .isTrending.value,
-                                              onTap: () {
-                                                _causesController
-                                                    .setTrendingTab();
-                                              }),
-                                          customTabBar(
-                                              title:
-                                                  Strings.favorites.capitalize!,
-                                              isSelected: _causesController
-                                                  .isFavorites.value,
-                                              onTap: () {
-                                                _causesController
-                                                    .setFavoritesTab();
-                                              }),
-                                          customTabBar(
-                                              title: Strings.past.capitalize!,
-                                              isSelected: _causesController
-                                                  .isPast.value,
-                                              onTap: () {
-                                                _causesController.setPastTab();
-                                              }),
-                                        ],
-                                      )
-                                    : Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          customTabBar(
-                                              title:
-                                                  Strings.featured.capitalize!,
-                                              isSelected: _causesController
-                                                  .isFeatured.value,
-                                              onTap: () {
-                                                _causesController
-                                                    .setFeaturedTab();
-                                              }),
-                                          customTabBar(
-                                              title:
-                                                  Strings.trending.capitalize!,
-                                              isSelected: _causesController
-                                                  .isTrending.value,
-                                              onTap: () {
-                                                _causesController
-                                                    .setTrendingTab();
-                                              }),
-                                          customTabBar(
-                                              title: Strings.past.capitalize!,
-                                              isSelected: _causesController
-                                                  .isPast.value,
-                                              onTap: () {
-                                                _causesController.setPastTab();
-                                              }),
-                                        ],
-                                      ),
-                              ),
-                              const CausesCategoryScreen(),
-                            ],
-                          ),
+                              child: CommonWidgets.searchLocationTextField(
+                                  controller: searchController,
+                                  hint: Strings.searchForCause,
+                                  onPressSearch: () {
+                                    Get.toNamed(Routes.causeSearch);
+                                  }),
+                            ),
+                            SizedBox(height: getHeight() * 0.02),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: sizes.width * 0.06,
+                                  right: sizes.width * 0.06,
+                                  bottom: 1.h),
+                              child: _isUserAuthenticated
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        customTabBar(
+                                            title:
+                                                Strings.featured.capitalize!,
+                                            isSelected: _causesController
+                                                .isFeatured.value,
+                                            onTap: () {
+                                              _causesController
+                                                  .setFeaturedTab();
+                                            }),
+                                        customTabBar(
+                                            title:
+                                                Strings.trending.capitalize!,
+                                            isSelected: _causesController
+                                                .isTrending.value,
+                                            onTap: () {
+                                              _causesController
+                                                  .setTrendingTab();
+                                            }),
+                                        customTabBar(
+                                            title:
+                                                Strings.favorites.capitalize!,
+                                            isSelected: _causesController
+                                                .isFavorites.value,
+                                            onTap: () {
+                                              _causesController
+                                                  .setFavoritesTab();
+                                            }),
+                                        customTabBar(
+                                            title: Strings.past.capitalize!,
+                                            isSelected: _causesController
+                                                .isPast.value,
+                                            onTap: () {
+                                              _causesController.setPastTab();
+                                            }),
+                                      ],
+                                    )
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        customTabBar(
+                                            title:
+                                                Strings.featured.capitalize!,
+                                            isSelected: _causesController
+                                                .isFeatured.value,
+                                            onTap: () {
+                                              _causesController
+                                                  .setFeaturedTab();
+                                            }),
+                                        customTabBar(
+                                            title:
+                                                Strings.trending.capitalize!,
+                                            isSelected: _causesController
+                                                .isTrending.value,
+                                            onTap: () {
+                                              _causesController
+                                                  .setTrendingTab();
+                                            }),
+                                        customTabBar(
+                                            title: Strings.past.capitalize!,
+                                            isSelected: _causesController
+                                                .isPast.value,
+                                            onTap: () {
+                                              _causesController.setPastTab();
+                                            }),
+                                      ],
+                                    ),
+                            ),
+                            const CausesCategoryScreen(),
+                          ],
                         ),
-                      ],
-                    ),
-          ),),
-        ),
+                      ),
+                    ],
+                  ),
+        ),),
       ),
     );
   }

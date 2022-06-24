@@ -6,6 +6,7 @@ import 'package:flutter_app/screens/bottom_tab/notifications/full_photo_screen.d
 import 'package:flutter_app/screens/business_search/business_search.dart';
 import 'package:flutter_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:flutter_app/screens/businesses_nearby/businesses_nearby.dart';
+import 'package:flutter_app/screens/camera_permission/camera_permission_screen.dart';
 import 'package:flutter_app/screens/cause_search/cause_search.dart';
 import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
 import 'package:flutter_app/screens/causes_detail_listing/causes_listing.dart';
@@ -39,8 +40,7 @@ class Routes {
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String resetPinScreen = '/resetPinScreen';
   static const String newPasswordScreen = '/newPasswordScreen';
-  static const String resetPasswordSuccessScreen =
-      '/resetPasswordSuccessScreen';
+  static const String resetPasswordSuccessScreen = '/resetPasswordSuccessScreen';
   static const String editAccountInfoScreen = '/editAccountInfoScreen';
   static const String bottomNavBarScreen = '/bottomNavBarScreen';
   static const String causeScreen = '/causeScreen';
@@ -48,13 +48,10 @@ class Routes {
   static const String causesDetailScreen = '/causesDetailScreen';
   static const String businessDetailScreen = '/businessDetailScreen';
   static const String businessCategoryScreen = '/businessCategoryScreen';
-  static const String seeAllUpcomingCausesScreen =
-      '/seeAllUpcomingCausesScreen';
-  static const String seeAllNearbyBusinessesScreen =
-      '/seeAllNearbyBusinessesScreen';
+  static const String seeAllUpcomingCausesScreen = '/seeAllUpcomingCausesScreen';
+  static const String seeAllNearbyBusinessesScreen = '/seeAllNearbyBusinessesScreen';
   static const String locationPermissionScreen = '/locationPermissionScreen';
-  static const String notificationPermissionScreen =
-      '/notificationPermissionScreen';
+  static const String notificationPermissionScreen = '/notificationPermissionScreen';
   static const String locationSearchScreen = '/locationSearchScreen';
   static const String aboutVisit = '/aboutVisit';
   static const String causeSearch = '/causeSearch';
@@ -68,6 +65,7 @@ class Routes {
   static const String uploadSuccess = '/uploadSuccess';
   static const String uploadFailed = '/uploadFailed';
   static const String requiredParamsScreen = '/requiredParamsScreen';
+  static const String cameraPermissionScreen = '/cameraPermissionScreen';
 
   static getUnknownRoute() {
     return GetPage(
@@ -205,6 +203,10 @@ class Routes {
       GetPage(
         name: requiredParamsScreen,
         page: () => const RequiredParamsScreen(),
+      ),
+      GetPage(
+        name: cameraPermissionScreen,
+        page: () => const CameraPermissionScreen(),
       ),
     ];
   }

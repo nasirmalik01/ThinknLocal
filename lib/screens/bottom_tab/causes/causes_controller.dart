@@ -43,9 +43,8 @@ class CausesController extends GetxController {
     getLocationAddress();
     getCauses(Strings.featured, page: 1);
     getUpComingCauses();
+    FirebaseDynamicApi.initDynamicLinks();
     getRecentlyStartedCauses();
-    FirebaseDynamicApi.getPendingDynamicLink();
-    checkPermissions();
     super.onInit();
   }
 
@@ -210,10 +209,4 @@ class CausesController extends GetxController {
     return selectedCategory.value;
   }
 
-  checkPermissions() async {
-    PermissionStatus status = await Permission.location.status;
-    if (status.isDenied || status.isPermanentlyDenied) {
-      Get.offAllNamed(Routes.locationPermissionScreen);
-    }
-  }
 }

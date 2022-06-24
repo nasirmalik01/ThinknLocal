@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/main_controller.dart';
 import 'package:flutter_app/common/utils.dart';

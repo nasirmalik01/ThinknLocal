@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/methods.dart';
 import 'package:flutter_app/config/firebase_dynamic_links.dart';
+import 'package:flutter_app/config/navigation_service.dart';
 import 'package:flutter_app/config/push_notification_config.dart';
 import 'package:flutter_app/config/system_chrome_config.dart';
 import 'package:flutter_app/constants/routes.dart';
@@ -19,9 +20,7 @@ import 'package:sizer/sizer.dart';
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(
-      PushNotificationConfig.handleBackgroundPushNotifications);
-  await FirebaseDynamicApi.initDynamicLinks();
+  FirebaseMessaging.onBackgroundMessage(PushNotificationConfig.handleBackgroundPushNotifications);
   PushNotificationConfig.initNotifications();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await SystemChromeConfig.setOverLayStyle();
@@ -65,6 +64,7 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, Orientation orientation,
           DeviceType deviceType) {
         return GetMaterialApp(
+          navigatorKey: NavigationService.navigatorKey,
           navigatorObservers: [
             SentryNavigatorObserver(),
           ],

@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/constants/colors.dart';
 
 class SystemChromeConfig{
 
   static setOverLayStyle(){
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        statusBarColor: AppColors.pureWhiteColor,
+        statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark
     ));
   }

@@ -49,4 +49,5 @@ class MainController extends GetxController{
     Position position = await Geolocator.getCurrentPosition();
     return position;
   }
+
 }

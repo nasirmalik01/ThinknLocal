@@ -22,8 +22,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool? canClosed =
-        ModalRoute.of(context)?.settings.arguments as bool? ?? false;
+    bool? canClosed = ModalRoute.of(context)?.settings.arguments as bool? ?? false;
 
     return Scaffold(
         body: Container(
@@ -32,7 +31,7 @@ class LoginScreen extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Colors.white,
       ),
-      child: ListView(
+      child: Column(
         children: [
           Stack(
             children: [
