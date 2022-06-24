@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/widgets/text_views.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sizer/sizer.dart';
 

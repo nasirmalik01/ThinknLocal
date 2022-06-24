@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/assets.dart';
-import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/widgets/text_views.dart';
+import 'package:thinknlocal_app/constants/assets.dart';
+import 'package:thinknlocal_app/constants/colors.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/local/my_hive.dart';
+import 'package:thinknlocal_app/res/res.dart';
+import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:get/get.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/model/account.dart';
-import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
-import 'package:flutter_app/widgets/button.dart';
-import 'package:flutter_app/widgets/password_text_field.dart';
-import 'package:flutter_app/widgets/text_field.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/model/account.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/account/account_controller.dart';
+import 'package:thinknlocal_app/widgets/button.dart';
+import 'package:thinknlocal_app/widgets/password_text_field.dart';
+import 'package:thinknlocal_app/widgets/text_field.dart';
 import 'package:get/get.dart';
 
 import '../../constants/assets.dart';

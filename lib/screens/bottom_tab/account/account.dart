@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/common/utils.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/screens/bottom_tab/account/account_controller.dart';
-import 'package:flutter_app/screens/bottom_tab/account/account_settings_card.dart';
-import 'package:flutter_app/screens/bottom_tab/account/user_profile_box.dart';
-import 'package:flutter_app/screens/edit_account/edit_account.dart';
-import 'package:flutter_app/widgets/loading_indicator.dart';
-import 'package:flutter_app/widgets/text_views.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/common/utils.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/account/account_controller.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/account/account_settings_card.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/account/user_profile_box.dart';
+import 'package:thinknlocal_app/screens/edit_account/edit_account.dart';
+import 'package:thinknlocal_app/widgets/loading_indicator.dart';
+import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/assets.dart';

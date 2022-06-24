@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/utils.dart';
-import 'package:flutter_app/constants/assets.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/widgets/issues_widget.dart';
+import 'package:thinknlocal_app/common/utils.dart';
+import 'package:thinknlocal_app/constants/assets.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/widgets/issues_widget.dart';
 import 'package:get/get.dart';
 
 class UnderMaintenanceScreen extends StatelessWidget {

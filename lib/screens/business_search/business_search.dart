@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/screens/bottom_tab/businesses/business_list_view_layout.dart';
-import 'package:flutter_app/screens/business_search/business_search_controller.dart';
-import 'package:flutter_app/widgets/empty_state.dart';
-import 'package:flutter_app/widgets/loading_indicator.dart';
-import 'package:flutter_app/widgets/network_error.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/businesses/business_list_view_layout.dart';
+import 'package:thinknlocal_app/screens/business_search/business_search_controller.dart';
+import 'package:thinknlocal_app/widgets/empty_state.dart';
+import 'package:thinknlocal_app/widgets/loading_indicator.dart';
+import 'package:thinknlocal_app/widgets/network_error.dart';
 import 'package:get/get.dart';
 
 import '../../constants/assets.dart';

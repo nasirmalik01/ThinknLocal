@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/assets.dart';
-import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/screens/about_visit/about_visit_controller.dart';
+import 'package:thinknlocal_app/constants/assets.dart';
+import 'package:thinknlocal_app/constants/colors.dart';
+import 'package:thinknlocal_app/res/res.dart';
+import 'package:thinknlocal_app/screens/about_visit/about_visit_controller.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 

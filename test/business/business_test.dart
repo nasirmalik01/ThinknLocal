@@ -1,9 +1,9 @@
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/model/business_detail.dart';
-import 'package:flutter_app/model/business_stats.dart';
-import 'package:flutter_app/model/businesses.dart';
-import 'package:flutter_app/network/remote_repositories/business_repository.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/model/business_detail.dart';
+import 'package:thinknlocal_app/model/business_stats.dart';
+import 'package:thinknlocal_app/model/businesses.dart';
+import 'package:thinknlocal_app/network/remote_repositories/business_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Future<void> main() async {

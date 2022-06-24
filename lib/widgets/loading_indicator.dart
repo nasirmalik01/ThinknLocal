@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/colors.dart';
+import 'package:thinknlocal_app/constants/colors.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 Widget bouncingLoadingIndicator({Color? color}){

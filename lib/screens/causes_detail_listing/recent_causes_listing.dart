@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/enums/cause_request_type.dart';
-import 'package:flutter_app/screens/bottom_tab/causes/causes_controller.dart';
-import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
-import 'package:flutter_app/screens/causes_detail/causes_detail.dart';
-import 'package:flutter_app/widgets/empty_state.dart';
-import 'package:flutter_app/widgets/loading_indicator.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/enums/cause_request_type.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/causes/causes_controller.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import 'package:thinknlocal_app/screens/causes_detail/causes_detail.dart';
+import 'package:thinknlocal_app/widgets/empty_state.dart';
+import 'package:thinknlocal_app/widgets/loading_indicator.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 

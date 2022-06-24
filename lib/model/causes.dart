@@ -1,5 +1,5 @@
-import 'package:flutter_app/model/category.dart';
-import 'package:flutter_app/model/organization.dart';
+import 'package:thinknlocal_app/model/category.dart';
+import 'package:thinknlocal_app/model/organization.dart';
 
 class Causes {
   int? id;

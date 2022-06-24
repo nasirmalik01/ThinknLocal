@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/routes.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:get/get.dart';
 
 class DioExceptions implements Exception {

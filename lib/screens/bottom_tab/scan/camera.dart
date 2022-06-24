@@ -1,8 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/screens/about_visit/about_visit.dart';
-import 'package:flutter_app/widgets/text_views.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/screens/about_visit/about_visit.dart';
+import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../constants/assets.dart';

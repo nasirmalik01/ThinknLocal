@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/screens/bottom_tab/notifications/custom_network_image.dart';
+import 'package:thinknlocal_app/constants/colors.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/notifications/custom_network_image.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 

@@ -1,5 +1,5 @@
-import 'package:flutter_app/model/history.dart';
-import 'package:flutter_app/model/recent_contributions.dart';
+import 'package:thinknlocal_app/model/history.dart';
+import 'package:thinknlocal_app/model/recent_contributions.dart';
 
 class BusinessStats {
   List<History>? history;

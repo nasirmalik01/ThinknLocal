@@ -1,4 +1,4 @@
-import 'package:flutter_app/model/business.dart';
+import 'package:thinknlocal_app/model/business.dart';
 
 class Contributions {
   int? id;

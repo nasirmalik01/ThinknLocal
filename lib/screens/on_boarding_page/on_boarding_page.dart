@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/screens/on_boarding_page/on_boarding_page_layout.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
+import 'package:thinknlocal_app/screens/on_boarding_page/on_boarding_page_layout.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';

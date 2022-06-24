@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/handling_empty_states.dart';
-import 'package:flutter_app/common/main_controller.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/common/utils.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/screens/bottom_tab/notifications/full_photo_screen.dart';
-import 'package:flutter_app/screens/bottom_tab/notifications/notification_card.dart';
-import 'package:flutter_app/screens/bottom_tab/notifications/notification_controller.dart';
-import 'package:flutter_app/widgets/loading_indicator.dart';
-import 'package:flutter_app/widgets/text_views.dart';
+import 'package:thinknlocal_app/common/handling_empty_states.dart';
+import 'package:thinknlocal_app/common/main_controller.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/common/utils.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/notifications/full_photo_screen.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/notifications/notification_card.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/notifications/notification_controller.dart';
+import 'package:thinknlocal_app/widgets/loading_indicator.dart';
+import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flutter_app/model/cause_advertisement_business.dart';
+import 'package:thinknlocal_app/model/cause_advertisement_business.dart';
 
 class CauseAdvertisement {
   int? id;

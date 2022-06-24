@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/common/utils.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/model/business_detail.dart';
-import 'package:flutter_app/model/business_stats.dart';
-import 'package:flutter_app/model/causes.dart';
-import 'package:flutter_app/model/chart_stats_model.dart';
-import 'package:flutter_app/model/follows.dart';
-import 'package:flutter_app/network/remote_repositories/business_repository.dart';
-import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
-import 'package:flutter_app/network/remote_repositories/follows_repository.dart';
-import 'package:flutter_app/network/remote_services.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/common/utils.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/model/business_detail.dart';
+import 'package:thinknlocal_app/model/business_stats.dart';
+import 'package:thinknlocal_app/model/causes.dart';
+import 'package:thinknlocal_app/model/chart_stats_model.dart';
+import 'package:thinknlocal_app/model/follows.dart';
+import 'package:thinknlocal_app/network/remote_repositories/business_repository.dart';
+import 'package:thinknlocal_app/network/remote_repositories/cause_repository.dart';
+import 'package:thinknlocal_app/network/remote_repositories/follows_repository.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
 class BusinessDetailController extends GetxController

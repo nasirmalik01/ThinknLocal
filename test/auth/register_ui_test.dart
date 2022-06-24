@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/screens/sign_up/sign_up.dart';
-import 'package:flutter_app/screens/sign_up/sign_up_controller.dart';
-import 'package:flutter_app/widgets/button.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/res/res.dart';
+import 'package:thinknlocal_app/screens/sign_up/sign_up.dart';
+import 'package:thinknlocal_app/screens/sign_up/sign_up_controller.dart';
+import 'package:thinknlocal_app/widgets/button.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';

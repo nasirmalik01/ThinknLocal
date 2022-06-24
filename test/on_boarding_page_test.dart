@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/on_boarding_page/on_boarding_page.dart';
+import 'package:thinknlocal_app/screens/on_boarding_page/on_boarding_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

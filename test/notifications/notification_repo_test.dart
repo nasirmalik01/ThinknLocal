@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/model/contributions.dart';
-import 'package:flutter_app/model/notification.dart';
-import 'package:flutter_app/network/remote_repositories/notification_repository.dart';
-import 'package:flutter_app/screens/bottom_tab/scan/contribution_controller.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/model/contributions.dart';
+import 'package:thinknlocal_app/model/notification.dart';
+import 'package:thinknlocal_app/network/remote_repositories/notification_repository.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/scan/contribution_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 

@@ -1,8 +1,8 @@
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/local/user_location.dart';
-import 'package:flutter_app/model/cities.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/local/my_hive.dart';
+import 'package:thinknlocal_app/local/user_location.dart';
+import 'package:thinknlocal_app/model/cities.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';

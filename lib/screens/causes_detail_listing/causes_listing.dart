@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/screens/bottom_tab/causes/upcoming_causes.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:get/get.dart';
 
 import '../../constants/colors.dart';

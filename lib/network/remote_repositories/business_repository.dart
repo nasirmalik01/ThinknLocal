@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/api_endpoints.dart';
-import 'package:flutter_app/model/business_detail.dart';
-import 'package:flutter_app/model/business_stats.dart';
-import 'package:flutter_app/model/businesses.dart';
-import 'package:flutter_app/network/remote_services.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/api_endpoints.dart';
+import 'package:thinknlocal_app/model/business_detail.dart';
+import 'package:thinknlocal_app/model/business_stats.dart';
+import 'package:thinknlocal_app/model/businesses.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
 
 class BusinessRemoteRepository {
   static Future<List<Businesses>?> fetchBusinesses(Map<String, dynamic>? query) async {

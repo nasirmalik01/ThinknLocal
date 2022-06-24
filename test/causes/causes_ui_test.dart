@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/screens/bottom_tab/bottom_tab_new.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/res/res.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/bottom_tab_new.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';

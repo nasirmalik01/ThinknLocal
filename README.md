@@ -1,4 +1,4 @@
-# flutter_app
+# thinknlocal_app
 
 A new Flutter project.
 

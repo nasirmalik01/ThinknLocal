@@ -1,5 +1,5 @@
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/network/remote_repositories/auth_repository.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/network/remote_repositories/auth_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Future<void> main() async {

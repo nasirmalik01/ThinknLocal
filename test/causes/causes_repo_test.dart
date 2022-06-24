@@ -1,8 +1,8 @@
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/model/cause_detail.dart';
-import 'package:flutter_app/model/causes.dart';
-import 'package:flutter_app/model/causes_stats.dart';
-import 'package:flutter_app/network/remote_repositories/cause_repository.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/model/cause_detail.dart';
+import 'package:thinknlocal_app/model/causes.dart';
+import 'package:thinknlocal_app/model/causes_stats.dart';
+import 'package:thinknlocal_app/network/remote_repositories/cause_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Future<void> main() async {

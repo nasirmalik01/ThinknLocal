@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/app_info.dart';
-import 'package:flutter_app/local/my_hive.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/local/app_info.dart';
+import 'package:thinknlocal_app/local/my_hive.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 

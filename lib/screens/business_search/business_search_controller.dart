@@ -1,8 +1,8 @@
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/model/businesses.dart';
-import 'package:flutter_app/network/remote_repositories/business_repository.dart';
-import 'package:flutter_app/network/remote_services.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/local/my_hive.dart';
+import 'package:thinknlocal_app/model/businesses.dart';
+import 'package:thinknlocal_app/network/remote_repositories/business_repository.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
 class BusinessSearchController extends GetxController{

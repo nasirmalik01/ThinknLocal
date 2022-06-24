@@ -4,11 +4,11 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/common/registration_exceptions.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/network/network_exception.dart';
-import 'package:flutter_app/network/secure_http_client.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/common/registration_exceptions.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/network/network_exception.dart';
+import 'package:thinknlocal_app/network/secure_http_client.dart';
 
 class RemoteServices {
   static String error = '';

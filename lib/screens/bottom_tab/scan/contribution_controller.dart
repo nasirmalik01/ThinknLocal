@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/config/aws_response.dart';
-import 'package:flutter_app/config/aws_service.dart';
-import 'package:flutter_app/constants/api_endpoints.dart';
-import 'package:flutter_app/model/contributions_direct_upload.dart';
-import 'package:flutter_app/network/remote_services.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/config/aws_response.dart';
+import 'package:thinknlocal_app/config/aws_service.dart';
+import 'package:thinknlocal_app/constants/api_endpoints.dart';
+import 'package:thinknlocal_app/model/contributions_direct_upload.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
 class ContributionController extends GetxController {

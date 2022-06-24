@@ -1,16 +1,16 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/app_info.dart';
-import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/model/cities.dart';
-import 'package:flutter_app/network/remote_repositories/location_repository.dart';
-import 'package:flutter_app/network/remote_services.dart';
-import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/widgets/text_views.dart';
+import 'package:thinknlocal_app/constants/colors.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/local/app_info.dart';
+import 'package:thinknlocal_app/local/my_hive.dart';
+import 'package:thinknlocal_app/model/cities.dart';
+import 'package:thinknlocal_app/network/remote_repositories/location_repository.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
+import 'package:thinknlocal_app/res/res.dart';
+import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geocoding/geocoding.dart';

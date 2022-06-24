@@ -1,14 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/enums/business_request_type.dart';
-import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/model/businesses.dart';
-import 'package:flutter_app/network/remote_repositories/business_repository.dart';
-import 'package:flutter_app/network/remote_services.dart';
-import 'package:flutter_app/screens/location_search/location_search_controller.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/enums/business_request_type.dart';
+import 'package:thinknlocal_app/local/my_hive.dart';
+import 'package:thinknlocal_app/model/businesses.dart';
+import 'package:thinknlocal_app/network/remote_repositories/business_repository.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
+import 'package:thinknlocal_app/screens/location_search/location_search_controller.dart';
 import 'package:get/get.dart';
 
 class BusinessesController extends GetxController{

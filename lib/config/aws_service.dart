@@ -4,10 +4,10 @@ import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_app/common/utils.dart';
-import 'package:flutter_app/config/aws_response.dart';
-import 'package:flutter_app/constants/api_endpoints.dart';
-import 'package:flutter_app/network/secure_http_client.dart';
+import 'package:thinknlocal_app/common/utils.dart';
+import 'package:thinknlocal_app/config/aws_response.dart';
+import 'package:thinknlocal_app/constants/api_endpoints.dart';
+import 'package:thinknlocal_app/network/secure_http_client.dart';
 
 
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/assets.dart';
-import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/widgets/text_views.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/assets.dart';
+import 'package:thinknlocal_app/constants/colors.dart';
+import 'package:thinknlocal_app/res/res.dart';
+import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 

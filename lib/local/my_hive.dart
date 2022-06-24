@@ -1,7 +1,7 @@
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/app_info.dart';
-import 'package:flutter_app/local/deep_link_info.dart';
-import 'package:flutter_app/local/user_location.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/local/app_info.dart';
+import 'package:thinknlocal_app/local/deep_link_info.dart';
+import 'package:thinknlocal_app/local/user_location.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class MyHive {

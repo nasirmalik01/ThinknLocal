@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/widgets/text_views.dart';
+import 'package:thinknlocal_app/res/res.dart';
+import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:sizer/sizer.dart';
 
 import '../constants/colors.dart';

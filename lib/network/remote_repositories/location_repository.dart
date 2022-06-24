@@ -1,6 +1,6 @@
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/model/cities.dart';
-import 'package:flutter_app/network/remote_services.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/model/cities.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
 import 'package:get_it/get_it.dart';
 
 class LocationRepository{

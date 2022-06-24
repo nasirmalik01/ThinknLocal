@@ -1,15 +1,15 @@
 import 'dart:async';
 
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/api_endpoints.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/model/cause_advertisement.dart';
-import 'package:flutter_app/model/cause_detail.dart';
-import 'package:flutter_app/model/causes.dart';
-import 'package:flutter_app/model/causes_stats.dart';
-import 'package:flutter_app/model/update_causes.dart';
-import 'package:flutter_app/network/remote_services.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/api_endpoints.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/local/my_hive.dart';
+import 'package:thinknlocal_app/model/cause_advertisement.dart';
+import 'package:thinknlocal_app/model/cause_detail.dart';
+import 'package:thinknlocal_app/model/causes.dart';
+import 'package:thinknlocal_app/model/causes_stats.dart';
+import 'package:thinknlocal_app/model/update_causes.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
 import 'package:get_it/get_it.dart';
 
 class CausesRemoteRepository {

@@ -1,7 +1,7 @@
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/model/account.dart';
-import 'package:flutter_app/network/remote_repositories/profile_repository.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/model/account.dart';
+import 'package:thinknlocal_app/network/remote_repositories/profile_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Future<void> main() async {

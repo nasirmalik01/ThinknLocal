@@ -1,11 +1,11 @@
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/api_endpoints.dart';
-import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/local/deep_link_info.dart';
-import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/network/remote_services.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/api_endpoints.dart';
+import 'package:thinknlocal_app/constants/colors.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/local/deep_link_info.dart';
+import 'package:thinknlocal_app/local/my_hive.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 

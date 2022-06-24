@@ -1,8 +1,8 @@
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/local/my_hive.dart';
-import 'package:flutter_app/model/account.dart';
-import 'package:flutter_app/network/remote_repositories/profile_repository.dart';
-import 'package:flutter_app/network/remote_services.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/local/my_hive.dart';
+import 'package:thinknlocal_app/model/account.dart';
+import 'package:thinknlocal_app/network/remote_repositories/profile_repository.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
 class AccountController extends GetxController{

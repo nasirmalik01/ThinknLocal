@@ -1,7 +1,7 @@
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/widgets/enable_permissions.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
+import 'package:thinknlocal_app/widgets/enable_permissions.dart';
 import 'package:get/get.dart';
 import 'package:notification_permissions/notification_permissions.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flutter_app/network/remote_repositories/auth_repository.dart';
+import 'package:thinknlocal_app/network/remote_repositories/auth_repository.dart';
 import 'package:get/get.dart';
 
 import '/common/methods.dart';

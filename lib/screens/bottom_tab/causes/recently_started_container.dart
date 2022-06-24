@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/assets.dart';
-import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/res/res.dart';
+import 'package:thinknlocal_app/constants/assets.dart';
+import 'package:thinknlocal_app/constants/colors.dart';
+import 'package:thinknlocal_app/res/res.dart';
 
 class RecentlyStartedContainer extends StatelessWidget {
   final String? image;

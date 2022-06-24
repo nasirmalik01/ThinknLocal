@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/button.dart';
-import 'package:flutter_app/widgets/text_views.dart';
+import 'package:thinknlocal_app/widgets/button.dart';
+import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/assets.dart';

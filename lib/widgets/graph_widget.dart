@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/model/chart_stats_model.dart';
-import 'package:flutter_app/res/res.dart';
+import 'package:thinknlocal_app/constants/colors.dart';
+import 'package:thinknlocal_app/model/chart_stats_model.dart';
+import 'package:thinknlocal_app/res/res.dart';
 import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 

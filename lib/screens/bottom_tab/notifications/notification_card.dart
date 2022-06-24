@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/assets.dart';
-import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/res/res.dart';
-import 'package:flutter_app/screens/bottom_tab/notifications/custom_network_image.dart';
-import 'package:flutter_app/widgets/text_views.dart';
+import 'package:thinknlocal_app/constants/assets.dart';
+import 'package:thinknlocal_app/constants/colors.dart';
+import 'package:thinknlocal_app/res/res.dart';
+import 'package:thinknlocal_app/screens/bottom_tab/notifications/custom_network_image.dart';
+import 'package:thinknlocal_app/widgets/text_views.dart';
 
 class NotificationCard extends StatelessWidget {
   final String? image;

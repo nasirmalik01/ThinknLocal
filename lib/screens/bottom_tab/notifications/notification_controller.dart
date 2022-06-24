@@ -1,9 +1,9 @@
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/api_endpoints.dart';
-import 'package:flutter_app/model/contributions.dart';
-import 'package:flutter_app/model/notification.dart';
-import 'package:flutter_app/network/remote_repositories/notification_repository.dart';
-import 'package:flutter_app/network/remote_services.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/api_endpoints.dart';
+import 'package:thinknlocal_app/model/contributions.dart';
+import 'package:thinknlocal_app/model/notification.dart';
+import 'package:thinknlocal_app/network/remote_repositories/notification_repository.dart';
+import 'package:thinknlocal_app/network/remote_services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 

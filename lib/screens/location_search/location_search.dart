@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/screens/location_search/get_cities.dart';
-import 'package:flutter_app/screens/location_search/location_search_controller.dart';
-import 'package:flutter_app/widgets/empty_state.dart';
-import 'package:flutter_app/widgets/loading_indicator.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/screens/location_search/get_cities.dart';
+import 'package:thinknlocal_app/screens/location_search/location_search_controller.dart';
+import 'package:thinknlocal_app/widgets/empty_state.dart';
+import 'package:thinknlocal_app/widgets/loading_indicator.dart';
 import 'package:get/get.dart';
 
 import '/constants/assets.dart';

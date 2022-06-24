@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/methods.dart';
-import 'package:flutter_app/constants/routes.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/screens/sign_up/sign_up_controller.dart';
-import 'package:flutter_app/widgets/button.dart';
-import 'package:flutter_app/widgets/text_field.dart';
+import 'package:thinknlocal_app/common/methods.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/screens/sign_up/sign_up_controller.dart';
+import 'package:thinknlocal_app/widgets/button.dart';
+import 'package:thinknlocal_app/widgets/text_field.dart';
 import 'package:get/get.dart';
 
 import '../../constants/assets.dart';

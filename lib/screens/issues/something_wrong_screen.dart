@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/constants/assets.dart';
-import 'package:flutter_app/constants/strings.dart';
-import 'package:flutter_app/widgets/issues_widget.dart';
+import 'package:thinknlocal_app/constants/assets.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/widgets/issues_widget.dart';
 
 class SomethingWrong extends StatelessWidget {
   const SomethingWrong({Key? key}) : super(key: key);
