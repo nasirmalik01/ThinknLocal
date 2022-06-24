@@ -11,7 +11,6 @@ import '../../../res/res.dart';
 import '../bottom_tab_new.dart';
 import 'image_preview_screen.dart';
 
-
 class CameraScreen extends StatefulWidget {
   const CameraScreen({
     Key? key,

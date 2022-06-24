@@ -255,10 +255,7 @@ Future<void> checkCameraPermission() async {
   final status = await Permission.camera.request();
   if (status == PermissionStatus.granted) {
     log('Camera: Permission granted');
-    final isMicEnabled = await checkMicroPhonePermission();
-    if (isMicEnabled) {
-      Get.offAndToNamed(Routes.bottomNavBarScreen);
-    }
+    Get.offAndToNamed(Routes.bottomNavBarScreen);
   } else if (status == PermissionStatus.denied) {
     log('Camera: Permission denied. Show a dialog and again ask for the permission');
   } else if (status == PermissionStatus.permanentlyDenied) {

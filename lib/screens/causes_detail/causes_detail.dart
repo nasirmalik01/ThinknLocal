@@ -73,8 +73,7 @@ class _CausesDetailState extends State<CausesDetail>
         child: Obx(
           () => _causesDetailController.isError.value
               ? NetworkErrorException(
-                  exceptionMessage:
-                      _causesDetailController.errorMessage.value,
+                  exceptionMessage: _causesDetailController.errorMessage.value,
                   onPress: () {
                     _causesDetailController.isError.value = false;
                     getCauseDetail(_causeId);
@@ -83,8 +82,7 @@ class _CausesDetailState extends State<CausesDetail>
                       _causesDetailController.isStatsLoading.value ||
                       _causesDetailController.isCauseBottomLoading.value ||
                       _causesDetailController.isFeaturedLoading.value ||
-                      _causesDetailController
-                          .isCauseAdvertisementLoading.value)
+                      _causesDetailController.isCauseAdvertisementLoading.value)
                   ? bouncingLoadingIndicator()
                   : _causesDetailController.causeDetail == null
                       ? const SizedBox()
@@ -101,16 +99,10 @@ class _CausesDetailState extends State<CausesDetail>
                                   SizedBox(
                                     height: sizes.height * 0.35,
                                     child: CausesDetailTopImageContainer(
-                                      name: _causesDetailController
-                                          .causeDetail?.name,
-                                      fullBoxImage: _causesDetailController
-                                          .causeDetail?.image,
-                                      logoImage: _causesDetailController
-                                          .causeDetail?.organization?.logo,
-                                      completePercentage:
-                                          _causesDetailController
-                                                  .causeDetail?.percentage ??
-                                              0.0,
+                                      name: _causesDetailController.causeDetail?.name,
+                                      fullBoxImage: _causesDetailController.causeDetail?.image,
+                                      logoImage: _causesDetailController.causeDetail?.organization?.logo,
+                                      completePercentage: _causesDetailController.causeDetail?.percentage ?? 0.0,
                                       collectedAmount: _causesDetailController
                                               .causeDetail?.raised
                                               ?.toStringAsFixed(2) ??
@@ -119,8 +111,7 @@ class _CausesDetailState extends State<CausesDetail>
                                               .causeDetail?.goal
                                               ?.toStringAsFixed(2) ??
                                           '0.0',
-                                      endDate:
-                                          "${_causesDetailController.causeDetail?.start} - ${_causesDetailController.causeDetail?.end}",
+                                      endDate: "${_causesDetailController.causeDetail?.start} - ${_causesDetailController.causeDetail?.end}",
                                       isFavorite: _causesDetailController
                                           .isCauseFollowed.value,
                                       onClickBox: () {},
