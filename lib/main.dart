@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:thinknlocal_app/common/methods.dart';
-import 'package:thinknlocal_app/config/firebase_dynamic_links.dart';
 import 'package:thinknlocal_app/config/navigation_service.dart';
 import 'package:thinknlocal_app/config/push_notification_config.dart';
 import 'package:thinknlocal_app/config/system_chrome_config.dart';

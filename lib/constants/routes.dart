@@ -130,7 +130,7 @@ class Routes {
       ),
       GetPage(
         name: causesDetailScreen,
-        page: () => CausesDetail(),
+        page: () => const CausesDetail(),
       ),
       GetPage(
         name: businessDetailScreen,

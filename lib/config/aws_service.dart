@@ -9,10 +9,6 @@ import 'package:thinknlocal_app/config/aws_response.dart';
 import 'package:thinknlocal_app/constants/api_endpoints.dart';
 import 'package:thinknlocal_app/network/secure_http_client.dart';
 
-
-
-
-
 class AWSService {
   Function(UploadFileResponse)? onUploadError;
   Function(UploadFileResponse)? onUploadComplete;
@@ -77,7 +73,7 @@ class AWSService {
         data: body,
       );
       return response;
-    } on DioError catch (e) {
+    } on DioError catch (_) {
       return null;
     }
   }

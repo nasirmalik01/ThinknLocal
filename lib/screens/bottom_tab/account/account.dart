@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/common/utils.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/account/account_controller.dart';

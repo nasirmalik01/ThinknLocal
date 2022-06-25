@@ -138,14 +138,6 @@ locationParams(Map<String, dynamic> query) {
   query[Strings.longitude] = location.longitude;
 }
 
-// Future<String> getUserLocationAddress() async {
-//   if (MyHive.getLocation() != null) {
-//     final _address = await findAddress(MyHive.getLocation());
-//     return _address;
-//   }
-//   return '';
-// }
-
 Future<Cities?> getLowestDistanceCity() async {
   Cities? _lowestDistanceCity;
   List<Cities> citiesList = [];
@@ -208,8 +200,7 @@ openPhoneDialPad(String phone, BuildContext context) async {
   }
 }
 
-Future<dynamic> showDialogWidget(
-    {required BuildContext context, required String title}) {
+Future<dynamic> showDialogWidget({required BuildContext context, required String title}) {
   return Get.defaultDialog(
       title: '',
       content: Padding(
@@ -262,20 +253,6 @@ Future<void> checkCameraPermission() async {
     log('Camera: Take the user to the settings page.');
     await openAppSettings();
   }
-}
-
-Future<bool> checkMicroPhonePermission() async {
-  final status = await Permission.microphone.request();
-  if (status == PermissionStatus.granted) {
-    log('Microphone: Permission granted');
-    return true;
-  } else if (status == PermissionStatus.denied) {
-    log('Microphone: Permission denied. Show a dialog and again ask for the permission');
-  } else if (status == PermissionStatus.permanentlyDenied) {
-    log('Microphone: Take the user to the settings page.');
-    await openAppSettings();
-  }
-  return false;
 }
 
 dynamic commaFormatter(dynamic distance) {

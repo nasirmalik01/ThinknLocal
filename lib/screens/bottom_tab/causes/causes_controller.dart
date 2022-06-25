@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/config/firebase_dynamic_links.dart';
-import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/enums/cause_request_type.dart';
 import 'package:thinknlocal_app/local/my_hive.dart';
@@ -13,7 +12,6 @@ import 'package:thinknlocal_app/network/remote_repositories/cause_repository.dar
 import 'package:thinknlocal_app/network/remote_services.dart';
 import 'package:thinknlocal_app/screens/location_search/location_search_controller.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class CausesController extends GetxController {
   RxBool isFeatured = true.obs;

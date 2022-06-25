@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/causes/upcoming_causes.dart';
@@ -20,7 +19,6 @@ class CauseSearch extends StatelessWidget {
   final TextEditingController? searchController = TextEditingController();
   final bool isBusiness;
   final CauseSearchController _causeSearchController = Get.put(CauseSearchController());
-
   CauseSearch({this.isBusiness = false, Key? key}) : super(key: key);
 
   @override

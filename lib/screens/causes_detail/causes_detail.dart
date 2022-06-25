@@ -31,10 +31,10 @@ import '/constants/colors.dart';
 import '/res/res.dart';
 
 class CausesDetail extends StatefulWidget {
-  int? causeId;
-  int? organizationId;
+  final int? causeId;
+  final int? organizationId;
 
-  CausesDetail({this.causeId, this.organizationId, Key? key}) : super(key: key);
+  const CausesDetail({this.causeId, this.organizationId, Key? key}) : super(key: key);
 
   @override
   _CausesDetailState createState() => _CausesDetailState();

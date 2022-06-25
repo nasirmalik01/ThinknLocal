@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/enums/business_request_type.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/businesses/business_list_view_layout.dart';

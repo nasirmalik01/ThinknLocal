@@ -1,8 +1,6 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:thinknlocal_app/common/handling_empty_states.dart';
-import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/assets.dart';
 import 'package:thinknlocal_app/constants/colors.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
@@ -19,7 +17,6 @@ import 'package:thinknlocal_app/widgets/common_widgets.dart';
 import 'package:thinknlocal_app/widgets/loading_indicator.dart';
 import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:sizer/sizer.dart';
 

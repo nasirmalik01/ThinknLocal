@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thinknlocal_app/common/main_controller.dart';
 import 'package:thinknlocal_app/common/methods.dart';
-import 'package:thinknlocal_app/common/utils.dart';
-import 'package:thinknlocal_app/constants/routes.dart';
-import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/widgets/enable_permissions.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';

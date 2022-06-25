@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:thinknlocal_app/common/handling_empty_states.dart';
-import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/common/utils.dart';
 import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';

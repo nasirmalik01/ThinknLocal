@@ -1,15 +1,10 @@
-
 import 'dart:developer';
 
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:thinknlocal_app/config/navigation_service.dart';
-import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
-import 'package:thinknlocal_app/model/business_detail.dart';
 import 'package:thinknlocal_app/screens/businesses_detail/businesses_detail.dart';
-import 'package:thinknlocal_app/screens/businesses_nearby/businesses_nearby.dart';
 import 'package:thinknlocal_app/screens/causes_detail/causes_detail.dart';
-import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:share_plus/share_plus.dart';
 
