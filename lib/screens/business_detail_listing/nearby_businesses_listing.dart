@@ -87,21 +87,11 @@ class NearbyBusinessListing extends StatelessWidget {
                                           color: Colors.transparent,
                                           child: BusinessListViewLayout(
                                               image: _businessesController.nearbyBusinessList![index].logo ?? Strings.dummyBgImage,
-                                              headerText: _businessesController
-                                                  .nearbyBusinessList![index]
-                                                  .name,
+                                              headerText: _businessesController.nearbyBusinessList![index].name,
                                               onViewCourse: () {},
-                                              address: _businessesController
-                                                  .nearbyBusinessList![index]
-                                                  .address1,
-                                              streetAddress:
-                                                  _businessesController
-                                                      .nearbyBusinessList![
-                                                          index]
-                                                      .address2,
-                                              phoneNumber:
-                                                  '(${_businessesController.nearbyBusinessList![index].phone!.substring(0, 3)}) ${_businessesController.nearbyBusinessList![index].phone!.substring(3, 6)}-${_businessesController.nearbyBusinessList![index].phone!.substring(
-                                                6,
+                                              address: '${_businessesController.nearbyBusinessList![index].address1}\n${_businessesController.nearbyBusinessList![index].city}, ${_businessesController.nearbyBusinessList![index].state}, ${_businessesController.nearbyBusinessList![index].zip}',
+                                              streetAddress: _businessesController.nearbyBusinessList![index].address2,
+                                              phoneNumber: '(${_businessesController.nearbyBusinessList![index].phone!.substring(0, 3)}) ${_businessesController.nearbyBusinessList![index].phone!.substring(3, 6)}-${_businessesController.nearbyBusinessList![index].phone!.substring(6,
                                               )}'),
                                         ),
                                       );

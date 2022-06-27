@@ -89,10 +89,10 @@ class BusinessSearch extends StatelessWidget {
                                   child: Container(
                                     color: Colors.transparent,
                                     child: BusinessListViewLayout(
-                                        image:  _businessSearchController.searchedBusinessList![index].image,
+                                        image:  _businessSearchController.searchedBusinessList![index].logo,
                                         headerText: _businessSearchController.searchedBusinessList![index].name,
                                         onViewCourse: (){},
-                                        address: _businessSearchController.searchedBusinessList![index].address1,
+                                        address: '${_businessSearchController.searchedBusinessList![index].address1}\n${_businessSearchController.searchedBusinessList![index].city}, ${_businessSearchController.searchedBusinessList![index].state}, ${_businessSearchController.searchedBusinessList![index].zip}',
                                         streetAddress: _businessSearchController.searchedBusinessList![index].address2,
                                         phoneNumber: _businessSearchController.searchedBusinessList![index].phone.toString()
                                     ),

@@ -87,7 +87,7 @@ class CauseSearch extends StatelessWidget {
                             );
                           },
                           child: UpcomingCauses(
-                              image:  _causeSearchController.searchedCausesList![index].image,
+                              image:  _causeSearchController.searchedCausesList![index].organization!.logo,
                               headerText: _causeSearchController.searchedCausesList![index].name,
                               description:  _causeSearchController.searchedCausesList![index].description,
                               onViewCourse: (){},

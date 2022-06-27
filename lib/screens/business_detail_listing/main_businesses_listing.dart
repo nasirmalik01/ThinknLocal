@@ -94,7 +94,7 @@ class MainBusinessListing extends StatelessWidget {
                                             image: _businessesController.businessList![index].logo ?? Strings.dummyBgImage,
                                             headerText: _businessesController.businessList![index].name,
                                             onViewCourse: () {},
-                                            address: _businessesController.businessList![index].address1,
+                                            address: '${_businessesController.businessList![index].address1}\n${_businessesController.businessList![index].city}, ${_businessesController.businessList![index].state}, ${_businessesController.businessList![index].zip}',
                                             streetAddress: _businessesController.businessList![index].address2,
                                             phoneNumber: '(${_businessesController.businessList![index].phone!.substring(0, 3)}) ${_businessesController.businessList![index].phone!.substring(3, 6)}-${_businessesController.businessList![index].phone!.substring(6,
                                             )}',

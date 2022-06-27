@@ -88,15 +88,9 @@ class RecentBusinessListing extends StatelessWidget {
                                           color: Colors.transparent,
                                           child: BusinessListViewLayout(
                                               image: _businessesController.recentlyAddedBusinessList![index].logo ?? Strings.dummyBgImage,
-                                              headerText: _businessesController
-                                                  .recentlyAddedBusinessList![
-                                                      index]
-                                                  .name,
+                                              headerText: _businessesController.recentlyAddedBusinessList![index].name,
                                               onViewCourse: () {},
-                                              address: _businessesController
-                                                  .recentlyAddedBusinessList![
-                                                      index]
-                                                  .address1,
+                                              address: '${_businessesController.recentlyAddedBusinessList![index].address1}\n${_businessesController.recentlyAddedBusinessList![index].city}, ${_businessesController.recentlyAddedBusinessList![index].state}, ${_businessesController.recentlyAddedBusinessList![index].zip}',
                                               streetAddress: _businessesController
                                                   .recentlyAddedBusinessList![
                                                       index]

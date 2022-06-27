@@ -103,8 +103,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                             streetAddress:
                                                 _businessDetailController
                                                     .businessDetail!.address2,
-                                            address:
-                                                '${_businessDetailController.businessDetail!.address1}\n${_businessDetailController.businessDetail!.city}, ${_businessDetailController.businessDetail!.state}, ${_businessDetailController.businessDetail!.zip}',
+                                            address: '${_businessDetailController.businessDetail!.address1}\n${_businessDetailController.businessDetail!.city}, ${_businessDetailController.businessDetail!.state}, ${_businessDetailController.businessDetail!.zip}',
                                             phoneNumber:
                                                 '(${_businessDetailController.businessDetail!.phone!.substring(0, 3)}) ${_businessDetailController.businessDetail!.phone!.substring(3, 6)}-${_businessDetailController.businessDetail!.phone!.substring(
                                               6,
