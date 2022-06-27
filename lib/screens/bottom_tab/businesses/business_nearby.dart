@@ -52,20 +52,20 @@ class BusinessNearBy extends StatelessWidget {
                 children: [
                   TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: isBusinessCategory ? sizes.fontSize16 : sizes.fontSize15),
                   SizedBox(height: getHeight() * 0.004),
-                  (streetAddress == ''|| streetAddress == null)
+                  (streetAddress == '' || streetAddress == null)
                   ? const SizedBox()
                   : TextView.subHeader(
-                      streetAddress?? "",
+                      streetAddress,
                       color: AppColors.lightBlack,
                       lines: 1,
                       fontFamily: Assets.poppinsRegular,
                       textDecoration: TextDecoration.underline,
                       fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
                   ),
-                  (address == ''|| address == null)
+                  (address == '' || address == null)
                   ? const SizedBox()
                   : TextView.subHeader(
-                      address?? "",
+                      address,
                       color: AppColors.lightBlack,
                       lines: 2,
                       fontFamily: Assets.poppinsRegular,
@@ -73,7 +73,9 @@ class BusinessNearBy extends StatelessWidget {
                       fontSize: isBusinessCategory ? sizes.fontSize11 : sizes.fontSize10
                   ),
                   SizedBox(height: getHeight() * 0.01),
-                  TextView.subHeader(
+                  (phoneNumber == '' || phoneNumber == null)
+                  ? const SizedBox()
+                  : TextView.subHeader(
                     phoneNumber ?? "",
                     color: AppColors.grayColor,
                     lines: 1,

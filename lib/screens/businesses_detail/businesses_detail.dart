@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
+import 'package:maps_launcher/maps_launcher.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:sizer/sizer.dart';
 import 'package:thinknlocal_app/common/handling_empty_states.dart';
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/common/utils.dart';
@@ -19,11 +24,6 @@ import 'package:thinknlocal_app/widgets/graph_widget.dart';
 import 'package:thinknlocal_app/widgets/loading_indicator.dart';
 import 'package:thinknlocal_app/widgets/network_error.dart';
 import 'package:thinknlocal_app/widgets/text_views.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:get/get.dart';
-import 'package:maps_launcher/maps_launcher.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../res/res.dart';
 import '../../constants/assets.dart';
@@ -79,17 +79,39 @@ class BusinessesDetailScreen extends StatelessWidget {
                                             .isLoading.value
                                         ? bouncingLoadingIndicator()
                                         : BusinessDetailTopContainer(
-                                            name: _businessDetailController.businessDetail!.name,
-                                            fullBoxImage: _businessDetailController.businessDetail!.image ?? Strings.dummyBgImage,
-                                            logoImage: _businessDetailController.businessDetail!.logo ?? Strings.dummyLogo,
+                                            name: _businessDetailController
+                                                .businessDetail!.name,
+                                            fullBoxImage: _businessDetailController
+                                                    .businessDetail?.image ??
+                                                Strings.dummyBgImage,
+                                            logoImage: _businessDetailController
+                                                    .businessDetail?.logo ??
+                                                Strings.dummyLogo,
                                             completePercentage: 0.7,
-                                            contributedAmount: _businessDetailController.businessDetail!.contributionAmount.toString(),
-                                            totalAmount: _businessDetailController.businessDetail!.totalContributions.toString(),
-                                            joinDate: _businessDetailController.businessDetail!.createdAt.toString(),
-                                            streetAddress: _businessDetailController.businessDetail!.address2,
-                                            address: '${_businessDetailController.businessDetail!.address1}\n${_businessDetailController.businessDetail!.city}, ${_businessDetailController.businessDetail!.state}, ${_businessDetailController.businessDetail!.zip}',
-                                            phoneNumber: '(${_businessDetailController.businessDetail!.phone!.substring(0, 3)}) ${_businessDetailController.businessDetail!.phone!.substring(3, 6)}-${_businessDetailController.businessDetail!.phone!.substring(6,)}',
-                                            isFavorite: _businessDetailController.isBusinessFollowed.value,
+                                            contributedAmount:
+                                                _businessDetailController
+                                                    .businessDetail!
+                                                    .contributionAmount
+                                                    .toString(),
+                                            totalAmount: _businessDetailController
+                                                .businessDetail!
+                                                .totalContributions
+                                                .toString(),
+                                            joinDate: _businessDetailController
+                                                .businessDetail!.createdAt
+                                                .toString(),
+                                            streetAddress:
+                                                _businessDetailController
+                                                    .businessDetail!.address2,
+                                            address:
+                                                '${_businessDetailController.businessDetail!.address1}\n${_businessDetailController.businessDetail!.city}, ${_businessDetailController.businessDetail!.state}, ${_businessDetailController.businessDetail!.zip}',
+                                            phoneNumber:
+                                                '(${_businessDetailController.businessDetail!.phone!.substring(0, 3)}) ${_businessDetailController.businessDetail!.phone!.substring(3, 6)}-${_businessDetailController.businessDetail!.phone!.substring(
+                                              6,
+                                            )}',
+                                            isFavorite:
+                                                _businessDetailController
+                                                    .isBusinessFollowed.value,
                                             onClickBox: () {},
                                             onPressBackArrow: () {
                                               Navigator.pop(context, 1);
@@ -195,71 +217,38 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                 sizes.height *
                                                                     0.03),
                                                         BusinessRating(
-                                                            starRating:
-                                                                _businessDetailController
-                                                                    .businessDetail!
-                                                                    .rating,
-                                                            onPress: () {}),
+                                                            starRating: _businessDetailController.businessDetail!.rating,
+                                                            onPress: () {}
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                      height: sizes.height *
-                                                          0.03),
-                                                  _businessDetailController
-                                                          .recentlyFundedBusinessCausesList!
-                                                          .isNotEmpty
+                                                      height: sizes.height * 0.03),
+                                                  _businessDetailController.recentlyFundedBusinessCausesList!.isNotEmpty
                                                       ? Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: [
                                                             Padding(
-                                                              padding: EdgeInsets.symmetric(
-                                                                  horizontal:
-                                                                      getWidth() *
-                                                                          0.06),
+                                                              padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
                                                               child: TextView.titleWithDecoration(
-                                                                  Strings
-                                                                      .recentlyFunded,
-                                                                  color: AppColors
-                                                                      .blackColor,
-                                                                  fontFamily:
-                                                                      Assets
-                                                                          .poppinsMedium,
-                                                                  fontSize: sizes
-                                                                      .fontSize16),
+                                                                  Strings.recentlyFunded,
+                                                                  color: AppColors.blackColor,
+                                                                  fontFamily: Assets.poppinsMedium,
+                                                                  fontSize: sizes.fontSize16),
                                                             ),
                                                             Padding(
-                                                                padding: EdgeInsets.only(
-                                                                    top: getHeight() *
-                                                                        0.01),
-                                                                child:
-                                                                    SizedBox(
-                                                                  width:
-                                                                      getWidth(),
-                                                                  height:
-                                                                      getHeight() *
-                                                                          0.18,
-                                                                  child: ListView
-                                                                      .builder(
-                                                                    shrinkWrap:
-                                                                        true,
-                                                                    physics:
-                                                                        const BouncingScrollPhysics(),
-                                                                    scrollDirection:
-                                                                        Axis.horizontal,
-                                                                    itemCount: _businessDetailController.recentlyFundedBusinessCausesList!.length >
-                                                                            6
-                                                                        ? 6
-                                                                        : _businessDetailController
-                                                                            .recentlyFundedBusinessCausesList!
-                                                                            .length,
-                                                                    itemBuilder:
-                                                                        (context,
-                                                                            index) {
-                                                                      return index ==
-                                                                              5
+                                                                padding: EdgeInsets.only(top: getHeight() * 0.01),
+                                                                child: SizedBox(
+                                                                  width: getWidth(),
+                                                                  height: getHeight() * 0.18,
+                                                                  child: ListView.builder(
+                                                                    shrinkWrap: true,
+                                                                    physics: const BouncingScrollPhysics(),
+                                                                    scrollDirection: Axis.horizontal,
+                                                                    itemCount: _businessDetailController.recentlyFundedBusinessCausesList!.length > 6 ? 6 : _businessDetailController.recentlyFundedBusinessCausesList!.length,
+                                                                    itemBuilder: (context, index) {
+                                                                      return index == 5
                                                                           ? GestureDetector(
                                                                               onTap: () {
                                                                                 Get.to(() => CausesListingScreen(title: Strings.recentlyFundedBusinessCauses, detailList: _businessDetailController.recentlyFundedBusinessCausesList as dynamic));
@@ -294,7 +283,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                                   _businessDetailController.followCauses(_causeId, _isFavorite);
                                                                                   if (_isFavorite) {
                                                                                     _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite = false;
-                                                                                  } else {
+                                                                                  }
+                                                                                  else {
                                                                                     _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite = true;
                                                                                   }
                                                                                   _businessDetailController.getRecentlyFundedBusinessCauses(id: _id);
@@ -304,33 +294,20 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                     },
                                                                   ),
                                                                 )),
-                                                            SizedBox(
-                                                                height: sizes
-                                                                        .height *
-                                                                    0.03),
+                                                            SizedBox(height: sizes.height * 0.03),
                                                           ],
                                                         )
                                                       : const SizedBox(),
-                                                  _businessDetailController
-                                                          .pastFundedBusinessCausesList!
-                                                          .isNotEmpty
+                                                  _businessDetailController.pastFundedBusinessCausesList!.isNotEmpty
                                                       ? Column(
                                                           children: [
                                                             Padding(
-                                                              padding: EdgeInsets.symmetric(
-                                                                  horizontal:
-                                                                      getWidth() *
-                                                                          0.06),
+                                                              padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
                                                               child: CommonWidgets
                                                                   .getTextWithSeeAll(
-                                                                      leadingText:
-                                                                          Strings
-                                                                              .pastFundedCauses,
-                                                                      trailingText:
-                                                                          Strings
-                                                                              .seeAll,
-                                                                      onPressSeeAllButton:
-                                                                          () {
+                                                                      leadingText: Strings.pastFundedCauses,
+                                                                      trailingText: Strings.seeAll,
+                                                                      onPressSeeAllButton: () {
                                                                         Get.to(() => CausesListingScreen(
                                                                             title: Strings.pastFundedBusinessCauses,
                                                                             detailList: _businessDetailController.pastFundedBusinessCausesList as dynamic));
@@ -338,45 +315,23 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                             ),
                                                             Padding(
                                                               padding: EdgeInsets.symmetric(
-                                                                  horizontal:
-                                                                      sizes.width *
-                                                                          0.06,
-                                                                  vertical:
-                                                                      getHeight() *
-                                                                          0.005),
+                                                                  horizontal: sizes.width * 0.06,
+                                                                  vertical: getHeight() * 0.005),
                                                               child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                                 children: [
-                                                                  SizedBox(
-                                                                      height: sizes.height *
-                                                                          0.01),
-                                                                  ListView
-                                                                      .separated(
-                                                                    scrollDirection:
-                                                                        Axis.vertical,
-                                                                    shrinkWrap:
-                                                                        true,
-                                                                    physics:
-                                                                        const BouncingScrollPhysics(),
-                                                                    itemCount: _businessDetailController.pastFundedBusinessCausesList!.length >
-                                                                            4
+                                                                  SizedBox(height: sizes.height * 0.01),
+                                                                  ListView.separated(
+                                                                    scrollDirection: Axis.vertical,
+                                                                    shrinkWrap: true,
+                                                                    physics: const BouncingScrollPhysics(),
+                                                                    itemCount: _businessDetailController.pastFundedBusinessCausesList!.length > 4
                                                                         ? 4
-                                                                        : _businessDetailController
-                                                                            .pastFundedBusinessCausesList!
-                                                                            .length,
-                                                                    itemBuilder:
-                                                                        (context,
-                                                                            index) {
-                                                                      dynamic _raisedFormattedAmount = commaFormatter(double.parse(_businessDetailController
-                                                                          .pastFundedBusinessCausesList![index]
-                                                                          .raised
-                                                                          .toString()));
-
+                                                                        : _businessDetailController.pastFundedBusinessCausesList!.length,
+                                                                    itemBuilder: (context, index) {
+                                                                      dynamic _raisedFormattedAmount = commaFormatter(double.parse(_businessDetailController.pastFundedBusinessCausesList![index].raised.toString()));
                                                                       return UpcomingCauses(
-                                                                          image:
-                                                                              _businessDetailController.pastFundedBusinessCausesList![index].image,
+                                                                          image: _businessDetailController.pastFundedBusinessCausesList![index].image,
                                                                           headerText: _businessDetailController.pastFundedBusinessCausesList![index].name,
                                                                           description: _businessDetailController.pastFundedBusinessCausesList![index].description,
                                                                           onViewCourse: () {},
@@ -524,33 +479,20 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                           .amount
                                                                           ?.toStringAsFixed(2));
                                                                 },
-                                                                separatorBuilder:
-                                                                    (BuildContext
-                                                                            context,
-                                                                        int index) {
+                                                                separatorBuilder: (BuildContext context, int index) {
                                                                   return Divider(
-                                                                      height: getHeight() *
-                                                                          0.04,
-                                                                      thickness:
-                                                                          getHeight() *
-                                                                              0.002,
-                                                                      color: AppColors
-                                                                          .borderColor);
+                                                                      height: getHeight() * 0.04,
+                                                                      thickness: getHeight() * 0.002,
+                                                                      color: AppColors.borderColor);
                                                                 },
                                                               )
-                                                            : handleEmptyState(
-                                                                context,
-                                                                Strings
-                                                                    .noRecentContributions),
-                                                        SizedBox(
-                                                            height:
-                                                                getHeight() *
-                                                                    0.03),
+                                                            : handleEmptyState(context, Strings.noRecentContributions),
+                                                        SizedBox(height: getHeight() * 0.03),
                                                       ],
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
+                                                ),
+                                            ],
+                                         ),
                                       ],
                                     ),
                                   ),

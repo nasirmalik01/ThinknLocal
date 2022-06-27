@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:thinknlocal_app/screens/cause_search/cause_search_controller.dart';
