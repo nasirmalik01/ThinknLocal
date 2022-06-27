@@ -349,33 +349,27 @@ class BusinessesScreen extends StatelessWidget {
                         child: _businessesController
                             .isRecentlyAddedBusinessLoading.value
                             ? bouncingLoadingIndicator()
-                            : _businessesController
-                            .recentlyAddedBusinessList
-                            ?.isNotEmpty ??
-                            false
+                            : _businessesController.recentlyAddedBusinessList
+                            ?.isNotEmpty ?? false
                             ? ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: _businessesController
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: _businessesController
                               .recentlyAddedBusinessList!
                               .isEmpty
                               ? 0
                               : _businessesController
                               .recentlyAddedBusinessList!
-                              .length >
-                              6
-                              ? 6
+                              .length > 6 ? 6
                               : _businessesController
                               .recentlyAddedBusinessList!
                               .length,
-                          itemBuilder: (context, index) {
-                            return index == 5
+                                itemBuilder: (context, index) {
+                                  return index == 5
                                 ? GestureDetector(
                                 onTap: () {
                                   Get.to(() =>
-                                      RecentBusinessListing(
-                                          title: Strings
-                                              .recentlyAddedBusiness));
+                                      RecentBusinessListing(title: Strings.recentlyAddedBusiness));
                                 },
                                 child: CommonWidgets
                                     .seeAllButton(30))

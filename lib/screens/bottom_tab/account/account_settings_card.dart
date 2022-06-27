@@ -14,9 +14,8 @@ class AccountSettingCard extends StatelessWidget {
   final Function(bool value) onChange;
   final bool? switchValue;
   final bool? isLast;
-  final bool isShowLeadingIcon;
 
-  const AccountSettingCard({Key? key, this.title, this.subTitle, this.leadingIcon, required this.onChange, this.switchValue, this.isLast = false, this.isShowLeadingIcon=true}) : super(key: key);
+  const AccountSettingCard({Key? key, this.title, this.subTitle, this.leadingIcon, required this.onChange, this.switchValue, this.isLast = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +29,10 @@ class AccountSettingCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(width: sizes.width * 0.02),
-              isShowLeadingIcon
-              ? SizedBox(
+             SizedBox(
                   height: getHeight() * 0.035,
                   width: getHeight() * 0.035,
-                  child: SvgPicture.asset(leadingIcon!, color:  switchValue! ? AppColors.greenColor: AppColors.darkGrey,))
-              : SizedBox(width: getHeight() * 0.035),
+                  child: SvgPicture.asset(leadingIcon!, color:  switchValue! ? AppColors.greenColor: AppColors.darkGrey,)),
               SizedBox(width: sizes.width * 0.05),
               Row(
                 children: [

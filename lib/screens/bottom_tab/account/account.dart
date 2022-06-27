@@ -77,7 +77,6 @@ class AccountScreen extends StatelessWidget {
                       children: [
                         AccountSettingCard(onChange: (val) => _accountController.changePushNotificationValue(val), title: Strings.pushNotifications, subTitle: Strings.enablePushNotifications, leadingIcon: Assets.notificationSvg, switchValue: _accountController.isPushNotifications.value),
                         AccountSettingCard(onChange: (val) => _accountController.changeEmailValue(val), title: Strings.email.capitalizeFirst, subTitle: Strings.allowSystemEmails, leadingIcon: Assets.emailSvg, switchValue: _accountController.isEmail.value),
-                        AccountSettingCard(onChange: (val) => _accountController.changeLocationServicesValue(val), title: Strings.locationServices, subTitle: Strings.allowLocationServices, leadingIcon: Assets.locationSvg, switchValue: _accountController.isLocation.value, isShowLeadingIcon: false,),
                       ],
                     ),
                   ],
