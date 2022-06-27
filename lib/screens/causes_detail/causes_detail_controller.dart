@@ -130,8 +130,8 @@ class CausesDetailController extends GetxController {
 
   followCauses(int id) async {
     if (isCauseFollowed.value) {
-      isCauseFollowed.value = false;
-      await CausesRemoteRepository.unFollowCause(id);
+        isCauseFollowed.value = false;
+        await CausesRemoteRepository.unFollowCause(id);
     }else{
       if(_isUserAuthenticated) {
         isCauseFollowed.value = true;
@@ -144,6 +144,7 @@ class CausesDetailController extends GetxController {
   }
 
   getFollowCause(int id) async {
+    isCauseFollowed.value = false;
     follows = await FollowsRemoteRepository.fetchFollows();
     for (var cause in follows!.causes!) {
       if (cause.toString().contains(id.toString())) {

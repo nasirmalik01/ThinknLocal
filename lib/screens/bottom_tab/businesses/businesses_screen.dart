@@ -304,36 +304,13 @@ class BusinessesScreen extends StatelessWidget {
                                 CommonWidgets
                                     .seeAllButton(40))
                                 : BusinessTabContainer(
-                                name: _businessesController
-                                    .businessList![index]
-                                    .name,
-                                fullBoxImage:
-                                _businessesController
-                                    .businessList![
-                                index]
-                                    .image ??
-                                    Strings
-                                        .dummyBgImage,
-                                logoImage:
-                                _businessesController
-                                    .businessList![
-                                index]
-                                    .logo ??
-                                    Strings.dummyLogo,
+                                name: _businessesController.businessList![index].name,
+                                fullBoxImage: _businessesController.businessList![index].image ?? Strings.dummyBgImage,
+                                logoImage: _businessesController.businessList![index].logo ?? Strings.dummyLogo,
                                 bookName: '',
-                                streetAddress:
-                                _businessesController
-                                    .businessList![
-                                index]
-                                    .address1,
-                                address:
-                                _businessesController
-                                    .businessList![
-                                index]
-                                    .address2,
-                                phoneNumber:
-                                '(${_businessesController.businessList![index].phone!.substring(0, 3)}) ${_businessesController.businessList![index].phone!.substring(3, 6)}-${_businessesController.businessList![index].phone!.substring(
-                                  6,
+                                streetAddress: _businessesController.businessList![index].address1,
+                                address: _businessesController.businessList![index].address2,
+                                phoneNumber: '(${_businessesController.businessList![index].phone!.substring(0, 3)}) ${_businessesController.businessList![index].phone!.substring(3, 6)}-${_businessesController.businessList![index].phone!.substring(6,
                                 )}',
                                 index: index,
                                 isFavorite: false,
@@ -341,12 +318,8 @@ class BusinessesScreen extends StatelessWidget {
                                   pushNewScreen(
                                     context,
                                     screen: BusinessesDetailScreen(
-                                        businessId:
-                                        _businessesController
-                                            .businessList![
-                                        index]
-                                            .id),
-                                    withNavBar: true,
+                                        businessId: _businessesController.businessList![index].id
+                                    ), withNavBar: true,
                                   );
                                 },
                                 onPressFavoriteIcon: () {});

@@ -180,7 +180,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                                           TextView.headerWithBlurRadius(
                                               address?? "",
                                               color: AppColors.pureWhiteColor,
-                                              lines: 1,
+                                              lines: 2,
                                               fontFamily: Assets.poppinsRegular,
                                               textDecoration: TextDecoration.underline
                                           )

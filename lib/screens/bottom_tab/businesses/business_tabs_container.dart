@@ -107,7 +107,9 @@ class BusinessTabContainer extends StatelessWidget {
                                 textDecoration: TextDecoration.underline
                             )
                         ),
-                        SizedBox(
+                        (address == '' || address == null)
+                        ? SizedBox(height: getHeight()*0.006,)
+                        : SizedBox(
                             width: getWidth() * 0.45,
                             child:
                             TextView.subHeader(

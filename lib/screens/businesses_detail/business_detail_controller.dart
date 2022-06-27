@@ -123,6 +123,7 @@ class BusinessDetailController extends GetxController
   }
 
   getFollowBusiness({required int id}) async {
+    isBusinessFollowed.value = false;
     follows = await FollowsRemoteRepository.fetchFollows();
     for (var business in follows!.businesses!) {
       if (business.toString().contains(id.toString())) {

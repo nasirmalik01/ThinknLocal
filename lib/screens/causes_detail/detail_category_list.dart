@@ -80,16 +80,16 @@ class DetailCategoryList extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        streetAddress != null
-                        ?TextView.subHeader(
+                        (streetAddress == '' || streetAddress == null)
+                        ? const SizedBox()
+                        : TextView.subHeader(
                             streetAddress ?? "",
                             color: AppColors.lightBlack,
                             lines: 1,
                             fontFamily: Assets.poppinsRegular,
                             textDecoration: TextDecoration.underline,
                             fontSize: sizes.fontSize12
-                        )
-                        : const SizedBox(),
+                        ),
                         TextView.subHeader(
                             address?? "",
                             color: AppColors.lightBlack,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/businesses/business_list_view_layout.dart';
 import 'package:thinknlocal_app/screens/business_search/business_search_controller.dart';
+import 'package:thinknlocal_app/screens/businesses_detail/businesses_detail.dart';
 import 'package:thinknlocal_app/widgets/empty_state.dart';
 import 'package:thinknlocal_app/widgets/loading_indicator.dart';
 import 'package:thinknlocal_app/widgets/network_error.dart';
@@ -80,7 +82,10 @@ class BusinessSearch extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: (){
-                                     Get.toNamed(Routes.businessDetailScreen, arguments: _businessSearchController.searchedBusinessList![index].id);
+                                    pushNewScreen(context,
+                                      screen: BusinessesDetailScreen(businessId: _businessSearchController.searchedBusinessList![index].id),
+                                      withNavBar: true,
+                                    );
                                   },
                                   child: Container(
                                     color: Colors.transparent,

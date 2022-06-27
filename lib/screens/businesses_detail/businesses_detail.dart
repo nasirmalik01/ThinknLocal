@@ -83,23 +83,12 @@ class BusinessesDetailScreen extends StatelessWidget {
                                             fullBoxImage: _businessDetailController.businessDetail!.image ?? Strings.dummyBgImage,
                                             logoImage: _businessDetailController.businessDetail!.logo ?? Strings.dummyLogo,
                                             completePercentage: 0.7,
-                                            contributedAmount:
-                                                _businessDetailController
-                                                    .businessDetail!
-                                                    .contributionAmount
-                                                    .toString(),
-                                            totalAmount: _businessDetailController
-                                                .businessDetail!
-                                                .totalContributions
-                                                .toString(),
-                                            joinDate: _businessDetailController
-                                                .businessDetail!.createdAt
-                                                .toString(),
+                                            contributedAmount: _businessDetailController.businessDetail!.contributionAmount.toString(),
+                                            totalAmount: _businessDetailController.businessDetail!.totalContributions.toString(),
+                                            joinDate: _businessDetailController.businessDetail!.createdAt.toString(),
                                             streetAddress: _businessDetailController.businessDetail!.address2,
-                                            address: _businessDetailController.businessDetail!.address1,
-                                            phoneNumber: '(${_businessDetailController.businessDetail!.phone!.substring(0, 3)}) ${_businessDetailController.businessDetail!.phone!.substring(3, 6)}-${_businessDetailController.businessDetail!.phone!.substring(
-                                              6,
-                                            )}',
+                                            address: '${_businessDetailController.businessDetail!.address1}\n${_businessDetailController.businessDetail!.city}, ${_businessDetailController.businessDetail!.state}, ${_businessDetailController.businessDetail!.zip}',
+                                            phoneNumber: '(${_businessDetailController.businessDetail!.phone!.substring(0, 3)}) ${_businessDetailController.businessDetail!.phone!.substring(3, 6)}-${_businessDetailController.businessDetail!.phone!.substring(6,)}',
                                             isFavorite: _businessDetailController.isBusinessFollowed.value,
                                             onClickBox: () {},
                                             onPressBackArrow: () {
@@ -111,30 +100,19 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                   .followBusiness(_id);
                                             },
                                             onShareClick: () {
-                                              FirebaseDynamicApi
-                                                  .buildDynamicLinks(
-                                                      Strings.businesses,
-                                                      _id.toString());
-                                              DeepLinkInfo? _deepLinkInfo =
-                                                  MyHive.getDeepLinkInfo();
+                                              FirebaseDynamicApi.buildDynamicLinks(Strings.businesses, _id.toString());
+                                              DeepLinkInfo? _deepLinkInfo = MyHive.getDeepLinkInfo();
                                               MyHive.setDeepLinkInfo(
-                                                  DeepLinkInfo(
-                                                      causeId: _deepLinkInfo
-                                                          ?.causeId,
+                                                  DeepLinkInfo(causeId: _deepLinkInfo?.causeId,
                                                       businessId: _id,
-                                                      organizationId:
-                                                          _deepLinkInfo
-                                                              ?.organizationId));
+                                                      organizationId: _deepLinkInfo?.organizationId
+                                                  ));
                                             },
                                             onPhoneClick: () {
-                                              openPhoneDialPad(
-                                                  '+1${_businessDetailController.businessDetail!.phone.toString()}',
-                                                  context);
+                                              openPhoneDialPad('+1${_businessDetailController.businessDetail!.phone.toString()}', context);
                                             },
                                             onAddressClick: () {
-                                              MapsLauncher.launchQuery(
-                                                  _businessDetailController
-                                                      .followBusiness(_id));
+                                              MapsLauncher.launchQuery('${_businessDetailController.businessDetail!.address1}\n${_businessDetailController.businessDetail!.city}, ${_businessDetailController.businessDetail!.state}, ${_businessDetailController.businessDetail!.zip}');
                                             }),
                                   ),
                                   SizedBox(height: sizes.height * 0.01),
@@ -289,10 +267,6 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                               child: CommonWidgets.seeAllButton(30))
                                                                           : GestureDetector(
                                                                               onTap: () {
-                                                                                // Get.toNamed(Routes.causesDetailScreen, arguments: {
-                                                                                //   Strings.causeId: _businessDetailController.recentlyFundedBusinessCausesList![index].id,
-                                                                                //   Strings.organizationId: _businessDetailController.recentlyFundedBusinessCausesList![index].organization!.id,
-                                                                                // });
                                                                                 pushNewScreen(
                                                                                   context,
                                                                                   screen: CausesDetail(causeId: _businessDetailController.recentlyFundedBusinessCausesList![index].id, organizationId: _businessDetailController.recentlyFundedBusinessCausesList![index].organization!.id),

@@ -103,24 +103,16 @@ class _CausesDetailState extends State<CausesDetail>
                                       fullBoxImage: _causesDetailController.causeDetail?.image,
                                       logoImage: _causesDetailController.causeDetail?.organization?.logo,
                                       completePercentage: _causesDetailController.causeDetail?.percentage ?? 0.0,
-                                      collectedAmount: _causesDetailController
-                                              .causeDetail?.raised
-                                              ?.toStringAsFixed(2) ??
-                                          '0.0',
-                                      totalAmount: _causesDetailController
-                                              .causeDetail?.goal
-                                              ?.toStringAsFixed(2) ??
-                                          '0.0',
+                                      collectedAmount: _causesDetailController.causeDetail?.raised?.toStringAsFixed(2) ?? '0.0',
+                                      totalAmount: _causesDetailController.causeDetail?.goal?.toStringAsFixed(2) ?? '0.0',
                                       endDate: "${_causesDetailController.causeDetail?.start} - ${_causesDetailController.causeDetail?.end}",
-                                      isFavorite: _causesDetailController
-                                          .isCauseFollowed.value,
+                                      isFavorite: _causesDetailController.isCauseFollowed.value,
                                       onClickBox: () {},
                                       onPressBackArrow: () {
                                         Navigator.pop(context);
                                       },
                                       onPressFavoriteIcon: () {
-                                        _causesDetailController
-                                            .followCauses(_causeId);
+                                        _causesDetailController.followCauses(_causeId);
                                       },
                                       onShareClick: () {
                                         FirebaseDynamicApi.buildDynamicLinks(
@@ -498,7 +490,6 @@ class _CausesDetailState extends State<CausesDetail>
                                                                       .causeBottomDetails!
                                                                       .length,
                                                                   itemBuilder: (context, index) {
-                                                                  String address = '${_causesDetailController.causeBottomDetails![index].address1}\n${_causesDetailController.causeBottomDetails?[index].city}, ${_causesDetailController.causeBottomDetails?[index].state}, ${_causesDetailController.causeBottomDetails?[index].zip}';
                                                                     return GestureDetector(
                                                                       onTap:
                                                                           () {

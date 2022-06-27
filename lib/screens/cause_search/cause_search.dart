@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:thinknlocal_app/screens/cause_search/cause_search_controller.dart';
+import 'package:thinknlocal_app/screens/causes_detail/causes_detail.dart';
 import 'package:thinknlocal_app/widgets/empty_state.dart';
 import 'package:thinknlocal_app/widgets/loading_indicator.dart';
 import 'package:thinknlocal_app/widgets/network_error.dart';
@@ -76,10 +78,14 @@ class CauseSearch extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: (){
-                            Get.toNamed(Routes.causesDetailScreen, arguments: {
-                              Strings.causeId: _causeSearchController.searchedCausesList![index].id,
-                              Strings.organizationId: _causeSearchController.searchedCausesList![index].organization!.id,
-                            });
+                            pushNewScreen(
+                              context,
+                              screen: CausesDetail(
+                                  causeId: _causeSearchController.searchedCausesList![index].id,
+                                  organizationId: _causeSearchController.searchedCausesList![index].organization!.id
+                              ),
+                              withNavBar: true,
+                            );
                           },
                           child: UpcomingCauses(
                               image:  _causeSearchController.searchedCausesList![index].image,
