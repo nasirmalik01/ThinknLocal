@@ -67,7 +67,8 @@ class CausesDetailTopImageContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: getHeight()*0.07,
+                alignment: Alignment.topCenter,
+                height: getHeight()*0.1,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -83,17 +84,17 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap:  onPressBackArrow,
-                        child: SizedBox(
-                          height: getHeight() * 0.1,
-                          child: Padding(
-                            padding:  const EdgeInsets.only(right: 30.0),
-                            child: Icon(
-                              Icons.arrow_back_ios,
-                              color: AppColors.pureWhiteColor,
-                              size: getHeight() * 0.03,
-                            ),
+                        child: Container(
+                          color: Colors.transparent,
+                          alignment: Alignment.topLeft,
+                          width: getWidth()*0.15,
+                          height: getHeight(),
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: AppColors.pureWhiteColor,
+                            size: getHeight() * 0.03,
                           ),
                         ),
                       ),
@@ -101,15 +102,15 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: onShareClick,
-                            child: SizedBox(
-                              height: getHeight() * 0.1,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 30.0),
-                                child: Icon(
-                                  Icons.ios_share,
-                                  color: AppColors.pureWhiteColor,
-                                  size: getHeight() * 0.03,
-                                ),
+                            child: Container(
+                              color: Colors.transparent,
+                              alignment: Alignment.topRight,
+                              width: getWidth()*0.1,
+                              height: getHeight(),
+                              child: Icon(
+                                Icons.ios_share,
+                                color: AppColors.pureWhiteColor,
+                                size: getHeight() * 0.03,
                               ),
                             ),
                           ),
@@ -118,10 +119,14 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                             padding: EdgeInsets.only(top: 0.5.h),
                             child: GestureDetector(
                                 onTap: () => onPressFavoriteIcon(),
-                                child: isFavorite? SizedBox(
-                                    height: getHeight() * 0.1,
-                                    child: Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,)):
-                                    Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,)
+                                child: Container(
+                                  color: Colors.transparent,
+                                  alignment: Alignment.topLeft,
+                                  width: getWidth()*0.1,
+                                  height: getHeight(),
+                                  child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
+                                  Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,),
+                                )
                             ),
                           )
 
