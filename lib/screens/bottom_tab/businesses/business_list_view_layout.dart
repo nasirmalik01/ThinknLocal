@@ -49,8 +49,10 @@ class BusinessListViewLayout extends StatelessWidget {
                 children: [
                   TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
                   SizedBox(height: getHeight() * 0.004),
-                  TextView.subHeader(
-                      streetAddress?? "",
+                  (streetAddress == '' || streetAddress == null)
+                  ? const SizedBox()
+                  : TextView.subHeader(
+                      streetAddress,
                       color: AppColors.lightBlack,
                       lines: 1,
                       fontFamily: Assets.poppinsRegular,

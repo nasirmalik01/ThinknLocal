@@ -164,7 +164,9 @@ class BusinessDetailTopContainer extends StatelessWidget {
                                       SizedBox(
                                           width: getWidth() * 0.65,
                                           child:
-                                          TextView.headerWithBlurRadius(
+                                          (streetAddress == '' || streetAddress == null)
+                                          ? const SizedBox()
+                                          : TextView.headerWithBlurRadius(
                                               streetAddress?? "",
                                               color: AppColors.pureWhiteColor,
                                               lines: 1,

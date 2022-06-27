@@ -91,20 +91,12 @@ class MainBusinessListing extends StatelessWidget {
                                         child: Container(
                                           color: Colors.transparent,
                                           child: BusinessListViewLayout(
-                                            image: _businessesController
-                                                    .businessList![index]
-                                                    .image ??
-                                                Strings.dummyBgImage,
-                                            headerText: _businessesController
-                                                .businessList![index].name,
+                                            image: _businessesController.businessList![index].logo ?? Strings.dummyBgImage,
+                                            headerText: _businessesController.businessList![index].name,
                                             onViewCourse: () {},
-                                            address: _businessesController
-                                                .businessList![index].address1,
-                                            streetAddress: _businessesController
-                                                .businessList![index].address2,
-                                            phoneNumber:
-                                                '(${_businessesController.businessList![index].phone!.substring(0, 3)}) ${_businessesController.businessList![index].phone!.substring(3, 6)}-${_businessesController.businessList![index].phone!.substring(
-                                              6,
+                                            address: _businessesController.businessList![index].address1,
+                                            streetAddress: _businessesController.businessList![index].address2,
+                                            phoneNumber: '(${_businessesController.businessList![index].phone!.substring(0, 3)}) ${_businessesController.businessList![index].phone!.substring(3, 6)}-${_businessesController.businessList![index].phone!.substring(6,
                                             )}',
                                           ),
                                         ),

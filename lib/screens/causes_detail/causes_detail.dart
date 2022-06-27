@@ -488,10 +488,8 @@ class _CausesDetailState extends State<CausesDetail>
                                                           : _causesDetailController
                                                                   .causeBottomDetails!
                                                                   .isNotEmpty
-                                                              ? ListView
-                                                                  .separated(
-                                                                  scrollDirection:
-                                                                      Axis.vertical,
+                                                              ? ListView.separated(
+                                                        scrollDirection: Axis.vertical,
                                                                   shrinkWrap:
                                                                       true,
                                                                   physics:
@@ -499,54 +497,31 @@ class _CausesDetailState extends State<CausesDetail>
                                                                   itemCount: _causesDetailController
                                                                       .causeBottomDetails!
                                                                       .length,
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                          index) {
+                                                                  itemBuilder: (context, index) {
+                                                                  String address = '${_causesDetailController.causeBottomDetails![index].address1}\n${_causesDetailController.causeBottomDetails?[index].city}, ${_causesDetailController.causeBottomDetails?[index].state}, ${_causesDetailController.causeBottomDetails?[index].zip}';
                                                                     return GestureDetector(
                                                                       onTap:
                                                                           () {
-                                                                        pushNewScreen(
-                                                                          context,
-                                                                          screen:
-                                                                              BusinessesDetailScreen(businessId: _causesDetailController.causeBottomDetails![index].id),
-                                                                          withNavBar:
-                                                                              true,
+                                                                        pushNewScreen(context,
+                                                                          screen: BusinessesDetailScreen(businessId: _causesDetailController.causeBottomDetails![index].id),
+                                                                          withNavBar: true,
                                                                         );
                                                                       },
-                                                                      child:
-                                                                          DetailCategoryList(
-                                                                        image: _causesDetailController
-                                                                            .causeBottomDetails![index]
-                                                                            .logo,
-                                                                        headerText: _causesDetailController
-                                                                            .causeBottomDetails![index]
-                                                                            .name,
-                                                                        onViewCourse:
-                                                                            () {},
-                                                                        categoryPercent: _causesDetailController
-                                                                            .causeBottomDetails![index]
-                                                                            .contributionAmount,
-                                                                        address:
-                                                                            '${_causesDetailController.causeBottomDetails![index].address1}\n${_causesDetailController.causeBottomDetails?[index].city}, ${_causesDetailController.causeBottomDetails?[index].state}, ${_causesDetailController.causeBottomDetails?[index].zip}',
-                                                                        streetAddress: _causesDetailController
-                                                                            .causeBottomDetails?[index]
-                                                                            .address2,
-                                                                        phoneNumber:
-                                                                            '(${_causesDetailController.causeBottomDetails![index].phone!.substring(0, 3)}) ${_causesDetailController.causeBottomDetails![index].phone!.substring(3, 6)}-${_causesDetailController.causeBottomDetails![index].phone!.substring(
-                                                                          6,
-                                                                        )}',
-                                                                        onPhoneClick:
-                                                                            () {
-                                                                          openPhoneDialPad('+1${_causesDetailController.causeBottomDetails![index].phone.toString()}',
-                                                                              context);
+                                                                      child: DetailCategoryList(
+                                                                        image: _causesDetailController.causeBottomDetails![index].logo,
+                                                                        headerText: _causesDetailController.causeBottomDetails![index].name,
+                                                                        onViewCourse: () {},
+                                                                        categoryPercent: _causesDetailController.causeBottomDetails![index].contributionAmount,
+                                                                        address: '${_causesDetailController.causeBottomDetails![index].address1}\n${_causesDetailController.causeBottomDetails?[index].city}, ${_causesDetailController.causeBottomDetails?[index].state}, ${_causesDetailController.causeBottomDetails?[index].zip}',
+                                                                        streetAddress: _causesDetailController.causeBottomDetails?[index].address2,
+                                                                        phoneNumber: '(${_causesDetailController.causeBottomDetails![index].phone!.substring(0, 3)}) ${_causesDetailController.causeBottomDetails![index].phone!.substring(3, 6)}-${_causesDetailController.causeBottomDetails![index].phone!.substring(6,)}',
+                                                                        onPhoneClick: () {
+                                                                          openPhoneDialPad('+1${_causesDetailController.causeBottomDetails![index].phone.toString()}', context);
                                                                         },
-                                                                        onAddressClick:
-                                                                            () async {
-                                                                          MapsLauncher.launchQuery(_causesDetailController.causeBottomDetails![index].address1!);
+                                                                        onAddressClick: () async {
+                                                                          MapsLauncher.launchQuery('${_causesDetailController.causeBottomDetails![index].address1} ${_causesDetailController.causeBottomDetails?[index].city}, ${_causesDetailController.causeBottomDetails?[index].state}, ${_causesDetailController.causeBottomDetails?[index].zip}');
                                                                         },
-                                                                        isRestrictionsApply: _causesDetailController.causeBottomDetails![index].restrictions == null
-                                                                            ? false
-                                                                            : true,
+                                                                        isRestrictionsApply: _causesDetailController.causeBottomDetails![index].restrictions == null ? false : true,
                                                                         onShowRestrictionsTap:
                                                                             () {
                                                                           customDialog(
@@ -709,14 +684,10 @@ class _CausesDetailState extends State<CausesDetail>
                                                       }),
                                                   SizedBox(height: 3.h),
                                                   TextView.titleWithDecoration(
-                                                      Strings
-                                                          .topContributions,
-                                                      color: AppColors
-                                                          .blackColor,
-                                                      fontFamily: Assets
-                                                          .poppinsMedium,
-                                                      fontSize:
-                                                          sizes.fontSize16),
+                                                      Strings.topContributions,
+                                                      color: AppColors.blackColor,
+                                                      fontFamily: Assets.poppinsMedium,
+                                                      fontSize: sizes.fontSize16),
                                                   SizedBox(height: 2.h),
                                                   _causesDetailController
                                                           .causesStats!

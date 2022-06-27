@@ -87,11 +87,7 @@ class RecentBusinessListing extends StatelessWidget {
                                         child: Container(
                                           color: Colors.transparent,
                                           child: BusinessListViewLayout(
-                                              image: _businessesController
-                                                      .recentlyAddedBusinessList![
-                                                          index]
-                                                      .image ??
-                                                  Strings.dummyBgImage,
+                                              image: _businessesController.recentlyAddedBusinessList![index].logo ?? Strings.dummyBgImage,
                                               headerText: _businessesController
                                                   .recentlyAddedBusinessList![
                                                       index]

@@ -86,11 +86,7 @@ class NearbyBusinessListing extends StatelessWidget {
                                         child: Container(
                                           color: Colors.transparent,
                                           child: BusinessListViewLayout(
-                                              image: _businessesController
-                                                      .nearbyBusinessList![
-                                                          index]
-                                                      .image ??
-                                                  Strings.dummyBgImage,
+                                              image: _businessesController.nearbyBusinessList![index].logo ?? Strings.dummyBgImage,
                                               headerText: _businessesController
                                                   .nearbyBusinessList![index]
                                                   .name,

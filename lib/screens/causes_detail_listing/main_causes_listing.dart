@@ -113,16 +113,8 @@ class _MainCausesListingState extends State<MainCausesListing> {
                                             padding: EdgeInsets.symmetric(
                                                 vertical: sizes.height * 0.001),
                                             child: UpcomingCauses(
-                                                image: _causesController
-                                                        .topCausesContainersList![
-                                                            index]
-                                                        .image ??
-                                                    Strings.dummyBgImage,
-                                                headerText: _causesController
-                                                    .topCausesContainersList![
-                                                        index]
-                                                    .organization!
-                                                    .name,
+                                                image: _causesController.topCausesContainersList![index].organization?.logo ?? Strings.dummyBgImage,
+                                                headerText: _causesController.topCausesContainersList![index].organization!.name,
                                                 description: _causesController
                                                     .topCausesContainersList![
                                                         index]

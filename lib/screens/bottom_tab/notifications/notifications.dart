@@ -125,7 +125,9 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                             const Tab(
                               text: Strings.notifications,
                             ),
-                            Positioned(
+                            _notificationController.unreadNotifications.value == 0
+                            ? const SizedBox()
+                            : Positioned(
                               right: 0,
                               top: getHeight()*0.002,
                               child: Container(

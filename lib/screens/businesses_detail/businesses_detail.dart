@@ -79,14 +79,9 @@ class BusinessesDetailScreen extends StatelessWidget {
                                             .isLoading.value
                                         ? bouncingLoadingIndicator()
                                         : BusinessDetailTopContainer(
-                                            name: _businessDetailController
-                                                .businessDetail!.name,
-                                            fullBoxImage: _businessDetailController
-                                                    .businessDetail!.image ??
-                                                Strings.dummyBgImage,
-                                            logoImage: _businessDetailController
-                                                    .businessDetail!.logo ??
-                                                Strings.dummyLogo,
+                                            name: _businessDetailController.businessDetail!.name,
+                                            fullBoxImage: _businessDetailController.businessDetail!.image ?? Strings.dummyBgImage,
+                                            logoImage: _businessDetailController.businessDetail!.logo ?? Strings.dummyLogo,
                                             completePercentage: 0.7,
                                             contributedAmount:
                                                 _businessDetailController
@@ -100,11 +95,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                             joinDate: _businessDetailController
                                                 .businessDetail!.createdAt
                                                 .toString(),
-                                            streetAddress:
-                                                _businessDetailController
-                                                    .businessDetail!.address2,
-                                            address: _businessDetailController
-                                                .businessDetail!.address1,
+                                            streetAddress: _businessDetailController.businessDetail!.address2,
+                                            address: _businessDetailController.businessDetail!.address1,
                                             phoneNumber: '(${_businessDetailController.businessDetail!.phone!.substring(0, 3)}) ${_businessDetailController.businessDetail!.phone!.substring(3, 6)}-${_businessDetailController.businessDetail!.phone!.substring(
                                               6,
                                             )}',
@@ -515,14 +507,11 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                               );
                                                             }),
                                                         SizedBox(height: 3.h),
-                                                        CommonWidgets.getTextWithSeeAll(
-                                                            leadingText: Strings
-                                                                .recentContributions,
-                                                            trailingText:
-                                                                Strings
-                                                                    .seeAll,
-                                                            onPressSeeAllButton:
-                                                                () {}),
+                                                        TextView.titleWithDecoration(
+                                                            Strings.recentContributions,
+                                                            color: AppColors.blackColor,
+                                                            fontFamily: Assets.poppinsMedium,
+                                                            fontSize: sizes.fontSize16),
                                                         SizedBox(height: 2.h),
                                                         _businessDetailController
                                                                 .businessStats!

@@ -112,11 +112,7 @@ class _RecentCausesListingState extends State<RecentCausesListing> {
                                             padding: EdgeInsets.symmetric(
                                                 vertical: sizes.height * 0.001),
                                             child: UpcomingCauses(
-                                                image: _causesController
-                                                        .recentlyStartedCauses![
-                                                            index]
-                                                        .image ??
-                                                    Strings.dummyBgImage,
+                                                image: _causesController.recentlyStartedCauses![index].organization?.logo ?? Strings.dummyBgImage,
                                                 headerText: _causesController
                                                     .recentlyStartedCauses![
                                                         index]
