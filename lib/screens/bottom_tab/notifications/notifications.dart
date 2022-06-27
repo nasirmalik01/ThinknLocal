@@ -298,6 +298,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                         ),
                       ),
                       Container(
+                        color: AppColors.pureWhiteColor,
                         padding: EdgeInsets.only(left: sizes.width * 0.03, right: sizes.width * 0.03),
                         child: Column(
                           children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thinknlocal_app/common/handling_empty_states.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/businesses/business_nearby.dart';
 import 'package:thinknlocal_app/screens/businesses_categories/business_category_controller.dart';
@@ -65,7 +66,8 @@ class BusinessCategory extends StatelessWidget {
                         Obx(
                           () => _businessCategoryController.isLoading.value
                               ? bouncingLoadingIndicator()
-                              : ListView.separated(
+                              : _businessCategoryController.businessCategoryList?.isNotEmpty ?? false
+                              ? ListView.separated(
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const ScrollPhysics(),
@@ -90,24 +92,12 @@ class BusinessCategory extends StatelessWidget {
                                           );
                                         },
                                         child: BusinessNearBy(
-                                          image: _businessCategoryController
-                                              .businessCategoryList![index]
-                                              .image,
-                                          headerText:
-                                              _businessCategoryController
-                                                  .businessCategoryList![index]
-                                                  .name,
+                                          image: _businessCategoryController.businessCategoryList![index].logo,
+                                          headerText: _businessCategoryController.businessCategoryList![index].name,
                                           onViewCourse: () {},
-                                          address: _businessCategoryController
-                                              .businessCategoryList![index]
-                                              .address1,
-                                          streetAddress:
-                                              _businessCategoryController
-                                                  .businessCategoryList![index]
-                                                  .address2,
-                                          phoneNumber:
-                                              '(${_businessCategoryController.businessCategoryList![index].phone!.substring(0, 3)}) ${_businessCategoryController.businessCategoryList![index].phone!.substring(3, 6)}-${_businessCategoryController.businessCategoryList![index].phone!.substring(
-                                            6,
+                                          address: '${_businessCategoryController.businessCategoryList![index].address1}\n${_businessCategoryController.businessCategoryList![index].city}, ${_businessCategoryController.businessCategoryList![index].state}, ${_businessCategoryController.businessCategoryList![index].zip}',
+                                          streetAddress: _businessCategoryController.businessCategoryList![index].address2,
+                                          phoneNumber: '(${_businessCategoryController.businessCategoryList![index].phone!.substring(0, 3)}) ${_businessCategoryController.businessCategoryList![index].phone!.substring(3, 6)}-${_businessCategoryController.businessCategoryList![index].phone!.substring(6,
                                           )}',
                                           isBusinessCategory: true,
                                         ),
@@ -121,7 +111,8 @@ class BusinessCategory extends StatelessWidget {
                                         thickness: getHeight() * 0.002,
                                         color: AppColors.borderColor);
                                   },
-                                ),
+                                )
+                              : handleEmptyState(context, 'There are no businesses in this category'),
                         ),
                         SizedBox(height: getHeight() * 0.04),
                       ],
