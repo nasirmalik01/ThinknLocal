@@ -64,8 +64,7 @@ class CausesRemoteRepository {
     }
 
     CauseDetail _causeDetail = CauseDetail.fromJson(response);
-    final _startDate =
-        convertDateToString(dateTime: _causeDetail.start.toString());
+    final _startDate = convertDateToString(dateTime: _causeDetail.start.toString());
     final _endDate = convertDateToString(dateTime: _causeDetail.end.toString());
     _causeDetail.start = _startDate;
     _causeDetail.end = _endDate;

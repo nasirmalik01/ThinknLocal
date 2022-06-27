@@ -88,24 +88,14 @@ class _MainCausesListingState extends State<MainCausesListing> {
                                       itemCount: _causesController
                                           .topCausesContainersList!.length,
                                       itemBuilder: (context, index) {
-                                        dynamic _raisedFormattedAmount =
-                                            commaFormatter(_causesController
-                                                .topCausesContainersList![index]
-                                                .raised);
+                                        dynamic _raisedFormattedAmount = commaFormatter(_causesController.topCausesContainersList![index].raised);
                                         return GestureDetector(
                                           onTap: () {
                                             pushNewScreen(
                                               context,
                                               screen: CausesDetail(
-                                                  causeId: _causesController
-                                                      .topCausesContainersList![
-                                                          index]
-                                                      .id,
-                                                  organizationId: _causesController
-                                                      .topCausesContainersList![
-                                                          index]
-                                                      .organization!
-                                                      .id),
+                                                  causeId: _causesController.topCausesContainersList![index].id,
+                                                  organizationId: _causesController.topCausesContainersList![index].organization!.id),
                                               withNavBar: true,
                                             );
                                           },
@@ -115,18 +105,10 @@ class _MainCausesListingState extends State<MainCausesListing> {
                                             child: UpcomingCauses(
                                                 image: _causesController.topCausesContainersList![index].organization?.logo ?? Strings.dummyBgImage,
                                                 headerText: _causesController.topCausesContainersList![index].organization!.name,
-                                                description: _causesController
-                                                    .topCausesContainersList![
-                                                        index]
-                                                    .name!,
+                                                description: _causesController.topCausesContainersList![index].name!,
                                                 onViewCourse: () {},
-                                                totalAmount:
-                                                    _raisedFormattedAmount,
-                                                date: _causesController
-                                                    .topCausesContainersList![
-                                                        index]
-                                                    .start
-                                                    .toString()),
+                                                totalAmount: _raisedFormattedAmount,
+                                                date: _causesController.topCausesContainersList![index].start.toString()),
                                           ),
                                         );
                                       },

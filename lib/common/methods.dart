@@ -128,7 +128,7 @@ convertDateToString({required String dateTime}) {
   String splitDate = formattedDate.split(',')[1];
   List<String> splitDateList = splitDate.split(' ');
   String month = splitDateList[1];
-  int day = int.parse(splitDateList[2]) - 1;
+  int day = int.parse(splitDateList[2]);
   return '$month ${day.toString()}';
 }
 

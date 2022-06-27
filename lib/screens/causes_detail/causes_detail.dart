@@ -157,8 +157,7 @@ class _CausesDetailState extends State<CausesDetail>
                                         fontFamily: Assets.poppinsMedium,
                                         fontWeight: FontWeight.w500,
                                       ),
-                                      unselectedLabelColor:
-                                          AppColors.darkGrey,
+                                      unselectedLabelColor: AppColors.darkGrey,
                                       unselectedLabelStyle: TextStyle(
                                           fontSize: sizes.fontRatio * 13,
                                           fontFamily: Assets.poppinsRegular,
@@ -199,102 +198,42 @@ class _CausesDetailState extends State<CausesDetail>
                                                 ///Chino Hills HS Girls Water Polo
                                                 Padding(
                                                   padding:
-                                                      EdgeInsets.symmetric(
-                                                          horizontal:
-                                                              sizes.width *
-                                                                  0.06),
+                                                      EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                                                   child: _causeDetailComponents
                                                       .descriptionTextContainer(
-                                                          heading:
-                                                              _causesDetailController
-                                                                  .causeDetail!
-                                                                  .name
-                                                                  .toString(),
-                                                          description:
-                                                              _causesDetailController
-                                                                  .causeDetail!
-                                                                  .description
-                                                                  .toString()),
+                                                          heading: _causesDetailController.causeDetail!.name.toString(),
+                                                          description: _causesDetailController.causeDetail!.description.toString()),
                                                 ),
-                                                SizedBox(
-                                                    height:
-                                                        sizes.height * 0.04),
+                                                SizedBox(height: sizes.height * 0.04),
 
                                                 ///Corporate Sponsors
-                                                _causesDetailController
-                                                        .causeAdvertisementList!
-                                                        .isNotEmpty
+                                                _causesDetailController.causeAdvertisementList?.isNotEmpty ?? false
                                                     ? GestureDetector(
                                                         onTap: () {
                                                           customDialog(
-                                                              title: _causesDetailController
-                                                                  .causeAdvertisementList![
-                                                                      0]
-                                                                  .headline,
-                                                              summary: _causesDetailController
-                                                                  .causeAdvertisementList![
-                                                                      0]
-                                                                  .summary,
-                                                              backgroundImage:
-                                                                  _causesDetailController
-                                                                      .causeAdvertisementList![
-                                                                          0]
-                                                                      .business!
-                                                                      .image!,
-                                                              icon: _causesDetailController
-                                                                  .causeAdvertisementList![
-                                                                      0]
-                                                                  .business!
-                                                                  .logo!,
-                                                              description: _causesDetailController
-                                                                  .causeAdvertisementList![
-                                                                      0]
-                                                                  .business!
-                                                                  .description!,
-                                                              onClickLearnMore:
-                                                                  () {
+                                                              title: _causesDetailController.causeAdvertisementList![0].headline,
+                                                              summary: _causesDetailController.causeAdvertisementList![0].summary,
+                                                              backgroundImage: _causesDetailController.causeAdvertisementList![0].business!.image!,
+                                                              icon: _causesDetailController.causeAdvertisementList![0].business!.logo!,
+                                                              description: _causesDetailController.causeAdvertisementList![0].business!.description!,
+                                                              onClickLearnMore: () {
                                                                 Get.back();
-                                                                launchInBrowser(Uri.parse(
-                                                                    _causesDetailController
-                                                                        .causeAdvertisementList![
-                                                                            0]
-                                                                        .url!));
+                                                                launchInBrowser(Uri.parse(_causesDetailController.causeAdvertisementList![0].url!));
                                                               });
                                                         },
                                                         child:
                                                             CorporateSponsor(
-                                                          backgroundImage:
-                                                              _causesDetailController
-                                                                  .causeAdvertisementList![
-                                                                      0]
-                                                                  .business!
-                                                                  .image!,
-                                                          icon: _causesDetailController
-                                                              .causeAdvertisementList![
-                                                                  0]
-                                                              .business!
-                                                              .logo!,
-                                                          title: _causesDetailController
-                                                              .causeAdvertisementList![
-                                                                  0]
-                                                              .headline!,
-                                                          summary:
-                                                              _causesDetailController
-                                                                  .causeAdvertisementList![
-                                                                      0]
-                                                                  .summary!,
+                                                          backgroundImage: _causesDetailController.causeAdvertisementList![0].business!.image!,
+                                                          icon: _causesDetailController.causeAdvertisementList![0].business!.logo!,
+                                                          title: _causesDetailController.causeAdvertisementList![0].headline!,
+                                                          summary: _causesDetailController.causeAdvertisementList![0].summary!,
                                                         ),
                                                       )
                                                     : const SizedBox(),
 
                                                 ///Featured Sponsors
-                                                _causesDetailController
-                                                        .causeFeaturedList!
-                                                        .isNotEmpty
-                                                    ? Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                _causesDetailController.causeFeaturedList?.isNotEmpty ?? false
+                                                    ? Column(crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Padding(
                                                             padding: EdgeInsets
