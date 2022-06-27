@@ -17,7 +17,7 @@ class CausesDetailTopImageContainer extends StatelessWidget {
   final Function onClickBox;
   final double completePercentage;
   final bool isFavorite;
-  final Function onPressBackArrow;
+  final Function() onPressBackArrow;
   final Function onPressFavoriteIcon;
   final Function() onShareClick;
 
@@ -83,22 +83,34 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(
-                        onTap: () => onPressBackArrow(),
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: AppColors.pureWhiteColor,
-                          size: getHeight() * 0.03,
+                      InkWell(
+                        onTap:  onPressBackArrow,
+                        child: SizedBox(
+                          height: getHeight() * 0.1,
+                          child: Padding(
+                            padding:  const EdgeInsets.only(right: 30.0),
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              color: AppColors.pureWhiteColor,
+                              size: getHeight() * 0.03,
+                            ),
+                          ),
                         ),
                       ),
                       Row(
                         children: [
                           GestureDetector(
                             onTap: onShareClick,
-                            child: Icon(
-                              Icons.ios_share,
-                              color: AppColors.pureWhiteColor,
-                              size: getHeight() * 0.03,
+                            child: SizedBox(
+                              height: getHeight() * 0.1,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 30.0),
+                                child: Icon(
+                                  Icons.ios_share,
+                                  color: AppColors.pureWhiteColor,
+                                  size: getHeight() * 0.03,
+                                ),
+                              ),
                             ),
                           ),
                           SizedBox(width: sizes.width * 0.03),
@@ -106,8 +118,10 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                             padding: EdgeInsets.only(top: 0.5.h),
                             child: GestureDetector(
                                 onTap: () => onPressFavoriteIcon(),
-                                child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
-                                Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,)
+                                child: isFavorite? SizedBox(
+                                    height: getHeight() * 0.1,
+                                    child: Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,)):
+                                    Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,)
                             ),
                           )
 
