@@ -128,8 +128,7 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                                   Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,),
                                 )
                             ),
-                          )
-
+                          ),
                         ],
                       ),
                     ],

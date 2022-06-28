@@ -10,7 +10,6 @@ import 'package:thinknlocal_app/widgets/loading_indicator.dart';
 import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
 import '/constants/assets.dart';
 import '/constants/colors.dart';
 import '/res/res.dart';

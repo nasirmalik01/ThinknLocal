@@ -17,8 +17,7 @@ class RemoteServices {
   static bool isZipRequired = false;
   bool appUnderMaintenance = false;
 
-  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map,
-      {void Function(int, int)? uploadFile}) async {
+  Future<dynamic> postRequest(String endPoint, Map<String, dynamic> map, {void Function(int, int)? uploadFile}) async {
     dynamic resJson;
     isZipRequired = false;
     try {
@@ -45,8 +44,7 @@ class RemoteServices {
   Future<dynamic> getRequest(String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      Response _result = await MySecureHttpClient.getClient()
-          .get(endPoint, queryParameters: map);
+      Response _result = await MySecureHttpClient.getClient().get(endPoint, queryParameters: map);
       checkNextPage(_result.headers);
       log('status_code: ${_result.statusCode}');
       if (_result.statusCode == 200) {
@@ -65,8 +63,7 @@ class RemoteServices {
     }
   }
 
-  Future<dynamic> patchRequest(
-      String endPoint, Map<String, dynamic> map) async {
+  Future<dynamic> patchRequest(String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
       dynamic _result =

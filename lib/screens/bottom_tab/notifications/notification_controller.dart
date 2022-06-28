@@ -16,6 +16,7 @@ class NotificationController extends GetxController{
   List<Contributions>? pendingContributionsList = [];
   List<Contributions>? approvedContributionsList = [];
   List<Contributions>? deniedContributionsList = [];
+
   @override
   void onInit() {
     getNotifications();
@@ -36,7 +37,7 @@ class NotificationController extends GetxController{
     isNotificationsLoading.value = false;
   }
 
-  /// For pending and sent receipts
+  /// For pending, approved and denied receipts
   getContributions() async {
     isContributionLoading.value = true;
     contributionsList = await NotificationRepository.fetchContributions({});
