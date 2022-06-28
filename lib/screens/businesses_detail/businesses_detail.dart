@@ -123,11 +123,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                             onShareClick: () {
                                               FirebaseDynamicApi.buildDynamicLinks(Strings.businesses, _id.toString());
                                               DeepLinkInfo? _deepLinkInfo = MyHive.getDeepLinkInfo();
-                                              MyHive.setDeepLinkInfo(
-                                                  DeepLinkInfo(causeId: _deepLinkInfo?.causeId,
-                                                      businessId: _id,
-                                                      organizationId: _deepLinkInfo?.organizationId
-                                                  ));
+                                              MyHive.setDeepLinkInfo(DeepLinkInfo(causeId: _deepLinkInfo?.causeId, businessId: _id, organizationId: _deepLinkInfo?.organizationId));
                                             },
                                             onPhoneClick: () {
                                               openPhoneDialPad('+1${_businessDetailController.businessDetail!.phone.toString()}', context);

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:thinknlocal_app/constants/assets.dart';
 import 'package:thinknlocal_app/constants/colors.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/notifications/custom_network_image.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 class FullPhoto extends StatelessWidget {
-  final String imageUrl;
+  final String? imageUrl;
   const FullPhoto({Key? key, required this.imageUrl}) : super(key: key);
 
   @override
@@ -25,7 +26,12 @@ class FullPhoto extends StatelessWidget {
                 panEnabled: false,
                 minScale: 0.5,
                 maxScale: 2,
-                child: CustomNetworkImage(
+                child: imageUrl == null
+                ? const Image(
+                  image: AssetImage(Assets.noImageAvailable),
+                  fit: BoxFit.cover,
+                )
+                : CustomNetworkImage(
                   imageUrl: imageUrl,
                   fit: BoxFit.scaleDown,
                 ),

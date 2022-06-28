@@ -40,15 +40,14 @@ class NotificationController extends GetxController{
   getContributions() async {
     isContributionLoading.value = true;
     contributionsList = await NotificationRepository.fetchContributions({});
-    pendingContributionsList = contributionsList?.where((e) => e.status == "pending").toList();
+    pendingContributionsList = contributionsList?.where((e) => (e.status == "pending" || e.status == 'waiting_approval')).toList();
     approvedContributionsList = contributionsList?.where((e) => e.status == "approved").toList();
-    deniedContributionsList = contributionsList?.where((e) => e.status == "denied").toList();
+    deniedContributionsList = contributionsList?.where((e) => (e.status == "denied" || e.status == 'failed')).toList();
     isContributionLoading.value = false;
   }
 
   String getTime(String dateTime) {
-    DateTime input =
-    DateFormat('yyyy-MM-DDTHH:mm:ss.SSSSSSZ').parse(dateTime, true);
+    DateTime input = DateFormat('yyyy-MM-DDTHH:mm:ss.SSSSSSZ').parse(dateTime, true);
     Duration diff = DateTime.now().difference(input);
 
     if (diff.inDays >= 1) {

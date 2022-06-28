@@ -44,7 +44,7 @@ class NotificationCard extends StatelessWidget {
              isShowImage ? SizedBox(
                   width: sizes.width * 0.16,
                   height: sizes.width * 0.16,
-                  child: isNetworkImage ? CustomNetworkImage(imageUrl: image, fit: BoxFit.fill,): Image(
+                  child: isNetworkImage ? CustomNetworkImage(imageUrl: image ?? Assets.noImage, fit: BoxFit.fill,): Image(
                     image: AssetImage(image!),
                     fit: BoxFit.fill,
                   )

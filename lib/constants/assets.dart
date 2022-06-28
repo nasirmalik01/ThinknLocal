@@ -86,6 +86,7 @@ class Assets {
   static const String underMaintenance = 'assets/png/under_maintenance.png';
   static const String somethingWrong = 'assets/png/something_wrong.png';
   static const String cameraScan = 'assets/png/camera_scan.png';
+  static const String noImage = 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930';
 
   //Svg icons
   static const String causesSvg = 'assets/svg/causes.svg';

@@ -80,7 +80,7 @@ class CausesDetailTopImageContainer extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(left: getWidth()*0.04, right: getWidth()*0.04, top: getHeight() * 0.05),
+                  padding: EdgeInsets.only(left: getWidth()*0.04, top: getHeight() * 0.05),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -313,7 +313,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
                                       onTap: () {
-                                        Get.to(() => FullPhoto(imageUrl: _notificationController.deniedContributionsList![index].receiptUrl!));
+                                        Get.to(() => FullPhoto(imageUrl: _notificationController.deniedContributionsList![index].receiptUrl ?? Assets.noImage));
                                       },
                                       child: Padding(
                                         padding: EdgeInsets.only(top: index == 0 ? 0 : 1.h, bottom: index == _notificationController.approvedContributionsList!.length - 1 ? 4.h : 0),
@@ -321,7 +321,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                             image: _notificationController.deniedContributionsList?[index].receiptUrl,
                                             text: _notificationController.deniedContributionsList![index].business?.name,
                                             subText: "\$${_notificationController.deniedContributionsList?[index].receiptAmount?.toStringAsFixed(2) ?? '0'} will be sent to cause",
-                                            date: _notificationController.getTime(_notificationController.deniedContributionsList![index].receiptDate!),
+                                            date: _notificationController.deniedContributionsList![index].receiptDate == null ? '' : (_notificationController.getTime(_notificationController.deniedContributionsList![index].receiptDate!)),
                                             isSentReceipts: true,
                                             onPressNotification: () {}),
                                       )

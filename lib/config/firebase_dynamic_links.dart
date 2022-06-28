@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:get/get.dart';
+import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/config/navigation_service.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/screens/businesses_detail/businesses_detail.dart';
@@ -26,6 +28,7 @@ class FirebaseDynamicApi {
   }
 
   static buildDynamicLinks(String category, String id, {String? organizationId}) async {
+    showThreeBounceLoading();
     String url = Strings.dynamicLinkInitialUrl;
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: url,
@@ -39,16 +42,10 @@ class FirebaseDynamicApi {
         minimumVersion: '0',
         appStoreId: '1524846479',
       ),
-      // socialMetaTagParameters: SocialMetaTagParameters(
-      //   description: '',
-      //   imageUrl: Uri.parse(Strings.dynamicLinkImageUrl),
-      //   title: Strings.thinknLocal,
-      // ),
     );
-    final dynamicLink =
-        await FirebaseDynamicLinks.instance.buildShortLink(parameters);
+    final dynamicLink = await FirebaseDynamicLinks.instance.buildShortLink(parameters);
     String? desc = dynamicLink.shortUrl.toString();
-
+    Get.back();
     await Share.share(desc, subject: Strings.thinknLocal);
   }
 

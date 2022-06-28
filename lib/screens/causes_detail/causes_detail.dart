@@ -115,18 +115,9 @@ class _CausesDetailState extends State<CausesDetail>
                                         _causesDetailController.followCauses(_causeId);
                                       },
                                       onShareClick: () {
-                                        FirebaseDynamicApi.buildDynamicLinks(
-                                            Strings.causes,
-                                            _causeId.toString(),
-                                            organizationId:
-                                                _organizationId.toString());
-                                        DeepLinkInfo? _deepLinkInfo =
-                                            MyHive.getDeepLinkInfo();
-                                        MyHive.setDeepLinkInfo(DeepLinkInfo(
-                                            causeId: _causeId,
-                                            organizationId: _organizationId,
-                                            businessId:
-                                                _deepLinkInfo?.businessId));
+                                        FirebaseDynamicApi.buildDynamicLinks(Strings.causes, _causeId.toString(), organizationId: _organizationId.toString());
+                                        DeepLinkInfo? _deepLinkInfo = MyHive.getDeepLinkInfo();
+                                        MyHive.setDeepLinkInfo(DeepLinkInfo(causeId: _causeId, organizationId: _organizationId, businessId: _deepLinkInfo?.businessId));
                                       },
                                     ),
                                   ),

@@ -74,7 +74,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: getHeight()*0.07,
+                height: getHeight()*0.1,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -86,16 +86,22 @@ class BusinessDetailTopContainer extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03, top: getHeight() * 0.05),
+                  padding: EdgeInsets.only(left: getWidth()*0.03, top: getHeight() * 0.05),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                         onTap: () => onPressBackArrow(),
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: AppColors.pureWhiteColor,
-                          size: getHeight() * 0.03,
+                        child: Container(
+                          color: Colors.transparent,
+                          alignment: Alignment.topLeft,
+                          width: getWidth()*0.15,
+                          height: getHeight(),
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: AppColors.pureWhiteColor,
+                            size: getHeight() * 0.03,
+                          ),
                         ),
                       ),
                       Padding(
@@ -104,17 +110,29 @@ class BusinessDetailTopContainer extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: onShareClick,
-                              child: Icon(
-                                Icons.ios_share,
-                                color: AppColors.pureWhiteColor,
-                                size: getHeight() * 0.03,
+                              child: Container(
+                                color: Colors.transparent,
+                                alignment: Alignment.topRight,
+                                width: getWidth()*0.1,
+                                height: getHeight(),
+                                child: Icon(
+                                  Icons.ios_share,
+                                  color: AppColors.pureWhiteColor,
+                                  size: getHeight() * 0.03,
+                                ),
                               ),
                             ),
                             SizedBox(width: sizes.width * 0.03),
                             GestureDetector(
                               onTap: () => onPressFavoriteIcon(),
-                              child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
-                              Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,),
+                              child: Container(
+                                  color: Colors.transparent,
+                                  alignment: Alignment.topLeft,
+                                  width: getWidth()*0.1,
+                                  height: getHeight(),
+                                  child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
+                                  Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,),
+                              )
                             )
                           ],
                         ),
