@@ -1,5 +1,6 @@
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/api_endpoints.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/model/contributions.dart';
 import 'package:thinknlocal_app/model/notification.dart';
 import 'package:thinknlocal_app/network/remote_repositories/notification_repository.dart';
@@ -10,6 +11,9 @@ import 'package:intl/intl.dart';
 class NotificationController extends GetxController{
   RxBool isNotificationsLoading = false.obs;
   RxBool isContributionLoading = false.obs;
+  RxBool isPendingReceiptsLoading = false.obs;
+  RxBool isApprovedReceiptsLoading = false.obs;
+  RxBool isDeniedReceiptsLoading = false.obs;
   List<Contributions>? contributionsList = [];
   List<Notification>? notificationList = [];
   RxInt unreadNotifications = 0.obs;
@@ -20,7 +24,9 @@ class NotificationController extends GetxController{
   @override
   void onInit() {
     getNotifications();
-    getContributions();
+    getPendingReceipts();
+    getApprovedReceipts();
+    getDeniedReceipts();
     super.onInit();
   }
 
@@ -37,15 +43,31 @@ class NotificationController extends GetxController{
     isNotificationsLoading.value = false;
   }
 
-  /// For pending, approved and denied receipts
-  getContributions() async {
-    isContributionLoading.value = true;
-    contributionsList = await NotificationRepository.fetchContributions({});
-    pendingContributionsList = contributionsList?.where((e) => (e.status == "pending" || e.status == 'waiting_approval' || e.status == 'processing')).toList();
-    approvedContributionsList = contributionsList?.where((e) => e.status == "approved").toList();
-    deniedContributionsList = contributionsList?.where((e) => (e.status == "denied" || e.status == 'failed')).toList();
-    isContributionLoading.value = false;
+  getPendingReceipts() async {
+    isPendingReceiptsLoading.value = true;
+    pendingContributionsList = await NotificationRepository.fetchContributions({
+      Strings.status: Strings.pending
+    });
+    isPendingReceiptsLoading.value = false;
   }
+
+  getApprovedReceipts() async {
+    isApprovedReceiptsLoading.value = true;
+    approvedContributionsList = await NotificationRepository.fetchContributions({
+      Strings.status: Strings.approved
+    });
+    isApprovedReceiptsLoading.value = false;
+  }
+
+  getDeniedReceipts() async {
+    isDeniedReceiptsLoading.value = true;
+    deniedContributionsList = await NotificationRepository.fetchContributions({
+      Strings.status: Strings.denied
+    });
+    isDeniedReceiptsLoading.value = false;
+  }
+
+
 
   String getTime(String dateTime) {
     DateTime input = DateFormat('yyyy-MM-DDTHH:mm:ss.SSSSSSZ').parse(dateTime, true);

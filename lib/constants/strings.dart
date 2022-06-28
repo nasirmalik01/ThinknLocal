@@ -22,6 +22,10 @@ class Strings {
   static const String overview = "Overview";
   static const String updates = "Updates";
   static const String token = "token";
+  static const String status = "status";
+  static const String pending = "pending";
+  static const String approved = "approved";
+  static const String denied = "denied";
   static const String stats = "Stats";
   static const String featuredSponsors = "Featured Sponsors";
   static const String corporateSponsors = "Corporate Sponsors";

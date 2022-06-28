@@ -39,10 +39,16 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
           color: AppColors.greenColor,
           onRefresh: () async{
             _notificationController.getNotifications();
-            _notificationController.getContributions();
+            _notificationController.getPendingReceipts();
+            _notificationController.getApprovedReceipts();
+            _notificationController.getDeniedReceipts();
           },
           child: Obx(() =>
-            (_notificationController.isNotificationsLoading.value || _notificationController.isContributionLoading.value)
+            (   _notificationController.isNotificationsLoading.value ||
+                _notificationController.isPendingReceiptsLoading.value ||
+                _notificationController.isApprovedReceiptsLoading.value ||
+                _notificationController.isDeniedReceiptsLoading.value
+            )
             ? bouncingLoadingIndicator()
             : Container(
               height: sizes.height,

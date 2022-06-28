@@ -6,11 +6,9 @@ import 'package:thinknlocal_app/model/notification.dart';
 import 'package:thinknlocal_app/network/remote_services.dart';
 
 class NotificationRepository {
-  static Future<List<Contributions>?> fetchContributions(
-      Map<String, dynamic> query) async {
+  static Future<List<Contributions>?> fetchContributions(Map<String, dynamic> query) async {
     List<Contributions> contributionsList = [];
-    final response = await getItLocator<RemoteServices>()
-        .getRequest(ApiEndPoints.contributions, query);
+    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.contributions, query);
     if (response == null) {
       return null;
     }
