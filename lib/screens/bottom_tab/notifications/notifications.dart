@@ -243,7 +243,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                             image: _notificationController.pendingContributionsList?[index].receiptUrl,
                                             text: _notificationController.pendingContributionsList?[index].business?.name,
                                             subText: "\$${_notificationController.pendingContributionsList?[index].receiptAmount?.toStringAsFixed(2) ?? '0'} will be sent to cause",
-                                            date: _notificationController.getTime(_notificationController.pendingContributionsList![index].receiptDate!),
+                                            date: _notificationController.pendingContributionsList![index].receiptDate == null ? '' : _notificationController.getTime(_notificationController.pendingContributionsList![index].receiptDate!),
                                             onPressNotification: () {}),
                                       )
                                   );
@@ -281,7 +281,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                             image: _notificationController.approvedContributionsList?[index].receiptUrl,
                                             text: _notificationController.approvedContributionsList?[index].business!.name,
                                             subText: "\$${_notificationController.approvedContributionsList?[index].receiptAmount?.toStringAsFixed(2) ?? '0'} will be sent to cause",
-                                            date: _notificationController.getTime(_notificationController.approvedContributionsList![index].receiptDate!),
+                                            date: _notificationController.approvedContributionsList![index].receiptDate == null ? '' : _notificationController.getTime(_notificationController.approvedContributionsList![index].receiptDate!),
                                             isSentReceipts: true,
                                             onPressNotification: () {}),
                                       )

@@ -13,6 +13,10 @@ class Uploading extends GetWidget<ContributionController> {
 
   @override
   Widget build(BuildContext context) {
+    if (Get.isDialogOpen!) {
+      Get.close(1);
+    }
+
     return Container(
       height: sizes.height,
       width: sizes.width,

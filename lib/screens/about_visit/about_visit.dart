@@ -182,6 +182,7 @@ class AboutVisit extends StatelessWidget {
                                 if(_aboutVisitController.selectedCauseId.value == 0){
                                   return showSnackBar(subTitle: 'Please select cause');
                                 }
+                                showThreeBounceLoading();
                                 Map<String, dynamic> body = {};
                                 body['business_id'] = _aboutVisitController.selectedBusinessId.value;
                                 body['cause_id'] = _aboutVisitController.selectedCauseId.value;

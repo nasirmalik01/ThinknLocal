@@ -14,16 +14,13 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import 'businesses/businesses_screen.dart';
 import 'causes/causes_screen.dart';
 
-
 class BottomTabNew extends StatefulWidget {
   final int pageIndex;
-
   const BottomTabNew({Key? key, required this.pageIndex}) : super(key: key);
 
   @override
@@ -36,8 +33,7 @@ class _BottomTabNewState extends State<BottomTabNew> {
   @override
   void initState() {
     super.initState();
-    _mainController.controller =
-        PersistentTabController(initialIndex: widget.pageIndex);
+    _mainController.controller = PersistentTabController(initialIndex: widget.pageIndex);
     Future.delayed(10.milliseconds);
   }
 
@@ -66,13 +62,11 @@ class _BottomTabNewState extends State<BottomTabNew> {
           screens: _buildScreens(),
           items: _navBarsItems(),
           confineInSafeArea: true,
-          backgroundColor: Colors.white, // Default is Colors.white.
+          backgroundColor: Colors.white,
           handleAndroidBackButtonPress: true, // Default is true.
-          resizeToAvoidBottomInset:
-              false, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+          resizeToAvoidBottomInset: false, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
           stateManagement: true, // Default is true.
-          hideNavigationBarWhenKeyboardShows:
-              true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+          hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
           decoration: NavBarDecoration(
             borderRadius: BorderRadius.circular(getWidth() * 0.001),
             border: Border.all(color: AppColors.borderColor),
@@ -88,18 +82,15 @@ class _BottomTabNewState extends State<BottomTabNew> {
           popAllScreensOnTapOfSelectedTab: true,
           popActionScreens: PopActionScreensType.all,
           itemAnimationProperties: const ItemAnimationProperties(
-            // Navigation Bar's items animation properties.
             duration: Duration(milliseconds: 200),
             curve: Curves.ease,
           ),
           screenTransitionAnimation: const ScreenTransitionAnimation(
-            // Screen transition animation on change of selected tab.
             animateTabTransition: true,
             curve: Curves.ease,
             duration: Duration(milliseconds: 200),
           ),
-          navBarStyle: NavBarStyle
-              .style17, // Choose the nav bar style with this property.
+          navBarStyle: NavBarStyle.style17, // Choose the nav bar style with this property.
         ),
       ],
     );

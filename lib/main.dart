@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -33,8 +33,7 @@ void main() async {
   runZonedGuarded(() async {
     await SentryFlutter.init(
       (options) {
-        options.dsn =
-            'https://257e0a1e6bec4cd78d1c4fdce7ae7f92@o514172.ingest.sentry.io/5617038';
+        options.dsn = 'https://257e0a1e6bec4cd78d1c4fdce7ae7f92@o514172.ingest.sentry.io/5617038';
         options.tracesSampleRate = 1.0;
         options.reportPackages = false;
         options.addInAppInclude('ThinknLocal');
@@ -59,6 +58,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('Token: ${MyHive.getToken()}');
     return Sizer(
       builder: (BuildContext context, Orientation orientation,
           DeviceType deviceType) {

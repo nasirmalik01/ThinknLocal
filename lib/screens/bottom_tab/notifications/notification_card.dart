@@ -61,7 +61,8 @@ class NotificationCard extends StatelessWidget {
                       children: [
                         Expanded(
                             flex: 9,
-                            child: TextView.titleWithDecoration(text, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1)),
+                            child: TextView.titleWithDecoration(text, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, lines: 1),
+                        ),
                         TextView.headerWithBlurRadius(date, color: AppColors.darkGrey, fontFamily: Assets.poppinsRegular, lines: 1),
                       ],
                     ),

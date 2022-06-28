@@ -48,6 +48,7 @@ class AboutVisitController extends GetxController {
       return;
     }
   }
+
   getBusinesses() async {
     isBusinessLoading.value = true;
     businessList = await (BusinessRemoteRepository.fetchBusinesses({}));

@@ -41,7 +41,7 @@ class NotificationController extends GetxController{
   getContributions() async {
     isContributionLoading.value = true;
     contributionsList = await NotificationRepository.fetchContributions({});
-    pendingContributionsList = contributionsList?.where((e) => (e.status == "pending" || e.status == 'waiting_approval')).toList();
+    pendingContributionsList = contributionsList?.where((e) => (e.status == "pending" || e.status == 'waiting_approval' || e.status == 'processing')).toList();
     approvedContributionsList = contributionsList?.where((e) => e.status == "approved").toList();
     deniedContributionsList = contributionsList?.where((e) => (e.status == "denied" || e.status == 'failed')).toList();
     isContributionLoading.value = false;
