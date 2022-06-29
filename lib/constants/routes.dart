@@ -211,14 +211,11 @@ class Routes {
     ];
   }
 
-  static to(String route, {Map<String, dynamic>? arguments}) =>
-      Get.toNamed(route, arguments: arguments);
+  static to(String route, {Map<String, dynamic>? arguments}) => Get.toNamed(route, arguments: arguments);
 
-  static offAllTo(String route, {Map<String, dynamic>? arguments}) =>
-      Get.offAllNamed(route, arguments: arguments);
+  static offAllTo(String route, {Map<String, dynamic>? arguments}) => Get.offAllNamed(route, arguments: arguments);
 
-  static offTo(String route, {Map<String, dynamic>? arguments}) =>
-      Get.offNamed(route, arguments: arguments);
+  static offTo(String route, {Map<String, dynamic>? arguments}) => Get.offNamed(route, arguments: arguments);
 
   static back() => Get.back();
 }

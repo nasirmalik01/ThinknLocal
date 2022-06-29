@@ -53,22 +53,17 @@ class LogInController extends GetxController {
       GoogleSignIn googleSignIn = GoogleSignIn();
       GoogleSignInAccount? account = await googleSignIn.signIn();
       if (account == null) return;
-
       var credentials = await account.authentication;
-
       Map<String, dynamic> _query = {
         Strings.provider: Strings.google,
         Strings.authorization: credentials.idToken.toString(),
         Strings.zip: zip ?? '',
       };
-
-      log('idToken: ${credentials.idToken.toString()}');
-
       showThreeBounceLoading();
       await authenticateUser(query: _query, provider: Strings.google);
-    } catch (e) {
+    }
+    catch (e) {
       log('Error: ${e.toString()}');
-      throw Exception(e.toString());
     }
   }
 

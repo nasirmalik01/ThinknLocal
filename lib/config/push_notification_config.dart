@@ -21,10 +21,7 @@ class PushNotificationConfig {
       playSound: true);
 
   static initNotifications() async {
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(channel);
+    await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
 
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
