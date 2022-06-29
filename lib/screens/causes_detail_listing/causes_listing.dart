@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/causes/upcoming_causes.dart';
 import 'package:get/get.dart';
+import 'package:thinknlocal_app/screens/causes_detail/causes_detail.dart';
 
 import '../../constants/colors.dart';
 import '../../res/res.dart';
@@ -47,12 +49,19 @@ class CausesListingScreen extends StatelessWidget {
 
                         return GestureDetector(
                           onTap: (){
-                            Get.toNamed(Routes.causesDetailScreen, arguments: detailList[index].id);
+                            pushNewScreen(
+                              context,
+                              screen: CausesDetail(
+                                  causeId: detailList[index].id,
+                                  organizationId: detailList[index].organization!.id
+                              ),
+                              withNavBar: true,
+                            );
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: sizes.height*0.001),
                             child: UpcomingCauses(
-                                image:  detailList[index].image ?? Strings.dummyBgImage,
+                                image:  detailList[index].organization!.logo ?? Strings.dummyBgImage,
                                 headerText: detailList[index].organization!.name,
                                 description:   detailList[index].name!,
                                 onViewCourse: (){},

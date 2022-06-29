@@ -330,21 +330,12 @@ class _CausesDetailState extends State<CausesDetail>
                                                                 .spaceBetween,
                                                         children: [
                                                           customTabBar(
-                                                              title: Strings
-                                                                  .foodDrink,
-                                                              isSelected:
-                                                                  _causesDetailController
-                                                                      .isFoodAndDrink
-                                                                      .value,
+                                                              title: Strings.foodDrink,
+                                                              isSelected: _causesDetailController.isFoodAndDrink.value,
                                                               isDetail: true,
                                                               onTap: () {
-                                                                _causesDetailController.getCauseBottomDetails(
-                                                                    _causeId,
-                                                                    21,
-                                                                    isBottomTab:
-                                                                        true);
-                                                                _causesDetailController
-                                                                    .setFoodAndDrinkTab();
+                                                                _causesDetailController.getCauseBottomDetails(_causeId, 21, isBottomTab: true);
+                                                                _causesDetailController.setFoodAndDrinkTab();
                                                               }),
                                                           customTabBar(
                                                               title: Strings
@@ -355,30 +346,16 @@ class _CausesDetailState extends State<CausesDetail>
                                                                       .value,
                                                               isDetail: true,
                                                               onTap: () {
-                                                                _causesDetailController.getCauseBottomDetails(
-                                                                    _causeId,
-                                                                    27,
-                                                                    isBottomTab:
-                                                                        true);
-                                                                _causesDetailController
-                                                                    .setThingsToDoTab();
+                                                                _causesDetailController.getCauseBottomDetails(_causeId, 27, isBottomTab: true);
+                                                                _causesDetailController.setThingsToDoTab();
                                                               }),
                                                           customTabBar(
-                                                              title: Strings
-                                                                  .retail,
-                                                              isSelected:
-                                                                  _causesDetailController
-                                                                      .isRetail
-                                                                      .value,
+                                                              title: Strings.retail,
+                                                              isSelected: _causesDetailController.isRetail.value,
                                                               isDetail: true,
                                                               onTap: () {
-                                                                _causesDetailController.getCauseBottomDetails(
-                                                                    _causeId,
-                                                                    1,
-                                                                    isBottomTab:
-                                                                        true);
-                                                                _causesDetailController
-                                                                    .setRetailTab();
+                                                                _causesDetailController.getCauseBottomDetails(_causeId, 1, isBottomTab: true);
+                                                                _causesDetailController.setRetailTab();
                                                               }),
                                                           customTabBar(
                                                               title: Strings
@@ -389,13 +366,8 @@ class _CausesDetailState extends State<CausesDetail>
                                                                       .value,
                                                               isDetail: true,
                                                               onTap: () {
-                                                                _causesDetailController.getCauseBottomDetails(
-                                                                    _causeId,
-                                                                    32,
-                                                                    isBottomTab:
-                                                                        true);
-                                                                _causesDetailController
-                                                                    .setServicesTab();
+                                                                _causesDetailController.getCauseBottomDetails(_causeId, 32, isBottomTab: true);
+                                                                _causesDetailController.setServicesTab();
                                                               }),
                                                         ],
                                                       ),

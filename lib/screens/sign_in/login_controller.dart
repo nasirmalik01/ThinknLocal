@@ -57,6 +57,7 @@ class LogInController extends GetxController {
       if(account == null){
         throw Exception();
       }
+
       var credentials = await account.authentication;
       Map<String, dynamic> _query = {
         Strings.provider: Strings.google,

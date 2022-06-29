@@ -325,13 +325,24 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                         : _businessDetailController.pastFundedBusinessCausesList!.length,
                                                                     itemBuilder: (context, index) {
                                                                       dynamic _raisedFormattedAmount = commaFormatter(double.parse(_businessDetailController.pastFundedBusinessCausesList![index].raised.toString()));
-                                                                      return UpcomingCauses(
-                                                                          image: _businessDetailController.pastFundedBusinessCausesList![index].image,
-                                                                          headerText: _businessDetailController.pastFundedBusinessCausesList![index].name,
-                                                                          description: _businessDetailController.pastFundedBusinessCausesList![index].description,
-                                                                          onViewCourse: () {},
-                                                                          totalAmount: _raisedFormattedAmount,
-                                                                          date: _businessDetailController.pastFundedBusinessCausesList![index].start);
+                                                                      return GestureDetector(
+                                                                        onTap: (){
+                                                                          pushNewScreen(
+                                                                            context,
+                                                                            screen: CausesDetail(
+                                                                                causeId:  _businessDetailController.pastFundedBusinessCausesList![index].id,
+                                                                                organizationId:  _businessDetailController.pastFundedBusinessCausesList![index].organization!.id),
+                                                                                withNavBar: true,
+                                                                          );
+                                                                        },
+                                                                        child: UpcomingCauses(
+                                                                            image: _businessDetailController.pastFundedBusinessCausesList![index].organization!.logo,
+                                                                            headerText: _businessDetailController.pastFundedBusinessCausesList![index].name,
+                                                                            description: _businessDetailController.pastFundedBusinessCausesList![index].description,
+                                                                            onViewCourse: () {},
+                                                                            totalAmount: _raisedFormattedAmount,
+                                                                            date: _businessDetailController.pastFundedBusinessCausesList![index].start),
+                                                                      );
                                                                     },
                                                                     separatorBuilder:
                                                                         (BuildContext context,
