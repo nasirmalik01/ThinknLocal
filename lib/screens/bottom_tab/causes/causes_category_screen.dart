@@ -215,8 +215,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                       leadingText: Strings.upcomingCauses,
                       trailingText: Strings.seeAll,
                       onPressSeeAllButton: () {
-                        Get.to(() => const UpcomingCausesListing(
-                            title: Strings.upcomingCauses));
+                        Get.to(() => const UpcomingCausesListing(title: Strings.upcomingCauses));
                       }),
                   SizedBox(height: getHeight() * 0.018),
                   _causesController.isUpcomingCausesLoading.value
@@ -250,26 +249,15 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                                     );
                                   },
                                   child: UpcomingCauses(
-                                      image: _causesController
-                                              .upcomingCauses![index].image ??
-                                          Strings.dummyBgImage,
-                                      headerText: _causesController
-                                          .upcomingCauses![index]
-                                          .organization!
-                                          .name,
-                                      description: _causesController
-                                          .upcomingCauses![index].name,
+                                      image: _causesController.upcomingCauses![index].organization?.logo ?? Strings.dummyBgImage,
+                                      headerText: _causesController.upcomingCauses![index].organization!.name,
+                                      description: _causesController.upcomingCauses![index].name,
                                       onViewCourse: () {},
-                                      totalAmount: _causesController
-                                          .upcomingCauses![index].raised
-                                          .toString(),
-                                      date: _causesController
-                                          .upcomingCauses![index].start!
-                                          .toString()),
+                                      totalAmount: _causesController.upcomingCauses![index].raised.toString(),
+                                      date: _causesController.upcomingCauses![index].start!.toString()),
                                 );
                               },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
+                              separatorBuilder: (BuildContext context, int index) {
                                 return Divider(
                                     height: getHeight() * 0.04,
                                     thickness: getHeight() * 0.002,

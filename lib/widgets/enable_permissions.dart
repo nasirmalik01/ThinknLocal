@@ -8,15 +8,14 @@ import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:sizer/sizer.dart';
 
 class EnablePermission extends StatelessWidget {
-  final bool isLocation;
   final String? title;
   final String? description;
   final Function()? onGoToSettingsTap;
   final String? buttonText;
-  final bool isIcon;
-
-
-  const EnablePermission({Key? key, this.isLocation = true, this.title, this.description, this.onGoToSettingsTap, this.buttonText, this.isIcon = true}) : super(key: key);
+  final String icon;
+  final double? iconHeight;
+  final double? sizedBoxHeight;
+  const EnablePermission({Key? key, this.title, this.description, this.onGoToSettingsTap, this.buttonText, required this.icon, this.iconHeight, this.sizedBoxHeight}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +41,13 @@ class EnablePermission extends StatelessWidget {
             padding: EdgeInsets.only(left: sizes.width * 0.06, right: sizes.width * 0.06, top: getHeight() * 0.09),
             child: Column(
               children: [
-               isIcon ? Image(
-                 image: AssetImage(isLocation ? Assets.locationPermissionIcon : Assets.notificationPermissionIcon),
+               Image(
+                 image: AssetImage(icon),
                  fit: BoxFit.fill,
-                 height: getHeight()*0.24,
+                 height: iconHeight ?? getHeight()*0.24,
                  // height: 22.h,
-               ) : const SizedBox(),
-                isIcon ? SizedBox(height: getHeight()*0.03,) : SizedBox(height: getHeight()*0.1,),
+               ),
+                SizedBox(height: sizedBoxHeight ?? getHeight()*0.03,),
                 TextView.subTitle(title, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, isSetFontWeight: false, fontSize: 17.sp),
                 SizedBox(height: getHeight()*0.025,),
                 SizedBox(

@@ -68,11 +68,11 @@ class LogInController extends GetxController {
       await authenticateUser(query: _query, provider: Strings.google);
     } catch (e) {
       log('Error: ${e.toString()}');
+      throw Exception(e.toString());
     }
   }
 
-  Future<void> authenticateUser(
-      {required Map<String, dynamic> query, String? provider}) async {
+  Future<void> authenticateUser({required Map<String, dynamic> query, String? provider}) async {
     final response = await GetIt.I<RemoteServices>()
         .postRequest(ApiEndPoints.authenticate, query);
 

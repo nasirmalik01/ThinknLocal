@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log('Token: ${MyHive.getToken()}');
+    log('Auth Token: ${MyHive.getToken()}');
     return Sizer(
       builder: (BuildContext context, Orientation orientation,
           DeviceType deviceType) {

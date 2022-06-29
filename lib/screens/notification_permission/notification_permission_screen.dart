@@ -1,5 +1,6 @@
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:thinknlocal_app/constants/assets.dart';
 import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/widgets/enable_permissions.dart';
 import 'package:get/get.dart';
@@ -65,7 +66,7 @@ class _NotificationPermissionScreenState extends State<NotificationPermissionScr
             AppSettings.openNotificationSettings();
           },
           buttonText: 'Go To Settings',
-          isLocation: false,
+          icon: Assets.notificationPermissionIcon,
         )
     );
   }

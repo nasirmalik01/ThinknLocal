@@ -74,6 +74,7 @@ class Assets {
   static const String galleryIcon = "assets/png/gallery_icon.png";
   static const String notificationPermissionIcon = "assets/png/notification_permission.png";
   static const String locationPermissionIcon = "assets/png/location_permission.png";
+  static const String cameraPermissionIcon = "assets/png/camera_permissions.png";
   static const String addIcon = "assets/png/add.png";
   static const String cancelIcon = "assets/png/cancel.png";
   static const String blurEffect = 'assets/png/blur_effect.png';

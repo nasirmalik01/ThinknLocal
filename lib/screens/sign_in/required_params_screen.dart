@@ -89,7 +89,7 @@ class _RequiredParamsScreenState extends State<RequiredParamsScreen> {
                       SizedBox(height: getHeight() * 0.01),
                       TextView.titleWithDecoration("Zip Code", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium),
                       SizedBox(height: getHeight() * 0.01),
-                      TextFieldWidget(textEditingController: zipCodeController, hint: "Zip Code", textInputType: TextInputType.number,),
+                      TextFieldWidget(textEditingController: zipCodeController, hint: "Zip Code", textInputType: TextInputType.number, ),
                       SizedBox(height: getHeight() * 0.04),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

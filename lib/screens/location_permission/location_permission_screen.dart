@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thinknlocal_app/common/main_controller.dart';
 import 'package:thinknlocal_app/common/utils.dart';
+import 'package:thinknlocal_app/constants/assets.dart';
 import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/widgets/enable_permissions.dart';
@@ -38,7 +39,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                   }
                 },
                 buttonText: 'Allow location',
-                isLocation: true,
+                icon: Assets.locationPermissionIcon,
               )
           : const SizedBox()),
     );

@@ -9,8 +9,7 @@ class MyHive {
   static const String _location = 'UserLocation';
   static const String _deepLinkInfo = 'DeepLinkInfo';
   static const String _appInfo = 'AppInfo';
-  static const String _isPushNotificationsEnabled =
-      'IsPushNotificationsEnabled';
+  static const String _isPushNotificationsEnabled = 'IsPushNotificationsEnabled';
   static const String _isEmailEnabled = 'IsEmailEnabled';
   static const String _isLocationServicesEnabled = 'IsLocationServicesEnabled';
   static const String _locationAddress = 'LocationAddress';
