@@ -49,23 +49,25 @@ class LogInController extends GetxController {
   }
 
   loginWithGoogle({String? zip}) async {
+    GoogleSignInAccount? account;
     try {
       GoogleSignIn googleSignIn = GoogleSignIn();
-      GoogleSignInAccount? account = await googleSignIn.signIn();
+      account = await googleSignIn.signIn();
+
       if(account == null){
-        throw Exception('Account not found');
+        throw Exception();
       }
       var credentials = await account.authentication;
       Map<String, dynamic> _query = {
         Strings.provider: Strings.google,
-        Strings.authorization: credentials!.idToken.toString(),
+        Strings.authorization: credentials.idToken.toString(),
         Strings.zip: zip ?? '',
       };
       showThreeBounceLoading();
       await authenticateUser(query: _query, provider: Strings.google);
     }
     catch (e) {
-      showSnackBar(subTitle: e.toString());
+      showSnackBar(subTitle:  e.toString());
       throw Exception(e.toString());
     }
 }
