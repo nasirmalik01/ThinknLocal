@@ -52,13 +52,13 @@ class LogInController extends GetxController {
     try {
       GoogleSignIn googleSignIn = GoogleSignIn();
       GoogleSignInAccount? account = await googleSignIn.signIn();
-      if(account == null) {
+      if(account == null){
         throw Exception('Account not found');
       }
       var credentials = await account.authentication;
       Map<String, dynamic> _query = {
         Strings.provider: Strings.google,
-        Strings.authorization: credentials.idToken.toString(),
+        Strings.authorization: credentials!.idToken.toString(),
         Strings.zip: zip ?? '',
       };
       showThreeBounceLoading();

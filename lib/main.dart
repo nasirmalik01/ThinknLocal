@@ -42,6 +42,7 @@ void main() async {
       },
     );
 
+
     runApp(
       DefaultAssetBundle(
         bundle: SentryAssetBundle(enableStructuredDataTracing: true),
