@@ -85,8 +85,8 @@ class _CausesDetailState extends State<CausesDetail>
                       _causesDetailController.isCauseAdvertisementLoading.value)
                   ? bouncingLoadingIndicator()
                   : _causesDetailController.causeDetail == null
-                      ? const SizedBox()
-                      : CustomScrollView(
+                  ? const SizedBox()
+                  : CustomScrollView(
                           physics: const AlwaysScrollableScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           slivers: [

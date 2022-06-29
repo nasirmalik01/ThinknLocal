@@ -27,7 +27,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                 description: 'By allowing location permissions you are able to explore the causes near you that need your help.',
                 onGoToSettingsTap: () async {
                   PermissionStatus status = await Permission.location.status;
-                  if(status.isPermanentlyDenied){
+                  if(status.isPermanentlyDenied) {
                     openAppSettings();
                   }
                   else {

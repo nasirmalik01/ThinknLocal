@@ -52,7 +52,9 @@ class LogInController extends GetxController {
     try {
       GoogleSignIn googleSignIn = GoogleSignIn();
       GoogleSignInAccount? account = await googleSignIn.signIn();
-      if (account == null) return;
+      if(account == null) {
+        throw Exception('Account not found');
+      }
       var credentials = await account.authentication;
       Map<String, dynamic> _query = {
         Strings.provider: Strings.google,
@@ -63,13 +65,13 @@ class LogInController extends GetxController {
       await authenticateUser(query: _query, provider: Strings.google);
     }
     catch (e) {
-      log('Error: ${e.toString()}');
+      showSnackBar(subTitle: e.toString());
+      throw Exception(e.toString());
     }
-  }
+}
 
   Future<void> authenticateUser({required Map<String, dynamic> query, String? provider}) async {
-    final response = await GetIt.I<RemoteServices>()
-        .postRequest(ApiEndPoints.authenticate, query);
+    final response = await GetIt.I<RemoteServices>().postRequest(ApiEndPoints.authenticate, query);
 
     if (RemoteServices.isZipRequired) {
       Get.toNamed(Routes.requiredParamsScreen, arguments: provider);
