@@ -243,7 +243,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                     scrollDirection: Axis.horizontal,
                                                                     itemCount: _businessDetailController.recentlyFundedBusinessCausesList!.length > 6 ? 6 : _businessDetailController.recentlyFundedBusinessCausesList!.length,
                                                                     itemBuilder: (context, index) {
-                                                                      return index == 5
+                                                                      return index == (_businessDetailController.recentlyFundedBusinessCausesList!.length > 6 ? 5 : _businessDetailController.recentlyFundedBusinessCausesList!.length - 1)
                                                                           ? GestureDetector(
                                                                               onTap: () {
                                                                                 Get.to(() => CausesListingScreen(title: Strings.recentlyFundedBusinessCauses, detailList: _businessDetailController.recentlyFundedBusinessCausesList as dynamic));

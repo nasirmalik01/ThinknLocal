@@ -48,13 +48,13 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                         controller: _tabViewsController,
                         scrollDirection: Axis.horizontal,
                         itemCount:
-                            _causesController.topCausesContainersList!.isEmpty
+                                _causesController.topCausesContainersList!.isEmpty
                                 ? 0
                                 : _causesController.topCausesContainersList!.length > 6
                                 ? 6
                                 : _causesController.topCausesContainersList!.length,
                         itemBuilder: (context, index) {
-                          return index == 5
+                          return index == (_causesController.topCausesContainersList!.length > 6 ? 5 : _causesController.topCausesContainersList!.length - 1)
                               ? GestureDetector(
                                   onTap: () async {
                                     Get.to(() => MainCausesListing(
@@ -150,16 +150,13 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                       child: ListView.builder(
                         controller: _recentlyStartedController,
                         scrollDirection: Axis.horizontal,
-                        itemCount: _causesController
-                                .recentlyStartedCauses!.isEmpty
+                        itemCount: _causesController.recentlyStartedCauses!.isEmpty
                             ? 0
-                            : _causesController.recentlyStartedCauses!.length >
-                                    6
-                                ? 6
-                                : _causesController
-                                    .recentlyStartedCauses!.length,
+                            : _causesController.recentlyStartedCauses!.length > 6
+                            ? 6
+                            : _causesController.recentlyStartedCauses!.length,
                         itemBuilder: (context, index) {
-                          return index == 5
+                          return index == (_causesController.recentlyStartedCauses!.length > 6 ? 5 : _causesController.recentlyStartedCauses!.length - 1)
                               ? GestureDetector(
                                   onTap: () async {
                                     Get.to(() => const RecentCausesListing(

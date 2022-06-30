@@ -265,18 +265,13 @@ class BusinessesScreen extends StatelessWidget {
                             ? ListView.builder(
                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
-                          itemCount: _businessesController
-                              .businessList!.isEmpty
+                          itemCount: _businessesController.businessList!.isEmpty
                               ? 0
-                              : _businessesController
-                              .businessList!
-                              .length >
-                              6
+                              : _businessesController.businessList!.length > 6
                               ? 6
-                              : _businessesController
-                              .businessList!.length,
+                              : _businessesController.businessList!.length,
                           itemBuilder: (context, index) {
-                            return index == 5
+                            return index == (_businessesController.businessList!.length > 6 ? 5 : _businessesController.businessList!.length - 1)
                                 ? GestureDetector(
                                 onTap: () async {
                                   Get.to(() =>
@@ -365,7 +360,7 @@ class BusinessesScreen extends StatelessWidget {
                               .recentlyAddedBusinessList!
                               .length,
                                 itemBuilder: (context, index) {
-                                  return index == 5
+                                  return index == (_businessesController.recentlyAddedBusinessList!.length > 6 ? 5 : _businessesController.recentlyAddedBusinessList!.length - 1)
                                 ? GestureDetector(
                                 onTap: () {
                                   Get.to(() =>

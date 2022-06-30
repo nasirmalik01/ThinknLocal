@@ -328,6 +328,7 @@ class _NotificationScreenState extends State<NotificationScreen>  with SingleTic
                                             subText: "\$${_notificationController.deniedContributionsList?[index].receiptAmount?.toStringAsFixed(2) ?? '0'} will be sent to cause",
                                             date: _notificationController.deniedContributionsList![index].receiptDate == null ? '' : (_notificationController.getTime(_notificationController.deniedContributionsList![index].receiptDate!)),
                                             isSentReceipts: true,
+                                            isShowReason: false,
                                             onPressNotification: () {}),
                                       )
                                   );
