@@ -57,11 +57,6 @@ class _CausesDetailState extends State<CausesDetail>
   Widget build(BuildContext context) {
     int? _causeId = widget.causeId;
     int? _organizationId = widget.organizationId;
-    _causesDetailController.isLoading.value = false;
-    _causesDetailController.isStatsLoading.value = false;
-    _causesDetailController.isCauseBottomLoading.value = false;
-    _causesDetailController.isFeaturedLoading.value = false;
-    _causesDetailController.isCauseAdvertisementLoading.value = false;
     getCauseDetail(_causeId!);
 
     return Scaffold(
@@ -78,11 +73,13 @@ class _CausesDetailState extends State<CausesDetail>
                     _causesDetailController.isError.value = false;
                     getCauseDetail(_causeId);
                   })
-              : (_causesDetailController.isLoading.value ||
+              : (     _causesDetailController.isLoading.value ||
                       _causesDetailController.isStatsLoading.value ||
                       _causesDetailController.isCauseBottomLoading.value ||
                       _causesDetailController.isFeaturedLoading.value ||
-                      _causesDetailController.isCauseAdvertisementLoading.value)
+                      _causesDetailController.isCauseAdvertisementLoading.value ||
+                      _causesDetailController.isBusinessCategoryLoading.value
+                )
                   ? bouncingLoadingIndicator()
                   : _causesDetailController.causeDetail == null
                   ? const SizedBox()
@@ -334,19 +331,16 @@ class _CausesDetailState extends State<CausesDetail>
                                                               isSelected: _causesDetailController.isFoodAndDrink.value,
                                                               isDetail: true,
                                                               onTap: () {
-                                                                _causesDetailController.getCauseBottomDetails(_causeId, 21, isBottomTab: true);
+                                                                _causesDetailController.getCauseBottomDetails(_causeId, _causesDetailController.foodDrinkId.value, isBottomTab: true);
                                                                 _causesDetailController.setFoodAndDrinkTab();
                                                               }),
                                                           customTabBar(
-                                                              title: Strings
-                                                                  .toDoThings,
+                                                              title: Strings.toDoThings,
                                                               isSelected:
-                                                                  _causesDetailController
-                                                                      .isThingsToDo
-                                                                      .value,
+                                                              _causesDetailController.isThingsToDo.value,
                                                               isDetail: true,
                                                               onTap: () {
-                                                                _causesDetailController.getCauseBottomDetails(_causeId, 27, isBottomTab: true);
+                                                                _causesDetailController.getCauseBottomDetails(_causeId, _causesDetailController.thingsToDoId.value, isBottomTab: true);
                                                                 _causesDetailController.setThingsToDoTab();
                                                               }),
                                                           customTabBar(
@@ -354,19 +348,15 @@ class _CausesDetailState extends State<CausesDetail>
                                                               isSelected: _causesDetailController.isRetail.value,
                                                               isDetail: true,
                                                               onTap: () {
-                                                                _causesDetailController.getCauseBottomDetails(_causeId, 1, isBottomTab: true);
+                                                                _causesDetailController.getCauseBottomDetails(_causeId, _causesDetailController.retailId.value, isBottomTab: true);
                                                                 _causesDetailController.setRetailTab();
                                                               }),
                                                           customTabBar(
-                                                              title: Strings
-                                                                  .services,
-                                                              isSelected:
-                                                                  _causesDetailController
-                                                                      .isServices
-                                                                      .value,
+                                                              title: Strings.services,
+                                                              isSelected: _causesDetailController.isServices.value,
                                                               isDetail: true,
                                                               onTap: () {
-                                                                _causesDetailController.getCauseBottomDetails(_causeId, 32, isBottomTab: true);
+                                                                _causesDetailController.getCauseBottomDetails(_causeId, _causesDetailController.servicesId.value, isBottomTab: true);
                                                                 _causesDetailController.setServicesTab();
                                                               }),
                                                         ],
@@ -375,22 +365,14 @@ class _CausesDetailState extends State<CausesDetail>
                                                           height:
                                                               sizes.height *
                                                                   0.02),
-                                                      Obx(() => _causesDetailController
-                                                              .isBottomTabLoading
-                                                              .value
+                                                      Obx(() => _causesDetailController.isBottomTabLoading.value
                                                           ? bouncingLoadingIndicator()
-                                                          : _causesDetailController
-                                                                  .causeBottomDetails!
-                                                                  .isNotEmpty
+                                                          : _causesDetailController.causeBottomDetails!.isNotEmpty
                                                               ? ListView.separated(
-                                                        scrollDirection: Axis.vertical,
-                                                                  shrinkWrap:
-                                                                      true,
-                                                                  physics:
-                                                                      const BouncingScrollPhysics(),
-                                                                  itemCount: _causesDetailController
-                                                                      .causeBottomDetails!
-                                                                      .length,
+                                                                  scrollDirection: Axis.vertical,
+                                                                  shrinkWrap: true,
+                                                                  physics: const BouncingScrollPhysics(),
+                                                                  itemCount: _causesDetailController.causeBottomDetails!.length,
                                                                   itemBuilder: (context, index) {
                                                                     return GestureDetector(
                                                                       onTap:
@@ -655,10 +637,9 @@ class _CausesDetailState extends State<CausesDetail>
   }
 
   getCauseDetail(int _id) {
-    Future.delayed(10.milliseconds, () {
+    Future.delayed(10.milliseconds, () async {
       _causesDetailController.getCauseDetail(_id);
       _causesDetailController.getCauseStats(_id);
-      _causesDetailController.getCauseBottomDetails(_id, 21);
       _causesDetailController.getCauseFeatured(_id);
       bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
       if (_isUserAuthenticated) {
@@ -666,6 +647,9 @@ class _CausesDetailState extends State<CausesDetail>
       }
       _causesDetailController.getUpdatedCauses(_id);
       _causesDetailController.getCauseAdvertisements(_id);
+      await _causesDetailController.fetchBusinessCategories();
+      _causesDetailController.getCauseBottomDetails(_id, _causesDetailController.foodDrinkId.value);
+
     });
   }
 }

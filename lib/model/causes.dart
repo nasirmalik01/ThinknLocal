@@ -19,6 +19,7 @@ class Causes {
   int? daysRemaining;
   bool? isFavorite;
   double? percentage;
+  String? status;
 
   Causes(
       {
@@ -38,7 +39,8 @@ class Causes {
         end,
         daysRemaining,
         isFavorite = false,
-        percentage
+        percentage,
+        status
       });
 
   Causes.fromJson(Map<String, dynamic> json) {

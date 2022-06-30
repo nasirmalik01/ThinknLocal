@@ -70,7 +70,7 @@ class AboutVisitController extends GetxController {
     if (isBusiness) {
       if (businessList!.isNotEmpty) {
         for (int i = 0; i < businessList!.length; i++) {
-          businessStringList.add(businessList![i].name!);
+          businessStringList.add('${businessList![i].name!} - ${businessList![i].address1}');
         }
         if(isEmptyTextFieldValue){
           return businessStringList;
@@ -110,8 +110,10 @@ class AboutVisitController extends GetxController {
 
    onBusinessCompletePress(value) {
     selectedBusiness.value = value;
+    List<String> _businessSplitValue = value.toString().split(' - ');
+    String _businessName = _businessSplitValue[0];
     for (var item in businessList!) {
-      if (item.name == value) {
+      if (item.name == _businessName) {
         selectedBusinessId.value = item.id!;
         getCauses(selectedBusinessId.value);
         log('selectedBusinessId.value: ${selectedBusinessId.value}');

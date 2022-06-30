@@ -18,7 +18,7 @@ class CausesFundContainer extends StatelessWidget {
   final Function onClickBox;
   final double completePercentage;
   final int index;
-
+  final String dateStatus;
 
   const CausesFundContainer(
       {Key? key, required this.fullBoxImage,
@@ -29,7 +29,8 @@ class CausesFundContainer extends StatelessWidget {
       required this.endDate,
       required this.onClickBox,
       required this.completePercentage,
-      required this.index
+      required this.index,
+      required this.dateStatus
       }) : super(key: key);
 
   @override
@@ -120,7 +121,7 @@ class CausesFundContainer extends StatelessWidget {
                         TextView.subHeader(" ${Strings.of} \$$_totalFormattedAmount", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
                       ],
                     ),
-                    TextView.subHeader("${Strings.ends} $endDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
+                    TextView.subHeader("$dateStatus $endDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
                   ],
                 ),
               ),

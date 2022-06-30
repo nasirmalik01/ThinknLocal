@@ -265,6 +265,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                                 endDate: _businessDetailController.recentlyFundedBusinessCausesList![index].end,
                                                                                 raisedAmount: _businessDetailController.recentlyFundedBusinessCausesList![index].raised.toString(),
                                                                                 totalAmount: _businessDetailController.recentlyFundedBusinessCausesList![index].goal.toString(),
+                                                                                dateStatus: _businessDetailController.recentlyFundedBusinessCausesList![index].status!,
                                                                                 colors: const [
                                                                                   Colors.transparent,
                                                                                   AppColors.blackColor,

@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/api_endpoints.dart';
+import 'package:thinknlocal_app/model/business_category.dart';
 import 'package:thinknlocal_app/model/business_detail.dart';
 import 'package:thinknlocal_app/model/business_stats.dart';
 import 'package:thinknlocal_app/model/businesses.dart';
 import 'package:thinknlocal_app/network/remote_services.dart';
+import 'package:thinknlocal_app/screens/businesses_categories/business_category.dart';
 
 class BusinessRemoteRepository {
   static Future<List<Businesses>?> fetchBusinesses(Map<String, dynamic>? query) async {
@@ -77,5 +79,19 @@ class BusinessRemoteRepository {
       completer.complete(true);
     }
     return completer.future;
+  }
+
+  static Future<List<BusinessCategoryModel>?> fetchBusinessCategories() async {
+    List<BusinessCategoryModel> businessCategoryList = [];
+
+    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.categories, {});
+    if (response == null) {
+      return null;
+    }
+    final List<dynamic> _businessCategoryDecodeList = response.map((item) => BusinessCategoryModel.fromJson(item)).toList();
+    for (var businessCategoryItem in _businessCategoryDecodeList) {
+      businessCategoryList.add(businessCategoryItem);
+    }
+    return businessCategoryList;
   }
 }

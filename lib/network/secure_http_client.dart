@@ -30,7 +30,8 @@ class MySecureHttpClient {
   }
 
   static Dio getInsecureClient() {
-    return insecureClient ??= Dio(BaseOptions(baseUrl: 'https://api.thinknlocal.com/v2/'));
+    return insecureClient ??=
+        Dio(BaseOptions(baseUrl: 'https://api.thinknlocal.com/v2/'));
   }
 
   static checkPermissions() async {

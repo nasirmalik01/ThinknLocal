@@ -63,7 +63,7 @@ class DetailCategoryList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                          width: getWidth()*0.52,
+                          width: getWidth()*0.48,
                           child: TextView.headerWithBlurRadius(headerText??"", color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize15)),
                       Container(
                         padding: EdgeInsets.only(top: 0.5.h, bottom: 0.5.h, left: getWidth() * 0.03, right: getWidth() * 0.03),

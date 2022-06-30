@@ -169,7 +169,7 @@ class AboutVisit extends StatelessWidget {
                                 fontFamily: Assets.poppinsRegular),
                             SizedBox(height: getHeight() * 0.01),
                             AutoFieldTextField(
-                                hintText: Strings.courseName,
+                                hintText: Strings.causeName,
                                 onSelect: _aboutVisitController.onCauseCompletePress,
                                 isEnabled: _aboutVisitController.selectedBusinessId.value == 0 ? false : true,
                             ),

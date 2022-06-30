@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/common/utils.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/model/business_category.dart';
 import 'package:thinknlocal_app/model/businesses.dart';
 import 'package:thinknlocal_app/model/cause_advertisement.dart';
 import 'package:thinknlocal_app/model/cause_detail.dart';
@@ -21,10 +24,11 @@ class CausesDetailController extends GetxController {
   RxBool isServices = false.obs;
   CauseDetail? causeDetail;
   CausesStats? causesStats;
-  List<Businesses>? causeBottomDetails = [];
+  RxList<Businesses>? causeBottomDetails = <Businesses>[].obs;
   List<Businesses>? causeFeaturedList = [];
   List<UpdateCauses>? updatedCausesList = [];
   List<CauseAdvertisement>? causeAdvertisementList = [];
+  List<BusinessCategoryModel>? businessCategoryList = [];
   Follows? follows;
   RxBool isLoading = false.obs;
   RxBool isBottomTabLoading = false.obs;
@@ -33,11 +37,16 @@ class CausesDetailController extends GetxController {
   RxBool isFeaturedLoading = false.obs;
   RxBool isCauseUpdate = false.obs;
   RxBool isCauseAdvertisementLoading = false.obs;
+  RxBool isBusinessCategoryLoading = false.obs;
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
   RxBool isCauseFollowed = false.obs;
   final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
   List<ChartData> causesStatsHistory = <ChartData>[];
+  RxInt foodDrinkId = 0.obs;
+  RxInt thingsToDoId = 0.obs;
+  RxInt retailId = 0.obs;
+  RxInt servicesId = 0.obs;
 
   setFoodAndDrinkTab() {
     isFoodAndDrink.value = true;
@@ -100,10 +109,10 @@ class CausesDetailController extends GetxController {
       isCauseBottomLoading.value = true;
     }
     causeBottomDetails?.clear();
-    causeBottomDetails = await (BusinessRemoteRepository.fetchBusinesses({
+    causeBottomDetails?.value = (await (BusinessRemoteRepository.fetchBusinesses({
       Strings.causeId: id,
       Strings.parentCategoryId: parentId,
-    }));
+    }))) ?? [];
     if(isBottomTab){
       isBottomTabLoading.value = false;
     }
@@ -111,6 +120,30 @@ class CausesDetailController extends GetxController {
       isBottomTabLoading.value = false;
       isCauseBottomLoading.value = false;
     }
+  }
+
+  fetchBusinessCategories() async {
+    isBusinessCategoryLoading.value = true;
+    businessCategoryList =  await BusinessRemoteRepository.fetchBusinessCategories();
+    for(BusinessCategoryModel businessCategoryModel in businessCategoryList!){
+       switch(businessCategoryModel.parent?.name ?? ''){
+         case Strings.foodDrink:
+           foodDrinkId.value = businessCategoryModel.parent!.id!;
+           break;
+         case Strings.toDoThings:
+           thingsToDoId.value = businessCategoryModel.parent!.id!;
+           break;
+         case Strings.retail:
+           retailId.value = businessCategoryModel.parent!.id!;
+           break;
+         case Strings.personalServices:
+           servicesId.value = businessCategoryModel.parent!.id!;
+           break;
+         default:
+           break;
+       }
+    }
+    isBusinessCategoryLoading.value = false;
   }
 
   getCauseStats(int id) async {

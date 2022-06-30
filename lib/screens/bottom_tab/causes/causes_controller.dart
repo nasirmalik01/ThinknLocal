@@ -82,14 +82,14 @@ class CausesController extends GetxController {
     getCauses(Strings.past);
   }
 
-  getCauses(String selectedTab,
-      {bool isPagination = false, int page = 1}) async {
+  getCauses(String selectedTab, {bool isPagination = false, int page = 1}) async {
     if (isPagination) {
       List<Causes>? paginatedList = await handleCausePagination(selectedTab);
       if (paginatedList != null) {
         topCausesContainersList!.addAll(paginatedList);
       }
-    } else {
+    }
+    else {
       isTopCausesContainersList.value = true;
       topCausesContainersList = await (CausesRemoteRepository.fetchCauses(
         {selectedTab: true, Strings.page: page},
@@ -98,12 +98,12 @@ class CausesController extends GetxController {
     if (RemoteServices.statusCode != 200 &&
         RemoteServices.statusCode != 201 &&
         RemoteServices.statusCode != 204) {
-      isError.value = true;
-      isTopCausesContainersList.value = false;
-      isUpcomingCausesLoading.value = false;
-      isRecentlyStartedCausesLoading.value = false;
-      errorMessage.value = RemoteServices.error;
-      return;
+          isError.value = true;
+          isTopCausesContainersList.value = false;
+          isUpcomingCausesLoading.value = false;
+          isRecentlyStartedCausesLoading.value = false;
+          errorMessage.value = RemoteServices.error;
+          return;
     }
     isTopCausesContainersList.value = false;
   }

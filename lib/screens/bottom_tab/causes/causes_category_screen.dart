@@ -50,12 +50,9 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                         itemCount:
                             _causesController.topCausesContainersList!.isEmpty
                                 ? 0
-                                : _causesController
-                                            .topCausesContainersList!.length >
-                                        6
-                                    ? 6
-                                    : _causesController
-                                        .topCausesContainersList!.length,
+                                : _causesController.topCausesContainersList!.length > 6
+                                ? 6
+                                : _causesController.topCausesContainersList!.length,
                         itemBuilder: (context, index) {
                           return index == 5
                               ? GestureDetector(
@@ -101,9 +98,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                                   totalAmount: _causesController
                                       .topCausesContainersList![index].goal!
                                       .toStringAsFixed(2),
-                                  endDate: _causesController
-                                      .topCausesContainersList![index].end
-                                      .toString(),
+                                  endDate: _causesController.topCausesContainersList![index].end.toString(),
+                                  dateStatus: _causesController.topCausesContainersList![index].status!,
                                   index: index,
                                   onClickBox: () async {
                                     pushNewScreen(

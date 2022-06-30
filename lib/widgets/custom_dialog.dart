@@ -21,59 +21,60 @@ customDialog({String? backgroundImage, String? icon, String? title, String? summ
         ),
         child: Material(
           type: MaterialType.transparency,
-          child: Column(
-            children: [
-              SizedBox(
-                height: getHeight()*0.16,
-                child: Stack(
-                  children: [
-                    Container(
-                      height: getHeight()*0.12,
-                      width: getHeight(),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(getHeight() * 0.02), topRight: Radius.circular(getHeight() * 0.02)),
-                        color: AppColors.pureWhiteColor,
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  backgroundImage ?? Strings.dummyBgImage
-                              ),
-                              fit: BoxFit.cover,
-                              opacity: 0.6
-                          )
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      left: getWidth()*0.3,
-                      right: getWidth()*0.3,
-                      child: Container(
-                        height: getHeight()*0.1,
-                        width: getHeight()*0.1,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: getWidth()*0.06),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: getHeight()*0.16,
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: getHeight()*0.12,
+                        width: getHeight(),
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(getHeight() * 0.02), topRight: Radius.circular(getHeight() * 0.02)),
                           color: AppColors.pureWhiteColor,
-                            borderRadius: BorderRadius.circular(getHeight()*0.02),
-                            border: Border.all(
-                                width: 2,
-                                color: AppColors.pureWhiteColor
-                            ),
                             image: DecorationImage(
                                 image: NetworkImage(
-                                    icon ?? Strings.dummyLogoForDialog
+                                    backgroundImage ?? Strings.dummyBgImage
                                 ),
-                                fit: BoxFit.contain
+                                fit: BoxFit.cover,
+                                opacity: 0.6
                             )
                         ),
                       ),
-                    ),
-                  ],
+                      Positioned(
+                        bottom: 0,
+                        left: getWidth()*0.3,
+                        right: getWidth()*0.3,
+                        child: Container(
+                          height: getHeight()*0.1,
+                          width: getHeight()*0.1,
+                          decoration: BoxDecoration(
+                            color: AppColors.pureWhiteColor,
+                              borderRadius: BorderRadius.circular(getHeight()*0.02),
+                              border: Border.all(
+                                  width: 2,
+                                  color: AppColors.pureWhiteColor
+                              ),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      icon ?? Strings.dummyLogoForDialog
+                                  ),
+                                  fit: BoxFit.contain
+                              )
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: getHeight()*0.02,),
-              TextView.titleWithBlurRadius(title ?? 'Target', Assets.poppinsMedium, color: AppColors.blackColor, fontSize: sizes.fontSize20, lines: 1),
-              SizedBox(height: getHeight()*0.02,),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: getWidth()*0.06),
-                child: Column(
+                SizedBox(height: getHeight()*0.02,),
+                TextView.titleWithBlurRadius(title ?? 'Target', Assets.poppinsMedium, color: AppColors.blackColor, fontSize: sizes.fontSize20, lines: 1),
+                SizedBox(height: getHeight()*0.02,),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextView.caption(summary ?? 'Target is lorem ipsum doloar sit amet lariet.', color: AppColors.blackColor, fontFamily: Assets.poppinsRegular, lines: 1, fontSize: sizes.fontSize12,),
@@ -125,8 +126,8 @@ customDialog({String? backgroundImage, String? icon, String? title, String? summ
                     )
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

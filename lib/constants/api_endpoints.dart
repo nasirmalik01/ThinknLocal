@@ -20,4 +20,5 @@ class ApiEndPoints {
   static const String unread = 'unread';
   static const String devices = 'devices';
   static const String add = 'add';
+  static const String categories = 'categories';
 }

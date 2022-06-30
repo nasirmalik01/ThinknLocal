@@ -49,15 +49,12 @@ class LogInController extends GetxController {
   }
 
   loginWithGoogle({String? zip}) async {
-    GoogleSignInAccount? account;
     try {
       GoogleSignIn googleSignIn = GoogleSignIn();
-      account = await googleSignIn.signIn();
-
+      GoogleSignInAccount? account = await googleSignIn.signIn();
       if(account == null){
-        throw Exception();
+       throw Exception();
       }
-
       var credentials = await account.authentication;
       Map<String, dynamic> _query = {
         Strings.provider: Strings.google,
@@ -93,8 +90,6 @@ class LogInController extends GetxController {
 
   addFcmToken() async {
     String fcmToken = MyHive.getFCMToken();
-    await getItLocator<RemoteServices>().postRequest(
-        '${ApiEndPoints.devices}/${ApiEndPoints.add}',
-        {Strings.token: fcmToken});
+    await getItLocator<RemoteServices>().postRequest('${ApiEndPoints.devices}/${ApiEndPoints.add}', {Strings.token: fcmToken});
   }
 }

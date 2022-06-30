@@ -11,6 +11,7 @@ class RecentlyFundedBusiness extends StatelessWidget {
   final String? logoImage;
   final String? endDate;
   final String raisedAmount;
+  final String dateStatus;
   final String totalAmount;
   final bool isFavorite;
   final Function onPressFullContainer;
@@ -33,7 +34,8 @@ class RecentlyFundedBusiness extends StatelessWidget {
       required this.onFavPress,
       required this.colors,
       required this.index,
-      required this.recentlyFundedBusinessList
+      required this.recentlyFundedBusinessList,
+      required this.dateStatus,
       }) : super(key: key);
 
   @override
@@ -94,7 +96,7 @@ class RecentlyFundedBusiness extends StatelessWidget {
                 children: [
                   RichText(
                     text: TextSpan(
-                        text: "${Strings.ends} ",
+                        text: "$dateStatus ",
                         style: TextStyle(
                           color: AppColors.pureWhiteColor,
                           fontSize: sizes.fontSize11,

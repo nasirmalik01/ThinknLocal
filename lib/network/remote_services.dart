@@ -21,8 +21,7 @@ class RemoteServices {
     dynamic resJson;
     isZipRequired = false;
     try {
-      dynamic _result = await MySecureHttpClient.getClient()
-          .post(endPoint, data: map, onSendProgress: uploadFile);
+      dynamic _result = await MySecureHttpClient.getClient().post(endPoint, data: map, onSendProgress: uploadFile);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
         resJson = json.decode(_result.toString());
         return resJson;
@@ -66,8 +65,7 @@ class RemoteServices {
   Future<dynamic> patchRequest(String endPoint, Map<String, dynamic> map) async {
     dynamic resJson;
     try {
-      dynamic _result =
-          await MySecureHttpClient.getClient().patch(endPoint, data: map);
+      dynamic _result = await MySecureHttpClient.getClient().patch(endPoint, data: map);
       if (_result.statusCode == 200 || _result.statusCode == 201) {
         resJson = json.decode(_result.toString());
         return resJson;

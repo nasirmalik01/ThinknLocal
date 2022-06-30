@@ -16,15 +16,7 @@ class CausesRemoteRepository {
   static Future<List<Causes>?> fetchCauses(Map<String, dynamic>? query) async {
     List<Causes> causesList = [];
 
-    /// Passing location parameters
-    if (query == null) {
-      /// Works in test cases
-      locationParams(query!);
-    }
-    // else{
-    //   /// Works in app flow
-    //   locationParams(query);
-    // }
+    locationParams(query!);
 
     final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.causes, query);
     if (response == null) {
@@ -32,15 +24,15 @@ class CausesRemoteRepository {
     }
 
     /// Converting date to readable string
-    final List<dynamic> causesDecodeList =
-        response.map((item) => Causes.fromJson(item)).toList();
-    for (var causesItem in causesDecodeList) {
-      final _endDateTime =
-          convertDateToString(dateTime: causesItem.end.toString());
-      final _startDateTime =
-          convertDateToString(dateTime: causesItem.start.toString());
+    final List<dynamic> causesDecodeList = response.map((item) => Causes.fromJson(item)).toList();
+    for (Causes causesItem in causesDecodeList) {
+      final _endDateTime = convertDateToString(dateTime: causesItem.end.toString());
+      final _startDateTime = convertDateToString(dateTime: causesItem.start.toString());
+      var parsedDate = DateTime.parse(causesItem.end.toString());
       causesItem.end = _endDateTime;
       causesItem.start = _startDateTime;
+      int status = DateTime.now().compareTo(parsedDate);
+      causesItem.status = status.isNegative ? Strings.ends : Strings.ended;
       causesList.add(causesItem);
     }
     return causesList;
