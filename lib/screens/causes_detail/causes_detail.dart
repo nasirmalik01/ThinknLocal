@@ -43,8 +43,7 @@ class CausesDetail extends StatefulWidget {
 class _CausesDetailState extends State<CausesDetail>
     with SingleTickerProviderStateMixin {
   final CauseDetailComponents _causeDetailComponents = CauseDetailComponents();
-  final CausesDetailController _causesDetailController =
-      Get.put(CausesDetailController());
+  final CausesDetailController _causesDetailController = Get.put(CausesDetailController());
   TabController? _tabController;
 
   @override
@@ -78,6 +77,7 @@ class _CausesDetailState extends State<CausesDetail>
                       _causesDetailController.isCauseBottomLoading.value ||
                       _causesDetailController.isFeaturedLoading.value ||
                       _causesDetailController.isCauseAdvertisementLoading.value ||
+                      _causesDetailController.isCauseFeaturedAdvertisementLoading.value ||
                       _causesDetailController.isBusinessCategoryLoading.value
                 )
                   ? bouncingLoadingIndicator()
@@ -220,7 +220,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                     : const SizedBox(),
 
                                                 ///Featured Sponsors
-                                                _causesDetailController.causeFeaturedList?.isNotEmpty ?? false
+                                                _causesDetailController.causeFeaturedAdvertisementList?.isNotEmpty ?? false
                                                     ? Column(crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Padding(
@@ -255,49 +255,36 @@ class _CausesDetailState extends State<CausesDetail>
                                                               height:
                                                                   getHeight() *
                                                                       0.16,
-                                                              child: Obx(() => _causesDetailController
-                                                                      .isFeaturedLoading
-                                                                      .value
+                                                              child: Obx(() =>
+                                                                   _causesDetailController.isFeaturedLoading.value
                                                                   ? bouncingLoadingIndicator()
-                                                                  : ListView
-                                                                      .builder(
-                                                                      scrollDirection:
-                                                                          Axis.horizontal,
-                                                                      physics:
-                                                                          const BouncingScrollPhysics(),
-                                                                      shrinkWrap:
-                                                                          true,
-                                                                      itemCount: _causesDetailController
-                                                                          .causeFeaturedList!
-                                                                          .length,
-                                                                      itemBuilder:
-                                                                          (context,
-                                                                              index) {
+                                                                  : ListView.builder(
+                                                                      scrollDirection: Axis.horizontal,
+                                                                      physics: const BouncingScrollPhysics(),
+                                                                      shrinkWrap: true,
+                                                                      itemCount: _causesDetailController.causeFeaturedAdvertisementList!.length,
+                                                                      itemBuilder: (context, index) {
                                                                         return GestureDetector(
-                                                                          onTap:
-                                                                              () {
+                                                                          onTap: () {
                                                                             customDialog(
-                                                                                title: _causesDetailController.causeFeaturedList![index].name,
-                                                                                summary: '(${_causesDetailController.causeFeaturedList![index].phone!.substring(0, 3)}) ${_causesDetailController.causeFeaturedList![index].phone!.substring(3, 6)}-${_causesDetailController.causeFeaturedList![index].phone!.substring(
-                                                                                  6,
-                                                                                )}',
-                                                                                backgroundImage: _causesDetailController.causeFeaturedList![index].image,
-                                                                                icon: _causesDetailController.causeFeaturedList![index].logo,
-                                                                                description: _causesDetailController.causeFeaturedList![index].description,
+                                                                                title:   _causesDetailController.causeFeaturedAdvertisementList![index].business!.name,
+                                                                                summary: '(${_causesDetailController.causeFeaturedAdvertisementList![index].business!.phone!.substring(0, 3)}) ${_causesDetailController.causeFeaturedAdvertisementList![index].business!.phone!.substring(3, 6)}-${_causesDetailController.causeFeaturedAdvertisementList![index]..business!.phone!.substring(6,)}',
+                                                                                backgroundImage: _causesDetailController.causeFeaturedAdvertisementList![index].business!.image,
+                                                                                icon: _causesDetailController.causeFeaturedAdvertisementList![index].business!.logo,
+                                                                                description: _causesDetailController.causeFeaturedAdvertisementList![index].description,
                                                                                 onClickLearnMore: () {
                                                                                   Get.back();
-                                                                                  if (_causesDetailController.causeFeaturedList![index].url == null) {
+                                                                                  if (_causesDetailController.causeFeaturedAdvertisementList![index].url == null) {
                                                                                     return showSnackBar(subTitle: 'No URL');
                                                                                   }
-                                                                                  launchInBrowser(Uri.parse(_causesDetailController.causeFeaturedList![index].url!));
+                                                                                  launchInBrowser(Uri.parse(_causesDetailController.causeFeaturedAdvertisementList![index].url!));
                                                                                 });
                                                                           },
-                                                                          child:
-                                                                              FeaturedSponsors(
-                                                                            name: _causesDetailController.causeFeaturedList![index].name,
-                                                                            image: _causesDetailController.causeFeaturedList![index].image,
-                                                                            logoImage: _causesDetailController.causeFeaturedList![index].logo,
-                                                                            givingBack: _causesDetailController.causeFeaturedList![index].contributionAmount,
+                                                                          child: FeaturedSponsors(
+                                                                            name: _causesDetailController.causeFeaturedAdvertisementList![index].business!.name,
+                                                                            image: _causesDetailController.causeFeaturedAdvertisementList![index].business!.image,
+                                                                            logoImage: _causesDetailController.causeFeaturedAdvertisementList![index].business!.logo,
+                                                                            givingBack: '',
                                                                             onPressFullContainer: () {},
                                                                           ),
                                                                         );
@@ -647,6 +634,7 @@ class _CausesDetailState extends State<CausesDetail>
       }
       _causesDetailController.getUpdatedCauses(_id);
       _causesDetailController.getCauseAdvertisements(_id);
+      _causesDetailController.getCauseFeaturedAdvertisements(_id);
       await _causesDetailController.fetchBusinessCategories();
       _causesDetailController.getCauseBottomDetails(_id, _causesDetailController.foodDrinkId.value);
 

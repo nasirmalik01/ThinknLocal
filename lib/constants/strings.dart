@@ -160,6 +160,7 @@ class Strings {
   static const String customerRatings = 'customer ratings';
   static const String outOf5 = 'out of 5';
   static const String recentlyFunded = 'Recently Funded';
+  static const String currentCauses = 'Current Causes';
   static const String pastFundedCauses = 'Past Funded Causes';
   static const String searchForA = 'Search for a';
   static const String noInternetConnection = 'No Internet Connection';

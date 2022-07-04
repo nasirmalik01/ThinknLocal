@@ -13,6 +13,7 @@ import 'package:thinknlocal_app/screens/business_detail_listing/nearby_businesse
 import 'package:thinknlocal_app/screens/business_detail_listing/recently_added_businesses.dart';
 import 'package:thinknlocal_app/screens/businesses_categories/business_category.dart';
 import 'package:thinknlocal_app/screens/businesses_detail/businesses_detail.dart';
+import 'package:thinknlocal_app/screens/causes_detail/causes_detail_controller.dart';
 import 'package:thinknlocal_app/screens/location_search/location_search_controller.dart';
 import 'package:thinknlocal_app/widgets/custom_tab_bar.dart';
 import 'package:thinknlocal_app/widgets/loading_indicator.dart';
@@ -29,13 +30,15 @@ class BusinessesScreen extends StatelessWidget {
   BusinessesScreen({Key? key}) : super(key: key);
   final TextEditingController? searchController = TextEditingController();
   final BusinessesComponents _businessesComponents = BusinessesComponents();
-  final BusinessesController _businessesController =
-  Get.put(BusinessesController());
-  final LocationSearchController _locationSearchController =
-  Get.put(LocationSearchController());
+  final BusinessesController _businessesController = Get.put(BusinessesController());
+  final LocationSearchController _locationSearchController = Get.put(LocationSearchController());
+  final CausesDetailController _causesDetailController = Get.put(CausesDetailController());
   final bool _isUserAuthenticated = PreferenceUtils.isUserAuthenticated();
+
   @override
   Widget build(BuildContext context) {
+    _causesDetailController.fetchBusinessCategories();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: RefreshIndicator(
@@ -146,17 +149,10 @@ class BusinessesScreen extends StatelessWidget {
                                     image: Assets.foodIcon,
                                     label: Strings.foodDrink,
                                     onPressCategory: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
-                                                  BusinessCategory(
-                                                    businessType:
-                                                    Strings
-                                                        .foodDrink,
-                                                    icon: Assets
-                                                        .foodIcon,
-                                                    id: 22,
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) =>
+                                                  BusinessCategory(businessType: Strings.foodDrink,
+                                                    icon: Assets.foodIcon,
+                                                    id: _causesDetailController.foodDrinkId.value,
                                                   )));
                                     }),
                                 _businessesComponents
@@ -164,17 +160,11 @@ class BusinessesScreen extends StatelessWidget {
                                     image: Assets.thingsIcon,
                                     label: Strings.toDoThings,
                                     onPressCategory: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) =>
                                                   BusinessCategory(
-                                                    businessType:
-                                                    Strings
-                                                        .toDoThings,
-                                                    icon: Assets
-                                                        .thingsIcon,
-                                                    id: 29,
+                                                    businessType: Strings.toDoThings,
+                                                    icon: Assets.thingsIcon,
+                                                    id: _causesDetailController.thingsToDoId.value,
                                                   )));
                                     }),
                                 _businessesComponents
@@ -182,35 +172,22 @@ class BusinessesScreen extends StatelessWidget {
                                     image: Assets.bagIcon,
                                     label: Strings.retail,
                                     onPressCategory: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) =>
                                                   BusinessCategory(
-                                                    businessType:
-                                                    Strings
-                                                        .retail,
-                                                    icon: Assets
-                                                        .bagIcon,
-                                                    id: 3,
+                                                    businessType: Strings.retail,
+                                                    icon: Assets.bagIcon,
+                                                    id: _causesDetailController.retailId.value,
                                                   )));
                                     }),
-                                _businessesComponents
-                                    .businessCategoryIcon(
+                                _businessesComponents.businessCategoryIcon(
                                     image: Assets.servicesIcon,
                                     label: Strings.services,
                                     onPressCategory: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
+                                      Navigator.push(context, MaterialPageRoute(builder: (_) =>
                                                   BusinessCategory(
-                                                    businessType:
-                                                    Strings
-                                                        .services,
-                                                    icon: Assets
-                                                        .servicesIcon,
-                                                    id: 33,
+                                                    businessType: Strings.services,
+                                                    icon: Assets.servicesIcon,
+                                                    id: _causesDetailController.servicesId.value,
                                                   )));
                                     }),
                               ],
@@ -276,24 +253,12 @@ class BusinessesScreen extends StatelessWidget {
                                 onTap: () async {
                                   Get.to(() =>
                                       MainBusinessListing(
-                                          title: _businessesController
-                                              .selectedCategory
-                                              .value ==
-                                              Strings
-                                                  .featured
-                                              ? Strings
-                                              .featured
-                                              .capitalizeFirst
-                                              : _businessesController
-                                              .selectedCategory
-                                              .value ==
-                                              Strings
-                                                  .trending
-                                              ? Strings
-                                              .trending
-                                              .capitalizeFirst
-                                              : Strings
-                                              .favorites));
+                                          title: _businessesController.selectedCategory.value == Strings.featured
+                                              ? Strings.featured.capitalizeFirst
+                                              : _businessesController.selectedCategory.value == Strings.trending
+                                              ? Strings.trending.capitalizeFirst
+                                              : Strings.favorites
+                                      ));
                                 },
                                 child:
                                 CommonWidgets
@@ -374,10 +339,7 @@ class BusinessesScreen extends StatelessWidget {
                                   context,
                                   screen: BusinessesDetailScreen(
                                       businessId:
-                                      _businessesController
-                                          .recentlyAddedBusinessList![
-                                      index]
-                                          .id),
+                                      _businessesController.recentlyAddedBusinessList![index].id),
                                   withNavBar: true,
                                 );
                               },

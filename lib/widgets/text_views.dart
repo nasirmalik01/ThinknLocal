@@ -128,13 +128,13 @@ class TextView {
     );
   }
 
-  static Text header(final text, {@required final color, final TextAlign textAlign = TextAlign.start, final fontFamily, final lines, final fontSize, final TextDecoration textDecoration = TextDecoration.none,}) {
+  static Text header(final text, {@required final color, final TextAlign textAlign = TextAlign.start, final fontFamily, final lines, final fontSize, final TextDecoration textDecoration = TextDecoration.none, bool isElipses = false}) {
     return Text(
       text ?? "",
       textAlign: textAlign,
       softWrap: true,
       maxLines: lines,
-      overflow: TextOverflow.ellipsis,
+      overflow: isElipses ? TextOverflow.ellipsis : TextOverflow.visible,
       style: TextStyle(
         decoration: textDecoration,
         fontSize: fontSize ?? sizes.fontSize30,

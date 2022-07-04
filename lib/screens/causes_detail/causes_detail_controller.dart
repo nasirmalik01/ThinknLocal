@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/common/utils.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
@@ -28,6 +26,7 @@ class CausesDetailController extends GetxController {
   List<Businesses>? causeFeaturedList = [];
   List<UpdateCauses>? updatedCausesList = [];
   List<CauseAdvertisement>? causeAdvertisementList = [];
+  List<CauseAdvertisement>? causeFeaturedAdvertisementList = [];
   List<BusinessCategoryModel>? businessCategoryList = [];
   Follows? follows;
   RxBool isLoading = false.obs;
@@ -37,6 +36,7 @@ class CausesDetailController extends GetxController {
   RxBool isFeaturedLoading = false.obs;
   RxBool isCauseUpdate = false.obs;
   RxBool isCauseAdvertisementLoading = false.obs;
+  RxBool isCauseFeaturedAdvertisementLoading = false.obs;
   RxBool isBusinessCategoryLoading = false.obs;
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
@@ -194,7 +194,13 @@ class CausesDetailController extends GetxController {
 
   getCauseAdvertisements(int id) async {
     isCauseAdvertisementLoading.value = true;
-    causeAdvertisementList =  await CausesRemoteRepository.fetchCauseAdvertisements(id);
+    causeAdvertisementList =  await CausesRemoteRepository.fetchCauseAdvertisements(id, Strings.corporate);
     isCauseAdvertisementLoading.value = false;
+  }
+
+  getCauseFeaturedAdvertisements(int id) async {
+    isCauseFeaturedAdvertisementLoading.value = true;
+    causeFeaturedAdvertisementList =  await CausesRemoteRepository.fetchCauseAdvertisements(id, Strings.featured);
+    isCauseFeaturedAdvertisementLoading.value = false;
   }
 }

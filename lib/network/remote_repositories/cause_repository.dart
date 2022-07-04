@@ -87,15 +87,13 @@ class CausesRemoteRepository {
     return completer.future;
   }
 
-  static Future<List<CauseAdvertisement>?> fetchCauseAdvertisements(
-      int id) async {
+  static Future<List<CauseAdvertisement>?> fetchCauseAdvertisements(int id, String queryParamStringKey) async {
     List<CauseAdvertisement> _causeAdvertisements = [];
     var location = MyHive.getLocation();
-    final response = await GetIt.I<RemoteServices>().getRequest(
-        '${ApiEndPoints.causes}/$id/${ApiEndPoints.advertisements}', {
+    final response = await GetIt.I<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.advertisements}', {
       Strings.latitude: location.latitude,
       Strings.longitude: location.longitude,
-      Strings.corporate: true
+      queryParamStringKey: true
     });
     if (response == null) {
       return null;

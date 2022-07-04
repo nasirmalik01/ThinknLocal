@@ -148,8 +148,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                           .tabController,
                                       onTap: (index) {},
                                       indicator: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            getHeight() * 0.01),
+                                        borderRadius: BorderRadius.circular(getHeight() * 0.01),
                                         color: AppColors.lightBlue,
                                       ),
                                       indicatorSize: TabBarIndicatorSize.tab,
@@ -159,8 +158,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                         fontFamily: Assets.poppinsMedium,
                                         fontWeight: FontWeight.w500,
                                       ),
-                                      unselectedLabelColor:
-                                          AppColors.darkGrey,
+                                      unselectedLabelColor: AppColors.darkGrey,
                                       unselectedLabelStyle: TextStyle(
                                           fontSize: sizes.fontRatio * 13,
                                           fontFamily: Assets.poppinsRegular,
@@ -177,42 +175,28 @@ class BusinessesDetailScreen extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: TabBarView(
-                                      controller: _businessDetailController
-                                          .tabController,
+                                      controller: _businessDetailController.tabController,
                                       children: [
-                                        _businessDetailController
-                                                .isLoading.value
+                                           _businessDetailController.isLoading.value
                                             ? bouncingLoadingIndicator()
                                             : ListView(
+                                                padding: EdgeInsets.zero,
                                                 shrinkWrap: true,
-                                                physics:
-                                                    const BouncingScrollPhysics(),
+                                                physics: const BouncingScrollPhysics(),
                                                 children: [
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal:
-                                                                sizes.width *
-                                                                    0.06),
+                                                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
                                                     child: Column(
                                                       children: [
                                                         TextView.caption(
-                                                            _businessDetailController
-                                                                .businessDetail!
-                                                                .description,
-                                                            color: AppColors
-                                                                .blackColor,
-                                                            fontFamily: Assets
-                                                                .poppinsRegular,
-                                                            lines: 3,
-                                                            fontSize: sizes
-                                                                .fontSize12),
-                                                        SizedBox(
-                                                            height:
-                                                                sizes.height *
-                                                                    0.03),
+                                                            _businessDetailController.businessDetail!.description,
+                                                            color: AppColors.blackColor,
+                                                            fontFamily: Assets.poppinsRegular,
+                                                            isEllipsis: false,
+                                                            fontSize: sizes.fontSize12),
+                                                        SizedBox(height: sizes.height * 0.03),
                                                         BusinessRating(
-                                                            starRating: _businessDetailController.businessDetail!.rating,
+                                                            starRating: _businessDetailController.businessDetail!.rating ?? 0,
                                                             onPress: () {}
                                                         ),
                                                       ],
@@ -227,7 +211,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                             Padding(
                                                               padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
                                                               child: TextView.titleWithDecoration(
-                                                                  Strings.recentlyFunded,
+                                                                  Strings.currentCauses,
                                                                   color: AppColors.blackColor,
                                                                   fontFamily: Assets.poppinsMedium,
                                                                   fontSize: sizes.fontSize16),

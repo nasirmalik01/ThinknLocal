@@ -42,10 +42,10 @@ class AboutVisitController extends GetxController {
     if (RemoteServices.statusCode != 200 &&
         RemoteServices.statusCode != 201 &&
         RemoteServices.statusCode != 204) {
-      isError.value = true;
-      isCausesLoading.value = false;
-      errorMessage.value = RemoteServices.error;
-      return;
+          isError.value = true;
+          isCausesLoading.value = false;
+          errorMessage.value = RemoteServices.error;
+          return;
     }
   }
 
@@ -70,7 +70,7 @@ class AboutVisitController extends GetxController {
     if (isBusiness) {
       if (businessList!.isNotEmpty) {
         for (int i = 0; i < businessList!.length; i++) {
-          businessStringList.add('${businessList![i].name!} - ${businessList![i].address1}');
+          businessStringList.add('${businessList![i].name!.trim()} - ${businessList![i].address1}');
         }
         if(isEmptyTextFieldValue){
           return businessStringList;
@@ -106,20 +106,22 @@ class AboutVisitController extends GetxController {
       }
     }
     dismissKeyboard();
-  }
+}
 
    onBusinessCompletePress(value) {
     selectedBusiness.value = value;
     List<String> _businessSplitValue = value.toString().split(' - ');
     String _businessName = _businessSplitValue[0];
+    causesList?.clear();
     for (var item in businessList!) {
       if (item.name == _businessName) {
         selectedBusinessId.value = item.id!;
         getCauses(selectedBusinessId.value);
         log('selectedBusinessId.value: ${selectedBusinessId.value}');
+        return;
       }
+      update();
     }
     dismissKeyboard();
    }
-
 }

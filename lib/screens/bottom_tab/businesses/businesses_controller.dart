@@ -8,6 +8,7 @@ import 'package:thinknlocal_app/local/my_hive.dart';
 import 'package:thinknlocal_app/model/businesses.dart';
 import 'package:thinknlocal_app/network/remote_repositories/business_repository.dart';
 import 'package:thinknlocal_app/network/remote_services.dart';
+import 'package:thinknlocal_app/screens/causes_detail/causes_detail_controller.dart';
 import 'package:thinknlocal_app/screens/location_search/location_search_controller.dart';
 import 'package:get/get.dart';
 
@@ -190,7 +191,7 @@ class BusinessesController extends GetxController{
       _selectedCategory = Strings.trending;
     }
     else if(isFavorites.value){
-      _selectedCategory = Strings.favorites;
+      _selectedCategory = Strings.favorite;
     }
     else{
       _selectedCategory = Strings.past;

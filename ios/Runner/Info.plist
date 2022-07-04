@@ -66,8 +66,6 @@
     <string>Older devices need location.</string>
     <key>NSLocationAlwaysUsageDescription</key>
     <string>Can I have location always?</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone usage is required by camera view to capture pictures of receipts</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This application need to pick receipts from the gallery</string>
 	<key>UIBackgroundModes</key>
