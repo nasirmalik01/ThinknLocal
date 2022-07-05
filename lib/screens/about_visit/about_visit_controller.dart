@@ -31,8 +31,9 @@ class AboutVisitController extends GetxController {
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
 
-  TextEditingController businessController = TextEditingController();
-  TextEditingController causesController = TextEditingController();
+  ///these will help in suggestions
+  List<SuggestionModel> causesSuggestionList = [];
+  List<SuggestionModel> businessSuggestionList = <SuggestionModel>[];
 
   changeFirstTimeVisit({bool isFirst = false}) {
     isVisitFirstTime.value = isFirst
@@ -49,8 +50,11 @@ class AboutVisitController extends GetxController {
   }
 
   getCauses(int businessId) async {
+    causesList?.clear();
     causesList!.value = (await (CausesRemoteRepository.fetchCauses(
-        {Strings.businessId: businessId})))!;
+        {Strings.businessId: businessId, Strings.active: true})))!;
+    addItemIntoSugCausesList();
+    log('Final Result : ${causesList?.length}');
     if (RemoteServices.statusCode != 200 &&
         RemoteServices.statusCode != 201 &&
         RemoteServices.statusCode != 204) {
@@ -79,40 +83,42 @@ class AboutVisitController extends GetxController {
       {TextEditingValue? value,
       bool isBusiness = false,
       bool isEmptyTextFieldValue = false}) {
-    List<SuggestionModel> causesStringList = [];
-    List<SuggestionModel> businessStringList = <SuggestionModel>[];
-
     if (isBusiness) {
       if (businessList!.isNotEmpty) {
         for (int i = 0; i < businessList!.length; i++) {
           var item = SuggestionModel(
               title: businessList![i].name!.trim(),
               subTitle: businessList![i].address1.toString());
-          businessStringList.add(item);
+          businessSuggestionList.add(item);
         }
         if (isEmptyTextFieldValue) {
-          return businessStringList;
+          return businessSuggestionList;
         } else {
-          return businessStringList.where((business) => business.title
+          return businessSuggestionList.where((business) => business.title
               .toLowerCase()
               .startsWith(value!.text.toLowerCase()));
         }
       }
     } else {
       if (causesList!.isNotEmpty) {
-        for (int i = 0; i < causesList!.length; i++) {
-          var item = SuggestionModel(title: causesList![i].name!);
-          causesStringList.add(item);
-        }
+        addItemIntoSugCausesList();
         if (isEmptyTextFieldValue) {
-          return causesStringList;
+          return causesSuggestionList;
         } else {
-          return causesStringList.where((causes) =>
+          return causesSuggestionList.where((causes) =>
               causes.title.toLowerCase().startsWith(value!.text.toLowerCase()));
         }
       }
     }
     return [];
+  }
+
+  void addItemIntoSugCausesList() {
+    causesSuggestionList.clear();
+    for (int i = 0; i < causesList!.length; i++) {
+      var item = SuggestionModel(title: causesList![i].name!);
+      causesSuggestionList.add(item);
+    }
   }
 
   onCauseCompletePress(SuggestionModel value) {
@@ -128,8 +134,9 @@ class AboutVisitController extends GetxController {
   onBusinessCompletePress(SuggestionModel value) {
     selectedBusiness.value = value.title;
     causesList?.clear();
+    dismissKeyboard();
     for (var item in businessList!) {
-      if (item.name == selectedBusiness.value) {
+      if (item.name?.trim().toLowerCase() == value.title.trim().toLowerCase()) {
         selectedBusinessId.value = item.id!;
         getCauses(selectedBusinessId.value);
         log('selectedBusinessId.value: ${selectedBusinessId.value}');
@@ -137,6 +144,5 @@ class AboutVisitController extends GetxController {
       }
       update();
     }
-    dismissKeyboard();
   }
 }
