@@ -11,18 +11,31 @@ import 'package:thinknlocal_app/network/remote_repositories/cause_repository.dar
 import 'package:thinknlocal_app/network/remote_services.dart';
 import 'package:get/get.dart';
 
+
+
+class SuggestionModel{
+   String title;
+   String? subTitle;
+
+  SuggestionModel({required this.title, this.subTitle});
+}
+
+
 class AboutVisitController extends GetxController {
   Rx<IsFirstTime> isVisitFirstTime = IsFirstTime.nothing.obs;
   RxString selectedBusiness = ''.obs;
   RxString selectedCourse = ''.obs;
   RxInt selectedCauseId = 0.obs;
   RxInt selectedBusinessId = 0.obs;
-  List<Causes>? causesList = [];
+  RxList<Causes>? causesList = <Causes>[].obs;
   List<Businesses>? businessList = [];
   RxBool isCausesLoading = false.obs;
   RxBool isBusinessLoading = false.obs;
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
+
+  TextEditingController businessController =  TextEditingController();
+  TextEditingController  causesController = TextEditingController();
 
 
   changeFirstTimeVisit({bool isFirst = false}) {
@@ -36,9 +49,7 @@ class AboutVisitController extends GetxController {
   }
 
   getCauses(int businessId) async {
-    causesList = await (CausesRemoteRepository.fetchCauses({
-      Strings.businessId: businessId
-    }));
+    causesList!.value = (await (CausesRemoteRepository.fetchCauses({Strings.businessId: businessId})))!;
     if (RemoteServices.statusCode != 200 &&
         RemoteServices.statusCode != 201 &&
         RemoteServices.statusCode != 204) {
@@ -63,53 +74,55 @@ class AboutVisitController extends GetxController {
     isBusinessLoading.value = false;
   }
 
-  Iterable<String> setOptionsBuilder({TextEditingValue? value, bool isBusiness = false, bool isEmptyTextFieldValue = false}) {
-    List<String> causesStringList = [];
-    List<String> businessStringList = [];
+  Iterable<SuggestionModel> setOptionsBuilder({TextEditingValue? value, bool isBusiness = false, bool isEmptyTextFieldValue = false}) {
+    List<SuggestionModel> causesStringList = [];
+    List<SuggestionModel> businessStringList = <SuggestionModel>[];
 
     if (isBusiness) {
       if (businessList!.isNotEmpty) {
         for (int i = 0; i < businessList!.length; i++) {
-          businessStringList.add('${businessList![i].name!.trim()} - ${businessList![i].address1}');
+          var item = SuggestionModel(title: businessList![i].name!.trim(),subTitle: businessList![i].address1.toString());
+          businessStringList.add(item);
         }
         if(isEmptyTextFieldValue){
           return businessStringList;
         }
         else {
           return businessStringList.where((business) =>
-              business.toLowerCase().startsWith(value!.text.toLowerCase()));
+              business.title.toLowerCase().startsWith(value!.text.toLowerCase()));
         }
       }
     }
     else {
       if (causesList!.isNotEmpty) {
         for (int i = 0; i < causesList!.length; i++) {
-          causesStringList.add(causesList![i].name!);
+          var item = SuggestionModel(title: causesList![i].name!);
+          causesStringList.add(item);
         }
         if(isEmptyTextFieldValue){
           return causesStringList;
         }
         else {
           return causesStringList.where((causes) =>
-              causes.toLowerCase().startsWith(value!.text.toLowerCase()));
+              causes.title.toLowerCase().startsWith(value!.text.toLowerCase()));
         }
       }
     }
     return [];
   }
 
-  onCauseCompletePress(value) {
-    selectedCourse.value = value;
+  onCauseCompletePress(SuggestionModel value) {
+    selectedCourse.value = value.title;
     for (var item in causesList!) {
-      if (item.name == value) {
+      if (item.name == value.title) {
         selectedCauseId.value = item.id!;
       }
     }
     dismissKeyboard();
 }
 
-   onBusinessCompletePress(value) {
-    selectedBusiness.value = value;
+   onBusinessCompletePress(SuggestionModel value) {
+    selectedBusiness.value = value.title;
     List<String> _businessSplitValue = value.toString().split(' - ');
     String _businessName = _businessSplitValue[0];
     causesList?.clear();
