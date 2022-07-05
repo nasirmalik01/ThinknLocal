@@ -25,8 +25,8 @@ class CausesDetailController extends GetxController {
   RxList<Businesses>? causeBottomDetails = <Businesses>[].obs;
   List<Businesses>? causeFeaturedList = [];
   List<UpdateCauses>? updatedCausesList = [];
-  List<CauseAdvertisement>? causeAdvertisementList = [];
-  List<CauseAdvertisement>? causeFeaturedAdvertisementList = [];
+  List<CauseAdvertisement>? corporateCausesAdvertisementList = [];
+  List<CauseAdvertisement>? featuredCausesAdvertisementList = [];
   List<BusinessCategoryModel>? businessCategoryList = [];
   Follows? follows;
   RxBool isLoading = false.obs;
@@ -192,15 +192,15 @@ class CausesDetailController extends GetxController {
     isCauseUpdate.value = false;
   }
 
-  getCauseAdvertisements(int id) async {
+  getCorporateCausesAdvertisements(int id) async {
     isCauseAdvertisementLoading.value = true;
-    causeAdvertisementList =  await CausesRemoteRepository.fetchCauseAdvertisements(id, Strings.corporate);
+    corporateCausesAdvertisementList =  await CausesRemoteRepository.fetchCauseAdvertisements(id, isFeatured: false);
     isCauseAdvertisementLoading.value = false;
   }
 
-  getCauseFeaturedAdvertisements(int id) async {
+  getFeaturedCausesAdvertisements(int id) async {
     isCauseFeaturedAdvertisementLoading.value = true;
-    causeFeaturedAdvertisementList =  await CausesRemoteRepository.fetchCauseAdvertisements(id, Strings.featured);
+    featuredCausesAdvertisementList =  await CausesRemoteRepository.fetchCauseAdvertisements(id, isFeatured: true);
     isCauseFeaturedAdvertisementLoading.value = false;
   }
 }

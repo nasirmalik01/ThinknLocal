@@ -195,32 +195,32 @@ class _CausesDetailState extends State<CausesDetail>
                                                 SizedBox(height: sizes.height * 0.04),
 
                                                 ///Corporate Sponsors
-                                                _causesDetailController.causeAdvertisementList?.isNotEmpty ?? false
+                                                _causesDetailController.corporateCausesAdvertisementList?.isNotEmpty ?? false
                                                     ? GestureDetector(
                                                         onTap: () {
                                                           customDialog(
-                                                              title: _causesDetailController.causeAdvertisementList![0].headline,
-                                                              summary: _causesDetailController.causeAdvertisementList![0].summary,
-                                                              backgroundImage: _causesDetailController.causeAdvertisementList![0].business!.image!,
-                                                              icon: _causesDetailController.causeAdvertisementList![0].business!.logo!,
-                                                              description: _causesDetailController.causeAdvertisementList![0].business!.description!,
+                                                              title: _causesDetailController.corporateCausesAdvertisementList![0].headline,
+                                                              summary: _causesDetailController.corporateCausesAdvertisementList![0].summary,
+                                                              backgroundImage: _causesDetailController.corporateCausesAdvertisementList![0].business!.image!,
+                                                              icon: _causesDetailController.corporateCausesAdvertisementList![0].business!.logo!,
+                                                              description: _causesDetailController.corporateCausesAdvertisementList![0].business!.description!,
                                                               onClickLearnMore: () {
                                                                 Get.back();
-                                                                launchInBrowser(Uri.parse(_causesDetailController.causeAdvertisementList![0].url!));
+                                                                launchInBrowser(Uri.parse(_causesDetailController.corporateCausesAdvertisementList![0].url!));
                                                               });
                                                         },
                                                         child:
                                                             CorporateSponsor(
-                                                          backgroundImage: _causesDetailController.causeAdvertisementList![0].business!.image!,
-                                                          icon: _causesDetailController.causeAdvertisementList![0].business!.logo!,
-                                                          title: _causesDetailController.causeAdvertisementList![0].headline!,
-                                                          summary: _causesDetailController.causeAdvertisementList![0].summary!,
+                                                          backgroundImage: _causesDetailController.corporateCausesAdvertisementList![0].business!.image!,
+                                                          icon: _causesDetailController.corporateCausesAdvertisementList![0].business!.logo!,
+                                                          title: _causesDetailController.corporateCausesAdvertisementList![0].headline!,
+                                                          summary: _causesDetailController.corporateCausesAdvertisementList![0].summary!,
                                                         ),
                                                       )
                                                     : const SizedBox(),
 
                                                 ///Featured Sponsors
-                                                _causesDetailController.causeFeaturedAdvertisementList?.isNotEmpty ?? false
+                                                _causesDetailController.featuredCausesAdvertisementList?.isNotEmpty ?? false
                                                     ? Column(crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Padding(
@@ -262,28 +262,28 @@ class _CausesDetailState extends State<CausesDetail>
                                                                       scrollDirection: Axis.horizontal,
                                                                       physics: const BouncingScrollPhysics(),
                                                                       shrinkWrap: true,
-                                                                      itemCount: _causesDetailController.causeFeaturedAdvertisementList!.length,
+                                                                      itemCount: _causesDetailController.featuredCausesAdvertisementList!.length,
                                                                       itemBuilder: (context, index) {
                                                                         return GestureDetector(
                                                                           onTap: () {
                                                                             customDialog(
-                                                                                title:   _causesDetailController.causeFeaturedAdvertisementList![index].business!.name,
-                                                                                summary: '(${_causesDetailController.causeFeaturedAdvertisementList![index].business!.phone!.substring(0, 3)}) ${_causesDetailController.causeFeaturedAdvertisementList![index].business!.phone!.substring(3, 6)}-${_causesDetailController.causeFeaturedAdvertisementList![index]..business!.phone!.substring(6,)}',
-                                                                                backgroundImage: _causesDetailController.causeFeaturedAdvertisementList![index].business!.image,
-                                                                                icon: _causesDetailController.causeFeaturedAdvertisementList![index].business!.logo,
-                                                                                description: _causesDetailController.causeFeaturedAdvertisementList![index].description,
+                                                                                title:   _causesDetailController.featuredCausesAdvertisementList![index].business!.name,
+                                                                                summary: '(${_causesDetailController.featuredCausesAdvertisementList![index].business!.phone!.substring(0, 3)}) ${_causesDetailController.featuredCausesAdvertisementList![index].business!.phone!.substring(3, 6)}-${_causesDetailController.featuredCausesAdvertisementList![index]..business!.phone!.substring(6,)}',
+                                                                                backgroundImage: _causesDetailController.featuredCausesAdvertisementList![index].business!.image,
+                                                                                icon: _causesDetailController.featuredCausesAdvertisementList![index].business!.logo,
+                                                                                description: _causesDetailController.featuredCausesAdvertisementList![index].description,
                                                                                 onClickLearnMore: () {
                                                                                   Get.back();
-                                                                                  if (_causesDetailController.causeFeaturedAdvertisementList![index].url == null) {
+                                                                                  if (_causesDetailController.featuredCausesAdvertisementList![index].url == null) {
                                                                                     return showSnackBar(subTitle: 'No URL');
                                                                                   }
-                                                                                  launchInBrowser(Uri.parse(_causesDetailController.causeFeaturedAdvertisementList![index].url!));
+                                                                                  launchInBrowser(Uri.parse(_causesDetailController.featuredCausesAdvertisementList![index].url!));
                                                                                 });
                                                                           },
                                                                           child: FeaturedSponsors(
-                                                                            name: _causesDetailController.causeFeaturedAdvertisementList![index].business!.name,
-                                                                            image: _causesDetailController.causeFeaturedAdvertisementList![index].business!.image,
-                                                                            logoImage: _causesDetailController.causeFeaturedAdvertisementList![index].business!.logo,
+                                                                            name: _causesDetailController.featuredCausesAdvertisementList![index].business!.name,
+                                                                            image: _causesDetailController.featuredCausesAdvertisementList![index].business!.image,
+                                                                            logoImage: _causesDetailController.featuredCausesAdvertisementList![index].business!.logo,
                                                                             givingBack: '',
                                                                             onPressFullContainer: () {},
                                                                           ),
@@ -633,8 +633,8 @@ class _CausesDetailState extends State<CausesDetail>
         _causesDetailController.getFollowCause(_id);
       }
       _causesDetailController.getUpdatedCauses(_id);
-      _causesDetailController.getCauseAdvertisements(_id);
-      _causesDetailController.getCauseFeaturedAdvertisements(_id);
+      _causesDetailController.getCorporateCausesAdvertisements(_id);
+      _causesDetailController.getFeaturedCausesAdvertisements(_id);
       await _causesDetailController.fetchBusinessCategories();
       _causesDetailController.getCauseBottomDetails(_id, _causesDetailController.foodDrinkId.value);
 

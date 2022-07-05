@@ -87,14 +87,25 @@ class CausesRemoteRepository {
     return completer.future;
   }
 
-  static Future<List<CauseAdvertisement>?> fetchCauseAdvertisements(int id, String queryParamStringKey) async {
+  static Future<List<CauseAdvertisement>?> fetchCauseAdvertisements(int id, {required bool isFeatured}) async {
     List<CauseAdvertisement> _causeAdvertisements = [];
     var location = MyHive.getLocation();
-    final response = await GetIt.I<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.advertisements}', {
-      Strings.latitude: location.latitude,
-      Strings.longitude: location.longitude,
-      queryParamStringKey: true
-    });
+    late Map<String, dynamic> _queryMap;
+    if(isFeatured){
+      _queryMap = {
+        Strings.latitude: location.latitude,
+        Strings.longitude: location.longitude,
+      };
+    }
+    else{
+      _queryMap = {
+        Strings.latitude: location.latitude,
+        Strings.longitude: location.longitude,
+        Strings.featured: true
+      };
+
+    }
+    final response = await GetIt.I<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.advertisements}', _queryMap);
     if (response == null) {
       return null;
     }

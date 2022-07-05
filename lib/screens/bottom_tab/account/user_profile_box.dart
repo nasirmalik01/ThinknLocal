@@ -15,8 +15,9 @@ class UserProfileBox extends StatelessWidget {
   final String? email;
   final String? nameShort;
   final Function? onTapEdit;
+  final Function()? onHelpClick;
 
-  const UserProfileBox({Key? key, this.name, this.email, this.nameShort, this.onTapEdit}) : super(key: key);
+  const UserProfileBox({Key? key, this.name, this.email, this.nameShort, this.onTapEdit, this.onHelpClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +30,7 @@ class UserProfileBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                    onTap: () async {
-                      final Email email = Email(
-                        recipients: ['support@thinknlocal.com'],
-                        isHTML: false,
-                      );
-
-                      await FlutterEmailSender.send(email);
-                    },
+                    onTap: onHelpClick,
                     child: TextView.headerWithBlurRadius(Strings.help, color: AppColors.lightBlack, fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline)),
                 GestureDetector(
                     onTap: (){

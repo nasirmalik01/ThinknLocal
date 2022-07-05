@@ -66,7 +66,10 @@ class AccountScreen extends StatelessWidget {
                         onTapEdit: () async {
                           await Get.to(() => EditAccount(account: _accountController.account,));
                           _accountController.getProfileInfo();
-                        }
+                        },
+                      onHelpClick: (){
+                        _accountController.openBeacon();
+                      }
                     ),
                     SizedBox(height: getHeight() * 0.02),
                     Align(

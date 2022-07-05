@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_help_scout/flutter_help_scout.dart';
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/local/my_hive.dart';
 import 'package:thinknlocal_app/model/account.dart';
@@ -19,12 +22,15 @@ class AccountController extends GetxController{
   RxBool isEditDataLoading = false.obs;
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
+  late FlutterHelpScout _beacon;
+  String beaconId = 'cd97e8db-7fc6-4dd9-9147-27f46817fd60';
 
   @override
   void onInit() {
     isPushNotifications.value = isPushNotificationsEnabled;
     isEmail.value = isEmailEnabled;
     isLocation.value = isLocationServicesEnabled;
+    initBeacon();
     super.onInit();
   }
 
@@ -77,6 +83,18 @@ class AccountController extends GetxController{
     isEditDataLoading.value = false;
   }
 
+  Future<void> initBeacon() async {
+    _beacon = FlutterHelpScout(
+        beaconId: beaconId,
+    );
+    try {
+      _beacon.initialize();
+    } on PlatformException catch (e) {
+      debugPrint('${e.message}');
+    }
+  }
 
-
+  openBeacon(){
+     _beacon.open(beaconId: beaconId);
+  }
 }
