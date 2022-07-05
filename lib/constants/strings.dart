@@ -64,6 +64,7 @@ class Strings {
   static const String seeAll = "See All";
   static const String latitude = "latitude";
   static const String longitude = "longitude";
+  static const String cityId = "city_id";
   static const String dummyLatitude = '33.9898';
   static const String dummyLongitude = "-117.7326";
   static const String yes = "Yes";

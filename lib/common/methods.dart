@@ -134,8 +134,10 @@ convertDateToString({required String dateTime}) {
 
 locationParams(Map<String, dynamic> query) {
   var location = MyHive.getLocation();
+  var cityId = MyHive.getCityId();
   query[Strings.latitude] = location.latitude;
   query[Strings.longitude] = location.longitude;
+  query[Strings.cityId] = cityId;
 }
 
 Future<Cities?> getLowestDistanceCity() async {

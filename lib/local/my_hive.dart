@@ -14,6 +14,7 @@ class MyHive {
   static const String _isLocationServicesEnabled = 'IsLocationServicesEnabled';
   static const String _locationAddress = 'LocationAddress';
   static const String _fcmToken = '_fcmToken';
+  static const String _cityId = '_cityId';
 
   static late Box _ins;
 
@@ -73,6 +74,14 @@ class MyHive {
 
   static getAppInfo() {
     return _ins.get(_appInfo, defaultValue: null);
+  }
+
+  static setCityId(String? cityId) {
+    _ins.put(_cityId, cityId);
+  }
+
+  static getCityId() {
+    return _ins.get(_cityId, defaultValue: '');
   }
 
   static setPushNotificationsEnabled(bool value) {

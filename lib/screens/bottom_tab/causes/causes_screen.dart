@@ -169,8 +169,7 @@ class CausesScreen extends StatelessWidget{
                                             }),
                                         customTabBar(
                                             title: Strings.past.capitalize!,
-                                            isSelected: _causesController
-                                                .isPast.value,
+                                            isSelected: _causesController.isPast.value,
                                             onTap: () {
                                               _causesController.setPastTab();
                                             }),
@@ -181,27 +180,22 @@ class CausesScreen extends StatelessWidget{
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         customTabBar(
-                                            title:
-                                                Strings.featured.capitalize!,
-                                            isSelected: _causesController
-                                                .isFeatured.value,
+                                            title: Strings.featured.capitalize!,
+                                            isSelected: _causesController.isFeatured.value,
                                             onTap: () {
                                               _causesController
                                                   .setFeaturedTab();
                                             }),
                                         customTabBar(
-                                            title:
-                                                Strings.trending.capitalize!,
-                                            isSelected: _causesController
-                                                .isTrending.value,
+                                            title: Strings.trending.capitalize!,
+                                            isSelected: _causesController.isTrending.value,
                                             onTap: () {
                                               _causesController
                                                   .setTrendingTab();
                                             }),
                                         customTabBar(
                                             title: Strings.past.capitalize!,
-                                            isSelected: _causesController
-                                                .isPast.value,
+                                            isSelected: _causesController.isPast.value,
                                             onTap: () {
                                               _causesController.setPastTab();
                                             }),

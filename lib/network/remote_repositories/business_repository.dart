@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/api_endpoints.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
+import 'package:thinknlocal_app/local/my_hive.dart';
 import 'package:thinknlocal_app/model/business_category.dart';
 import 'package:thinknlocal_app/model/business_detail.dart';
 import 'package:thinknlocal_app/model/business_stats.dart';
@@ -41,8 +43,9 @@ class BusinessRemoteRepository {
     return BusinessStats.fromJson(response);
   }
 
-  static Future<BusinessDetail?> fetchBusinessDetails(
-      int id, Map<String, dynamic> query) async {
+  static Future<BusinessDetail?> fetchBusinessDetails(int id, Map<String, dynamic> query) async {
+    locationParams(query);
+
     final response = await getItLocator<RemoteServices>()
         .getRequest('${ApiEndPoints.businesses}/$id', query);
 
@@ -83,8 +86,14 @@ class BusinessRemoteRepository {
 
   static Future<List<BusinessCategoryModel>?> fetchBusinessCategories() async {
     List<BusinessCategoryModel> businessCategoryList = [];
+    var location = MyHive.getLocation();
+    var cityId = MyHive.getCityId();
 
-    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.categories, {});
+    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.categories, {
+      Strings.latitude: location.latitude,
+      Strings.longitude: location.longitude,
+      Strings.cityId: cityId
+    });
     if (response == null) {
       return null;
     }

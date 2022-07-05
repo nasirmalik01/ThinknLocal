@@ -53,7 +53,7 @@ class LocationSearchController extends GetxController {
     _prefs.setDouble(Strings.currentLong, citiesList[index].longitude!);
     String? _userCurrentLocationAddress = await findAddress(citiesList[index].latitude!, citiesList[index].longitude!);
     locationAddress.value = _userCurrentLocationAddress!;
-    MyHive.setLocation(UserLocation(longitude: citiesList[index].longitude!, latitude: citiesList[index].latitude!));
+    MyHive.setCityId(citiesList[index].id.toString());
     MyHive.setLocationAddress(_userCurrentLocationAddress);
     Get.back(result: 1);
   }

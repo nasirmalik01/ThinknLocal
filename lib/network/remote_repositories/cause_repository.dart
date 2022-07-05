@@ -38,8 +38,9 @@ class CausesRemoteRepository {
     return causesList;
   }
 
-  static Future<CausesStats?> fetchCausesStats(
-      int id, Map<String, dynamic> query) async {
+  static Future<CausesStats?> fetchCausesStats(int id, Map<String, dynamic> query) async {
+    locationParams(query);
+
     final response = await getItLocator<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id/stats', query);
     if (response == null) {
       return null;
@@ -47,10 +48,10 @@ class CausesRemoteRepository {
     return CausesStats.fromJson(response);
   }
 
-  static Future<CauseDetail?> fetchCauseDetails(
-      int id, Map<String, dynamic> query) async {
-    final response = await getItLocator<RemoteServices>()
-        .getRequest('${ApiEndPoints.causes}/$id', query);
+  static Future<CauseDetail?> fetchCauseDetails(int id, Map<String, dynamic> query) async {
+    locationParams(query);
+
+    final response = await getItLocator<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id', query);
     if (response == null) {
       return null;
     }
@@ -89,18 +90,21 @@ class CausesRemoteRepository {
 
   static Future<List<CauseAdvertisement>?> fetchCauseAdvertisements(int id, {required bool isFeatured}) async {
     List<CauseAdvertisement> _causeAdvertisements = [];
+    var cityId = MyHive.getCityId();
     var location = MyHive.getLocation();
     late Map<String, dynamic> _queryMap;
     if(isFeatured){
       _queryMap = {
         Strings.latitude: location.latitude,
         Strings.longitude: location.longitude,
+        Strings.cityId: cityId
       };
     }
     else{
       _queryMap = {
         Strings.latitude: location.latitude,
         Strings.longitude: location.longitude,
+        Strings.cityId: cityId,
         Strings.featured: true
       };
 
@@ -110,21 +114,21 @@ class CausesRemoteRepository {
       return null;
     }
 
-    final List<dynamic> _causeAdvertisementsList =
-        response.map((item) => CauseAdvertisement.fromJson(item)).toList();
+    final List<dynamic> _causeAdvertisementsList = response.map((item) => CauseAdvertisement.fromJson(item)).toList();
     for (var _causeAdvertisementItem in _causeAdvertisementsList) {
       _causeAdvertisements.add(_causeAdvertisementItem);
     }
     return _causeAdvertisements;
   }
 
-  static Future<List<UpdateCauses>?> fetchUpdatedCauses(int id) async {
-    List<UpdateCauses> _updateCauses = [];
+  static Future<List<UpdateCauses>?> fetchUpdatedCauses(int id) async {List<UpdateCauses> _updateCauses = [];
     var location = MyHive.getLocation();
-    final response = await GetIt.I<RemoteServices>().getRequest(
-        '${ApiEndPoints.causes}/$id/${ApiEndPoints.posts}', {
-      Strings.latitude: location.latitude,
-      Strings.longitude: location.longitude
+    var cityId = MyHive.getCityId();
+
+    final response = await GetIt.I<RemoteServices>().getRequest('${ApiEndPoints.causes}/$id/${ApiEndPoints.posts}', {
+          Strings.latitude: location.latitude,
+          Strings.longitude: location.longitude,
+          Strings.cityId: cityId
     });
     if (response == null) {
       return null;

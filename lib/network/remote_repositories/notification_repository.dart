@@ -8,6 +8,7 @@ import 'package:thinknlocal_app/network/remote_services.dart';
 class NotificationRepository {
   static Future<List<Contributions>?> fetchContributions(Map<String, dynamic> query) async {
     List<Contributions> contributionsList = [];
+    locationParams(query);
     final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.contributions, query);
     if (response == null) {
       return null;
@@ -20,8 +21,7 @@ class NotificationRepository {
     return contributionsList;
   }
 
-  static Future<UploadDirectContributions?> uploadContributions(
-      Map<String, dynamic> query,
+  static Future<UploadDirectContributions?> uploadContributions(Map<String, dynamic> query,
       {void Function(int, int)? uploadFile}) async {
     final response = await getItLocator<RemoteServices>().postRequest(
       ApiEndPoints.uploadContributions,
@@ -49,18 +49,17 @@ class NotificationRepository {
     return response;
   }
 
-  static Future<List<Notification>?> getNotifications(
-      Map<String, dynamic> query) async {
-    final response = await getItLocator<RemoteServices>()
-        .getRequest(ApiEndPoints.notifications, query);
+  static Future<List<Notification>?> getNotifications(Map<String, dynamic> query) async {
+    locationParams(query);
+
+    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.notifications, query);
     List<Notification> _notificationList = [];
 
     if (response == null) {
       return [];
     }
 
-    final List<dynamic> _notificationsDecodeList =
-        response.map((item) => Notification.fromJson(item)).toList();
+    final List<dynamic> _notificationsDecodeList = response.map((item) => Notification.fromJson(item)).toList();
     for (var notification in _notificationsDecodeList) {
       _notificationList.add(notification);
     }

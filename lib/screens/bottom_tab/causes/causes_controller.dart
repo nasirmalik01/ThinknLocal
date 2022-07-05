@@ -91,8 +91,10 @@ class CausesController extends GetxController {
     }
     else {
       isTopCausesContainersList.value = true;
-      topCausesContainersList = await (CausesRemoteRepository.fetchCauses(
-        {selectedTab: true, Strings.page: page},
+      topCausesContainersList = await (CausesRemoteRepository.fetchCauses({
+        selectedTab: true,
+        Strings.page: page,
+      },
       ));
     }
     if (RemoteServices.statusCode != 200 &&
