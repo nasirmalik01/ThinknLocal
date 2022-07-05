@@ -1,9 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/screens/about_visit/about_visit.dart';
 import 'package:thinknlocal_app/widgets/text_views.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
@@ -30,8 +30,8 @@ class _CameraScreenState extends State<CameraScreen> {
     super.initState();
     setCameraResolution();
     _controller.initialize().then((value) => {
-      if (mounted) {setState(() {})}
-    });
+          if (mounted) {setState(() {})}
+        });
   }
 
   @override
@@ -44,6 +44,7 @@ class _CameraScreenState extends State<CameraScreen> {
     _controller = CameraController(
       widget.camera,
       ResolutionPreset.ultraHigh,
+      enableAudio: false,
     );
   }
 
@@ -51,62 +52,59 @@ class _CameraScreenState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute (builder: (_) => const BottomTabNew(pageIndex: 0)), (route) => false);
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const BottomTabNew(pageIndex: 0)),
+            (route) => false);
         return true;
       },
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body:
-        _cameraView()
-      ),
+      child: Scaffold(backgroundColor: Colors.black, body: _cameraView()),
     );
   }
+
   Widget _cameraView() {
     return Stack(
       children: [
         SizedBox(
             width: getWidth(),
             height: getHeight(),
-            child:
-            CameraPreview(_controller)),
+            child: CameraPreview(_controller)),
         Container(
           width: getWidth(),
           height: getHeight(),
           decoration: BoxDecoration(
-              color: Colors.transparent,
-              border: Border(
-                top: BorderSide(
+            color: Colors.transparent,
+            border: Border(
+              top: BorderSide(
                   color: Colors.black.withOpacity(0.3),
-                  width: getWidth() * 0.15
-                ),
-                bottom: BorderSide(
-                    color: Colors.black.withOpacity(0.3),
-                    width: getWidth() * 0.42
-                ),
-                right: BorderSide(
-                    color: Colors.black.withOpacity(0.3),
-                    width: getWidth() * 0.06
-                ),
-                left: BorderSide(
-                    color: Colors.black.withOpacity(0.3),
-                    width: getWidth() * 0.06
-                ),
-              ),
+                  width: getWidth() * 0.15),
+              bottom: BorderSide(
+                  color: Colors.black.withOpacity(0.3),
+                  width: getWidth() * 0.42),
+              right: BorderSide(
+                  color: Colors.black.withOpacity(0.3),
+                  width: getWidth() * 0.06),
+              left: BorderSide(
+                  color: Colors.black.withOpacity(0.3),
+                  width: getWidth() * 0.06),
+            ),
           ),
         ),
         cameraScreenWidgets(),
         cameraLabelText(),
         Positioned(
-          top: getHeight()*0.087,
-          right: getWidth()*0.07,
+          top: getHeight() * 0.087,
+          right: getWidth() * 0.07,
           child: SizedBox(
-            height: getHeight()*0.05,
-            width: getHeight()*0.05,
+            height: getHeight() * 0.05,
+            width: getHeight() * 0.05,
             child: GestureDetector(
               onTap: () {
-                Navigator.pushAndRemoveUntil(context,
-                    MaterialPageRoute (builder: (_) => const BottomTabNew(pageIndex: 0)), (route) => false);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const BottomTabNew(pageIndex: 0)),
+                    (route) => false);
               },
               child: const Image(
                 image: AssetImage(Assets.cancelIcon),
@@ -121,67 +119,66 @@ class _CameraScreenState extends State<CameraScreen> {
   Widget cameraLabelText() {
     return Positioned(
       bottom: getHeight() * 0.13,
-        child: SizedBox(
-          width: getWidth(),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: getWidth() * 0.6,
-                    child: RichText(
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                          text: Strings.makeSure,
-                          style: TextStyle(
-                            color: AppColors.pureWhiteColor,
-                            fontSize: sizes.fontSize16,
-                            fontFamily: Assets.poppinsRegular,
+      child: SizedBox(
+        width: getWidth(),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: getWidth() * 0.6,
+                  child: RichText(
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                        text: Strings.makeSure,
+                        style: TextStyle(
+                          color: AppColors.pureWhiteColor,
+                          fontSize: sizes.fontSize16,
+                          fontFamily: Assets.poppinsRegular,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "${Strings.lowerCaseBusinessName} ",
+                            style: TextStyle(
+                              color: AppColors.greenColor,
+                              fontSize: sizes.fontSize16,
+                              fontFamily: Assets.poppinsMedium,
+                            ),
                           ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: "${Strings.lowerCaseBusinessName} ",
-                              style: TextStyle(
-                                color: AppColors.greenColor,
-                                fontSize: sizes.fontSize16,
-                                fontFamily: Assets.poppinsMedium,
-                              ),
+                          TextSpan(
+                            text: "${Strings.and} ",
+                            style: TextStyle(
+                              color: AppColors.pureWhiteColor,
+                              fontSize: sizes.fontSize16,
+                              fontFamily: Assets.poppinsRegular,
                             ),
-                            TextSpan(
-                              text: "${Strings.and} ",
-                              style: TextStyle(
-                                color: AppColors.pureWhiteColor,
-                                fontSize: sizes.fontSize16,
-                                fontFamily: Assets.poppinsRegular,
-                              ),
+                          ),
+                          TextSpan(
+                            text: "${Strings.total} ",
+                            style: TextStyle(
+                              color: AppColors.greenColor,
+                              fontSize: sizes.fontSize16,
+                              fontFamily: Assets.poppinsMedium,
                             ),
-                            TextSpan(
-                              text: "${Strings.total} ",
-                              style: TextStyle(
-                                color: AppColors.greenColor,
-                                fontSize: sizes.fontSize16,
-                                fontFamily: Assets.poppinsMedium,
-                              ),
+                          ),
+                          TextSpan(
+                            text: Strings.areClearlyVisible,
+                            style: TextStyle(
+                              color: AppColors.pureWhiteColor,
+                              fontSize: sizes.fontSize16,
+                              fontFamily: Assets.poppinsRegular,
                             ),
-                            TextSpan(
-                              text: Strings.areClearlyVisible,
-                              style: TextStyle(
-                                color: AppColors.pureWhiteColor,
-                                fontSize: sizes.fontSize16,
-                                fontFamily: Assets.poppinsRegular,
-                              ),
-                            ),
-                          ]
-                      ),
-                    ),
+                          ),
+                        ]),
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
+      ),
     );
   }
 
@@ -192,7 +189,8 @@ class _CameraScreenState extends State<CameraScreen> {
       right: 0,
       child: Container(
           color: Colors.black,
-          padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.05, vertical: getHeight() * 0.01),
+          padding: EdgeInsets.symmetric(
+              horizontal: getWidth() * 0.05, vertical: getHeight() * 0.01),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -208,15 +206,19 @@ class _CameraScreenState extends State<CameraScreen> {
               }),
               GestureDetector(
                   onTap: () {
-                    Navigator.pushAndRemoveUntil(context,
-                        MaterialPageRoute (builder: (_) => const BottomTabNew(pageIndex: 0)), (route) => false);
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const BottomTabNew(pageIndex: 0)),
+                        (route) => false);
                   },
-                  child: TextView.title(Strings.cancel, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium))
+                  child: TextView.title(Strings.cancel,
+                      color: AppColors.pureWhiteColor,
+                      fontFamily: Assets.poppinsMedium))
             ],
           )),
     );
   }
-
 
   Widget _cameraButton({required Function onClick}) {
     return GestureDetector(
@@ -225,7 +227,8 @@ class _CameraScreenState extends State<CameraScreen> {
       },
       child: Container(
         decoration: BoxDecoration(
-            border: Border.all(color: AppColors.pureWhiteColor, width: getWidth() * 0.01),
+            border: Border.all(
+                color: AppColors.pureWhiteColor, width: getWidth() * 0.01),
             shape: BoxShape.circle),
         child: Center(
           child: Icon(
@@ -241,18 +244,20 @@ class _CameraScreenState extends State<CameraScreen> {
   Future<void> _selectImageFromGallery() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? _image = await _picker.pickImage(source: ImageSource.gallery);
-    if(_image != null){
+    if (_image != null) {
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => ImagePreviewScreen(
-                image: _image,
-                notSaveImage: () {
-                  Navigator.pop(context);
-                },
-                saveImage: ()async {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => AboutVisit()));},
-              )));
+                    image: _image,
+                    notSaveImage: () {
+                      Navigator.pop(context);
+                    },
+                    saveImage: () async {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => AboutVisit()));
+                    },
+                  )));
     }
   }
 
@@ -263,12 +268,14 @@ class _CameraScreenState extends State<CameraScreen> {
         context,
         MaterialPageRoute(
             builder: (context) => ImagePreviewScreen(
-              image: image,
-              notSaveImage: () {
-                Navigator.pop(context);
-              },
-              saveImage: ()async {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => AboutVisit()));},
-            )));
+                  image: image,
+                  notSaveImage: () {
+                    Navigator.pop(context);
+                  },
+                  saveImage: () async {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => AboutVisit()));
+                  },
+                )));
   }
 }

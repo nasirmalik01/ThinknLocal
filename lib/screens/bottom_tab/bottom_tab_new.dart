@@ -1,5 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:sizer/sizer.dart';
 import 'package:thinknlocal_app/common/main_controller.dart';
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/common/utils.dart';
@@ -9,11 +14,7 @@ import 'package:thinknlocal_app/res/res.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/account/account.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/notifications/notifications.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/scan/camera.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:sizer/sizer.dart';
+
 import '../../constants/assets.dart';
 import '../../constants/colors.dart';
 import 'businesses/businesses_screen.dart';
@@ -33,7 +34,8 @@ class _BottomTabNewState extends State<BottomTabNew> {
   @override
   void initState() {
     super.initState();
-    _mainController.controller = PersistentTabController(initialIndex: widget.pageIndex);
+    _mainController.controller =
+        PersistentTabController(initialIndex: widget.pageIndex);
     Future.delayed(10.milliseconds);
   }
 
@@ -64,9 +66,11 @@ class _BottomTabNewState extends State<BottomTabNew> {
           confineInSafeArea: true,
           backgroundColor: Colors.white,
           handleAndroidBackButtonPress: true, // Default is true.
-          resizeToAvoidBottomInset: false, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+          resizeToAvoidBottomInset:
+              false, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
           stateManagement: true, // Default is true.
-          hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+          hideNavigationBarWhenKeyboardShows:
+              true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
           decoration: NavBarDecoration(
             borderRadius: BorderRadius.circular(getWidth() * 0.001),
             border: Border.all(color: AppColors.borderColor),
@@ -90,7 +94,8 @@ class _BottomTabNewState extends State<BottomTabNew> {
             curve: Curves.ease,
             duration: Duration(milliseconds: 200),
           ),
-          navBarStyle: NavBarStyle.style17, // Choose the nav bar style with this property.
+          navBarStyle: NavBarStyle
+              .style17, // Choose the nav bar style with this property.
         ),
       ],
     );
@@ -193,19 +198,18 @@ class _InitializeCameraScreenState extends State<InitializeCameraScreen> {
         userNotLoggedIn();
       } else {
         PermissionStatus cameraStatus = await Permission.camera.status;
-        PermissionStatus microphoneStatus = await Permission.microphone.status;
-        if(cameraStatus == PermissionStatus.permanentlyDenied || microphoneStatus == PermissionStatus.permanentlyDenied){
+        if (cameraStatus == PermissionStatus.permanentlyDenied) {
           return Get.offAndToNamed(Routes.cameraPermissionScreen);
         }
         allCameras = await availableCameras();
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            pushNewScreen(
-              context,
-              screen: CameraScreen(camera: allCameras[0]),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
-          });
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          pushNewScreen(
+            context,
+            screen: CameraScreen(camera: allCameras[0]),
+            withNavBar: false,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+          );
+        });
       }
     });
   }
