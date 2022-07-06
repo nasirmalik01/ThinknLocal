@@ -44,10 +44,10 @@ class BusinessesScreen extends StatelessWidget {
       body: RefreshIndicator(
         color: AppColors.greenColor,
         onRefresh: () async {
-          _businessesController
-              .getBusinesses(_businessesController.selectedCategory.value);
+          _businessesController.getBusinesses(_businessesController.selectedCategory.value);
           _businessesController.getRecentlyAddedBusinesses();
           _businessesController.getNearbyBusinesses();
+          _businessesController.getBusinessCategories();
         },
         child: Obx(
               () => _businessesController.isError.value
@@ -140,57 +140,31 @@ class BusinessesScreen extends StatelessWidget {
                                   Get.toNamed(Routes.businessSearch);
                                 }),
                             SizedBox(height: getHeight() * 0.03),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: [
-                                _businessesComponents
-                                    .businessCategoryIcon(
-                                    image: Assets.foodIcon,
-                                    label: Strings.foodDrink,
-                                    onPressCategory: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (_) =>
-                                                  BusinessCategory(businessType: Strings.foodDrink,
-                                                    icon: Assets.foodIcon,
-                                                    id: _causesDetailController.foodDrinkId.value,
-                                                  )));
-                                    }),
-                                _businessesComponents
-                                    .businessCategoryIcon(
-                                    image: Assets.thingsIcon,
-                                    label: Strings.toDoThings,
-                                    onPressCategory: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (_) =>
-                                                  BusinessCategory(
-                                                    businessType: Strings.toDoThings,
-                                                    icon: Assets.thingsIcon,
-                                                    id: _causesDetailController.thingsToDoId.value,
-                                                  )));
-                                    }),
-                                _businessesComponents
-                                    .businessCategoryIcon(
-                                    image: Assets.bagIcon,
-                                    label: Strings.retail,
-                                    onPressCategory: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (_) =>
-                                                  BusinessCategory(
-                                                    businessType: Strings.retail,
-                                                    icon: Assets.bagIcon,
-                                                    id: _causesDetailController.retailId.value,
-                                                  )));
-                                    }),
-                                _businessesComponents.businessCategoryIcon(
-                                    image: Assets.servicesIcon,
-                                    label: Strings.services,
-                                    onPressCategory: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (_) =>
-                                                  BusinessCategory(
-                                                    businessType: Strings.services,
-                                                    icon: Assets.servicesIcon,
-                                                    id: _causesDetailController.servicesId.value,
-                                                  )));
-                                    }),
-                              ],
+                            /// Business category
+                            SizedBox(
+                              height: getHeight()*0.08,
+                              child: ListView.builder(
+                                padding: EdgeInsets.zero,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: _businessesController.businessCategoryList?.length ?? 0,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: getWidth()*0.02),
+                                    child: _businessesComponents
+                                        .businessCategoryIcon(
+                                        image: _businessesController.businessCategoryList![index].iconUrl!,
+                                        label: _businessesController.businessCategoryList![index].parent?.name ?? '',
+                                        onPressCategory: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (_) =>
+                                              BusinessCategory(
+                                                businessType: _businessesController.businessCategoryList![index].parent!.name!,
+                                                icon: _businessesController.businessCategoryList![index].iconUrl!,
+                                                id: _businessesController.businessCategoryList![index].parent!.id!,
+                                              )));
+                                        }),
+                                  );
+                                },
+                              ),
                             ),
                             SizedBox(height: getHeight() * 0.04),
                             Row(

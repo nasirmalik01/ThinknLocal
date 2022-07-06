@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -225,7 +226,7 @@ class CommonWidgets {
   }) {
     return Row(
       children: [
-        Image.asset(image!),
+        SvgPicture.network(image!, height: getHeight()*0.03),
         SizedBox(width: getWidth() * 0.05),
         TextView.headerWithBlurRadius(title ?? "", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize14)
 
