@@ -3,9 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/config/firebase_dynamic_links.dart';
+import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/enums/cause_request_type.dart';
 import 'package:thinknlocal_app/local/my_hive.dart';
+import 'package:thinknlocal_app/local/user_location.dart';
 import 'package:thinknlocal_app/model/causes.dart';
 import 'package:thinknlocal_app/model/cities.dart';
 import 'package:thinknlocal_app/network/remote_repositories/cause_repository.dart';
@@ -38,6 +40,7 @@ class CausesController extends GetxController {
   @override
   void onInit() {
     scrollController = ScrollController();
+    checkUserLocation();
     getLocationAddress();
     getCauses(Strings.featured, page: 1);
     getUpComingCauses();
@@ -80,6 +83,13 @@ class CausesController extends GetxController {
     isPast.value = true;
     selectedCategory.value = Strings.past;
     getCauses(Strings.past);
+  }
+
+  checkUserLocation(){
+    UserLocation? _userLocation = MyHive.getLocation();
+    if(_userLocation == null){
+      Get.offAllNamed(Routes.locationPermissionScreen);
+    }
   }
 
   getCauses(String selectedTab, {bool isPagination = false, int page = 1}) async {
@@ -141,10 +151,8 @@ class CausesController extends GetxController {
 
 
   getLocationAddress() async {
-    final LocationSearchController _locationSearchController =
-        Get.find<LocationSearchController>();
-    _locationSearchController.locationAddress.value =
-        MyHive.getLocationAddress();
+    final LocationSearchController _locationSearchController = Get.find<LocationSearchController>();
+    _locationSearchController.locationAddress.value = MyHive.getLocationAddress();
   }
 
 
@@ -206,5 +214,4 @@ class CausesController extends GetxController {
     }
     return selectedCategory.value;
   }
-
 }

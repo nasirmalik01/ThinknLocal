@@ -6,6 +6,7 @@ import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/enums/business_request_type.dart';
 import 'package:thinknlocal_app/local/my_hive.dart';
 import 'package:thinknlocal_app/model/business_category.dart';
+import 'package:thinknlocal_app/model/business_category_parent_type.dart';
 import 'package:thinknlocal_app/model/businesses.dart';
 import 'package:thinknlocal_app/network/remote_repositories/business_repository.dart';
 import 'package:thinknlocal_app/network/remote_services.dart';
@@ -26,6 +27,7 @@ class BusinessesController extends GetxController{
   List<Businesses>? recentlyAddedBusinessList = [];
   RxString locationAddress = Strings.noLocation.obs;
   RxList<BusinessCategoryModel>? businessCategoryList = <BusinessCategoryModel>[].obs;
+  RxList<BusinessCategoryParentType>? businessCategoryParentTypeList = <BusinessCategoryParentType>[].obs;
   List<Businesses>? nearbyBusinessList = [];
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
@@ -204,10 +206,7 @@ class BusinessesController extends GetxController{
 
   getBusinessCategories() async {
     isBusinessCategoryLoading.value = true;
-    businessCategoryList!.value =  (await BusinessRemoteRepository.fetchBusinessCategories())!;
-    if(businessCategoryList != null) {
-      businessCategoryList!.removeWhere((businessCategory) => businessCategory.parent == null);
-    }
+    businessCategoryParentTypeList!.value =  (await BusinessRemoteRepository.fetchBusinessParentTypeCategories())!;
     isBusinessCategoryLoading.value = false;
   }
 }

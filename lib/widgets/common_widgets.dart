@@ -94,10 +94,10 @@ class CommonWidgets {
   static Widget getAppBarWithSearch({
     String? title,
     String? hint,
+    bool? readOnly,
     TextEditingController? textEditingController,
     required Function onPressBackArrow,
     Function(String)? onChanged,
-
   }){
     return Container(
       width: sizes.width,
@@ -136,13 +136,13 @@ class CommonWidgets {
             ],
           ),
           SizedBox(height: getHeight()*0.02),
-          searchAppBarField(controller: textEditingController, hint: hint, onChanged: onChanged)
+          searchAppBarField(controller: textEditingController, hint: hint, onChanged: onChanged, readOnly: readOnly)
         ],
       ),
     );
   }
 
-  static Widget searchAppBarField({TextEditingController? controller, String? hint, Function(String)? onChanged}) {
+  static Widget searchAppBarField({TextEditingController? controller, String? hint, Function(String)? onChanged, required bool? readOnly}) {
     return Container(
       padding: EdgeInsets.only(right: getWidth() * 0.02),
       decoration: BoxDecoration(
@@ -150,6 +150,7 @@ class CommonWidgets {
         color: AppColors.pureWhiteColor,
       ),
       child: TextField(
+        readOnly: readOnly ?? false,
         textAlignVertical: TextAlignVertical.center,
         controller: controller,
         style: TextStyle(

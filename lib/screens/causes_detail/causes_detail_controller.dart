@@ -124,7 +124,7 @@ class CausesDetailController extends GetxController {
 
   fetchBusinessCategories() async {
     isBusinessCategoryLoading.value = true;
-    businessCategoryList =  await BusinessRemoteRepository.fetchBusinessCategories();
+    businessCategoryList =  await BusinessRemoteRepository.fetchBusinessCategories(query: {});
     for(BusinessCategoryModel businessCategoryModel in businessCategoryList!){
        switch(businessCategoryModel.parent?.name ?? ''){
          case Strings.foodDrink:

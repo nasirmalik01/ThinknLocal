@@ -146,20 +146,19 @@ class BusinessesScreen extends StatelessWidget {
                               child: ListView.builder(
                                 padding: EdgeInsets.zero,
                                 scrollDirection: Axis.horizontal,
-                                itemCount: _businessesController.businessCategoryList?.length ?? 0,
+                                itemCount: _businessesController.businessCategoryParentTypeList?.length ?? 0,
                                 itemBuilder: (BuildContext context, int index) {
                                   return  Padding(
                                     padding: EdgeInsets.symmetric(horizontal: getWidth()*0.02),
-                                    child: _businessesComponents
-                                        .businessCategoryIcon(
-                                        image: _businessesController.businessCategoryList![index].iconUrl!,
-                                        label: _businessesController.businessCategoryList![index].parent?.name ?? '',
+                                    child: _businessesComponents.businessCategoryIcon(
+                                            image: _businessesController.businessCategoryParentTypeList![index].iconUrl!,
+                                            label: _businessesController.businessCategoryParentTypeList![index].name!,
                                         onPressCategory: () {
                                           Navigator.push(context, MaterialPageRoute(builder: (_) =>
                                               BusinessCategory(
-                                                businessType: _businessesController.businessCategoryList![index].parent!.name!,
-                                                icon: _businessesController.businessCategoryList![index].iconUrl!,
-                                                id: _businessesController.businessCategoryList![index].parent!.id!,
+                                                businessType: _businessesController.businessCategoryParentTypeList![index].name!,
+                                                icon: _businessesController.businessCategoryParentTypeList![index].iconUrl!,
+                                                id: _businessesController.businessCategoryParentTypeList![index].id!,
                                               )));
                                         }),
                                   );

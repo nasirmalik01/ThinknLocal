@@ -5,6 +5,7 @@ class Strings {
 
   ///update this token when you need to test cases
   static const testingToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImRhdGEiOm51bGwsImV4cCI6MTY4NDU3NTk2NX0.VUWhCIHoQCVlx_EIo5yOA7OQNjlHQF68ikyVhhLIkYs';
+
   static const googleAuthToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0ODNhMDg4ZDRmZmMwMDYwOWYwZTIyZjNjMjJkYTVmZTM5MDZjY2MiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI1OTI3MTc0ODE5MC02czZsYmkzMmw3czY0ZDYxYjVzYjJ1bm5ldWlrcTEyZi5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjU5MjcxNzQ4MTkwLWlrYzlydDZlMmtrZTFta2Rxamttc3M4dmE4bDUzdWJuLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTExMDQ3MTMxNzQ3MzM3MjQ3Mzc1IiwiaGQiOiJ0aGlua25sb2NhbC5jb20iLCJlbWFpbCI6InN0ZXZlLnN0bWFydGluQHRoaW5rbmxvY2FsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiU3RlcGhlbiBTdC4gTWFydGluIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FBVFhBSnhMUEY1Rkt0TE11OVk0NWtRYVBDa244aFRWM2trUHFWeUk4SHJxPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IlN0ZXBoZW4iLCJmYW1pbHlfbmFtZSI6IlN0LiBNYXJ0aW4iLCJsb2NhbGUiOiJlbiIsImlhdCI6MTY1NDg2ODQxMSwiZXhwIjoxNjU0ODcyMDExfQ.Gsv9eeuFBX9W_AZ_oDZhSM1ohFYkEIgfKzm4YfvXlg-RGoJKKE4ksxuePNpf79fpOz2sFg_d0RHYpGJ2stouK-4X-HJDqJ2W9Qx8CwpV9XQDOVLq6dptaciXq6HIz-5VSZ3HryZAG4jFXXzFcwmqpUFT_gMezto_IBLeGVqq0CgpfVk9KwcIxo6UdjrMGB37dHLVbkBYUGcvoILdVtyhscveuL3wvEiQyToi6xbkbefSu3EN60th7LheFs9XKZ7j95BMhX1W7F-VZqtJu1BJaAbtjyMvHFb_FDsDFuXtiXX3rBufvH7aIIFAdxZ293cQUFYYF8vFt0mE7Kq3cWgJtw';
   static const String loginUserId = "loginUserId";
   static const String loginName = "loginName";
@@ -82,6 +83,8 @@ class Strings {
   static const String retail = "Retail";
   static const String retry = "RETRY";
   static const String services = "Services";
+  static const String parents = "parents";
+  static const String type = "type";
   static const String contributionsOverTime = "Contributions over time";
   static const String numberOfContributions = 'Number of contributions from individuals over time.';
   static const String recentContributions = "Recent Contributions";

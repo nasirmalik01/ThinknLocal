@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/api_endpoints.dart';
+import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/model/business_category.dart';
+import 'package:thinknlocal_app/model/business_category_parent_type.dart';
 import 'package:thinknlocal_app/model/business_detail.dart';
 import 'package:thinknlocal_app/model/business_stats.dart';
 import 'package:thinknlocal_app/model/businesses.dart';
@@ -81,14 +83,31 @@ class BusinessRemoteRepository {
     return completer.future;
   }
 
-  static Future<List<BusinessCategoryModel>?> fetchBusinessCategories() async {
+  static Future<List<BusinessCategoryModel>?> fetchBusinessCategories({required Map<String, dynamic> query}) async {
     List<BusinessCategoryModel> businessCategoryList = [];
 
-    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.categories, {});
+    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.categories, query);
     if (response == null) {
       return null;
     }
     final List<dynamic> _businessCategoryDecodeList = response.map((item) => BusinessCategoryModel.fromJson(item)).toList();
+    for (var businessCategoryItem in _businessCategoryDecodeList) {
+      businessCategoryList.add(businessCategoryItem);
+    }
+    return businessCategoryList;
+  }
+
+  static Future<List<BusinessCategoryParentType>?> fetchBusinessParentTypeCategories() async {
+    List<BusinessCategoryParentType> businessCategoryList = [];
+
+    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.categories, {
+      Strings.parents: true,
+      Strings.type: 'business'
+    });
+    if (response == null) {
+      return null;
+    }
+    final List<dynamic> _businessCategoryDecodeList = response.map((item) => BusinessCategoryParentType.fromJson(item)).toList();
     for (var businessCategoryItem in _businessCategoryDecodeList) {
       businessCategoryList.add(businessCategoryItem);
     }
