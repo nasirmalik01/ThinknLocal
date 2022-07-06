@@ -144,4 +144,8 @@ class PreferenceUtils {
     }
     return type;
   }
+
+  // String formatPhoneNumber(String phoneNumber){
+  //   return '(${=.featuredCausesAdvertisementList![index].business!.phone!.substring(0, 3)}) ${_causesDetailController.featuredCausesAdvertisementList![index].business!.phone!.substring(3, 6)}-${_causesDetailController.featuredCausesAdvertisementList![index]..business!.phone!.substring(6,)}';
+  // }
 }

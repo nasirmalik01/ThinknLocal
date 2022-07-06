@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:thinknlocal_app/common/handling_empty_states.dart';
 import 'package:thinknlocal_app/common/utils.dart';
@@ -268,7 +270,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                           onTap: () {
                                                                             customDialog(
                                                                                 title:   _causesDetailController.featuredCausesAdvertisementList![index].business!.name,
-                                                                                summary: '(${_causesDetailController.featuredCausesAdvertisementList![index].business!.phone!.substring(0, 3)}) ${_causesDetailController.featuredCausesAdvertisementList![index].business!.phone!.substring(3, 6)}-${_causesDetailController.featuredCausesAdvertisementList![index]..business!.phone!.substring(6,)}',
+                                                                                summary: '(${_causesDetailController.featuredCausesAdvertisementList![index].business!.phone!.substring(0, 3)}) ${_causesDetailController.featuredCausesAdvertisementList![index].business!.phone!.substring(3, 6)}-${_causesDetailController.featuredCausesAdvertisementList![index].business!.phone!.substring(6,)}',
                                                                                 backgroundImage: _causesDetailController.featuredCausesAdvertisementList![index].business!.image,
                                                                                 icon: _causesDetailController.featuredCausesAdvertisementList![index].business!.logo,
                                                                                 description: _causesDetailController.featuredCausesAdvertisementList![index].description,

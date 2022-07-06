@@ -121,6 +121,7 @@ class CausesRemoteRepository {
     return _causeAdvertisements;
   }
 
+
   static Future<List<UpdateCauses>?> fetchUpdatedCauses(int id) async {List<UpdateCauses> _updateCauses = [];
     var location = MyHive.getLocation();
     var cityId = MyHive.getCityId();

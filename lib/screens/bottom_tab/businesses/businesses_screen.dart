@@ -141,8 +141,7 @@ class BusinessesScreen extends StatelessWidget {
                                 }),
                             SizedBox(height: getHeight() * 0.03),
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 _businessesComponents
                                     .businessCategoryIcon(
@@ -150,7 +149,8 @@ class BusinessesScreen extends StatelessWidget {
                                     label: Strings.foodDrink,
                                     onPressCategory: () {
                                       Navigator.push(context, MaterialPageRoute(builder: (_) =>
-                                                  BusinessCategory(businessType: Strings.foodDrink,
+                                                  BusinessCategory(
+                                                    businessType: Strings.foodDrink,
                                                     icon: Assets.foodIcon,
                                                     id: _causesDetailController.foodDrinkId.value,
                                                   )));
