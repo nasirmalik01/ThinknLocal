@@ -9,6 +9,8 @@ class CauseAdvertisementBusiness {
   dynamic url;
   String? image;
   String? logo;
+  String? contributionAmount;
+  String? contributionAmountMax;
 
   CauseAdvertisementBusiness(
       {this.id,
@@ -18,7 +20,10 @@ class CauseAdvertisementBusiness {
         this.phone,
         this.url,
         this.image,
-        this.logo});
+        this.logo,
+        this.contributionAmount,
+        this.contributionAmountMax
+      });
 
   CauseAdvertisementBusiness.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -31,6 +36,8 @@ class CauseAdvertisementBusiness {
     url = json['url'];
     image = json['image'];
     logo = json['logo'];
+    contributionAmount = json['contribution_amount'];
+    contributionAmountMax = json['contribution_amount_max'];
   }
 
   Map<String, dynamic> toJson() {
@@ -45,6 +52,8 @@ class CauseAdvertisementBusiness {
     data['url'] = url;
     data['image'] = image;
     data['logo'] = logo;
+    data['contribution_amount'] = contributionAmount;
+    data['contribution_amount_max'] = contributionAmountMax;
     return data;
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:thinknlocal_app/common/handling_empty_states.dart';
 import 'package:thinknlocal_app/common/utils.dart';
@@ -286,7 +284,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                             name: _causesDetailController.featuredCausesAdvertisementList![index].business!.name,
                                                                             image: _causesDetailController.featuredCausesAdvertisementList![index].business!.image,
                                                                             logoImage: _causesDetailController.featuredCausesAdvertisementList![index].business!.logo,
-                                                                            givingBack: '',
+                                                                            givingBack: 'Giving Back: ${_causesDetailController.featuredCausesAdvertisementList![index].business!.contributionAmount.toString()}',
                                                                             onPressFullContainer: () {},
                                                                           ),
                                                                         );

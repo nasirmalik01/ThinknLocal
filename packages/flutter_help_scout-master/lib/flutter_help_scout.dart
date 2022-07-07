@@ -31,6 +31,7 @@ class FlutterHelpScout {
     } on PlatformException catch (e) {
       print('Unable to initialize beacon: ${e.toString()}');
     }
+    return null;
   }
 
   /// Once you’ve initialized Beacon, you’re ready to interact with it.
@@ -52,6 +53,7 @@ class FlutterHelpScout {
     } on PlatformException catch (e) {
       print('Unable to open beacon: ${e.toString()}');
     }
+    return null;
   }
 
 
@@ -80,6 +82,7 @@ class FlutterHelpScout {
     } on PlatformException catch (e) {
       print('Unable to identify the user: ${e.toString()}');
     }
+    return null;
   }
 
   /// Calling this method resets the current Beacon state,
@@ -97,6 +100,7 @@ class FlutterHelpScout {
     } on PlatformException catch (e) {
       print('Unable to open beacon: ${e.toString()}');
     }
+    return null;
   }
 
   /// This method wipes all data from the Beacon,
@@ -113,6 +117,7 @@ class FlutterHelpScout {
     } on PlatformException catch (e) {
       print('Unable to open beacon: ${e.toString()}');
     }
+    return null;
   }
 
   Future<String?> openContact(String beaconId) async {
@@ -127,5 +132,6 @@ class FlutterHelpScout {
     } on PlatformException catch (e) {
       print('Unable to open beacon: ${e.toString()}');
     }
+    return null;
   }
 }

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:thinknlocal_app/common/methods.dart';
-import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/screens/bottom_tab/causes/upcoming_causes.dart';
-import 'package:get/get.dart';
 import 'package:thinknlocal_app/screens/causes_detail/causes_detail.dart';
 
 import '../../constants/colors.dart';

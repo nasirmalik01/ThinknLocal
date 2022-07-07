@@ -1,7 +1,6 @@
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/local/my_hive.dart';
-import 'package:thinknlocal_app/local/user_location.dart';
 import 'package:thinknlocal_app/model/cities.dart';
 import 'package:thinknlocal_app/network/remote_repositories/location_repository.dart';
 import 'package:geolocator/geolocator.dart';

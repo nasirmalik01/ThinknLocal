@@ -65,7 +65,7 @@ class FeaturedSponsors extends StatelessWidget {
                       child: TextView.caption(name??"", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1)),
                   SizedBox(
                       width: getWidth() * 0.29,
-                      child: TextView.caption(givingBack, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1)),
+                      child: TextView.caption(givingBack, color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular, lines: 1)),
                 ],
               ),
             ],

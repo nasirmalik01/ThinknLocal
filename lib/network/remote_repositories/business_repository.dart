@@ -10,7 +10,6 @@ import 'package:thinknlocal_app/model/business_detail.dart';
 import 'package:thinknlocal_app/model/business_stats.dart';
 import 'package:thinknlocal_app/model/businesses.dart';
 import 'package:thinknlocal_app/network/remote_services.dart';
-import 'package:thinknlocal_app/screens/businesses_categories/business_category.dart';
 
 class BusinessRemoteRepository {
   static Future<List<Businesses>?> fetchBusinesses(Map<String, dynamic>? query) async {

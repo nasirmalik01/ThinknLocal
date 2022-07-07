@@ -8,7 +8,6 @@ class CauseAdvertisement {
   String? description;
   String? url;
   bool? featured;
-  String? formattedPhoneNumber;
 
   CauseAdvertisement(
       {this.id,
@@ -18,7 +17,6 @@ class CauseAdvertisement {
         this.description,
         this.url,
         this.featured,
-        this.formattedPhoneNumber
       });
 
   CauseAdvertisement.fromJson(Map<String, dynamic> json) {

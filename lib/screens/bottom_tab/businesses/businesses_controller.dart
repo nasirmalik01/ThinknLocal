@@ -187,6 +187,7 @@ class BusinessesController extends GetxController{
     return _paginatedList;
   }
 
+
   String getSelectedCategory(){
     String _selectedCategory = Strings.featured;
     if(isFeatured.value){
