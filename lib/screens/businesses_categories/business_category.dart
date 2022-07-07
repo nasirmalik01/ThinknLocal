@@ -73,9 +73,7 @@ class BusinessCategory extends StatelessWidget {
                                   itemCount: _businessCategoryController.businessCategoryList!.length,
                                   itemBuilder: (context, index) {
                                     return Padding(
-                                      padding: EdgeInsets.only(
-                                          top: getHeight() * 0.01,
-                                          left: getWidth() * 0.03),
+                                      padding: EdgeInsets.only(top: getHeight() * 0.01, left: getWidth() * 0.03),
                                       child: GestureDetector(
                                         onTap: () {
                                           pushNewScreen(
@@ -92,8 +90,7 @@ class BusinessCategory extends StatelessWidget {
                                           onViewCourse: () {},
                                           address: '${_businessCategoryController.businessCategoryList![index].address1}\n${_businessCategoryController.businessCategoryList![index].city}, ${_businessCategoryController.businessCategoryList![index].state}, ${_businessCategoryController.businessCategoryList![index].zip}',
                                           streetAddress: _businessCategoryController.businessCategoryList![index].address2,
-                                          phoneNumber: '(${_businessCategoryController.businessCategoryList![index].phone!.substring(0, 3)}) ${_businessCategoryController.businessCategoryList![index].phone!.substring(3, 6)}-${_businessCategoryController.businessCategoryList![index].phone!.substring(6,
-                                          )}',
+                                          phoneNumber: '(${_businessCategoryController.businessCategoryList![index].phone!.substring(0, 3)}) ${_businessCategoryController.businessCategoryList![index].phone!.substring(3, 6)}-${_businessCategoryController.businessCategoryList![index].phone!.substring(6,)}',
                                           isBusinessCategory: true,
                                         ),
                                       ),

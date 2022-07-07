@@ -51,10 +51,9 @@ class LocationSearchController extends GetxController {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.setDouble(Strings.currentLat, citiesList[index].latitude!);
     _prefs.setDouble(Strings.currentLong, citiesList[index].longitude!);
-    String? _userCurrentLocationAddress = await findAddress(citiesList[index].latitude!, citiesList[index].longitude!);
-    locationAddress.value = _userCurrentLocationAddress!;
+    locationAddress.value = citiesList[index].name!;
     MyHive.setCityId(citiesList[index].id.toString());
-    MyHive.setLocationAddress(_userCurrentLocationAddress);
+    MyHive.setLocationAddress(locationAddress.value);
     Get.back(result: 1);
   }
 }

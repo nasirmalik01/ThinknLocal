@@ -21,11 +21,9 @@ class CausesScreen extends StatelessWidget {
   CausesScreen({Key? key}) : super(key: key);
 
   final TextEditingController? searchController = TextEditingController();
-  final LocationSearchController _locationSearchController =
-      Get.put(LocationSearchController());
+  final LocationSearchController _locationSearchController = Get.put(LocationSearchController());
   final CausesController _causesController = Get.put(CausesController());
-  final BusinessesController _businessesController =
-      Get.put(BusinessesController());
+  final BusinessesController _businessesController = Get.put(BusinessesController());
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +90,7 @@ class CausesScreen extends StatelessWidget {
                                 children: [
                                   Obx(
                                     () => TextView.header(
-                                        _locationSearchController
-                                            .locationAddress.value,
+                                        _locationSearchController.locationAddress.value,
                                         color: AppColors.greenColor,
                                         fontFamily: Assets.poppinsRegular,
                                         textDecoration:

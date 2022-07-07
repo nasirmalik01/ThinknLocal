@@ -33,7 +33,6 @@ import '/res/res.dart';
 class CausesDetail extends StatefulWidget {
   final int? causeId;
   final int? organizationId;
-
   const CausesDetail({this.causeId, this.organizationId, Key? key}) : super(key: key);
 
   @override
@@ -72,14 +71,13 @@ class _CausesDetailState extends State<CausesDetail>
                     _causesDetailController.isError.value = false;
                     getCauseDetail(_causeId);
                   })
-              : (     _causesDetailController.isLoading.value ||
+              : (_causesDetailController.isLoading.value ||
                       _causesDetailController.isStatsLoading.value ||
                       _causesDetailController.isCauseBottomLoading.value ||
                       _causesDetailController.isFeaturedLoading.value ||
                       _causesDetailController.isCauseAdvertisementLoading.value ||
                       _causesDetailController.isCauseFeaturedAdvertisementLoading.value ||
-                      _causesDetailController.isBusinessCategoryLoading.value
-                )
+                      _causesDetailController.isBusinessCategoryLoading.value)
                   ? bouncingLoadingIndicator()
                   : _causesDetailController.causeDetail == null
                   ? const SizedBox()
