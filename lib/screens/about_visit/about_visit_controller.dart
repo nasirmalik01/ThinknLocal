@@ -43,12 +43,6 @@ class AboutVisitController extends GetxController {
             : IsFirstTime.nothing;
   }
 
-  @override
-  void onInit() {
-    getBusinesses();
-    super.onInit();
-  }
-
   getCauses(int businessId) async {
     causesList?.clear();
     causesList!.value = (await (CausesRemoteRepository.fetchCauses(
@@ -65,9 +59,8 @@ class AboutVisitController extends GetxController {
     }
   }
 
-  getBusinesses() async {
-    isBusinessLoading.value = true;
-    businessList = await (BusinessRemoteRepository.fetchBusinesses({}));
+  getBusinesses(Map<String, dynamic> query) async {
+    businessList = await (BusinessRemoteRepository.fetchBusinesses(query));
     if (RemoteServices.statusCode != 200 &&
         RemoteServices.statusCode != 201 &&
         RemoteServices.statusCode != 204) {
@@ -76,24 +69,34 @@ class AboutVisitController extends GetxController {
       errorMessage.value = RemoteServices.error;
       return;
     }
-    isBusinessLoading.value = false;
   }
 
-  Iterable<SuggestionModel> setOptionsBuilder({TextEditingValue? value, bool isBusiness = false, bool isEmptyTextFieldValue = false}) {
-    if (isBusiness) {
-      if (businessList!.isNotEmpty) {
-        for (int i = 0; i < businessList!.length; i++) {
-          var item = SuggestionModel(
-              title: businessList![i].name!.trim(),
-              subTitle: businessList![i].address1.toString());
-               businessSuggestionList.add(item);
-        }
-        if (isEmptyTextFieldValue) {
-          return businessSuggestionList;
-        } else {
-          return businessSuggestionList.where((business) => business.title.toLowerCase().startsWith(value!.text.toLowerCase()));
-        }
+  addBusinessesToSuggestionList() {
+    if (businessList!.isNotEmpty) {
+      businessSuggestionList.clear();
+
+      for (int i = 0; i < businessList!.length; i++) {
+        var item = SuggestionModel(
+            title: businessList![i].name!.trim(),
+            subTitle: businessList![i].address1.toString());
+        businessSuggestionList.add(item);
       }
+    }
+  }
+
+  Future<Iterable<SuggestionModel>> setOptionsBuilder(
+      {TextEditingValue? value,
+      bool isBusiness = false,
+      bool isEmptyTextFieldValue = false}) async {
+    if (isBusiness) {
+      if (!isEmptyTextFieldValue) {
+        await getBusinesses({'q': value!.text.toLowerCase()});
+      } else {
+        await getBusinesses({});
+      }
+
+      addBusinessesToSuggestionList();
+      return businessSuggestionList;
     } else {
       if (causesList!.isNotEmpty) {
         addItemIntoSugCausesList();
