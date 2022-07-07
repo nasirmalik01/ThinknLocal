@@ -130,14 +130,14 @@ class AutoFieldTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Autocomplete<SuggestionModel>(
-      optionsBuilder: (TextEditingValue value) {
+      optionsBuilder: (TextEditingValue value) async {
         if (value.text == '') {
           Iterable<SuggestionModel> list =
-              _aboutVisitController.setOptionsBuilder(
+              await _aboutVisitController.setOptionsBuilder(
                   isEmptyTextFieldValue: true, isBusiness: isBusiness);
           return list;
         }
-        Iterable<SuggestionModel> list = _aboutVisitController
+        Iterable<SuggestionModel> list = await _aboutVisitController
             .setOptionsBuilder(value: value, isBusiness: isBusiness);
         return list;
       },
