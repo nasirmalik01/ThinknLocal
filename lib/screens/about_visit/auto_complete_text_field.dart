@@ -141,8 +141,7 @@ class AutoFieldTextField extends StatelessWidget {
             .setOptionsBuilder(value: value, isBusiness: isBusiness);
         return list;
       },
-      displayStringForOption: (SuggestionModel option) =>
-          '${option.title}\n${option.subTitle ?? ''}',
+      displayStringForOption: (SuggestionModel option) => '${option.title}',
       onSelected: onSelect,
       optionsViewBuilder: _suggestionListView,
       fieldViewBuilder: _selectedView,
