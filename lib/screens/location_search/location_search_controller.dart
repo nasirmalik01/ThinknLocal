@@ -36,7 +36,7 @@ class LocationSearchController extends GetxController {
     });
   }
 
-  getLocationAddress() async {
+ Future<void> getLocationAddress() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     String? _userLocationAddress = _prefs.getString(Strings.currentLocationAddress);
     locationAddress.value = _userLocationAddress ?? Strings.noLocation;
@@ -47,7 +47,7 @@ class LocationSearchController extends GetxController {
     return position;
   }
 
-  saveSelectedAddress(int index) async {
+  Future<void> saveSelectedAddress(int index) async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.setDouble(Strings.currentLat, citiesList[index].latitude!);
     _prefs.setDouble(Strings.currentLong, citiesList[index].longitude!);

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import 'package:thinknlocal_app/common/utils.dart';
 import 'package:thinknlocal_app/constants/routes.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
@@ -9,21 +11,21 @@ import 'package:thinknlocal_app/widgets/common_widgets.dart';
 import 'package:thinknlocal_app/widgets/custom_tab_bar.dart';
 import 'package:thinknlocal_app/widgets/network_error.dart';
 import 'package:thinknlocal_app/widgets/text_views.dart';
-import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../res/res.dart';
+import '../businesses/businesses_controller.dart';
 
-
-class CausesScreen extends StatelessWidget{
+class CausesScreen extends StatelessWidget {
   CausesScreen({Key? key}) : super(key: key);
 
   final TextEditingController? searchController = TextEditingController();
-  final LocationSearchController _locationSearchController = Get.put(LocationSearchController());
+  final LocationSearchController _locationSearchController =
+      Get.put(LocationSearchController());
   final CausesController _causesController = Get.put(CausesController());
-
+  final BusinessesController _businessesController =
+      Get.put(BusinessesController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,28 +35,29 @@ class CausesScreen extends StatelessWidget{
       resizeToAvoidBottomInset: false,
       body: RefreshIndicator(
         color: AppColors.greenColor,
-        onRefresh: () async{
+        onRefresh: () async {
           _causesController.getCauses(_causesController.selectedCategory.value);
           _causesController.getRecentlyStartedCauses();
           _causesController.getUpComingCauses();
         },
-        child: Obx(() =>
-        _causesController.isError.value
-            ?  NetworkErrorException(exceptionMessage: _causesController.errorMessage.value, onPress: (){
-          _causesController.isError.value = false;
-          _causesController.getCauses(Strings.featured);
-          _causesController.getRecentlyStartedCauses();
-          _causesController.getUpComingCauses();
-        })
-            : Container(
+        child: Obx(
+          () => _causesController.isError.value
+              ? NetworkErrorException(
+                  exceptionMessage: _causesController.errorMessage.value,
+                  onPress: () {
+                    _causesController.isError.value = false;
+                    _causesController.getCauses(Strings.featured);
+                    _causesController.getRecentlyStartedCauses();
+                    _causesController.getUpComingCauses();
+                  })
+              : Container(
                   height: sizes.height,
                   width: sizes.width,
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.center,
-                        colors: PreferenceUtils.getGradient()
-                    ),
+                        colors: PreferenceUtils.getGradient()),
                   ),
                   child: ListView(
                     children: [
@@ -81,9 +84,9 @@ class CausesScreen extends StatelessWidget{
                             ),
                             GestureDetector(
                               onTap: () async {
-                                await Get.toNamed(
-                                    Routes.locationSearchScreen);
+                                await Get.toNamed(Routes.locationSearchScreen);
                                 _causesController.onInit();
+                                _businessesController.onInit();
                               },
                               child: Row(
                                 children: [
@@ -120,8 +123,7 @@ class CausesScreen extends StatelessWidget{
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: sizes.width * 0.06
-                              ),
+                                  horizontal: sizes.width * 0.06),
                               child: CommonWidgets.searchLocationTextField(
                                   controller: searchController,
                                   hint: Strings.searchForCause,
@@ -141,8 +143,7 @@ class CausesScreen extends StatelessWidget{
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         customTabBar(
-                                            title:
-                                                Strings.featured.capitalize!,
+                                            title: Strings.featured.capitalize!,
                                             isSelected: _causesController
                                                 .isFeatured.value,
                                             onTap: () {
@@ -150,8 +151,7 @@ class CausesScreen extends StatelessWidget{
                                                   .setFeaturedTab();
                                             }),
                                         customTabBar(
-                                            title:
-                                                Strings.trending.capitalize!,
+                                            title: Strings.trending.capitalize!,
                                             isSelected: _causesController
                                                 .isTrending.value,
                                             onTap: () {
@@ -169,7 +169,8 @@ class CausesScreen extends StatelessWidget{
                                             }),
                                         customTabBar(
                                             title: Strings.past.capitalize!,
-                                            isSelected: _causesController.isPast.value,
+                                            isSelected:
+                                                _causesController.isPast.value,
                                             onTap: () {
                                               _causesController.setPastTab();
                                             }),
@@ -181,21 +182,24 @@ class CausesScreen extends StatelessWidget{
                                       children: [
                                         customTabBar(
                                             title: Strings.featured.capitalize!,
-                                            isSelected: _causesController.isFeatured.value,
+                                            isSelected: _causesController
+                                                .isFeatured.value,
                                             onTap: () {
                                               _causesController
                                                   .setFeaturedTab();
                                             }),
                                         customTabBar(
                                             title: Strings.trending.capitalize!,
-                                            isSelected: _causesController.isTrending.value,
+                                            isSelected: _causesController
+                                                .isTrending.value,
                                             onTap: () {
                                               _causesController
                                                   .setTrendingTab();
                                             }),
                                         customTabBar(
                                             title: Strings.past.capitalize!,
-                                            isSelected: _causesController.isPast.value,
+                                            isSelected:
+                                                _causesController.isPast.value,
                                             onTap: () {
                                               _causesController.setPastTab();
                                             }),
@@ -208,7 +212,8 @@ class CausesScreen extends StatelessWidget{
                       ),
                     ],
                   ),
-        ),),
+                ),
+        ),
       ),
     );
   }
