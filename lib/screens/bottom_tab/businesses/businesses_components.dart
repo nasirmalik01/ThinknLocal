@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constants/assets.dart';
@@ -24,8 +25,11 @@ class BusinessesComponents {
               borderRadius: const BorderRadius.all(Radius.circular(5)),
               color: AppColors.pureWhiteColor,
             ),
-            child: Center(
-                child: Image.asset(image)),
+            child: Padding(
+              padding: EdgeInsets.all(getWidth()*0.02),
+              child: Center(
+                  child: SvgPicture.network(image)),
+            ),
           ),
           SizedBox(height: 0.3.h,),
           TextView.caption(label, color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium)

@@ -114,6 +114,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       ),
     );
   }
+
   void navigateToNextScreen() async {
     await Future.delayed(const Duration(
       seconds: 2,

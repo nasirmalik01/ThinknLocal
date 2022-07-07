@@ -10,10 +10,10 @@ class BusinessCategoryController extends GetxController{
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
 
-  getBusinessCategory(int categoryId) async{
+  getBusinessCategory(int parentCategoryId) async{
    isLoading.value = true;
    businessCategoryList =  await (BusinessRemoteRepository.fetchBusinesses({
-     Strings.categoryId: categoryId
+     Strings.parentCategoryId: parentCategoryId
    }));
    if(RemoteServices.statusCode != 200 && RemoteServices.statusCode != 201 && RemoteServices.statusCode != 204){
      isError.value = true;

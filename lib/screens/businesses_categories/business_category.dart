@@ -60,8 +60,7 @@ class BusinessCategory extends StatelessWidget {
                             color: AppColors.lightBlack,
                             fontFamily: Assets.poppinsMedium),
                         SizedBox(height: getHeight() * 0.02),
-                        CommonWidgets.getCategoryWithText(
-                            image: icon, title: businessType),
+                        CommonWidgets.getCategoryWithText(image: icon, title: businessType),
                         SizedBox(height: getHeight() * 0.04),
                         Obx(
                           () => _businessCategoryController.isLoading.value
@@ -71,8 +70,7 @@ class BusinessCategory extends StatelessWidget {
                                   scrollDirection: Axis.vertical,
                                   shrinkWrap: true,
                                   physics: const ScrollPhysics(),
-                                  itemCount: _businessCategoryController
-                                      .businessCategoryList!.length,
+                                  itemCount: _businessCategoryController.businessCategoryList!.length,
                                   itemBuilder: (context, index) {
                                     return Padding(
                                       padding: EdgeInsets.only(
@@ -83,11 +81,8 @@ class BusinessCategory extends StatelessWidget {
                                           pushNewScreen(
                                             context,
                                             screen: BusinessesDetailScreen(
-                                                businessId:
-                                                    _businessCategoryController
-                                                        .businessCategoryList![
-                                                            index]
-                                                        .id),
+                                                businessId: _businessCategoryController.businessCategoryList![index].id
+                                            ),
                                             withNavBar: true,
                                           );
                                         },

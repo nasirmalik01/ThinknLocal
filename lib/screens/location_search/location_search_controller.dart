@@ -30,7 +30,8 @@ class LocationSearchController extends GetxController {
           Strings.q: query.trim().isEmpty ? '' : query
         }) ?? [];
         update();
-      } finally {
+      }
+      finally {
         isLoading.value = false;
       }
     });
@@ -57,5 +58,4 @@ class LocationSearchController extends GetxController {
     MyHive.setLocationAddress(_userCurrentLocationAddress);
     Get.back(result: 1);
   }
-
 }

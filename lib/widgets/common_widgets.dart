@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/widgets/text_views.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -93,10 +94,10 @@ class CommonWidgets {
   static Widget getAppBarWithSearch({
     String? title,
     String? hint,
+    bool? readOnly,
     TextEditingController? textEditingController,
     required Function onPressBackArrow,
     Function(String)? onChanged,
-
   }){
     return Container(
       width: sizes.width,
@@ -135,13 +136,13 @@ class CommonWidgets {
             ],
           ),
           SizedBox(height: getHeight()*0.02),
-          searchAppBarField(controller: textEditingController, hint: hint, onChanged: onChanged)
+          searchAppBarField(controller: textEditingController, hint: hint, onChanged: onChanged, readOnly: readOnly)
         ],
       ),
     );
   }
 
-  static Widget searchAppBarField({TextEditingController? controller, String? hint, Function(String)? onChanged}) {
+  static Widget searchAppBarField({TextEditingController? controller, String? hint, Function(String)? onChanged, required bool? readOnly}) {
     return Container(
       padding: EdgeInsets.only(right: getWidth() * 0.02),
       decoration: BoxDecoration(
@@ -149,6 +150,7 @@ class CommonWidgets {
         color: AppColors.pureWhiteColor,
       ),
       child: TextField(
+        readOnly: readOnly ?? false,
         textAlignVertical: TextAlignVertical.center,
         controller: controller,
         style: TextStyle(
@@ -225,7 +227,7 @@ class CommonWidgets {
   }) {
     return Row(
       children: [
-        Image.asset(image!),
+        SvgPicture.network(image!, height: getHeight()*0.03),
         SizedBox(width: getWidth() * 0.05),
         TextView.headerWithBlurRadius(title ?? "", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize14)
 

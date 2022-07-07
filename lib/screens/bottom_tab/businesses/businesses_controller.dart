@@ -5,10 +5,11 @@ import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/enums/business_request_type.dart';
 import 'package:thinknlocal_app/local/my_hive.dart';
+import 'package:thinknlocal_app/model/business_category.dart';
+import 'package:thinknlocal_app/model/business_category_parent_type.dart';
 import 'package:thinknlocal_app/model/businesses.dart';
 import 'package:thinknlocal_app/network/remote_repositories/business_repository.dart';
 import 'package:thinknlocal_app/network/remote_services.dart';
-import 'package:thinknlocal_app/screens/causes_detail/causes_detail_controller.dart';
 import 'package:thinknlocal_app/screens/location_search/location_search_controller.dart';
 import 'package:get/get.dart';
 
@@ -21,9 +22,12 @@ class BusinessesController extends GetxController{
   RxBool isRecentlyAddedBusinessLoading = false.obs;
   RxBool isNearByBusinessLoading = false.obs;
   RxBool isPaginatedLoading = false.obs;
+  RxBool isBusinessCategoryLoading = false.obs;
   List<Businesses>? businessList = [];
   List<Businesses>? recentlyAddedBusinessList = [];
   RxString locationAddress = Strings.noLocation.obs;
+  RxList<BusinessCategoryModel>? businessCategoryList = <BusinessCategoryModel>[].obs;
+  RxList<BusinessCategoryParentType>? businessCategoryParentTypeList = <BusinessCategoryParentType>[].obs;
   List<Businesses>? nearbyBusinessList = [];
   RxBool isError = false.obs;
   RxString errorMessage = ''.obs;
@@ -39,6 +43,7 @@ class BusinessesController extends GetxController{
     getBusinesses(Strings.featured);
     getRecentlyAddedBusinesses();
     getNearbyBusinesses();
+    getBusinessCategories();
     super.onInit();
   }
 
@@ -197,5 +202,11 @@ class BusinessesController extends GetxController{
       _selectedCategory = Strings.past;
     }
     return _selectedCategory;
+  }
+
+  getBusinessCategories() async {
+    isBusinessCategoryLoading.value = true;
+    businessCategoryParentTypeList!.value =  (await BusinessRemoteRepository.fetchBusinessParentTypeCategories())!;
+    isBusinessCategoryLoading.value = false;
   }
 }
