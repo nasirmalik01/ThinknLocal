@@ -7,6 +7,7 @@ PODS:
   - AppAuth/Core (1.5.0)
   - AppAuth/ExternalUserAgent (1.5.0):
     - AppAuth/Core
+  - Beacon (2.2.3)
   - camera_avfoundation (0.0.1):
     - Flutter
   - connectivity (0.0.1):
@@ -58,6 +59,9 @@ PODS:
     - nanopb (~> 2.30908.0)
   - Flutter (1.0.0)
   - flutter_email_sender (0.0.1):
+    - Flutter
+  - flutter_help_scout (0.0.1):
+    - Beacon (= 2.2.3)
     - Flutter
   - flutter_local_notifications (0.0.1):
     - Flutter
@@ -128,9 +132,9 @@ PODS:
     - Flutter
   - PromisesObjC (2.1.1)
   - Reachability (3.2)
-  - Sentry (7.18.0):
-    - Sentry/Core (= 7.18.0)
-  - Sentry/Core (7.18.0)
+  - Sentry (7.18.1):
+    - Sentry/Core (= 7.18.1)
+  - Sentry/Core (7.18.1)
   - sentry_flutter (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -160,6 +164,7 @@ DEPENDENCIES:
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
   - flutter_email_sender (from `.symlinks/plugins/flutter_email_sender/ios`)
+  - flutter_help_scout (from `.symlinks/plugins/flutter_help_scout/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_phone_direct_caller (from `.symlinks/plugins/flutter_phone_direct_caller/ios`)
@@ -185,6 +190,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - Beacon
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
@@ -220,6 +226,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_email_sender:
     :path: ".symlinks/plugins/flutter_email_sender/ios"
+  flutter_help_scout:
+    :path: ".symlinks/plugins/flutter_help_scout/ios"
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_native_splash:
@@ -266,6 +274,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   app_settings: d103828c9f5d515c4df9ee754dabd443f7cedcf3
   AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
+  Beacon: ae7551caf972fb351ecbb2b32ecdf629aabb1f97
   camera_avfoundation: 07c77549ea54ad95d8581be86617c094a46280d9
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
   Firebase: 5f8193dff4b5b7c5d5ef72ae54bb76c08e2b841d
@@ -279,6 +288,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 5e5118a2383b3531e730d974680954c679ca0a13
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_email_sender: 02d7443217d8c41483223627972bfdc09f74276b
+  flutter_help_scout: 04b1f1bf6e5e7036ba908b2cb481fe09ab2b6f93
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   flutter_phone_direct_caller: bd2ffd297f371a8a6c7bfbba0196964ffe3c4358
@@ -302,7 +312,7 @@ SPEC CHECKSUMS:
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  Sentry: aff6fb3785973436f0bf25748f6b3bcb3e825e09
+  Sentry: 2d70348d6247a29702a8317e710c5ba890672df5
   sentry_flutter: b635e75d735415172e54bf3b72c39ce69882b4ca
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
@@ -314,4 +324,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: eef599cf2195f8c5cb4abc0d45f0568f05b24b29
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
