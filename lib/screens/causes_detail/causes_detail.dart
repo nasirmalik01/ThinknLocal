@@ -207,8 +207,7 @@ class _CausesDetailState extends State<CausesDetail>
                                                                 launchInBrowser(Uri.parse(_causesDetailController.corporateCausesAdvertisementList![0].url!));
                                                               });
                                                         },
-                                                        child:
-                                                            CorporateSponsor(
+                                                        child: CorporateSponsor(
                                                           backgroundImage: _causesDetailController.corporateCausesAdvertisementList![0].business!.image!,
                                                           icon: _causesDetailController.corporateCausesAdvertisementList![0].business!.logo!,
                                                           title: _causesDetailController.corporateCausesAdvertisementList![0].headline!,

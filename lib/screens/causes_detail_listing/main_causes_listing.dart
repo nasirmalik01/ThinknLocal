@@ -88,7 +88,7 @@ class _MainCausesListingState extends State<MainCausesListing> {
                                       itemCount: _causesController
                                           .topCausesContainersList!.length,
                                       itemBuilder: (context, index) {
-                                        dynamic _raisedFormattedAmount = commaFormatter(_causesController.topCausesContainersList![index].raised);
+                                        dynamic _raisedFormattedAmount = commaFormatter(_causesController.topCausesContainersList![index].goal);
                                         return GestureDetector(
                                           onTap: () {
                                             pushNewScreen(

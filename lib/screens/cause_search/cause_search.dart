@@ -91,7 +91,7 @@ class CauseSearch extends StatelessWidget {
                               headerText: _causeSearchController.searchedCausesList![index].name,
                               description:  _causeSearchController.searchedCausesList![index].description,
                               onViewCourse: (){},
-                              totalAmount: _causeSearchController.searchedCausesList![index].raised.toString(),
+                              totalAmount: _causeSearchController.searchedCausesList![index].goal.toString(),
                               date: _causeSearchController.searchedCausesList![index].start.toString()
                           ),
                         );

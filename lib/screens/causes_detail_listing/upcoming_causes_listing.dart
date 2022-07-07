@@ -89,9 +89,7 @@ class _UpcomingCausesListingState extends State<UpcomingCausesListing> {
                                       itemCount: _causesController
                                           .upcomingCauses!.length,
                                       itemBuilder: (context, index) {
-                                        dynamic _upcomingFormattedAmount =
-                                            commaFormatter(_causesController
-                                                .upcomingCauses![index].raised);
+                                        dynamic _upcomingFormattedAmount = commaFormatter(_causesController.upcomingCauses![index].goal);
 
                                         return GestureDetector(
                                           onTap: () {

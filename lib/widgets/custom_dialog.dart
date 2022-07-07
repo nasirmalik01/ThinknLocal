@@ -46,11 +46,11 @@ customDialog({String? backgroundImage, String? icon, String? title, String? summ
                         ),
                         Positioned(
                           bottom: 0,
-                          left: getWidth()*0.2,
-                          right: getWidth()*0.2,
+                          left: getWidth()*0.29,
+                          right: getWidth()*0.29,
                           child: Container(
-                            height: getHeight()*0.1,
-                            width: getHeight()*0.1,
+                            height: getHeight()*0.08,
+                            width: getHeight()*0.07,
                             decoration: BoxDecoration(
                               color: AppColors.pureWhiteColor,
                                 borderRadius: BorderRadius.circular(getHeight()*0.01),

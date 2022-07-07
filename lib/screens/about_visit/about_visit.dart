@@ -113,8 +113,7 @@ class AboutVisit extends StatelessWidget {
                                         ),
                                         AutoFieldTextField(
                                           hintText: Strings.businessName,
-                                          onSelect: _aboutVisitController
-                                              .onBusinessCompletePress,
+                                          onSelect: _aboutVisitController.onBusinessCompletePress,
                                           isBusiness: true,
                                         ),
                                         SizedBox(

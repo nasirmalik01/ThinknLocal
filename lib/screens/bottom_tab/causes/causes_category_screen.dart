@@ -246,7 +246,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                                       headerText: _causesController.upcomingCauses![index].organization!.name,
                                       description: _causesController.upcomingCauses![index].name,
                                       onViewCourse: () {},
-                                      totalAmount: _causesController.upcomingCauses![index].raised.toString(),
+                                      totalAmount: _causesController.upcomingCauses![index].goal.toString(),
                                       date: _causesController.upcomingCauses![index].start!.toString()),
                                 );
                               },

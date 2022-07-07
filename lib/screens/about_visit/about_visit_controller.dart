@@ -79,24 +79,19 @@ class AboutVisitController extends GetxController {
     isBusinessLoading.value = false;
   }
 
-  Iterable<SuggestionModel> setOptionsBuilder(
-      {TextEditingValue? value,
-      bool isBusiness = false,
-      bool isEmptyTextFieldValue = false}) {
+  Iterable<SuggestionModel> setOptionsBuilder({TextEditingValue? value, bool isBusiness = false, bool isEmptyTextFieldValue = false}) {
     if (isBusiness) {
       if (businessList!.isNotEmpty) {
         for (int i = 0; i < businessList!.length; i++) {
           var item = SuggestionModel(
               title: businessList![i].name!.trim(),
               subTitle: businessList![i].address1.toString());
-          businessSuggestionList.add(item);
+               businessSuggestionList.add(item);
         }
         if (isEmptyTextFieldValue) {
           return businessSuggestionList;
         } else {
-          return businessSuggestionList.where((business) => business.title
-              .toLowerCase()
-              .startsWith(value!.text.toLowerCase()));
+          return businessSuggestionList.where((business) => business.title.toLowerCase().startsWith(value!.text.toLowerCase()));
         }
       }
     } else {
