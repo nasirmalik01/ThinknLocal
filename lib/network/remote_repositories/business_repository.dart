@@ -27,12 +27,10 @@ class BusinessRemoteRepository {
     return businessList;
   }
 
-  static Future<BusinessStats?> fetchBusinessStats(
-      int id, Map<String, dynamic>? query) async {
+  static Future<BusinessStats?> fetchBusinessStats(int id, Map<String, dynamic>? query) async {
       locationParams(query!);
 
-    final response = await getItLocator<RemoteServices>().getRequest(
-        '${ApiEndPoints.businesses}/$id/${ApiEndPoints.stats}', query);
+    final response = await getItLocator<RemoteServices>().getRequest('${ApiEndPoints.businesses}/$id/${ApiEndPoints.stats}', query);
     if (response == null) {
       return null;
     }
@@ -41,10 +39,9 @@ class BusinessRemoteRepository {
 
   static Future<BusinessDetail?> fetchBusinessDetails(
       int id, Map<String, dynamic> query) async {
-    locationParams(query);
+      locationParams(query);
 
-    final response = await getItLocator<RemoteServices>()
-        .getRequest('${ApiEndPoints.businesses}/$id', query);
+    final response = await getItLocator<RemoteServices>().getRequest('${ApiEndPoints.businesses}/$id', query);
 
     if (response == null) {
       return null;
@@ -86,8 +83,7 @@ class BusinessRemoteRepository {
     var location = MyHive.getLocation();
     var cityId = MyHive.getCityId();
 
-    final response = await getItLocator<RemoteServices>()
-        .getRequest(ApiEndPoints.categories, {
+    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.categories, {
       Strings.latitude: location.latitude,
       Strings.longitude: location.longitude,
       Strings.cityId: cityId
@@ -104,10 +100,17 @@ class BusinessRemoteRepository {
 
   static Future<List<BusinessCategoryParentType>?> fetchBusinessParentTypeCategories() async {
     List<BusinessCategoryParentType> businessCategoryList = [];
+    var location = MyHive.getLocation();
+    var cityId = MyHive.getCityId();
 
-    final response = await getItLocator<RemoteServices>().getRequest(
-        ApiEndPoints.categories,
-        {Strings.parents: true, Strings.type: 'business'});
+
+    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.categories, {
+          Strings.parents: true,
+          Strings.type: 'business',
+          Strings.latitude: location.latitude,
+          Strings.longitude: location.longitude,
+          Strings.cityId: cityId
+        });
     if (response == null) {
       return null;
     }

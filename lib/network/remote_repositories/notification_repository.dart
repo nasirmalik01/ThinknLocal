@@ -21,8 +21,7 @@ class NotificationRepository {
     return contributionsList;
   }
 
-  static Future<UploadDirectContributions?> uploadContributions(Map<String, dynamic> query,
-      {void Function(int, int)? uploadFile}) async {
+  static Future<UploadDirectContributions?> uploadContributions(Map<String, dynamic> query, {void Function(int, int)? uploadFile}) async {
     final response = await getItLocator<RemoteServices>().postRequest(
       ApiEndPoints.uploadContributions,
       query,
