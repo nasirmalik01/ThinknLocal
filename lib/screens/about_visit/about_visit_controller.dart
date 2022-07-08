@@ -44,8 +44,11 @@ class AboutVisitController extends GetxController {
 
   getCauses(Map<String, dynamic> query) async {
     causesList?.clear();
-    causesList!.value = (await (CausesRemoteRepository.fetchCauses(
-        {Strings.businessId: query['businessId'], Strings.active: true})))!;
+    causesList!.value = (await (CausesRemoteRepository.fetchCauses({
+      Strings.businessId: query['businessId'],
+      Strings.active: true,
+      'q': query['q']
+    })))!;
     log('Final Result : ${causesList?.length}');
     if (RemoteServices.statusCode != 200 &&
         RemoteServices.statusCode != 201 &&
@@ -97,13 +100,13 @@ class AboutVisitController extends GetxController {
       addBusinessesToSuggestionList();
       return businessSuggestionList;
     } else {
-      if (causesList!.isEmpty) {
-        if (!isEmptyTextFieldValue) {
-          getCauses({
-            'q': value!.text.toLowerCase(),
-            'businessId': selectedBusinessId.value
-          });
-        }
+      if (!isEmptyTextFieldValue) {
+        await getCauses({
+          'q': value!.text.toLowerCase(),
+          'businessId': selectedBusinessId.value
+        });
+      } else {
+        await getCauses({'businessId': selectedBusinessId.value});
       }
 
       addItemIntoSugCausesList();
