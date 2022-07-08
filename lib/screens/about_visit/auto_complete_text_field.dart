@@ -33,7 +33,7 @@ class AutoFieldTextField extends StatelessWidget {
       alignment: Alignment.topLeft,
       child: Material(
         borderRadius: BorderRadius.circular(5),
-        color: AppColors.pureWhiteColor,
+        color: const Color.fromRGBO(48, 54, 63, 1),
         child: SizedBox(
           width: getWidth() * 0.88,
           height: getHeight() * 0.2,
@@ -75,7 +75,7 @@ class AutoFieldTextField extends StatelessWidget {
               },
               separatorBuilder: (BuildContext context, int index) {
                 return const Divider(
-                  color: AppColors.lightGrey,
+                  color: Colors.black54,
                 );
               },
             ),

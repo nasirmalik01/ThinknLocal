@@ -12,16 +12,15 @@ import 'package:thinknlocal_app/network/remote_repositories/cause_repository.dar
 import 'package:thinknlocal_app/network/remote_services.dart';
 
 class SuggestionModel {
+  int id;
   String title;
   String? subTitle;
 
-  SuggestionModel({required this.title, this.subTitle});
+  SuggestionModel({required this.id, required this.title, this.subTitle});
 }
 
 class AboutVisitController extends GetxController {
   Rx<IsFirstTime> isVisitFirstTime = IsFirstTime.nothing.obs;
-  RxString selectedBusiness = ''.obs;
-  RxString selectedCourse = ''.obs;
   RxInt selectedCauseId = 0.obs;
   RxInt selectedBusinessId = 0.obs;
   RxList<Causes>? causesList = <Causes>[].obs;
@@ -43,11 +42,10 @@ class AboutVisitController extends GetxController {
             : IsFirstTime.nothing;
   }
 
-  getCauses(int businessId) async {
+  getCauses(Map<String, dynamic> query) async {
     causesList?.clear();
     causesList!.value = (await (CausesRemoteRepository.fetchCauses(
-        {Strings.businessId: businessId, Strings.active: true})))!;
-    addItemIntoSugCausesList();
+        {Strings.businessId: query['businessId'], Strings.active: true})))!;
     log('Final Result : ${causesList?.length}');
     if (RemoteServices.statusCode != 200 &&
         RemoteServices.statusCode != 201 &&
@@ -77,6 +75,7 @@ class AboutVisitController extends GetxController {
 
       for (int i = 0; i < businessList!.length; i++) {
         var item = SuggestionModel(
+            id: businessList![i].id!,
             title: businessList![i].name!.trim(),
             subTitle: businessList![i].address1.toString());
         businessSuggestionList.add(item);
@@ -98,49 +97,39 @@ class AboutVisitController extends GetxController {
       addBusinessesToSuggestionList();
       return businessSuggestionList;
     } else {
-      if (causesList!.isNotEmpty) {
-        addItemIntoSugCausesList();
-        if (isEmptyTextFieldValue) {
-          return causesSuggestionList;
-        } else {
-          return causesSuggestionList.where((causes) =>
-              causes.title.toLowerCase().startsWith(value!.text.toLowerCase()));
+      if (causesList!.isEmpty) {
+        if (!isEmptyTextFieldValue) {
+          getCauses({
+            'q': value!.text.toLowerCase(),
+            'businessId': selectedBusinessId.value
+          });
         }
       }
+
+      addItemIntoSugCausesList();
+      return causesSuggestionList;
     }
-    return [];
   }
 
   void addItemIntoSugCausesList() {
     causesSuggestionList.clear();
     for (int i = 0; i < causesList!.length; i++) {
-      var item = SuggestionModel(title: causesList![i].name!);
+      var item = SuggestionModel(
+          id: causesList![i].id!,
+          title: causesList![i].name!,
+          subTitle: causesList![i].organization!.name);
       causesSuggestionList.add(item);
     }
   }
 
   onCauseCompletePress(SuggestionModel value) {
-    selectedCourse.value = value.title;
-    for (var item in causesList!) {
-      if (item.name == value.title) {
-        selectedCauseId.value = item.id!;
-      }
-    }
+    selectedCauseId.value = value.id;
     dismissKeyboard();
   }
 
   onBusinessCompletePress(SuggestionModel value) {
-    selectedBusiness.value = value.title;
-    causesList?.clear();
     dismissKeyboard();
-    for (var item in businessList!) {
-      if (item.name?.trim().toLowerCase() == value.title.trim().toLowerCase()) {
-        selectedBusinessId.value = item.id!;
-        getCauses(selectedBusinessId.value);
-        log('selectedBusinessId.value: ${selectedBusinessId.value}');
-        return;
-      }
-      update();
-    }
+    selectedBusinessId.value = value.id;
+    getCauses({'businessId': value.id});
   }
 }

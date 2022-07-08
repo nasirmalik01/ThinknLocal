@@ -1,4 +1,3 @@
-import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
 import 'package:thinknlocal_app/local/my_hive.dart';
 import 'package:thinknlocal_app/model/cities.dart';
@@ -13,9 +12,8 @@ class LocationSearchController extends GetxController {
   RxString locationAddress = Strings.noLocation.obs;
   RxString noLocation = ''.obs;
 
-
   Future<void> getCities(String query) async {
-    if(query.length <=2 && query.trim().isNotEmpty) return;
+    if (query.length <= 2 && query.trim().isNotEmpty) return;
     Future.delayed(100.milliseconds, () {
       isLoading.value = true;
     });
@@ -24,21 +22,22 @@ class LocationSearchController extends GetxController {
       try {
         citiesList.clear();
         citiesList = await LocationRepository.fetchCities({
-          Strings.latitude:  position.latitude,
-          Strings.longitude: position.longitude,
-          Strings.q: query.trim().isEmpty ? '' : query
-        }) ?? [];
+              Strings.latitude: position.latitude,
+              Strings.longitude: position.longitude,
+              Strings.q: query.trim().isEmpty ? '' : query
+            }) ??
+            [];
         update();
-      }
-      finally {
+      } finally {
         isLoading.value = false;
       }
     });
   }
 
- Future<void> getLocationAddress() async {
+  Future<void> getLocationAddress() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
-    String? _userLocationAddress = _prefs.getString(Strings.currentLocationAddress);
+    String? _userLocationAddress =
+        _prefs.getString(Strings.currentLocationAddress);
     locationAddress.value = _userLocationAddress ?? Strings.noLocation;
   }
 
