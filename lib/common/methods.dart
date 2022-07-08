@@ -77,7 +77,6 @@ showLoadingDialog({String? message}) {
   );
 }
 
-
 showThreeBounceLoading() {
   Get.dialog(
     const Center(
@@ -122,14 +121,9 @@ circularProgressIndicator() {
 }
 
 convertDateToString({required String dateTime}) {
-  var parsedDate = DateTime.parse(dateTime);
-  DateFormat _dateTime = DateFormat.MMMEd();
-  String formattedDate = _dateTime.format(parsedDate);
-  String splitDate = formattedDate.split(',')[1];
-  List<String> splitDateList = splitDate.split(' ');
-  String month = splitDateList[1];
-  int day = int.parse(splitDateList[2]);
-  return '$month ${day.toString()}';
+  var parsedDate = DateTime.parse(dateTime).toLocal();
+  final DateFormat formatter = DateFormat('MMM d');
+  return formatter.format(parsedDate);
 }
 
 locationParams(Map<String, dynamic> query) {
@@ -202,7 +196,8 @@ openPhoneDialPad(String phone, BuildContext context) async {
   }
 }
 
-Future<dynamic> showDialogWidget({required BuildContext context, required String title}) {
+Future<dynamic> showDialogWidget(
+    {required BuildContext context, required String title}) {
   return Get.defaultDialog(
       title: '',
       content: Padding(
