@@ -25,9 +25,9 @@ class BusinessDetailTopContainer extends StatelessWidget {
   final Function()? onPhoneClick;
   final Function()? onAddressClick;
 
-
   BusinessDetailTopContainer(
-      {Key? key, this.fullBoxImage,
+      {Key? key,
+      this.fullBoxImage,
       this.logoImage,
       this.name,
       this.streetAddress,
@@ -43,22 +43,22 @@ class BusinessDetailTopContainer extends StatelessWidget {
       required this.onPressFavoriteIcon,
       required this.onShareClick,
       this.onPhoneClick,
-      this.onAddressClick
-      }) : super(key: key);
+      this.onAddressClick})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     bool isImageUrl = Uri.tryParse(fullBoxImage!)?.hasAbsolutePath ?? false;
-    contributedAmount = contributedAmount!.replaceAll('%', '');
     return GestureDetector(
-      onTap: ()=> onClickBox.call(),
+      onTap: () => onClickBox.call(),
       child: Container(
         decoration: BoxDecoration(
             color: AppColors.greenColor,
             image: DecorationImage(
-                image: isImageUrl ? NetworkImage(fullBoxImage!): const AssetImage(Assets.dummyRestaurant) as ImageProvider,
-                fit: BoxFit.cover)
-        ),
+                image: isImageUrl
+                    ? NetworkImage(fullBoxImage!)
+                    : const AssetImage(Assets.dummyRestaurant) as ImageProvider,
+                fit: BoxFit.cover)),
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -74,7 +74,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: getHeight()*0.1,
+                height: getHeight() * 0.1,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -86,7 +86,8 @@ class BusinessDetailTopContainer extends StatelessWidget {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, top: getHeight() * 0.05),
+                  padding: EdgeInsets.only(
+                      left: getWidth() * 0.03, top: getHeight() * 0.05),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -95,7 +96,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                         child: Container(
                           color: Colors.transparent,
                           alignment: Alignment.topLeft,
-                          width: getWidth()*0.15,
+                          width: getWidth() * 0.15,
                           height: getHeight(),
                           child: Icon(
                             Icons.arrow_back_ios,
@@ -105,7 +106,8 @@ class BusinessDetailTopContainer extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: getWidth()*0.03),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: getWidth() * 0.03),
                         child: Row(
                           children: [
                             GestureDetector(
@@ -113,7 +115,7 @@ class BusinessDetailTopContainer extends StatelessWidget {
                               child: Container(
                                 color: Colors.transparent,
                                 alignment: Alignment.topRight,
-                                width: getWidth()*0.1,
+                                width: getWidth() * 0.1,
                                 height: getHeight(),
                                 child: Icon(
                                   Icons.ios_share,
@@ -124,16 +126,24 @@ class BusinessDetailTopContainer extends StatelessWidget {
                             ),
                             SizedBox(width: sizes.width * 0.03),
                             GestureDetector(
-                              onTap: () => onPressFavoriteIcon(),
-                              child: Container(
+                                onTap: () => onPressFavoriteIcon(),
+                                child: Container(
                                   color: Colors.transparent,
                                   alignment: Alignment.topLeft,
-                                  width: getWidth()*0.1,
+                                  width: getWidth() * 0.1,
                                   height: getHeight(),
-                                  child: isFavorite? Icon(Icons.favorite, color: AppColors.greenColor, size: getHeight()*0.03,):
-                                  Icon(Icons.favorite_border, color: AppColors.pureWhiteColor, size: getHeight()*0.03,),
-                              )
-                            )
+                                  child: isFavorite
+                                      ? Icon(
+                                          Icons.favorite,
+                                          color: AppColors.greenColor,
+                                          size: getHeight() * 0.03,
+                                        )
+                                      : Icon(
+                                          Icons.favorite_border,
+                                          color: AppColors.pureWhiteColor,
+                                          size: getHeight() * 0.03,
+                                        ),
+                                ))
                           ],
                         ),
                       ),
@@ -143,9 +153,10 @@ class BusinessDetailTopContainer extends StatelessWidget {
               ),
               const Expanded(child: SizedBox()),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: getWidth()*0.03),
+                padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.03),
                 child: Container(
-                  padding: EdgeInsets.only(left: getWidth()*0.03, right: getWidth()*0.03),
+                  padding: EdgeInsets.only(
+                      left: getWidth() * 0.03, right: getWidth() * 0.03),
                   child: SizedBox(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,15 +165,15 @@ class BusinessDetailTopContainer extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              height: getHeight()*0.09,
+                              height: getHeight() * 0.09,
                               width: getWidth() * 0.18,
                               decoration: BoxDecoration(
                                   color: AppColors.pureWhiteColor,
-                                  borderRadius: BorderRadius.circular(getHeight() * 0.02),
+                                  borderRadius:
+                                      BorderRadius.circular(getHeight() * 0.02),
                                   image: DecorationImage(
                                       image: NetworkImage(logoImage!),
-                                      fit: BoxFit.contain)
-                              ),
+                                      fit: BoxFit.contain)),
                             ),
                             SizedBox(width: getWidth() * 0.02),
                             Column(
@@ -170,39 +181,41 @@ class BusinessDetailTopContainer extends StatelessWidget {
                               children: [
                                 SizedBox(
                                     width: getWidth() * 0.65,
-                                    child:
-                                    TextView.titleWithBlurRadius(name ?? "", Assets.poppinsMedium, color: AppColors.pureWhiteColor,  lines: 1, blurRadius: 0)
-                                ),
+                                    child: TextView.titleWithBlurRadius(
+                                        name ?? "", Assets.poppinsMedium,
+                                        color: AppColors.pureWhiteColor,
+                                        lines: 1,
+                                        blurRadius: 0)),
                                 SizedBox(height: getHeight() * 0.001),
                                 GestureDetector(
                                   onTap: onAddressClick,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(
                                           width: getWidth() * 0.65,
-                                          child:
-                                          (streetAddress == '' || streetAddress == null)
-                                          ? const SizedBox()
-                                          : TextView.headerWithBlurRadius(
-                                              streetAddress?? "",
-                                              color: AppColors.pureWhiteColor,
-                                              lines: 1,
-                                              fontFamily: Assets.poppinsRegular,
-                                              textDecoration: TextDecoration.underline
-                                          )
-                                      ),
+                                          child: (streetAddress == '' ||
+                                                  streetAddress == null)
+                                              ? const SizedBox()
+                                              : TextView.headerWithBlurRadius(
+                                                  streetAddress ?? "",
+                                                  color:
+                                                      AppColors.pureWhiteColor,
+                                                  lines: 1,
+                                                  fontFamily:
+                                                      Assets.poppinsRegular,
+                                                  textDecoration: TextDecoration
+                                                      .underline)),
                                       SizedBox(
                                           width: getWidth() * 0.65,
-                                          child:
-                                          TextView.headerWithBlurRadius(
-                                              address?? "",
+                                          child: TextView.headerWithBlurRadius(
+                                              address ?? "",
                                               color: AppColors.pureWhiteColor,
                                               lines: 2,
                                               fontFamily: Assets.poppinsRegular,
-                                              textDecoration: TextDecoration.underline
-                                          )
-                                      ),
+                                              textDecoration:
+                                                  TextDecoration.underline)),
                                     ],
                                   ),
                                 ),
@@ -211,21 +224,21 @@ class BusinessDetailTopContainer extends StatelessWidget {
                                   onTap: onPhoneClick,
                                   child: SizedBox(
                                       width: getWidth() * 0.65,
-                                      child:
-                                      TextView.headerWithBlurRadius(
-                                        phoneNumber?? "",
+                                      child: TextView.headerWithBlurRadius(
+                                        phoneNumber ?? "",
                                         color: AppColors.pureWhiteColor,
                                         lines: 1,
                                         fontFamily: Assets.poppinsRegular,
-                                      )
-                                  ),
+                                      )),
                                 ),
                               ],
                             ),
                           ],
                         ),
-                        Divider(height: getHeight() * 0.02, thickness: getHeight() * 0.001 ,color: AppColors.pureWhiteColor)
-
+                        Divider(
+                            height: getHeight() * 0.02,
+                            thickness: getHeight() * 0.001,
+                            color: AppColors.pureWhiteColor)
                       ],
                     ),
                   ),
@@ -233,17 +246,27 @@ class BusinessDetailTopContainer extends StatelessWidget {
               ),
               //SizedBox(height: getHeight() * 0.01),
               Padding(
-                padding: EdgeInsets.only(left: getWidth()*0.06, right: getWidth()*0.06, bottom: getHeight() * 0.025),
+                padding: EdgeInsets.only(
+                    left: getWidth() * 0.06,
+                    right: getWidth() * 0.06,
+                    bottom: getHeight() * 0.025),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        TextView.headerWithBlurRadius("${Strings.contributed}: ", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsRegular),
-                        TextView.headerWithBlurRadius("\$$contributedAmount", color: AppColors.greenColor, fontFamily: Assets.poppinsRegular),
+                        TextView.headerWithBlurRadius(
+                            "${Strings.contributing}: ",
+                            color: AppColors.pureWhiteColor,
+                            fontFamily: Assets.poppinsRegular),
+                        TextView.headerWithBlurRadius(contributedAmount,
+                            color: AppColors.greenColor,
+                            fontFamily: Assets.poppinsRegular),
                       ],
                     ),
-                    TextView.headerWithBlurRadius("${Strings.joined} $joinDate", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium),
+                    TextView.headerWithBlurRadius("${Strings.joined} $joinDate",
+                        color: AppColors.pureWhiteColor,
+                        fontFamily: Assets.poppinsMedium),
                   ],
                 ),
               ),
