@@ -121,8 +121,7 @@ circularProgressIndicator() {
 }
 
 convertDateToString({required String dateTime}) {
-  var parsedDate =
-      DateFormat("yyyy-MM-ddTHH:mm:ssZ").parseUTC(dateTime).toLocal();
+  var parsedDate = DateFormat("yyyy-MM-dd").parse(dateTime);
   final DateFormat formatter = DateFormat('MMM d');
   return formatter.format(parsedDate);
 }
