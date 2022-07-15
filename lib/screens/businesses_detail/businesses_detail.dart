@@ -33,7 +33,8 @@ class BusinessesDetailScreen extends StatelessWidget {
   final int? businessId;
 
   BusinessesDetailScreen({this.businessId, Key? key}) : super(key: key);
-  final BusinessDetailController _businessDetailController = Get.put(BusinessDetailController());
+  final BusinessDetailController _businessDetailController =
+      Get.put(BusinessDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class BusinessesDetailScreen extends StatelessWidget {
       body: RefreshIndicator(
         color: AppColors.greenColor,
         onRefresh: () async {
-           getBusinessDetails(_id);
+          getBusinessDetails(_id);
         },
         child: Obx(
           () => _businessDetailController.isError.value
@@ -63,8 +64,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                           .isPastFundedBusinessCauses.value)
                   ? bouncingLoadingIndicator()
                   : _businessDetailController.businessDetail == null
-                  ? const SizedBox()
-                  : CustomScrollView(
+                      ? const SizedBox()
+                      : CustomScrollView(
                           physics: const AlwaysScrollableScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           slivers: [
@@ -103,7 +104,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                             streetAddress:
                                                 _businessDetailController
                                                     .businessDetail!.address2,
-                                            address: '${_businessDetailController.businessDetail!.address1}\n${_businessDetailController.businessDetail!.city}, ${_businessDetailController.businessDetail!.state}, ${_businessDetailController.businessDetail!.zip}',
+                                            address:
+                                                '${_businessDetailController.businessDetail!.address1}\n${_businessDetailController.businessDetail!.city}, ${_businessDetailController.businessDetail!.state}, ${_businessDetailController.businessDetail!.zip}',
                                             phoneNumber:
                                                 '(${_businessDetailController.businessDetail!.phone!.substring(0, 3)}) ${_businessDetailController.businessDetail!.phone!.substring(3, 6)}-${_businessDetailController.businessDetail!.phone!.substring(
                                               6,
@@ -121,15 +123,29 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                   .followBusiness(_id);
                                             },
                                             onShareClick: () {
-                                              FirebaseDynamicApi.buildDynamicLinks(Strings.businesses, _id.toString());
-                                              DeepLinkInfo? _deepLinkInfo = MyHive.getDeepLinkInfo();
-                                              MyHive.setDeepLinkInfo(DeepLinkInfo(causeId: _deepLinkInfo?.causeId, businessId: _id, organizationId: _deepLinkInfo?.organizationId));
+                                              FirebaseDynamicApi
+                                                  .buildDynamicLinks(
+                                                      Strings.businesses,
+                                                      _id.toString());
+                                              DeepLinkInfo? _deepLinkInfo =
+                                                  MyHive.getDeepLinkInfo();
+                                              MyHive.setDeepLinkInfo(
+                                                  DeepLinkInfo(
+                                                      causeId: _deepLinkInfo
+                                                          ?.causeId,
+                                                      businessId: _id,
+                                                      organizationId:
+                                                          _deepLinkInfo
+                                                              ?.organizationId));
                                             },
                                             onPhoneClick: () {
-                                              openPhoneDialPad('+1${_businessDetailController.businessDetail!.phone.toString()}', context);
+                                              openPhoneDialPad(
+                                                  '+1${_businessDetailController.businessDetail!.phone.toString()}',
+                                                  context);
                                             },
                                             onAddressClick: () {
-                                              MapsLauncher.launchQuery('${_businessDetailController.businessDetail!.address1}\n${_businessDetailController.businessDetail!.city}, ${_businessDetailController.businessDetail!.state}, ${_businessDetailController.businessDetail!.zip}');
+                                              MapsLauncher.launchQuery(
+                                                  '${_businessDetailController.businessDetail!.address1}\n${_businessDetailController.businessDetail!.city}, ${_businessDetailController.businessDetail!.state}, ${_businessDetailController.businessDetail!.zip}');
                                             }),
                                   ),
                                   SizedBox(height: sizes.height * 0.01),
@@ -148,7 +164,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                           .tabController,
                                       onTap: (index) {},
                                       indicator: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(getHeight() * 0.01),
+                                        borderRadius: BorderRadius.circular(
+                                            getHeight() * 0.01),
                                         color: AppColors.lightBlue,
                                       ),
                                       indicatorSize: TabBarIndicatorSize.tab,
@@ -175,59 +192,107 @@ class BusinessesDetailScreen extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: TabBarView(
-                                      controller: _businessDetailController.tabController,
+                                      controller: _businessDetailController
+                                          .tabController,
                                       children: [
-                                           _businessDetailController.isLoading.value
+                                        _businessDetailController
+                                                .isLoading.value
                                             ? bouncingLoadingIndicator()
                                             : ListView(
                                                 padding: EdgeInsets.zero,
                                                 shrinkWrap: true,
-                                                physics: const BouncingScrollPhysics(),
+                                                physics:
+                                                    const BouncingScrollPhysics(),
                                                 children: [
                                                   Padding(
-                                                    padding: EdgeInsets.symmetric(horizontal: sizes.width * 0.06),
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal:
+                                                                sizes.width *
+                                                                    0.06),
                                                     child: Column(
                                                       children: [
                                                         TextView.caption(
-                                                            _businessDetailController.businessDetail!.description,
-                                                            color: AppColors.blackColor,
-                                                            fontFamily: Assets.poppinsRegular,
+                                                            _businessDetailController
+                                                                .businessDetail!
+                                                                .description,
+                                                            color: AppColors
+                                                                .blackColor,
+                                                            fontFamily: Assets
+                                                                .poppinsRegular,
                                                             isEllipsis: false,
-                                                            fontSize: sizes.fontSize12),
-                                                        SizedBox(height: sizes.height * 0.03),
+                                                            fontSize: sizes
+                                                                .fontSize12),
+                                                        SizedBox(
+                                                            height:
+                                                                sizes.height *
+                                                                    0.03),
                                                         BusinessRating(
-                                                            starRating: _businessDetailController.businessDetail!.rating ?? 0,
-                                                            onPress: () {}
-                                                        ),
+                                                            starRating:
+                                                                _businessDetailController
+                                                                        .businessDetail!
+                                                                        .rating ??
+                                                                    0,
+                                                            onPress: () {}),
                                                       ],
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                      height: sizes.height * 0.03),
-                                                  _businessDetailController.recentlyFundedBusinessCausesList!.isNotEmpty
+                                                      height:
+                                                          sizes.height * 0.03),
+                                                  _businessDetailController
+                                                          .recentlyFundedBusinessCausesList!
+                                                          .isNotEmpty
                                                       ? Column(
-                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: [
                                                             Padding(
-                                                              padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          getWidth() *
+                                                                              0.06),
                                                               child: TextView.titleWithDecoration(
-                                                                  Strings.currentCauses,
-                                                                  color: AppColors.blackColor,
-                                                                  fontFamily: Assets.poppinsMedium,
-                                                                  fontSize: sizes.fontSize16),
+                                                                  Strings
+                                                                      .currentCauses,
+                                                                  color: AppColors
+                                                                      .blackColor,
+                                                                  fontFamily: Assets
+                                                                      .poppinsMedium,
+                                                                  fontSize: sizes
+                                                                      .fontSize16),
                                                             ),
                                                             Padding(
-                                                                padding: EdgeInsets.only(top: getHeight() * 0.01),
+                                                                padding: EdgeInsets.only(
+                                                                    top: getHeight() *
+                                                                        0.01),
                                                                 child: SizedBox(
-                                                                  width: getWidth(),
-                                                                  height: getHeight() * 0.18,
-                                                                  child: ListView.builder(
-                                                                    shrinkWrap: true,
-                                                                    physics: const BouncingScrollPhysics(),
-                                                                    scrollDirection: Axis.horizontal,
-                                                                    itemCount: _businessDetailController.recentlyFundedBusinessCausesList!.length > 6 ? 6 : _businessDetailController.recentlyFundedBusinessCausesList!.length,
-                                                                    itemBuilder: (context, index) {
-                                                                      return index == (_businessDetailController.recentlyFundedBusinessCausesList!.length > 6 ? 5 : _businessDetailController.recentlyFundedBusinessCausesList!.length - 1)
+                                                                  width:
+                                                                      getWidth(),
+                                                                  height:
+                                                                      getHeight() *
+                                                                          0.18,
+                                                                  child: ListView
+                                                                      .builder(
+                                                                    shrinkWrap:
+                                                                        true,
+                                                                    physics:
+                                                                        const BouncingScrollPhysics(),
+                                                                    scrollDirection:
+                                                                        Axis.horizontal,
+                                                                    itemCount: _businessDetailController.recentlyFundedBusinessCausesList!.length >
+                                                                            6
+                                                                        ? 6
+                                                                        : _businessDetailController
+                                                                            .recentlyFundedBusinessCausesList!
+                                                                            .length,
+                                                                    itemBuilder:
+                                                                        (context,
+                                                                            index) {
+                                                                      return index ==
+                                                                              (_businessDetailController.recentlyFundedBusinessCausesList!.length > 6 ? 6 : _businessDetailController.recentlyFundedBusinessCausesList!.length + 1)
                                                                           ? GestureDetector(
                                                                               onTap: () {
                                                                                 Get.to(() => CausesListingScreen(title: Strings.recentlyFundedBusinessCauses, detailList: _businessDetailController.recentlyFundedBusinessCausesList as dynamic));
@@ -263,8 +328,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                                   _businessDetailController.followCauses(_causeId, _isFavorite);
                                                                                   if (_isFavorite) {
                                                                                     _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite = false;
-                                                                                  }
-                                                                                  else {
+                                                                                  } else {
                                                                                     _businessDetailController.recentlyFundedBusinessCausesList![index].isFavorite = true;
                                                                                   }
                                                                                   _businessDetailController.getRecentlyFundedBusinessCauses(id: _id);
@@ -274,54 +338,93 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                     },
                                                                   ),
                                                                 )),
-                                                            SizedBox(height: sizes.height * 0.03),
+                                                            SizedBox(
+                                                                height: sizes
+                                                                        .height *
+                                                                    0.03),
                                                           ],
                                                         )
                                                       : const SizedBox(),
-                                                  _businessDetailController.pastFundedBusinessCausesList!.isNotEmpty
+                                                  _businessDetailController
+                                                          .pastFundedBusinessCausesList!
+                                                          .isNotEmpty
                                                       ? Column(
                                                           children: [
                                                             Padding(
-                                                              padding: EdgeInsets.symmetric(horizontal: getWidth() * 0.06),
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          getWidth() *
+                                                                              0.06),
                                                               child: CommonWidgets
                                                                   .getTextWithSeeAll(
-                                                                      leadingText: Strings.pastFundedCauses,
-                                                                      trailingText: Strings.seeAll,
-                                                                      onPressSeeAllButton: () {
+                                                                      leadingText:
+                                                                          Strings
+                                                                              .pastFundedCauses,
+                                                                      trailingText:
+                                                                          Strings
+                                                                              .seeAll,
+                                                                      onPressSeeAllButton:
+                                                                          () {
                                                                         Get.to(() => CausesListingScreen(
-                                                                            title: Strings.pastFundedBusinessCauses,
+                                                                            title:
+                                                                                Strings.pastFundedBusinessCauses,
                                                                             detailList: _businessDetailController.pastFundedBusinessCausesList as dynamic));
                                                                       }),
                                                             ),
                                                             Padding(
                                                               padding: EdgeInsets.symmetric(
-                                                                  horizontal: sizes.width * 0.06,
-                                                                  vertical: getHeight() * 0.005),
+                                                                  horizontal:
+                                                                      sizes.width *
+                                                                          0.06,
+                                                                  vertical:
+                                                                      getHeight() *
+                                                                          0.005),
                                                               child: Column(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
                                                                 children: [
-                                                                  SizedBox(height: sizes.height * 0.01),
-                                                                  ListView.separated(
-                                                                    scrollDirection: Axis.vertical,
-                                                                    shrinkWrap: true,
-                                                                    physics: const BouncingScrollPhysics(),
-                                                                    itemCount: _businessDetailController.pastFundedBusinessCausesList!.length > 4
+                                                                  SizedBox(
+                                                                      height: sizes
+                                                                              .height *
+                                                                          0.01),
+                                                                  ListView
+                                                                      .separated(
+                                                                    scrollDirection:
+                                                                        Axis.vertical,
+                                                                    shrinkWrap:
+                                                                        true,
+                                                                    physics:
+                                                                        const BouncingScrollPhysics(),
+                                                                    itemCount: _businessDetailController.pastFundedBusinessCausesList!.length >
+                                                                            4
                                                                         ? 4
-                                                                        : _businessDetailController.pastFundedBusinessCausesList!.length,
-                                                                    itemBuilder: (context, index) {
-                                                                      dynamic _raisedFormattedAmount = commaFormatter(double.parse(_businessDetailController.pastFundedBusinessCausesList![index].raised.toString()));
+                                                                        : _businessDetailController
+                                                                            .pastFundedBusinessCausesList!
+                                                                            .length,
+                                                                    itemBuilder:
+                                                                        (context,
+                                                                            index) {
+                                                                      dynamic _raisedFormattedAmount = commaFormatter(double.parse(_businessDetailController
+                                                                          .pastFundedBusinessCausesList![
+                                                                              index]
+                                                                          .raised
+                                                                          .toString()));
                                                                       return GestureDetector(
-                                                                        onTap: (){
+                                                                        onTap:
+                                                                            () {
                                                                           pushNewScreen(
                                                                             context,
-                                                                            screen: CausesDetail(
-                                                                                causeId:  _businessDetailController.pastFundedBusinessCausesList![index].id,
-                                                                                organizationId:  _businessDetailController.pastFundedBusinessCausesList![index].organization!.id),
-                                                                                withNavBar: true,
+                                                                            screen:
+                                                                                CausesDetail(causeId: _businessDetailController.pastFundedBusinessCausesList![index].id, organizationId: _businessDetailController.pastFundedBusinessCausesList![index].organization!.id),
+                                                                            withNavBar:
+                                                                                true,
                                                                           );
                                                                         },
                                                                         child: UpcomingCauses(
-                                                                            image: _businessDetailController.pastFundedBusinessCausesList![index].organization!.logo,
+                                                                            image:
+                                                                                _businessDetailController.pastFundedBusinessCausesList![index].organization!.logo,
                                                                             headerText: _businessDetailController.pastFundedBusinessCausesList![index].name,
                                                                             description: _businessDetailController.pastFundedBusinessCausesList![index].description,
                                                                             onViewCourse: () {},
@@ -330,7 +433,8 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                       );
                                                                     },
                                                                     separatorBuilder:
-                                                                        (BuildContext context,
+                                                                        (BuildContext
+                                                                                context,
                                                                             int index) {
                                                                       return Divider(
                                                                           height: getHeight() *
@@ -399,8 +503,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                 .poppinsMedium,
                                                             fontSize: sizes
                                                                 .fontSize18),
-                                                        SizedBox(
-                                                            height: 0.5.h),
+                                                        SizedBox(height: 0.5.h),
                                                         TextView.caption(
                                                             Strings
                                                                 .numberOfContributions,
@@ -410,8 +513,7 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                 .poppinsRegular,
                                                             fontSize: sizes
                                                                 .fontSize13),
-                                                        SizedBox(
-                                                            height: 0.7.h),
+                                                        SizedBox(height: 0.7.h),
 
                                                         ///Business-chart
                                                         GetBuilder<
@@ -428,10 +530,14 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                             }),
                                                         SizedBox(height: 3.h),
                                                         TextView.titleWithDecoration(
-                                                            Strings.recentContributions,
-                                                            color: AppColors.blackColor,
-                                                            fontFamily: Assets.poppinsMedium,
-                                                            fontSize: sizes.fontSize16),
+                                                            Strings
+                                                                .recentContributions,
+                                                            color: AppColors
+                                                                .blackColor,
+                                                            fontFamily: Assets
+                                                                .poppinsMedium,
+                                                            fontSize: sizes
+                                                                .fontSize16),
                                                         SizedBox(height: 2.h),
                                                         _businessDetailController
                                                                 .businessStats!
@@ -466,24 +572,40 @@ class BusinessesDetailScreen extends StatelessWidget {
                                                                           .name,
                                                                       amount: _businessDetailController
                                                                           .businessStats!
-                                                                          .recentContributions![index]
+                                                                          .recentContributions![
+                                                                              index]
                                                                           .amount
-                                                                          ?.toStringAsFixed(2));
+                                                                          ?.toStringAsFixed(
+                                                                              2));
                                                                 },
-                                                                separatorBuilder: (BuildContext context, int index) {
+                                                                separatorBuilder:
+                                                                    (BuildContext
+                                                                            context,
+                                                                        int index) {
                                                                   return Divider(
-                                                                      height: getHeight() * 0.04,
-                                                                      thickness: getHeight() * 0.002,
-                                                                      color: AppColors.borderColor);
+                                                                      height:
+                                                                          getHeight() *
+                                                                              0.04,
+                                                                      thickness:
+                                                                          getHeight() *
+                                                                              0.002,
+                                                                      color: AppColors
+                                                                          .borderColor);
                                                                 },
                                                               )
-                                                            : handleEmptyState(context, Strings.noRecentContributions),
-                                                        SizedBox(height: getHeight() * 0.03),
+                                                            : handleEmptyState(
+                                                                context,
+                                                                Strings
+                                                                    .noRecentContributions),
+                                                        SizedBox(
+                                                            height:
+                                                                getHeight() *
+                                                                    0.03),
                                                       ],
                                                     ),
-                                                ),
-                                            ],
-                                         ),
+                                                  ),
+                                                ],
+                                              ),
                                       ],
                                     ),
                                   ),

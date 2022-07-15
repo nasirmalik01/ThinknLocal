@@ -377,7 +377,7 @@ class BusinessesScreen extends StatelessWidget {
                                                                 .recentlyAddedBusinessList!
                                                                 .length >
                                                             6
-                                                        ? 5
+                                                        ? 6
                                                         : _businessesController
                                                                 .recentlyAddedBusinessList!
                                                                 .length -
