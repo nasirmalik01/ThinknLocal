@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:intl/intl.dart';
 import 'package:thinknlocal_app/common/methods.dart';
 import 'package:thinknlocal_app/constants/api_endpoints.dart';
 import 'package:thinknlocal_app/constants/strings.dart';
@@ -12,10 +13,12 @@ import 'package:thinknlocal_app/model/businesses.dart';
 import 'package:thinknlocal_app/network/remote_services.dart';
 
 class BusinessRemoteRepository {
-  static Future<List<Businesses>?> fetchBusinesses(Map<String, dynamic>? query) async {
+  static Future<List<Businesses>?> fetchBusinesses(
+      Map<String, dynamic>? query) async {
     List<Businesses> businessList = [];
     locationParams(query!);
-    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.businesses, query);
+    final response = await getItLocator<RemoteServices>()
+        .getRequest(ApiEndPoints.businesses, query);
     if (response == null) {
       return null;
     }
@@ -27,10 +30,12 @@ class BusinessRemoteRepository {
     return businessList;
   }
 
-  static Future<BusinessStats?> fetchBusinessStats(int id, Map<String, dynamic>? query) async {
-      locationParams(query!);
+  static Future<BusinessStats?> fetchBusinessStats(
+      int id, Map<String, dynamic>? query) async {
+    locationParams(query!);
 
-    final response = await getItLocator<RemoteServices>().getRequest('${ApiEndPoints.businesses}/$id/${ApiEndPoints.stats}', query);
+    final response = await getItLocator<RemoteServices>().getRequest(
+        '${ApiEndPoints.businesses}/$id/${ApiEndPoints.stats}', query);
     if (response == null) {
       return null;
     }
@@ -39,17 +44,19 @@ class BusinessRemoteRepository {
 
   static Future<BusinessDetail?> fetchBusinessDetails(
       int id, Map<String, dynamic> query) async {
-      locationParams(query);
+    locationParams(query);
 
-    final response = await getItLocator<RemoteServices>().getRequest('${ApiEndPoints.businesses}/$id', query);
+    final response = await getItLocator<RemoteServices>()
+        .getRequest('${ApiEndPoints.businesses}/$id', query);
 
     if (response == null) {
       return null;
     }
 
     BusinessDetail _businessDetail = BusinessDetail.fromJson(response);
-    final _dateTime =
-        convertDateToString(dateTime: _businessDetail.createdAt.toString());
+    var parsedDate =
+        DateFormat("yyyy-MM-dd").parse(_businessDetail.createdAt.toString());
+    final _dateTime = new DateFormat("MMM yyyy").format(parsedDate);
     _businessDetail.createdAt = _dateTime;
     return _businessDetail;
   }
@@ -78,12 +85,14 @@ class BusinessRemoteRepository {
     return completer.future;
   }
 
-  static Future<List<BusinessCategoryModel>?> fetchBusinessCategories({required Map<String, dynamic> query}) async {
+  static Future<List<BusinessCategoryModel>?> fetchBusinessCategories(
+      {required Map<String, dynamic> query}) async {
     List<BusinessCategoryModel> businessCategoryList = [];
     var location = MyHive.getLocation();
     var cityId = MyHive.getCityId();
 
-    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.categories, {
+    final response = await getItLocator<RemoteServices>()
+        .getRequest(ApiEndPoints.categories, {
       Strings.latitude: location.latitude,
       Strings.longitude: location.longitude,
       Strings.cityId: cityId
@@ -91,26 +100,28 @@ class BusinessRemoteRepository {
     if (response == null) {
       return null;
     }
-    final List<dynamic> _businessCategoryDecodeList = response.map((item) => BusinessCategoryModel.fromJson(item)).toList();
+    final List<dynamic> _businessCategoryDecodeList =
+        response.map((item) => BusinessCategoryModel.fromJson(item)).toList();
     for (var businessCategoryItem in _businessCategoryDecodeList) {
       businessCategoryList.add(businessCategoryItem);
     }
     return businessCategoryList;
   }
 
-  static Future<List<BusinessCategoryParentType>?> fetchBusinessParentTypeCategories() async {
+  static Future<List<BusinessCategoryParentType>?>
+      fetchBusinessParentTypeCategories() async {
     List<BusinessCategoryParentType> businessCategoryList = [];
     var location = MyHive.getLocation();
     var cityId = MyHive.getCityId();
 
-
-    final response = await getItLocator<RemoteServices>().getRequest(ApiEndPoints.categories, {
-          Strings.parents: true,
-          Strings.type: 'business',
-          Strings.latitude: location.latitude,
-          Strings.longitude: location.longitude,
-          Strings.cityId: cityId
-        });
+    final response = await getItLocator<RemoteServices>()
+        .getRequest(ApiEndPoints.categories, {
+      Strings.parents: true,
+      Strings.type: 'business',
+      Strings.latitude: location.latitude,
+      Strings.longitude: location.longitude,
+      Strings.cityId: cityId
+    });
     if (response == null) {
       return null;
     }
