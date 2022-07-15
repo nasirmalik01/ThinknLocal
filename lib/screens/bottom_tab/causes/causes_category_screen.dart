@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:thinknlocal_app/common/handling_empty_states.dart';
 import 'package:thinknlocal_app/constants/assets.dart';
@@ -48,13 +47,23 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                         controller: _tabViewsController,
                         scrollDirection: Axis.horizontal,
                         itemCount:
-                                _causesController.topCausesContainersList!.isEmpty
+                            _causesController.topCausesContainersList!.isEmpty
                                 ? 0
-                                : _causesController.topCausesContainersList!.length > 6
-                                ? 6
-                                : _causesController.topCausesContainersList!.length,
+                                : _causesController
+                                            .topCausesContainersList!.length >
+                                        6
+                                    ? 6
+                                    : _causesController
+                                        .topCausesContainersList!.length,
                         itemBuilder: (context, index) {
-                          return index == (_causesController.topCausesContainersList!.length > 6 ? 5 : _causesController.topCausesContainersList!.length - 1)
+                          return index ==
+                                  (_causesController
+                                              .topCausesContainersList!.length >
+                                          6
+                                      ? 6
+                                      : _causesController
+                                              .topCausesContainersList!.length +
+                                          1)
                               ? GestureDetector(
                                   onTap: () async {
                                     Get.to(() => MainCausesListing(
@@ -98,8 +107,11 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                                   totalAmount: _causesController
                                       .topCausesContainersList![index].goal!
                                       .toStringAsFixed(2),
-                                  endDate: _causesController.topCausesContainersList![index].end.toString(),
-                                  dateStatus: _causesController.topCausesContainersList![index].status!,
+                                  endDate: _causesController
+                                      .topCausesContainersList![index].end
+                                      .toString(),
+                                  dateStatus: _causesController
+                                      .topCausesContainersList![index].status!,
                                   index: index,
                                   onClickBox: () async {
                                     pushNewScreen(
@@ -150,13 +162,23 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                       child: ListView.builder(
                         controller: _recentlyStartedController,
                         scrollDirection: Axis.horizontal,
-                        itemCount: _causesController.recentlyStartedCauses!.isEmpty
+                        itemCount: _causesController
+                                .recentlyStartedCauses!.isEmpty
                             ? 0
-                            : _causesController.recentlyStartedCauses!.length > 6
-                            ? 6
-                            : _causesController.recentlyStartedCauses!.length,
+                            : _causesController.recentlyStartedCauses!.length >
+                                    6
+                                ? 6
+                                : _causesController
+                                    .recentlyStartedCauses!.length,
                         itemBuilder: (context, index) {
-                          return index == (_causesController.recentlyStartedCauses!.length > 6 ? 5 : _causesController.recentlyStartedCauses!.length - 1)
+                          return index ==
+                                  (_causesController
+                                              .recentlyStartedCauses!.length >
+                                          6
+                                      ? 6
+                                      : _causesController
+                                              .recentlyStartedCauses!.length +
+                                          1)
                               ? GestureDetector(
                                   onTap: () async {
                                     Get.to(() => const RecentCausesListing(
@@ -208,7 +230,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                       leadingText: Strings.upcomingCauses,
                       trailingText: Strings.seeAll,
                       onPressSeeAllButton: () {
-                        Get.to(() => const UpcomingCausesListing(title: Strings.upcomingCauses));
+                        Get.to(() => const UpcomingCausesListing(
+                            title: Strings.upcomingCauses));
                       }),
                   SizedBox(height: getHeight() * 0.018),
                   _causesController.isUpcomingCausesLoading.value
@@ -242,15 +265,28 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                                     );
                                   },
                                   child: UpcomingCauses(
-                                      image: _causesController.upcomingCauses![index].organization?.logo ?? Strings.dummyBgImage,
-                                      headerText: _causesController.upcomingCauses![index].organization!.name,
-                                      description: _causesController.upcomingCauses![index].name,
+                                      image: _causesController
+                                              .upcomingCauses![index]
+                                              .organization
+                                              ?.logo ??
+                                          Strings.dummyBgImage,
+                                      headerText: _causesController
+                                          .upcomingCauses![index]
+                                          .organization!
+                                          .name,
+                                      description: _causesController
+                                          .upcomingCauses![index].name,
                                       onViewCourse: () {},
-                                      totalAmount: _causesController.upcomingCauses![index].goal.toString(),
-                                      date: _causesController.upcomingCauses![index].start!.toString()),
+                                      totalAmount: _causesController
+                                          .upcomingCauses![index].goal
+                                          .toString(),
+                                      date: _causesController
+                                          .upcomingCauses![index].start!
+                                          .toString()),
                                 );
                               },
-                              separatorBuilder: (BuildContext context, int index) {
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
                                 return Divider(
                                     height: getHeight() * 0.04,
                                     thickness: getHeight() * 0.002,
