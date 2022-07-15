@@ -92,9 +92,9 @@ class AboutVisitController extends GetxController {
       bool isEmptyTextFieldValue = false}) async {
     if (isBusiness) {
       if (!isEmptyTextFieldValue) {
-        await getBusinesses({'q': value!.text.toLowerCase()});
+        await getBusinesses({'q': value!.text.toLowerCase(), 'active': true});
       } else {
-        await getBusinesses({});
+        await getBusinesses({'active': true});
       }
 
       addBusinessesToSuggestionList();
