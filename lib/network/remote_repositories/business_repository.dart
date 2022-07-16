@@ -56,7 +56,7 @@ class BusinessRemoteRepository {
     BusinessDetail _businessDetail = BusinessDetail.fromJson(response);
     var parsedDate =
         DateFormat("yyyy-MM-dd").parse(_businessDetail.createdAt.toString());
-    final _dateTime = new DateFormat("MMM yyyy").format(parsedDate);
+    final _dateTime = DateFormat("MMM yyyy").format(parsedDate);
     _businessDetail.createdAt = _dateTime;
     return _businessDetail;
   }

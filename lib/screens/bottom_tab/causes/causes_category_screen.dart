@@ -232,7 +232,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                       onPressSeeAllButton: () {
                         Get.to(() => const UpcomingCausesListing(
                             title: Strings.upcomingCauses));
-                      }),
+                      },
+                      showSeeAll: _causesController.upcomingCauses?.isNotEmpty),
                   SizedBox(height: getHeight() * 0.018),
                   _causesController.isUpcomingCausesLoading.value
                       ? bouncingLoadingIndicator()

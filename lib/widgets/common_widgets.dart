@@ -9,25 +9,22 @@ import '../constants/assets.dart';
 import '../constants/colors.dart';
 import '../res/res.dart';
 
-
 class CommonWidgets {
   static Widget getSmallButton({Color? borderColor, Color? fillColor}) {
     return Container(
       height: getHeight() * 0.03,
       width: getWidth() * 0.03,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: fillColor?? AppColors.pureWhiteColor,
-        border: Border.all(color: borderColor ?? AppColors.greenColor)
-      ),
+          shape: BoxShape.circle,
+          color: fillColor ?? AppColors.pureWhiteColor,
+          border: Border.all(color: borderColor ?? AppColors.greenColor)),
     );
   }
 
-  static Widget searchLocationTextField({
-    TextEditingController? controller,
-    String?  hint,
-    required Function onPressSearch
-  }) {
+  static Widget searchLocationTextField(
+      {TextEditingController? controller,
+      String? hint,
+      required Function onPressSearch}) {
     return Container(
       padding: EdgeInsets.only(right: getWidth() * 0.02),
       decoration: BoxDecoration(
@@ -47,8 +44,7 @@ class CommonWidgets {
         style: TextStyle(
             fontFamily: Assets.poppinsRegular,
             fontSize: sizes.fontSize15,
-            color: AppColors.lightBlack
-        ),
+            color: AppColors.lightBlack),
         decoration: InputDecoration(
           hintText: hint ?? "Search",
           border: InputBorder.none,
@@ -56,8 +52,7 @@ class CommonWidgets {
           hintStyle: TextStyle(
               fontFamily: Assets.poppinsRegular,
               fontSize: sizes.fontSize15,
-              color: AppColors.veryLightGrey
-          ),
+              color: AppColors.veryLightGrey),
           prefixIcon: GestureDetector(
             onTap: () => onPressSearch(),
             child: const Icon(
@@ -70,7 +65,8 @@ class CommonWidgets {
     );
   }
 
-  static Widget getRating({double? starRating, bool? ignoreEdit, Function? onPress}){
+  static Widget getRating(
+      {double? starRating, bool? ignoreEdit, Function? onPress}) {
     return RatingBar(
       initialRating: starRating ?? 4,
       minRating: 1,
@@ -82,8 +78,10 @@ class CommonWidgets {
       ratingWidget: RatingWidget(
           full: const Icon(Icons.star, color: Colors.amber),
           half: const Icon(Icons.star_half, color: Colors.amber),
-          empty: const Icon(Icons.star_outline, color: AppColors.darkGrey,)
-      ),
+          empty: const Icon(
+            Icons.star_outline,
+            color: AppColors.darkGrey,
+          )),
       ignoreGestures: ignoreEdit ?? true,
       onRatingUpdate: (rating) {
         onPress!.call(rating);
@@ -98,7 +96,7 @@ class CommonWidgets {
     TextEditingController? textEditingController,
     required Function onPressBackArrow,
     Function(String)? onChanged,
-  }){
+  }) {
     return Container(
       width: sizes.width,
       color: AppColors.greenColor,
@@ -106,8 +104,7 @@ class CommonWidgets {
           left: sizes.pagePadding,
           right: sizes.pagePadding,
           top: getHeight() * 0.06,
-          bottom: getHeight() * 0.025
-      ),
+          bottom: getHeight() * 0.025),
       child: Column(
         children: [
           Row(
@@ -115,11 +112,12 @@ class CommonWidgets {
               GestureDetector(
                 onTap: () => onPressBackArrow(),
                 child: Container(
-                  padding: EdgeInsets.only(top: getHeight() * 0.01, left: getWidth() * 0.02, bottom: getHeight() * 0.01),
+                  padding: EdgeInsets.only(
+                      top: getHeight() * 0.01,
+                      left: getWidth() * 0.02,
+                      bottom: getHeight() * 0.01),
                   decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.pureWhiteColor
-                  ),
+                      shape: BoxShape.circle, color: AppColors.pureWhiteColor),
                   child: Icon(
                     Icons.arrow_back_ios,
                     color: AppColors.greenColor,
@@ -130,19 +128,27 @@ class CommonWidgets {
               SizedBox(width: getWidth() * 0.05),
               SizedBox(
                   width: getWidth() * 0.75,
-                  child: TextView.header(title??"", color: AppColors.pureWhiteColor, fontSize: sizes.fontSize22)
-              ),
-
+                  child: TextView.header(title ?? "",
+                      color: AppColors.pureWhiteColor,
+                      fontSize: sizes.fontSize22)),
             ],
           ),
-          SizedBox(height: getHeight()*0.02),
-          searchAppBarField(controller: textEditingController, hint: hint, onChanged: onChanged, readOnly: readOnly)
+          SizedBox(height: getHeight() * 0.02),
+          searchAppBarField(
+              controller: textEditingController,
+              hint: hint,
+              onChanged: onChanged,
+              readOnly: readOnly)
         ],
       ),
     );
   }
 
-  static Widget searchAppBarField({TextEditingController? controller, String? hint, Function(String)? onChanged, required bool? readOnly}) {
+  static Widget searchAppBarField(
+      {TextEditingController? controller,
+      String? hint,
+      Function(String)? onChanged,
+      required bool? readOnly}) {
     return Container(
       padding: EdgeInsets.only(right: getWidth() * 0.02),
       decoration: BoxDecoration(
@@ -156,8 +162,7 @@ class CommonWidgets {
         style: TextStyle(
             fontFamily: Assets.poppinsRegular,
             fontSize: sizes.fontSize15,
-            color: AppColors.blackColor
-        ),
+            color: AppColors.blackColor),
         decoration: InputDecoration(
           hintText: hint ?? "",
           border: InputBorder.none,
@@ -165,8 +170,7 @@ class CommonWidgets {
           hintStyle: TextStyle(
               fontFamily: Assets.poppinsRegular,
               fontSize: sizes.fontSize15,
-              color: AppColors.darkGrey
-          ),
+              color: AppColors.darkGrey),
           prefixIcon: const Icon(
             Icons.search,
             color: AppColors.darkGrey,
@@ -180,7 +184,7 @@ class CommonWidgets {
   static Widget getSimpleAppBar({
     String? title,
     required Function onPressBackArrow,
-  }){
+  }) {
     return Container(
       width: sizes.width,
       color: AppColors.greenColor,
@@ -188,8 +192,7 @@ class CommonWidgets {
           left: sizes.pagePadding,
           right: sizes.pagePadding,
           top: getHeight() * 0.06,
-          bottom: getHeight() * 0.02
-      ),
+          bottom: getHeight() * 0.02),
       child: Column(
         children: [
           Row(
@@ -197,11 +200,12 @@ class CommonWidgets {
               GestureDetector(
                 onTap: () => onPressBackArrow(),
                 child: Container(
-                  padding: EdgeInsets.only(top: getHeight() * 0.01, left: getWidth() * 0.02, bottom: getHeight() * 0.01),
+                  padding: EdgeInsets.only(
+                      top: getHeight() * 0.01,
+                      left: getWidth() * 0.02,
+                      bottom: getHeight() * 0.01),
                   decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.pureWhiteColor
-                  ),
+                      shape: BoxShape.circle, color: AppColors.pureWhiteColor),
                   child: Icon(
                     Icons.arrow_back_ios,
                     color: AppColors.greenColor,
@@ -212,8 +216,11 @@ class CommonWidgets {
               SizedBox(width: getWidth() * 0.05),
               SizedBox(
                   width: getWidth() * 0.75,
-                  child: TextView.caption(title??"", color: AppColors.pureWhiteColor, fontFamily: Assets.poppinsMedium, lines: 1, fontSize: sizes.fontSize16)
-              ),
+                  child: TextView.caption(title ?? "",
+                      color: AppColors.pureWhiteColor,
+                      fontFamily: Assets.poppinsMedium,
+                      lines: 1,
+                      fontSize: sizes.fontSize16)),
             ],
           ),
         ],
@@ -221,44 +228,52 @@ class CommonWidgets {
     );
   }
 
-  static getCategoryWithText({
-    String? image,
-    String? title
-  }) {
+  static getCategoryWithText({String? image, String? title}) {
     return Row(
       children: [
-        SvgPicture.network(image!, height: getHeight()*0.03),
+        SvgPicture.network(image!, height: getHeight() * 0.03),
         SizedBox(width: getWidth() * 0.05),
-        TextView.headerWithBlurRadius(title ?? "", color: AppColors.darkGrey, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize14)
-
+        TextView.headerWithBlurRadius(title ?? "",
+            color: AppColors.darkGrey,
+            fontFamily: Assets.poppinsMedium,
+            fontSize: sizes.fontSize14)
       ],
     );
   }
 
-  static Widget getTextWithSeeAll({required String leadingText, required String trailingText, required Function onPressSeeAllButton}) {
+  static Widget getTextWithSeeAll(
+      {required String leadingText,
+      required String trailingText,
+      required Function onPressSeeAllButton,
+      bool? showSeeAll = true}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        TextView.titleWithDecoration(leadingText, color: AppColors.blackColor, fontFamily: Assets.poppinsMedium, fontSize: sizes.fontSize16),
-        GestureDetector(
-            onTap: () => onPressSeeAllButton(),
-            child: TextView.headerWithBlurRadius(trailingText, color: AppColors.greenColor,
-                fontFamily: Assets.poppinsMedium, textDecoration: TextDecoration.underline, fontSize: sizes.fontSize15)),
+        TextView.titleWithDecoration(leadingText,
+            color: AppColors.blackColor,
+            fontFamily: Assets.poppinsMedium,
+            fontSize: sizes.fontSize16),
+        if (showSeeAll!)
+          GestureDetector(
+              onTap: () => onPressSeeAllButton(),
+              child: TextView.headerWithBlurRadius(trailingText,
+                  color: AppColors.greenColor,
+                  fontFamily: Assets.poppinsMedium,
+                  textDecoration: TextDecoration.underline,
+                  fontSize: sizes.fontSize15)),
       ],
     );
   }
 
-  static Widget seeAllButton(double radius){
+  static Widget seeAllButton(double radius) {
     return Padding(
       padding: EdgeInsets.only(left: 1.h, right: 1.5.h),
       child: CircleAvatar(
         radius: radius,
         backgroundColor: const Color(0xFF7DDFC3),
-        child: TextView.titleWithDecoration(Strings.seeAll, color: Colors.white),
+        child:
+            TextView.titleWithDecoration(Strings.seeAll, color: Colors.white),
       ),
     );
   }
-
 }
-
-
