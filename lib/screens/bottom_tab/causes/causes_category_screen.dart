@@ -51,7 +51,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                                 ? 0
                                 : _causesController
                                             .topCausesContainersList!.length >
-                                        6
+                                        5
                                     ? 6
                                     : _causesController
                                         .topCausesContainersList!.length,
@@ -59,8 +59,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                           return index ==
                                   (_causesController
                                               .topCausesContainersList!.length >
-                                          6
-                                      ? 6
+                                          5
+                                      ? 5
                                       : _causesController
                                               .topCausesContainersList!.length +
                                           1)
@@ -166,7 +166,7 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                                 .recentlyStartedCauses!.isEmpty
                             ? 0
                             : _causesController.recentlyStartedCauses!.length >
-                                    6
+                                    5
                                 ? 6
                                 : _causesController
                                     .recentlyStartedCauses!.length,
@@ -174,8 +174,8 @@ class _CausesCategoryScreenState extends State<CausesCategoryScreen> {
                           return index ==
                                   (_causesController
                                               .recentlyStartedCauses!.length >
-                                          6
-                                      ? 6
+                                          5
+                                      ? 5
                                       : _causesController
                                               .recentlyStartedCauses!.length +
                                           1)

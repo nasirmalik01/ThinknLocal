@@ -250,7 +250,7 @@ class BusinessesScreen extends StatelessWidget {
                                               : _businessesController
                                                           .businessList!
                                                           .length >
-                                                      6
+                                                      5
                                                   ? 6
                                                   : _businessesController
                                                       .businessList!.length,
@@ -259,8 +259,8 @@ class BusinessesScreen extends StatelessWidget {
                                                     (_businessesController
                                                                 .businessList!
                                                                 .length >
-                                                            6
-                                                        ? 6
+                                                            5
+                                                        ? 5
                                                         : _businessesController
                                                                 .businessList!
                                                                 .length +
@@ -366,7 +366,7 @@ class BusinessesScreen extends StatelessWidget {
                                               : _businessesController
                                                           .recentlyAddedBusinessList!
                                                           .length >
-                                                      6
+                                                      5
                                                   ? 6
                                                   : _businessesController
                                                       .recentlyAddedBusinessList!
@@ -376,8 +376,8 @@ class BusinessesScreen extends StatelessWidget {
                                                     (_businessesController
                                                                 .recentlyAddedBusinessList!
                                                                 .length >
-                                                            6
-                                                        ? 6
+                                                            5
+                                                        ? 5
                                                         : _businessesController
                                                                 .recentlyAddedBusinessList!
                                                                 .length -
